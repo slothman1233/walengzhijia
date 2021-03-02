@@ -1,0 +1,131 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+
+.header {
+  @height         : 56px;
+  height          : @height;
+  background-color: @color_theme_c4;
+  line-height     : @height;
+
+  .header_box {
+    width : @DefindWidth;
+    margin: auto;
+
+    //logo
+    .logo {
+      float       : left;
+      margin-right: 70px;
+
+      img {
+        .box-sizing();
+        padding: 8px 0;
+        height : @height;
+
+      }
+    }
+
+    .row_list {
+      float: left;
+
+      a {
+        display: block;
+        float  : left;
+        height : 56px;
+        padding: 0 @space_1;
+        margin : 0 @space_2;
+
+
+        &:hover {
+          span {
+            color              : @color_rank  !important;
+            border-bottom-color: @color_rank;
+            font-weight        : @font_weight;
+          }
+        }
+
+        span {
+          color  : #FFF;
+          display: block;
+          .box-sizing();
+          height     : @height;
+          line-height: @height;
+
+          border-bottom: 4px solid transparent;
+        }
+      }
+
+    }
+
+    .search {
+      float : right;
+      margin: 12px 0;
+
+      i {
+        display         : block;
+        float           : right;
+        height          : @height - 24px;
+        line-height     : @height - 24px;
+        width           : 30px;
+        background-color: #FFF;
+        color           : @color_gray_c3;
+        .border-radius(2px 0 0 2px)
+      }
+
+      input {
+        display         : block;
+        float           : right;
+        height          : @height - 24px;
+        line-height     : @height - 24px;
+        background-color: #FFF;
+        width           : 170px;
+      }
+
+      a {
+        display         : block;
+        float           : right;
+        padding: 0 @space_2;
+        height          : @height - 24px;
+        line-height     : @height - 24px;
+        background-color: @color_subject;
+        color           : @font_defind_color;
+        font-size       : @font_size_12;
+        .border-radius(0 2px 2px 0)
+      }
+    }
+
+
+    .channels {
+      float      : right;
+      margin-left: @space_4;
+      font-size  : @font_size_14;
+
+      a {
+        color: #FFF;
+      }
+    }
+
+    .login {
+      float      : right;
+      margin-left: @space_4;
+
+      a,
+      i {
+
+        float    : right;
+        font-size: @font_size_14;
+        display  : block;
+        color    : #FFF;
+        height   : 22px;
+
+      }
+
+      i {
+        padding: 0 @space_1;
+      }
+
+    }
+
+
+  }
+
+
+}

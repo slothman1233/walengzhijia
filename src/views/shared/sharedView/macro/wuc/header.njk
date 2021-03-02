@@ -3,10 +3,44 @@
     * name 名称
 #}
 
-{% macro header(name = '1') %}
-    <div>
-        {{name}}
-    头部
-</div>
+{% macro header() %}
+    <div class="header">
+        <div class="header_box">
 
+            <div class="logo">
+                <a href="#"><img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" alt=""></a>
+            </div>
+
+            <div class="row_list">
+                <a href="#">
+                    <span>
+                    首页
+                </span>
+                </a>
+
+                <a href="#">
+                    <span>
+                    品牌商
+                </span>
+                </a>
+            </div>
+
+            <div class="login">
+                <a href="#">注册</a>
+                <i>|</i>
+                <a href="#">登录</a>
+
+            </div>
+
+            <div class="channels">
+                <a href="#">合作通道</a>
+            </div>
+
+            <div class="search">
+                <a href="#"> 搜索 </a>
+                <input name="q" id="search" placeholder="输入品牌、产品等关键词"/>
+                <i>#</i>
+            </div>
+        </div>
+    </div>
 {% endmacro %}

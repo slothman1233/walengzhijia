@@ -19,47 +19,29 @@ import { writeFile, EnsureFile, readFile, moveFile, copyFile } from '../common/u
 export default class Common {
 
 
-    @middlewares([test_middleware, test_2, test_2, test_middleware])
+    // @middlewares([test_middleware, test_2, test_2, test_middleware])
     @get('/index')
     async index(ctx: Context) {
         // const res = await http.get<any>('http://www.fx110.uk/api/test/test?type=2', { unErrorMsg: true })
-        const res = 111
-        const respost = await http.post('http://localhost:3000/api/test/testpost', { type: '0', name: 'string', age: 0 })
-        await ctx.render('index', {
-            title: '12222313123123',
-            name: '2',
-            html: '<div>3</div>',
-            data: [{ a: 1, b: 2, c: 3 }, { a: 4, b: 5, c: 6 }, { a: 4, b: 5, c: 6 }, { a: 4, b: 5, c: 6 }],
-            httpget: JSON.stringify(res),
-            respost: JSON.stringify(respost)
-        })
+        // const res = 111
+        // const respost = await http.post('http://localhost:3000/api/test/testpost', { type: '0', name: 'string', age: 0 })
+        // await ctx.render('index', {
+        //     title: '12222313123123',
+        //     name: '2',
+        //     html: '<div>3</div>',
+        //     data: [{ a: 1, b: 2, c: 3 }, { a: 4, b: 5, c: 6 }, { a: 4, b: 5, c: 6 }, { a: 4, b: 5, c: 6 }],
+        //     httpget: JSON.stringify(res),
+        //     respost: JSON.stringify(respost)
+        // })
+
+        this.home(ctx)
     }
 
     @get('/')
-    async home(ctx: Context, next: Next) {
-        //  const res = await http.get<any>('https://testmsrightsapi.tostar.top/api/Aggregate/AdminIndexV1', { unErrorMsg: true })
-        //  console.log(22222, res)
-        // workers()
-
-        // const dd = await http.get<any>(
-        //     'https://devmsentapi.tostar.top/api/Question/GetPagedList',
-        //     {
-        //         params: {
-        //             pageIndex: 1,
-        //             pageSize: 20,
-        //             selType: 0,
-        //             parQaId: 0,
-        //             status: -1,
-        //         },
-
-        //         headers: { 'Content-Type': 'application/json' }
-        //     }
-        // )
-
-
+    async home(ctx: Context) {
 
         await ctx.render('index', {
-            title: '111'
+
         })
 
     }
@@ -74,7 +56,7 @@ export default class Common {
 
         let filepath = path.resolve(__dirname, '..', 'htmldist', 'index.html')
         await EnsureFile(filepath)
-         
+
         await writeFile(filepath, ss.toString())
 
         let htmlbuf = await readFile(filepath)

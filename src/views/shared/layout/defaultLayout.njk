@@ -11,7 +11,9 @@
         <title>
             {% block title %}我是title{% endblock title %}
         </title>
-
+        <meta name="keywords" content="{% block keywords %}keywords{% endblock keywords %}">
+        <meta name="description" content="{% block description %}我是description{% endblock description %}">
+        <link href="/dist/public/style/index.css" rel="stylesheet">
         {% block style %}{% endblock style %}
 
     </head>
@@ -19,7 +21,7 @@
     <body>
 
         {% block headers %}
-            {{footer()}}
+            {{header()}}
         {% endblock headers %}
 
         {% block body %}
