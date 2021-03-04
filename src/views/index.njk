@@ -1,8 +1,6 @@
 {% extends "./shared/layout/defaultLayout.njk" %}
 
-{# 引入变量 #}
-{% import "./shared/sharedView/set/index.njk" as setCon %}
-{% import "./shared/sharedView/macro/macro.njk" as macroCon %}
+{% from "./shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
 
 {% block title %}
 54123123213333
@@ -13,15 +11,780 @@
 {% block description %}{% endblock %}
 
 {% block style %}
-  <link href="/style/a.css" rel="stylesheet">
+  <link href="/dist/styles/index/index.css" rel="stylesheet">
 {% endblock style %}
 
 {% block script %}{% endblock script %}
 
 {% block body %}
 
-  <div>
-主体
+  <div id="main">
+    {% set rowData = [
+      {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }
 
-</div>
+    ]
+ %}
+    <div class="row_hot">
+      {% for item in rowData %}
+        <a href="{{item.link}}" title="{{item.title}}" target="_blank">
+          <div><img src="{{item.image}}"/></div>
+          <p>{{item.title}}</p>
+        </a>
+
+      {% endfor %}
+    </div>
+
+    {% set rowImg = [
+      {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }, {
+        title: "纸板加工设备",
+        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        link: "#"
+      }
+    ] %}
+
+    <div class="rowImg">
+      {% for item in rowImg %}
+        <a href="{{item.link}}" title="{{item.title}}" target="_blank">
+          <img src="{{item.image}}"/>
+        </a>
+      {% endfor %}
+    </div>
+
+    {% set brandData = [
+      [
+
+        {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: ["询价", "询价", "询价"]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }
+
+      ],
+      [
+
+        {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: ["询价", "询价", "询价"]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }
+
+      ],
+      [
+
+        {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: ["询价", "询价", "询价"]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }
+
+      ],
+      [
+
+        {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: ["询价", "询价", "询价"]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }, {
+          title: "纸板加工设备",
+          image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          link: "#",
+          lable: [
+            "上市公司", "上市公司", "上市公司"
+          ],
+          inquiry: [
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价",
+            "询价"
+          ]
+        }
+
+      ]
+    ] %}
+
+    <div class="brand">
+      <div class='row'>
+        {{ navigationbar() }}
+      </div>
+
+      <div class="list_box">
+
+        {% if (brandData != null) and (brandData.length > 0) %}
+
+          {% for items in brandData %}
+            <div class="list_item" style="display:{{ (loop.index == 1) | ternary('block','none') }}">
+
+              {% for item in items %}
+
+                <div class="listchild">
+                  <a class="left" href="{{item.link}}" title="{{item.title}}" target="_blank">
+                    <img src="{{item.image}}"/>
+                  </a>
+                  <div class="right">
+                    <a href="{{item.link}}" title="{{item.title}}" target="_blank">{{item.title}}</a>
+                    <div class="label">
+                      {% for item in item.lable %}
+                        <span>{{item}}</span>
+                      {% endfor %}
+
+                    </div>
+                    <div class="inquiry">
+                      {% for item in item.inquiry %}
+                        {% if loop.last %}
+                          <span>{{item}}</span>
+                        {% else %}
+                          <span>{{item}}</span>
+                          <i>|</i>
+                        {% endif %}
+
+                      {% endfor %}
+
+                    </div>
+                  </div>
+                </div>
+
+              {% endfor %}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
 {% endblock body %}

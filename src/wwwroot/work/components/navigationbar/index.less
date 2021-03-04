@@ -1,0 +1,54 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+
+.navigationbar {
+  @height      : 64px;
+  width        : 100%;
+  height       : @height;
+  border-bottom: 1px solid @border_color;
+  position     : relative;
+  @morewidth   : 60px;
+
+  .list {
+    position: absolute;
+    left    : 0;
+    right   : @morewidth;
+    height  : @height;
+    .ellipsis();
+
+    a {
+      display     : block;
+      float       : left;
+      height      : @height;
+      margin-right: @space_4;
+
+      span {
+
+        color        : @color_gray_c1;
+        display      : block;
+        height       : @height;
+        line-height  : @height;
+        font-size    : @font_size_16;
+        border-bottom: 4px solid transparent;
+        font-weight  : @font_weight;
+        .box-sizing();
+
+        &.select {
+          font-size          : @font_size_24;
+          color              : @color_main_c1;
+          border-bottom-color: @color_subject;
+        }
+      }
+    }
+
+  }
+
+  &>a {
+    text-align : right;
+    width      : @morewidth;
+    float      : right;
+    font-size  : @font_size_14;
+    color      : @color_gray_c3;
+    line-height: @height;
+  }
+
+}

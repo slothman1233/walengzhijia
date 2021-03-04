@@ -1,4 +1,197 @@
-   body {
-       margin: 12px;
+@import (reference) "../../public/style/common/PublicDefind.less";
+@import (reference) "../../public/style/common/Animation.less";
+@import (less) "../../components/navigationbar/index.less";
 
-   }  
+#main {
+    width        : @DefindWidth;
+    margin       : auto;
+    margin-bottom: 200px;
+
+    &>div {
+        margin-top: @space_3;
+    }
+
+
+    .row_hot {
+        width   : @DefindWidth + @space_1;
+        overflow: hidden;
+        @height : 80px;
+
+        a {
+            display     : block;
+            height      : @height;
+            text-align  : center;
+            float       : left;
+            width       : (@DefindWidth + @space_1) / 10 - @space_1;
+            margin-right: @space_1;
+
+            div {
+                @imgHeight : 60px;
+                height     : @imgHeight;
+                line-height: @imgHeight;
+                text-align : center;
+                width      : 100%;
+
+                img {
+                    height: @imgHeight;
+                    width : 100%;
+                    margin: auto;
+                }
+            }
+
+            p {
+                @pheight   : 20px;
+                height     : @pheight;
+                line-height: @pheight;
+                color      : @color_main_c1;
+                font-size  : @font_size_12;
+                .over_group()
+            }
+        }
+    }
+
+
+
+    .rowImg {
+        width        : @DefindWidth;
+        overflow     : hidden;
+        @height      : 64px;
+        border-bottom: 1px solid @border_color;
+        border-right : 1px solid @border_color;
+
+        a {
+            display    : block;
+            height     : @height;
+            text-align : center;
+            float      : left;
+            width      : @DefindWidth / 7;
+            border-left: 1px solid @border_color;
+            border-top : 1px solid @border_color;
+            line-height: @height;
+            text-align : center;
+            .box-sizing();
+
+            img {
+                height: 100%;
+                width : 100%;
+            }
+        }
+    }
+
+
+    .brand {
+        width: @DefindWidth;
+
+        .row {
+            width        : @DefindWidth;
+            margin-bottom: @space_2;
+        }
+
+
+        .list_box {
+            width   : @DefindWidth + @space_1;
+            overflow: hidden;
+
+            .list_item {
+                display: none;
+
+
+                .listchild {
+                    position         : relative;
+                    @height          : 116px;
+                    @heighttopadding : @height - (@space_1 * 2);
+                    height           : @height;
+                    padding          : @space_1;
+                    width            : (@DefindWidth + @space_1) / 3 - @space_1;
+                    float            : left;
+                    overflow         : hidden;
+                    background-color : #F7F8FB;
+                    margin           : 0 @space_1 @space_1 0;
+                    .box-sizing();
+
+                    .left {
+                        position        : absolute;
+                        @width          : 144px;
+                        width           : @width;
+                        line-height     : @heighttopadding;
+                        text-align      : center;
+                        display         : block;
+                        left            : @space_1;
+                        top             : @space_1;
+                        bottom          : @space_1;
+                        background-color: #FFF;
+
+                        img {
+                            display: block;
+                            width  : 100%;
+                            height : 100%;
+                        }
+                    }
+
+                    .right {
+                        position: absolute;
+                        right   : @space_1;
+                        top     : @space_1;
+                        bottom  : @space_1;
+                        left    : 160px;
+
+                        &>a {
+                            display      : block;
+                            height       : 24px;
+                            line-height  : 32px;
+                            color        : @color_main_c1;
+                            font-size    : @font_size_16;
+                            font-weight  : @font_weight;
+                            margin-bottom: @space_2;
+                        }
+
+                        .label {
+                            @height      : 22px;
+                            height       : @height;
+                            width        : 100%;
+                            overflow     : hidden;
+                            margin-bottom: 10px;
+
+                            span {
+                                display         : block;
+                                float           : left;
+                                font-size       : @font_size_12;
+                                color           : @color_gray_c2;
+                                height          : @height;
+                                line-height     : @height;
+                                padding         : 0 @space_1;
+                                background-color: #EBEEF3;
+                                margin-right    : @space_1;
+                            }
+                        }
+
+                        .inquiry {
+                            @height : 20px;
+                            height  : @height;
+                            width   : 100%;
+                            overflow: hidden;
+
+                            span {
+                                display    : block;
+                                float      : left;
+                                height     : @height;
+                                line-height: @height;
+                                font-size  : @font_size_12;
+                                color      : @color_gray_c2;
+                            }
+
+                            i {
+                                display: block;
+                                float  : left;
+                                height : @height;
+                                color  : @color_gray_c2;
+                                padding: 0 @space_1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
