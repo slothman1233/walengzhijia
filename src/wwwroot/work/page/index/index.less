@@ -1,6 +1,11 @@
 @import (reference) "../../public/style/common/PublicDefind.less";
 @import (reference) "../../public/style/common/Animation.less";
 @import (less) "../../components/navigationbar/index.less";
+@import (less) "../../components/rfoot/index.less";
+@import "/node_modules/@stl/image-slider/dist/index.css";
+@defaultLeftWidth : 776px;
+@defaultRightWidth: @DefindWidth - @defaultLeftWidth - @space_2;
+
 
 #main {
     width        : @DefindWidth;
@@ -193,5 +198,286 @@
             }
         }
     }
+
+
+    .hotnew {
+        @height : 340px;
+        overflow: hidden;
+
+        .banner {
+            width : @defaultLeftWidth;
+            height: @height;
+            float : left;
+
+            .slider_parent {
+                overflow: hidden;
+                position: relative;
+
+                .slider_box {
+                    width: 20000px;
+
+                    li {
+                        float           : left;
+                        width           : @defaultLeftWidth;
+                        background-color: #eee;
+
+
+                        a {
+                            display : block;
+                            width   : @defaultLeftWidth;
+                            height  : @height;
+                            position: relative;
+
+                            img {
+                                display: block;
+                                width  : @defaultLeftWidth;
+                                height : @height;
+                            }
+
+                            p {
+                                @height         : 44px;
+                                font-weight     : @font_weight;
+                                position        : absolute;
+                                bottom          : 0;
+                                left            : 0;
+                                right           : 0;
+                                padding         : @space_3 @space_3 @space_3+24 @space_3;
+                                height          : @height * 2;
+                                line-height     : @height;
+                                font-size       : @font_size_36;
+                                color           : #FFFFFF;
+                                text-shadow     : 0px 2px 0px rgba(0, 0, 0, 0.5);
+                                background-color: rgba(0, 0, 0, 0.1);
+                            }
+                        }
+
+                    }
+                }
+
+                .slider_switch_box {
+                    .slider_item_list {
+                        left     : auto;
+                        transform: none;
+                        right    : @space_2;
+                        bottom   : @space_2;
+
+                        .slider_item_btn {
+                            width : 12px;
+                            height: 4px;
+                            .border-radius(4px);
+                            color           : #FFF;
+                            background-color: #FFF;
+                        }
+
+                        .now_slier_item {
+                            width           : 24px;
+                            color           : @color_rank;
+                            background-color: @color_rank;
+                        }
+
+
+                    }
+
+
+                }
+
+            }
+
+        }
+
+        .bannerList {
+            width : @defaultRightWidth;
+            float : right;
+            height: @height;
+
+            a {
+                display    : block;
+                color      : @font_defind_color;
+                height     : @height / 9;
+                line-height: @height / 9;
+                font-size  : @font_size_16;
+                .ellipsis();
+
+                &:first-child {
+                    font-size  : @font_size_18;
+                    font-weight: @font_weight;
+                    color      : #E66E00;
+                }
+
+                &:nth-child(2) {
+                    color: #E66E00;
+                }
+            }
+        }
+    }
+
+    .information {
+
+
+        .nownew {
+            width: @defaultLeftWidth;
+            float: left;
+
+            .navigationbar {
+                position        : sticky;
+                top             : 0px;
+                background-color: #FFFFFF;
+                z-index         : 10;
+            }
+
+            .children {
+                @padding: 20px;
+                padding : @padding 0;
+                height  : 120px;
+                position: relative;
+
+                .left {
+                    display : block;
+                    width   : 180px;
+                    height  : 120px;
+                    position: absolute;
+                    top     : @padding;
+
+                    img {
+                        width : 100%;
+                        height: 100%;
+                    }
+                }
+
+                .right {
+                    position: absolute;
+                    left    : 180 + @space_2;
+                    top     : @padding;
+                    bottom  : @padding;
+                    right   : 0;
+                    overflow: hidden;
+
+                    .title {
+                        display    : block;
+                        color      : @color_main_c1;
+                        font-size  : @font_size_20;
+                        line-height: @line_height;
+                        font-weight: @font_weight;
+                        .ellipsis();
+                    }
+
+                    &>p {
+                        font-size  : @font_size_16;
+                        color      : @color_gray_c2;
+                        line-height: @line_height;
+                        .ellipsis();
+                    }
+
+                    .ft {
+                        @height    : 30px;
+                        position   : absolute;
+                        bottom     : 0;
+                        left       : 0;
+                        height     : @height;
+                        line-height: @height;
+
+                        img {
+                            display     : block;
+                            float       : left;
+                            height      : @height;
+                            margin-right: @space_1;
+                        }
+
+                        span {
+                            display     : block;
+                            float       : left;
+                            height      : @height;
+                            margin-right: @space_1;
+                            color       : @color_gray_c2;
+                            margin-right: @space_1;
+                        }
+
+                        i {
+                            display         : block;
+                            float           : left;
+                            background-color: @color_grey_line1;
+                            height          : 24px;
+                            line-height     : 24px;
+                            margin          : 3px @space_1 3px 0;
+                            padding         : 0 @space_1;
+                            color           : @color_gray_c2;
+                        }
+
+
+                    }
+                }
+
+            }
+        }
+
+
+        .hotinformation {
+            width: @defaultRightWidth;
+            float: right;
+
+            .newList {
+                margin-top: 20px;
+
+                a {
+                    @height    : 36px;
+                    display    : block;
+                    height     : @height;
+                    line-height: @height;
+                    position   : relative;
+
+                    &:nth-child(1)>i {
+                        background-color: #D64B2C;
+                        .border-radius(2px);
+                        color: #FFF;
+                    }
+
+                    &:nth-child(2)>i {
+                        background-color: #E78022;
+                        .border-radius(2px);
+                        color: #FFF;
+                    }
+
+                    &:nth-child(3)>i {
+                        background-color: #FAC439;
+                        .border-radius(2px);
+                        color: #FFF;
+                    }
+
+                    i {
+                        display    : block;
+                        width      : 20px;
+                        height     : 20px;
+                        line-height: 20px;
+                        text-align : center;
+                        margin     : 8px 0;
+                        float      : left;
+
+
+                    }
+
+                    p {
+                        position: absolute;
+                        left    : 20 + @space_2;
+                        top     : 0;
+                        bottom  : 0;
+                        right   : 0;
+                        .ellipsis();
+                        color      : @color_main_c1;
+                        font-size  : @font_size_16;
+                        line-height: @height;
+                    }
+                }
+
+            }
+
+            .blogroll {
+                width     : 100%;
+                margin-top: @space_2;
+            }
+
+        }
+
+    }
+
 
 }

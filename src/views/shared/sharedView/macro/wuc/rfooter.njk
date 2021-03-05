@@ -1,0 +1,47 @@
+{% macro rfooter(args = 
+[
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface",
+  "corrface"
+]
+) %}
+
+  <div class="rfooter">
+    <div class="title">
+         友情链接
+      </div>
+    <div class="list">
+      {% if (args != null) and (args.length > 0) %}
+        {% for item in args %}
+          <span>{{item}}</span>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <div class="records">
+      <p>© 2021 瓦楞之家 www.corr360.com</p>
+      <p>沪公网安备 11010802026035号</p>
+      <p>沪ICP备17027026号-3</p>
+      <p>增值电信业务经营许可证</p>
+      <p>网络文化经营许可证-4715-493号</p>
+      <p>公司名称：上海KT科技有限公司</p>
+      <p>中央网信办违法和不良信息举报中心</p>
+      <p>违法和不良信息举报电话：400-140-2108</p>
+      <p>用户协议 | 隐私政策 | 营业执照</p>
+      <p>侵权投诉 | 我要反馈</p>
+    </div>
+
+  </div>
+
+{% endmacro %}

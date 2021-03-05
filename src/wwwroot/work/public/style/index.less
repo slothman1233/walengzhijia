@@ -90,3 +90,10 @@ a:active {
 a {
   color: @font_defind_color;
 }
+
+.clearfix::after {
+  content: ' ';
+  display: block;
+  clear: both;
+  font-size: 0;
+}
