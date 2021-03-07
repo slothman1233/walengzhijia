@@ -4,6 +4,9 @@
 
 @DefindWidth: 1184px;
 
+
+@DefindRight1: 284px;
+
 //栅格大小
 @gridSize   : 34px;
 @gridPadding: 16px;
@@ -347,4 +350,35 @@
 
     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=@size, MakeShadow=false);
     /* IE6~IE9 */
+}
+
+
+//分页样式
+.kkpager() {
+    .kkpager_parent_box {
+        border: none;
+
+        .pageBtnWrap {
+
+            span,
+            a {
+
+                padding: 0 10px;
+                border : 1px solid @color_grey_line1;
+                color  : @color_gray_c1;
+                text-align: center;
+                .box-sizing();
+                .border-radius(1px);
+            }
+
+            .curr {
+                color           : @color_subject;
+                margin          : 0 5px;
+                height          : auto;
+                line-height     : 30px;
+                background-color: @color_main_c1;
+                border-color    : @color_main_c1;
+            }
+        }
+    }
 }

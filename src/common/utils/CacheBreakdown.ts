@@ -17,7 +17,7 @@ export async function awaitData(key: string) {
     //因为 emitter 注册监听器默认的最大限制是10，所以在并发多的时候出问题。需要动态调整数量
         emitter.setMaxListeners(emitter.getMaxListeners() + 1)
         //进入队列
-        emitter.once(key, (data) => {
+        emitter.once(key, (data:any) => {
             //返回数据
             resolve(data)
             //减去当前监听器的数量

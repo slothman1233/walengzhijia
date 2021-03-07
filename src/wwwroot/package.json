@@ -15,6 +15,7 @@
         "@babel/plugin-transform-runtime": "^7.12.10",
         "@stl/httprequest": "^1.0.0",
         "@stl/image-slider": "^1.0.8",
+        "@stl/kkpager": "0.0.7",
         "@stl/tool-ts": "^1.0.3",
         "@stl/wl-gulp-rev": "^1.0.3",
         "@stl/wl-gulp-rev-collector": "^1.0.1",

@@ -34,14 +34,14 @@ declare const document: Document
         agent: list,
         events: 'mouseover',
         ele: 'a',
-        fn: function (dom, event) {
+        fn: function (dom: any, event: any) {
             let ins = index(dom)
 
             for (let i = 0; i < list.querySelectorAll('a').length; i++) {
                 let dom = list.querySelectorAll('a')[i]
-                if (i === ins) { 
-                    addClass(dom.querySelector('span'), 'select') 
-                    continue 
+                if (i === ins) {
+                    addClass(dom.querySelector('span'), 'select')
+                    continue
                 }
                 removeClass(dom.querySelector('span'), 'select')
 

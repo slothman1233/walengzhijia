@@ -14,6 +14,7 @@ import { nunRender } from '../common/nunjucks'
 
 // import * as map from './map'
 import { writeFile, EnsureFile, readFile, moveFile, copyFile } from '../common/utils/file'
+import Business from './business'
 
 
 export default class Common {
@@ -22,27 +23,13 @@ export default class Common {
     // @middlewares([test_middleware, test_2, test_2, test_middleware])
     @get('/index')
     async index(ctx: Context) {
-        // const res = await http.get<any>('http://www.fx110.uk/api/test/test?type=2', { unErrorMsg: true })
-        // const res = 111
-        // const respost = await http.post('http://localhost:3000/api/test/testpost', { type: '0', name: 'string', age: 0 })
-        // await ctx.render('index', {
-        //     title: '12222313123123',
-        //     name: '2',
-        //     html: '<div>3</div>',
-        //     data: [{ a: 1, b: 2, c: 3 }, { a: 4, b: 5, c: 6 }, { a: 4, b: 5, c: 6 }, { a: 4, b: 5, c: 6 }],
-        //     httpget: JSON.stringify(res),
-        //     respost: JSON.stringify(respost)
-        // })
-
         this.home(ctx)
     }
 
     @get('/')
     async home(ctx: Context) {
 
-        await ctx.render('index', {
-
-        })
+        await ctx.render('index', {})
 
     }
 
@@ -75,6 +62,12 @@ export default class Common {
 
     }
 
+
+    @get('/business')
+    async business(ctx: Context, next: Next) {
+        let bns = new Business()
+        await bns.index(ctx, next)
+    }
 
 }
 

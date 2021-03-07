@@ -1,7 +1,10 @@
 let path = require('path')
 let paths = {
     jspages: [
-        getSrc('./index/index.ts')
+        getSrc('./index/index.ts'),
+        getSrc('./business/index.ts')
+
+        
     ]
 }
 //获取文件的绝对地址
