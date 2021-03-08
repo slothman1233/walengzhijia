@@ -15,6 +15,7 @@ import { nunRender } from '../common/nunjucks'
 // import * as map from './map'
 import { writeFile, EnsureFile, readFile, moveFile, copyFile } from '../common/utils/file'
 import Business from './business'
+// import Business from './list'
 
 
 export default class Common {
@@ -33,41 +34,52 @@ export default class Common {
 
     }
 
+    
+  @get('/list')
+    async list(ctx: Context, next: Next) {
+
+        await ctx.render('list', {
+
+        })
+
+    }
+
+
     /**
      * 获取静态页面的html代码
      * @param ctx 
      */
     @get('/html')
-    async html(ctx: Context, next: Next) {
-        let ss = nunRender('views/index.njk', Object.assign({}, ctx.state))
+  async html(ctx: Context, next: Next) {
+      let ss = nunRender('views/index.njk', Object.assign({}, ctx.state))
 
-        let filepath = path.resolve(__dirname, '..', 'htmldist', 'index.html')
-        await EnsureFile(filepath)
+      let filepath = path.resolve(__dirname, '..', 'htmldist', 'index.html')
+      await EnsureFile(filepath)
 
-        await writeFile(filepath, ss.toString())
+      await writeFile(filepath, ss.toString())
 
-        let htmlbuf = await readFile(filepath)
+      let htmlbuf = await readFile(filepath)
 
-        let getHtml = htmlbuf.toString()
+      let getHtml = htmlbuf.toString()
 
-        if (getHtml !== '') {
+      if (getHtml !== '') {
 
-            ctx.type = `.html`
-            ctx.status = 200
-            ctx.body = getHtml
-        } else {
-            await next()
-        }
-
-
-    }
+          ctx.type = `.html`
+          ctx.status = 200
+          ctx.body = getHtml
+      } else {
+          await next()
+      }
 
 
-    @get('/business')
-    async business(ctx: Context, next: Next) {
-        let bns = new Business()
-        await bns.index(ctx, next)
-    }
+  }
+
+
+    // @get('/business/:id?')
+    // async business(ctx: Context, next: Next) {
+    //     let bns = new Business()
+    //     await bns.index(ctx, next)
+    // }
 
 }
 

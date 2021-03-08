@@ -52,3 +52,27 @@
   }
 
 }
+
+.navigationbar2 {
+  @height : 36px;
+  width   : 100%;
+  overflow: hidden;
+  height  : @height;
+
+  span {
+    margin-right    : @space_2;
+    display         : block;
+    float           : left;
+    cursor          : pointer;
+    padding         : 0 @space_2;
+    line-height     : @height;
+    color           : @color_main_c1;
+    background-color: @color_grey_line1;
+    .border-radius(2px);
+
+    &.select {
+      color           : @color_subject;
+      background-color: @color_main_c1;
+    }
+  }
+}

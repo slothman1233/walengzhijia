@@ -1,0 +1,39 @@
+{% macro satemap1(args = {
+  title: "当前位置：",
+  select: 3,
+  map: [
+    {
+      name: "首页",
+      link: "#"
+
+    }, {
+      name: "品牌商",
+      link: "#"
+
+    }, {
+      name: "京山轻机",
+      link: "#"
+
+    }
+  ]
+}) %}
+
+  <div class="satemap1">
+    {% if args != null %}
+      <span>{{args.title | ternary(args.title,"当前位置：")}}</span>
+    {% endif %}
+
+    {% if args.map.length > 0 %}
+      {% for item in args.map %}
+        {% if loop.last %}
+          <a href="{{item.link}}" class="{{(loop.index == args.select) | ternary('select','') }}" target="_blank">{{item.name}}</a>
+        {% else %}
+          <a href="{{item.link}}" class="{{(loop.index == args.select) | ternary('select','') }}" target="_blank">{{item.name}}</a>
+          <i>></i>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+  </div>
+
+{% endmacro %}

@@ -44,3 +44,41 @@
     </div>
   {% endif %}
 {% endmacro %}
+
+{% macro navigationbar2(args = {
+  isSelect: "1",
+  data: [
+    {
+      title: "热门品牌",
+      link: "javascript:(0)"
+    }, {
+      title: "热门品牌",
+      link: "javascript:(0)"
+    }, {
+      title: "热门品牌",
+      link: "javascript:(0)"
+    }, {
+      title: "热门品牌",
+      link: "javascript:(0)"
+    }, {
+      title: "热门品牌",
+      link: "javascript:(0)"
+    }, {
+      title: "热门品牌",
+      link: "javascript:(0)"
+    }
+  ]
+
+}) %}
+
+  <div class="navigationbar2">
+    {% if (args != null) and (args.data != null) and (args.data.length > 0) %}
+      {% for item in args.data %}
+        <span class="{{(loop.index == args.isSelect) | ternary('select','')}}">
+          {{item.title}}
+        </span>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+{% endmacro %}
