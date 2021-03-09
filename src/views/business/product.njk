@@ -1,0 +1,357 @@
+{% extends "../shared/layout/defaultLayout.njk" %}
+
+{% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar,
+navigationbar2 %}
+{% from "../shared/sharedView/macro/components/satemap/satemap1.njk" import satemap1 %}
+{% from "../shared/sharedView/macro/components/list.njk" import list1 %}
+{% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
+
+{% block title %}
+54123123213333
+{% endblock title %}
+
+{% block keywords %}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block style %}
+  <link href="/dist/styles/business/product.css" rel="stylesheet">
+{% endblock style %}
+
+{% block script %}
+  <script type="text/javascript" src="/dist/scripts/business/product.js"></script>
+{% endblock script %}
+
+{% block body %}
+  <div id="main">
+    <div class="map">
+      {{satemap1({
+        title: "当前位置：",
+        select: 4,
+        map: [
+          {
+            name: "首页",
+            link: "#"
+
+          }, {
+            name: "品牌商",
+            link: "#"
+
+          }, {
+            name: "京山轻机",
+            link: "#"
+
+          }
+          , {
+            name: "原纸架",
+            link: "#"
+
+          }
+        ]
+      })}}
+    </div>
+
+    <div class="container">
+
+      <div class="left">
+        <div class="row1">
+          <div class="left">
+            <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/>
+            <p>
+              <span>
+                <i>!</i>产品视频介绍</span>
+              <span>更多图片</span>
+            </p>
+          </div>
+
+          <div class="right">
+            <h1>YWZJ-C型液压无轴纸架</h1>
+            <div class="score">
+              <span>4.68</span>
+              <i>★★★★★</i>
+              <b>38条口碑</b>
+            </div>
+            <div class="configuration">
+              {% set confData = [
+                {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }
+              ]%}
+
+              {% if (confData != null) and (confData.length > 0) %}
+                {% for item in confData %}
+                  <p>
+                    <span>{{item.name}}</span>
+                    <span>{{item.number}}</span>
+                  </p>
+                {% endfor %}
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="tab">
+            {{navigationbar()}}
+          </div>
+          <div class="content">
+            <div class="information">
+              <h1>产品参数</h1>
+              <div class="table">
+                {% set tableData = [
+                  {
+                    key: "夹持卷纸筒最大直径",
+                    value: "最大直径1500mm"
+                  }, {
+                    key: "夹持卷纸筒最大直径",
+                    value: "最大直径1500mm"
+                  }, {
+                    key: "夹持卷纸筒最大直径",
+                    value: "最大直径1500mm"
+                  }, {
+                    key: "夹持卷纸筒最大直径",
+                    value: "最大直径1500mm"
+                  }, {
+                    key: "夹持卷纸筒最大直径",
+                    value: "最大直径1500mm"
+                  }, {
+                    key: "夹持卷纸筒最大直径",
+                    value: "最大直径1500mm"
+                  }, {
+                    key: "夹持卷纸筒最大直径",
+                    value: "最大直径1500mm"
+                  }, {
+                    key: "夹持卷纸筒最大直径",
+                    value: "最大直径1500mm"
+                  }
+                ] %}
+                {% if (tableData != null) and (tableData.length > 0) %}
+                  {% for item in tableData %}
+                    <p>
+                      <span>{{item.key}}</span>
+                      <span>{{item.value}}</span>
+                    </p>
+                  {% endfor %}
+                {% endif %}
+
+              </div>
+
+              <h1>产品概要</h1>
+              <div class="html">
+                <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
+                <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
+                <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
+                <p><img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"></p>
+                <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
+                <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row3">
+          <div class="tab">
+            {{navigationbar({
+                isMore: false,
+                link: "#",
+                isSelect: "1",
+                data: [
+                  {
+                    title: "产品资讯",
+                    link: "javascript:(0)"
+                  }
+                ]
+            })}}
+          </div>
+
+          <div class="list">
+            {{list1()}}
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="marketing">
+          <div class="title">
+            {{navigationbar({
+                isMore: false,
+                link: "#",
+                isSelect: "1",
+                data: [
+                  {
+                    title: "产品资讯",
+                    link: "javascript:(0)"
+                  }
+                ]
+            })}}
+          </div>
+          <div class="list_box">
+
+            {% set marktingData = [
+              {
+                hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+                name: "李女士",
+                title: "海外销售经理",
+                introduction: "负责对外商务洽谈业务",
+                experience: "10",
+                link: "#"
+              }, {
+                hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+                name: "李女士",
+                title: "海外销售经理",
+                introduction: "负责对外商务洽谈业务",
+                experience: "10",
+                link: "#"
+              }
+            ] %}
+
+            {% if (marktingData != null) and (marktingData.length > 0) %}
+              {% for item in marktingData %}
+                <div class="child">
+                  <div class="in">
+                    <img class="hread" src="{{item.hread}}"/>
+                    <div class="r">
+                      <div>
+                        <p>{{item.name}}</p>
+                        <span>{{item.title}}</span>
+                      </div>
+                      <p>{{item.introduction}}</p>
+                      <p>行业经验：{{item.experience}}年</p>
+                    </div>
+                  </div>
+
+                  <a class="ia" href="{{item.link}}">向TA咨询</a>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="title">
+            {{navigationbar({
+                isMore: false,
+                link: "#",
+                isSelect: "1",
+                data: [
+                  {
+                    title: "相关提问",
+                    link: "javascript:(0)"
+                  }
+                ]
+            })}}
+          </div>
+
+          <div class="list_box">
+            {% set questionData = [
+              {
+                title: "如何让机器的能耗最低？",
+                label: [
+                  "阿萨德", "发水电费沙发斯蒂芬"
+                ],
+                link: "#",
+                commentcount: 5
+              }, {
+                title: "如何让机器的能耗最低？",
+                label: [
+                  "阿萨德", "发水电费沙发斯蒂芬"
+                ],
+                link: "#",
+                commentcount: 5
+              }, {
+                title: "如何让机器的能耗最低？",
+                label: [
+                  "阿萨德", "发水电费沙发斯蒂芬"
+                ],
+                commentcount: 5
+              }, {
+                title: "如何让机器的能耗最低？",
+                label: [
+                  "阿萨德", "发水电费沙发斯蒂芬"
+                ],
+                link: "#",
+                commentcount: 5
+              }, {
+                title: "如何让机器的能耗最低？如何让机器的能耗最低？如何让机器的能耗最低？如何让机器的能耗最低？如何让机器的能耗最低？",
+                label: [
+                  "阿萨德", "发水电费沙发斯蒂芬"
+                ],
+                link: "#",
+                commentcount: 5
+              }
+            ] %}
+
+            {% if (questionData != null) and (questionData.length > 0) %}
+              {% for item in questionData %}
+                <div class="child">
+                  <a href="{{item.link}}">{{item.title}}</a>
+                  <div>
+                    {% if (item.label != null) and (item.label.length > 0) %}
+                      <p>
+                        {% for items in item.label %}
+                          <span>{{items}}</span>
+                        {% endfor %}
+                      </p>
+                      <i>{{item.commentcount}}条回答</i>
+                    {% endif %}
+
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+          </div>
+
+          <div class="quiz">
+            <a href="#">我要提问</a>
+          </div>
+
+        </div>
+
+        <a class="advertising" href="#"><img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" class=""></a>
+
+        <div id="informationsub">
+          <h2>立即提交</h2>
+          <p>你提交后，专属业务员将第一时间为你服务</p>
+          {# <div class="type">
+      <input type="text" value="YWZJ-C型液压无轴纸架"/>
+      <span>更换</span>
+    </div> #}
+          <input class="phone" type="text" placeholder="*联系电话"/>
+          <div class="verification">
+            <input type="text" placeholder="*验证码"/>
+            <span>获取验证码</span>
+          </div>
+          <input class="describe" type="text" placeholder="*请简单描述你的需求(非必填)"/>
+
+          <a class="submit" href="javascript:(0)">发送</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock body %}

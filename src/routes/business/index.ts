@@ -13,6 +13,12 @@ export default class Business {
 
     }
 
+  @get('/product/:id?')
+  async product(ctx: Context, next: Next) {
+
+      await ctx.render('business/product', {})
+
+  }
 
 
 }

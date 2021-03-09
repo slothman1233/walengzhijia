@@ -92,22 +92,7 @@ export default (params: paramsModel) => {
 
 
         ctx.render = async (filePath, renderData = {}) => {
-            // ctx.type = 'text/html'
-            // const md5 = `${filePath}_${JSON.stringify(renderData)}`
             let html = ''
-            // const getCache = microCache.get(md5)
-            // if (getCache) {
-            //     html = getCache
-            // } else {
-            //     html = htmlMinifier.minify(
-            //         nunjucksEVN.render(resolvePath(params, filePath), Object.assign({}, ctx.state, renderData)),
-            //         {
-            //             collapseWhitespace: true
-            //         }
-            //     )
-            //     microCache.set(md5, html)
-            // }
-
 
             html = htmlMinifier.minify(
                 nunjucksEVN.render(resolvePath(params, filePath), Object.assign({}, ctx.state, renderData)),
@@ -137,9 +122,9 @@ async function getWUCHtml(str:string):Promise<string>{
             funStr: $2,
             indexStr: strs
         })
-        str = str.replace($1, strs)
+       
         i++
-        return str
+        return strs
     })
 
     for (let i = 0; i < data.length; i++) {

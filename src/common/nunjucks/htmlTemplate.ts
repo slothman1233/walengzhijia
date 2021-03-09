@@ -43,10 +43,12 @@ class htmlFilter {
             let ary = arg.split(',')
 
             for (let s = 0; s < ary.length; s++) {
+                ary[s] = ary[s].replace(/^("|')|("|')$/g, '')
                 if (args[ary[s]]) {
                     ary[s] = eval(`(${args[ary[s]]})`)
                 }
             }
+            
             return ary
         } catch (e) {
             return []

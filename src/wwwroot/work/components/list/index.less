@@ -1,0 +1,74 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+
+
+.list1() {
+  .list1 {
+    overflow: hidden;
+
+    .child {
+
+      @height      : 134px;
+      padding      : @space_3 0;
+      border-bottom: 1px solid @color_grey_line1;
+      overflow     : hidden;
+      position     : relative;
+
+      &:last-child {
+        border: none;
+      }
+
+      .left {
+        display : block;
+        height  : @height;
+        width   : 200px;
+        position: absolute;
+        left    : 0;
+        top     : 0;
+
+        img {
+          height: @height;
+          width : 200px;
+        }
+      }
+
+      .right {
+        height      : @height;
+        float       : right;
+        position    : relative;
+        margin-left: 200 + @space_3;
+
+        .title {
+          display      : block;
+          color        : @color_main_c1;
+          font-weight  : @font_weight;
+          font-size    : @font_size_20;
+          line-height  : 28px;
+          margin-bottom: 12px;
+          .ellipsis();
+        }
+
+        p {
+          max-height : 48px;
+          overflow   : hidden;
+          font-size  : @font_size_16;
+          line-height: 24px;
+          color      : @color_gray_c1;
+        }
+
+        .author {
+          position   : absolute;
+          bottom     : 0;
+          left       : 0;
+          color      : @color_gray_c2;
+          font-size  : @font_size_14;
+          line-height: @line_height;
+
+          span {
+            margin-right: @space_4;
+          }
+        }
+
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{% macro list1(args = [
+  {
+    link: "#",
+    img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
+    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
+    author: "作者大大",
+    time: "2021-11-11"
+  }, {
+    link: "#",
+    img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
+    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
+    author: "作者大大",
+    time: "2021-11-11"
+  }, {
+    link: "#",
+    img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
+    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
+    author: "作者大大",
+    time: "2021-11-11"
+  }, {
+    link: "#",
+    img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
+    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
+    author: "作者大大",
+    time: "2021-11-11"
+  }
+]) %}
+  <div class="list1">
+
+    {% if (args != null) and (args.length > 0) %}
+      {% for item in args %}
+        <div class="child">
+          <a class="left" href="{{item.link}}" target="_blank">
+            <img src="{{item.img}}"/>
+          </a>
+          <div class="right">
+            <a class="title" href="{{item.link}}" target="_blank">{{item.title}}</a>
+            <p>{{item.content}}</p>
+            <div class="author">
+              <span>{{item.author}}</span>
+              <span>{{item.time}}</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+  </div>
+{% endmacro %}
