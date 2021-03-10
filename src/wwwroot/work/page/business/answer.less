@@ -1,0 +1,205 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+@import (reference) "../../public/style/common/Animation.less";
+@import (less) "../../components/navigationbar/index.less";
+@import (less) "../../components/stemap/satemap1.less";
+@import (less) "../../components/select/index.less";
+@import (less) "../../components/listTemplates/list1.less";
+
+#main {
+  width : @DefindWidth;
+  margin: @space_2 auto;
+
+  @leftWidth: @DefindWidth - @DefindRight2 - @space_2;
+
+  .map {
+    margin-bottom: @space_3;
+  }
+
+  .container {
+    overflow: hidden;
+
+    .left {
+      width: @leftWidth;
+      float: left;
+
+      .type {
+        @height      : 90px;
+        @width       : 684px;
+        height       : @height;
+        position     : relative;
+        width        : @width;
+        margin-bottom: @space_4;
+
+        img {
+          margin-right: @space_2;
+          float       : left;
+          display     : block;
+          width       : 134px;
+          height      : @height;
+          border      : 1px solid @color_grey_line1;
+          .box-sizing();
+        }
+
+        &>div {
+          width: @width - @space_2 - 134;
+          float: left;
+
+          &>p {
+            margin-top   : 13px;
+            margin-bottom: @space_1;
+            font-weight  : @font_weight;
+            color        : @color_main_c1;
+            font-size    : @font_size_20;
+          }
+
+          .typeselect {
+            .selectOption1()
+          }
+
+        }
+
+      }
+
+      .title {
+        position: relative;
+
+        &>a {
+          position        : absolute;
+          right           : 0;
+          bottom          : 10px;
+          display         : block;
+          line-height     : 44px;
+          padding         : 0 @space_3;
+          background-color: @color_subject;
+          .border-radius(2px);
+        }
+      }
+
+      .list {
+
+        overflow: hidden;
+
+        .tab {
+
+          margin-top: @space_2;
+        }
+
+        .container {
+          overflow: hidden;
+
+          .child {
+            padding      : @space_3 0;
+            border-bottom: 1px solid @color_grey_line1;
+
+            a {
+              color             : @color_main_c1;
+              font-size         : @font_size_20;
+              line-height       : 28px;
+              display           : -webkit-box;
+              overflow          : hidden;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              margin-bottom     : 12px;
+            }
+
+            p {
+              @size      : 24px;
+              height     : @size;
+              line-height: @size;
+
+              img {
+                display     : block;
+                float       : left;
+                height      : @size;
+                width       : @size;
+                margin-right: 4px;
+                .border-radius(50%);
+              }
+
+              span {
+                display     : block;
+                float       : left;
+                margin-right: @space_2;
+                color       : @color_gray_c2;
+                font-size   : @font_size_16;
+              }
+            }
+          }
+
+
+        }
+      }
+
+    }
+
+    .right {
+      width: @DefindRight2;
+      float: right;
+
+      .hotbrand {
+        &>p {
+          color: @color_main_c1;
+        }
+
+        .list {
+          .child {
+            margin       : 0 @space_3;
+            padding      : @space_2 0;
+            border-bottom: 1px solid @color_grey_line1;
+            overflow     : hidden;
+
+            &:last-child {
+              border: none;
+            }
+
+            a {
+              color             : @color_main_c1;
+              font-size         : @font_size_16;
+              line-height       : @line_height;
+              display           : -webkit-box;
+              overflow          : hidden;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              margin-bottom     : @space_1;
+            }
+
+            &>div {
+              overflow   : hidden;
+              line-height: 24px;
+              position   : relative;
+
+              p {
+                position: absolute;
+                left    : 0;
+                right   : 70px;
+                height  : 24px;
+                .ellipsis();
+
+                span {
+                  display         : block;
+                  float           : left;
+                  background-color: @color_grey_line1;
+                  padding         : 0 12px;
+                  color           : @color_main_c1;
+                  margin-right    : @space_1;
+                }
+              }
+
+              i {
+                display   : block;
+                float     : right;
+                width     : 70px;
+                text-align: right;
+                color     : @color_gray_c1;
+                font-size : @font_size_14;
+                .ellipsis();
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+}

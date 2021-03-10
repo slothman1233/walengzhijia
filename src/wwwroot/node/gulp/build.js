@@ -2,9 +2,11 @@ let path = require('path')
 let paths = {
     jspages: [
         getSrc('./index/index.ts'),
-        getSrc('./list/index.ts'),
+        getSrc('./index/list.ts'),
+        getSrc('./index/enquiry.ts'),
         getSrc('./business/index.ts'),
-        getSrc('./business/product.ts')
+        getSrc('./business/product.ts'),
+        getSrc('./business/answer.ts')
 
         
     ]

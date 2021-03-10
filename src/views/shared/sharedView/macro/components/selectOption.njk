@@ -1,0 +1,37 @@
+{% macro selectOption(args = {
+  selectIndex: 1,
+  data: [
+    {
+      id: 0,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 1,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 2,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 3,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 4,
+      value: "纸板加工设备及零配件"
+    }
+  ]
+
+}) %}
+  <div class="selectOption">
+    {% if (args != null) and (args.data != null) and (args.data.length > 0) %}
+      <h1>{{args.data[args.selectIndex].value}}
+        <i>∨</i>
+      </h1>
+      <div class="option">
+        {% for item in args.data %}
+          <p option="{{item.id}}">{{item.value}}</p>
+            {% endfor %}
+
+          </div>
+        </div>
+      {% endif %}
+
+    {% endmacro %}

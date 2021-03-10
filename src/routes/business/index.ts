@@ -19,6 +19,13 @@ export default class Business {
       await ctx.render('business/product', {})
 
   }
+  @get('/answer/:id?')
+  async answer(ctx: Context, next: Next) {
+
+      await ctx.render('business/answer', {})
+
+  }
+
 
 
 }

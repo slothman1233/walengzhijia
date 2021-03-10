@@ -1,0 +1,41 @@
+.selectOption1(@width: 1034px) {
+  .selectOption {
+    width   : 100%;
+    @height : 40px;
+    position: relative;
+
+    h1 {
+      position        : relative;
+      font-size       : @font_size_14;
+      color           : @color_main_c1;
+      height          : @height;
+      line-height     : @height;
+      border          : 1px solid @color_grey_line1;
+      padding-left    : @space_2;
+      background-color: #FFF;
+
+      i {
+        float       : right;
+        margin-right: @space_2;
+      }
+    }
+
+    .option {
+      display         : none;
+      position        : absolute;
+      width           : @width;
+      top             : @height;
+      border          : 1px solid @color_grey_line1;
+      background-color: #FFF;
+
+      p {
+        font-size   : @font_size_14;
+        color       : @color_main_c1;
+        height      : @height;
+        line-height : @height;
+        padding-left: @space_2;
+      }
+    }
+  }
+
+}

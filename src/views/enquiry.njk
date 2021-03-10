@@ -1,0 +1,144 @@
+{% extends "./shared/layout/defaultLayout.njk" %}
+{% from "./shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
+{% from "./shared/sharedView/macro/components/selectOption.njk" import selectOption %}
+{% from "./shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
+{% block title %}
+54123123213333
+{% endblock title %}
+
+{% block keywords %}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block style %}
+  <link href="/dist/styles/index/enquiry.css" rel="stylesheet">
+{% endblock style %}
+
+{% block script %}
+  <script type="text/javascript" src="/dist/scripts/index/enquiry.js"></script>
+{% endblock script %}
+
+{% block body %}
+  <div id="main">
+    <div class="tab">
+      {{navigationbar({
+                isMore: false,
+                link: "#",
+                isSelect: "1",
+                data: [
+                  {
+                    title: "询价",
+                    link: "javascript:(0)"
+                  }
+                ]
+            })}}
+    </div>
+
+    <div class="container">
+
+      <div class="form">
+        <div class="type">
+          <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/>
+          <div>
+            <p>BHS</p>
+            <div class="typeselect">
+              {{selectOption()}}
+            </div>
+
+          </div>
+        </div>
+        <div class="phone">
+          <span>手机号</span>
+          <input type="text" placeholder="请输入11位手机号码"/>
+        </div>
+
+        <div class="verification">
+          <span>验证码</span>
+          <input type="text" placeholder="请输入验证码"/>
+          <a>获取验证码</a>
+        </div>
+
+        <div class="describe">
+          <span> &nbsp; </span>
+          <textarea placeholder="请简单描述你的需求(非必填)"></textarea>
+        </div>
+        <div class="submitdiv">
+          <span> &nbsp; </span>
+          <div class="submit">发送</div>
+        </div>
+
+      </div>
+
+      <div class="salesman">
+        <div class="title">
+          <p>销售人员</p>
+          <span>最多选择2位销售人员</span>
+        </div>
+
+        <div class="personnelselection">
+          {% set personnelselectionData = [
+            {
+              hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "李女士",
+              title: "海外销售经理",
+              introduction: "负责对外商务洽谈业务",
+              experience: "10",
+              link: "#"
+            }, {
+              hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "李女士",
+              title: "海外销售经理",
+              introduction: "负责对外商务洽谈业务",
+              experience: "10",
+              link: "#"
+            }, {
+              hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "李女士",
+              title: "海外销售经理",
+              introduction: "负责对外商务洽谈业务",
+              experience: "10",
+              link: "#"
+            }, {
+              hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "李女士",
+              title: "海外销售经理",
+              introduction: "负责对外商务洽谈业务",
+              experience: "10",
+              link: "#"
+            }
+          ] %}
+          {% if (personnelselectionData != null) and (personnelselectionData.length > 0) %}
+            {% for item in personnelselectionData %}
+              <div class="itembox">
+                <div class="checkbox">※</div>
+                <div class="child">
+                  <div class="in">
+                    <img class="hread" src="{{item.hread}}"/>
+                    <div class="r">
+                      <div>
+                        <p>{{item.name}}</p>
+                        <span>{{item.title}}</span>
+                      </div>
+                      <p>{{item.introduction}}</p>
+                      <p>行业经验：{{item.experience}}年</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="popup_succee">
+    <h1>发送成功</h1>
+    <p>品牌销售将及时联系您</p>
+  </div>
+
+{% endblock body %}

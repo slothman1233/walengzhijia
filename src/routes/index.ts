@@ -29,20 +29,21 @@ export default class Common {
 
     @get('/')
     async home(ctx: Context) {
-
         await ctx.render('index', {})
-
     }
+
+
+    @get('/list')
+    async list(ctx: Context, next: Next) {
+        await ctx.render('list', {})
+    }
+    @get('/enquiry')
+    async enquiry(ctx: Context, next: Next) {
+        await ctx.render('enquiry', {})
+    }
+
 
     
-  @get('/list')
-    async list(ctx: Context, next: Next) {
-
-        await ctx.render('list', {
-
-        })
-
-    }
 
 
     /**
@@ -50,29 +51,29 @@ export default class Common {
      * @param ctx 
      */
     @get('/html')
-  async html(ctx: Context, next: Next) {
-      let ss = nunRender('views/index.njk', Object.assign({}, ctx.state))
+    async html(ctx: Context, next: Next) {
+        let ss = nunRender('views/index.njk', Object.assign({}, ctx.state))
 
-      let filepath = path.resolve(__dirname, '..', 'htmldist', 'index.html')
-      await EnsureFile(filepath)
+        let filepath = path.resolve(__dirname, '..', 'htmldist', 'index.html')
+        await EnsureFile(filepath)
 
-      await writeFile(filepath, ss.toString())
+        await writeFile(filepath, ss.toString())
 
-      let htmlbuf = await readFile(filepath)
+        let htmlbuf = await readFile(filepath)
 
-      let getHtml = htmlbuf.toString()
+        let getHtml = htmlbuf.toString()
 
-      if (getHtml !== '') {
+        if (getHtml !== '') {
 
-          ctx.type = `.html`
-          ctx.status = 200
-          ctx.body = getHtml
-      } else {
-          await next()
-      }
+            ctx.type = `.html`
+            ctx.status = 200
+            ctx.body = getHtml
+        } else {
+            await next()
+        }
 
 
-  }
+    }
 
 
     // @get('/business/:id?')
