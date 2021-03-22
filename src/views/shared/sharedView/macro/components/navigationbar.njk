@@ -1,6 +1,7 @@
 {# 导航栏控件 #}
 {% macro navigationbar(args = {
   isMore: true,
+  MoreText:"更多>>",
   link: "#",
   isSelect: "1",
   data: [
@@ -38,7 +39,7 @@
         {% endfor %}
       </div>
       {% if args.isMore %}
-        <a href="{{args.link}}"> 更多>> </a>
+        <a href="{{args.link}}">{{args.MoreText}} </a>
       {% endif %}
 
     </div>

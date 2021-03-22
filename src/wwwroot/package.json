@@ -28,6 +28,7 @@
         "browserify": "^16.5.1",
         "chai": "^4.2.0",
         "del": "^5.1.0",
+        "echarts": "^5.0.2",
         "fs": "0.0.1-security",
         "gulp": "^4.0.2",
         "gulp-babel": "^7.0.1",

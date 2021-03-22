@@ -1,6 +1,7 @@
 {% extends "./shared/layout/defaultLayout.njk" %}
 
 {% from "./shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
+{% from "./shared/sharedView/macro/components/star/star.njk" import star %}
 {% from "./shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
 
 {% block title %}
@@ -16,6 +17,7 @@
 {% endblock style %}
 
 {% block script %}
+  <script type="text/javascript" src="/assets/plugin/echarts/echarts.min.js"></script>
   <script type="text/javascript" src="/dist/scripts/index/index.js"></script>
 {% endblock script %}
 
@@ -75,6 +77,36 @@
 
       {% endfor %}
     </div>
+
+    {% set adsData = [
+      {
+        img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        title: "adsfasfasdfa",
+        link: "#"
+      }, {
+        img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        title: "adsfasfasdfa",
+        link: "#"
+      }, {
+        img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        title: "adsfasfasdfa",
+        link: "#"
+      }, {
+        img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        title: "adsfasfasdfa",
+        link: "#"
+      }
+    ] %}
+
+    {% if (adsData != null) and (adsData.length > 0) %}
+      <div class="ads">
+        {% for item in adsData %}
+          <a href="{{item.link}}" title="{{item.title}}">
+            <img src="{{item.img}}"/>
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
 
     {% set rowImg = [
       {
@@ -176,850 +208,411 @@
       [
 
         {
-          title: "1纸板加工设备",
+          title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: ["询价", "询价", "询价"]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }
 
       ],
       [
 
         {
-          title: "2纸板加工设备",
+          title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: ["询价", "询价", "询价"]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }
 
       ],
       [
 
         {
-          title: "3纸板加工设备",
+          title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: ["询价", "询价", "询价"]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }
 
       ],
       [
 
         {
-          title: "4纸板加工设备",
+          title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: ["询价", "询价", "询价"]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }
 
       ],
       [
 
         {
-          title: "5纸板加工设备",
+          title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: ["询价", "询价", "询价"]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }
 
       ],
       [
 
         {
-          title: "6纸板加工设备",
+          title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: ["询价", "询价", "询价"]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }, {
           title: "纸板加工设备",
           image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           link: "#",
-          lable: [
-            "上市公司", "上市公司", "上市公司"
-          ],
-          inquiry: [
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价",
-            "询价"
-          ]
+          kbCount: "100000",
+          kbscore: "5.0",
+          lable: ["上市公司", "上市公司", "上市公司"]
         }
 
       ]
-      
     ] %}
 
     <div class="brand">
@@ -1042,21 +635,15 @@
                   </a>
                   <div class="right">
                     <a href="{{item.link}}" title="{{item.title}}" target="_blank">{{item.title}}</a>
+
+                    <div class="kb">
+                      <span>{{item.kbscore}}</span>
+                      <i>★★★★★</i>
+                      <b>{{item.kbCount}}条口碑</b>
+                    </div>
                     <div class="label">
                       {% for item in item.lable %}
                         <span>{{item}}</span>
-                      {% endfor %}
-
-                    </div>
-                    <div class="inquiry">
-                      {% for item in item.inquiry %}
-                        {% if loop.last %}
-                          <span>{{item}}</span>
-                        {% else %}
-                          <span>{{item}}</span>
-                          <i>|</i>
-                        {% endif %}
-
                       {% endfor %}
 
                     </div>
@@ -1080,18 +667,15 @@
             image: "https://p3.pstatp.com/obj/ies.fe.mis/6dadeab585f4334aa69a941409f51b48.jpeg.jpg",
             link: "#",
             title: "BHS瓦楞线 SPEED Line 适用于超大区域量解决方案"
-          },
-          {
+          }, {
             image: "https://p3.pstatp.com/obj/ies.fe.mis/6dadeab585f4334aa69a941409f51b48.jpeg.jpg",
             link: "#",
             title: "BHS瓦楞线 SPEED Line 适用于超大区域量解决方案"
-          },
-          {
+          }, {
             image: "https://p3.pstatp.com/obj/ies.fe.mis/6dadeab585f4334aa69a941409f51b48.jpeg.jpg",
             link: "#",
             title: "BHS瓦楞线 SPEED Line 适用于超大区域量解决方案"
-          },
-          {
+          }, {
             image: "https://p3.pstatp.com/obj/ies.fe.mis/6dadeab585f4334aa69a941409f51b48.jpeg.jpg",
             link: "#",
             title: "BHS瓦楞线 SPEED Line 适用于超大区域量解决方案"
@@ -1115,7 +699,7 @@
 
       </div>
 
-      {% set bannerListData = [
+      {% set kbranklistData = [
         {
           link: "#",
           title: '水电费阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬'
@@ -1146,9 +730,160 @@
         }
       ] %}
 
-      <div class="bannerList">
-        {% for item in bannerListData %}
+      <div class="kbranklist">
+        <div class="row">
+          {{ navigationbar({
+                isMore: true,
+                link: "#",
+                isSelect: "1",
+                MoreText:"查看全部",
+                data: [
+                  {
+                    title: "口碑排行榜",
+                    link: "javascript:(0)"
+                  }
+                ]
+
+              }) }}
+        </div>
+
+        <div class="list_box">
+          {% set kbrankdata = [
+            {
+              id: 0,
+              logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "广东万联",
+              kbcount: 12312,
+              link: "#",
+              kbscore: "5.00"
+            }, {
+              id: 0,
+              logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "广东万联",
+              kbcount: 12312,
+              link: "#",
+              kbscore: "5.00"
+            }, {
+              id: 0,
+              logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "广东万联",
+              kbcount: 12312,
+              link: "#",
+              kbscore: "5.00"
+            }, {
+              id: 0,
+              logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "广东万联",
+              kbcount: 12312,
+              link: "#",
+              kbscore: "5.00"
+            }, {
+              id: 0,
+              logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "广东万联",
+              kbcount: 12312,
+              link: "#",
+              kbscore: "5.00"
+            }
+          ] %}
+          {% for item in kbrankdata %}
+            <div class="child">
+
+              <i>{{loop.index}}</i>
+              <div class="cr">
+                <a class="l" href="{{item.link}}" title="{{item.name}}" target="_blank">
+                  <img src="{{item.logo}}"/>
+                </a>
+                <div class="c">
+                  <a href="{{item.link}}" title="{{item.title}}" target="_blank">{{item.name}}</a>
+                  <p>{{item.kbcount}}条口碑</p>
+                </div>
+
+                <div class="r">
+                  <span>口碑分</span>
+                  <h2>{{item.kbscore}}</h2>
+                </div>
+              </div>
+
+            </div>
+          {% endfor %}
+
+        </div>
+        {# {% for item in bannerListData %}
           <a href="{{item.link}}" title="{{item.title}}" target="_blank">{{item.title}}</a>
+        {% endfor %} #}
+
+      </div>
+    </div>
+
+    <div class="kbsuperior clearfix">
+      <div class="row">
+        <p>优质口碑</p>
+        <a>换一批</a>
+      </div>
+      <div class="list_box">
+        {% set kbsuperiordata = [
+          {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "李女士",
+            kbscore: "5.00",
+            link: "#",
+            title: "阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬",
+            description: "a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德"
+          }, {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "李女士",
+            kbscore: "5.00",
+            link: "#",
+            title: "阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬",
+            description: "a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德"
+          }, {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "李女士",
+            kbscore: "5.00",
+            link: "#",
+            title: "阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬",
+            description: "a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德"
+          }
+        ] %}
+        {% for item in kbsuperiordata %}
+          <div class="child">
+            <div class="hd">
+              <div class="l">
+                <p>
+                  <img src="{{item.hread}}"/>
+                  <span>{{item.name}}</span>
+                </p>
+                <a href="{{item.link}}" title="{{item.title}}">{{item.title}}</a>
+              </div>
+              <div class="r">
+                <img src="{{item.img}}"/>
+              </div>
+            </div>
+
+            <div class="cr clearfix">
+
+              <div class="l">
+                <span>
+                  <i>{{item.kbscore}}</i>
+                  {{star()}}
+                </span>
+                <p>
+                  {{item.description}}
+                </p>
+              </div>
+
+              <div class="r">
+                <div class="score">5.00</div>
+                <div id="ecahr{{loop.index0}}"></div>
+              </div>
+
+            </div>
+
+          </div>
         {% endfor %}
 
       </div>

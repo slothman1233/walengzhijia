@@ -2,14 +2,16 @@
 @import (reference) "../../public/style/common/Animation.less";
 @import (less) "../../components/navigationbar/index.less";
 @import (less) "../../components/rfoot/index.less";
+@import (less) "../../components/star/index.less";
 @import "/node_modules/@stl/image-slider/dist/index.css";
 @defaultLeftWidth : 776px;
 @defaultRightWidth: @DefindWidth - @defaultLeftWidth - @space_2;
 
 
 #main {
-    width        : @DefindWidth;
-    margin       : auto;
+    width : @DefindWidth;
+    margin: auto;
+
     &>div {
         margin-top: @space_3;
     }
@@ -53,10 +55,38 @@
         }
     }
 
+    .ads {
+        width: @DefindWidth;
+
+        .flex();
+        justify-content: space-between;
+
+        a {
+            flex-grow     : 1;
+            display       : block;
+            float         : left;
+            text-align    : left;
+            flex-direction: column;
+            width         : 284px;
+            height        : 80px;
+            margin-right  : @space_2;
+
+            &:last-child {
+                margin: 0;
+
+            }
+
+            img {
+                width : 100%;
+                height: 80px;
+            }
+        }
+    }
+
 
 
     .rowImg {
-        width        : @DefindWidth;
+        width        : @DefindWidth - 1;
         overflow     : hidden;
         @height      : 64px;
         border-bottom: 1px solid @border_color;
@@ -145,7 +175,46 @@
                             color        : @color_main_c1;
                             font-size    : @font_size_16;
                             font-weight  : @font_weight;
-                            margin-bottom: @space_2;
+                            margin-bottom: 4px;
+                        }
+
+                        .kb {
+                            position     : relative;
+                            width        : 100%;
+                            margin-bottom: 4px;
+
+                            overflow: hidden;
+
+                            span {
+                                display     : block;
+                                float       : left;
+                                font-weight : @font_weight;
+                                font-size   : @font_size_30;
+                                margin-right: 4px;
+                                color       : @color_rank ;
+                            }
+
+                            i {
+                                display     : block;
+                                float       : left;
+                                color       : @color_rank;
+                                font-size   : @font_size_16;
+                                margin-right: 4px;
+                                position    : relative;
+                                top         : 13px;
+                            }
+
+                            b {
+                                font-weight: normal;
+                                display    : block;
+                                float      : left;
+                                font-size  : @font_size_12;
+                                color      : @color_gray_c2;
+                                line-height: 22px;
+                                position   : absolute;
+                                right      : 0;
+                                top        : 14px;
+                            }
                         }
 
                         .label {
@@ -168,29 +237,6 @@
                             }
                         }
 
-                        .inquiry {
-                            @height : 20px;
-                            height  : @height;
-                            width   : 100%;
-                            overflow: hidden;
-
-                            span {
-                                display    : block;
-                                float      : left;
-                                height     : @height;
-                                line-height: @height;
-                                font-size  : @font_size_12;
-                                color      : @color_gray_c2;
-                            }
-
-                            i {
-                                display: block;
-                                float  : left;
-                                height : @height;
-                                color  : @color_gray_c2;
-                                padding: 0 @space_1;
-                            }
-                        }
                     }
                 }
             }
@@ -283,30 +329,320 @@
 
         }
 
-        .bannerList {
+        .kbranklist {
             width : @defaultRightWidth;
             float : right;
             height: @height;
 
-            a {
-                display    : block;
-                color      : @font_defind_color;
-                height     : @height / 9;
-                line-height: @height / 9;
-                font-size  : @font_size_16;
-                .ellipsis();
+            .row {
+                .navigationbar {
+                    @height: 44px;
+                    height : @height;
 
-                &:first-child {
-                    font-size  : @font_size_18;
-                    font-weight: @font_weight;
-                    color      : #E66E00;
+                    a {
+                        height     : @height;
+                        line-height: @height;
+                    }
+
+                    .list {
+                        height: @height;
+
+                        span {
+                            height     : @height;
+                            line-height: @height;
+                            color      : @color_main_c1;
+                            font-size  : @font_size_20;
+                            border     : none;
+                        }
+
+
+                    }
                 }
+            }
 
-                &:nth-child(2) {
-                    color: #E66E00;
+            .list_box {
+                overflow: hidden;
+
+                .child {
+                    display : block;
+                    padding : @space_1 0;
+                    @height : 44px;
+                    height  : @height;
+                    position: relative;
+
+                    &>i {
+                        display: block;
+                        .border-radius(2px);
+                        color      : @color_gray_c2;
+                        font-size  : @font_size_14;
+                        width      : 20px;
+                        height     : 20px;
+                        line-height: 20px;
+                        text-align : center;
+                        margin     : (@height - 20) / 2 0;
+                        font-weight: @font_weight;
+
+                    }
+
+                    &:nth-child(1)>i {
+                        background-color: #D64B2C;
+
+                        color: #FFF;
+                    }
+
+                    &:nth-child(2)>i {
+                        background-color: #E78022;
+                        color           : #FFF;
+                    }
+
+                    &:nth-child(3)>i {
+                        background-color: #FAC439;
+                        color           : #FFF;
+                    }
+
+
+
+                    .cr {
+                        position: absolute;
+                        left    : 30px;
+                        right   : 0;
+                        top     : @space_1;
+                        height  : @height;
+
+                        .l {
+                            display     : block;
+                            float       : left;
+                            width       : 64px;
+                            height      : @height - 2;
+                            border      : 1px solid @color_grey_line1;
+                            margin-right: @space_1 + 2;
+
+                            img {
+                                display: block;
+                                width  : 100%;
+                                height : 100%;
+                            }
+                        }
+
+                        .c {
+                            float: left;
+                            width: 200px;
+
+                            a {
+                                display    : block;
+                                height     : 24px;
+                                line-height: 24px;
+                                color      : @color_main_c1;
+                                font-weight: @font_weight;
+                                font-size  : @font_size_16;
+                                .ellipsis();
+                            }
+
+                            p {
+                                font-size  : @font_size_12;
+                                color      : @color_gray_c2;
+                                line-height: 20px;
+                                height     : 20px;
+                                .ellipsis();
+                            }
+                        }
+
+                        .r {
+                            float     : right;
+                            text-align: right;
+
+                            span {
+                                font-size  : @font_size_12;
+                                line-height: 20px;
+                                color      : @color_gray_c2;
+
+                            }
+
+                            h2 {
+                                font-size  : @font_size_18;
+                                color      : @color_rank;
+                                line-height: 24px;
+                                font-weight: @font_weight;
+
+                            }
+                        }
+                    }
                 }
             }
         }
+    }
+
+    .kbsuperior {
+        @width    : @DefindWidth - (@space_3*2);
+        background: linear-gradient(223.32deg, #2F333E 29.74%, rgba(56, 67, 96, 0.75) 100.01%);
+        padding   : @space_2 @space_3 @space_3 @space_3;
+        .border-radius(2px);
+        width: @width;
+
+        .row {
+            color   : #FFF;
+            overflow: hidden;
+
+            p {
+                float      : left;
+                font-weight: @font_weight;
+                font-size  : @font_size_24;
+                line-height: @line_height;
+            }
+
+            a {
+                display    : block;
+                float      : right;
+                cursor     : pointer;
+                font-size  : @font_size_14;
+                line-height: @line_height;
+                color      : #FFF;
+            }
+        }
+
+        .list_box {
+
+            .flex();
+            justify-content: space-between;
+
+            width: @width;
+
+            .child {
+                background-color: #FFF;
+                @childwidth     : (@width - @space_2)/3 - @space_2 - (@space_2 * 2);
+                flex-grow       : 1;
+                display         : block;
+                float           : left;
+                text-align      : left;
+                flex-direction  : column;
+                width           : @childwidth;
+                height          : 224 - (@space_2*2);
+                margin-right    : @space_2;
+                padding         : @space_2;
+                position        : relative;
+
+                .hd {
+                    height  : 64px;
+                    overflow: hidden;
+                    position: relative;
+
+                    .l {
+                        position: absolute;
+                        left    : 0;
+                        top     : 0;
+                        right   : 112px;
+
+
+                        p {
+                            margin-bottom: @space_1;
+                            height       : 24px;
+                            .ellipsis();
+
+                            img {
+                                display: block;
+                                float  : left;
+                                width  : 20px;
+                                height : 20px;
+                                margin : 2px @space_1 2px 0;
+                                .border-radius(50%);
+                            }
+
+                            span {
+                                display    : block;
+                                float      : left;
+                                color      : @color_gray_c1;
+                                font-size  : @font_size_16;
+                                line-height: 24px;
+                            }
+                        }
+
+                        a {
+                            display    : block;
+                            color      : @color_main_c1;
+                            line-height: 22px;
+                            font-size  : @font_size_14;
+                            font-weight: @font_weight;
+                            .ellipsis();
+                        }
+                    }
+
+                    .r {
+                        float: right;
+                        width: 102px;
+
+                        img {
+                            border: 1px solid @color_grey_line1;
+                            width : 100px;
+                            height: 62px;
+                        }
+                    }
+                }
+
+                .cr {
+                    
+
+                    .l {
+                        float: left;
+                        width: 210px;
+
+                        span {
+                            color        : @color_rank;
+                            line-height  : 28px;
+                            margin-bottom: @space_1;
+                            display      : block;
+                            overflow     : hidden;
+
+                            i {
+                                font-size   : @font_size_20;
+                                font-weight : @font_weight;
+                                display     : block;
+                                float       : left;
+                                margin-right: @space_1;
+                            }
+                        }
+
+                        p {
+                            color             : @color_main_c1;
+                            font-size         : @font_size_14;
+                            line-height       : @line_height;
+                            display           : -webkit-box;
+                            -webkit-line-clamp: 4;
+                            overflow          : hidden;
+                            text-overflow     : ellipsis;
+                            -webkit-box-orient: vertical;
+                        }
+                    }
+
+                    .r {
+                        position: absolute;
+                        right   : 0;
+                        bottom  : 0;
+
+                        .score {
+                            position   : absolute;
+                            top        : 0;
+                            left       : 0;
+                            text-align : center;
+                            line-height: 120px;
+                            font-weight: @font_weight;
+                            color      : @color_main_c1;
+                            font-size  : @font_size_20;
+                            z-index    : 11;
+                        }
+
+                        &>div {
+                            width : 140px;
+                            height: 130px;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
     }
 
     .information {
