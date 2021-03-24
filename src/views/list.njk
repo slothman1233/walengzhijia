@@ -1,5 +1,5 @@
 {% extends "./shared/layout/defaultLayout.njk" %}
-
+{% from "./shared/sharedView/macro/components/star/star.njk" import star %}
 {% from "./shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
 {% from "./shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
 
@@ -2524,70 +2524,52 @@
               logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
               link: "#",
               name: "广东万联",
-              img: [
-                "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
-              ],
+              kbscore:"5.00",
               description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
-              evaluate: "销售响应快销售响应快销售响应快销售响应快销售响应快销售响应快销售响应快",
+              kbcount:56,favorablerate:"100",kbgood:18,
               label: [
                 "上市公司", "优质品牌商", "权威品牌"
               ],
-              brandtype: "优质品牌商",
-              iscontact: {
-                img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                name: "联系销售"
-              }
+              brandtype: "优质品牌商"
+              
             }, {
               logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
               link: "#",
               name: "广东万联",
-              img: [
-                "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
-              ],
+              kbscore:"5.00",
               description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
-              evaluate: "销售响应快销售响应快销售响应快销售响应快销售响应快销售响应快销售响应快",
+              kbcount:56,
+              favorablerate:"100",
+              kbgood:18,
               label: [
                 "上市公司", "优质品牌商", "权威品牌"
               ],
-              brandtype: "优质品牌商",
-              iscontact: {
-                img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                name: "联系销售"
-              }
+              brandtype: "优质品牌商"
+              
             }, {
               logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
               link: "#",
               name: "广东万联",
-              img: [
-                "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
-              ],
+              kbscore:"5.00",
               description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
-              evaluate: "销售响应快销售响应快销售响应快销售响应快销售响应快销售响应快销售响应快",
+              kbcount:56,favorablerate:"100",kbgood:18,
               label: [
                 "上市公司", "优质品牌商", "权威品牌"
               ],
-              brandtype: "优质品牌商",
-              iscontact: {
-                img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                name: "联系销售"
-              }
+              brandtype: "优质品牌商"
+              
             }, {
               logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
               link: "#",
               name: "广东万联",
-              img: [
-                "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
-              ],
+              kbscore:"5.00",
               description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
-              evaluate: "销售响应快销售响应快销售响应快销售响应快销售响应快销售响应快销售响应快",
+              kbcount:56,favorablerate:"100",kbgood:18,
               label: [
                 "上市公司", "优质品牌商", "权威品牌"
               ],
-              brandtype: "优质品牌商",
-              iscontact: {
-                img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                name: "联系销售"
-              }
+              brandtype: "优质品牌商"
+              
             }
           ]%}
 
@@ -2607,11 +2589,6 @@
                     {{item.name}}
                   </a>
 
-                  <p class="description">
-                    <i>#</i>{{item.description}}</p>
-                  <p class="evaluated">
-                    <i>#</i>{{item.evaluate}}</p>
-
                   {% if (item.label != null) and (item.label.length > 0) %}
                     <div class="label">
                       {% for labelItem in item.label %}
@@ -2621,24 +2598,22 @@
                     </div>
                   {% endif %}
 
+                  <p class="description">
+                    <i>#</i>{{item.description}}</p>
+                  <p class="kb">
+                    <span>{{item.kbcount}}条口碑</span>
+                    <span>好评率{{item.favorablerate}}%</span>
+                    <span class="kbgood">{{item.kbgood}}条优质口碑</span>
+                  </p>
+
                 </div>
 
                 <div class="right">
-                  {% if (item.iscontact != null) %}
-                    <a class="iscontact">
-                      <img src="{{item.iscontact.img}}"/>
-                      <span>{{item.iscontact.name}}</span>
-                    </a>
-                  {% endif %}
-
-                  {% if (item.img != null) and (item.img.length > 0) %}
-                    <div class="iamges">
-                      {% for imgItem in item.img %}
-                        <img src="{{imgItem}}"/>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-
+                  <span>口碑得分</span>
+                  <p>{{item.kbscore}}
+                    <i>分</i>
+                  </p>
+                  {{star()}}
                 </div>
 
               </div>

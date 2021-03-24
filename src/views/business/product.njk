@@ -5,7 +5,7 @@ navigationbar2 %}
 {% from "../shared/sharedView/macro/components/satemap/satemap1.njk" import satemap1 %}
 {% from "../shared/sharedView/macro/components/list.njk" import list1 %}
 {% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
-
+{% from "../shared/sharedView/macro/components/star/star.njk" import star %}
 {% block title %}
 54123123213333
 {% endblock title %}
@@ -66,9 +66,10 @@ navigationbar2 %}
 
           <div class="right">
             <h1>YWZJ-C型液压无轴纸架</h1>
+            <span>产品口碑分</span>
             <div class="score">
               <span>4.68</span>
-              <i>★★★★★</i>
+              {{star()}}
               <b>38条口碑</b>
             </div>
             <div class="configuration">
@@ -107,6 +108,7 @@ navigationbar2 %}
               {% endif %}
 
             </div>
+            <a href="#" class="more">产看该产品的全部口碑 ></a>
           </div>
         </div>
 
@@ -170,7 +172,97 @@ navigationbar2 %}
           </div>
         </div>
 
-        <div class="row3">
+        <div class="row3 clearfix">
+          <div class="tab">
+            {{navigationbar({
+                isMore: true,
+                link: "#",
+                MoreText:"查看更多",
+                isSelect: "1",
+                data: [
+                  {
+                    title: "产品口碑",
+                    link: "javascript:(0)"
+                  }
+                ]
+            })}}
+          </div>
+          <div class="cr_box">
+            <div class="hd">
+              <div class="l">
+                <h1>4.35</h1>
+                <div>
+                  {{star()}}
+                  <span>32条口碑</span>
+                </div>
+              </div>
+              <div class="r">
+                <span>性能优秀</span>
+                <span>性能优秀</span>
+                <span>性能优秀</span>
+                <span>性能优秀</span>
+                <span>性能优秀</span>
+                <span>性能优秀</span>
+              </div>
+            </div>
+
+            <div class="list">
+              {% set crlistdata = [
+                {
+                  id: 11,
+                  hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+                  name: "李女士",
+                  price: "300万",
+                  buytime: "2019-06",
+                  actiontime: "2020-12",
+                  description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做..."
+                }, {
+                  id: 11,
+                  hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+                  name: "李女士",
+                  price: "300万",
+                  buytime: "2019-06",
+                  actiontime: "2020-12",
+                  description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做..."
+                }, {
+                  id: 11,
+                  hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+                  name: "李女士",
+                  price: "300万",
+                  buytime: "2019-06",
+                  actiontime: "2020-12",
+                  description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做..."
+                }
+              ] %}
+
+              {% for item in crlistdata %}
+                <div class="child">
+                  <div class="clearfix">
+                    <div class="l">
+                      <div>
+                        <img src="{{item.hread}}"/>
+                        <i>{{item.name}}</i>
+                      </div>
+                      <p>购买价格:{{item.price}}</p>
+                      <p>购买时间:{{item.buytime}}</p>
+                      <p>投入使用:{{item.actiontime}}</p>
+                    </div>
+
+                    <div class="r">
+                      {{item.description}}
+                    </div>
+                  </div>
+
+                  <div class="more clearfix">
+                    <a href="{{item.id}}" target="_blank">查看详情</a>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="row4">
           <div class="tab">
             {{navigationbar({
                 isMore: false,
@@ -200,7 +292,7 @@ navigationbar2 %}
                 isSelect: "1",
                 data: [
                   {
-                    title: "产品资讯",
+                    title: "销售信息",
                     link: "javascript:(0)"
                   }
                 ]

@@ -2,8 +2,10 @@
 
 {% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar,
 navigationbar2 %}
+{% from "../shared/sharedView/macro/components/star/star.njk" import star %}
 {% from "../shared/sharedView/macro/components/satemap/satemap1.njk" import satemap1 %}
-{% from "../shared/sharedView/macro/components/list.njk" import list1 %}
+{% from "../shared/sharedView/macro/components/list.njk" import list1,
+kblist1 %}
 {% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
 
 {% block title %}
@@ -19,6 +21,7 @@ navigationbar2 %}
 {% endblock style %}
 
 {% block script %}
+  <script type="text/javascript" src="/assets/plugin/echarts/echarts.min.js"></script>
   <script type="text/javascript" src="/dist/scripts/business/index.js"></script>
 {% endblock script %}
 
@@ -63,21 +66,23 @@ navigationbar2 %}
       </div>
 
       <div class="right">
-        <div class="bank">
-          <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/>
-          <div class="r">
-            <div>
-              <span>李女士</span>
-              <i>海外销售经理</i>
-            </div>
-            <p>负责对外商务洽谈业务</p>
-            <p>行业经验：10年</p>
-          </div>
+        <p>企业产品口碑总分</p>
+        <div class="scort">
+          <span>4.88</span>
+          {{star()}}
+        </div>
+        <p class="kbs">
+          <span>38条口碑</span>
+          <span>18条优质口碑</span>
+        </p>
+
+        <div class="btn clearfix">
+          <a class="issue" href="#">发布口碑</a>
+          <a class="enquiry" href="#">向销售询价</a>
         </div>
 
-        <a class="consult" href="#">立即询价 </a>
-
       </div>
+
     </div>
 
     <div class="row2">
@@ -110,7 +115,7 @@ navigationbar2 %}
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
                   weight:"单侧最大4T",
-                  diameter:"300mm-1580mm"
+                  diameter:"300mm-1580mm",kbscore:"5.00",kbcount:12
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
@@ -119,7 +124,7 @@ navigationbar2 %}
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
                   weight:"单侧最大4T",
-                  diameter:"300mm-1580mm"
+                  diameter:"300mm-1580mm",kbscore:"5.00",kbcount:12
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
@@ -128,7 +133,7 @@ navigationbar2 %}
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
                   weight:"单侧最大4T",
-                  diameter:"300mm-1580mm"
+                  diameter:"300mm-1580mm",kbscore:"5.00",kbcount:12
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
@@ -137,7 +142,7 @@ navigationbar2 %}
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
                   weight:"单侧最大4T",
-                  diameter:"300mm-1580mm"
+                  diameter:"300mm-1580mm",kbscore:"5.00",kbcount:12
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
@@ -146,7 +151,7 @@ navigationbar2 %}
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
                   weight:"单侧最大4T",
-                  diameter:"300mm-1580mm"
+                  diameter:"300mm-1580mm",kbscore:"5.00",kbcount:12
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
@@ -155,7 +160,7 @@ navigationbar2 %}
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
                   weight:"单侧最大4T",
-                  diameter:"300mm-1580mm"
+                  diameter:"300mm-1580mm",kbscore:"5.00",kbcount:12
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
@@ -164,7 +169,7 @@ navigationbar2 %}
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
                   weight:"单侧最大4T",
-                  diameter:"300mm-1580mm"
+                  diameter:"300mm-1580mm",kbscore:"5.00",kbcount:12
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
@@ -173,7 +178,7 @@ navigationbar2 %}
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
                   weight:"单侧最大4T",
-                  diameter:"300mm-1580mm"
+                  diameter:"300mm-1580mm",kbscore:"5.00",kbcount:12
                 }
                 
 
@@ -190,6 +195,11 @@ navigationbar2 %}
                   <a href="{{item.link}}">
                     <h1>{{item.title}}</h1>
                   </a>
+                  <div class="kb clearfix">
+                    <i>{{item.kbscore}}</i>
+                    {{star()}}
+                    <span>{{item.kbcount}}条口碑</span>
+                  </div>
                   <p>产品类型：{{item.producttype}}</p>
                   <p>宽幅：{{item.wideinwidth}}</p>
                   <p>纸卷重量：{{item.weight}}</p>
@@ -210,6 +220,28 @@ navigationbar2 %}
     </div>
 
     <div class="row3">
+      <div class="row">
+        {{ navigationbar({
+                isMore: true,
+                link: "#",
+                isSelect: "1",
+                MoreText:"换一换",
+                data: [
+                  {
+                    title: "产品口碑",
+                    link: "javascript:(0)"
+                  }
+                ]
+
+              }) }}
+      </div>
+
+      <div class="list_box">
+        {{kblist1()}}
+      </div>
+    </div>
+
+    <div class="row4">
       <div class="tab">
         {{navigationbar()}}
       </div>
@@ -241,8 +273,7 @@ navigationbar2 %}
             answercount: 3,
             content: "经典便宜好几万,建议可以考虑，我使用了一年多没了没什么问题。"
           }
-        ]
- %}
+        ]%}
 
         {% if (row3Data != null) and (row3Data.length > 0) %}
           {% for item in row3Data %}
@@ -266,7 +297,7 @@ navigationbar2 %}
 
     </div>
 
-    <div class="row4">
+    <div class="row5">
       <div class="title">
         {{navigationbar({
            isMore: false,

@@ -6,8 +6,9 @@ let paths = {
         getSrc('./index/enquiry.ts'),
         getSrc('./business/index.ts'),
         getSrc('./business/product.ts'),
-        getSrc('./business/answer.ts')
-
+        getSrc('./business/answer.ts'),
+        getSrc('./reputation/index.ts')
+        
         
     ]
 }

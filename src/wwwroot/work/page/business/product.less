@@ -79,13 +79,20 @@ body {
           background-color: #FFF;
 
           h1 {
-            margin-bottom: @space_3;
+            margin-bottom: @space_2;
             color        : @color_main_c1;
             font-size    : @font_size_24;
             font-weight  : @font_weight;
             line-height  : 32px;
             height       : 32px;
             .ellipsis();
+          }
+
+          &>span {
+            display    : block;
+            color      : @color_gray_c2;
+            font-size  : @font_size_14;
+            line-height: @line_height;
           }
 
           .score {
@@ -101,10 +108,10 @@ body {
               margin-right: @space_1;
             }
 
-            i {
+            .star {
               display     : block;
               float       : left;
-              color       : @color_subject;
+              color       : @color_rank;
               font-size   : @font_size_16;
               margin-right: @space_1;
               position    : relative;
@@ -151,6 +158,14 @@ body {
                 margin-right: @space_3;
               }
             }
+          }
+
+          &>.more {
+            display    : block;
+            line-height: @line_height;
+            color      : @color_link ;
+            font-size  : @font_size_14;
+
           }
         }
       }
@@ -234,6 +249,161 @@ body {
       }
 
       .row3 {
+
+        .tab {
+          .navigationbar {
+            border: none;
+
+            .list {
+              background: none;
+
+              .select {
+                border: none;
+              }
+            }
+
+
+          }
+
+        }
+
+        @leftwidth  : 164px;
+        @rightwidth : 648px;
+
+        .cr_box {
+          background-color: #FFF;
+          padding         : @space_3;
+          overflow        : hidden;
+
+          .hd {
+            @height: 46px;
+            height : @height;
+
+            .l {
+              float       : left;
+              width       : @leftwidth;
+              margin-right: @space_3;
+
+              h1 {
+                float       : left;
+                line-height : @height;
+                color       : @color_main_c1;
+                font-size   : @font_size_38;
+                font-weight : @font_weight;
+                margin-right: @space_1;
+              }
+
+              &>div {
+                float: left;
+
+                .star {
+                  color: @color_rank;
+                }
+
+                span {
+                  display    : block;
+                  line-height: @line_height;
+                  color      : @color_gray_c2;
+                  font-size  : @font_size_14;
+                }
+              }
+            }
+
+            .r {
+              width : @rightwidth;
+              float : left;
+              height: @height;
+              .ellipsis();
+
+              span {
+                display    : block;
+                float      : left;
+                font-size  : @font_size_14;
+                line-height: 30px;
+                padding    : 0 @space_2;
+                color      : @color_rank;
+                margin     : (@height - 30)/2 @space_1 (@height - 30)/2 0;
+
+                background-color: @color_theme_c2_30;
+              }
+            }
+          }
+
+          .list {
+
+            .child {
+              padding      : @space_3 0 @space_2 0;
+              border-bottom: 1px solid @color_grey_line1;
+
+              // &:last-child {
+              //   border: none;
+              // }
+
+              .l {
+                float       : left;
+                width       : @leftwidth;
+                margin-right: @space_3;
+
+                &>div {
+                  margin-bottom: 4px;
+                  overflow     : hidden;
+
+                  img {
+                    display     : block;
+                    float       : left;
+                    height      : 24px;
+                    width       : 24px;
+                    margin-right: 12px;
+                    .border-radius(50%);
+                  }
+
+                  i {
+                    display    : block;
+                    float      : left;
+                    color      : @color_main_c1;
+                    line-height: @line_height;
+                    font-size  : @font_size_16;
+
+                  }
+                }
+
+                p {
+                  line-height: 20px;
+                  color      : @color_gray_c2;
+                  font-size  : @font_size_12;
+                }
+              }
+
+              .r {
+                float             : left;
+                width             : @rightwidth;
+                color             : @color_main_c1;
+                font-size         : @font_size_14;
+                line-height       : @line_height;
+                display           : -webkit-box;
+                -webkit-line-clamp: 4;
+                overflow          : hidden;
+                text-overflow     : ellipsis;
+                -webkit-box-orient: vertical;
+              }
+
+              .more {
+                width     : 100%;
+                text-align: center;
+                margin-top: 12px;
+
+                a {
+                  font-size  : @font_size_14;
+                  color      : @color_link;
+                  line-height: @line_height;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .row4 {
         .tab {
           .navigationbar {
             border: none;
@@ -343,12 +513,10 @@ body {
             .ia {
               display         : block;
               font-size       : @font_size_14;
-              color           : @color_rank;
-              font-weight     : @font_weight;
-              background-color: @color_theme_c2_30;
+              color           : @color_main_c1;
               text-align      : center;
               line-height     : 40px;
-              border          : 1px solid @color_rank;
+              border          : 1px solid @color_gray_c3;
               width           : @width - 2;
               .border-radius(4px);
 

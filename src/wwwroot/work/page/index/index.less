@@ -3,6 +3,7 @@
 @import (less) "../../components/navigationbar/index.less";
 @import (less) "../../components/rfoot/index.less";
 @import (less) "../../components/star/index.less";
+@import (less) "../../components/list/index.less";
 @import "/node_modules/@stl/image-slider/dist/index.css";
 @defaultLeftWidth : 776px;
 @defaultRightWidth: @DefindWidth - @defaultLeftWidth - @space_2;
@@ -480,8 +481,9 @@
         width: @width;
 
         .row {
-            color   : #FFF;
-            overflow: hidden;
+            color        : #FFF;
+            overflow     : hidden;
+            margin-bottom: @space_3;
 
             p {
                 float      : left;
@@ -500,149 +502,8 @@
             }
         }
 
-        .list_box {
 
-            .flex();
-            justify-content: space-between;
-
-            width: @width;
-
-            .child {
-                background-color: #FFF;
-                @childwidth     : (@width - @space_2)/3 - @space_2 - (@space_2 * 2);
-                flex-grow       : 1;
-                display         : block;
-                float           : left;
-                text-align      : left;
-                flex-direction  : column;
-                width           : @childwidth;
-                height          : 224 - (@space_2*2);
-                margin-right    : @space_2;
-                padding         : @space_2;
-                position        : relative;
-
-                .hd {
-                    height  : 64px;
-                    overflow: hidden;
-                    position: relative;
-
-                    .l {
-                        position: absolute;
-                        left    : 0;
-                        top     : 0;
-                        right   : 112px;
-
-
-                        p {
-                            margin-bottom: @space_1;
-                            height       : 24px;
-                            .ellipsis();
-
-                            img {
-                                display: block;
-                                float  : left;
-                                width  : 20px;
-                                height : 20px;
-                                margin : 2px @space_1 2px 0;
-                                .border-radius(50%);
-                            }
-
-                            span {
-                                display    : block;
-                                float      : left;
-                                color      : @color_gray_c1;
-                                font-size  : @font_size_16;
-                                line-height: 24px;
-                            }
-                        }
-
-                        a {
-                            display    : block;
-                            color      : @color_main_c1;
-                            line-height: 22px;
-                            font-size  : @font_size_14;
-                            font-weight: @font_weight;
-                            .ellipsis();
-                        }
-                    }
-
-                    .r {
-                        float: right;
-                        width: 102px;
-
-                        img {
-                            border: 1px solid @color_grey_line1;
-                            width : 100px;
-                            height: 62px;
-                        }
-                    }
-                }
-
-                .cr {
-                    
-
-                    .l {
-                        float: left;
-                        width: 210px;
-
-                        span {
-                            color        : @color_rank;
-                            line-height  : 28px;
-                            margin-bottom: @space_1;
-                            display      : block;
-                            overflow     : hidden;
-
-                            i {
-                                font-size   : @font_size_20;
-                                font-weight : @font_weight;
-                                display     : block;
-                                float       : left;
-                                margin-right: @space_1;
-                            }
-                        }
-
-                        p {
-                            color             : @color_main_c1;
-                            font-size         : @font_size_14;
-                            line-height       : @line_height;
-                            display           : -webkit-box;
-                            -webkit-line-clamp: 4;
-                            overflow          : hidden;
-                            text-overflow     : ellipsis;
-                            -webkit-box-orient: vertical;
-                        }
-                    }
-
-                    .r {
-                        position: absolute;
-                        right   : 0;
-                        bottom  : 0;
-
-                        .score {
-                            position   : absolute;
-                            top        : 0;
-                            left       : 0;
-                            text-align : center;
-                            line-height: 120px;
-                            font-weight: @font_weight;
-                            color      : @color_main_c1;
-                            font-size  : @font_size_20;
-                            z-index    : 11;
-                        }
-
-                        &>div {
-                            width : 140px;
-                            height: 130px;
-                        }
-                    }
-                }
-
-                &:last-child {
-                    margin-right: 0;
-                }
-            }
-        }
-
+        .kblist1(@width)
     }
 
     .information {
