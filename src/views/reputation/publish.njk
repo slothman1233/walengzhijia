@@ -1,0 +1,157 @@
+{% extends "../shared/layout/defaultLayout.njk" %}
+{% from "../shared/sharedView/macro/components/satemap/satemap1.njk" import satemap1 %}
+{% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
+{% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
+{% from "../shared/sharedView/macro/components/star/star.njk" import star %}
+{% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
+{% from "../shared/sharedView/macro/components/editor/index.njk" import editor %}
+
+{% block title %}
+54123123213333
+{% endblock title %}
+
+{% block keywords %}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block style %}
+  <link href="/assets/plugin/laydate/theme/default/laydate.css" rel="stylesheet">
+  <link href="/dist/styles/reputation/publish.css" rel="stylesheet">
+
+{% endblock style %}
+
+{% block script %}
+  <script type="text/javascript" src="/assets/plugin/laydate/laydate.js"></script>
+  <script type="text/javascript" src="/dist/scripts/reputation/publish.js"></script>
+{% endblock script %}
+
+{% block body %}
+
+  <div id="main">
+    <div class="tab">
+      {{navigationbar({
+                isMore: false,
+                link: "#",
+                isSelect: "1",
+                data: [
+                  {
+                    title: "发布口碑",
+                    link: "javascript:(0)"
+                  }
+                ]
+            })}}
+    </div>
+
+    <div class="information">
+      <h2>产品基本信息</h2>
+
+      <div class="selectproduct clearfix">
+        <span class="title">选择产品<i>*</i>
+        </span>
+        <div class="s1">{{selectOption()}}</div>
+        <div class="s2">{{selectOption()}}</div>
+      </div>
+
+      <div class="purchastime clearfix">
+        <span class="title">购买时间<i>*</i>
+        </span>
+        <div class="input">
+          <input type="text" placeholder="选择日期" id="purchastime" lay-key="1">
+          <i>▲</i>
+        </div>
+      </div>
+
+      <div class="use clearfix">
+        <span class="title">投入使用<i>*</i>
+        </span>
+        <div class="input">
+          <input type="text" placeholder="选择日期" id="use" lay-key="2">
+          <i>▲</i>
+        </div>
+      </div>
+
+      <div class="price clearfix">
+        <span class="title">购买价格<i>*</i>
+        </span>
+        <div class="input">
+          <input type="text" placeholder="例如 332.32" id="price">
+        </div>
+        <p>万元</p>
+
+        <div class="radio_box">
+          <input type="radio" id="radio_check1" name="radio_b" value="显示价格">
+          <label for="radio_check1" title="显示价格"></label>
+          <span>显示价格</span>
+        </div>
+
+        <div class="radio_box">
+          <input type="radio" id="radio_check2" name="radio_b" value="显示首位数字(如:8**.*万元)">
+          <label for="radio_check2"  title="显示首位数字(如:8**.*万元)"></label>
+          <span>显示首位数字(如:8**.*万元)</span>
+        </div>
+
+        <div class="radio_box">
+          <input type="radio" id="radio_check3" name="radio_b" value="不显示价格">
+          <label for="radio_check3"  title="不显示价格"></label>
+          <span>不显示价格</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="grade">
+      <h2>整体评分：<i>0.00</i>
+      </h2>
+      <h3>特别提示：评分应与已经评测过的内容倾向保持一致。恶意刷分一经发现，将受到内容限制推荐的处罚，严重违规账号将被封禁。</h3>
+
+      <div class="star_box clearfix">
+        <div>
+          <span>性能：</span>
+          {{star()}}
+          <span>5.0</span>
+        </div>
+        <div>
+          <span>配置：</span>
+          {{star()}}
+          <span>5.0</span>
+        </div>
+        <div>
+          <span>外观：</span>
+          {{star()}}
+          <span>5.0</span>
+        </div>
+        <div>
+          <span>性能：</span>
+          {{star()}}
+          <span>5.0</span>
+        </div>
+        <div>
+          <span>性能：</span>
+          {{star()}}
+          <span>5.0</span>
+        </div>
+        <div>
+          <span>性能：</span>
+          {{star()}}
+          <span>5.0</span>
+        </div>
+        <div>
+          <span>性能：</span>
+          {{star()}}
+          <span>5.0</span>
+        </div>
+      </div>
+
+      <div class="description">
+        <h2>观点描述</h2>
+      </div>
+      {{editor()}}
+    </div>
+
+    <div class="submit">
+      <a href="javascript:(0)">立即发布</a>
+    </div>
+  </div>
+
+{% endblock body %}

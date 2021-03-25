@@ -1,8 +1,10 @@
 {% extends "../shared/layout/defaultLayout.njk" %}
 {% from "../shared/sharedView/macro/components/satemap/satemap1.njk" import satemap1 %}
-{% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
+{% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar,
+navigationbar2 %}
 {% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
-
+{% from "../shared/sharedView/macro/components/star/star.njk" import star %}
+{% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
 {% block title %}
 54123123213333
 {% endblock title %}
@@ -24,29 +26,270 @@
   <div id="main">
     <div class="map">
       {{satemap1({
-  title: "当前位置：",
-  select: 4,
-  map: [
-    {
-      name: "首页",
-      link: "#"
+        title: "当前位置：",
+        select: 4,
+        map: [
+          {
+            name: "首页",
+            link: "#"
 
-    }, {
-      name: "品牌商",
-      link: "#"
+          }, {
+            name: "品牌商",
+            link: "#"
 
-    }, {
-      name: "京山轻机",
-      link: "#"
-    }, {
-      name: "原纸架",
-      link: "#"
+          }, {
+            name: "京山轻机",
+            link: "#"
+          }, {
+            name: "原纸架",
+            link: "#"
 
-    }
-  ]
-})}}
+          }
+        ]
+      })}}
     </div>
-  324234
+
+    <div class="row1 clearfix">
+      <div class="l">
+        <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/>
+      </div>
+
+      <div class="c">
+        {{selectOption()}}
+        <span>产品口碑分</span>
+        <div class="score">
+          <span>4.68</span>
+          {{star()}}
+          <b>38条口碑</b>
+        </div>
+        <div class="configuration">
+          {% set confData = [
+                {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }, {
+                  name: "性能",
+                  number: "4.56"
+                }
+              ]%}
+
+          {% if (confData != null) and (confData.length > 0) %}
+            {% for item in confData %}
+              <p>
+                <span>{{item.name}}</span>
+                <span>{{item.number}}</span>
+              </p>
+            {% endfor %}
+          {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="tab">
+        {{navigationbar({
+                isMore: true,
+                link: "#",
+                MoreText:"发布口碑",
+                isSelect: "1",
+                data: [
+                  {
+                    title: "口碑详情",
+                    link: "javascript:(0)"
+                  }
+                ]
+            })}}
+      </div>
+
+      <div class="cr">
+        <div class="tab">
+          {{navigationbar2({
+            isSelect: "1",
+            data: [
+              {
+                class:"high",
+                title: "全部(24)",
+                link: "javascript:(0)"
+              }, {
+                class:"high",
+                title: "性能很满意(6)",
+                link: "javascript:(0)"
+              }, {
+                class:"high",
+                title: "质量很好(4)",
+                link: "javascript:(0)"
+              }, {
+                class:"high",
+                title: "能耗合理(4)",
+                link: "javascript:(0)"
+              }, {
+                class:"high",
+                title: "自动化程度高(6)",
+                link: "javascript:(0)"
+              }, {
+                title: "性能一般(2)",
+                link: "javascript:(0)"
+              }, {
+                title: "能耗高(6)",
+                link: "javascript:(0)"
+              }, {
+                title: "售后一般(2)",
+                link: "javascript:(0)"
+              }
+            ]
+          })}}
+        </div>
+
+        <div class="list_box">
+          {% set kblistdata = [
+            {
+              id: 11,
+              hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "李女士",
+              price: "300万",
+              buytime: "2019-06",
+              actiontime: "2020-12",
+              description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做...",
+              atlas: [
+                "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
+              ],
+              kbgrade: "5.00",
+              xingneng: "5",
+              waiguan: "5",
+              shouhou: "5",
+              zidonghua: "5",
+              peizhi: "5",
+              zhiliang: "5",
+              nenghao: "5"
+            }, {
+              id: 11,
+              hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "李女士",
+              price: "300万",
+              buytime: "2019-06",
+              actiontime: "2020-12",
+              description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做...",
+              atlas: [
+                "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
+              ],
+              kbgrade: "5.00",
+              xingneng: "5",
+              waiguan: "5",
+              shouhou: "5",
+              zidonghua: "5",
+              peizhi: "5",
+              zhiliang: "5",
+              nenghao: "5"
+            }, {
+              id: 11,
+              hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name: "李女士",
+              price: "300万",
+              buytime: "2019-06",
+              actiontime: "2020-12",
+              description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做...",
+              atlas: [
+                "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png", "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
+              ],
+              kbgrade: "5.00",
+              xingneng: "5",
+              waiguan: "5",
+              shouhou: "5",
+              zidonghua: "5",
+              peizhi: "5",
+              zhiliang: "5",
+              nenghao: "5"
+            }
+          ] %}
+
+          {% for item in kblistdata %}
+            <div class="child">
+              <div class="l">
+                <div class="user">
+                  <div>
+                    <img src="{{item.hread}}"/>
+                    <i>{{item.name}}</i>
+                  </div>
+                  <p>购买价格:{{item.price}}</p>
+                  <p>购买时间:{{item.buytime}}</p>
+                  <p>投入使用:{{item.actiontime}}</p>
+                </div>
+
+                <div class="grade">
+                  <span>用户评分</span>
+                  <div class="score">
+                    <span>4.68</span>
+                    {{star()}}
+                  </div>
+                  <div class="configuration">
+                    <p>
+                      <span>性能:</span>
+                      <span>{{item.xingneng}}</span>
+                    </p>
+                    <p>
+                      <span>配置:</span>
+                      <span>{{item.peizhi}}</span>
+                    </p>
+                    <p>
+                      <span>外观:</span>
+                      <span>{{item.waiguan}}</span>
+                    </p>
+                    <p>
+                      <span>质量:</span>
+                      <span>{{item.zhiliang}}</span>
+                    </p>
+                    <p>
+                      <span>售后:</span>
+                      <span>{{item.shouhou}}</span>
+                    </p>
+                    <p>
+                      <span>能耗:</span>
+                      <span>{{item.nenghao}}</span>
+                    </p>
+                    <p>
+                      <span>自动化:</span>
+                      <span>{{item.zidonghua}}</span>
+                    </p>
+
+                  </div>
+                </div>
+
+                <div class="more">
+                  <a href="{{item.id}}" target="_blank">查看口碑详情</a>
+                </div>
+              </div>
+
+              <div class="r">
+                <p>{{item.description}}</p>
+                <div class="atlas">
+                  {% for imgurl in item.atlas %}
+                    <img src="{{imgurl}}"/>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
   </div>
 
 {% endblock body %}

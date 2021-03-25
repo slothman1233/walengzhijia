@@ -5,13 +5,23 @@ import { get } from '../../common/decorator/httpMethod'
 
 
 export default class Reputation {
+  @get('/publish')
+    async publish(ctx: Context, next: Next) {
 
-  @get('/:id?')
-    async index(ctx: Context, next: Next) {
-
-        await ctx.render('reputation/index', {})
+        await ctx.render('reputation/publish', {})
 
     }
+
+  @get('/:id?')
+  async index(ctx: Context, next: Next) {
+
+      await ctx.render('reputation/index', {})
+
+  }
+
+
+
+
 
 
 }
