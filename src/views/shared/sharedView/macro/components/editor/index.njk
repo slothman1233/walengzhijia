@@ -1,3 +1,35 @@
-{% macro editor(args) %}
-  编辑器
+{# 
+
+documentname:ue,  针对全局调用 window.ue 
+let onload = window.onload
+window.onload = function(){
+    onload && onload()
+    window.ue.ready(function () {
+        console.log(123123)
+    })
+}
+
+
+ #}
+
+{% macro editor(args = {
+  documentname: "ue",
+  id: "edit_container",
+  editor: {
+    toolbars: [
+      ['bold', 'italic', 'removeformat', 'insertimage']
+    ],
+    initialFrameWidth: '910',
+    initialFrameHeight: '303',
+    autoHeightEnabled: false
+  }
+}) %}
+  <div class="{{args.id}}" id="{{args.id}}"></div>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      window.{{args.documentname}} = UE.getEditor('{{args.id}}', {{args.editor | dump | safe}})
+
+    }
+  </script>
 {% endmacro %}

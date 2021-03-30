@@ -1,0 +1,153 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+
+.common1() {
+  .common1 {
+    .submit {
+      @height      : 48px;
+      height       : @height;
+      line-height  : @height;
+      position     : relative;
+      margin-bottom: @space_4;
+
+      img {
+        display: block;
+        float  : left;
+        height : @height;
+        width  : @height;
+        .border-radius(50%);
+      }
+
+      .input {
+        position: absolute;
+        left    : @height + @space_2;
+        right   : 148px;
+        top     : 0;
+
+        input {
+          width  : 100%;
+          display: block;
+          padding: 0 10px;
+          border : 1px solid @color_gray_c3;
+          height : @height;
+          .box-sizing();
+        }
+      }
+
+      a {
+        display         : block;
+        float           : right;
+        width           : 148px;
+        height          : @height;
+        line-height     : @height;
+        text-align      : center;
+        background-color: @color_subject;
+        color           : @color_main_c1;
+        font-size       : @font_size_16;
+      }
+    }
+
+    .list_box {
+      .child {
+        @hreadheight : 48px;
+        position     : relative;
+        border-bottom: 1px solid @color_grey_line1;
+        &:last-child{
+          border-bottom: none;
+        }
+        .hread {
+          width       : @hreadheight;
+          margin-right: @space_2;
+          position    : absolute;
+          left        : 0;
+          top         : 0;
+
+          img {
+            width : @hreadheight;
+            height: @hreadheight;
+            .border-radius(50%);
+          }
+        }
+
+        .common_details {
+
+          padding: @space_2 0 @space_2 (@hreadheight + @space_2);
+
+
+
+          .h {
+            line-height  : @hreadheight;
+            margin-bottom: @space_1;
+
+            span {
+              color    : @color_gray_c2;
+              font-size: @font_size_16;
+
+              &.createtime {
+                float: right;
+              }
+            }
+          }
+
+          .content {
+            color        : @color_main_c1;
+            font-size    : @font_size_16;
+            line-height  : @line_height;
+            margin-bottom: @space_2;
+          }
+
+          .reply {
+            line-height: 32px;
+
+            &>a {
+              display     : block;
+              float       : left;
+              color       : @color_gray_c1;
+              margin-right: @space_4;
+              font-size   : @font_size_16;
+            }
+
+            &>span {
+              display  : block;
+              float    : left;
+              color    : @color_link ;
+              font-size: @font_size_16;
+            }
+
+            .reply_r {
+              float: right;
+
+              a {
+                color       : @color_gray_c3;
+                display     : block;
+                float       : left;
+                margin-right: @space_3;
+              }
+
+              p {
+                float: left;
+                color: @color_gray_c3;
+
+                i {
+                  display     : block;
+                  float       : left;
+                  margin-right: 5px;
+                }
+
+                span {
+                  display: block;
+                  float  : left;
+                }
+              }
+            }
+          }
+        }
+
+
+
+      }
+    }
+
+
+
+  }
+}

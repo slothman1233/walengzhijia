@@ -8,8 +8,9 @@ let paths = {
         getSrc('./business/product.ts'),
         getSrc('./business/answer.ts'),
         getSrc('./reputation/index.ts'),
-        getSrc('./reputation/publish.ts')
-        
+        getSrc('./reputation/publish.ts'),
+        getSrc('./news/index.ts'),
+        getSrc('./search/index.ts')
         
     ]
 }

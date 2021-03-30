@@ -1,0 +1,163 @@
+{% extends "../shared/layout/defaultLayout.njk" %}
+{% from "../shared/sharedView/macro/components/satemap/satemap1.njk" import satemap1 %}
+{% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
+{% from "../shared/sharedView/macro/components/comment/comment1.njk" import comment %}
+
+
+{% block title %}
+54123123213333
+{% endblock title %}
+
+{% block keywords %}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block style %}
+  <link href="/dist/styles/news/index.css" rel="stylesheet">
+{% endblock style %}
+
+{% block script %}
+  <script type="text/javascript" src="/dist/scripts/news/index.js"></script>
+{% endblock script %}
+
+{% block body %}
+  <div id="main">
+    <div class="map">
+      {{satemap1({
+        title: "当前位置：",
+        select: 4,
+        map: [
+          {
+            name: "首页",
+            link: "#"
+
+          }, {
+            name: "新闻",
+            link: "#"
+
+          }, {
+            name: "正文",
+            link: "#"
+          }
+        ]
+      })}}
+    </div>
+
+    <div class="container clearfix">
+      <div class="l">
+        <div class="news_content">
+          <h1>早高FENG：应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计</h1>
+          <div class="title clearfix">
+            <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/>
+            <span>文大帅哥</span>
+            <span>发布于：11-02 09:23</span>
+
+            <div class="praise">
+              <i>#</i>
+              <span>24</span>
+            </div>
+          </div>
+
+          <div class="content clearfix">
+            <p>应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计手机三星正式推出了W215G 折叠屏三星正式推出了W215G折叠屏三星正式推出折叠屏三星正式推出了 W215G折叠屏三星正式推出了W215G 折叠屏三星正式推出了 W21 5G 折叠屏三星正式推出了 W21 5G 折叠屏。</p>
+            <p>应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计手机三星正式推出了W215G 折叠屏三星正式推出了W215G折叠屏三星正式推出折叠屏三星正式推出了 W215G折叠屏三星正式推出了W215G 折叠屏三星正式推出了 W21 5G 折叠屏三星正式推出了 W21 5G 折叠屏。</p>
+            <p><img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/></p>
+            <p>应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计手机三星正式推出了W215G 折叠屏三星正式推出了W215G折叠屏三星正式推出折叠屏三星正式推出了 W215G折叠屏三星正式推出了W215G 折叠屏三星正式推出了 W21 5G 折叠屏三星正式推出了 W21 5G 折叠屏。</p>
+            <p>应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计手机三星正式推出了W215G 折叠屏三星正式推出了W215G折叠屏三星正式推出折叠屏三星正式推出了 W215G折叠屏三星正式推出了W215G 折叠屏三星正式推出了 W21 5G 折叠屏三星正式推出了 W21 5G 折叠屏。</p>
+          </div>
+
+          <div class="share">
+            <em>分享：</em>
+            <i class="weixin" title="微信" data-bshare="{type:'weixin',url:'11',pop:true,title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！',images:''}">微信</i>
+            <i class="weibo" title="微博" data-bshare="{type:'weibo',url:'22',title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！（分享至@FX110）',images:''}">微博</i>
+            <i class="qzone" title="QQ空间" data-bshare="{type:'qzone',url:'33',title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！',images:''}">QQ空间</i>
+          </div>
+        </div>
+
+        <div class="questions">
+          <div class="tab">
+            {{navigationbar({
+                isMore: false,
+                isSelect: "1",
+                data: [
+                  {
+                    title: "回答",
+                    link: "javascript:(0)"
+                  }
+                ]
+            })}}
+          </div>
+
+          <div class="questions_box">
+            {{comment()}}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="r">
+        <div class="list1 hotnews">
+          <p>热门新闻</p>
+          <div class="list">
+            {% set listdata = [
+              {
+                id: "0",
+                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
+              }, {
+                id: "0",
+                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
+              }, {
+                id: "0",
+                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
+              }, {
+                id: "0",
+                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
+              }, {
+                id: "0",
+                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
+              }, {
+                id: "0",
+                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
+              }, {
+                id: "0",
+                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
+              }, {
+                id: "0",
+                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
+              }
+            ] %}
+
+            {% for item in listdata %}
+              <div class="child clearfix">
+                <i>●</i>
+                <a href="{{item.id}}" title="{{item.content}}" target="_blank">
+                  {{item.content}}
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="list1 relatedproducts">
+          <p>相关产品</p>
+          <div class="box">
+            <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/>
+            <div class="content">
+              <div class="left">
+                <p>
+                  <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/>
+                  <span>BHS</span>
+                </p>
+                <p>YWZJ-C型液压无轴纸架</p>
+              </div>
+
+              <a class="btn" href="#" target="_blank">查看详情</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock body %}

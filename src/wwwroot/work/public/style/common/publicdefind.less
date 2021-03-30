@@ -7,7 +7,7 @@
 
 @DefindRight1: 284px;
 @DefindRight2: 334px;
-
+@DefindRight3: 384px;
 //栅格大小
 @gridSize   : 34px;
 @gridPadding: 16px;
@@ -84,6 +84,12 @@
 @space_4 : 4 * @space_1;
 @space_5 : 5 * @space_1;
 @space_6 : 6 * @space_1;
+@space_7 : 7 * @space_1;
+@space_8 : 8 * @space_1;
+@space_9 : 9 * @space_1;
+@space_10 : 10 * @space_1;
+@space_11 : 11 * @space_1;
+@space_12 : 12 * @space_1;
 
 //  默认颜色 #ddd   默认尺寸：1px   默认样式：实线
 //  参数1  ==> @posi：边框位置 （all：所有边框   left：左边框  right：右边框  top：上边框  bottom：下边框）
@@ -386,4 +392,12 @@
             }
         }
     }
+}
+
+.lineclamp(@line:1){
+    display: -webkit-box;
+    -webkit-line-clamp: @line;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
 }

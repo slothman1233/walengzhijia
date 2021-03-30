@@ -1,0 +1,192 @@
+{% macro comment(arg = {
+  username: "fff",
+  userid: "123213",
+  userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+  data: [
+    {
+      username: "fff",
+      userid: "123213",
+      userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+      createtime: "2021-11-11",
+      content: "1.5L和1.3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+      praise: "2000",
+      child: [
+        {
+          username: "fff",
+          userid: "123213",
+          userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          createtime: "2021-11-11",
+          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praise: "2000"
+        }, {
+          username: "fff",
+          userid: "123213",
+          userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          createtime: "2021-11-11",
+          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praise: "2000"
+        }, {
+          username: "fff",
+          userid: "123213",
+          userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          createtime: "2021-11-11",
+          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praise: "2000"
+        }
+      ]
+    }, {
+      username: "fff",
+      userid: "123213",
+      userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+      createtime: "2021-11-11",
+      content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+      praise: "2000",
+      child: [
+        {
+          username: "fff",
+          userid: "123213",
+          userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          createtime: "2021-11-11",
+          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praise: "2000"
+        }, {
+          username: "fff",
+          userid: "123213",
+          userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          createtime: "2021-11-11",
+          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praise: "2000"
+        }, {
+          username: "fff",
+          userid: "123213",
+          userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+          createtime: "2021-11-11",
+          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praise: "2000"
+        }
+      ]
+    }
+  ]
+}) %}
+
+  <div class="common1">
+    <div class="submit clearfix">
+      <img src="{{arg.userhread}}" title="{{arg.username}}"/>
+      <a href="javascript:(0)" data-id="{{arg.userid}}">提交回答</a>
+      <div class="input">
+        <input type="text" value="" placeholder="写下你的回答"/>
+      </div>
+
+    </div>
+
+    <div class="list_box">
+      {{commonchild(arg.data)}}
+    </div>
+
+  </div>
+
+{% endmacro %}
+
+{% macro commonchild(args = [
+  {
+    username: "fff",
+    userid: "123213",
+    userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    createtime: "2021-11-11",
+    content: "1.5L和1.3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+    praise: "2000",
+    child: [
+      {
+        username: "fff",
+        userid: "123213",
+        userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        createtime: "2021-11-11",
+        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+        praise: "2000"
+      }, {
+        username: "fff",
+        userid: "123213",
+        userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        createtime: "2021-11-11",
+        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+        praise: "2000"
+      }, {
+        username: "fff",
+        userid: "123213",
+        userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        createtime: "2021-11-11",
+        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+        praise: "2000"
+      }
+    ]
+  }, {
+    username: "fff",
+    userid: "123213",
+    userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    createtime: "2021-11-11",
+    content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+    praise: "2000",
+    child: [
+      {
+        username: "fff",
+        userid: "123213",
+        userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        createtime: "2021-11-11",
+        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+        praise: "2000"
+      }, {
+        username: "fff",
+        userid: "123213",
+        userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        createtime: "2021-11-11",
+        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+        praise: "2000"
+      }, {
+        username: "fff",
+        userid: "123213",
+        userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        createtime: "2021-11-11",
+        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+        praise: "2000"
+      }
+    ]
+  }
+]) %}
+  {% for item in args %}
+    <div class="child clearfix">
+      <div class="hread">
+        <img src="{{item.userhread}}"/>
+      </div>
+      <div class="common_details">
+        <div class="h clearfix">
+          <span>{{item.username}}</span>
+          <span class="createtime">{{item.createtime}}</span>
+        </div>
+        <div class="content">
+          {{item.content}}
+        </div>
+        <div class="reply clearfix">
+          <a href="javascript:(0)" data-id="{{item.id}}">回复</a>
+          {% if (item.child) and (item.child.length > 0) %}
+            <span>{{item.child.length}}条回复∨</span>
+          {% endif %}
+          <div class="reply_r">
+            <a href="javascript:(0)" data-id="{{item.userid}}">举报</a>
+            <p>
+              <i>#</i>
+              <span>{{item.praise}}</span>
+            </p>
+          </div>
+
+        </div>
+        {% if (item.child) and (item.child.length > 0) %}
+          <div class="child_box">
+            {{commonchild(item.child)}}
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  {% endfor %}
+{% endmacro %}
