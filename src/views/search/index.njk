@@ -1,10 +1,8 @@
 {% extends "../shared/layout/defaultLayout.njk" %}
-{% from "../shared/sharedView/macro/components/satemap/satemap1.njk" import satemap1 %}
-{% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar,
-navigationbar2 %}
-{% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
-{% from "../shared/sharedView/macro/components/star/star.njk" import star %}
-{% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
+
+{% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
+{% from "../shared/sharedView/macro/components/list.njk" import list1,
+list2 %}
 {% block title %}
 54123123213333
 {% endblock title %}
@@ -23,6 +21,41 @@ navigationbar2 %}
 
 {% block body %}
 
-  <div id="main">asdfadsf</div>
+  <div id="main">
+      <div class="search">
+          <a href="javascript:(0)">搜索</a>
+           <div class="input"><input type="text" placeholder="请输入搜索内容" /></div>
+      </div>
+
+      <div class="list">
+          <div class="tab">
+             {{navigationbar({
+                isMore: false,
+                link: "#",
+                isSelect: "1",
+                data: [
+                  {
+                    title: "综合",
+                    link: "javascript:(0)"
+                  },
+                   {
+                    title: "品牌商",
+                    link: "javascript:(0)"
+                  }
+                ]
+                
+            })}}
+          </div>
+          <div class="searchresult">
+            <div class="results"><span class="red">万联</span>的相关搜索结果</div>
+            <div class="list_box">
+             {{list2()}}
+                {{list1()}}
+               
+            </div>
+          </div>
+
+      </div>
+  </div>
 
 {% endblock body %}

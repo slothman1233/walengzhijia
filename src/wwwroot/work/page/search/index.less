@@ -1,11 +1,70 @@
 @import (reference) "../../public/style/common/PublicDefind.less";
 @import (reference) "../../public/style/common/Animation.less";
+@import (reference) "../../components/list/index.less";
 @import (less) "../../components/navigationbar/index.less";
-@import (less) "../../components/list/index.less";
-@import (less) "../../components/stemap/satemap1.less";
-@import (less) "../../components/select/index.less";
+
+@DefindWidth: 884px;
 
 #main {
   width : @DefindWidth;
-  margin: @space_2 auto;
+  margin: @space_8 auto @space_2 auto;
+
+  .search {
+    @height      : 48px;
+    margin-bottom: @space_5;
+
+    .input {
+      margin-right: 168px;
+      height      : @height;
+
+      input {
+        width           : 100%;
+        padding         : 0 @space_2;
+        height          : @height - 2;
+        line-height     : @height - 2;
+        color           : @color_main_c1;
+        background-color: rgba(250, 250, 250, 1);
+        border          : 1px solid @color_grey_line1;
+        .box-sizing();
+      }
+    }
+
+    a {
+      display         : block;
+      width           : 148px;
+      float           : right;
+      height          : @height;
+      color           : @color_main_c1;
+      font-size       : @font_size_16;
+      line-height     : @height;
+      text-align      : center;
+      background-color: @color_subject;
+    }
+  }
+  .red{
+    color: #F24646;
+  }
+
+  .list {
+    .tab {
+      margin-bottom: @space_3;
+    }
+
+    .searchresult {
+      margin-bottom: @space_3;
+
+      .results {
+        color      : @color_main_c1;
+        font-size  : @font_size_16;
+        line-height: @line_height;
+
+      }
+    }
+
+    .list_box{
+      .list1();
+      .list2();
+    }
+  }
+
 }
