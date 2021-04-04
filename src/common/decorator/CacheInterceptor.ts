@@ -37,7 +37,7 @@ function settime(key: string, CacheSeconds: number, arg: any[], method: Function
     let cacheName = getkey(key, arg)
     timeTaskAry[cacheName] = setTimeout(async () => {
         let val: bodyModel<any> = await method.apply(proto.constructor, arg)
-        if (val.subcode !== '') {
+        if (val.subCode !== '') {
             cache.set(cacheName, val)
         }
         process.nextTick(() => settime(key, CacheSeconds, arg, method, proto))
@@ -84,7 +84,7 @@ export default function CacheInterceptor(key: string, CacheSeconds: CacheTime) {
 
                 // val = await method.apply(proto.constructor, arg)
 
-                if (val.subcode !== '') {
+                if (val.subCode !== '') {
                     cache.set(cacheName, val)
                 } else {
                     cache.set(cacheName, null)

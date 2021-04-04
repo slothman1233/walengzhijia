@@ -1,5 +1,5 @@
 type bodyModel<T> = {
-    subcode?: string,
+    subCode?: string,
     code?: number,
     message?: string,
     requestLine?: number,
@@ -12,13 +12,13 @@ type bodyModel<T> = {
 class BaseModel<T> {
     bodyMessage: T
     code: number
-    subcode: string
+    subCode: string
     message: string
     requestLine: number
-    constructor({ bodyMessage = null, code, subcode = '', message = 'exception', requestLine = -1 }: bodyModel<T>) {
+    constructor({ bodyMessage = null, code, subCode = '0000000', message = '', requestLine = -1 }: bodyModel<T>) {
         this.bodyMessage = bodyMessage
         this.code = code
-        this.subcode = subcode
+        this.subCode = subCode
         this.message = message
         this.requestLine = requestLine
     }
@@ -28,11 +28,11 @@ class BaseModel<T> {
  * 成功的模型
  */
 class SuccessModel<T> extends BaseModel<T> {
-    constructor({ bodyMessage, code, subcode, message, requestLine }: bodyModel<T>) {
+    constructor({ bodyMessage, code, subCode, message, requestLine }: bodyModel<T>) {
         if (code) {
-            super({ bodyMessage, code, subcode, message, requestLine })
+            super({ bodyMessage, code, subCode, message, requestLine })
         } else {
-            super({ bodyMessage, code: 0, subcode, message, requestLine })
+            super({ bodyMessage, code: 0, subCode, message, requestLine })
         }
     }
 }
@@ -41,20 +41,20 @@ class SuccessModel<T> extends BaseModel<T> {
  * 错误的模型
  */
 class ErrorModel<T> extends BaseModel<T> {
-    constructor({ bodyMessage, code, subcode, message, requestLine }: bodyModel<T>) {
+    constructor({ bodyMessage, code, subCode, message, requestLine }: bodyModel<T>) {
         if (code) {
-            super({ bodyMessage, code, subcode, message, requestLine })
+            super({ bodyMessage, code, subCode, message, requestLine })
         } else {
-            super({ bodyMessage, code: -1, subcode, message, requestLine })
+            super({ bodyMessage, code: -1, subCode, message, requestLine })
         }
     }
 }
 class ReturnModel<T> extends BaseModel<T> {
-    constructor({ bodyMessage, code, subcode, message, requestLine }: bodyModel<T>) {
+    constructor({ bodyMessage, code, subCode, message, requestLine }: bodyModel<T>) {
         if (code) {
-            super({ bodyMessage, code, subcode, message, requestLine })
+            super({ bodyMessage, code, subCode, message, requestLine })
         } else {
-            super({ bodyMessage, code: -1, subcode, message, requestLine })
+            super({ bodyMessage, code: -1, subCode, message, requestLine })
         }
     }
 }

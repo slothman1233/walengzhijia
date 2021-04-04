@@ -1,19 +1,33 @@
 {% macro rfooter(args = 
 [
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface",
-  "corrface"
+  {
+    name:"asdfasdf",
+    link:"#"
+  },
+  {
+    name:"asdfasdf",
+    link:"#"
+  },
+  {
+    name:"asdfasdf",
+    link:"#"
+  },
+  {
+    name:"asdfasdf",
+    link:"#"
+  },
+  {
+    name:"asdfasdf",
+    link:"#"
+  },
+  {
+    name:"asdfasdf",
+    link:"#"
+  },
+  {
+    name:"asdfasdf",
+    link:"#"
+  }
 ]
 ) %}
 
@@ -24,7 +38,7 @@
     <div class="list">
       {% if (args != null) and (args.length > 0) %}
         {% for item in args %}
-          <span>{{item}}</span>
+          <span><a href="{{item.link}}" title="{{item.name}}" target="_blank">{{item.name}}</a></span>
         {% endfor %}
       {% endif %}
     </div>
@@ -38,8 +52,8 @@
       <p>公司名称：上海KT科技有限公司</p>
       <p>中央网信办违法和不良信息举报中心</p>
       <p>违法和不良信息举报电话：400-140-2108</p>
-      <p>用户协议 | 隐私政策 | 营业执照</p>
-      <p>侵权投诉 | 我要反馈</p>
+      <p><a href="/home/agreement" target="_blank">用户协议</a> | <a href="#" target="_blank">隐私政策</a> | <a href="#" target="_blank">营业执照</a></p>
+      <p><a href="#" target="_blank">侵权投诉</a>| <a href="#" target="_blank">我要反馈</a></p>
     </div>
 
   </div>

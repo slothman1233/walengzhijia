@@ -93,7 +93,8 @@ export default (params: paramsModel) => {
 
         ctx.render = async (filePath, renderData = {}) => {
             let html = ''
-
+            
+            
             html = htmlMinifier.minify(
                 nunjucksEVN.render(resolvePath(params, filePath), Object.assign({}, ctx.state, renderData)),
                 {

@@ -1,5 +1,5 @@
 import EventEmitter from 'events'
-
+// @ts-ignore
 const emitter = new EventEmitter()
 //防止缓存击穿
 

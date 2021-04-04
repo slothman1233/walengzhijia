@@ -3,6 +3,7 @@ import { compatible } from '@stl/tool-ts/src'
 import { index } from '@stl/tool-ts/src/common/compatible'
 import { addClass, hide, removeClass, show } from '@stl/tool-ts/src/common/dom'
 import { on } from '@stl/tool-ts/src/common/event'
+import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 
 // eslint-disable-next-line no-undef
 declare const document: Document
@@ -143,3 +144,108 @@ declare const echarts: any;
     myChart2.setOption(option)
 
 })()
+
+let data = {
+    args: [
+        {
+            link: '#',
+            img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
+            content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
+            author: '作者大大',
+            time: '2021-11-11',
+            businesslogo: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            businessname: '万联',
+            slug: ['视频', '音频']
+        }, {
+            link: '#',
+            img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
+            content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
+            author: '作者大大',
+            time: '2021-11-11'
+        }, {
+            link: '#',
+            img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
+            content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
+            author: '作者大大',
+            time: '2021-11-11'
+        }, {
+            link: '#',
+            img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
+            content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
+            author: '作者大大',
+            time: '2021-11-11'
+        }
+    ]
+}
+
+let data1 = {
+    args: [
+        {
+            logo: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            link: '#',
+            name: '广东万联',
+            kbscore: '5.00',
+            description: '纸板生产单机纸板生产单机纸板生产单机纸板生产单机',
+            kbcount: 56,
+            favorablerate: '100',
+            kbgood: 18,
+            label: [
+                '上市公司', '优质品牌商', '权威品牌'
+            ],
+            brandtype: '优质品牌商'
+
+        }, {
+            logo: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            link: '#',
+            name: '广东万联',
+            kbscore: '5.00',
+            description: '纸板生产单机纸板生产单机纸板生产单机纸板生产单机',
+            kbcount: 56,
+            favorablerate: '100',
+            kbgood: 18,
+            label: [
+                '上市公司', '优质品牌商', '权威品牌'
+            ],
+            brandtype: '优质品牌商'
+
+        }, {
+            logo: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            link: '#',
+            name: '广东万联',
+            kbscore: '5.00',
+            description: '纸板生产单机纸板生产单机纸板生产单机纸板生产单机',
+            kbcount: 56,
+            favorablerate: '100',
+            kbgood: 18,
+            label: [
+                '上市公司', '优质品牌商', '权威品牌'
+            ],
+            brandtype: '优质品牌商'
+
+        }, {
+            logo: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            link: '#',
+            name: '广东万联',
+            kbscore: '5.00',
+            description: '纸板生产单机纸板生产单机纸板生产单机纸板生产单机',
+            kbcount: 56,
+            favorablerate: '100',
+            kbgood: 18,
+            label: [
+                '上市公司', '优质品牌商', '权威品牌'
+            ],
+            brandtype: '优质品牌商'
+
+        }
+    ]
+}
+
+
+setTimeout(async function(){ 
+    let a = await getcomponent({path: 'components/list.njk', name: 'list2', data: data1})
+    console.log(a)
+}, 2000)

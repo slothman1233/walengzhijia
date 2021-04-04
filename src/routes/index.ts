@@ -8,7 +8,7 @@ import fs from 'fs-extra'
 import log from '../middleware/log4js/log'
 
 import workers from '../common/utils/work/worker_threads'
-import { nunRender } from '../common/nunjucks'
+import { nunRender, nunRenderMacroString } from '../common/nunjucks'
 
 //workers()
 
@@ -18,12 +18,15 @@ import Business from './business'
 // import Business from './list'
 
 
-export default class Common {
+export default class Index {
 
 
     // @middlewares([test_middleware, test_2, test_2, test_middleware])
     @get('/index')
     async index(ctx: Context) {
+
+
+
         this.home(ctx)
     }
 
@@ -33,17 +36,24 @@ export default class Common {
     }
 
 
+    @get('/list/:productid?/:id?/:sortid?')
+    async lists(ctx: Context, next: Next) {
+        await ctx.render('list', {})
+    }
+
     @get('/list')
     async list(ctx: Context, next: Next) {
         await ctx.render('list', {})
     }
+
+
     @get('/enquiry')
     async enquiry(ctx: Context, next: Next) {
         await ctx.render('enquiry', {})
     }
 
 
-    
+
 
 
     /**
@@ -53,7 +63,7 @@ export default class Common {
     @get('/html')
     async html(ctx: Context, next: Next) {
         let ss = nunRender('views/index.njk', Object.assign({}, ctx.state))
-
+        
         let filepath = path.resolve(__dirname, '..', 'htmldist', 'index.html')
         await EnsureFile(filepath)
 

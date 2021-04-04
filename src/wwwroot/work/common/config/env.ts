@@ -19,12 +19,12 @@ const GA = {
 
 
 const baseUrl = {
-    dev: DEV,//开发
-    test: TEST,//测试
-    pre: PRE,//预发布
+    dev: DEV, //开发
+    test: TEST, //测试
+    pre: PRE, //预发布
     ga: GA//正式
 }
 
 // API
-export default baseUrl.dev;
+export default baseUrl.dev
 
