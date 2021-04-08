@@ -77,8 +77,8 @@ kblist1 %}
         </p>
 
         <div class="btn clearfix">
-          <a class="issue" href="#">发布口碑</a>
-          <a class="enquiry" href="#">向销售询价</a>
+          <a class="issue" href="/reputation/publish/0/0" target="_blank">发布口碑</a>
+          <a class="enquiry" href="/enquiry/0" target="_blank">向销售询价</a>
         </div>
 
       </div>
@@ -89,7 +89,7 @@ kblist1 %}
       <div class="title">
         {{navigationbar({
            isMore: false,
-            link: "#",
+            id:"1",
             isSelect: "1",
             data: [
               {
@@ -100,8 +100,43 @@ kblist1 %}
         })}}
       </div>
       <div class="list">
-        <div class="tab">
-          {{navigationbar2()}}
+        <div class="tab" id="product">
+          {{navigationbar2({
+            isSelect: "1",
+            data: [
+              {
+                class: "",
+                title: "热门品牌",
+                nlink: "javascript:(0)",
+                id: "1"
+              }, {
+                class: "",
+                title: "热门品牌",
+                nlink: "javascript:(0)",
+                id: "1"
+              }, {
+                class: "",
+                title: "热门品牌",
+                nlink: "javascript:(0)",
+                id: "1"
+              }, {
+                class: "",
+                title: "热门品牌",
+                nlink: "javascript:(0)",
+                id: "1"
+              }, {
+                class: "",
+                title: "热门品牌",
+                nlink: "javascript:(0)",
+                id: "1"
+              }, {
+                class: "",
+                title: "热门品牌",
+                nlink: "javascript:(0)",
+                id: "1"
+              }
+            ]
+          })}}
         </div>
         <div class="container">
           <div class="container_box">
@@ -110,7 +145,7 @@ kblist1 %}
               [
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                  link:"#",
+                  id:"1",
                   title:"YWZJ-C型液压无轴纸架",
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
@@ -119,7 +154,7 @@ kblist1 %}
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                  link:"#",
+                  id:"1",
                   title:"YWZJ-C型液压无轴纸架",
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
@@ -128,7 +163,7 @@ kblist1 %}
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                  link:"#",
+                  id:"1",
                   title:"YWZJ-C型液压无轴纸架",
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
@@ -137,7 +172,7 @@ kblist1 %}
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                  link:"#",
+                  id:"1",
                   title:"YWZJ-C型液压无轴纸架",
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
@@ -146,7 +181,7 @@ kblist1 %}
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                  link:"#",
+                  id:"1",
                   title:"YWZJ-C型液压无轴纸架",
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
@@ -155,7 +190,7 @@ kblist1 %}
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                  link:"#",
+                  id:"1",
                   title:"YWZJ-C型液压无轴纸架",
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
@@ -164,7 +199,7 @@ kblist1 %}
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                  link:"#",
+                  id:"1",
                   title:"YWZJ-C型液压无轴纸架",
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
@@ -173,7 +208,7 @@ kblist1 %}
                 },
                 {
                   img:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-                  link:"#",
+                  id:"1",
                   title:"YWZJ-C型液压无轴纸架",
                   producttype:"原纸架",
                   wideinwidth:"1400、1600、1080、1080、2000、2200",
@@ -189,10 +224,10 @@ kblist1 %}
             {% if (row2Data != null) and (row2Data.length > 0) %}
               {% for item in row2Data %}
                 <div class="child">
-                  <a class="logo" href="{{item.link}}">
+                  <a class="logo" href="/business/product/{{item.id}}" target="_blank">
                     <img src="{{item.img}}"/>
                   </a>
-                  <a href="{{item.link}}">
+                  <a href="/business/product/{{item.id}}" target="_blank">
                     <h1>{{item.title}}</h1>
                   </a>
                   <div class="kb clearfix">
@@ -205,7 +240,7 @@ kblist1 %}
                   <p>纸卷重量：{{item.weight}}</p>
                   <p>纸卷直径：{{item.diameter}}</p>
 
-                  <a class="enquiry" href="#">立即询价</a>
+                  <a class="enquiry" href="/enquiry/0" target="_blank">立即询价</a>
                 </div>
               {% endfor %}
             {% endif %}
@@ -223,7 +258,8 @@ kblist1 %}
       <div class="row">
         {{ navigationbar({
                 isMore: true,
-                link: "#",
+                id:"1",
+                link: "javascript:(0)",
                 isSelect: "1",
                 MoreText:"换一换",
                 data: [
@@ -237,20 +273,59 @@ kblist1 %}
       </div>
 
       <div class="list_box">
-        {{kblist1()}}
+        {{kblist1([
+          {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "李女士",
+            kbscore: "5.00",
+            link: "/reputation/123123",
+            title: "阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬",
+            description: "a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德"
+          }, {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "李女士",
+            kbscore: "5.00",
+            link: "/reputation/123123",
+            title: "阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬",
+            description: "a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德"
+          }, {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "李女士",
+            kbscore: "5.00",
+            link: "/reputation/123123",
+            title: "阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬",
+            description: "a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德"
+          }
+        ])}}
       </div>
     </div>
 
     <div class="row4">
       <div class="tab">
-        {{navigationbar()}}
+        {{navigationbar({
+  isMore: true,
+  MoreText: "更多>>",
+  link: "/business/answer/0",
+  isSelect: "1",
+  data: [
+    {
+      title: "产品问答",
+      nlink: "javascript:(0)",
+      id: "1"
+    }
+  ]
+
+})}}
       </div>
 
       <div class="list">
         {% set row3Data = [
           {
             title: "各位大哥们，发现低速转向或者启动，有轻微的噔噔噔的声音，高速行驶是没有的，这是怎么回事？有轻微的噔噔噔的声音怎么怎么...",
-            link: "#",
+            id:"1",
             hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
             name: "上海于工",
             time: "2020-08-22",
@@ -258,7 +333,7 @@ kblist1 %}
             content: "经典便宜好几万,建议可以考虑，我使用了一年多没了没什么问题。"
           }, {
             title: "各位大哥们，发现低速转向或者启动，有轻微的噔噔噔的声音，高速行驶是没有的，这是怎么回事？有轻微的噔噔噔的声音怎么怎么...",
-            link: "#",
+            id:"1",
             hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
             name: "上海于工",
             time: "2020-08-22",
@@ -266,7 +341,7 @@ kblist1 %}
             content: "经典便宜好几万,建议可以考虑，我使用了一年多没了没什么问题。"
           }, {
             title: "各位大哥们，发现低速转向或者启动，有轻微的噔噔噔的声音，高速行驶是没有的，这是怎么回事？有轻微的噔噔噔的声音怎么怎么...",
-            link: "#",
+            id:"1",
             hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
             name: "上海于工",
             time: "2020-08-22",
@@ -278,7 +353,7 @@ kblist1 %}
         {% if (row3Data != null) and (row3Data.length > 0) %}
           {% for item in row3Data %}
             <div class="child">
-              <a class="title" href="{{item.link}}" target="_blank">{{item.title}}</a>
+              <a class="title" href="/business/answer/{{item.id}}" target="_blank">{{item.title}}</a>
               <div class="author">
                 <img src="{{item.hread}}"/>
                 <span>{{item.author}}</span>
@@ -301,7 +376,7 @@ kblist1 %}
       <div class="title">
         {{navigationbar({
            isMore: false,
-            link: "#",
+            id:"1",
             isSelect: "1",
             data: [
               {
@@ -313,12 +388,45 @@ kblist1 %}
       </div>
 
       <div class="list">
-        <div class="tab">
+        <div class="tab" id="consult">
           {{navigationbar2()}}
         </div>
 
         <div class="container">
-          {{list1()}}
+          {{list1([
+  {
+    link: "/news/123",
+    img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
+    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
+    author: "作者大大",
+    time: "2021-11-11",
+    businesslogo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    businessname: "万联",
+    slug: ["视频", "音频"]
+  }, {
+    link: "/news/123",
+    img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
+    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
+    author: "作者大大",
+    time: "2021-11-11"
+  }, {
+    link: "/news/123",
+    img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
+    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
+    author: "作者大大",
+    time: "2021-11-11"
+  }, {
+    link: "/news/123",
+    img: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
+    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
+    author: "作者大大",
+    time: "2021-11-11"
+  }
+])}}
         </div>
 
       </div>

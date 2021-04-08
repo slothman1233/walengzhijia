@@ -7,22 +7,28 @@
   data: [
     {
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }
   ]
 
@@ -31,7 +37,7 @@
     <div class="navigationbar">
       <div class="list" style="right:{{args.isMore | ternary('60px','0px')}}">
         {% for item in args.data %}
-          <a href="{{item.link}}" title="{{item.title}}" target="_blank">
+          <a href="{{item.link}}" title="{{item.title}}" data-id="{{item.id}}" target="_blank">
             <span class="{{(loop.index == args.isSelect) | ternary('select','')}}">
               {{item.title}}
             </span>
@@ -53,36 +59,41 @@
     {
       class: "",
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       class: "",
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       class: "",
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       class: "",
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       class: "",
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }, {
       class: "",
       title: "热门品牌",
-      link: "javascript:(0)"
+      nlink: "javascript:(0)",
+      id: "1"
     }
   ]
-
 }) %}
 
   <div class="navigationbar2">
     {% if (args != null) and (args.data != null) and (args.data.length > 0) %}
       {% for item in args.data %}
-        <span class="{{(loop.index == args.isSelect) | ternary('select','')}} {{item.class | ternary(item.class,'')}}">
+        <span data-id="{{item.id}}" class="{{(loop.index == args.isSelect) | ternary('select','')}} {{item.class | ternary(item.class,'')}}">
           {{item.title}}
         </span>
       {% endfor %}

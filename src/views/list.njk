@@ -2470,8 +2470,9 @@
 
         <div class="bCategories">
           {% if (bCategoriesData != null) and (bCategoriesData.length > 0) %}
+
             {% for item in bCategoriesData %}
-              <span class="{{ (item.id==0) | ternary('active','') }}" id="{{item.id}}">
+              <span class="{{ (item.id == productid) | ternary('active','') }}" id="{{item.id}}">
                 {{item.name}}
               </span>
             {% endfor %}
@@ -2481,10 +2482,10 @@
 
         <div class="line"></div>
 
-        <div class="sCategories">
+        <div class="sCategories" display="block">
           {% if (bCategoriesData != null) and (bCategoriesData.length > 0) and (bCategoriesData[0].sub != null) and (bCategoriesData[0].sub.length > 0) %}
             {% for item in bCategoriesData[0].sub %}
-              <span class="{{ (item.id==0) | ternary('active','') }}" id="{{item.id}}">
+              <span class="{{ (item.id == sortid) | ternary('active','') }}" id="{{item.id}}">
                 {{item.name}}
               </span>
             {% endfor %}
@@ -2504,7 +2505,7 @@
         <div class="row">
           {{ navigationbar({
                 isMore: false,
-                link: "#",
+                id:"123",
                 isSelect: "1",
                 data: [
                   {
@@ -2520,7 +2521,65 @@
         </div>
 
         <div class="list">
-          {{list2()}}
+          {{list2([
+  {
+    logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    link:"/business/123",
+    name: "广东万联",
+    kbscore: "5.00",
+    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    kbcount: 56,
+    favorablerate: "100",
+    kbgood: 18,
+    label: [
+      "上市公司", "优质品牌商", "权威品牌"
+    ],
+    brandtype: "优质品牌商"
+
+  }, {
+    logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    link:"/business/123",
+    name: "广东万联",
+    kbscore: "5.00",
+    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    kbcount: 56,
+    favorablerate: "100",
+    kbgood: 18,
+    label: [
+      "上市公司", "优质品牌商", "权威品牌"
+    ],
+    brandtype: "优质品牌商"
+
+  }, {
+    logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    link:"/business/123",
+    name: "广东万联",
+    kbscore: "5.00",
+    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    kbcount: 56,
+    favorablerate: "100",
+    kbgood: 18,
+    label: [
+      "上市公司", "优质品牌商", "权威品牌"
+    ],
+    brandtype: "优质品牌商"
+
+  }, {
+    logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    link:"/business/123",
+    name: "广东万联",
+    kbscore: "5.00",
+    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    kbcount: 56,
+    favorablerate: "100",
+    kbgood: 18,
+    label: [
+      "上市公司", "优质品牌商", "权威品牌"
+    ],
+    brandtype: "优质品牌商"
+
+  }
+])}}
         </div>
 
         <div id="kkpage"></div>
@@ -2535,67 +2594,67 @@
               {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }, {
                 logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 name: "广东万联",
-                link: "#",
+                id: "123",
                 brandtype: "优质品牌商"
 
               }
@@ -2604,12 +2663,12 @@
             {% if (hotbrandlist != null) and (hotbrandlist.length > 0) %}
               {% for item in hotbrandlist %}
                 <div class = "child">
-                  <a class="left" href="{{item.link}}">
+                  <a class="left" href="/business/{{item.id}}" target="_blank">
                     <img src="{{item.logo}}"/>
                   </a>
 
                   <div class="right">
-                    <a href="{{item.link}}">{{item.name}}</a>
+                    <a href="/business/{{item.id}}" target="_blank">{{item.name}}</a>
 
                     <p class='{{(item.brandtype == "优质品牌商") | ternary("superior","")}}'>
                       {{item.brandtype}}
@@ -2626,5 +2685,9 @@
     </div>
 
   </div>
-
+  <script>
+    var productid = {{productid}}
+    var sortid = {{sortid}}
+    var pageIndex = {{pageIndex}}
+  </script>
 {% endblock body %}

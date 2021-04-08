@@ -27,6 +27,10 @@
       top             : @height;
       border          : 1px solid @color_grey_line1;
       background-color: #FFF;
+      z-index         : 11;
+      max-height      : 200px;
+      overflow-y      : auto;
+      overflow-x      : hidden;
 
       p {
         font-size   : @font_size_14;
@@ -34,6 +38,11 @@
         height      : @height;
         line-height : @height;
         padding-left: @space_2;
+        cursor      : pointer;
+
+        &:hover {
+          background-color: #f7f7f7;
+        }
       }
     }
   }

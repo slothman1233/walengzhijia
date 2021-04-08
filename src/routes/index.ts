@@ -36,14 +36,25 @@ export default class Index {
     }
 
 
-    @get('/list/:productid?/:id?/:sortid?')
+    @get('/list/:productid?/:sortid?/:pageIndex?')
     async lists(ctx: Context, next: Next) {
-        await ctx.render('list', {})
+        console.log(ctx.params)
+        let {productid, sortid, pageIndex } = ctx.params
+        console.log(productid, sortid)
+        await ctx.render('list', {
+            productid: productid || 0,
+            sortid: sortid || 0,
+            pageIndex: pageIndex || 1
+        })
     }
 
     @get('/list')
     async list(ctx: Context, next: Next) {
-        await ctx.render('list', {})
+        await ctx.render('list', {
+            productid: 0,
+            sortid: 0,
+            pageIndex: 1
+        })
     }
 
 
@@ -63,7 +74,7 @@ export default class Index {
     @get('/html')
     async html(ctx: Context, next: Next) {
         let ss = nunRender('views/index.njk', Object.assign({}, ctx.state))
-        
+
         let filepath = path.resolve(__dirname, '..', 'htmldist', 'index.html')
         await EnsureFile(filepath)
 

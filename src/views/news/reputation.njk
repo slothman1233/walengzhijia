@@ -12,11 +12,11 @@
 {% block description %}{% endblock %}
 
 {% block style %}
-  <link href="/dist/styles/news/index.css" rel="stylesheet">
+  <link href="/dist/styles/news/reputation.css" rel="stylesheet">
 {% endblock style %}
 
 {% block script %}
-  <script type="text/javascript" src="/dist/scripts/news/index.js"></script>
+  <script type="text/javascript" src="/dist/scripts/news/reputation.js"></script>
 {% endblock script %}
 
 {% block body %}
@@ -54,6 +54,64 @@
             <div class="praise">
               <i>#</i>
               <span>24</span>
+            </div>
+          </div>
+
+          <div class="kb">
+            <div class="pr clearfix">
+              <p>
+                <span>购买价格</span>
+                <i>300万</i>
+              </p>
+              <p>
+                <span>购买时间</span>
+                <i>2019年6月</i>
+              </p>
+              <p>
+                <span>投入使用</span>
+                <i>2020年1月</i>
+              </p>
+            </div>
+
+            <div class="grade">
+              <h4>用户评分</h4>
+              <div class="ct_box clearfix">
+                <div class="score">
+                  <p>4.35</p>
+                  {{star()}}
+                </div>
+                <div class="configuration">
+                  <p>
+                    <span>性能:</span>
+                    <i>5</i>
+                  </p>
+                  <p>
+                    <span>配置:</span>
+                    <i>5</i>
+                  </p>
+                  <p>
+                    <span>外观:</span>
+                    <i>5</i>
+                  </p>
+                  <p>
+                    <span>质量:</span>
+                    <i>5</i>
+                  </p>
+                  <p>
+                    <span>售后:</span>
+                    <i>5</i>
+                  </p>
+                  <p>
+                    <span>能耗:</span>
+                    <i>5</i>
+                  </p>
+                  <p>
+                    <span>自动化:</span>
+                    <i>5</i>
+                  </p>
+
+                </div>
+              </div>
             </div>
           </div>
 
@@ -95,47 +153,6 @@
       </div>
 
       <div class="r">
-        <div class="list1 hotnews">
-          <p>热门新闻</p>
-          <div class="list">
-            {% set listdata = [
-              {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }
-            ] %}
-
-            {% for item in listdata %}
-              <div class="child clearfix">
-                <i>●</i>
-                <a href="{{item.id}}" title="{{item.content}}" target="_blank">
-                  {{item.content}}
-                </a>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
 
         <div class="list1 relatedproducts">
           <p>相关产品</p>
@@ -153,6 +170,52 @@
               <a class="btn" href="#" target="_blank">查看详情</a>
 
             </div>
+          </div>
+        </div>
+
+        <div class="list1 kbmore">
+          <p>看看其它口碑</p>
+          <div class="box">
+
+            {% set kbmoredata = [
+            {
+              id:"123213",
+              title:"YWZJ-C型液压无轴纸架",
+              hread:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name:"上海于工",
+              score:"4.6",
+              content:"最满意的地方就是内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评容评容评容评容评容评论..."
+            },
+            {
+              id:"123213",
+              title:"YWZJ-C型液压无轴纸架",
+              hread:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name:"上海于工",
+              score:"4.6",
+              content:"最满意的地方就是内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评容评容评容评容评容评论..."
+            },
+            {
+              id:"123213",
+              title:"YWZJ-C型液压无轴纸架",
+              hread:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+              name:"上海于工",
+              score:"4.6",
+              content:"最满意的地方就是内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评容评容评容评容评容评论..."
+            }
+          ] %}
+
+            {% for item in kbmoredata %}
+              <div class="child">
+                <a class="title" href="/news/reputation/{{item.id}}" target="_blank">{{item.title}}</a>
+                <div class="clearfix">
+                  <img src="{{item.hread}}"/>
+                  <span>{{item.name}}</span>
+                  <i>{{item.score}}</i>
+                  {{star()}}
+                </div>
+                <a class="content" href="/news/reputation/{{item.id}}" target="_blank">{{item.content}}</a>
+              </div>
+            {% endfor %}
           </div>
         </div>
       </div>

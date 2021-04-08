@@ -17,6 +17,7 @@
       id: 4,
       value: "纸板加工设备及零配件"
     }
+    
   ]
 
 }) %}
@@ -27,7 +28,7 @@
       </h1>
       <div class="option">
         {% for item in args.data %}
-          <p option="{{item.id}}">{{item.value}}</p>
+          <p data-id="{{item.id}}">{{item.value}}</p>
             {% endfor %}
 
           </div>

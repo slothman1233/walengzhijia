@@ -54,8 +54,45 @@ navigationbar2 %}
         <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/>
       </div>
 
-      <div class="c">
-        {{selectOption()}}
+      <div class="c" id="option1">
+        {{selectOption({
+  selectIndex: 1,
+  data: [
+    {
+      id: 0,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 1,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 2,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 3,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 4,
+      value: "纸板加工设备及零配件"
+    },
+    {
+      id: 0,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 1,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 2,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 3,
+      value: "纸板加工设备及零配件"
+    }, {
+      id: 4,
+      value: "纸板加工设备及零配件"
+    }
+  ]
+
+})}}
         <span>产品口碑分</span>
         <div class="score">
           <span>4.68</span>
@@ -106,7 +143,7 @@ navigationbar2 %}
       <div class="tab">
         {{navigationbar({
                 isMore: true,
-                link: "#",
+                link: "/reputation/123",
                 MoreText:"发布口碑",
                 isSelect: "1",
                 data: [
@@ -119,7 +156,7 @@ navigationbar2 %}
       </div>
 
       <div class="cr">
-        <div class="tab">
+        <div class="tab" id="reputationlist">
           {{navigationbar2({
             isSelect: "1",
             data: [
