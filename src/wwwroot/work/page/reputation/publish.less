@@ -3,6 +3,8 @@
 @import (less) "../../components/navigationbar/index.less";
 @import (less) "../../components/stemap/satemap1.less";
 @import (less) "../../components/select/index.less";
+@import (less) "../../components/star/index.less";
+@import (less) "../../components/uploadfile/index.less";
 @import (less) "../../components/editor/index.less";
 
 body {
@@ -52,23 +54,26 @@ body {
 
     .input {
       position: relative;
-      width   : 160px;
-      float   : left;
+
+      float: left;
 
       input {
         border : 1px solid @color_gray_c3;
         height : @itemheight - 2;
-        padding: 0 12px;
+        padding: 0 8px 0 12px;
         .border-radius(4px);
       }
 
       i {
-        position : absolute;
-        top      : 2px;
-        right    : 12px;
-        color    : @color_gray_c2;
-        display  : inline-block;
-        transform: rotate(-180deg);
+        position: absolute;
+        top     : 2px;
+        right   : 12px;
+        color   : @color_gray_c2;
+        display : inline-block;
+
+        font-size: @font_size_24;
+
+        // transform: rotate(-180deg);
       }
     }
 
@@ -82,10 +87,12 @@ body {
         float       : left;
         margin-right: @itemmargin;
       }
-      .s1,.s2{
-        .selectOption{
-          h1{
-            border : 1px solid @color_gray_c3 !important;
+
+      .s1,
+      .s2 {
+        .selectOption {
+          h1 {
+            border: 1px solid @color_gray_c3  !important;
             .border-radius(4px);
           }
         }
@@ -229,6 +236,12 @@ body {
           float       : left;
           margin-right: @space_1;
         }
+
+        i {
+          display     : block;
+          float       : left;
+          margin-right: @space_1;
+        }
       }
     }
 
@@ -250,6 +263,37 @@ body {
       }
     }
 
+
+
+    .uploadcover {
+      margin-top: @space_2;
+
+      h4 {
+        color       : @color_main_c1;
+        font-size   : @font_size_14;
+        float       : left;
+        margin-right: @space_3;
+      }
+
+      .upload {
+        float: left;
+
+        .box {
+          width        : 220px;
+          height       : 140px;
+          margin-bottom: @space_1;
+          .uploadfile()
+        }
+
+        p {
+          color      : @color_gray_c2;
+          font-size  : @font_size_12;
+          line-height: @line_height;
+        }
+      }
+
+
+    }
   }
 
   .submit {

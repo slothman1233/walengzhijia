@@ -1,3 +1,6 @@
 {% macro star(score = "5.00") %}
-<div class="star">★★★★★</div>
+<div class="star">
+  {# <img src="/assets/images/star/full.png" /> #}
+  <span style="width:{{score/5 * 100}}%"></span>
+</div>
 {% endmacro %}

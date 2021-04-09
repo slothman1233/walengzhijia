@@ -1,0 +1,117 @@
+@font-face {
+	font-family: "iconfont";
+	src: url('iconfont.eot');
+	src: url('iconfont.eot?#iefix') format('eot'),
+		url('iconfont.woff') format('woff'),
+		url('iconfont.ttf') format('truetype');
+}
+
+.iconfont,.iconfont_wlzj {
+    font-family: "iconfont" !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    font-size: 16px;
+    font-weight: normal;
+    /* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+    text-decoration: none;
+    text-transform: none;
+}
+
+
+.icon-center:before {
+	content: "\E001";
+}
+
+.icon-change:before {
+	content: "\E002";
+}
+
+.icon-chehui:before {
+	content: "\E003";
+}
+
+.icon-chongzuo:before {
+	content: "\E004";
+}
+
+.icon-company:before {
+	content: "\E005";
+}
+
+.icon-content:before {
+	content: "\E006";
+}
+
+.icon-dropdown:before {
+	content: "\E007";
+}
+
+.icon-edit:before {
+	content: "\E008";
+}
+
+.icon-heart:before {
+	content: "\E009";
+}
+
+.icon-img:before {
+	content: "\E00A";
+}
+
+.icon-jiacu:before {
+	content: "\E00B";
+}
+
+.icon-menudown:before {
+	content: "\E00C";
+}
+
+.icon-menuup:before {
+	content: "\E00D";
+}
+
+.icon-message:before {
+	content: "\E00E";
+}
+
+.icon-product:before {
+	content: "\E00F";
+}
+
+.icon-search:before {
+	content: "\E010";
+}
+
+.icon-settings:before {
+	content: "\E011";
+}
+
+.icon-smallicon layers:before {
+	content: "\E012";
+}
+
+.icon-up:before {
+	content: "\E013";
+}
+
+.icon-video-1:before {
+	content: "\E014";
+}
+
+.icon-video:before {
+	content: "\E015";
+}
+
+.icon-xiahuaxian:before {
+	content: "\E016";
+}
+
+.icon-zan fill:before {
+	content: "\E017";
+}
+
+.icon-zan:before {
+	content: "\E018";
+}
