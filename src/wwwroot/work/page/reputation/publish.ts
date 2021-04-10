@@ -27,6 +27,7 @@ declare const laydate: any
 let onload = window.onload
 window.onload = function () {
     onload && onload()
+    
     window.ue.ready(function () {
         //获取内容
         window.ue.getContent()
