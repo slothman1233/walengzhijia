@@ -179,7 +179,7 @@ export function comment1fn(parentId: string | HTMLElement, callback: callbacks) 
                 b.text((repliesCount + 1).toString())
                 input.val('')
                 alert('提交成功！')
-
+                sub.hide()
             }
 
         }
