@@ -44,8 +44,7 @@ export function comment1fn(parentId: string | HTMLElement, callback: callbacks) 
                 userhread: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
                 createtime: '2021-11-11',
                 content: input.value,
-                praise: '2000',
-                child: []
+                praise: '2000'
             }]
         }
 
