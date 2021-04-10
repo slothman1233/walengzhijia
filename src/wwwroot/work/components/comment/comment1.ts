@@ -37,6 +37,7 @@ export function comment1fn(parentId: string | HTMLElement, callback: callbacks) 
         callback && callback(input.value)
 
 
+
         let datas = {
             args: [{
                 username: 'fff',
@@ -53,7 +54,8 @@ export function comment1fn(parentId: string | HTMLElement, callback: callbacks) 
         if (data.code === 0) {
             $(list_box).prepend(data.bodyMessage)
         }
-
+        input.value = ''
+        alert('提交成功！')
 
     }
 
@@ -63,7 +65,7 @@ export function comment1fn(parentId: string | HTMLElement, callback: callbacks) 
         agent: parentdom,
         events: 'click',
         ele: '.praise',
-        fn: function (dom:any, ev:any) {
+        fn: function (dom: any, ev: any) {
             let val = parseInt(dom.querySelector('span').innerText)
             let i = dom.querySelector('i')
             let rank = 'rank'
@@ -84,10 +86,13 @@ export function comment1fn(parentId: string | HTMLElement, callback: callbacks) 
         agent: list_box,
         events: 'click',
         ele: '.reply a',
-        fn: function (dom:any, ev:any) {
+        fn: function (dom: any, ev: any) {
             let parent = $(dom).parent()
             let sub = parent.siblings('.sub')
+            let list_box = sub.parents('.list_box')
             if (sub[0].style.display === 'none') {
+                //隐藏所有的提交框
+                list_box.find('.sub').hide()
                 sub.show()
             } else {
                 sub.hide()
@@ -101,7 +106,7 @@ export function comment1fn(parentId: string | HTMLElement, callback: callbacks) 
         agent: list_box,
         events: 'click',
         ele: '.reply span',
-        fn: function (dom:any, ev:any) {
+        fn: function (dom: any, ev: any) {
             let parent = $(dom).parent()
             let child_box = parent.siblings('.child_box')
             let i = dom.querySelector('i')

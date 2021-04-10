@@ -200,7 +200,7 @@
         <div class="reply clearfix">
           <a href="javascript:(0)" data-id="{{item.id}}">回复</a>
           {# {% if (item.child) and (item.child.length > 0) %} #}
-            <span style="display:{{(item.child and item.child.length > 0) | ternary('block','none') }}"><b>{{item.child.length}}</b>条回复<i class="iconfont_wlzj">&#xE007;</i>
+            <span style="display:{{(item.child and item.child.length > 0) | ternary('block','none') }}"><b>{{item.child | ternary(item.child.length,0) }}</b>条回复<i class="iconfont_wlzj">&#xE007;</i>
             </span>
           {# {% endif %} #}
           <div class="reply_r clearfix">
