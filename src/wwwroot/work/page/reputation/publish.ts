@@ -19,7 +19,7 @@ declare const laydate: any
 
     laydate.render({
         elem: '#use', //指定元素
-        type: 'month'
+        type: 'month'  
     })
 })()
 
@@ -27,7 +27,7 @@ declare const laydate: any
 let onload = window.onload
 window.onload = function () {
     onload && onload()
-    
+
     window.ue.ready(function () {
         //获取内容
         window.ue.getContent()
