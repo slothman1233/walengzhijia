@@ -80,28 +80,28 @@
 	content: "\E00F";
 }
 
+.icon-product2:before {
+	content: "\E019";
+}
+
 .icon-search:before {
 	content: "\E010";
 }
 
-.icon-settings:before {
-	content: "\E011";
-}
-
-.icon-smallicon layers:before {
-	content: "\E012";
+.icon-setting:before {
+	content: "\E01A";
 }
 
 .icon-up:before {
 	content: "\E013";
 }
 
-.icon-video-1:before {
-	content: "\E014";
+.icon-video1:before {
+	content: "\E01B";
 }
 
-.icon-video:before {
-	content: "\E015";
+.icon-video2:before {
+	content: "\E01C";
 }
 
 .icon-xiahuaxian:before {

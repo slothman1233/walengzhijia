@@ -12,19 +12,31 @@
       praise: "2000",
       child: [
         {
+          parentId: '123213',
           username: "fff",
           userid: "123213",
           userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           createtime: "2021-11-11",
           content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-          praise: "2000"
+          praise: "2000",
+          at: {
+            username: "fff",
+            userid: "123213",
+            content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
+          }
         }, {
+          parentId: '123213',
           username: "fff",
           userid: "123213",
           userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
           createtime: "2021-11-11",
           content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-          praise: "2000"
+          praise: "2000",
+          at: {
+            username: "fff",
+            userid: "123213",
+            content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
+          }
         }, {
           username: "fff",
           userid: "123213",
@@ -97,20 +109,33 @@
     praise: "2000",
     child: [
       {
+        parentId: '123213',
         username: "fff",
         userid: "123213",
         userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
         createtime: "2021-11-11",
         content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-        praise: "2000"
+        praise: "2000",
+        at: {
+          username: "fff",
+          userid: "123213",
+          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
+        }
       }, {
+        parentId: '123213',
         username: "fff",
         userid: "123213",
         userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
         createtime: "2021-11-11",
         content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-        praise: "2000"
+        praise: "2000",
+        at: {
+          username: "fff",
+          userid: "123213",
+          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
+        }
       }, {
+        parentId: '123213',
         username: "fff",
         userid: "123213",
         userhread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
@@ -160,30 +185,43 @@
       <div class="common_details">
         <div class="h clearfix">
           <span>{{item.username}}</span>
+          {% if item.at %}
+            <span>@</span>
+            <span>{{item.at.username}}</span>
+          {% endif %}
           <span class="createtime">{{item.createtime}}</span>
         </div>
         <div class="content">
+          {% if item.at %}
+            <p>{{item.at.content}}</p>
+          {% endif %}
           {{item.content}}
         </div>
         <div class="reply clearfix">
           <a href="javascript:(0)" data-id="{{item.id}}">回复</a>
-          {% if (item.child) and (item.child.length > 0) %}
-            <span>{{item.child.length}}条回复∨</span>
-          {% endif %}
-          <div class="reply_r">
+          {# {% if (item.child) and (item.child.length > 0) %} #}
+            <span style="display:{{(item.child and item.child.length > 0) | ternary('block','none') }}"><b>{{item.child.length}}</b>条回复<i class="iconfont_wlzj">&#xE007;</i>
+            </span>
+          {# {% endif %} #}
+          <div class="reply_r clearfix">
             <a href="javascript:(0)" data-id="{{item.userid}}">举报</a>
-            <p>
-              <i>#</i>
+            <p class="praise" data-id="{{item.userid}}">
+              <i class="iconfont_wlzj">&#xE018;</i>
               <span>{{item.praise}}</span>
             </p>
           </div>
 
         </div>
-        {% if (item.child) and (item.child.length > 0) %}
-          <div class="child_box">
+
+        <div class="sub clearfix" style="display:none;">
+          <div class="input"><input type="text" value="" placeholder="写下你的回答"></div>
+          <a href="javascript:(0)" data-id="{{item.userid}}"  data-parentid="{{item.parentId}}">提交回答</a>
+        </div>
+        <div class="child_box" style="display:none;">
+          {% if (item.child) and (item.child.length > 0) %}
             {{commonchild(item.child)}}
-          </div>
-        {% endif %}
+          {% endif %}
+        </div>
 
       </div>
 

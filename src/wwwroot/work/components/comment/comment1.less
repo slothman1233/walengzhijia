@@ -51,9 +51,11 @@
         @hreadheight : 48px;
         position     : relative;
         border-bottom: 1px solid @color_grey_line1;
-        &:last-child{
+
+        &:last-child {
           border-bottom: none;
         }
+
         .hread {
           width       : @hreadheight;
           margin-right: @space_2;
@@ -89,6 +91,15 @@
           }
 
           .content {
+            p {
+              padding         : @space_1;
+              background-color: @color_grey_bg1;
+              font-size       : @font_size_14;
+              margin-bottom   : @space_1;
+              color           : @color_gray_c2;
+              .border-radius(4px);
+            }
+
             color        : @color_main_c1;
             font-size    : @font_size_16;
             line-height  : @line_height;
@@ -96,7 +107,8 @@
           }
 
           .reply {
-            line-height: 32px;
+            line-height  : 32px;
+            margin-bottom: @space_1;
 
             &>a {
               display     : block;
@@ -111,6 +123,14 @@
               float    : left;
               color    : @color_link ;
               font-size: @font_size_16;
+              cursor   : pointer;
+              b{
+                font-weight: normal;
+              }
+              i {
+                display: block;
+                float  : right;
+              }
             }
 
             .reply_r {
@@ -124,13 +144,20 @@
               }
 
               p {
-                float: left;
-                color: @color_gray_c3;
+                float : left;
+                color : @color_gray_c3;
+                cursor: pointer;
+
+                &.rank i {
+                  color: @color_rank;
+                }
 
                 i {
                   display     : block;
                   float       : left;
                   margin-right: 5px;
+
+
                 }
 
                 span {
@@ -140,6 +167,45 @@
               }
             }
           }
+
+          .sub {
+            position: relative;
+            @height : 48px;
+            height  : @height;
+    
+            .input {
+              position: absolute;
+              left    : 0;
+              right   : 148px;
+              top     : 0;
+    
+              input {
+                width  : 100%;
+                display: block;
+                padding: 0 10px;
+                border : 1px solid @color_gray_c3;
+                height : @height;
+                .box-sizing();
+              }
+            }
+    
+            a {
+              display         : block;
+              float           : right;
+              width           : 148px;
+              height          : @height;
+              line-height     : @height;
+              text-align      : center;
+              background-color: @color_subject;
+              color           : @color_main_c1;
+              font-size       : @font_size_16;
+            }
+    
+    
+          }
+
+
+
         }
 
 

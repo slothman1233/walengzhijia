@@ -1,6 +1,7 @@
 import { addEvent } from '@stl/tool-ts/src/common/compatible/addEvent'
 import { eventsPath } from '@stl/tool-ts/src/common/event/eventsPath'
 import { on } from '@stl/tool-ts/src/common/event/on'
+import { isString } from '@stl/tool-ts/src/common/obj/isString'
 import { NodeListToArray } from '@stl/tool-ts/src/common/obj/NodeListToArray'
 
 
@@ -8,13 +9,13 @@ import { NodeListToArray } from '@stl/tool-ts/src/common/obj/NodeListToArray'
 
 type navigationbar2cb = (dom: Element, e: Event, option: HTMLElement) => void
 
-export function selectOption1(parentId: string, callback: navigationbar2cb) {
-    let parentdom = document.getElementById(parentId)
+export function selectOption1(parentId:  string | HTMLElement, callback: navigationbar2cb) {
+    let parentdom:any = parentId
+    if (isString(parentId)) {parentdom = document.getElementById(<string>parentId)}
     let option: HTMLElement = parentdom.querySelector('.option')
     if (!parentdom) { return }
 
     let selectOption: HTMLElement = parentdom.querySelector('.selectOption h1')
-
 
 
     addEvent(document, 'click', function (e: any) {
