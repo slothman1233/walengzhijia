@@ -17,6 +17,7 @@ declare const laydate: any
         type: 'month'
     })
 
+    
     laydate.render({
         elem: '#use', //指定元素
         type: 'month'    
