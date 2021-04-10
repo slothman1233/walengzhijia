@@ -16,8 +16,8 @@ declare const laydate: any
         elem: '#purchastime', //指定元素
         type: 'month'
     })
+   
 
-    
     laydate.render({
         elem: '#use', //指定元素
         type: 'month'    
