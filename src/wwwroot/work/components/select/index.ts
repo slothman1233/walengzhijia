@@ -9,9 +9,9 @@ import { NodeListToArray } from '@stl/tool-ts/src/common/obj/NodeListToArray'
 
 type navigationbar2cb = (dom: Element, e: Event, option: HTMLElement) => void
 
-export function selectOption1(parentId:  string | HTMLElement, callback: navigationbar2cb) {
-    let parentdom:any = parentId
-    if (isString(parentId)) {parentdom = document.getElementById(<string>parentId)}
+export function selectOption1(parentId: string | HTMLElement, callback: navigationbar2cb) {
+    let parentdom: any = parentId
+    if (isString(parentId)) { parentdom = document.getElementById(<string>parentId) }
     let option: HTMLElement = parentdom.querySelector('.option')
     if (!parentdom) { return }
 
@@ -19,10 +19,10 @@ export function selectOption1(parentId:  string | HTMLElement, callback: navigat
 
 
     addEvent(document, 'click', function (e: any) {
-       
+
         let ev = e || event
         let path = eventsPath(ev)
-      
+
         for (let i = 0; i < path.length; i++) {
 
             if (path[i] === this) { break }
@@ -36,6 +36,7 @@ export function selectOption1(parentId:  string | HTMLElement, callback: navigat
                 selectOption.querySelector('span').innerText = e.target.innerText
                 selectOption.dataset['id'] = id
                 callback && callback(id, e, option)
+                option.style.display = 'none'
                 return
             }
 

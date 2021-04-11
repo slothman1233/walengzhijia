@@ -42,7 +42,29 @@
           <div>
             <p>BHS</p>
             <div class="typeselect">
-              {{selectOption()}}
+              {{selectOption({
+                  selectIndex: 1,
+                  data: [
+                    {
+                      id: 0,
+                      value: "纸板加工设备及零配件"
+                    }, {
+                      id: 1,
+                      value: "纸板加工设备及零配件1"
+                    }, {
+                      id: 2,
+                      value: "纸板加工设备及零配件2"
+                    }, {
+                      id: 3,
+                      value: "纸板加工设备及零配件3"
+                    }, {
+                      id: 4,
+                      value: "纸板加工设备及零配件4"
+                    }
+                    
+                  ]
+
+                })}}
             </div>
 
           </div>
@@ -110,7 +132,10 @@
           {% if (personnelselectionData != null) and (personnelselectionData.length > 0) %}
             {% for item in personnelselectionData %}
               <div class="itembox">
-                <div class="checkbox">※</div>
+                <input type="radio" class="radio" name="radio" id="radio_{{loop.index}}"/>
+               <div class="checkbox">
+                <label fro="radio_{{loop.index}}"></label>
+               </div>
                 <div class="child">
                   <div class="in">
                     <img class="hread" src="{{item.hread}}"/>
@@ -136,9 +161,10 @@
 
   </div>
 
-  <div class="popup_succee">
+  <div class="popup_succee" style="display:none">
     <h1>发送成功</h1>
     <p>品牌销售将及时联系您</p>
+    <span href="javascript:(0)">关闭</span>
   </div>
 
 {% endblock body %}

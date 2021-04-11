@@ -58,7 +58,7 @@ export default class Index {
     }
 
 
-    @get('/enquiry')
+    @get('/enquiry/:brandid?/:salesid?')
     async enquiry(ctx: Context, next: Next) {
         await ctx.render('enquiry', {})
     }

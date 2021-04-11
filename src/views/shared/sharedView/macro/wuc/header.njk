@@ -37,10 +37,20 @@
             </div>
 
             <div class="search">
-                <a href="#"> 搜索 </a>
-                <input name="q" id="search" placeholder="输入品牌、产品等关键词"/>
-                <i>#</i>
+                <a href="javascript:(0)"> 搜索 </a>
+                <input name="q" id="search" placeholder="输入关键字"/>
+                <i class="iconfont_wlzj">&#xE010;</i>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        let header = document.querySelector('.header')
+        let search = header.querySelector('.search')
+        let sub = search.querySelector('a')
+        let input = search.querySelector('input')
+        sub.onclick = function(){
+            document.location.href =`/search/1/${encodeURI(input.value)}`
+        }
+    </script>
 {% endmacro %}

@@ -72,6 +72,7 @@
 
 {% macro list2(args = [
   {
+   
     logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
     link: "#",
     name: "广东万联",
@@ -86,6 +87,7 @@
     brandtype: "优质品牌商"
 
   }, {
+
     logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
     link: "#",
     name: "广东万联",
@@ -147,7 +149,7 @@
             <p>{{item.kbscore}}
               <i>分</i>
             </p>
-            {{star()}}
+            {{star(item.kbscore)}}
           </div>
 
           <div class="center">

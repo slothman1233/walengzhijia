@@ -22,17 +22,17 @@ list2 %}
 {% block body %}
 
   <div id="main">
-      <div class="search">
-          <a href="javascript:(0)">搜索</a>
-           <div class="input"><input type="text" placeholder="请输入搜索内容" /></div>
-      </div>
+    <div class="search">
+      <a href="javascript:(0)">搜索</a>
+      <div class="input"><input type="text" value="{{keyword}}" placeholder="请输入搜索内容"/></div>
+    </div>
 
-      <div class="list">
-          <div class="tab">
-             {{navigationbar({
+    <div class="list">
+      <div class="tab">
+        {{navigationbar({
                 isMore: false,
                 link: "#",
-                isSelect: "1",
+                isSelect: type,
                 data: [
                   {
                     title: "综合",
@@ -45,17 +45,76 @@ list2 %}
                 ]
                 
             })}}
-          </div>
-          <div class="searchresult">
-            <div class="results"><span class="red">万联</span>的相关搜索结果</div>
-            <div class="list_box">
-             {{list2()}}
-                {{list1()}}
-               
-            </div>
-          </div>
-
       </div>
+      <div class="searchresult">
+        <div class="results">
+          <span class="red">万联</span>的相关搜索结果</div>
+        <div class="list_box">
+          {{list2([
+  {
+    logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    link: "#",
+    name: "广东万联",
+    kbscore: "4.00",
+    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    kbcount: 56,
+    favorablerate: "100",
+    kbgood: 18,
+    label: [
+      "上市公司", "优质品牌商", "权威品牌"
+    ],
+    brandtype: "优质品牌商"
+
+  }, {
+    logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    link: "#",
+    name: "广东万联",
+    kbscore: "2.00",
+    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    kbcount: 56,
+    favorablerate: "100",
+    kbgood: 18,
+    label: [
+      "上市公司", "优质品牌商", "权威品牌"
+    ],
+    brandtype: "优质品牌商"
+
+  }, {
+    logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    link: "#",
+    name: "广东万联",
+    kbscore: "5.00",
+    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    kbcount: 56,
+    favorablerate: "100",
+    kbgood: 18,
+    label: [
+      "上市公司", "优质品牌商", "权威品牌"
+    ],
+    brandtype: "优质品牌商"
+
+  }, {
+    logo: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+    link: "#",
+    name: "广东万联",
+    kbscore: "5.00",
+    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    kbcount: 56,
+    favorablerate: "100",
+    kbgood: 18,
+    label: [
+      "上市公司", "优质品牌商", "权威品牌"
+    ],
+    brandtype: "优质品牌商"
+
+  }
+])}}
+          {{list1()}}
+
+        </div>
+      </div>
+
+    </div>
   </div>
 
 {% endblock body %}
