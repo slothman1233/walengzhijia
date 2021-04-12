@@ -1,0 +1,38 @@
+.userlistbox {
+  float           : left;
+  width           : @simplelayoutLeftWidth;
+  background-color: #FFF;
+  @height         : 48px;
+  padding         : 12px 0;
+  margin-right    : @space_2;
+
+  a {
+    display    : block;
+    height     : @height;
+    line-height: @height;
+    padding    : 0 @space_2;
+    border-left: 4px solid transparent;
+
+    &:hover,
+    &.select {
+      border-color    : @color_subject;
+      background-color: rgba(248, 215, 132, 0.15);
+    }
+
+    i {
+      display     : block;
+      float       : left;
+      font-size   : @font_size_24;
+      margin-right: @space_1;
+      color       : @color_main_c1;
+    }
+
+    span {
+      display  : block;
+      float    : left;
+      font-size: @font_size_14;
+      color    : @color_main_c1;
+    }
+  }
+
+}

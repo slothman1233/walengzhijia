@@ -2,6 +2,7 @@
 @import (reference) "./common/Animation.less";
 @import (less) "../../components/foot/index.less";
 @import (less) "../../components/hread/index.less";
+@import (less) "../../components/user/userlistbox.less";
 
 html * {
   outline                    : 0;
@@ -17,6 +18,25 @@ body {
   font-size              : 14px;
   -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#simplelayoutmain {
+  width : @DefindWidth;
+  margin: @space_2 auto;
+
+  #simplelayoutright {
+    float           : right;
+    width           : @simplelayoutRightWidth;
+    background-color: #FFF;
+  }
+}
+
+
+
+
+
+.simplelayoutbody {
+  background-color: @color_grey_bg1;
 }
 
 * {
@@ -91,7 +111,7 @@ a {
   color: @font_defind_color;
 
   &:hover {
-    color: @link_hover !important;
+    color: @link_hover  !important;
   }
 }
 
@@ -103,7 +123,7 @@ a {
 }
 
 body .layui-laydate .layui-this {
-  background-color: @color_rank !important;
+  background-color: @color_rank  !important;
   color           : #fff !important;
 
 }

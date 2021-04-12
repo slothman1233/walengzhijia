@@ -25,5 +25,8 @@ function doCrypto(content: string) {
     return md5(str)
 }
 
+export {
+    md5
+}
 
 export default doCrypto

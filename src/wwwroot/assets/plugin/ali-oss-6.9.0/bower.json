@@ -1,0 +1,12 @@
+{
+  "name": "ali-oss",
+  "ignore": [
+    "lib",
+    "test",
+    ".*",
+    "browser.js",
+    "package.json"
+  ],
+  "main": "dist/aliyun-oss-sdk.js",
+  "version": "6.9.0"
+}

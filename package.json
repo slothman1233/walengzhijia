@@ -38,6 +38,7 @@
     "dependencies": {
         "@stl/request": "^1.2.8",
         "@stl/tool-ts": "^1.0.10",
+        "ali-oss": "^6.15.2",
         "cross-env": "^7.0.2",
         "crypto": "^1.0.1",
         "debug": "^4.1.1",
@@ -75,6 +76,7 @@
         "xss": "^1.0.8"
     },
     "devDependencies": {
+        "@types/ali-oss": "^6.0.8",
         "@types/bluebird": "^3.5.32",
         "@types/debug": "^4.1.5",
         "@types/fs-extra": "^9.0.1",

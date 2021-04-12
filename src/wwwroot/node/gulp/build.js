@@ -12,7 +12,8 @@ let paths = {
         getSrc('./news/index.ts'),
         getSrc('./search/index.ts'),
         getSrc('./home/agreement.ts'),
-        getSrc('./news/reputation.ts')
+        getSrc('./news/reputation.ts'),
+        getSrc('./user/index.ts')
 
         
         

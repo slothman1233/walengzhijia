@@ -22,6 +22,8 @@ function toJs() {
 
 function tostaticfile() {
     return src(['package.json'])
+        .pipe(replace('src/bin/www.ts', `bin/www.js`))
+        .pipe(replace('./node_modules/.bin/nodemon', ''))
         .pipe(replace('NODE_ENV=ga', `NODE_ENV=${ENV}`))
         .pipe(dest('dist'))
 }
@@ -34,8 +36,13 @@ function topm2config() {
 }
 
 function tostaticwwwroot() {
-    return src(['src/wwwroot/assets/**/*', 'src/wwwroot/dist/**/*'])
+    return src(['src/wwwroot/assets/**/*'])
         .pipe(dest('dist/wwwroot'))
+}
+
+function tostaticwwwrootstatic() {
+    return src([ 'src/wwwroot/dist/**/*'])
+        .pipe(dest('dist/wwwroot/dist'))
 }
 
 
@@ -68,7 +75,7 @@ function runNodemon(done) {
     })
 }
 
-const build = series(clean, toJs, tostaticfile, tostaticviews, topm2config, tostaticwwwroot)
+const build = series(clean, toJs, tostaticfile, tostaticviews, topm2config, tostaticwwwroot, tostaticwwwrootstatic)
 task('build', build)
 task('default', runNodemon)
 exports.build = build

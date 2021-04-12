@@ -9,8 +9,8 @@
 @DefindRight2: 334px;
 @DefindRight3: 384px;
 //栅格大小
-@gridSize   : 34px;
-@gridPadding: 16px;
+@gridSize    : 34px;
+@gridPadding : 16px;
 
 @DefindLeftWidth : 850px;
 @DefindRightWidht: 300px;
@@ -19,7 +19,8 @@
 //边框方法：
 @border_color    : #ddd;
 
-
+@simplelayoutLeftWidth  :184px;
+@simplelayoutRightWidth :@DefindWidth - @space_2 - @simplelayoutLeftWidth;
 //字体颜色
 // @FontColor_1: #323232; //一级信息
 // @FontColor_2: #636363; //二级信息
@@ -65,7 +66,7 @@
 
 @color_rank: #E18E09; //评分
 
-@link_hover:#E18E09; //链接移上去的颜色
+@link_hover: #E18E09; //链接移上去的颜色
 
 //系统色
 @color_main_c1   : #2A2B2E;
@@ -78,15 +79,15 @@
 @color_grey_line2: #E8E8E8;
 
 //间距
-@space_1 : 8px;
-@space_2 : 2 * @space_1;
-@space_3 : 3 * @space_1;
-@space_4 : 4 * @space_1;
-@space_5 : 5 * @space_1;
-@space_6 : 6 * @space_1;
-@space_7 : 7 * @space_1;
-@space_8 : 8 * @space_1;
-@space_9 : 9 * @space_1;
+@space_1  : 8px;
+@space_2  : 2 * @space_1;
+@space_3  : 3 * @space_1;
+@space_4  : 4 * @space_1;
+@space_5  : 5 * @space_1;
+@space_6  : 6 * @space_1;
+@space_7  : 7 * @space_1;
+@space_8  : 8 * @space_1;
+@space_9  : 9 * @space_1;
 @space_10 : 10 * @space_1;
 @space_11 : 11 * @space_1;
 @space_12 : 12 * @space_1;
@@ -394,10 +395,10 @@
     }
 }
 
-.lineclamp(@line:1){
-    display: -webkit-box;
+.lineclamp(@line: 1) {
+    display           : -webkit-box;
     -webkit-line-clamp: @line;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow          : hidden;
+    text-overflow     : ellipsis;
     -webkit-box-orient: vertical;
 }

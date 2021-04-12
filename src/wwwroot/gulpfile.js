@@ -184,10 +184,10 @@ gulp.task('rev', function () {
         .pipe(revCollector({
             replaceReved: true,
             dirReplacements: {
-                'dist/scripts': 'dist/scripts', //不加的话，版本号添加不了
-                'dist/styles': 'dist/styles',
-                'dist/public/script': 'dist/public/script',
-                'dist/public/styles': 'dist/public/styles'
+                'dist/scripts': 'scripts', //不加的话，版本号添加不了
+                'dist/styles': 'styles',
+                'dist/public/script': 'public/script',
+                'dist/public/styles': 'public/styles'
             }
         }))
         .pipe(bom()) //一定要在输出前引入该包

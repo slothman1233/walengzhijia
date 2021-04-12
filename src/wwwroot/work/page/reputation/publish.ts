@@ -16,12 +16,12 @@ declare const laydate: any
         elem: '#purchastime', //指定元素
         type: 'month'
     })
-   
-       
-    
+
+
+
     laydate.render({
         elem: '#use', //指定元素
-        type: 'month'    
+        type: 'month'
     })
 })()
 
@@ -35,14 +35,18 @@ window.onload = function () {
         window.ue.getContent()
 
         editor_uploadimg('edit_container', {
-            success: (e, name) => {
-                console.log(1, e, name)
-            }
+            success: (name) => {
+                console.log(name)
+            },
+            error: (e) => { },
+            progress: (i) => { }
         })
         editor_uploadvideo('edit_container', {
-            success: (e, name) => {
-                console.log(2, e, name)
-            }
+            success: (ename) => {
+                console.log(name)
+            },
+            error: (e) => { },
+            progress: (i) => { }
         })
     })
 };
@@ -80,8 +84,10 @@ window.onload = function () {
 (function () {
     let box: HTMLElement = document.querySelector('.uploadcover .box')
     uploadfilefn(box, {
-        success: (e, name) => {
-            console.log(e, name)
-        }
+        success: (name) => {
+            console.log(name)
+        },
+        error: (e) => { },
+        progress: (i) => { }
     })
 })()

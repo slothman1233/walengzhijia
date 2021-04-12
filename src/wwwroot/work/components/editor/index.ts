@@ -1,19 +1,13 @@
 
 import { isString } from '@stl/tool-ts/src/common/obj/isString'
+import { multipartUploadType } from '../../common/utils/multipartUpload/multipartUpload'
 import { uploadfilefn } from '../uploadfile'
-
-type errorfn = (error: any) => void
-
-type successfn = (e: any, name: string) => void
-type d = {
-  success?: successfn,
-  error?: errorfn
-}
 
 export function editor_uploadimg(parentId: string | HTMLElement, {
     success,
-    error
-}: d) {
+    error,
+    progress
+}: multipartUploadType) {
     let parentdom: any
     if (isString(parentId)) {
         parentdom = document.getElementById(<string>parentId).querySelector('.edui-for-insertimage')
@@ -22,14 +16,16 @@ export function editor_uploadimg(parentId: string | HTMLElement, {
     }
     return uploadfilefn(parentdom, {
         success,
-        error
+        error,
+        progress
     })
 }
 
 export function editor_uploadvideo(parentId: string | HTMLElement, {
     success,
-    error
-}: d) {
+    error,
+    progress
+}: multipartUploadType) {
     let parentdom: any
     if (isString(parentId)) {
         parentdom = document.getElementById(<string>parentId).querySelector('.edui-for-insertvideo')
@@ -38,7 +34,8 @@ export function editor_uploadvideo(parentId: string | HTMLElement, {
     }
     return uploadfilefn(parentdom, {
         success,
-        error
+        error,
+        progress
     })
 }
 

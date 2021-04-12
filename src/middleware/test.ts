@@ -4,7 +4,7 @@
  */
 
 import { Context, Next } from 'koa'
-import { isString } from '../../src/common/utils/type_check'
+import { isString } from '../common/utils/type_check'
 import log from './log4js/log'
 
 

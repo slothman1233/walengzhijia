@@ -1,0 +1,43 @@
+{% from '../sharedView/macro/wuc/simplefooter.njk' import simplefooter %}
+{% from '../sharedView/macro/wuc/header.njk' import header %}
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+      {% block title %}我是title{% endblock title %}
+    </title>
+    <meta name="keywords" content="{% block keywords %}keywords{% endblock keywords %}">
+    <meta name="description" content="{% block description %}我是description{% endblock description %}">
+    <link href="/assets/font/iconfont.css" rel="stylesheet">
+    <link href="/dist/public/style/index.css" rel="stylesheet">
+    {% block style %}{% endblock style %}
+    <script src="/assets/plugin/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="simplelayoutbody">
+
+    {% block headers %}
+      {{header()}}
+    {% endblock headers %}
+    <div id="simplelayoutmain" class="clearfix">
+      {@{userlistbox("wuc/userlistbox.njk",{})}@}
+      <div id="simplelayoutright">
+        {% block body %}{% endblock body %}
+      </div>
+
+    </div>
+    {% block foot %}
+      {{simplefooter()}}
+    {% endblock foot %}
+
+    {% block script %}{% endblock script %}
+
+  </body>
+
+</html>

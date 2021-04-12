@@ -24,5 +24,3 @@ export default class Search {
     }
 }
 
-
-export const ss = function () { return 1 }

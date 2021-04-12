@@ -1,0 +1,43 @@
+{% macro userlistbox(args) %}
+
+  {% set userlistboxdata = [
+    {
+      icon: "&#xE00E;",
+      title: "消息中心",
+      link: '#'
+    }, {
+      icon: "&#xE005;",
+      title: "公司基础资料",
+      link: '#'
+    }, {
+      icon: "&#xE019;",
+      title: "公司产品管理",
+      link: '#'
+    }, {
+      icon: "&#xE008;",
+      title: "公司新闻发布",
+      link: '#'
+    }, {
+      icon: "&#xE006;",
+      title: "发布内容管理",
+      link: '#'
+    }, {
+      icon: "&#xE001;",
+      title: "个人信息",
+      link: '#'
+    }, {
+      icon: "&#xE01A;",
+      title: "修改密码",
+      link: '#'
+    }
+  ] %}
+
+  <div class="userlistbox">
+    {% for item in userlistboxdata %}
+      <a href="{{item.link}}">
+        <i class="iconfont_wlzj">{{item.icon | safe}}</i>
+        <span>{{item.title}}</span></a>
+    {% endfor %}
+  </div>
+
+{% endmacro %}

@@ -32,6 +32,14 @@ config.dataCahce = {
     
 }
 
+config.sts = {
+    AccessKeyId: 'LTAI5tJQUq919KKtFmcD8bLL',
+    AccessKeySecret: 'MewilHHtQoUR6n7YNna6CHSXTZCEdz',
+    RoleArn: 'acs:ram::1352393424826926:role/slothman',
+    // 建议 Token 失效时间为 1 小时
+    TokenExpireTime: 3600,
+    PolicyFile: '../../../common/assets/policy/all_policy.txt'
+}
 
 export default config
 
