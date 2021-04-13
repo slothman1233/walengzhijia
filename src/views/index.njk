@@ -4,6 +4,7 @@
 {% from "./shared/sharedView/macro/components/list.njk" import kblist1,
 list1 %}
 {% from "./shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
+{% from "./shared/sharedView/macro/components/star/star.njk" import star %}
 
 {% block title %}
 54123123213333
@@ -25,59 +26,17 @@ list1 %}
 {% block body %}
 
   <div id="main">
-    {% set rowData = [
-      {
-        title: "纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }, {
-        title: "纸板加工设备纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }, {
-        title: "纸板加工设备纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
-        id:"0"
-      }
+    {% if productTypeData %}
+      <div class="row_hot">
+        {% for item in productTypeData %}
+          <a href="/list/{{item.productTypeId}}" title="{{item.productType}}" target="_blank">
+            <div><img src="{{item.productTypeIcon}}"/></div>
+            <p>{{item.productType}}</p>
+          </a>
 
-    ]%}
-    <div class="row_hot">
-      {% for item in rowData %}
-        <a href="/list/{{item.id}}" title="{{item.title}}" target="_blank">
-          <div><img src="{{item.image}}"/></div>
-          <p>{{item.title}}</p>
-        </a>
-
-      {% endfor %}
-    </div>
+        {% endfor %}
+      </div>
+    {% endif %}
 
     {% set adsData = [
       {
@@ -618,6 +577,9 @@ list1 %}
 
     <div class="brand">
       <div class="row">
+   
+
+
         {{ navigationbar({
             isMore: true,
             MoreText: "更多>>",
@@ -666,7 +628,7 @@ list1 %}
 
                     <div class="kb">
                       <span>{{item.kbscore}}</span>
-                      <i>★★★★★</i>
+                      {{star()}}
                       <b>{{item.kbCount}}条口碑</b>
                     </div>
                     <div class="label">
@@ -910,7 +872,7 @@ list1 %}
         }) }}
 
         <div class="list_box">
-         {{list1()}}
+          {{list1()}}
         </div>
 
       </div>

@@ -2,19 +2,19 @@
 
 
 const DEV = {
-    fxtyc: 'http://120.24.168.112:31190/',
+    lepackapi: 'http://lepackapi.lepkg.com/',
 }
 
 const TEST = {
-    fxtyc: 'http://testjyzxapi.tostar.top/',
+    lepackapi: 'http://lepackapi.lepkg.com/',
 }
 
 const PRE = {
-    fxtyc: 'https://prejyzxapi.tostar.top/',
+    lepackapi: 'http://lepackapi.lepkg.com/',
 }
 
 const GA = {
-    fxtyc: 'https://apijyzxpro.wbp5.com/',
+    lepackapi: 'http://lepackapi.lepkg.com/',
 }
 
 

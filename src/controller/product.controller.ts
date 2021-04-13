@@ -1,4 +1,6 @@
 import { JSONParse } from '../common/utils/ModelHelper'
+import { ResIndustryTypeModel, ResIndustryTypeModelListReturnModel } from '../model/industry/resIndustryType'
+import { ResProductTypeModel, ResProductTypeModelListReturnModel } from '../model/product/resproductType'
 import { bodyModel, ErrorModel } from '../model/resModel'
 
 import managelepackproduct from '../services/managelepackproduct.services'
@@ -7,10 +9,10 @@ import managelepackproduct from '../services/managelepackproduct.services'
  * 根据产品行业标识ID获得该行业下面所有的产品分类信息
  * @param {string|number} id 行业标识ID
  */
-export async function GetProductIndustryByIndustry(id: string | number = 1) {
+export async function GetProductIndustryByIndustry(id: string | number = 1) : Promise<ResIndustryTypeModel[]|null> {
     let rm = await GetProductIndustryByIndustryRm(id)
-    let models = JSONParse<bodyModel<any>>(rm.code, rm.bodyMessage)
-    return models !== null ? models : new ErrorModel<any>({})
+    let models = JSONParse<ResIndustryTypeModel[] | null>(rm.code, rm.bodyMessage)
+    return models
 }
 
 
@@ -18,19 +20,17 @@ export async function GetProductIndustryByIndustry(id: string | number = 1) {
 * 通过产品分类ID查找该分类下面的标签信息
 * @param {string|number} productType 产品分类ID
 */
-export async function GetProductTypeByProductType(productType: string | number) {
+export async function GetProductTypeByProductType(productType: string | number) : Promise<ResProductTypeModel[] | null>{
     let rm = await GetProductTypeByProductTypeRm(productType)
-    let models = JSONParse<bodyModel<any>>(rm.code, rm.bodyMessage)
-    return models !== null ? models : new ErrorModel<any>({})
+    let models = JSONParse<ResProductTypeModel[] | null>(rm.code, rm.bodyMessage)
+    return models
 }
-
-//ProductTypeModel
 
 /**
  * 根据产品行业标识ID获得该行业下面所有的产品分类信息
  * @param {string|number} id 行业标识ID
  */
-export async function GetProductIndustryByIndustryRm(id: string | number) {
+export async function GetProductIndustryByIndustryRm(id: string | number) : Promise<ResIndustryTypeModelListReturnModel>{
     let params: { [index: string]: any }
     params = {
         'industry': id,
@@ -43,7 +43,7 @@ export async function GetProductIndustryByIndustryRm(id: string | number) {
 * 通过产品分类ID查找该分类下面的标签信息
 * @param {string|number} productType 产品分类ID
 */
-export async function GetProductTypeByProductTypeRm(productType: string | number) {
+export async function GetProductTypeByProductTypeRm(productType: string | number) : Promise<ResProductTypeModelListReturnModel> {
     let params: { [index: string]: any }
     params = {
         'productType': productType,

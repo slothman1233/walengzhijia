@@ -3,6 +3,7 @@ import { addClass } from '@stl/tool-ts/src/common/dom/addClass'
 import { removeClass } from '@stl/tool-ts/src/common/dom/removeClass'
 import { siblings } from '@stl/tool-ts/src/common/dom/siblings'
 import { on } from '@stl/tool-ts/src/common/event'
+import { GetProductType } from '../../common/service/managelepackproduct.services'
 // eslint-disable-next-line no-undef
 declare const document: Document
 declare const pageIndex: number
@@ -50,84 +51,7 @@ declare const sortid: any
         }
     }
 
-    let data = [
-        {
-            id: 0,
-            name: '​瓦楞纸33板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }, {
-            id: 1,
-            name: '​瓦楞纸板生产整线'
-        }
-    ]
+
 
 
 
@@ -135,17 +59,28 @@ declare const sortid: any
         agent: bCategories,
         events: 'click',
         ele: 'span',
-        fn: function (dom:any, e:any) {
+        fn: async function (dom: any, e: any) {
             let html = ''
-            siblings(dom, function (d:any) {
+            siblings(dom, function (d: any) {
                 removeClass(d, 'active')
             })
             addClass(dom, 'active')
-            data.forEach((item, index) => {
 
-                let { id, name } = item
-                html += '<span class="" id="' + id + '">' + name + '</span>'
-            })
+            let data = await GetProductType(dom.id)
+
+            if (data.code === 0) {
+                let model =  data.bodyMessage[0]
+                for (let i = 0; i < model.productTypeLabels.length; i++) {
+                    let item = model.productTypeLabels[i]
+                    let { productTypeDetailId, productTypeDetail } = item
+                    html += '<span class="" id="' + productTypeDetailId + '">' + productTypeDetail + '</span>'
+                }
+
+            }
+
+
+
+
             sCategories.innerHTML = html
         }
     })
@@ -154,8 +89,8 @@ declare const sortid: any
         agent: sCategories,
         events: 'click',
         ele: 'span',
-        fn: function (dom:any, e:any) {
-            siblings(dom, function (d:any) {
+        fn: function (dom: any, e: any) {
+            siblings(dom, function (d: any) {
                 removeClass(d, 'active')
             })
             addClass(dom, 'active')

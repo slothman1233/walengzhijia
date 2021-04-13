@@ -11,7 +11,7 @@ import { ProductTypeDetailModel, ProductTypeModel } from './ProductType'
  * @param {ResProductTypeDetailModel} productTypeLabels 产分分类标签
  */
 export interface ResProductTypeModel extends ProductTypeModel {
-  productTypeLabels: ResProductTypeDetailModel
+  productTypeLabels: ResProductTypeDetailModel[]
 }
 
 
@@ -29,7 +29,7 @@ export interface ResProductTypeDetailModel extends ProductTypeDetailModel {
 /**
  * 产分分类标签的bodyModel模型
  */
-export interface ResProductTypeModelListReturnModel extends bodyModel<ResProductTypeModel> {
+export interface ResProductTypeModelListReturnModel extends bodyModel<ResProductTypeModel[]> {
 
 }
 

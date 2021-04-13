@@ -19,7 +19,7 @@ export interface ResIndustryTypeModel {
 /**
  * 产品类型返回模型的bodyModel模型
  */
-export interface ResIndustryTypeModelListReturnModel extends bodyModel<ResIndustryTypeModel>{
+export interface ResIndustryTypeModelListReturnModel extends bodyModel<ResIndustryTypeModel[]>{
 
 }	
  

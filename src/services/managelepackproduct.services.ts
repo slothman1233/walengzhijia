@@ -18,20 +18,20 @@ class Managelepackproduct {
     //  {industry: id}
     // @CacheInterceptor('Managelepackproduct_GetProductIndustry', CacheTime.Min30)
     async GetProductIndustry(params: any) {
-        return await http.get<ResIndustryTypeModelListReturnModel>(`${config.apiPath}api/ManageLepackProduct/GetProductIndustry`, { params, queryType: 'json' })
+        return await http.get<ResIndustryTypeModelListReturnModel>(`${config.apiPath}api/ManageLepackProduct/GetProductIndustry`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 
     // 通过产品分类ID查找该分类下面的标签信息等
     // {productType : 1}
     // @CacheInterceptor('Managelepackproduct_GetProductType', CacheTime.Min30)
     async GetProductType(params: any) {
-        return await http.get<ResProductTypeModelListReturnModel>(`${config.apiPath}api/ManageLepackProduct/GetProductType`, { params, queryType: 'json' })
+        return await http.get<ResProductTypeModelListReturnModel>(`${config.apiPath}api/ManageLepackProduct/GetProductType`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 
     // 添加产品大分类
     // {"industryTypeName": "123123"}
     async AddProductIndustry(params: any) {
-        return await http.post<bodyModel<string>>(`${config.apiPath}api/ManageLepackProduct/AddProductIndustry`, params, { queryType: 'json' })
+        return await http.post<bodyModel<string>>(`${config.apiPath}api/ManageLepackProduct/AddProductIndustry`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
 
@@ -42,7 +42,7 @@ class Managelepackproduct {
     //   'productTypeIcon': '11'
     // }
     async AddProductType(params: any) {
-        return await http.post<bodyModel<string>>(`${config.apiPath}api/ManageLepackProduct/AddProductType`, params, { queryType: 'json' })
+        return await http.post<bodyModel<string>>(`${config.apiPath}api/ManageLepackProduct/AddProductType`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
     // 添加产品分类
@@ -51,7 +51,7 @@ class Managelepackproduct {
     //   "productTypeDetail": "string"
     // }
     async AddProductTypeLabel(params: any) {
-        return await http.post<bodyModel<string>>(`${config.apiPath}api/ManageLepackProduct/AddProductTypeLabel`, params, { queryType: 'json' })
+        return await http.post<bodyModel<string>>(`${config.apiPath}api/ManageLepackProduct/AddProductTypeLabel`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
 

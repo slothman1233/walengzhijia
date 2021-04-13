@@ -16,6 +16,8 @@ import { nunRender, nunRenderMacroString } from '../common/nunjucks'
 import { writeFile, EnsureFile, readFile, moveFile, copyFile } from '../common/utils/file'
 import Business from './business'
 import managelepackproduct from '../services/managelepackproduct.services'
+import { GetProductIndustryByIndustry } from '../controller/product.controller'
+import { ResIndustryTypeModel } from '../model/industry/resIndustryType'
 // import Business from './list'
 
 
@@ -25,27 +27,30 @@ export default class Index {
     // @middlewares([test_middleware, test_2, test_2, test_middleware])
     @get('/index')
     async index(ctx: Context) {
-
-
-
         this.home(ctx)
     }
 
     @get('/')
     async home(ctx: Context) {
-        await ctx.render('index', {})
+        //行业信息
+        let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
+        await ctx.render('index', {
+            productTypeData: productTypeData[0].productType
+        })
     }
 
 
     @get('/list/:productid?/:sortid?/:pageIndex?')
     async lists(ctx: Context, next: Next) {
-        console.log(ctx.params)
         let { productid, sortid, pageIndex } = ctx.params
-        console.log(productid, sortid)
+        //行业信息
+        let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
+          
         await ctx.render('list', {
             productid: productid || 0,
             sortid: sortid || 0,
-            pageIndex: pageIndex || 1
+            pageIndex: pageIndex || 1,
+            productTypeData: productTypeData[0].productType
         })
     }
 
