@@ -27,6 +27,7 @@
         "pm2:restart": "pm2 restart all",
         "pm2:list": "pm2 list",
         "pm2:monit": "pm2 monit",
+        "pm2:logs": "pm2 logs",
         "eslint": "eslint --fix --ext .js,.ts src/",
         "jest:test": "cross-env NODE_ENV=jest jest --runInBand --forceExit --colors --coverage",
         "docker": "cross-env NODE_ENV=ga DOCKER=docker PORT=80 node bin/www.js",
@@ -36,7 +37,7 @@
         "docker:ga": "cross-env NODE_ENV=ga DOCKER=docker PORT=80 node bin/www.js"
     },
     "dependencies": {
-        "@stl/request": "^1.2.8",
+        "@stl/request": "^2.0.0",
         "@stl/tool-ts": "^1.0.10",
         "ali-oss": "^6.15.2",
         "cross-env": "^7.0.2",

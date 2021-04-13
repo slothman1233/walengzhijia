@@ -37,7 +37,7 @@ function topm2config() {
 
 function tostaticwwwroot() {
     return src(['src/wwwroot/assets/**/*'])
-        .pipe(dest('dist/wwwroot'))
+        .pipe(dest('dist/wwwroot/assets'))
 }
 
 function tostaticwwwrootstatic() {

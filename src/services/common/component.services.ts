@@ -12,14 +12,8 @@ import { nunRenderMacroString } from '../../common/nunjucks'
 
 class Common {
   /// <summary>
-  /// 获取行业名录数据
+  /// 获取macro模板html
   /// </summary>
-  /// <param name="companyType"></param>
-  /// <param name="companyName"></param>
-  /// <param name="headquarters"></param>
-  /// <param name="foundedTime"></param>
-  /// <param name="pageIndex"></param>
-  /// <param name="pageSize"></param>
   /// <returns></returns>
   @CacheInterceptor('component_services_ComponentApiService', CacheTime.Second1)
     async ComponentApiService(params: ComponentModel) {

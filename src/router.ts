@@ -9,6 +9,7 @@ import { Context, Next } from 'koa'
 import log from './middleware/log4js/log'
 import { isDir } from './common/utils/file'
 import koaCompose from 'koa-compose'
+import os from 'os'
 const modules: any[] = []
 /**
  * 路由的初始化
@@ -16,6 +17,7 @@ const modules: any[] = []
  */
 const addRouter = async (router: Router) => {
     const ctrPath = path.join(__dirname, 'routes')
+  
     //扫描controller文件夹，收集所有controller
     await fileScan(ctrPath)
 
@@ -49,7 +51,12 @@ async function fileScan(filepath: string) {
         } else if (/^[^.]+\.(t|j)s$/.test(name)) {
             const ctrPath = path.join(__dirname, 'routes')
             const module = require(paths).default
-            paths = paths.replace(ctrPath, '').replace(paths.substr(paths.lastIndexOf('\\')), '')
+            const type = os.platform()
+            if(type.indexOf('win') >= 0){
+                paths = paths.replace(ctrPath, '').replace(paths.substr(paths.lastIndexOf('\\')), '')
+            }else{
+                paths = paths.replace(ctrPath, '').replace(paths.substr(paths.lastIndexOf('/')), '')
+            }
             if (module) { modules.push([module, paths]) }
         }
     }

@@ -11,6 +11,7 @@ import filters from './filter'
 import { isAsync } from '../utils/type_check'
 import { isFile, readFile } from '../utils/file'
 import log from '../../middleware/log4js/log'
+import os from 'os'
 /**
  * 把环境变量赋值给 nunjucks 框架当做 nunjucks 的全局变量
  */
@@ -105,8 +106,10 @@ export const nunRenderMacroString = async (filepath: string, name: string, optio
 
     if (!obj[name]) { return '' }
 
+    let sprit = os.platform().indexOf('win' ) >=0 ? '\\' : '/'    
 
-    let filep = paths.slice(0, paths.lastIndexOf('\\'))
+
+    let filep = paths.slice(0, paths.lastIndexOf(sprit))
 
     hreadstring = hreadstring.replace(/[\'\"](.*?)[\'\"]/igs, function ($1, $2): string {
         let p = path.resolve(filep, $2)
