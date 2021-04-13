@@ -101,3 +101,59 @@
   </div>
 
 {% endmacro %}
+
+
+{# 导航栏控件 #}
+{% macro usernavigationbar(args = {
+  isMore: true,
+  MoreText: "更多>>",
+  link: "#",
+  isSelect: "1",
+  data: [
+    {
+      title: "热门品牌",
+      nlink: "javascript:(0)",
+      id: "1"
+    }, {
+      title: "热门品牌",
+      nlink: "javascript:(0)",
+      id: "1"
+    }, {
+      title: "热门品牌",
+      nlink: "javascript:(0)",
+      id: "1"
+    }, {
+      title: "热门品牌",
+      nlink: "javascript:(0)",
+      id: "1"
+    }, {
+      title: "热门品牌",
+      nlink: "javascript:(0)",
+      id: "1"
+    }, {
+      title: "热门品牌",
+      nlink: "javascript:(0)",
+      id: "1"
+    }
+  ]
+
+}) %}
+  {% if (args != null) and (args.data != null) and (args.data.length > 0) %}
+    <div class="usernavigationbar">
+      <div class="list" style="right:{{args.isMore | ternary('60px','0px')}}">
+        {% for item in args.data %}
+          <a href="{{item.link}}" title="{{item.title}}" data-id="{{item.id}}" target="_blank">
+            <span class="{{(loop.index == args.isSelect) | ternary('select','')}}">
+              {{item.title}}
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+      {% if args.isMore %}
+        <a href="{{args.link}}" target="_blank">{{args.MoreText}}
+        </a>
+      {% endif %}
+
+    </div>
+  {% endif %}
+{% endmacro %}

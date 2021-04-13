@@ -1,8 +1,7 @@
 {% extends "../shared/layout/simpleLayout.njk" %}
 
-{% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
-{% from "../shared/sharedView/macro/components/list.njk" import list1,
-list2 %}
+{% from "../shared/sharedView/macro/components/navigationbar.njk" import usernavigationbar %}
+
 {% block title %}
 54123123213333
 {% endblock title %}
@@ -16,14 +15,130 @@ list2 %}
 {% endblock style %}
 
 {% block script %}
-{# <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script> #}
+  <script type="text/javascript">
+    var notificationType = {{notificationType}} || 1
+    var pageIndex = {{pageIndex}} || 1
+  </script>
   <script type="text/javascript" src="/dist/scripts/user/index.js"></script>
 {% endblock script %}
 
 {% block body %}
 
-  <div id="main">12321321</div>
- <input type="file" id="file"  multiple="multiple"/>
+  {# <div id="main">12321321</div>
+ <input type="file" id="file"  multiple="multiple"/> #}
 
-{% endblock body %}
+  <div class="userindex">
+    {{ usernavigationbar({
+            isMore: false,
+            MoreText: "更多>>",
+            link: "/list/0",
+            isSelect: "1",
+            data: [
+               {
+                title: "系统通知",
+                link: "javascript:(0)"
+              }, {
+                title: "互动通知",
+                link: "javascript:(0)"
+              }
+            ]
 
+          }) }}
+
+    <div class="box">
+
+      <div class="systematic" >
+        {% set systematicData = [
+          {
+            createTime: "02-26 12:03",
+            title: "系统通知",
+            content: "系统通知内容，最多显示两行。亲爱注册用户，你好，欢迎你成为头条创作者，为了帮助你更好地进行创作，我们诚邀你加入创作者计划。加入后你可以申请广告收益、原创、商品卡等多项作者权益，提升你的变现、涨粉能力。详情可查看链接"
+          }, {
+            createTime: "02-26 12:03",
+            title: "系统通知",
+            content: "系统通知内容，最多显示两行。亲爱注册用户，你好，欢迎你成为头条创作者，为了帮助你更好地进行创作，我们诚邀你加入创作者计划。加入后你可以申请广告收益、原创、商品卡等多项作者权益，提升你的变现、涨粉能力。详情可查看链接"
+          }, {
+            createTime: "02-26 12:03",
+            title: "系统通知",
+            content: "系统通知内容，最多显示两行。亲爱注册用户，你好，欢迎你成为头条创作者，为了帮助你更好地进行创作，我们诚邀你加入创作者计划。加入后你可以申请广告收益、原创、商品卡等多项作者权益，提升你的变现、涨粉能力。详情可查看链接"
+          }
+        ] %}
+
+        <div class="systematic_box">
+          {% if systematicData != null and systematicData.length >= 0 %}
+            {% for item in systematicData %}
+              <div class="child">
+                <h3>{{item.title}}
+                  <span>{{item.createTime}}</span></h3>
+                <p>{{item.content}}</p>
+              </div>
+            {% endfor %}
+
+          {% else %}
+
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="interaction"  style='display:none'>
+        {% set interactionData = [
+          {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "用户A",
+            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            createTime: "2020-08-01 12:21"
+          }, {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "用户A",
+            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            createTime: "2020-08-01 12:21"
+          }, {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "用户A",
+            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            createTime: "2020-08-01 12:21"
+          }, {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "用户A",
+            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            createTime: "2020-08-01 12:21"
+          }, {
+            hread: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            name: "用户A",
+            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
+            createTime: "2020-08-01 12:21"
+          }
+        ] %}
+
+        <div class="interaction_box">
+          {% if interactionData != null and interactionData.length > 0 %}
+            {% for item in interactionData %}
+              <div class="child">
+                <div class="title">
+                  <img src="{{item.hread}}"/>
+                  <p>{{item.name}}</p>
+                  <b>回答了你的提问</b>
+                  <i>{{item.answerContent}}</i>
+                </div>
+                <p>{{item.content}}</p>
+                <div class="time">
+                  {{item.createTime}}
+                </div>
+              </div>
+            {% endfor %}
+
+          {% else  %}
+
+          {% endif %}
+        </div>
+
+      </div>
+
+      <div id="kkpage"></div>
+
+    {% endblock body %}

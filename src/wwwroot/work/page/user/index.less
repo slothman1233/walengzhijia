@@ -1,0 +1,124 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+@import (reference) "../../public/style/common/Animation.less";
+@import (less) "../../components/navigationbar/index.less";
+@import "/node_modules/@stl/kkpager/dist/index.css";
+
+.userindex {
+  min-height: 730px;
+
+  .usernavigationbar {
+
+    .list {
+      padding: 0 @space_2;
+    }
+  }
+
+
+  .box {
+    .systematic {
+      margin: 0 @space_4;
+
+      .systematic_box {
+        .child {
+          padding      : @space_2 0;
+          border-bottom: 1px solid @color_grey_line2;
+
+          h3 {
+            font-size    : @font_size_14;
+            color        : @color_main_c1;
+            line-height  : @line_height;
+            font-weight  : @font_weight;
+            margin-bottom: 4px;
+
+            span {
+              display    : block;
+              float      : right;
+              color      : @color_gray_c2;
+              font-size  : @font_size_12;
+              font-weight: normal;
+            }
+          }
+
+          p {
+            font-size  : @font_size_14;
+            color      : @color_gray_c1;
+            line-height: @line_height;
+            text-align : justify;
+          }
+        }
+      }
+
+
+    }
+
+    .interaction {
+      margin: 0 @space_4;
+
+      .interaction_box {
+
+
+        .child {
+          padding      : @space_2 0;
+          border-bottom: 1px solid @color_grey_line2;
+
+          .title {
+            @size        : 24px;
+            line-height  : @size;
+            font-size    : @font_size_16;
+            margin-bottom: @space_1;
+            .over_group();
+
+            img {
+              display     : inline;
+              height      : @size;
+              width       : @size;
+              margin-right: 4px;
+              .border-radius(50%);
+            }
+
+            p {
+              display     : inline;
+              color       : @color_gray_c1;
+              margin-right: 12px;
+            }
+
+            b {
+              font-weight : @font_weight;
+              color       : @color_main_c1;
+              display     : inline;
+              margin-right: 12px;
+            }
+
+            i {
+              display: inline;
+              color  : @color_gray_c2;
+            }
+          }
+
+          p {
+            font-size    : @font_size_16;
+            line-height  : @line_height;
+            color        : @color_main_c1;
+            margin-bottom: 12px;
+          }
+
+          time {
+            font-size: @font_size_12;
+            color    : @color_gray_c1;
+          }
+
+        }
+      }
+
+
+    }
+
+
+  }
+
+  #kkpage {
+    margin    : @space_3 0 @space_5 0;
+    text-align: center;
+    .kkpager()
+  }
+}

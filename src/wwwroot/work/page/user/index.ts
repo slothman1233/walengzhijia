@@ -1,21 +1,29 @@
-import multipartUpload from '../../common/utils/multipartUpload/multipartUpload'
+import { kkpager } from '@stl/kkpager'
 
-document.getElementById('file').addEventListener('change', async function (e) {
-
-
-    multipartUpload((<HTMLInputElement>e.target).files[0], {
-        //成功的回调
-        success: function (url) {
-            console.log(url)
+// eslint-disable-next-line no-undef
+declare const document: Document
+declare const pageIndex: number
+declare const notificationType: any
+(function () {
+    kkpager({
+        pagerid: 'kkpage',
+        total: 20,
+        pno: pageIndex,
+        mode: 'link',
+        isShowFirstPageBtn: false,
+        isShowLastPageBtn: false,
+        isShowLastPage: false,
+        lang: {
+            prePageText: '上一页',
+            nextPageText: '下一页',
         },
-        //失败的回调
-        error: function (e) {
-            console.log(e)
-        },
-        //进度回调
-        progress: function (i) {
-            console.log(i)
+        getLink: (t: any) => {
+            return `/user/index/${notificationType}/${t}`
         }
+
     })
 
-})
+})()
+
+
+//

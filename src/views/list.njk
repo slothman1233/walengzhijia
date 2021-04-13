@@ -17,6 +17,11 @@
 {% endblock style %}
 
 {% block script %}
+  <script>
+    var productid = {{productid}}
+    var sortid = {{sortid}}
+    var pageIndex = {{pageIndex}}
+  </script>
   <script type="text/javascript" src="/dist/scripts/index/list.js"></script>
 {% endblock script %}
 
@@ -251,9 +256,5 @@
     </div>
 
   </div>
-  <script>
-    var productid = {{productid}}
-    var sortid = {{sortid}}
-    var pageIndex = {{pageIndex}}
-  </script>
+
 {% endblock body %}
