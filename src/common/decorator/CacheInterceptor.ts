@@ -58,6 +58,7 @@ export default function CacheInterceptor(key: string, CacheSeconds: CacheTime) {
     return (proto: Object, name: string | symbol, descriptor: TypedPropertyDescriptor<Function>) => {
         let method = descriptor.value
         descriptor.value = async function (...arg: any[]) {
+            debugger
             //定时任务的执行
             timeTask(key, CacheSeconds, arg, method, proto)
 

@@ -15,6 +15,7 @@ import { nunRender, nunRenderMacroString } from '../common/nunjucks'
 // import * as map from './map'
 import { writeFile, EnsureFile, readFile, moveFile, copyFile } from '../common/utils/file'
 import Business from './business'
+import managelepackproduct from '../services/managelepackproduct.services'
 // import Business from './list'
 
 
@@ -39,7 +40,7 @@ export default class Index {
     @get('/list/:productid?/:sortid?/:pageIndex?')
     async lists(ctx: Context, next: Next) {
         console.log(ctx.params)
-        let {productid, sortid, pageIndex } = ctx.params
+        let { productid, sortid, pageIndex } = ctx.params
         console.log(productid, sortid)
         await ctx.render('list', {
             productid: productid || 0,
@@ -97,11 +98,23 @@ export default class Index {
     }
 
 
-    // @get('/business/:id?')
-    // async business(ctx: Context, next: Next) {
-    //     let bns = new Business()
-    //     await bns.index(ctx, next)
-    // }
+    @get('/aa/:id?')
+    async business(ctx: Context, next: Next) {
+        let { id } = ctx.params
+        debugger
+        let data = await managelepackproduct.AddProductType({
+            industryId: 1,
+            productType: '123',
+            productTypeIcon: '11'
+        })
+        // let data = await managelepackproduct.AddProductTypeLabel({
+        //     'productTypeId': 1,
+        //     'productTypeDetail': 'string'
+        // })
+
+
+        ctx.body = data
+    }
 
 }
 

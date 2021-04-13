@@ -8,6 +8,9 @@ import { SESSION_SECRET_KEY } from '../constant'
 
 
 export default {
+    apiPath: 'http://114.55.24.27:5000/',
+
+
 
     mysql: {
         host: 'localhost',

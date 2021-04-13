@@ -56,14 +56,17 @@ type env = {
 
     imgFilePath: string
 
+    apiPath: string,
+
+
     /**
      * 全局数据缓存 供给nunjucks使用
      */
     dataCahce?: object
 
-     /**
-     * sts 管理
-     */
+    /**
+    * sts 管理
+    */
     sts?: {
         AccessKeyId: string,
         AccessKeySecret: string,
