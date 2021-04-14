@@ -1,0 +1,193 @@
+{% extends "../shared/layout/simpleLayout.njk" %}
+
+{% from "../shared/sharedView/macro/components/navigationbar.njk" import usernavigationbar %}
+
+{% block title %}
+54123123213333
+{% endblock title %}
+
+{% block keywords %}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block style %}
+  <link href="/dist/styles/user/datamanager.css" rel="stylesheet">
+{% endblock style %}
+
+{% block script %}
+  <script>
+    var tabType = {{tabType}}
+  </script>
+  <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
+  <script type="text/javascript" src="/dist/scripts/user/datamanager.js"></script>
+{% endblock script %}
+
+{% block body %}
+
+  <div id="usermain">
+    {{ usernavigationbar({
+            isMore: true,
+            MoreText: "+ 添加销售",
+            link: "/user/sales/1/222",
+            isSelect: tabType,
+            data: [
+               {
+                title: "公司基本信息",
+                link: "javascript:(0)"
+              }, {
+                title: "公司销售信息",
+                link: "javascript:(0)"
+              }
+            ]
+
+          }) }}
+
+    <div class="box">
+      <div class="basic" style='display:{{(tabType == 1) | ternary("block","none") }}'>
+        <div class="title">基本信息</div>
+
+        <div class="basic_box">
+          <div class="child clearfix">
+            <p>公司名称：</p>
+            <div class="textarea" contenteditable="false">
+             公司名称******************
+            </div>
+            <a href="javascript:void(0)" class="applyfor">申请修改</a>
+            <a href="javascript:void(0)" class="submit">确认修改</a>
+          </div>
+
+          <div class="child clearfix">
+            <p>公司全称：</p>
+            <div class="textarea" contenteditable="false">
+             公司名称******************
+            </div>
+            <a href="javascript:void(0)" class="applyfor">申请修改</a>
+            <a href="javascript:void(0)" class="submit">确认修改</a>
+          </div>
+
+          <div class="child clearfix logo">
+            <p>公司LOGO：</p>
+            <div class="padding">
+              <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+
+              <p>（logo比例3：2  需为纯色底并小于1M）</p>
+            </div>
+            <a href="javascript:void(0)">修改LOGO<input type="file" class="uploadfileinput" multiple="multiple" accept="image/*"/></a>
+          </div>
+
+          <div class="child clearfix">
+            <p>公司网址：</p>
+            <div class="textarea" contenteditable="false">
+             公司名称******************
+            </div>
+            <a href="javascript:void(0)" class="applyfor">申请修改</a>
+            <a href="javascript:void(0)" class="submit">确认修改</a>
+          </div>
+
+          <div class="child clearfix">
+            <p>公司电话：</p>
+            <div class="textarea" contenteditable="false">
+             公司名称******************
+            </div>
+            <a href="javascript:void(0)" class="applyfor">申请修改</a>
+            <a href="javascript:void(0)" class="submit">确认修改</a>
+          </div>
+
+          <div class="child clearfix">
+            <p>公司地址：</p>
+            <div class="textarea" contenteditable="false">
+             公司名称******************
+            </div>
+            <a href="javascript:void(0)" class="applyfor">申请修改</a>
+            <a href="javascript:void(0)" class="submit">确认修改</a>
+          </div>
+          <div class="child clearfix">
+            <p>公司介绍：</p>
+            <div class="textarea" contenteditable="false">
+              湖北京山轻工机械股份有限公司（简称“京山轻机”）是中国最大的纸箱、纸盒包装机械生产和出口基地，是中国轻工总会和中国包装总公司定点生产纸制品包装机械的最大骨干企业。1998年6月26日在深圳证券交易所正式挂牌上市（股票代码：000821）。近几年，公司积极对接武汉大学、华科大、武中国轻工总会和中国包装总公司定点生产纸制品包装机械的最大骨干企业。1998年6月26日在深圳证券交易所正式挂牌中国轻工总会和中国包装总公司定点生产纸制品包装机械的最大骨干企业。1998年6月26日在深圳证券交易所正式挂牌。
+            </div>
+            <a href="javascript:void(0)" class="applyfor">申请修改</a>
+            <a href="javascript:void(0)" class="submit">确认修改</a>
+          </div>
+
+          <div class="child clearfix">
+            <p>营业执照照片：</p>
+
+            <div class="padding">
+              <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+            </div>
+            <a href="javascript:void(0)">上传营业执照<input type="file" class="uploadfileinput" multiple="multiple" accept="image/*"/></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="market" style='display:{{(tabType == 2) | ternary("block","none") }}'>
+        {% set marketData = [
+            {
+              hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+              name:"销售名称",
+              management:"销售经理",
+              functional:"负责内容",
+              worktime:"10",
+              id:"11",
+              createTime:"2020-08-01"
+            },
+            {
+              hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+              name:"销售名称",
+              management:"销售经理",
+              functional:"负责内容",
+              worktime:"10",
+              id:"11",createTime:"2020-08-01"
+            },
+            {
+              hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+              name:"销售名称",
+              management:"销售经理",
+              functional:"负责内容",
+              worktime:"10",
+              id:"11",createTime:"2020-08-01"
+            },
+            {
+              hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+              name:"销售名称",
+              management:"销售经理",
+              functional:"负责内容",
+              worktime:"10",
+              id:"11",createTime:"2020-08-01"
+            }
+
+          ] %}
+
+        {% if marketData != null and marketData.length > 0 %}
+          {% for item in marketData %}
+            <div class="child">
+              <img src="{{item.hread}}"/>
+              <div class="c">
+                <h3>{{item.name}}</h3>
+                <p class="clearfix">
+                  <span>职位：{{item.management}}</span>
+                  <span>职能：{{item.functional}}</span>
+                  <span>从业时间：{{item.worktime}}</span>
+                </p>
+                <p class="createtime">添加时间：{{item.createTime}}</p>
+              </div>
+              <div class="r">
+                <a href="/user/sales/2/{{item.id}}">修改</a>
+                <a href="javascript:(0)">删除</a>
+                <a href="javascript:(0)" style='display:{{ (loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="empty">
+            <p>还未添加销售</p>
+            <a href="/user/sales/1/222">+ 添加销售</a>
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+{% endblock body %}

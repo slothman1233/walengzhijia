@@ -4,40 +4,64 @@
     {
       icon: "&#xE00E;",
       title: "消息中心",
-      link: '#'
+      link: '/user/index'
     }, {
       icon: "&#xE005;",
       title: "公司基础资料",
-      link: '#'
+      link: '/user/datamanager'
     }, {
       icon: "&#xE019;",
       title: "公司产品管理",
-      link: '#'
+      link: '/user/product'
     }, {
       icon: "&#xE008;",
       title: "公司新闻发布",
-      link: '#'
+      link: '/user/news'
     }, {
       icon: "&#xE006;",
       title: "发布内容管理",
-      link: '#'
+      link: '/user/content'
     }, {
       icon: "&#xE001;",
       title: "个人信息",
-      link: '#'
+      link: '/user/information'
     }, {
       icon: "&#xE01A;",
       title: "修改密码",
-      link: '#'
+      link: '/user/changepwd'
     }
   ] %}
 
   <div class="userlistbox">
     {% for item in userlistboxdata %}
-      <a href="{{item.link}}">
+      <a href="{{item.link}}" class='{{item.link | replace("/user/","")}}'>
         <i class="iconfont_wlzj">{{item.icon | safe}}</i>
         <span>{{item.title}}</span></a>
     {% endfor %}
   </div>
+
+  <script type="text/javascript">
+    (function () {
+      let userlistbox = document.querySelector('.userlistbox')
+      let urlAry = [
+        'index',
+        'datamanager',
+        'product',
+        'news',
+        'content',
+        'information',
+        'changepwd'
+      ]
+
+      urlAry.forEach((item, index) => {
+        if (document.location.href.indexOf(`/user/${item}`) >= 0) {
+          userlistbox
+            .querySelector(`.${item}`)
+            .className += ' select';
+          return;
+        }
+      })
+    })()
+  </script>
 
 {% endmacro %}

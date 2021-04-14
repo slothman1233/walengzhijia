@@ -1,0 +1,92 @@
+{% extends "../shared/layout/simpleLayout.njk" %}
+
+{% from "../shared/sharedView/macro/components/navigationbar.njk" import usernavigationbar %}
+{% from "../shared/sharedView/macro/components/title.njk" import usertitle %}
+
+{% block title %}
+54123123213333
+{% endblock title %}
+
+{% block keywords %}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block style %}
+  <link href="/dist/styles/user/sales.css" rel="stylesheet">
+{% endblock style %}
+
+{% block script %}
+  <script>
+    var type = {{type}}
+    var userid = {{userid}}
+  </script>
+  <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
+  <script type="text/javascript" src="/dist/scripts/user/sales.js"></script>
+{% endblock script %}
+
+{% block body %}
+
+  <div id="usermain">
+    <div class="title">
+      {{usertitle()}}
+    </div>
+
+    <div class="box">
+      <div class="box_title">
+        {{usernavigationbar({
+            isMore: false,
+            MoreText: "#",
+            link: "#",
+            isSelect: 1,
+            data: [
+               {
+                title: "销售个人资料",
+                link: "javascript:(0)"
+              }
+            ]
+
+          })}}
+      </div>
+
+      <div class="content">
+
+        <div class="child clearfix">
+          <p>姓名：</p>
+          <div class="textarea" contenteditable="false">姓名</div>
+          <a href="javascript:void(0)" class="applyfor">编辑</a>
+          <a href="javascript:void(0)" class="submit">确认</a>
+        </div>
+        <div class="child clearfix">
+          <p>头像：</p>
+          <div class="padding"><img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0"></div>
+          <a href="javascript:void(0)">
+            更换头像
+            <input type="file" class="uploadfileinput" multiple="multiple" accept="image/*">
+          </a>
+        </div>
+        <div class="child clearfix">
+          <p>职称：</p>
+          <div class="textarea" contenteditable="false">--</div>
+          <a href="javascript:void(0)" class="applyfor">编辑</a>
+          <a href="javascript:void(0)" class="submit">确认</a>
+        </div>
+        <div class="child clearfix">
+          <p>职能：</p>
+          <div class="textarea" contenteditable="false">--</div>
+          <a href="javascript:void(0)" class="applyfor">编辑</a>
+          <a href="javascript:void(0)" class="submit">确认</a>
+        </div>
+        <div class="child clearfix">
+          <p>行业经验：</p>
+          <div class="textarea" contenteditable="false">10年</div>
+          <a href="javascript:void(0)" class="applyfor">编辑</a>
+          <a href="javascript:void(0)" class="submit">确认</a>
+        </div>
+
+      </div>
+    </div>
+    <div class="submit">
+      <a href="javascript:void(0)">保存</a>
+    </div>
+  </div>
+{% endblock body %}

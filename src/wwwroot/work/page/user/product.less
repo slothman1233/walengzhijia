@@ -1,0 +1,133 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+@import (reference) "../../public/style/common/Animation.less";
+@import (less) "../../components/navigationbar/index.less";
+@import "/node_modules/@stl/kkpager/dist/index.css";
+
+#usermain {
+  min-height: 730px;
+
+  .usernavigationbar {
+    padding      : 0 @space_3;
+    margin-bottom: @space_3;
+    .box-sizing();
+
+    .list {
+      padding-left: @space_3;
+      right       : 160px !important;
+    }
+
+    &>a {
+      width           : 130px;
+      height          : 38px;
+      margin          : 13px 0;
+      line-height     : 38px;
+      text-align      : center;
+      background-color: @color_theme_c0;
+      .border-radius(2px);
+    }
+  }
+
+  .box {
+    padding: 0 @space_4;
+
+    .publish {
+
+      .tab {
+        .navigationbar2 {
+          @height: 30px;
+          height : @height;
+
+          span {
+            height     : @height;
+            line-height: @height;
+            color      : @color_gray_c1;
+
+            &.select,
+            &:hover {
+              color           : @color_main_c1;
+              background-color: @color_theme_c0;
+            }
+          }
+        }
+      }
+
+      .child_box {
+        margin-top: @space_1;
+
+        .child {
+          @height : 100px;
+
+          position     : relative;
+          padding      : @space_2 0 12px 0;
+          border-bottom: 1px solid @color_grey_line1;
+
+          img {
+            height  : @height;
+            display : block;
+            width   : 150px;
+            position: absolute;
+            left    : 0;
+            top     : 16px;
+          }
+
+          .c {
+            padding: 0 100px 0 162px;
+            height : @height;
+
+            h3 {
+              color        : #000;
+              font-size    : @font_size_20;
+              line-height  : 28px;
+              margin-bottom: 4px;
+            }
+
+            p {
+              font-size  : @font_size_12;
+              line-height: @line_height;
+              color      : @color_gray_c1;
+
+              span {
+                display         : block;
+                float           : left;
+                margin-right    : @space_2;
+                background-color: @color_grey_line;
+                height          : 24px;
+                line-height     : 24px;
+                color           : @color_gray_c1;
+                padding         : 0 @space_1;
+                .border-radius(2px);
+              }
+            }
+
+            .createtime {
+              margin-top: @space_3;
+            }
+          }
+
+          .r {
+            position: absolute;
+            right   : 0;
+            top     : 20px;
+
+            a {
+              display      : block;
+              color        : @color_gray_c2;
+              font-size    : @font_size_14;
+              line-height  : @line_height;
+              margin-bottom: 4px;
+            }
+          }
+        }
+      }
+
+      #publish_kkpage {
+        margin    : @space_3 0 @space_5 0;
+        text-align: center;
+        .kkpager()
+      }
+
+    }
+
+  }
+
+}

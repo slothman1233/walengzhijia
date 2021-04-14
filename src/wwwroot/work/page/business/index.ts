@@ -124,7 +124,7 @@ declare const echarts: any
     let row2Data =
         [
             {
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 id: '1',
                 title: 'YWZJ-C型液压无轴纸架',
                 producttype: '原纸架',
@@ -133,7 +133,7 @@ declare const echarts: any
                 diameter: '300mm-1580mm', kbscore: '5.00', kbcount: 12
             },
             {
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 id: '1',
                 title: 'YWZJ-C型液压无轴纸架',
                 producttype: '原纸架',
@@ -142,7 +142,7 @@ declare const echarts: any
                 diameter: '300mm-1580mm', kbscore: '5.00', kbcount: 12
             },
             {
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 id: '1',
                 title: 'YWZJ-C型液压无轴纸架',
                 producttype: '原纸架',
@@ -151,7 +151,7 @@ declare const echarts: any
                 diameter: '300mm-1580mm', kbscore: '5.00', kbcount: 12
             },
             {
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 id: '1',
                 title: 'YWZJ-C型液压无轴纸架',
                 producttype: '原纸架',
@@ -160,7 +160,7 @@ declare const echarts: any
                 diameter: '300mm-1580mm', kbscore: '5.00', kbcount: 12
             },
             {
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 id: '1',
                 title: 'YWZJ-C型液压无轴纸架',
                 producttype: '原纸架',
@@ -169,7 +169,7 @@ declare const echarts: any
                 diameter: '300mm-1580mm', kbscore: '5.00', kbcount: 12
             },
             {
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 id: '1',
                 title: 'YWZJ-C型液压无轴纸架',
                 producttype: '原纸架',
@@ -178,7 +178,7 @@ declare const echarts: any
                 diameter: '300mm-1580mm', kbscore: '5.00', kbcount: 12
             },
             {
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 id: '1',
                 title: 'YWZJ-C型液压无轴纸架',
                 producttype: '原纸架',
@@ -187,7 +187,7 @@ declare const echarts: any
                 diameter: '300mm-1580mm', kbscore: '5.00', kbcount: 12
             },
             {
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 id: '1',
                 title: 'YWZJ-C型液压无轴纸架',
                 producttype: '原纸架',
@@ -257,24 +257,24 @@ declare const echarts: any
     let kblist1data = {
         args: [
             {
-                hread: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                hread: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 name: '李女士111',
                 kbscore: '5.00',
                 link: '#',
                 title: '阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬',
                 description: 'a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德'
             }, {
-                hread: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                hread: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 name: '李女士',
                 kbscore: '5.00',
                 link: '#',
                 title: '阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬',
                 description: 'a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德'
             }, {
-                hread: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
-                img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                hread: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 name: '李女士',
                 kbscore: '5.00',
                 link: '#',
@@ -387,31 +387,31 @@ declare const echarts: any
     let data = {args: [
         {
             link: '/news/123',
-            img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
             title: '为解决供应短2323缺问题 iPhone 12 Pro零件不够iPad来凑？',
             content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
             author: '作者大大',
             time: '2021-11-11',
-            businesslogo: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            businesslogo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
             businessname: '万联',
             slug: ['视频', '音频']
         }, {
             link: '/news/123',
-            img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
             title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
             content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
             author: '作者大大',
             time: '2021-11-11'
         }, {
             link: '/news/123',
-            img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
             title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
             content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
             author: '作者大大',
             time: '2021-11-11'
         }, {
             link: '/news/123',
-            img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
             title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
             content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
             author: '作者大大',

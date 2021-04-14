@@ -14,7 +14,7 @@ export function editor_uploadimg(parentId: string | HTMLElement, {
     } else {
         parentdom = (<HTMLElement>parentId).querySelector('.edui-for-insertimage')
     }
-    return uploadfilefn(parentdom, {
+    return uploadfilefn(parentdom.querySelector('.uploadfileinput'), {
         success,
         error,
         progress
@@ -32,7 +32,7 @@ export function editor_uploadvideo(parentId: string | HTMLElement, {
     } else {
         parentdom = (<HTMLElement>parentId).querySelector('.edui-for-insertvideo')
     }
-    return uploadfilefn(parentdom, {
+    return uploadfilefn(parentdom.querySelector('.uploadfileinput'), {
         success,
         error,
         progress

@@ -1,0 +1,14 @@
+
+{# 个人中心头部 #}
+{% macro usertitle(args = {
+  link: '#',
+  icon: "&#xE003;",
+  title: "销售信息"
+}) %}
+  <div class="usertitle">
+    <a href="{{args.link}}">
+      <i class="iconfont_wlzj">{{args.icon | safe}}</i>
+      <span>{{args.title}}</span>
+    </a>
+  </div>
+{% endmacro %}

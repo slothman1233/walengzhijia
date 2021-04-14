@@ -3,7 +3,7 @@
 @import (less) "../../components/navigationbar/index.less";
 @import "/node_modules/@stl/kkpager/dist/index.css";
 
-.userindex {
+#usermain {
   min-height: 730px;
 
   .usernavigationbar {
@@ -48,7 +48,11 @@
         }
       }
 
-
+      #systematic_kkpage {
+        margin    : @space_3 0 @space_5 0;
+        text-align: center;
+        .kkpager()
+      }
     }
 
     .interaction {
@@ -110,15 +114,15 @@
         }
       }
 
-
+      #interaction_kkpage {
+        margin    : @space_3 0 @space_5 0;
+        text-align: center;
+        .kkpager()
+      }
     }
 
 
   }
 
-  #kkpage {
-    margin    : @space_3 0 @space_5 0;
-    text-align: center;
-    .kkpager()
-  }
+ 
 }

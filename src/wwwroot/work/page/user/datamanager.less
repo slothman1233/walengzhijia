@@ -1,0 +1,223 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+@import (reference) "../../public/style/common/Animation.less";
+@import (less) "../../components/navigationbar/index.less";
+@import "/node_modules/@stl/kkpager/dist/index.css";
+
+#usermain {
+  min-height: 730px;
+
+  .usernavigationbar {
+    padding: 0 @space_3;
+    .box-sizing();
+
+    .list {
+      padding-left: @space_3;
+      right       : 160px !important;
+    }
+
+    &>a {
+      display         : none;
+      width           : 130px;
+      height          : 38px;
+      margin          : 13px 0;
+      line-height     : 38px;
+      text-align      : center;
+      background-color: @color_theme_c0;
+      .border-radius(2px);
+    }
+  }
+
+
+  .box {
+    @leftwidth: 130px;
+    margin    : @space_3 @space_4;
+
+    .basic {
+      .title {
+        width      : @leftwidth;
+        color      : @color_main_c1;
+        font-size  : @font_size_16;
+        line-height: @line_height;
+        padding    : @space_2 0;
+        float      : left;
+      }
+
+      .basic_box {
+        margin-left: @leftwidth;
+
+        .child {
+
+          border-bottom: 1px solid @color_grey_line1;
+          font-size    : @font_size_14;
+          line-height  : @line_height;
+          align-items  : center;
+          .flex();
+          .justifyContent("space-between");
+
+          &>p {
+            padding: @space_2 0;
+            width  : 120px;
+            color  : @color_gray_c1;
+
+          }
+
+          &>a {
+            padding   : @space_2 0;
+            display   : block;
+            text-align: right;
+            width     : 100px;
+            color     : @color_link;
+            position  : relative;
+
+            input {
+              position: absolute;
+              display : block;
+              width   : 100%;
+              height  : 100%;
+              top     : 0;
+              left    : 0;
+              z-index : 10;
+              cursor  : pointer;
+              .opacity(0);
+            }
+          }
+
+
+
+          &>a.submit {
+            display: none;
+          }
+
+          &>div.padding {
+            padding: @space_2 0;
+          }
+
+          &>div {
+            .flexSize(1);
+            padding: @space_2 0;
+
+            img {
+              display: block;
+              height : 100px;
+            }
+          }
+
+          &>div.textarea[contenteditable='plaintext-only'] {
+            border: 1px solid @color_grey_line1;
+            .border-radius(2px);
+            background: none;
+            padding   : @space_1 @space_2;
+            margin    : @space_1 0;
+            width     : 100%;
+          }
+
+
+        }
+
+
+        .logo {
+          &>div {
+            img {
+              float: left;
+              width: 150px;
+            }
+
+            p {
+              float   : left;
+              color   : @color_gray_c2;
+              position: relative;
+              top     : 79px;
+            }
+          }
+        }
+
+      }
+    }
+
+    .market {
+
+      .empty {
+        text-align: center;
+        margin-top: 200px;
+
+        p {
+          font-weight: @font_weight;
+          font-size  : @font_size_20;
+          line-height: @line_height;
+          color      : @color_gray_c3;
+        }
+
+
+        a {
+          display         : inline-block;
+          width           : 130px;
+          height          : 38px;
+          margin          : 13px 0;
+          line-height     : 38px;
+          text-align      : center;
+          background-color: @color_theme_c0;
+          .border-radius(2px);
+        }
+
+      }
+
+      .child {
+        @height      : 96px;
+        position     : relative;
+        padding      : 12px 0 26px 0;
+        border-bottom: 1px solid @color_grey_line1;
+
+        img {
+          @size   : 64px;
+          height  : @size;
+          width   : @size;
+          position: absolute;
+          left    : 0;
+          top     : 25px;
+          .border-radius(50%);
+        }
+
+        .c {
+          padding: 0 100px 0 64 + @space_3;
+
+          h3 {
+            color        : #000;
+            font-size    : @font_size_20;
+            line-height  : 28px;
+            margin-bottom: 4px;
+          }
+
+          p {
+            font-size  : @font_size_12;
+            line-height: @line_height;
+            color      : @color_gray_c1;
+
+            span {
+              display     : block;
+              float       : left;
+              margin-right: @space_4;
+            }
+          }
+
+          .createtime {
+            margin-top: @space_3;
+          }
+        }
+
+        .r {
+          position: absolute;
+          right   : 0;
+          top     : 20px;
+
+          a {
+            display      : block;
+            color        : @color_gray_c2;
+            font-size    : @font_size_14;
+            line-height  : @line_height;
+            margin-bottom: 4px;
+          }
+        }
+      }
+    }
+  }
+}

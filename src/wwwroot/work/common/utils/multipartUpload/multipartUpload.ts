@@ -106,7 +106,7 @@ async function multi(file: File, filename: string, { success, error }: optionsTy
             tempCheckpoint: cacheAry[filename].tempCheckpoint,
         }))
 
-        success(result.res.requestUrls[0])
+        success(result.res.requestUrls[0].split('?')[0])
         cacheAry[filename].url = result.res.requestUrls[0]
         cacheAry[filename].state = true
     } catch (e) {

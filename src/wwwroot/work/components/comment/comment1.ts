@@ -42,7 +42,7 @@ export function comment1fn(parentId: string | HTMLElement, callback: callbacks) 
             args: [{
                 username: 'fff',
                 userid: '123213',
-                userhread: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                userhread: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                 createtime: '2021-11-11',
                 content: input.value,
                 praise: '2000'
@@ -147,7 +147,7 @@ export function comment1fn(parentId: string | HTMLElement, callback: callbacks) 
                     parentId: parentId === 0 ? userid : parentId,
                     username: 'fff',
                     userid: '123213',
-                    userhread: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                    userhread: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
                     createtime: '2021-11-11',
                     content: value,
                     praise: '2000',

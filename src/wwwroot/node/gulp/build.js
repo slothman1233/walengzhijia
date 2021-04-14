@@ -13,10 +13,15 @@ let paths = {
         getSrc('./search/index.ts'),
         getSrc('./home/agreement.ts'),
         getSrc('./news/reputation.ts'),
-        getSrc('./user/index.ts')
+        getSrc('./user/index.ts'),
+        getSrc('./user/datamanager.ts'),
+        getSrc('./user/product.ts'),
+        getSrc('./user/content.ts'),
+        getSrc('./user/information.ts'),
+        getSrc('./user/changepwd.ts'),
+        getSrc('./user/news.ts'),
+        getSrc('./user/sales.ts')
 
-        
-        
     ]
 }
 //获取文件的绝对地址
