@@ -51,6 +51,11 @@ function tostaticviews() {
         .pipe(dest('dist/views'))
 }
 
+function tostaticcommonasets() {
+    return src(['src/common/assets/**/*'])
+        .pipe(dest('dist/common/assets'))
+}
+
 
 
 
@@ -75,7 +80,7 @@ function runNodemon(done) {
     })
 }
 
-const build = series(clean, toJs, tostaticfile, tostaticviews, topm2config, tostaticwwwroot, tostaticwwwrootstatic)
+const build = series(clean, toJs, tostaticfile, tostaticviews, topm2config, tostaticwwwroot, tostaticwwwrootstatic, tostaticcommonasets)
 task('build', build)
 task('default', runNodemon)
 exports.build = build
