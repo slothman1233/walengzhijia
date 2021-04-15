@@ -1,0 +1,273 @@
+{% extends "../shared/layout/simpleLayout.njk" %}
+
+{% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar2,
+usernavigationbar %}
+{% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
+{% from "../shared/sharedView/macro/components/title.njk" import usertitle %}
+{% from "../shared/sharedView/macro/components/editor/index.njk" import editor %}
+
+{% block title %}
+54123123213333
+{% endblock title %}
+
+{% block keywords %}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="/assets/plugin/ueditor/editor/iconfont.css">
+  <link href="/assets/plugin/laydate/theme/default/laydate.css" rel="stylesheet">
+  <link href="/dist/styles/user/publishproduct.css" rel="stylesheet">
+{% endblock style %}
+
+{% block script %}
+  <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
+  <script type="text/javascript" src="/assets/plugin/ueditor/dist/ueditor.config.js"></script>
+  <script type="text/javascript" src="/assets/plugin/ueditor/dist/ueditor.all.js"></script>
+  <script type="text/javascript" src="/assets/plugin/laydate/laydate.js"></script>
+  <script type="text/javascript" src="/dist/scripts/user/publishproduct.js"></script>
+{% endblock script %}
+
+{% block body %}
+  <div id="usermain">
+    <div class="titlect">
+      {{usertitle({
+          link: '/user/product',
+          icon: "&#xE01D;",
+          title: "发布产品"
+        })}}
+    </div>
+
+    <div class="box">
+      <div class="basicinfo">
+        <div class="title">
+        填写产品基本信息
+        </div>
+
+        <div class="container">
+          <div class="row clearfix">
+            <p>产品分类<span>*</span></p>
+            <div class="s1" id="s1">{{selectOption()}}</div>
+          </div>
+          <div class="labels">
+            <div class="row clearfix">
+              <p>细节标签<span>*</span></p>
+              <div class="Detailslabel">
+                <span>标签<i class="iconfont_wlzj">&#xE007;</i>
+                </span>
+                <span>标签<i class="iconfont_wlzj">&#xE007;</i>
+                </span>
+                <span>标签<i class="iconfont_wlzj">&#xE007;</i>
+                </span>
+              </div>
+
+            </div>
+            <p class="clearfix">请选择产品的二级分类标签，如没有对应的标签，可选择“其它”或“添加标签”</p>
+            <div class="list clearfix">
+              {% set list_data = [
+                {
+                  name: "发的所发生的阿斯蒂芬",
+                  id: "123123"
+                }, {
+                  name: "发的所发生的阿斯蒂芬",
+                  id: "123123"
+                }, {
+                  name: "发的所发生的阿斯蒂芬",
+                  id: "123123"
+                }, {
+                  name: "发的所发生的阿斯蒂芬",
+                  id: "123123"
+                }, {
+                  name: "发的所发生的阿斯蒂芬",
+                  id: "123123"
+                }, {
+                  name: "发的所发生的阿斯蒂芬",
+                  id: "123123"
+                }, {
+                  name: "发的所发生的阿斯蒂芬",
+                  id: "123123"
+                }, {
+                  name: "发的所发生的阿斯蒂芬",
+                  id: "123123"
+                }, {
+                  name: "发的所发生的阿斯蒂芬",
+                  id: "123123"
+                }
+              ] %}
+
+              {% for item in list_data %}
+                <span data-id="{{item.id}}">{{item.name}}</span>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <p>产品名称<span>*</span></p>
+            <input placeholder="请输入产品名称"/>
+          </div>
+
+          <div class="row clearfix">
+            <p>上市时间<span>*</span></p>
+            <div class="input">
+              <input type="text" placeholder="选择日期" id="purchastime" lay-key="1">
+              <i class="iconfont_wlzj">&#xE00C;</i>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="product">
+        <div class="title clearfix">
+          <div class="clearfix">填写产品基本信息</div>
+          <div class="ct">
+          在下方表格中填入产品参数，也可以<a href="#">点此下载模版</a>，将产品详细参数填入模版中，然后点击右边的上传文件</div>
+          <div class="updatefile">
+            <span>上传文件</span>
+            <input type="file" value="上传文件"/>
+          </div>
+        </div>
+
+        <div class="table">
+          <table border="1">
+            <tr>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+            </tr>
+            <tr>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+            </tr>
+            <tr>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+            </tr>
+            <tr>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+            </tr>
+            <tr>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+            </tr>
+            <tr>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+              <td contenteditable="plaintext-only"></td>
+            </tr>
+          </table>
+
+          <div class="add">
+             +
+          </div>
+        </div>
+
+      </div>
+
+      <div class="summary">
+        <div class="title">
+          填写产品概要
+          <p>产品概要是潜在客户了解产品的主要途径之一，请认真填写</p>
+        </div>
+
+        {{editor({
+            documentname: "ue",
+            id: "edit_container",
+            editor: {
+            toolbars: [[ "undo","redo",'bold', "underline",  'insertimage','insertvideo'
+            ]],
+            initialFrameWidth: '100%',
+            initialFrameHeight: '303',
+            autoHeightEnabled: false
+          }
+        })}}
+
+      </div>
+
+      <div class="productimg">
+        <div class="title">
+          <span>产品图片</span>
+          <p>请尽量多的上传多的产品图片，以方便潜在客户更好的了解贵公司的产品</p>
+          <p>后续如需继续更新图片，可在“公司图片管理”模块继续添加或修改图片内容</p>
+        </div>
+
+        <div class="imglist clearfix">
+          <div class="child clearfix">
+            <p>产品外观图</p>
+            <div class="uploadimg">
+              <div class="uploadfile">
+                <div>
+                  <p>点此添加封面</p>
+                </div>
+                <input class="uploadfileinput" type="file">
+              </div>
+              <p>外观图（图片比例 3:2）</p>
+              <p style="color:rgba(37, 191, 80, 1)">成功上传8张</p>
+            </div>
+          </div>
+          <div class="child clearfix">
+            <p>产品细节图</p>
+            <div class="uploadimg">
+              <div class="uploadfile">
+                <div>
+                  <p>点此添加封面</p>
+                </div>
+                <input class="uploadfileinput" type="file">
+              </div>
+              <p>外观图（图片比例 3:2）</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class='uploadproduct'>
+        <div class="imglist clearfix">
+          <div class="child clearfix">
+            <p>产品封面</p>
+            <div class="uploadimg">
+              <div class="uploadfile">
+                <div>
+                  <p>点此添加封面</p>
+                </div>
+                <input class="uploadfileinput" type="file">
+              </div>
+              <p>产品封面图会展示在多个位置，请选择优秀的照片作为封面（封面比例为 4:3）</p>
+            </div>
+          </div>
+          <div class="child clearfix">
+            <p>产品视频</p>
+            <div class="uploadimg">
+              <div class="uploadfile">
+                <div>
+                  <p>点此添加视频</p>
+                </div>
+                <input class="uploadfileinput" type="file">
+              </div>
+              <p>请上传该产品的介绍视频</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="submit">
+        <a href="javascript:(0)">立即发布</a>
+        <a href="javascript:(0)" class="drafts">保存草稿</a>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock body %}

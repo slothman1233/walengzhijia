@@ -27,7 +27,7 @@ usernavigationbar %}
     {{ usernavigationbar({
             isMore: true,
             MoreText: "发布新闻",
-            link: "/user/sales/1/222",
+            link: "/user/publishnews",
             isSelect: tabType,
             data: [
                {
@@ -164,7 +164,7 @@ usernavigationbar %}
         {% else %}
           <div class="empty">
             <p>还未发布新闻</p>
-            <a href="#">点击发布新闻</a>
+            <a href="/user/publishnews">点击发布新闻</a>
           </div>
         {% endif %}
 

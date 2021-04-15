@@ -78,6 +78,24 @@ export default class User {
         })
     }
 
+    @get('/publishproduct')
+    async publishproduct(ctx: Context, next: Next) {
+        let { notificationType, pageIndex } = ctx.params
+        await ctx.render('user/publishproduct', {
+
+        })
+    }
+
+    @get('/publishnews')
+    async publishnews(ctx: Context, next: Next) {
+        let { notificationType, pageIndex } = ctx.params
+        await ctx.render('user/publishnews', {
+
+        })
+    }
+    
+     
+
 }
 
 
