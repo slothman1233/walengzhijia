@@ -14,11 +14,11 @@ export interface ProductTypeModel {
 
 /**
  *  产品分类下面的标签分类
- * @param {number} productTypeDetailId 产品分类，二级分类
+ * @param {number} productTypeId 产品分类，二级分类
  * @param {string} productTypeDetail 产品分类标签分类
  */
 export interface ProductTypeDetailModel {
-  productTypeDetailId: number
+  productTypeId: number
   productTypeDetail: string
 }
 

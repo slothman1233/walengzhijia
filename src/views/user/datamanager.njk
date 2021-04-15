@@ -28,7 +28,7 @@
     {{ usernavigationbar({
             isMore: true,
             MoreText: "+ 添加销售",
-            link: "/user/sales/1/222",
+            link: "/user/sales/2/222",
             isSelect: tabType,
             data: [
                {
@@ -125,7 +125,7 @@
         {% set marketData = [
             {
               hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-              name:"销售名称",
+              name:"销售名称1",
               management:"销售经理",
               functional:"负责内容",
               worktime:"10",
@@ -134,7 +134,7 @@
             },
             {
               hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-              name:"销售名称",
+              name:"销售名称2",
               management:"销售经理",
               functional:"负责内容",
               worktime:"10",
@@ -142,7 +142,7 @@
             },
             {
               hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-              name:"销售名称",
+              name:"销售名称3",
               management:"销售经理",
               functional:"负责内容",
               worktime:"10",
@@ -174,8 +174,8 @@
               </div>
               <div class="r">
                 <a href="/user/sales/2/{{item.id}}">修改</a>
-                <a href="javascript:(0)">删除</a>
-                <a href="javascript:(0)" style='display:{{ (loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
+                <a href="javascript:(0)" data-id="{{item.id}}" class="del">删除</a>
+                <a href="javascript:(0)" data-id="{{item.id}}" class="stick" style='display:{{ (loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
               </div>
             </div>
           {% endfor %}

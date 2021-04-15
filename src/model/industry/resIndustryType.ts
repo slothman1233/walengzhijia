@@ -10,14 +10,14 @@ import { bodyModel } from '../resModel'
  * @param {string} productType 行业分类大类
  */
 export interface ResIndustryTypeModel {
-  industryId: number
+  industryId?: number
   industryName: string
   productType: ResProductTypeModel
 }
 
 
 /**
- * 产品类型返回模型的bodyModel模型
+ * 产品类型返回的bodyModel模型
  */
 export interface ResIndustryTypeModelListReturnModel extends bodyModel<ResIndustryTypeModel[]>{
 

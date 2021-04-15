@@ -17,6 +17,7 @@
 
 {% block script %}
   <script>
+    //type 1 是新增 2 是修改
     var type = {{type}}
     var userid = {{userid}}
   </script>
@@ -28,7 +29,11 @@
 
   <div id="usermain">
     <div class="title">
-      {{usertitle()}}
+      {{usertitle({
+          link: '/user/datamanager/2',
+          icon: "&#xE01D;",
+          title: "销售信息"
+        })}}
     </div>
 
     <div class="box">
@@ -48,7 +53,7 @@
           })}}
       </div>
 
-      <div class="content">
+      <div class="sales_content">
 
         <div class="child clearfix">
           <p>姓名：</p>
@@ -60,7 +65,7 @@
           <p>头像：</p>
           <div class="padding"><img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0"></div>
           <a href="javascript:void(0)">
-            更换头像
+            上传头像
             <input type="file" class="uploadfileinput" multiple="multiple" accept="image/*">
           </a>
         </div>
@@ -85,8 +90,11 @@
 
       </div>
     </div>
-    <div class="submit">
-      <a href="javascript:void(0)">保存</a>
-    </div>
+    {% if type == 1 %}
+      <div class="sales_submit">
+        <a href="javascript:void(0)">保存</a>
+      </div>
+    {% endif %}
+
   </div>
 {% endblock body %}

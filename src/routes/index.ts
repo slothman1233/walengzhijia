@@ -15,7 +15,7 @@ import { nunRender, nunRenderMacroString } from '../common/nunjucks'
 // import * as map from './map'
 import { writeFile, EnsureFile, readFile, moveFile, copyFile } from '../common/utils/file'
 import Business from './business'
-import managelepackproduct from '../services/managelepackproduct.services'
+import Products from '../services/Product.services'
 import { GetProductIndustryByIndustry } from '../controller/product.controller'
 import { ResIndustryTypeModel } from '../model/industry/resIndustryType'
 // import Business from './list'
@@ -107,7 +107,7 @@ export default class Index {
     async business(ctx: Context, next: Next) {
         let { id } = ctx.params
         debugger
-        let data = await managelepackproduct.AddProductType({
+        let data = await Products.AddProductType({
             industryId: 1,
             productType: '123',
             productTypeIcon: '11'

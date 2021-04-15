@@ -20,6 +20,10 @@
 }
 
 
+.icon-Arrow:before {
+	content: "\E01D";
+}
+
 .icon-center:before {
 	content: "\E001";
 }

@@ -1,3 +1,4 @@
+import { ValidateCodeDefine } from '../../enums/enums'
 
 
 /**
@@ -25,3 +26,41 @@ export interface LepackUserModel {
   phoneNumber: string
   createUser: number
 }
+
+/**
+ * 用户注册
+ * @param {string} userName 用户名，检查唯一性
+ * @param {string} phoneNumber 手机号码
+ * @param {string} validateCode   验证码
+ * @param {string} userPwd 用户密码
+ */
+export interface LepackUserRegisterModel {
+  userName: string
+  phoneNumber: string
+  validateCode: string
+  userPwd: string
+}
+
+
+/**
+ * 用户登录模型
+ * @param {string} phoneNumber 手机号码
+ * @param {number} validateCode 验证码
+ */
+export interface LepackUserLoginModel {
+  phoneNumber: string
+  validateCode: number
+}
+
+/**
+ * 用户发送验证码模型
+ * @param {string} phoneNumber 手机号码
+ * @param {number} validateCode 验证码
+ * @param {ValidateCodeDefine} validateCodeType 验证码类型
+ */
+export interface LepackUserValidateModel {
+  phoneNumber: string
+  validateCode?: number
+  validateCodeType?: ValidateCodeDefine
+}
+

@@ -51,74 +51,7 @@
         }
       }
 
-      .child_box {
-        margin-top: @space_1;
-
-        .child {
-          @height : 100px;
-
-          position     : relative;
-          padding      : @space_2 0 12px 0;
-          border-bottom: 1px solid @color_grey_line1;
-
-          img {
-            height  : @height;
-            display : block;
-            width   : 150px;
-            position: absolute;
-            left    : 0;
-            top     : 16px;
-          }
-
-          .c {
-            padding: 0 100px 0 162px;
-            height : @height;
-
-            h3 {
-              color        : #000;
-              font-size    : @font_size_20;
-              line-height  : 28px;
-              margin-bottom: 4px;
-            }
-
-            p {
-              font-size  : @font_size_12;
-              line-height: @line_height;
-              color      : @color_gray_c1;
-
-              span {
-                display         : block;
-                float           : left;
-                margin-right    : @space_2;
-                background-color: @color_grey_line;
-                height          : 24px;
-                line-height     : 24px;
-                color           : @color_gray_c1;
-                padding         : 0 @space_1;
-                .border-radius(2px);
-              }
-            }
-
-            .createtime {
-              margin-top: @space_3;
-            }
-          }
-
-          .r {
-            position: absolute;
-            right   : 0;
-            top     : 20px;
-
-            a {
-              display      : block;
-              color        : @color_gray_c2;
-              font-size    : @font_size_14;
-              line-height  : @line_height;
-              margin-bottom: 4px;
-            }
-          }
-        }
-      }
+      .child_boxs();
 
       #publish_kkpage {
         margin    : @space_3 0 @space_5 0;
@@ -128,6 +61,119 @@
 
     }
 
+    .drafts {
+      .child_boxs();
+
+      .child_box {
+        position: relative;
+        top     : -16px;
+      }
+
+      #drafts_kkpage {
+        margin    : @space_3 0 @space_5 0;
+        text-align: center;
+        .kkpager()
+      }
+    }
+
   }
 
+}
+
+.child_boxs() {
+
+  .child_box {
+    margin-top: @space_1;
+
+    .child {
+      @height : 100px;
+
+      position     : relative;
+      padding      : @space_2 0 12px 0;
+      border-bottom: 1px solid @color_grey_line1;
+
+      img {
+        height  : @height;
+        display : block;
+        width   : 150px;
+        position: absolute;
+        left    : 0;
+        top     : 16px;
+      }
+
+      .c {
+        padding: 0 100px 0 162px;
+        height : @height;
+
+        h3 {
+          color        : #000;
+          line-height  : 28px;
+          height       : 28px;
+          margin-bottom: 4px;
+
+
+          p {
+            float    : left;
+            max-width: 550px;
+            font-size: @font_size_20;
+            .ellipsis();
+
+          }
+
+          span {
+            display         : inline-block;
+            background-color: rgba(255, 227, 201, 1);
+            color           : rgba(248, 104, 0, 1);
+            font-size       : @font_size_12;
+            line-height     : @line_height;
+            margin-left     : 4px;
+            padding         : 0 4px;
+          }
+
+
+        }
+
+        p {
+          font-size  : @font_size_12;
+          line-height: @line_height;
+          color      : @color_gray_c1;
+
+          &.label span {
+            display         : block;
+            float           : left;
+            margin-right    : @space_2;
+            background-color: @color_grey_line;
+            height          : 24px;
+            line-height     : 24px;
+            color           : @color_gray_c1;
+            padding         : 0 @space_1;
+            .border-radius(2px);
+          }
+        }
+
+        .createtime {
+          margin-top: @space_3;
+
+          span {
+            margin-right: @space_3;
+          }
+        }
+      }
+
+      .r {
+        position: absolute;
+        right   : 0;
+        top     : 20px;
+
+        a {
+          text-align   : right;
+          display      : block;
+          color        : @color_gray_c2;
+          font-size    : @font_size_14;
+          line-height  : @line_height;
+          margin-bottom: 4px;
+        }
+      }
+    }
+  }
 }

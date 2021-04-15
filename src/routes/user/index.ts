@@ -36,21 +36,21 @@ export default class User {
 
 
 
-    @get('/product/:tabType?/:publishtabType?/:pageIndex?')
+    @get('/product/:tabType?/:pageIndex?')
     async product(ctx: Context, next: Next) {
-        let { tabType, publishtabType, pageIndex } = ctx.params
+        let { tabType, pageIndex } = ctx.params
         await ctx.render('user/product', {
             tabType: tabType || 1,
-            publishtabType: publishtabType || 1,
             pageIndex: pageIndex || 1
         })
     }
 
-    @get('/news')
+    @get('/news/:tabType?/:pageIndex?')
     async news(ctx: Context, next: Next) {
-        let { notificationType, pageIndex } = ctx.params
+        let { tabType, pageIndex } = ctx.params
         await ctx.render('user/news', {
-
+            tabType: tabType || 1,
+            pageIndex: pageIndex || 1
         })
     }
 

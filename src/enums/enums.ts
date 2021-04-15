@@ -45,3 +45,18 @@ export enum CacheTime {
   Second3 = 3,
   Second1 = 1
 }
+
+
+/**
+ * 验证码枚举
+ * 1:注册
+ * 2:登录
+ * 3:修改用户信息
+ * 4:忘记密码
+ */
+export enum ValidateCodeDefine {
+  Register = 1,
+  Login = 2,
+  UpdateUser = 3,
+  Forgot = 4
+}
