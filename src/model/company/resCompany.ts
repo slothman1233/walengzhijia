@@ -1,3 +1,4 @@
+import { ResCompanyInfoIndexPageModel } from '../product/resproductType'
 import { bodyModel } from '../resModel'
 
 
@@ -62,16 +63,11 @@ export interface ResReputationModel {
  * @param {ResReputationModel} reputation 口碑概要信息
  * @param {string[]} companyLabels 公司标签
  */
-export interface ResCompanyHotModel {
+export interface ResCompanyHotModel extends ResCompanyInfoIndexPageModel{
 
-  companyId?: number
-  fullName: string
-  abbrName: string
-  logo: string
-  companySort?: number
-  reputation?: ResReputationModel
-  companyLabels: string[]
 }
+
+
 
 /**
  * 热门板块-公司信息返回的bodyModel模型
@@ -81,7 +77,7 @@ export interface ResCompanyHotModel {
  * @param {string} logo 公司封面图
  * @param {number} companySort 排序
  * @param {ResReputationModel} reputation 口碑概要信息
- * @param {string[]} companyLabels 公司标签
+ * @param {string} companyLabels 公司标签
  */
 export interface ResCompanyHotModelListReturnModel extends bodyModel<ResCompanyHotModel[]>{
 

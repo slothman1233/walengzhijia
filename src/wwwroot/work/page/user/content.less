@@ -1,0 +1,118 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+@import (reference) "../../public/style/common/Animation.less";
+@import (less) "../../components/navigationbar/index.less";
+@import "/node_modules/@stl/kkpager/dist/index.css";
+
+#usermain {
+  min-height: 730px;
+
+  .usernavigationbar {
+    padding      : 0 @space_3;
+    margin-bottom: @space_3;
+    .box-sizing();
+
+    .list {
+      padding-left: @space_3;
+      right       : 160px !important;
+    }
+
+    // &>a {
+    //   width           : 130px;
+    //   height          : 38px;
+    //   margin          : 13px 0;
+    //   line-height     : 38px;
+    //   text-align      : center;
+    //   background-color: @color_theme_c0;
+    //   .border-radius(2px);
+    // }
+  }
+
+  .box {
+    padding: 0 @space_4;
+
+    .questions,.kb {
+      .container {
+        .child {
+          padding      : @space_2 0;
+          line-height  : @line_height;
+          border-bottom: 1px solid @color_grey_line1;
+
+          .l {
+            margin-right: 50px;
+
+            .title {
+              color    : @color_main_c1;
+              font-size: @font_size_16;
+
+            }
+
+            &>i {
+              display      : block;
+              color        : @color_gray_c1;
+              font-size    : @font_size_12;
+              margin-bottom: @space_2;
+            }
+
+            p {
+              span {
+                color       : @color_main_c1;
+                font-size   : @font_size_14;
+                margin-right: @space_3;
+
+                i {
+
+                  margin-left: 4px;
+                }
+              }
+            }
+          }
+
+          .r {
+            float     : right;
+            margin-top: 20px;
+
+            a {
+              display      : block;
+              color        : @color_gray_c2;
+              font-size    : @font_size_14;
+              margin-bottom: 12px;
+            }
+          }
+        }
+      }
+
+      #questions_kkpage,#kb_kkpage {
+        margin    : @space_3 0 @space_5 0;
+        text-align: center;
+        .kkpager()
+      }
+
+      .empty {
+        text-align: center;
+        margin-top: 200px;
+
+        p {
+          font-weight: @font_weight;
+          font-size  : @font_size_20;
+          line-height: @line_height;
+          color      : @color_gray_c3;
+        }
+
+
+        // a {
+        //   display         : inline-block;
+        //   width           : 130px;
+        //   height          : 38px;
+        //   margin          : 13px 0;
+        //   line-height     : 38px;
+        //   text-align      : center;
+        //   background-color: @color_theme_c0;
+        //   .border-radius(2px);
+        // }
+
+      }
+    }
+
+
+  }
+}

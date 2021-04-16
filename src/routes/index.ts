@@ -16,8 +16,13 @@ import { nunRender, nunRenderMacroString } from '../common/nunjucks'
 import { writeFile, EnsureFile, readFile, moveFile, copyFile } from '../common/utils/file'
 import Business from './business'
 import Products from '../services/Product.services'
-import { GetProductIndustryByIndustry } from '../controller/product.controller'
+import { GetIndexPageProduct, GetProductIndustryByIndustry } from '../controller/product.controller'
 import { ResIndustryTypeModel } from '../model/industry/resIndustryType'
+import { GetCompanyHot } from '../controller/company.controller'
+import { ResCompanyInfoIndexPageModel, ResProductIndexPageModel } from '../model/product/resproductType'
+import { ResCompanyHotModel } from '../model/company/resCompany'
+import { GetNewsList } from '../controller/news.controller'
+import { ResNewsModel } from '../model/news/resNews'
 // import Business from './list'
 
 
@@ -34,8 +39,43 @@ export default class Index {
     async home(ctx: Context) {
         //行业信息
         let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
+
+        //首页中显示热门公司品牌，根据产品ID类型来获得公司产品信息
+        let GetCompanyHotData = await GetCompanyHot()
+        let companyHotData: ResProductIndexPageModel = {
+            productTypeId: 0,
+            sort: 0,
+            productTypeName: '热门品牌',
+            companyInfo: GetCompanyHotData || []
+        }
+
+        //获得首页板块分类公司信息（除热门信息以外的）
+        let GetIndexPageProductData = await GetIndexPageProduct()
+
+        //首页分类公司信息 组合
+        let brandDataAll: ResProductIndexPageModel[] = []
+        brandDataAll.push(companyHotData, ...GetIndexPageProductData)
+
+        let brandData: { title: any[], data: ResCompanyInfoIndexPageModel[][] } = { title: [], data: [] }
+        brandDataAll.forEach(item => {
+            brandData.title.push({ id: item.productTypeId, sort: item.sort, title: item.productTypeName, nlink: `/list/${item.productTypeId}` })
+            brandData.data.push(item.companyInfo)
+        })
+
+        //------------------------------------------------------------------------------------------------------------------
+
+
+        let HotNews: ResNewsModel[] = await GetNewsList()
+        let newList: any[] = []
+
+        HotNews.forEach(item => {
+            newList.push({ id: item.newsId, title: item.newsTitle })
+        })
+
         await ctx.render('index', {
-            productTypeData: productTypeData[0].productType
+            productTypeData: productTypeData[0].productType,
+            brandData,
+            newList
         })
     }
 
@@ -45,9 +85,9 @@ export default class Index {
         let { productid, sortid, pageIndex } = ctx.params
         //行业信息
         let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
-          
+
         await ctx.render('list', {
-            productid: productid || 0,
+            productid: productid || 1,
             sortid: sortid || 0,
             pageIndex: pageIndex || 1,
             productTypeData: productTypeData[0].productType

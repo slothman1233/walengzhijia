@@ -118,4 +118,8 @@
 
 .icon-zan:before {
 	content: "\E018";
+}
+
+.icon-取消_错误:before {
+	content: "\E01E";
 }

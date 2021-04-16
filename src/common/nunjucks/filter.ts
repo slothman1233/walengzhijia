@@ -32,6 +32,14 @@ export default {
         } else {
             return str
         }
+    },
+    //split
+    'split': function (str: string, decollator: string) {
+        try {
+            return str.split(decollator)
+        } catch (e) {
+            return str
+        }
     }
 
 }

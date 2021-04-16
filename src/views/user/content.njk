@@ -15,11 +15,147 @@
 {% endblock style %}
 
 {% block script %}
-
+  <script>
+    var tabType = {{tabType}}
+    var pageIndex = {{pageIndex}}
+  </script>
   <script type="text/javascript" src="/dist/scripts/user/content.js"></script>
 {% endblock script %}
 
 {% block body %}
- 
+
+  <div id="usermain">
+    {{ usernavigationbar({
+            isMore: false,
+            MoreText: "发布新产品",
+            link: "#",
+            isSelect: tabType,
+            data: [
+               {
+                title: "问答",
+                link: "javascript:(0)",
+                id: "1"
+              }, {
+                title: "口碑",
+                link: "javascript:(0)",
+                id: "1"
+              }
+            ]
+
+    }) }}
+
+    {% set contentData = [
+      {
+        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
+        createTime: "2020-08-01",
+        commentCount: 3333,
+        praiseCount: 55555
+      }, {
+        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
+        createTime: "2020-08-01",
+        commentCount: 3333,
+        praiseCount: 55555
+      }, {
+        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
+        createTime: "2020-08-01",
+        commentCount: 3333,
+        praiseCount: 55555
+      }, {
+        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
+        createTime: "2020-08-01",
+        commentCount: 3333,
+        praiseCount: 55555
+      }, {
+        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
+        createTime: "2020-08-01",
+        commentCount: 3333,
+        praiseCount: 55555
+      }, {
+        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
+        createTime: "2020-08-01",
+        commentCount: 3333,
+        praiseCount: 55555
+      }
+    ] %}
+
+    <div class="box">
+      <div class="questions" style='display:{{(tabType == 1) | ternary("block","none")}}'>
+        {% if contentData != null and contentData.length > 0 %}
+          <div class="container">
+            {% for item in contentData %}
+
+              <div class="child clearfix">
+                <div class="r">
+                  <a href="javascript:(0)">详情</a>
+                  <a href="javascript:(0)">删除</a>
+                </div>
+                <div class="l">
+                  <div class="child_title">
+                    {{item.content}}
+                  </div>
+                  <i>{{item.createTime}}</i>
+                  <p>
+                    <span>评论
+                <i>{{item.commentCount}}</i>
+                    </span>
+                    <span>赞
+                <i>{{item.praiseCount}}</i>
+                    </span>
+                  </p>
+                </div>
+
+              </div>
+            {% endfor %}
+          </div>
+
+          <div id="questions_kkpage"></div>
+
+        {% else %}
+          <div class="empty">
+            <p>暂无相关内容</p>
+          </div>
+        {% endif %}
+
+      </div>
+      <div class="kb" style='display:{{(tabType == 2) | ternary("block","none")}}'>
+        {% if contentData != null and contentData.length > 0 %}
+          <div class="container">
+            {% for item in contentData %}
+
+              <div class="child clearfix">
+                <div class="r">
+                  <a href="javascript:(0)">详情</a>
+                  <a href="javascript:(0)">删除</a>
+                </div>
+                <div class="l">
+                  <div class="child_title">
+                   123{{item.content}}
+                  </div>
+                  <i>{{item.createTime}}</i>
+                  <p>
+                    <span>评论
+                <i>{{item.commentCount}}</i>
+                    </span>
+                    <span>赞
+                <i>{{item.praiseCount}}</i>
+                    </span>
+                  </p>
+                </div>
+
+              </div>
+            {% endfor %}
+          </div>
+
+          <div id="kb_kkpage"></div>
+
+        {% else %}
+          <div class="empty">
+            <p>暂无相关内容</p>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
 
 {% endblock body %}

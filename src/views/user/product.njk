@@ -172,10 +172,20 @@ usernavigationbar %}
       </div>
 
       <div class="drafts" style='display:{{(tabType == 2) | ternary("block","none")}}'>
-        <div class="child_box">
-          {{productlist(2,publish)}}
-        </div>
-        <div id="drafts_kkpage"></div>
+
+        {% if publish != null and publish.length > 0%}
+          <div class="child_box">
+
+            {{productlist(2,publish)}}
+          </div>
+          <div id="drafts_kkpage"></div>
+        {% else %}
+          <div class="empty">
+            <p>还未发布产品</p>
+            <a href="/user/publishproduct">点击发布产品</a>
+          </div>
+        {% endif %}
+
       </div>
 
       <div class="havadel" style='display:{{(tabType == 3) | ternary("block","none")}}'>2</div>

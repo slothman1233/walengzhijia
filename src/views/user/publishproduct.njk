@@ -21,6 +21,7 @@ usernavigationbar %}
 {% endblock style %}
 
 {% block script %}
+  <script type="text/javascript" src="/assets/plugin/xlsx/xlsx.core.min.js"></script>
   <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
   <script type="text/javascript" src="/assets/plugin/ueditor/dist/ueditor.config.js"></script>
   <script type="text/javascript" src="/assets/plugin/ueditor/dist/ueditor.all.js"></script>
@@ -53,11 +54,11 @@ usernavigationbar %}
             <div class="row clearfix">
               <p>细节标签<span>*</span></p>
               <div class="Detailslabel">
-                <span>标签<i class="iconfont_wlzj">&#xE007;</i>
+                <span>标签<i class="iconfont_wlzj">&#xE01E;</i>
                 </span>
-                <span>标签<i class="iconfont_wlzj">&#xE007;</i>
+                <span>标签<i class="iconfont_wlzj">&#xE01E;</i>
                 </span>
-                <span>标签<i class="iconfont_wlzj">&#xE007;</i>
+                <span>标签<i class="iconfont_wlzj">&#xE01E;</i>
                 </span>
               </div>
 
@@ -122,10 +123,10 @@ usernavigationbar %}
         <div class="title clearfix">
           <div class="clearfix">填写产品基本信息</div>
           <div class="ct">
-          在下方表格中填入产品参数，也可以<a href="#">点此下载模版</a>，将产品详细参数填入模版中，然后点击右边的上传文件</div>
+          在下方表格中填入产品参数，也可以<a target="_blank" href="/assets/file/template.xlsx">点此下载模版</a>，将产品详细参数填入模版中，然后点击右边的上传文件</div>
           <div class="updatefile">
             <span>上传文件</span>
-            <input type="file" value="上传文件"/>
+            <input type="file"   id="imFile"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
           </div>
         </div>
 

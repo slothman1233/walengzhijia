@@ -1,6 +1,6 @@
 import { JSONParse } from '../common/utils/ModelHelper'
 import { ResIndustryTypeModel, ResIndustryTypeModelListReturnModel } from '../model/industry/resIndustryType'
-import { ResProductTypeModel, ResProductTypeModelListReturnModel } from '../model/product/resproductType'
+import { ResCompanyInfoIndexPageModel, ResProductIndexPageModel, ResProductIndexPageModelListReturnModel, ResProductTypeModel, ResProductTypeModelListReturnModel } from '../model/product/resproductType'
 import { bodyModel, ErrorModel } from '../model/resModel'
 
 import Products, { GetProductIndustryModel, GetProductTypeModel } from '../services/Product.services'
@@ -23,6 +23,15 @@ export async function GetProductIndustryByIndustry(id: number = 1): Promise<ResI
 export async function GetProductTypeByProductType(productType: number): Promise<ResProductTypeModel[] | null> {
     let rm = await GetProductTypeByProductTypeRm(productType)
     let models = JSONParse<ResProductTypeModel[] | null>(rm.code, rm.bodyMessage)
+    return models
+}
+
+/**
+* 获得首页板块分类公司信息
+*/
+export async function GetIndexPageProduct(): Promise<ResProductIndexPageModel[] | null> {
+    let rm = await GetIndexPageProductRm()
+    let models = JSONParse<ResProductIndexPageModel[] | null>(rm.code, rm.bodyMessage)
     return models
 }
 
@@ -50,3 +59,16 @@ export async function GetProductTypeByProductTypeRm(productType: number): Promis
     }
     return await Products.GetProductType(params).catch(data => data)
 }
+
+
+/**
+* 获得首页板块分类公司信息
+*/
+export async function GetIndexPageProductRm(): Promise<ResProductIndexPageModelListReturnModel> {
+
+    return await Products.GetIndexPageProduct().catch(data => data)
+}
+
+
+
+

@@ -54,11 +54,12 @@ export default class User {
         })
     }
 
-    @get('/content')
+    @get('/content/:tabType?/:pageIndex?')
     async content(ctx: Context, next: Next) {
-        let { notificationType, pageIndex } = ctx.params
+        let { tabType, pageIndex } = ctx.params
         await ctx.render('user/content', {
-
+            tabType: tabType || 1,
+            pageIndex: pageIndex || 1
         })
     }
 
@@ -93,8 +94,8 @@ export default class User {
 
         })
     }
-    
-     
+
+
 
 }
 

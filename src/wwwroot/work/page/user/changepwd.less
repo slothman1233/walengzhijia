@@ -1,0 +1,166 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+@import (reference) "../../public/style/common/Animation.less";
+@import (less) "../../components/navigationbar/index.less";
+
+#simplelayoutmain #simplelayoutright {
+  background-color: transparent;
+}
+
+#usermain {
+  .box {
+    background-color: #FFF;
+    padding-bottom  : 100px;
+    margin-bottom   : @space_2;
+
+    .box_title {
+      padding      : 0 @space_2;
+      border-bottom: 1px solid @color_grey_line1;
+
+      .usernavigationbar {
+        border: none;
+
+        span {
+          border: none;
+        }
+      }
+    }
+
+    .container {
+      margin-top: @space_10;
+
+      .process_title {
+        line-height: @line_height;
+        text-align : center;
+
+        span {
+          color       : @color_gray_c2;
+          font-size   : @font_size_20;
+          margin-right: @space_2;
+
+          &.select {
+            color      : @color_rank;
+            font-weight: @font_weight;
+          }
+        }
+
+        i {
+          display         : inline-block;
+          width           : 49px;
+          height          : 2px;
+          background-color: @color_grey_line1;
+          position        : relative;
+          top             : -7px;
+          margin-right    : @space_2;
+        }
+      }
+
+      .content {
+        text-align  : center;
+        @rightwidth : 340px;
+        @leftwidth  : 100px;
+        width       : @rightwidth + @leftwidth + @space_2;
+        margin      : @space_9 auto 0 auto;
+
+        &>.child {
+          @size      : 40px;
+          text-align : center;
+          line-height: @size ;
+          color      : @color_main_c1;
+
+          margin-bottom: @space_3;
+
+
+          span {
+            display     : block;
+            float       : left;
+            width       : 100px;
+            margin-right: @space_2;
+            font-size   : @font_size_16;
+          }
+
+          &>div {
+            width: @rightwidth;
+            float: right;
+
+            input {
+              display: inline-block;
+              height : @size;
+              border : 1px solid #E3E3E3;
+              width  : @rightwidth;
+              padding: 0 @space_1;
+              .box-sizing();
+              .border-radius(2px);
+
+              &[disabled] {
+                background: #F0F0F0;
+              }
+            }
+
+            .validation {
+              width       : 232px;
+              margin-right: @space_1;
+              display     : block;
+              float       : left;
+            }
+
+            .getvalidation {
+              display    : block;
+              float      : right;
+              width      : @leftwidth;
+              border     : 1px solid @color_main_c1;
+              color      : @color_main_c1;
+              height     : @size;
+              line-height: @size;
+              
+              .box-sizing();
+              .border-radius(2px);
+            }
+
+            .next {
+              display         : block;
+              float           : right;
+              width           : @rightwidth;
+              line-height     : @size;
+              background-color: @color_subject;
+              color           : @color_main_c1;
+              text-align      : center;
+              .border-radius(2px);
+            }
+          }
+        }
+      }
+
+      .three {
+        @width : 188px;
+        @height: 40px;
+        width  : @width;
+        margin : 120px auto 0 auto;
+
+        p {
+          color        : @Status-Triumph;
+          font-size    : @font_size_24;
+          line-height  : @line_height;
+          font-weight  : @font_weight;
+          margin-bottom: @space_6;
+          text-align      : center;
+        }
+
+        a {
+          display         : block;
+          height          : @height;
+          line-height     : @height;
+          width           : 100%;
+          background-color: @color_subject;
+          color           : @color_main_c1;
+          text-align      : center;
+          .border-radius(2px);
+        }
+      }
+    }
+
+
+
+
+
+  }
+}

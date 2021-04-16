@@ -69,16 +69,16 @@ export interface ResProductIndexPageModel {
  * @param {string} logo 公司封面图
  * @param {number} companySort 排序
  * @param {ResReputationModel} reputation 口碑概要信息
- * @param {string[]} companyLabels 公司标签
+ * @param {string} companyLabels 公司标签
  */
 export interface ResCompanyInfoIndexPageModel {
-  companyId: number
+  companyId?: number
   fullName: string
   abbrName: string
   logo: string
   companySort: number
   reputation: ResReputationModel
-  companyLabels: string[]
+  companyLabels: string
 }
 
 /**

@@ -164,7 +164,7 @@ list1 %}
       {% endfor %}
     </div>
 
-    {% set brandData = [
+    {# {% set brandData = [
       [
 
         {
@@ -573,67 +573,54 @@ list1 %}
         }
 
       ]
-    ] %}
+    ] %} #}
 
     <div class="brand">
       <div class="row">
-   
-
 
         {{ navigationbar({
             isMore: true,
             MoreText: "更多>>",
-            link: "/list/0",
+            link: "/list/1",
             isSelect: "1",
-            data: [
-              {
-                title: "热门品牌",
-                link: "/list/0"
-              }, {
-                title: "热门品牌",
-                link: "/list/0"
-              }, {
-                title: "热门品牌",
-                link: "/list/0"
-              }, {
-                title: "热门品牌",
-                link: "/list/0"
-              }, {
-                title: "热门品牌",
-                link: "/list/0"
-              }, {
-                title: "热门品牌",
-                link: "/list/0"
-              }
-            ]
-
+            data: brandData.title
           }) }}
       </div>
 
       <div class="list_box">
+        {#  * 根据产品类型在首页获取公司信息集合
+ * @param {number} companyId 公司标识ID
+ * @param {string} fullName 公司全称
+ * @param {string} abbrName 公司简称
+ * @param {string} logo 公司封面图
+ * @param {number} companySort 排序
+ * @param {ResReputationModel} reputation 口碑概要信息
+           * @param {number} score 口碑评分
+           * @param {number} reputationCount 口碑数量
+ * @param {string[]} companyLabels 公司标签
+  #}
+        {% if (brandData.data != null) and (brandData.data.length > 0) %}
 
-        {% if (brandData != null) and (brandData.length > 0) %}
-
-          {% for items in brandData %}
+          {% for items in brandData.data %}
             <div class="list_item" style="display:{{ (loop.index == 1) | ternary('block','none') }}">
 
               {% for item in items %}
 
                 <div class="listchild">
-                  <a class="left" href="/business/{{item.id}}" title="{{item.title}}" target="_blank">
-                    <img src="{{item.image}}"/>
+                  <a class="left" href="/business/{{item.companyId}}" title="{{item.fullName}}" target="_blank">
+                    <img src="{{item.logo}}"/>
                   </a>
                   <div class="right">
-                    <a href="/business/{{item.id}}" title="{{item.title}}" target="_blank">{{item.title}}</a>
+                    <a href="/business/{{item.companyId}}" title="{{item.fullName}}" target="_blank">{{item.fullName}}</a>
 
                     <div class="kb">
-                      <span>{{item.kbscore}}</span>
-                      {{star()}}
-                      <b>{{item.kbCount}}条口碑</b>
+                      <span>{{item.reputation.score}}</span>
+                      {{star(item.reputation.score)}}
+                      <b>{{item.reputation.reputationCount}}条口碑</b>
                     </div>
                     <div class="label">
-                      {% for item in item.lable %}
-                        <span>{{item}}</span>
+                      {% for label in (item.companyLabels | split(',')) %}
+                        <span>{{label}}</span>
                       {% endfor %}
 
                     </div>
@@ -724,7 +711,7 @@ list1 %}
         <div class="row">
           {{ navigationbar({
                 isMore: true,
-                link: "/list/0/0/1",
+                link: "/list/1/0/1",
                 isSelect: "1",
                 MoreText:"查看全部",
                 data: [
@@ -893,44 +880,6 @@ list1 %}
               }) }}
 
           <div class="newList">
-            {% set newList = [
-              {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }, {
-                id: "0",
-                title: "排行第一，这才是“国货之光”应有的样子"
-              }
-
-            ] %}
-
             {% if (newList != null) and (newList.length > 0) %}
               {% for item in newList %}
                 <a href="/news/{{item.id}}" title="{{item.title}}" target="_blank">
