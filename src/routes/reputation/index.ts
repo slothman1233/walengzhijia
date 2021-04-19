@@ -3,9 +3,12 @@ import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
 
 
-
+/**
+* @param {number} productId 产品ID
+* @param {number} companyId 公司ID
+ */
 export default class Reputation {
-  @get('/publish')
+  @get('/publish/:companyId?/:productId?')
     async publish(ctx: Context, next: Next) {
 
         await ctx.render('reputation/publish', {})

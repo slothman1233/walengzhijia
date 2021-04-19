@@ -1,4 +1,5 @@
 import { share } from '@stl/share'
+import { imgPreview } from '@stl/image-preview'
 import { comment1fn } from '../../components/comment/comment1'
 declare const document: any
 let shareObj = new share({
@@ -13,4 +14,16 @@ let shareObj = new share({
 
 comment1fn(document.querySelector('.questions_box'), (value) => {
     console.log(value)
-})
+});
+
+//图片放大
+(function () {
+    imgPreview({
+        parentEle: document.querySelector('#main .container .content'),
+        key: 'img',
+        clickCallback: function (dom, ev) {
+            console.log(dom, ev)
+            return true
+        }
+    })
+})()

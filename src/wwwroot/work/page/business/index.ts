@@ -7,10 +7,26 @@ import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { navigationbar2 } from '../../components/navigationbar'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
+import { imgPreview } from '@stl/image-preview'
 declare const $: JQueryStatic
 // eslint-disable-next-line no-undef
 declare const document: Document
 declare const echarts: any
+
+//公司介绍视频
+(function () {
+
+    imgPreview({
+        parentEle: document.querySelector('#main .row1 .left span'),
+        key: 'video',
+        IsBox: true,
+        clickCallback: function (dom, ev) {
+            console.log(dom, ev)
+            return true
+        }
+    })
+})();
+
 (function () {
     kkpager({
         pagerid: 'kkpage',
@@ -202,7 +218,7 @@ declare const echarts: any
     navigationbar2('product', async (dom: HTMLElement) => {
         let id = dom.attributes['data-id']
         let html = ''
-      
+
         for (let i = 0; i < row2Data.length; i++) {
             let star: bodyModel<string> = await getcomponent({ path: 'components/star/star.njk', name: 'star', data: {} })
             html += `<div class="child">
@@ -384,48 +400,50 @@ declare const echarts: any
 
 //相关咨询
 (function () {
-    let data = {args: [
-        {
-            link: '/news/123',
-            img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: '为解决供应短2323缺问题 iPhone 12 Pro零件不够iPad来凑？',
-            content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-            author: '作者大大',
-            time: '2021-11-11',
-            businesslogo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            businessname: '万联',
-            slug: ['视频', '音频']
-        }, {
-            link: '/news/123',
-            img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-            content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-            author: '作者大大',
-            time: '2021-11-11'
-        }, {
-            link: '/news/123',
-            img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-            content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-            author: '作者大大',
-            time: '2021-11-11'
-        }, {
-            link: '/news/123',
-            img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-            content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-            author: '作者大大',
-            time: '2021-11-11'
-        }
-    ]}
-    
+    let data = {
+        args: [
+            {
+                link: '/news/123',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
+                title: '为解决供应短2323缺问题 iPhone 12 Pro零件不够iPad来凑？',
+                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
+                author: '作者大大',
+                time: '2021-11-11',
+                businesslogo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
+                businessname: '万联',
+                slug: ['视频', '音频']
+            }, {
+                link: '/news/123',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
+                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
+                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
+                author: '作者大大',
+                time: '2021-11-11'
+            }, {
+                link: '/news/123',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
+                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
+                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
+                author: '作者大大',
+                time: '2021-11-11'
+            }, {
+                link: '/news/123',
+                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
+                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
+                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
+                author: '作者大大',
+                time: '2021-11-11'
+            }
+        ]
+    }
+
     navigationbar2('consult', async (dom: HTMLElement) => {
         let id = dom.attributes['data-id']
-      
-        let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: data })
-       
 
-        let container:HTMLElement = document.querySelector('.row5 .container')
+        let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: data })
+
+
+        let container: HTMLElement = document.querySelector('.row5 .container')
         container.innerHTML = datas.bodyMessage
 
     })
@@ -435,7 +453,7 @@ declare const echarts: any
     document.onscroll = async function (e) {
         if (document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight <= 150) {
             if (isloaded) { return }
-            
+
 
             isloaded = true
             setTimeout(async () => {

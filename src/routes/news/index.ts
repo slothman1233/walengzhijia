@@ -3,13 +3,15 @@ import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
 
 
-
 export default class News {
 
 
 
   @get('/reputation/:id?')
     async reputation(ctx: Context, next: Next) {
+
+        
+
 
         await ctx.render('news/reputation', {})
 

@@ -23,6 +23,7 @@ import { ResCompanyInfoIndexPageModel, ResProductIndexPageModel } from '../model
 import { ResCompanyHotModel } from '../model/company/resCompany'
 import { GetNewsList } from '../controller/news.controller'
 import { ResNewsModel } from '../model/news/resNews'
+import { GetHighQualityReputation } from '../controller/Reputation.controller'
 // import Business from './list'
 
 
@@ -64,21 +65,61 @@ export default class Index {
 
         //------------------------------------------------------------------------------------------------------------------
 
-
+        //热门新闻
         let HotNews: ResNewsModel[] = await GetNewsList()
         let newList: any[] = []
 
         HotNews.forEach(item => {
             newList.push({ id: item.newsId, title: item.newsTitle })
         })
+        //------------------------------------------------------------------------------------------------------------------
+
+        //优质口碑
+        let highKb = await GetHighQualityReputation()
+        let reshighKb: any[] = []
+        let reshighKbChart: any[] = []
+        if (highKb !== null) {
+            highKb.forEach((item) => {
+                reshighKb.push({
+                    hread: item.userIcon,
+                    img: item.productCover,
+                    name: item.userName,
+                    kbscore: item.statisticsModel.score,
+                    link: `/business/product/${item.companyId}/${item.productId}`,
+                    title: item.productName,
+                    description: item.summary
+                })
+
+                let name: any[] = []
+                let value: any[] = []
+                item.statisticsModel.reputationScore.forEach((kbitem) => {
+                    name.push(kbitem.reputationTypeName)
+                    value.push(kbitem.reputationScore)
+                })
+                reshighKbChart.push({
+                    name,
+                    value
+                })
+            })
+        }
+
+
 
         await ctx.render('index', {
             productTypeData: productTypeData[0].productType,
             brandData,
-            newList
+            newList,
+            reshighKb,
+            reshighKbChart: JSON.stringify(reshighKbChart)
         })
     }
-
+    // hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+    // img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+    // name: "李女士",
+    // kbscore: "5.00",
+    // link: "/business/product/0",
+    // title: "阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬",
+    // description: "a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德"
 
     @get('/list/:productid?/:sortid?/:pageIndex?')
     async lists(ctx: Context, next: Next) {

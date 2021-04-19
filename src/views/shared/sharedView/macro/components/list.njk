@@ -232,7 +232,7 @@
           <div class="l">
             <span>
               <i>{{item.kbscore}}</i>
-              {{star()}}
+              {{star(item.kbscore)}}
             </span>
             <p>
               {{item.description}}
@@ -240,7 +240,7 @@
           </div>
 
           <div class="r">
-            <div class="score">5.00</div>
+            <div class="score">{{item.kbscore}}</div>
             <div id="ecahr{{loop.index0}}"></div>
           </div>
 

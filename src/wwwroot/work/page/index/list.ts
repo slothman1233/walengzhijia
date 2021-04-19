@@ -3,7 +3,7 @@ import { addClass } from '@stl/tool-ts/src/common/dom/addClass'
 import { removeClass } from '@stl/tool-ts/src/common/dom/removeClass'
 import { siblings } from '@stl/tool-ts/src/common/dom/siblings'
 import { on } from '@stl/tool-ts/src/common/event'
-import { GetProductType } from '../../common/service/managelepackproduct.services'
+import { GetProductType } from '../../common/service/product.services'
 // eslint-disable-next-line no-undef
 declare const document: Document
 declare const pageIndex: number

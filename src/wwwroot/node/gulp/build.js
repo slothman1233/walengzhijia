@@ -22,7 +22,8 @@ let paths = {
         getSrc('./user/news.ts'),
         getSrc('./user/sales.ts'),
         getSrc('./user/publishproduct.ts'),
-        getSrc('./user/publishnews.ts')
+        getSrc('./user/publishnews.ts'),
+        getSrc('./login/login.ts')
 
         
 

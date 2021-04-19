@@ -59,56 +59,34 @@ navigationbar2 %}
             <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
             <p>
               <span>
-                <i>!</i>产品视频介绍</span>
+                <i class='iconfont_wlzj'>&#xE01B;</i>产品视频介绍</span>
               <span>更多图片</span>
             </p>
           </div>
 
           <div class="right">
-            <h1>YWZJ-C型液压无轴纸架</h1>
-            <span>产品口碑分</span>
-            <div class="score">
-              <span>4.68</span>
-              {{star()}}
-              <b>38条口碑</b>
-            </div>
-            <div class="configuration">
-              {% set confData = [
-                {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }
-              ]%}
+            {% if kbByProduct %}
+              <h1>YWZJ-C型液压无轴纸架</h1>
+              <span>产品口碑分</span>
+              <div class="score">
+                <span>{{kbByProduct.score}}</span>
+                {{star(kbByProduct.score)}}
+                <b>{{kbByProduct.reputationCount}}条口碑</b>
+              </div>
+              <div class="configuration">
+                {% if (kbscoreData != null) and (kbscoreData.length > 0) %}
+                  {% for item in kbscoreData %}
+                    <p>
+                      <span>{{item.name}}</span>
+                      <span>{{item.number}}</span>
+                    </p>
+                  {% endfor %}
+                {% endif %}
 
-              {% if (confData != null) and (confData.length > 0) %}
-                {% for item in confData %}
-                  <p>
-                    <span>{{item.name}}</span>
-                    <span>{{item.number}}</span>
-                  </p>
-                {% endfor %}
-              {% endif %}
+              </div>
+              <a href="/reputation/123" target="_blank" class="more">产看该产品的全部口碑 ></a>
 
-            </div>
-            <a href="/reputation/123" target="_blank" class="more">产看该产品的全部口碑 ></a>
+            {% endif %}
           </div>
         </div>
 
@@ -198,11 +176,11 @@ navigationbar2 %}
             })}}
           </div>
           <div class="cr_box">
-            <div class="hd">
+            <div class="hd clearfix">
               <div class="l">
                 <h1>4.35</h1>
                 <div>
-                  {{star()}}
+                  {{star(4.35)}}
                   <span>32条口碑</span>
                 </div>
               </div>
@@ -477,7 +455,6 @@ navigationbar2 %}
 
           <a class="submit" href="javascript:(0)">发送</a>
         </div> #}
-
 
       </div>
 

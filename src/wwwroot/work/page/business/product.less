@@ -4,6 +4,7 @@
 @import (less) "../../components/stemap/satemap1.less";
 @import "/node_modules/@stl/kkpager/dist/index.css";
 @import (less) "../../components/list/index.less";
+@import (less) "../../components/star/index.less";
 
 body {
   background: #F7F8FB;
@@ -64,6 +65,7 @@ body {
 
               i {
                 margin-right: 4px;
+                float       : left;
               }
             }
           }
@@ -99,6 +101,12 @@ body {
             overflow     : hidden;
             margin-bottom: @space_2;
             height       : 50px;
+            .star1(90px);
+
+            .star {
+              position: relative;
+              top     : 22px !important;
+            }
 
             span {
               display     : block;
@@ -176,9 +184,10 @@ body {
         overflow     : hidden;
 
         .tab {
-          .navigationbar{
+          .navigationbar {
             border: none;
-            span{
+
+            span {
               border: none;
             }
           }
@@ -283,13 +292,14 @@ body {
           overflow        : hidden;
 
           .hd {
-            @height: 46px;
-            height : @height;
+            @height : 46px;
+            height  : @height;
+            overflow: hidden;
 
             .l {
               float       : left;
-              width       : @leftwidth;
-              margin-right: @space_3;
+              width       : @leftwidth + @space_3;
+              margin-right: 0;
 
               h1 {
                 float       : left;
@@ -301,10 +311,15 @@ body {
               }
 
               &>div {
-                float: left;
+                float   : left;
+                width   : 100px;
+                position: relative;
+                top     : 4px;
+                .star1(90px);
 
                 .star {
                   color: @color_rank;
+
                 }
 
                 span {
@@ -518,13 +533,13 @@ body {
             }
 
             .ia {
-              display         : block;
-              font-size       : @font_size_14;
-              color           : @color_main_c1;
-              text-align      : center;
-              line-height     : 40px;
-              border          : 1px solid @color_gray_c3;
-              width           : @width - 2;
+              display    : block;
+              font-size  : @font_size_14;
+              color      : @color_main_c1;
+              text-align : center;
+              line-height: 40px;
+              border     : 1px solid @color_gray_c3;
+              width      : @width - 2;
               .border-radius(4px);
 
             }
