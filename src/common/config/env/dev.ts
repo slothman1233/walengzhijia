@@ -25,6 +25,8 @@ export default {
         keys: [SESSION_SECRET_KEY]
     },
 
+    domain: 'localhost',
+
 
 
 

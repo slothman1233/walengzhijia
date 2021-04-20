@@ -19,7 +19,8 @@ export default {
         port: 6379,
         keys: [SESSION_SECRET_KEY]
     },
-
+    domain: 'localhost',
+    
     imgFilePath: 'https://img.fx110.uk/'
 
 }
