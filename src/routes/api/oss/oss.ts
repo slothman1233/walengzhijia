@@ -64,7 +64,7 @@ export default class Oss {
 
 
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             ctx.status = 400
             ctx.body = err.message
             sts_token = null

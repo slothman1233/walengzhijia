@@ -60,3 +60,25 @@ export enum ValidateCodeDefine {
   UpdateUser = 3,
   Forgot = 4
 }
+
+/**
+ * 登录方式枚举
+ * 1:手机登录
+ * 2:账号密码登录
+ */
+export enum LoginEnums {
+  Phone = 1,
+  AccountPwd = 2
+}
+
+/**
+ * subCode类型
+ * success 成功
+ * error 失败
+ * fail 业务失败
+ */
+export enum subCodeEnums {
+  success = 'Success',
+  error = 'Error',
+  fail = 'Fail'
+}

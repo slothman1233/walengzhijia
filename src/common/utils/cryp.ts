@@ -5,28 +5,27 @@ import crypto from 'crypto'
 //加密算法
 import { CRYPTO_SECRET_KEY } from '../config/constant'
 
-
-/**
- * md5 加密
- * @param {string} content 明文
- */
-function md5(content: string) {
-    const md5 = crypto.createHash('md5')
-    //hex 16进制
-    return md5.update(content).digest('hex')
-}
+const secretkey = CRYPTO_SECRET_KEY
 
 /**
  * 加密方法
  * @param {string}} content 明文
  */
-function doCrypto(content: string) {
-    const str = `${content}_${CRYPTO_SECRET_KEY}`
-    return md5(str)
+export function doCrypto(content: string) {
+    let cipher = crypto.createCipher('aes192', secretkey) //使用aes192加密
+    let enc = cipher.update(content, 'utf8', 'hex') //编码方式从utf-8转为hex;
+    return (enc += cipher.final('hex')) //编码方式转为hex;
 }
 
-export {
-    md5
+/**
+ * 解密
+ * @param {string} str 
+ */
+export function decodeCrypto(enc:string) {
+    //AES对称解密
+    let decipher = crypto.createDecipher('aes192', secretkey)
+    let dec = decipher.update(enc, 'hex', 'utf8')
+    dec += decipher.final('utf8')
+    // console.log('AES对称解密结果：' + dec)
+    return dec
 }
-
-export default doCrypto

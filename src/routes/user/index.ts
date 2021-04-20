@@ -1,12 +1,12 @@
 
 import { Context, Next } from 'koa'
-import { get } from '../../common/decorator/httpMethod'
-import { isNumber } from '../../common/utils/type_check'
+import { get, middlewares } from '../../common/decorator/httpMethod'
+import { user_login_middleware } from '../../middleware/login'
 
 
 
 export default class User {
-
+    @middlewares([user_login_middleware])
     @get('/index/:notificationType?/:pageIndex?')
     async index(ctx: Context, next: Next) {
         let { notificationType, pageIndex } = ctx.params
@@ -16,6 +16,7 @@ export default class User {
         })
     }
 
+    @middlewares([user_login_middleware])
     @get('/datamanager/:tabType?')
     async datamanager(ctx: Context, next: Next) {
         let { tabType } = ctx.params
@@ -24,6 +25,7 @@ export default class User {
         })
     }
 
+    @middlewares([user_login_middleware])
     @get('/sales/:type?/:userid?')
     async sales(ctx: Context, next: Next) {
         let { type, userid } = ctx.params
@@ -35,7 +37,7 @@ export default class User {
 
 
 
-
+    @middlewares([user_login_middleware])
     @get('/product/:tabType?/:pageIndex?')
     async product(ctx: Context, next: Next) {
         let { tabType, pageIndex } = ctx.params
@@ -45,6 +47,7 @@ export default class User {
         })
     }
 
+    @middlewares([user_login_middleware])
     @get('/news/:tabType?/:pageIndex?')
     async news(ctx: Context, next: Next) {
         let { tabType, pageIndex } = ctx.params
@@ -54,6 +57,7 @@ export default class User {
         })
     }
 
+    @middlewares([user_login_middleware])
     @get('/content/:tabType?/:pageIndex?')
     async content(ctx: Context, next: Next) {
         let { tabType, pageIndex } = ctx.params
@@ -63,6 +67,7 @@ export default class User {
         })
     }
 
+    @middlewares([user_login_middleware])
     @get('/information')
     async information(ctx: Context, next: Next) {
         let { notificationType, pageIndex } = ctx.params
@@ -71,6 +76,7 @@ export default class User {
         })
     }
 
+    @middlewares([user_login_middleware])
     @get('/changepwd')
     async changepwd(ctx: Context, next: Next) {
         let { notificationType, pageIndex } = ctx.params
@@ -79,6 +85,7 @@ export default class User {
         })
     }
 
+    @middlewares([user_login_middleware])
     @get('/publishproduct')
     async publishproduct(ctx: Context, next: Next) {
         let { notificationType, pageIndex } = ctx.params
@@ -87,6 +94,7 @@ export default class User {
         })
     }
 
+    @middlewares([user_login_middleware])
     @get('/publishnews')
     async publishnews(ctx: Context, next: Next) {
         let { notificationType, pageIndex } = ctx.params

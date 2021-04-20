@@ -4,7 +4,7 @@
 #}
 
 {% macro header() %}
-    <div class="header">
+    <div class="header" id="header">
         <div class="header_box">
 
             <div class="logo">
@@ -24,11 +24,20 @@
                 </span>
                 </a>
             </div>
-
             <div class="login">
-                <a href="#">注册</a>
-                <i>|</i>
-                <a href="#">登录</a>
+                <div class="notlogin" style="display:none">
+                    <a href="javascript:(0)" onclick="window.loginshow(3)">注册</a>
+                    <i>|</i>
+                    <a href="javascript:(0)" onclick="window.loginshow()">登录</a>
+                </div>
+
+                <div class="inlogin" style="display:none">
+                    <a href="javascript:(0)" class="loginout" target="_blank">退出</a>
+                    <a href="/user/index" target="_blank" class="userinfo">
+                        <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+                        <span></span>
+                    </a>
+                </div>
 
             </div>
 
@@ -45,12 +54,12 @@
     </div>
 
     <script type="text/javascript">
-        let header = document.querySelector('.header')
+        let header = document.querySelector('#header')
         let search = header.querySelector('.search')
         let sub = search.querySelector('a')
         let input = search.querySelector('input')
-        sub.onclick = function(){
-            document.location.href =`/search/1/${encodeURI(input.value)}`
+        sub.onclick = function () {
+            document.location.href = `/search/1/${encodeURI(input.value)}`
         }
     </script>
 {% endmacro %}

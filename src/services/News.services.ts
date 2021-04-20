@@ -35,19 +35,19 @@ class News {
     // 添加新闻
     // @CacheInterceptor('News_GetNewsIndustry', CacheTime.Min30)
     async AddNews(params: NewsInfoModel) {
-        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/AddNews`, { params, headers: { 'Content-Type': 'application/json' } })
+        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/AddNews`, params, {  headers: { 'Content-Type': 'application/json' } })
     }
 
     // 修改新闻快讯内容
     // @CacheInterceptor('News_GetNewsIndustry', CacheTime.Min30)
     async UpdateNews(params: NewsInfoModel) {
-        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/UpdateNews`, { params, headers: { 'Content-Type': 'application/json' } })
+        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/UpdateNews`, params, {  headers: { 'Content-Type': 'application/json' } })
     }
 
     // 删除新闻信息
     // @CacheInterceptor('News_GetNewsIndustry', CacheTime.Min30)
     async DeleteNews(params: NewsInfoModel) {
-        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/DeleteNews`, { params, headers: { 'Content-Type': 'application/json' } })
+        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/DeleteNews`, params, {  headers: { 'Content-Type': 'application/json' } })
     }
 
 }

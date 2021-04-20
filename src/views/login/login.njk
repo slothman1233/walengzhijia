@@ -2,7 +2,7 @@
 
   <link href="/dist/styles/login/login.css" rel="stylesheet">
 
-  <div id="login_container">
+  <div id="login_container" style="display:none">
     <div class="login_box">
 
       <div class="phone_login">
@@ -19,11 +19,11 @@
           </div>
           <div class="verification clearfix" style="margin-bottom:8px;">
             <input type="text" placeholder="验证码"/>
-            <a href="javascript:(0)" class="getverification">获取验证码</a>
+            <a href="javascript:(0)" data-type="login" class="getverification">获取验证码</a>
             <span class="countdown">60S</span>
           </div>
           <div class="error clearfix">
-            <span>手机号不能为空</span>
+            <span></span>
           </div>
           <div class="login_login">
             <a href="javascript:(0)">登录</a>
@@ -44,6 +44,8 @@
         <div class="login_title">
           <p>手机注册</p>
           <span>欢迎登录乐包网</span>
+
+          <i class="iconfont_wlzj close">&#xE01E;</i>
         </div>
 
         <div class="login_content">
@@ -55,7 +57,7 @@
           </div>
           <div class="verification clearfix" style="margin-bottom:8px;">
             <input type="text" placeholder="验证码"/>
-            <a href="javascript:(0)" class='getverification'>获取验证码</a>
+            <a href="javascript:(0)" data-type="register" class='getverification'>获取验证码</a>
             <span class="countdown">60S</span>
           </div>
           <div class="pwd">
@@ -83,6 +85,8 @@
         <div class="login_title">
           <p>密码登录</p>
           <span>欢迎登录乐包网</span>
+
+          <i class="iconfont_wlzj close">&#xE01E;</i>
         </div>
 
         <div class="login_content" style="padding-top:80px;">
@@ -93,7 +97,7 @@
             <input type="password" placeholder="密码"/>
           </div>
           <div class="error clearfix">
-            <span>手机号不能为空</span>
+            <span></span>
           </div>
           <div class="login_login">
             <a href="javascript:(0)">登录</a>

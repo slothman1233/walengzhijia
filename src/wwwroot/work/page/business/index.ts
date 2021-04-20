@@ -21,7 +21,7 @@ declare const echarts: any
         key: 'video',
         IsBox: true,
         clickCallback: function (dom, ev) {
-            console.log(dom, ev)
+            // console.log(dom, ev)
             return true
         }
     })
@@ -41,7 +41,7 @@ declare const echarts: any
             nextPageText: '下一页',
         },
         click: function (i: number) {
-            console.log(i)
+            // console.log(i)
         }
     })
 })();
@@ -260,7 +260,7 @@ declare const echarts: any
                 nextPageText: '下一页',
             },
             click: function (i: number) {
-                console.log(i)
+                // console.log(i)
             }
         })
 

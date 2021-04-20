@@ -67,7 +67,7 @@
         width           : 30px;
         background-color: #FFF;
         color           : #000;
-        padding-left: 3px;
+        padding-left    : 3px;
         .border-radius(2px 0 0 2px)
       }
 
@@ -109,7 +109,8 @@
       margin-left: @space_4;
 
       a,
-      i {
+      i,
+      span {
 
         float    : right;
         font-size: @font_size_14;
@@ -119,7 +120,17 @@
 
       }
 
-      i {
+      img {
+        height: 24px;
+        width : 24px;
+        margin: 16px 0;
+
+        .border-radius(50%);
+      }
+
+      i,
+      span {
+        display: inline-block;
         padding: 0 @space_1;
       }
 

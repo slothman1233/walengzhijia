@@ -12,7 +12,7 @@ import addRouter from './router'
 import compress from 'koa-compress'
 import path from 'path'
 import koaStatic from 'koa-static'
-import views from 'koa-views'  
+import views from 'koa-views'
 import sequelizeInit from './db/sequelize/index'
 import cors from 'koa2-cors'
 import bluebird from 'bluebird'
@@ -40,6 +40,7 @@ import microCache from './common/utils/microcache'
 const redisConf = config.redis
 const router = new koaRouter()
 const app = new koa()
+app.proxy = true
 app.use(async (ctx, next) => {
     ctx.set('Access-Control-Allow-Origin', ctx.headers.origin) // 很奇怪的是，使用 * 会出现一些其他问题
     ctx.set('Access-Control-Allow-Credentials', 'true')
@@ -134,7 +135,6 @@ httpproxymiddleware(app)
 //缓存策略 有待优化
 // app.use(httpservercache)
 
-app.proxy = true
 app.use(bodyparser({
     enableTypes: ['json', 'form', 'text']
 }))

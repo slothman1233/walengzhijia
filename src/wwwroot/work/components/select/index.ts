@@ -28,7 +28,7 @@ export function selectOption1(parentId: string | HTMLElement, callback: navigati
             if (path[i] === this) { break }
             if (path[i].nodeName === '#document') { break }
             if (path[i] === selectOption) {
-                console.log(path[i] === selectOption)
+                // console.log(path[i] === selectOption)
                 option.style.display = 'block'
                 return
             } else if (path[i] === option && path[i - 1]) {

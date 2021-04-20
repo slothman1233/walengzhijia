@@ -1,4 +1,5 @@
 import { Context } from 'koa'
+import { CacheTime } from '../../enums/enums'
 /**
  * cookie模型
  * @param {string} path  写cookie所在的路径
@@ -9,13 +10,13 @@ import { Context } from 'koa'
  * @param {boolean} secure 安全 cookie   默认false，设置成true表示只有 https可以访问
  */
 export type setCookieModel = {
-  domain?: string,
-  path?: string,
-  maxAge?: number,
-  expires?: Date,
-  httpOnly?: boolean,
-  overwrite?: boolean,
-  secure?: boolean
+    domain?: string,
+    path?: string,
+    maxAge?: number,
+    expires?: Date,
+    httpOnly?: boolean,
+    overwrite?: boolean,
+    secure?: boolean
 }
 
 
@@ -35,14 +36,16 @@ export type setCookieModel = {
           * @param {boolean} secure 安全 cookie   默认false，设置成true表示只有 https可以访问
  */
 export function setCookie(ctx: Context, name: string, value: string, option: setCookieModel) {
-    return  ctx.cookies.set(name, value, {
+
+
+    return ctx.cookies.set(name,  encodeURI(value), {
         domain: option.domain || 'localhost', // 写cookie所在的域名
         path: option.path || '/',       // 写cookie所在的路径
         maxAge: option.maxAge || 1000 * 60 * 60 * 24,   // cookie有效时长
-        expires: option.expires || new Date(), // cookie失效时间
-        httpOnly: option.httpOnly || true,  // 是否只用于http请求中获取
-        overwrite: option.overwrite || false,
-        secure: option.secure || false
+        expires: option.expires, // cookie失效时间
+        httpOnly: option.httpOnly === undefined ? true : option.httpOnly,  // 是否只用于http请求中获取
+        overwrite: option.overwrite === undefined ? true :option.overwrite,
+        secure: option.secure  === undefined ? false :option.secure
     })
 }
 
@@ -51,7 +54,9 @@ export function setCookie(ctx: Context, name: string, value: string, option: set
  * @param {string} name 
  */
 export function getCookie(ctx: Context, name: string) {
-    return ctx.cookies.get(name)
+    let buf = ctx.cookies.get(name)
+    return decodeURIComponent(buf)
+    
 }
 
 /**
@@ -60,6 +65,6 @@ export function getCookie(ctx: Context, name: string) {
  */
 export function delCookie(ctx: Context, name: string) {
     return ctx.cookies.set(name, '', {
-        maxAge: 0
+        maxAge: CacheTime.None
     })
 }

@@ -37,8 +37,8 @@ export default class Index {
   @get('/GetProductType')
   async GetProductType(ctx: Context) {
       let { productType } = ctx.query
-      debugger
-      console.log(productType)
+      //   debugger
+      //   console.log(productType)
 
       if (!productType) { 
           ctx.body = new ErrorModel({})

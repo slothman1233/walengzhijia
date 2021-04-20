@@ -28,7 +28,7 @@ class company {
     // CompanyProductInfoModel
     //@CacheInterceptor('company_AddCompanyProduct', CacheTime.Min3)
     async AddCompanyProduct(params: CompanyProductInfoModel) {
-        return await http.post<bodyModel<string>>(`${config.apiPath}api/Company/AddCompanyProduct`, { params, headers: { 'Content-Type': 'application/json' } })
+        return await http.post<bodyModel<string>>(`${config.apiPath}api/Company/AddCompanyProduct`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
 }

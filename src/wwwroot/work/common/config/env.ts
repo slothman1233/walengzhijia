@@ -3,18 +3,22 @@
 
 const DEV = {
     lepackapi: 'http://lepackapi.lepkg.com/',
+    userlogin: 'USERLOGIN'
 }
 
 const TEST = {
     lepackapi: 'http://lepackapi.lepkg.com/',
+    userlogin: 'USERLOGIN'
 }
 
 const PRE = {
     lepackapi: 'http://lepackapi.lepkg.com/',
+    userlogin: 'USERLOGIN'
 }
 
 const GA = {
     lepackapi: 'http://lepackapi.lepkg.com/',
+    userlogin: 'USERLOGIN'
 }
 
 

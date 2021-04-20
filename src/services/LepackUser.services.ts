@@ -7,6 +7,7 @@ import { ResCompanyHotModelListReturnModel, ResCompanyInfoModelReturnModel } fro
 import { bodyModel } from '../model/resModel'
 import { CompanyProductInfoModel } from '../model/company/Company'
 import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserValidateModel } from '../model/user/User'
+import { ResUserModel } from '../model/user/resUser'
 
 
 
@@ -15,21 +16,30 @@ class LepackUser {
     // LepackUserRegisterModel
     //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
     async GetCompanyInfoByUser(params: LepackUserRegisterModel) {
-        return await http.post<bodyModel<string>>(`${config.apiPath}api/LepackUser/Register`, { params, headers: { 'Content-Type': 'application/json' } })
+        return await http.post<string>(`${config.apiPath}api/LepackUser/Register`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
     // 手机号码登录
     // LepackUserLoginModel
     //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
     async PhoneLogin(params: LepackUserLoginModel) {
-        return await http.post<bodyModel<string>>(`${config.apiPath}api/LepackUser/PhoneLogin`, { params, headers: { 'Content-Type': 'application/json' } })
+        return await http.post<ResUserModel>(`${config.apiPath}api/LepackUser/PhoneLogin`, params, { headers: { 'Content-Type': 'application/json' } })
     }
+
+    // 手机号码密码登录
+    // LepackUserLoginModel
+    //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
+    async PhonePasswordLogin(params: LepackUserLoginModel) {
+        return await http.post<ResUserModel>(`${config.apiPath}api/LepackUser/PhonePasswordLogin`, params, { headers: { 'Content-Type': 'application/json' } })
+    }
+
+    //http://114.55.24.27:5000/api/LepackUser/PhonePasswordLogin
 
     // 发送验证码
     // LepackUserValidateModel
     //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
     async SendCode(params: LepackUserValidateModel) {
-        return await http.post<bodyModel<string>>(`${config.apiPath}api/LepackUser/SendCode`, { params, headers: { 'Content-Type': 'application/json' } })
+        return await http.post<string>(`${config.apiPath}api/LepackUser/SendCode`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 
 
@@ -42,4 +52,4 @@ class LepackUser {
 
 let LepackUsers = new LepackUser()
 
-export default LepackUser
+export default LepackUsers
