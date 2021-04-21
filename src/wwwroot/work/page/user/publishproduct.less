@@ -3,6 +3,7 @@
 @import (less) "../../components/title/title.less";
 @import (less) "../../components/select/index.less";
 @import (less) "../../components/uploadfile/index.less";
+@import (less) "../../components/uploadfile/filecollection.less";
 
 #simplelayoutmain #simplelayoutright {
   background-color: transparent;
@@ -265,6 +266,10 @@
         }
       }
 
+      .preview {
+        display: none
+      }
+
       .imglist()
     }
 
@@ -315,12 +320,20 @@
       .uploadimg {
         padding-left: 88+@space_3;
 
+
         &>div {
           height          : 140px !important;
           background-color: #F5F5F5;
+          position        : relative;
         }
 
+
+
         .uploadfile();
+
+        .external,.detaileddraw {
+          cursor: pointer;
+        }
 
         &>p {
           font-size  : @font_size_12;

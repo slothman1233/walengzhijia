@@ -1,5 +1,7 @@
 {# 
-
+页面需要引入
+ <script type="text/javascript" src="/assets/plugin/ueditor/dist/ueditor.config.js"></script>
+  <script type="text/javascript" src="/assets/plugin/ueditor/dist/ueditor.all.js"></script>
 documentname:ue,  针对全局调用 window.ue 
 let onload = window.onload
 window.onload = function(){
@@ -127,7 +129,9 @@ window.onload = function(){
   <div class="{{args.id}}" id="{{args.id}}"></div>
 
   <script type="text/javascript">
+    var onload_{{args.documentname}} = window.onload
     window.onload = function () {
+      onload_{{args.documentname}} && onload_{{args.documentname}}()
       window.{{args.documentname}} = UE.getEditor('{{args.id}}', {{args.editor | dump | safe}})
 
     }

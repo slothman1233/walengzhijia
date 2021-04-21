@@ -34,19 +34,17 @@ window.onload = function () {
         //获取内容
         window.ue.getContent()
 
-        editor_uploadimg('edit_container', {
+        editor_uploadimg('edit_container', window.ue, {
             success: (name) => {
                 console.log(name)
             },
-            error: (e) => { },
-            progress: (i) => { }
+            error: (e) => { }
         })
-        editor_uploadvideo('edit_container', {
+        editor_uploadvideo('edit_container', window.ue,  {
             success: (ename) => {
                 console.log(name)
             },
-            error: (e) => { },
-            progress: (i) => { }
+            error: (e) => { }
         })
     })
 };
@@ -82,7 +80,7 @@ window.onload = function () {
 
 //上传图片
 (function () {
-    let box: HTMLElement = document.querySelector('.uploadcover .box')
+    let box: HTMLInputElement = document.querySelector('.uploadcover .box')
     uploadfilefn(box, {
         success: (name) => {
             console.log(name)

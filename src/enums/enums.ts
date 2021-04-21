@@ -82,3 +82,14 @@ export enum subCodeEnums {
   error = 'Error',
   fail = 'Fail'
 }
+
+
+/**
+ * 产品图片类型枚举
+ * 1 是外观图
+ * 2 是细节图
+ */
+export enum productImgTypeEnums {
+  external = 1,
+  detaileddraw = 2
+}

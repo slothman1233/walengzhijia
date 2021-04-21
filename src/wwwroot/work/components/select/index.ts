@@ -7,7 +7,7 @@ import { NodeListToArray } from '@stl/tool-ts/src/common/obj/NodeListToArray'
 
 
 
-type navigationbar2cb = (dom: Element, e: Event, option: HTMLElement) => void
+type navigationbar2cb = (id: number, e: Event, option: HTMLElement) => void
 
 export function selectOption1(parentId: string | HTMLElement, callback: navigationbar2cb) {
     let parentdom: any = parentId
@@ -35,7 +35,7 @@ export function selectOption1(parentId: string | HTMLElement, callback: navigati
                 let id = e.target.dataset['id']
                 selectOption.querySelector('span').innerText = e.target.innerText
                 selectOption.dataset['id'] = id
-                callback && callback(id, e, option)
+                callback && callback(parseInt(id), e, option)
                 option.style.display = 'none'
                 return
             }

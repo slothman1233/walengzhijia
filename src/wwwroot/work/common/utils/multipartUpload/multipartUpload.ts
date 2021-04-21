@@ -22,10 +22,10 @@ declare const OSS: any
 
 
 type optionsType = {
-  tempCheckpoint?: any,
-  success?: successType
-  error?: errorType
-  progress?: progresType
+    tempCheckpoint?: any,
+    success?: successType
+    error?: errorType
+    progress?: progresType
 }
 
 /**
@@ -35,10 +35,12 @@ type optionsType = {
  * @param {Function(p)} progres 进度回调        p当前进度
  */
 export type multipartUploadType = {
-  success?: successType
-  error?: errorType
-  progress?: progresType
+    success?: successType
+    error?: errorType
+    progress?: progresType
 }
+
+
 
 export type successType = (url?: string) => void
 export type errorType = (e: any) => void
@@ -107,7 +109,7 @@ async function multi(file: File, filename: string, { success, error }: optionsTy
         }))
 
         success(result.res.requestUrls[0].split('?')[0])
-        cacheAry[filename].url = result.res.requestUrls[0]
+        cacheAry[filename].url = result.res.requestUrls[0].split('?')[0]
         cacheAry[filename].state = true
     } catch (e) {
         reconnectCount++

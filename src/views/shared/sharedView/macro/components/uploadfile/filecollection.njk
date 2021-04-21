@@ -1,0 +1,42 @@
+
+
+{% macro filecollectionImg(args = {
+  title: "标题",
+  description: '最多20张 图片比例3:2 可拖动排序',
+  imgArray: [],
+  maxlength:20
+}) %}
+
+  <div id="filecollectionImg">
+    <div class="filecollectionImg_box">
+      <div class="filecollection_closeicon iconfont_wlzj">&#xE01E;</div>
+      <div class="filecollectionImg_container">
+        <div class="title">{{args.title}}</div>
+        <p>
+        已上传<span>{{args.imgArray.length}}</span>张 {{args.description}}
+         </p>
+        <div class="filecollectionuploadfile">
+            <p>点击上传</p>
+            <input class="uploadfileinput" accept="image/*" type="file"/>
+          </div>
+       
+        <div class="Imagecollection">
+          {% for item in args.imgArray %}
+            <div class="child">
+              <img src="{{item}}"/>
+              <i class="iconfont_wlzj">&#xE01E;</i>
+            </div>
+          {% endfor %}
+          
+
+        </div>
+        <div class="collection_sub">
+          <a href="javascript:void(0)" class="collection_sbumit">确定</a>
+          <a href="javascript:void(0)" class="collection_close">取消</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endmacro %}

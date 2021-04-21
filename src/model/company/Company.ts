@@ -1,3 +1,4 @@
+import { productImgTypeEnums } from '../../enums/enums'
 
 
 
@@ -40,17 +41,18 @@ export interface CompanyProductInfoModel {
  */
 export interface CompanyProductTypeModel {
   productTypeId?: number
-  productClassifyType?: number
+  productClassifyType?: number[]
 }
+
 
 /**
  * 产品图片，外观，视频媒体资源等
- * @param {number} productTypeId 产品图片类型-外观图，细节图，等等
+ * @param {productImgTypeEnums} productTypeId 产品图片类型-外观图，细节图，等等
  * @param {string} imageUrl 图片地址
  * @param {string} imageDesc 图片描述信息
  */
 export interface CompanyProductMediaModel {
-  productImgType?: number
+  productImgType?: productImgTypeEnums
   imageUrl: string
   imageDesc: string
 }

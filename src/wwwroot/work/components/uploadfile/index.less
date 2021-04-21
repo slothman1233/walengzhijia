@@ -14,6 +14,44 @@
       height : 100%;
       display: table;
 
+
+
+      .preview {
+        display        : none;
+        background-size: 100% 100%;
+        position       : absolute;
+        left           : 0;
+        top            : 0;
+        width          : 100%;
+        height         : 100%;
+
+        p {
+          position   : absolute;
+          bottom     : 0;
+          left       : 0;
+          right      : 0;
+          height     : 28px;
+          line-height: 28px !important;
+          text-align : center;
+          color      : #FFF !important;
+          ;
+          font-size       : @font_size_14;
+          background-color: rgba(0, 0, 0, 0.65);
+          z-index         : 8;
+        }
+
+
+        video {
+          position: absolute;
+          display : block;
+          left    : 0;
+          top     : 0;
+          width   : 100%;
+          height  : 100%;
+          z-index : 0;
+        }
+      }
+
       p {
         font-size     : @font_size_14;
         color         : @color_gray_c2;
@@ -23,6 +61,22 @@
       }
     }
 
+    .delete {
+      display         : none;
+      width           : 16px;
+      height          : 16px;
+      line-height     : 16px;
+      text-align      : center;
+      background-color: @Status-Danger ;
+      position        : absolute;
+      right           : @space_1;
+      top             : @space_1;
+      color           : #FFF;
+      font-size       : @font_size_12;
+      z-index         : 10;
+      cursor          : pointer;
+      .border-radius(50%);
+    }
 
     input {
       display : block;

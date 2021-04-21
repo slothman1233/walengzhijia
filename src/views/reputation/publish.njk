@@ -2,7 +2,7 @@
 {% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
 {% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
 {% from "../shared/sharedView/macro/components/star/star.njk" import star %}
-{% from "../shared/sharedView/macro/components/uploadfile/uploadfile.njk" import uploadfile %}
+{% from "../shared/sharedView/macro/components/uploadfile/uploadfile.njk" import uploadfileImg %}
 {% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
 {% from "../shared/sharedView/macro/components/editor/index.njk" import editor %}
 
@@ -173,7 +173,7 @@
         <h4>选择封面</h4>
         <div class="upload">
           <div class="box">
-            {{uploadfile()}}
+            {{uploadfileImg()}}
           </div>
           <p>好的封面会吸引更多的阅读（封面比例为 4:3）</p>
         </div>

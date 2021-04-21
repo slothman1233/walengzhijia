@@ -3,22 +3,30 @@
 
 const DEV = {
     lepackapi: 'http://lepackapi.lepkg.com/',
-    userlogin: 'USERLOGIN'
+    userlogin: 'USERLOGIN',
+    imgMaxSize: 5 * 1024 * 1024,
+    videoMaxSize: 5 * 1024 * 1024 * 1024
 }
 
 const TEST = {
     lepackapi: 'http://lepackapi.lepkg.com/',
-    userlogin: 'USERLOGIN'
+    userlogin: 'USERLOGIN',
+    imgMaxSize: 5 * 1024 * 1024,
+    videoMaxSize: 5 * 1024 * 1024 * 1024
 }
 
 const PRE = {
     lepackapi: 'http://lepackapi.lepkg.com/',
-    userlogin: 'USERLOGIN'
+    userlogin: 'USERLOGIN',
+    imgMaxSize: 5 * 1024 * 1024,
+    videoMaxSize: 5 * 1024 * 1024 * 1024
+    
 }
-
 const GA = {
     lepackapi: 'http://lepackapi.lepkg.com/',
-    userlogin: 'USERLOGIN'
+    userlogin: 'USERLOGIN',
+    imgMaxSize: 5 * 1024 * 1024,
+    videoMaxSize: 5 * 1024 * 1024 * 1024
 }
 
 

@@ -8,3 +8,45 @@
   </div>
 
 {% endmacro %}
+
+
+{# 单张图片上传图片 #}
+{% macro uploadfileImg(args={
+  description : "点此添加封面",
+  previewIsShow:false,
+  previewImg:"",
+  previewTitle:"替换"
+})%}
+  <div class="uploadfile">
+    <div class="previewbg">
+      <p>{{args.description}}</p>
+      <div class="preview" style="display:{{args.previewIsShow | ternary('block','none')}};{{args.previewImg | ternary('background-image:url(' + args.previewImg + ')','')}}">
+        <p>{{args.previewTitle}}</p>
+      </div>
+    </div>
+    <i class="delete iconfont_wlzj" style="display:{{args.previewIsShow | ternary('block','none')}}">&#xE01E;</i>
+    <input class="uploadfileinput" accept="image/jpeg,image/jpg,image/png" type="file"/>
+  </div>
+
+{% endmacro %}
+
+{# 单张图片上传图片 #}
+{% macro uploadfileVideo(args={
+  description : "点此添加封面",
+  previewIsShow:false,
+  previewVideo:"",
+  previewTitle:"替换"
+})%}
+  <div class="uploadfile">
+    <div class="previewbg">
+      <p>{{args.description}}</p>
+      <div class="preview" style="display:{{args.previewIsShow | ternary('block','none')}};">
+         <video src=''></video>
+        <p>{{args.previewTitle}}</p>
+      </div>
+    </div>
+    <i class="delete iconfont_wlzj" style="display:{{args.previewIsShow | ternary('block','none')}}">&#xE01E;</i>
+    <input class="uploadfileinput" accept="video/mp4" type="file"/>
+  </div>
+
+{% endmacro %}
