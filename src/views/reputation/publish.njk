@@ -52,8 +52,13 @@
       <div class="selectproduct clearfix">
         <span class="title">选择产品<i>*</i>
         </span>
-        <div class="s1" id="s1">{{selectOption()}}</div>
-        <div class="s2" id="s2">{{selectOption()}}</div>
+        <div class="s1" id="s1">
+          {{selectOption(allbrandingSelectOption)}}
+        </div>
+        <div class="s2" id="s2">{{selectOption({
+          selectIndex:0,
+          data:CompanyProductType
+        })}}</div>
       </div>
 
       <div class="purchastime clearfix">
@@ -110,48 +115,14 @@
       <h3>特别提示：评分应与已经评测过的内容倾向保持一致。恶意刷分一经发现，将受到内容限制推荐的处罚，严重违规账号将被封禁。</h3>
 
       <div class="star_box clearfix">
-        <div>
-          <span>性能：</span>
-          {{star()}}
-          <span>0</span>
-          <i></i>
-        </div>
-        <div>
-          <span>配置：</span>
-          {{star()}}
-          <span>0</span>
-          <i></i>
-        </div>
-        <div>
-          <span>外观：</span>
-          {{star()}}
-          <span>0</span>
-          <i></i>
-        </div>
-        <div>
-          <span>性能：</span>
-          {{star()}}
-          <span>0</span>
-          <i></i>
-        </div>
-        <div>
-          <span>性能：</span>
-          {{star()}}
-          <span>0</span>
-          <i></i>
-        </div>
-        <div>
-          <span>性能：</span>
-          {{star()}}
-          <span>0</span>
-          <i></i>
-        </div>
-        <div>
-          <span>性能：</span>
-          {{star()}}
-          <span>0</span>
-          <i></i>
-        </div>
+        {% for item in scoreItems %}
+          <div data-id="{{item.id}}">
+            <span>{{item.value}}：</span>
+            {{star(0)}}
+            <span>0</span>
+            <i></i>
+          </div>
+        {% endfor %}
       </div>
 
       <div class="description">
@@ -173,7 +144,13 @@
         <h4>选择封面</h4>
         <div class="upload">
           <div class="box">
-            {{uploadfileImg()}}
+            {# {{uploadfileImg()}} #}
+            {{uploadfileImg({
+                description : "点此添加封面",
+                previewIsShow:false,
+                previewImg:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+                previewTitle:"替换"
+              })}}
           </div>
           <p>好的封面会吸引更多的阅读（封面比例为 4:3）</p>
         </div>

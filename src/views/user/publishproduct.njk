@@ -51,27 +51,8 @@ uploadfileVideo %}
             <p>产品分类<span>*</span></p>
             <div class="s1" id="s1">
               {{selectOption({
-                selectIndex: 1,
-                data: [
-                  {
-                    id: 0,
-                    value: "纸板加工设备及零配件"
-                  }, {
-                    id: 1,
-                    value: "纸板加工设备及零配件1"
-                  }, {
-                    id: 2,
-                    value: "纸板加工设备及零配件2"
-                  }, {
-                    id: 3,
-                    value: "纸板加工设备及零配件3"
-                  }, {
-                    id: 4,
-                    value: "纸板加工设备及零配件4"
-                  }
-                  
-                ]
-
+                selectIndex: 0,
+                data: industryOption
               })}}
             </div>
           </div>
@@ -85,37 +66,8 @@ uploadfileVideo %}
             </div>
             <p class="clearfix">请选择产品的二级分类标签，如没有对应的标签，可选择“其它”或“添加标签”</p>
             <div class="list clearfix">
-              {% set list_data = [
-                {
-                  name: "而奋斗是",
-                  id: "1"
-                }, {
-                  name: "放入方法",
-                  id: "2"
-                }, {
-                  name: "我认为二",
-                  id: "3"
-                }, {
-                  name: "果然果然够",
-                  id: "4"
-                }, {
-                  name: "烦人烦人",
-                  id: "5"
-                }, {
-                  name: "大幅度",
-                  id: "6"
-                }, {
-                  name: "阿斯顿发多少",
-                  id: "7"
-                }, {
-                  name: "个人",
-                  id: "8"
-                }, {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "9"
-                }
-              ] %}
-              {% for item in list_data %}
+          
+              {% for item in productTypeLabels %}
                 <span data-id="{{item.id}}">{{item.name}}</span>
               {% endfor %}
             </div>

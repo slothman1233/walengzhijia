@@ -98,7 +98,7 @@
   .list2 {
     .child {
       width         : 100%;
-      @allheight       : 160px;
+      @allheight    : 160px;
       height        : @allheight;
       padding-bottom: @space_3;
       margin-bottom : @space_3;
@@ -158,20 +158,47 @@
             margin-right: @space_1;
           }
 
+          @line-height: 22px;
           color       : @color_gray_c1;
           font-size   : @font_size_14;
-          line-height : @line_height;
+          line-height : @line-height;
           .ellipsis();
 
           &.description {
+
+            .ellipsis();
+
+            i {
+              font-size  : @font_size_20;
+              color      : rgba(176, 179, 185, 1);
+              float      : left;
+              line-height: @line-height;
+            }
+
+            span {
+              float       : left;
+              font-size   : @font_size_14;
+              color       : @color_gray_c1;
+              line-height : @line-height;
+              margin-right: @space_1;
+            }
+
             margin-bottom: @space_1 / 2;
           }
 
           &.kb {
+            i {
+              font-size  : @font_size_20;
+              color      : rgba(176, 179, 185, 1);
+              float      : left;
+              line-height: @line-height;
+            }
+
             span {
               display     : block;
               float       : left;
-              margin-right: @space_1;
+              margin-right: @space_2;
+              line-height : @line-height;
 
               &.kbgood {
                 color: @color_rank;

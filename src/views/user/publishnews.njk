@@ -2,6 +2,8 @@
 
 {% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar2,
 usernavigationbar %}
+{% from "../shared/sharedView/macro/components/uploadfile/uploadfile.njk" import uploadfileImg,
+uploadfileVideo %}
 {% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
 {% from "../shared/sharedView/macro/components/title.njk" import usertitle %}
 {% from "../shared/sharedView/macro/components/editor/index.njk" import editor %}
@@ -45,63 +47,29 @@ usernavigationbar %}
           <div class="labels">
             <div class="row clearfix">
               <p>选择标签<span>*</span></p>
-              <div class="Detailslabel">
-                <span>标签<i class="iconfont_wlzj">&#xE01E;</i>
-                </span>
-                <span>标签<i class="iconfont_wlzj">&#xE01E;</i>
-                </span>
-                <span>标签<i class="iconfont_wlzj">&#xE01E;</i>
-                </span>
-              </div>
+              <div class="Detailslabel"></div>
 
             </div>
             <p class="clearfix">如没有对应的标签，可选择“其它”或“添加标签”。</p>
             <div class="list clearfix">
-              {% set list_data = [
-                {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "123123"
-                }, {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "123123"
-                }, {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "123123"
-                }, {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "123123"
-                }, {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "123123"
-                }, {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "123123"
-                }, {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "123123"
-                }, {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "123123"
-                }, {
-                  name: "发的所发生的阿斯蒂芬",
-                  id: "123123"
-                }
-              ] %}
-
-              {% for item in list_data %}
-                <span data-id="{{item.id}}">{{item.name}}</span>
+              {% for item in labels %}
+                <span data-id="{{item.id}}">{{item.value}}</span>
               {% endfor %}
             </div>
           </div>
           <div class="row clearfix">
             <p>关联产品<span>*</span></p>
-            <div class="s1" id="s1">{{selectOption()}}</div>
+            <div class="s1" id="s1">
+            {{selectOption({
+                selectIndex: 1,
+                data: productSelectOption
+
+            })}}</div>
           </div>
 
         </div>
-
+        {# productType #}
       </div>
-
 
       <div class="summary">
         <div class="title">
@@ -110,7 +78,7 @@ usernavigationbar %}
         </div>
 
         {{editor({
-            documentname: "ue",
+            documentname: "publishnews_ue",
             id: "edit_container",
             editor: {
             toolbars: [[ "undo","redo",'bold', "underline",  'insertimage','insertvideo'
@@ -123,28 +91,28 @@ usernavigationbar %}
 
       </div>
 
-   
       <div class='uploadproduct'>
         <div class="imglist clearfix">
-          <div class="child clearfix">
+          <div class="child clearfix uploadimg_box">
             <p>产品封面</p>
             <div class="uploadimg">
-              <div class="uploadfile">
-                <div>
-                  <p>点此添加封面</p>
-                </div>
-                <input class="uploadfileinput" type="file">
-              </div>
+
+              {{uploadfileImg({
+                description : "点此添加封面",
+                previewIsShow:false,
+                previewImg:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+                previewTitle:"替换"
+              })}}
+
               <p>产品封面图会展示在多个位置，请选择优秀的照片作为封面（封面比例为 4:3）</p>
             </div>
           </div>
-        
 
         </div>
       </div>
 
       <div class="submit">
-        <a href="javascript:(0)">立即发布</a>
+        <a href="javascript:(0)" class='sub'>立即发布</a>
         <a href="javascript:(0)" class="drafts">保存草稿</a>
       </div>
     </div>

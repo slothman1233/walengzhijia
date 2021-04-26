@@ -77,7 +77,7 @@
     link: "#",
     name: "广东万联",
     kbscore: "5.00",
-    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    classify:['sdfdsf','adfasfd'],
     kbcount: 56,
     favorablerate: "100",
     kbgood: 18,
@@ -92,7 +92,7 @@
     link: "#",
     name: "广东万联",
     kbscore: "5.00",
-    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    classify:['sdfdsf','adfasfd'],
     kbcount: 56,
     favorablerate: "100",
     kbgood: 18,
@@ -106,7 +106,7 @@
     link: "#",
     name: "广东万联",
     kbscore: "5.00",
-    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    classify:['sdfdsf','adfasfd'],
     kbcount: 56,
     favorablerate: "100",
     kbgood: 18,
@@ -120,7 +120,7 @@
     link: "#",
     name: "广东万联",
     kbscore: "5.00",
-    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
+    classify:['sdfdsf','adfasfd'],
     kbcount: 56,
     favorablerate: "100",
     kbgood: 18,
@@ -167,8 +167,13 @@
             {% endif %}
 
             <p class="description">
-              <i>#</i>{{item.description}}</p>
+              <i class="iconfont_wlzj">&#xE00F;</i>
+              {% for classifyitem in item.classify %}
+                <span>{{classifyitem}}</span>
+              {% endfor %}
+            </p>
             <p class="kb">
+              <i class="iconfont_wlzj">&#xE009;</i>
               <span>{{item.kbcount}}条口碑</span>
               <span>好评率{{item.favorablerate}}%</span>
               <span class="kbgood">{{item.kbgood}}条优质口碑</span>

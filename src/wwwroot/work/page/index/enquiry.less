@@ -120,6 +120,25 @@
           cursor     : pointer;
           .border-radius(4px);
         }
+
+
+        .countdown {
+          display         : none;
+          width           : 150px;
+          padding         : 0 8px;
+          margin          : 0;
+          font-size       : 14px;
+          float           : right;
+          color           : @color_gray_c1;
+          border          : 1px solid @color_gray_c2;
+          background-color: @color_gray_c2;
+          height          : @height;
+          line-height     : @height;
+          text-align      : center;
+          .border-radius(4px);
+          .box-sizing();
+        }
+
       }
 
       .describe {
@@ -193,7 +212,7 @@
             z-index : 11;
             .opacity(0);
 
-            &:checked+.checkbox label::after {
+            &[checked='true']+.checkbox label::after {
               position  : absolute;
               content   : "";
               width     : 10px;
@@ -315,6 +334,7 @@
   left            : 50%;
   margin-left     : -228px;
   top             : 200px;
+  z-index         : 100;
 
   h1 {
     font-weight: @font_weight;

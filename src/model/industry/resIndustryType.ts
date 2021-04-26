@@ -12,7 +12,7 @@ import { bodyModel } from '../resModel'
 export interface ResIndustryTypeModel {
   industryId?: number
   industryName: string
-  productType: ResProductTypeModel
+  productType: ResProductTypeModel[]
 }
 
 

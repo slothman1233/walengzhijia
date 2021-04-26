@@ -35,3 +35,12 @@ export const Register = async (options: LepackUserRegisterModel): Promise<any> =
 export const sendCode = async (options: LepackUserValidateModel): Promise<any> => await http.post<any>(`/sendcode`, options)
 
 
+/**
+ * 判断验证码是否正确
+ * @param {number} phoneNumber 手机号码
+ * @param {number} validateCode 验证码
+ * @param {ValidateCodeDefine} validateCodeType 验证码类型
+ */
+export const ValidateCode = async (options: LepackUserValidateModel): Promise<any> => await http.post<any>(`/ValidateCode`, options)
+
+

@@ -26,29 +26,29 @@ navigationbar2 %}
   <div id="main">
     <div class="map">
       {{satemap1({
-        title: "当前位置：",
-        select: 4,
-        map: [
-          {
-            name: "首页",
-            link: "#"
+          title: "当前位置：",
+          select: 4,
+          map: [
+            {
+              name: "首页",
+              link: "#"
 
-          }, {
-            name: "品牌商",
-            link: "#"
+            }, {
+              name: "品牌商",
+              link: "#"
 
-          }, {
-            name: "京山轻机",
-            link: "#"
+            }, {
+              name: "京山轻机",
+              link: "#"
 
-          }
-          , {
-            name: "原纸架",
-            link: "#"
+            }
+            , {
+              name: "原纸架",
+              link: "#"
 
-          }
-        ]
-      })}}
+            }
+          ]
+        })}}
     </div>
 
     <div class="container">
@@ -305,9 +305,10 @@ navigationbar2 %}
       </div>
 
       <div class="right">
-        <div class="marketing">
-          <div class="title">
-            {{navigationbar({
+        {% if (salers != null) and (salers.length > 0) %}
+          <div class="marketing">
+            <div class="title">
+              {{navigationbar({
                 isMore: false,
                 isSelect: "1",
                 data: [
@@ -317,49 +318,31 @@ navigationbar2 %}
                   }
                 ]
             })}}
-          </div>
-          <div class="list_box">
+            </div>
+            <div class="list_box">
 
-            {% set marktingData = [
-              {
-                hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                name: "李女士",
-                title: "海外销售经理",
-                introduction: "负责对外商务洽谈业务",
-                experience: "10",
-                link: "/enquiry/123"
-              }, {
-                hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                name: "李女士",
-                title: "海外销售经理",
-                introduction: "负责对外商务洽谈业务",
-                experience: "10",
-                link: "/enquiry/123"
-              }
-            ] %}
-
-            {% if (marktingData != null) and (marktingData.length > 0) %}
-              {% for item in marktingData %}
+              {% for item in salers %}
                 <div class="child">
                   <div class="in">
-                    <img class="hread" src="{{item.hread}}"/>
+                    <img class="hread" src="{{item.salerIcon}}"/>
                     <div class="r">
                       <div>
-                        <p>{{item.name}}</p>
-                        <span>{{item.title}}</span>
+                        <p>{{item.salerName}}</p>
+                        <span>{{item.salerPosition}}</span>
                       </div>
-                      <p>{{item.introduction}}</p>
-                      <p>行业经验：{{item.experience}}年</p>
+                      <p>{{item.salerFunction}}</p>
+                      <p>行业经验：{{item.salerWorkYears}}年</p>
                     </div>
                   </div>
 
-                  <a class="ia" target="_blank" href="{{item.link}}">向TA咨询</a>
+                  <a class="ia" target="_blank" href="/enquiry/{{companyId}}/{{item.salerId}}">向TA咨询</a>
                 </div>
               {% endfor %}
-            {% endif %}
 
+            </div>
           </div>
-        </div>
+
+        {% endif %}
 
         <div class="question">
           <div class="title">

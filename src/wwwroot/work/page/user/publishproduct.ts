@@ -9,7 +9,9 @@ import config from '../../common/config/env'
 import { editor_uploadimg } from '../../components/editor'
 import { uploadfilefnImg, uploadfilefnVideo } from '../../components/uploadfile'
 import filecollection from '../../components/uploadfile/filecollection'
-import { productImgTypeEnums } from '../../../../enums/enums'
+import { productImgTypeEnums, subCodeEnums } from '../../../../enums/enums'
+import { AddCompanyProduct } from '../../common/service/company.services'
+import { GetProductType } from '../../common/service/product.services'
 
 declare const $: JQueryStatic
 declare const document: any
@@ -19,13 +21,16 @@ let usermain = document.getElementById('usermain')
 //用户id
 let userId = JSON.parse(getCookie(config.userlogin)).userId
 
+//品牌商id
+let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId
+
 //产品外观图集
 let externalImgAry: string[] = []
 //产品细节图集
 let detaileddrawAry: string[] = []
 
 let publishData: CompanyProductInfoModel = {
-    companyId: null,
+    companyId: companyId || 2,
     createUser: userId,
     productName: null,
     listingDateYear: null,
@@ -96,9 +101,24 @@ let publishData: CompanyProductInfoModel = {
 
 //产品类别
 (function () {
-    selectOption1(usermain.querySelector('#s1'), (id: number, e: Event, option: HTMLElement) => {
-        console.log(id, e, option)
+    let labels = usermain.querySelector('.basicinfo .labels')
+    let list: HTMLElement = labels.querySelector('.list')
+    let Detailslabel: HTMLElement  = labels.querySelector('.Detailslabel')
+    selectOption1(usermain.querySelector('#s1'), async (id: number, e: Event, option: HTMLElement) => {
+        // console.log(id, e, option)
         publishData.productType.productTypeId = id
+
+        let data = await GetProductType(id)
+
+        let html = ``
+        if (data.code === 0 && data.subCode === subCodeEnums.success) {
+            data.bodyMessage[0].productTypeLabels.forEach((item) => {
+                html += `<span data-id="${item.productTypeDetailId}">${item.productTypeDetail}</span>`
+            })
+        }
+        Detailslabel.innerHTML = ''
+        list.innerHTML = html
+        publishData.productType.productClassifyType = []
     })
 })();
 
@@ -119,9 +139,10 @@ let publishData: CompanyProductInfoModel = {
         ele: 'span i',
         fn: function (dom: HTMLElement, ev: Event) {
             let id = $(dom).data('id')
-            let index = productClassifyTypeAry.indexOf(id)
+            let index = productClassifyTypeAry.indexOf(id.toString())
             if (index >= 0) { productClassifyTypeAry.splice(index, 1) }
             $(dom).parent().remove()
+            publishData.productType.productClassifyType = productClassifyTypeAry
         }
     })
 
@@ -137,7 +158,7 @@ let publishData: CompanyProductInfoModel = {
                 $(Detailslabel).append(
                     `<span data-id='${id}'>
                         <b>${value}</b>
-                        <i class="iconfont_wlzj">&#xE01E;</i>
+                        <i data-id='${id}' class="iconfont_wlzj">&#xE01E;</i>
                     </span>`
                 )
                 if (productClassifyTypeAry.indexOf(id) < 0) {
@@ -278,8 +299,6 @@ let publishData: CompanyProductInfoModel = {
 //提交
 (function () {
     let productname = usermain.querySelector('.productname')
-
-
     //提交
     let submit = usermain.querySelector('.submit')
     let sub = submit.querySelector('.sub')
@@ -295,7 +314,7 @@ let publishData: CompanyProductInfoModel = {
 })()
 
 
-function getsubContent() {
+async function getsubContent() {
     let productname = usermain.querySelector('.productname')
     //产品名称
     if (productname.value.length <= 0) {
@@ -354,11 +373,13 @@ function getsubContent() {
     })
 
 
+    let datajson = await AddCompanyProduct(publishData)
 
-
-    console.log(publishData)
-
-    // /api/Company/AddCompanyProduct
+    if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
+        alert('发布成功')
+    } else {
+        alert(datajson.bodyMessage)
+    }
 }
 
 

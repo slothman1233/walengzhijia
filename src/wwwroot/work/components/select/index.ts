@@ -3,7 +3,7 @@ import { eventsPath } from '@stl/tool-ts/src/common/event/eventsPath'
 import { on } from '@stl/tool-ts/src/common/event/on'
 import { isString } from '@stl/tool-ts/src/common/obj/isString'
 import { NodeListToArray } from '@stl/tool-ts/src/common/obj/NodeListToArray'
-
+import { CompanyProductAdvisoryModel } from '../../../../model/company/Company'
 
 
 

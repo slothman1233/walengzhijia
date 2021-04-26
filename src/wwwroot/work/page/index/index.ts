@@ -9,6 +9,7 @@ import { getcomponent } from '../../common/service/ComponentService/ComponentSer
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { GetHighQualityReputationRm } from '../../common/service/Reputation.services'
 import { Charts } from '../../components/chart/chart'
+import { ResReputationModel, ResReputationScoreStatisticsModel } from '../../../../model/reputation/resreputation'
 declare const $: JQueryStatic
 declare const reshighKbChart: any[]
 
@@ -17,7 +18,18 @@ declare const document: Document
 
 
 
+
 (function () {
+    let imgSliders = new imageSlider({
+        sliderWindowId: 'slider_parents',
+        intervals: 3000,
+        time: 500,
+        hover: false,
+        switchType: 'hover',
+        sliderDomId: 'slider_doms',
+        sliderListName: '.slider_list',
+        switch: false
+    })
 })();
 
 (function () {
@@ -76,7 +88,7 @@ declare const document: Document
         if (highKb === null || highKb.code === -1) { return }
 
 
-        highKb.bodyMessage.forEach((item) => {
+        highKb.bodyMessage.forEach((item:ResReputationModel) => {
             reshighKb.push({
                 hread: item.userIcon,
                 img: item.productCover,
@@ -89,7 +101,7 @@ declare const document: Document
 
             let name: any[] = []
             let value: any[] = []
-            item.statisticsModel.reputationScore.forEach((kbitem) => {
+            item.statisticsModel.reputationScore.forEach((kbitem:ResReputationScoreStatisticsModel) => {
                 name.push(kbitem.reputationTypeName)
                 value.push(kbitem.reputationScore)
             })

@@ -13,7 +13,7 @@ export function starfn(parentId: string | HTMLElement, callback: cb) {
 
     star.onclick = function (e) {
         let ev: any = e || event
-        let val = Math.ceil(ev.offsetX / (<any>this).offsetWidth * 100 / 20) * 20
+        let val = Math.ceil(ev.offsetX / (<any>this).offsetWidth * 100 / 10) * 10
         star.querySelector('span').style.width = val + '%'
         callback && callback(ev, val / 20)
 

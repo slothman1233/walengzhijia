@@ -53,12 +53,14 @@ export enum CacheTime {
  * 2:登录
  * 3:修改用户信息
  * 4:忘记密码
+ * 5:询价
  */
 export enum ValidateCodeDefine {
   Register = 1,
   Login = 2,
   UpdateUser = 3,
-  Forgot = 4
+  Forgot = 4,
+  enquiry = 5
 }
 
 /**
@@ -93,3 +95,171 @@ export enum productImgTypeEnums {
   external = 1,
   detaileddraw = 2
 }
+
+/**
+ * 价格显示类型枚举
+ * 1 显示价格
+ * 2 显示数字第一位有小数点
+ * 3 不显示价格
+ */
+export enum priceShowStatusEnums {
+  showAll = 1,
+  showPart = 2,
+  blank = 3
+}
+
+/**
+ * 新闻类型枚举
+ * 0 最新新闻
+ * 1 行业新闻
+ * 2 经验分享
+ * 3 优惠活动
+ * 4 展会相关
+ * 5 其他
+ * 6 首页热门新闻
+ * 公司页新闻
+ * 产品新闻
+ */
+export enum newsTypeEnums {
+  new = 0,
+  trade = 1,
+  experience = 2,
+  activity = 3,
+  exhibition = 4,
+  other = 5,
+  hot = 6
+}
+
+/**
+ * 发表新闻的类型
+ * 1 行业新闻
+ * 2 经验分享
+ * 3 优惠活动
+ * 4 展会相关
+ * 5 其他
+ */
+export enum publishNewsTypeEnums {
+  trade = 1,
+  experience = 2,
+  activity = 3,
+  exhibition = 4,
+  other = 5
+}
+
+/**
+ * 发表新闻的类型object数组对象
+ * 1 行业新闻
+ * 2 经验分享
+ * 3 优惠活动
+ * 4 展会相关
+ * 5 其他
+ */
+export const publishNews = [
+    {
+        id: publishNewsTypeEnums.trade,
+        value: '行业新闻'
+    },
+    {
+        id: publishNewsTypeEnums.experience,
+        value: '经验分享'
+    },
+    {
+        id: publishNewsTypeEnums.activity,
+        value: '优惠活动'
+    }, {
+        id: publishNewsTypeEnums.exhibition,
+        value: '展会相关'
+    }, {
+        id: publishNewsTypeEnums.other,
+        value: '其他'
+    }
+]
+
+/**
+ * 广告类型
+ * 1  首页顶部2  两排广告
+ * 2 首页顶部1  4个广告
+ * 3  轮播图广告
+ */
+export enum adTypeEnums {
+  toptwo = 1,
+  topone = 2,
+  slide = 3
+}
+
+/**
+ * 广告链接类型
+ * 1 内部品牌商推荐
+ * 2 外部链接
+ */
+export enum adTypeEnums {
+  internal = 1,
+  outer = 2
+}
+
+
+/**
+ * 品牌商类型
+ * 1 优质品牌商
+ * 2 品牌商
+ */
+export enum HotCompanyDefine {
+  QualityBrand = 1,
+  Brand = 2
+}
+/**
+ * 评分项
+ * 1 性能
+ * 2 配置
+ * 3 外观
+ * 4 质量
+ * 5 售后
+ * 6 能耗
+ * 7 自动化 
+ */
+export enum scoreItemEnums {
+  performance = 1,
+  configuration = 2,
+  appearance = 3,
+  quality = 4,
+  aftersale = 5,
+  energyconsumption = 6,
+  automation = 7
+}
+/**
+ * 评分项object数组对象
+ * 1 性能
+ * 2 配置
+ * 3 外观
+ * 4 质量
+ * 5 售后
+ * 6 能耗
+ * 7 自动化 
+ */
+export const scoreItems = [
+    {
+        id: scoreItemEnums.performance,
+        value: '性能'
+    },
+    {
+        id: scoreItemEnums.configuration,
+        value: '配置'
+    },
+    {
+        id: scoreItemEnums.appearance,
+        value: '外观'
+    }, {
+        id: scoreItemEnums.quality,
+        value: '质量'
+    }, {
+        id: scoreItemEnums.aftersale,
+        value: '售后'
+    }, {
+        id: scoreItemEnums.energyconsumption,
+        value: '能耗'
+    }, {
+        id: scoreItemEnums.automation,
+        value: '自动化'
+    }
+]
+

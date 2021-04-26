@@ -68,3 +68,38 @@ export interface CompanyProductInfoDetailModel {
   productValue: string
 
 }
+
+/**
+ * 产品询价模型
+ * @param {number} advisoryId 产品询价模型ID，用户修改和删除
+ * @param {number} companyId 公司ID
+ * @param {number} productId 咨询的公司产品ID
+ * @param {string} contactPhone 用户联系电话
+ * @param {number} summary 用户需求描述
+ * @param {number} status 咨询状态
+ * @param {number} createUser 提交用户，如果登录来的话
+ * @param {CompanyProductAdvisorySalerModel[]} salers 提交的销售，用于绑定销售，咨询关系的
+ */
+export interface CompanyProductAdvisoryModel {
+  advisoryId?: number
+  companyId?: number
+  productId?: number
+  contactPhone: string
+  summary: string
+  status: number
+  createUser: number
+  salers: CompanyProductAdvisorySalerModel[]
+}
+
+
+/**
+ * 提交的销售，用于绑定销售，咨询关系的
+ * @param {number} advisorySalerId 咨询和销售关联信息
+ * @param {number} advisoryId 用户提交的咨询联系ID
+ * @param {number} salerId 销售ID
+ */
+export interface CompanyProductAdvisorySalerModel {
+  advisorySalerId?: number
+  advisoryId?: number
+  salerId?: number
+}

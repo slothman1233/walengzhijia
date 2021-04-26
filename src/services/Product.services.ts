@@ -9,6 +9,7 @@ import { ResIndustryTypeModelListReturnModel } from '../model/industry/resIndust
 import { ResProductIndexPageModelListReturnModel, ResProductTypeModelListReturnModel } from '../model/product/resproductType'
 import { bodyModel } from '../model/resModel'
 import { ProductTypeDetailModel, ProductTypeModel } from '../model/product/ProductType'
+import { ResCompanyProductInfoModelListReturnModel, ResproductTypeListModel } from '../model/reputation/resreputation'
 
 export type GetProductIndustryModel = {
     industry: number
@@ -17,6 +18,17 @@ export type GetProductIndustryModel = {
 export type GetProductTypeModel = {
     productType: number
 }
+
+export type BycompanyId = {
+    companyId: number
+}
+
+
+export type ProductByTypeId = {
+    companyId: number
+    productTypeId: number
+}
+
 
 
 class Product {
@@ -40,33 +52,23 @@ class Product {
         return await http.get<ResProductIndexPageModelListReturnModel>(`${config.apiPath}api/Product/GetIndexPageProduct`, { headers: { 'Content-Type': 'application/json' } })
     }
 
-
-
-
-    // 添加产品大分类
-    // {"industryTypeName": "123123"}
-    // async AddProductIndustry(params: IndustryTypeModel) {
-    //     return await http.post<bodyModel<string>>(`${config.apiPath}api/Product/AddProductIndustry`, params, { headers: { 'Content-Type': 'application/json' } })
-    // }
-
-
-    // 添加产品分类
-    // {
-    //   'industryId': 1,
-    //   'productType': '1',
-    //   'productTypeIcon': '11'
-    // }
-    async AddProductType(params: ProductTypeModel) {
-        return await http.post<bodyModel<string>>(`${config.apiPath}api/ManageLepackProduct/AddProductType`, params, { headers: { 'Content-Type': 'application/json' } })
+    // 根据公司ID获得所有产品信息
+    // BycompanyId
+    // @CacheInterceptor('Product_GetProductType', CacheTime.Min30)
+    async GetCompanyProduct(params: BycompanyId) {
+        return await http.get<ResCompanyProductInfoModelListReturnModel>(`${config.apiPath}api/Product/GetCompanyProduct`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 
-    // 添加产品分类
-    // {
-    //   "productTypeId": 1,
-    //   "productTypeDetail": "string"
-    // }
-    async AddProductTypeLabel(params: ProductTypeDetailModel) {
-        return await http.post<bodyModel<string>>(`${config.apiPath}api/ManageLepackProduct/AddProductTypeLabel`, params, { headers: { 'Content-Type': 'application/json' } })
+    // 根据公司ID获得所有产品分类
+    // @CacheInterceptor('Product_GetProductType', CacheTime.Min30)
+    async GetCompanyProductType(params: BycompanyId) {
+        return await http.get<ResproductTypeListModel>(`${config.apiPath}api/Product/GetCompanyProductType`, { params, headers: { 'Content-Type': 'application/json' } })
+    }
+
+    // 根据公司ID和产品分类获得所有产品信息
+    // @CacheInterceptor('Product_GetProductType', CacheTime.Min30)
+    async GetCompanyProductByTypeId(params: ProductByTypeId) {
+        return await http.get<ResCompanyProductInfoModelListReturnModel>(`${config.apiPath}api/Product/GetCompanyProductByTypeId`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 
 

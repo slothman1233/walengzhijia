@@ -1,6 +1,8 @@
 
 import { JSONParse } from '../common/utils/ModelHelper'
+import { NewsInfoModel } from '../model/news/news'
 import { ResNewsModel, ResNewsModelListReturnModel } from '../model/news/resNews'
+import { bodyModel } from '../model/resModel'
 import news, { GetNewsListModel } from '../services/News.services'
 
 /**
@@ -25,4 +27,28 @@ export async function GetNewsListRm(newsType: number = 0, timetick: number = 0):
         newsType, timetick
     }
     return await news.GetNewsList(params).catch(data => data)
+}
+
+
+/**
+ * 添加新闻
+ * NewsInfoModel
+ */
+export async function PostAddNews(params: NewsInfoModel): Promise<bodyModel<string>> {
+    return await news.AddNews(params).catch(data => data)
+}
+
+/**
+ * 修改新闻
+ * NewsInfoModel
+ */
+export async function PostUpdateNews(params: NewsInfoModel): Promise<bodyModel<string>> {
+    return await news.UpdateNews(params).catch(data => data)
+}
+/**
+ * 删除新闻
+ * NewsInfoModel
+ */
+export async function PostDeleteNews(params: NewsInfoModel): Promise<bodyModel<string>> {
+    return await news.DeleteNews(params).catch(data => data)
 }

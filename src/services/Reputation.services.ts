@@ -1,7 +1,7 @@
 import config from '../common/config/env'
 import http from '../common/utils/net'
 
-import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel } from '../model/reputation/reputation'
+import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel } from '../model/reputation/resreputation'
 import { bodyModel } from '../model/resModel'
 
 

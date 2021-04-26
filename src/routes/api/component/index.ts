@@ -10,21 +10,31 @@ import commonService from '../../../services/common/component.services'
 import company from '../../../services/company.services'
 import { ComponentModel } from '../../../model/component'
 import { ErrorModel, SuccessModel } from '../../../model/resModel'
-import { GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
-import { PostAddCompanyProduct } from '../../../controller/company.controller'
-import { CompanyProductInfoModel } from '../../../model/company/Company'
+import { GetCompanyProductType, GetCompanyProductTypeRm, GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
+import { PostAddCompanyProduct, PostAddCompanyProductAdvisory } from '../../../controller/company.controller'
+import { CompanyProductAdvisoryModel, CompanyProductInfoModel } from '../../../model/company/Company'
 export default class componentapi {
     /**
-     * 根据产品行业标识ID获得该行业下面所有的产品分类信息
-     * @param {string|number} id 行业标识ID
+     * 添加公司产品
+     * CompanyProductInfoModel
      */
     @post('/AddCompanyProduct')
     async GetProductIndustry(ctx: Context) {
-        console.log(ctx.query)
-
-        let models = await PostAddCompanyProduct((<CompanyProductInfoModel>ctx.query))
+        let models = await PostAddCompanyProduct((<CompanyProductInfoModel>ctx.request.body))
         ctx.body = models
     }
+
+    /**
+    * 添加产品询价信息,调用该接口前先调用SendCode 发送手机号码验证接口 和ValidateCode 验证验证码
+    * CompanyProductAdvisoryModel
+    */
+    @post('/AddCompanyProductAdvisory')
+    async AddCompanyProductAdvisory(ctx: Context) {
+        let models = await PostAddCompanyProductAdvisory((<CompanyProductAdvisoryModel>ctx.request.body))
+        ctx.body = models
+    }
+
+
 
 
 }

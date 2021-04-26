@@ -2,10 +2,18 @@ import { kkpager } from '@stl/kkpager'
 import { on } from '@stl/tool-ts/src/common/event/on'
 import { navigationbar2, usernavigationbar } from '../../components/navigationbar'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
+import { delNews } from '../../common/service/news.services'
+import config from '../../common/config/env'
+import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
+import { subCodeEnums } from '../../../../enums/enums'
 declare const tabType: any
 declare const pageIndex: number
 declare const $: JQueryStatic
+//用户id
+let userId = JSON.parse(getCookie(config.userlogin)).userId
 
+//品牌商id
+let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
 //已发布
 (function () {
     //tab切换
@@ -164,6 +172,57 @@ async function getdata(id:any){
 
         }
     })
+})();
+
+
+//销售信息
+(function () {
+    let market = document.querySelector('#usermain .publish .child_box')
+
+    //删除
+    on({
+        agent: market,
+        events: 'click',
+        ele: '.del',
+        fn: async function (dom: any, ev: any) {
+            let id = $(dom).data('id')
+
+            let datajson = await delNews({
+                newsId: id,
+                companyId: companyId,
+                productId: 0,
+                newsType: [],
+                newsTitle: '',
+                source: '',
+                newsContent: '',
+                newsIcon: '',
+                createUser: userId
+            })
+
+            if(datajson.code === 0 && datajson.subCode === subCodeEnums.success){
+                $(dom).parents('.child').remove()
+                alert('删除成功')
+            }else{
+                alert('删除失败')
+            }
+
+           
+        }
+    })
+
+    //置顶
+    on({
+        agent: market,
+        events: 'click',
+        ele: '.stick',
+        fn: function (dom: any, ev: any) {
+            let id = $(dom).data('id')
+            $($(market).find('.child')[0]).find('.stick').show()
+            $(market).prepend($(dom).parents('.child'))
+            $(dom).hide()
+        }
+    })
+
 })();
 //----------------------------------------------
 

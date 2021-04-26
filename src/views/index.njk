@@ -41,131 +41,24 @@ list1 %}
       </div>
     {% endif %}
 
-    {% set adsData = [
-      {
-        img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        title: "adsfasfasdfa",
-        link: "#"
-      }, {
-        img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        title: "adsfasfasdfa",
-        link: "#"
-      }, {
-        img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        title: "adsfasfasdfa",
-        link: "#"
-      }, {
-        img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        title: "adsfasfasdfa",
-        link: "#"
-      }
-    ] %}
-
-    {% if (adsData != null) and (adsData.length > 0) %}
+    {% if (ad.adtoponeData != null) and (ad.adtoponeData.length > 0) %}
       <div class="ads">
-        {% for item in adsData %}
-          <a href="{{item.link}}" title="{{item.title}}">
-            <img src="{{item.img}}"/>
+        {% for item in ad.adtoponeData %}
+          <a href="{{item.adLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
+            <img src="{{item.icon}}"/>
           </a>
         {% endfor %}
       </div>
     {% endif %}
-
-    {% set rowImg = [
-      {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }, {
-        title: "纸板加工设备",
-        image: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        id: "0"
-      }
-    ] %}
-
+  {% if (ad.adtoptowData != null) and (ad.adtoptowData.length > 0) %}
     <div class="rowImg">
-      {% for item in rowImg %}
-        <a href="/business/{{item.id}}" title="{{item.title}}" target="_blank">
-          <img src="{{item.image}}"/>
-        </a>
+      {% for item in ad.adtoptowData %}
+           <a href="{{item.adLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
+            <img src="{{item.icon}}"/>
+          </a>
       {% endfor %}
     </div>
+    {% endif %}
     <div class="brand">
       <div class="row">
 
@@ -218,35 +111,14 @@ list1 %}
 
     <div class="hotnew">
       <div class="banner">
-
-        {# <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/> #}
-        {% set bannerListData = [
-          {
-            image: "https://p3.pstatp.com/obj/ies.fe.mis/6dadeab585f4334aa69a941409f51b48.jpeg.jpg",
-            link: "#",
-            title: "BHS瓦楞线 SPEED Line 适用于超大区域量解决方案"
-          }, {
-            image: "https://p3.pstatp.com/obj/ies.fe.mis/6dadeab585f4334aa69a941409f51b48.jpeg.jpg",
-            link: "#",
-            title: "BHS瓦楞线 SPEED Line 适用于超大区域量解决方案"
-          }, {
-            image: "https://p3.pstatp.com/obj/ies.fe.mis/6dadeab585f4334aa69a941409f51b48.jpeg.jpg",
-            link: "#",
-            title: "BHS瓦楞线 SPEED Line 适用于超大区域量解决方案"
-          }, {
-            image: "https://p3.pstatp.com/obj/ies.fe.mis/6dadeab585f4334aa69a941409f51b48.jpeg.jpg",
-            link: "#",
-            title: "BHS瓦楞线 SPEED Line 适用于超大区域量解决方案"
-          }
-        ] %}
         <div id="slider_parents" class="slider_parent">
           <ul class="slider_box" id="slider_doms">
-            {% if (bannerListData != null) and (bannerListData.length > 0) %}
-              {% for item in bannerListData %}
-                <li class="slider_list">
-                  <a href="{{item.link}}" title="{{item.title}}" target="_blank">
-                    <img src="{{item.image}}"/>
-                    <p>{{item.title}}</p>
+            {% if (ad.adslideData != null) and (ad.adslideData.length > 0) %}
+              {% for item in ad.adslideData %}
+                <li class="slider_list" data-id="{{item.adId}}">
+                  <a href="{{item.adLink}}" title="{{item.desc}}" target="_blank">
+                    <img src="{{item.icon}}"/>
+                    <p>{{item.desc}}</p>
                   </a>
                 </li>
               {% endfor %}
@@ -389,27 +261,7 @@ list1 %}
           MoreText: "更多>>",
           link: "#",
           isSelect: "1",
-          data: [
-            {
-              title: "热门品牌",
-              link: "javascript:(0)"
-            }, {
-              title: "热门品牌",
-              link: "javascript:(0)"
-            }, {
-              title: "热门品牌",
-              link: "javascript:(0)"
-            }, {
-              title: "热门品牌",
-              link: "javascript:(0)"
-            }, {
-              title: "热门品牌",
-              link: "javascript:(0)"
-            }, {
-              title: "热门品牌",
-              link: "javascript:(0)"
-            }
-          ]
+          data: newTypes
 
         }) }}
 
@@ -450,7 +302,7 @@ list1 %}
         </div>
 
         <div class="blogroll">
-          {{rfooter()}}
+          {{rfooter(getlinks)}}
         </div>
         <div></div>
       </div>

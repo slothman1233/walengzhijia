@@ -9,14 +9,14 @@ import { Controller, get, middlewares, post } from '../../../common/decorator/ht
 import commonService from '../../../services/common/component.services'
 import { ComponentModel } from '../../../model/component'
 import { ErrorModel, SuccessModel } from '../../../model/resModel'
-import { GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
+import { GetCompanyProductTypeRm, GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
 
 export default class Index {
-  /**
-   * 根据产品行业标识ID获得该行业下面所有的产品分类信息
-   * @param {string|number} id 行业标识ID
-   */
-  @get('/GetProductIndustry')
+    /**
+     * 根据产品行业标识ID获得该行业下面所有的产品分类信息
+     * @param {string|number} id 行业标识ID
+     */
+    @get('/GetProductIndustry')
     async GetProductIndustry(ctx: Context) {
         let { industry } = ctx.query
 
@@ -30,25 +30,39 @@ export default class Index {
 
     }
 
-  /**
-  * 通过产品分类ID查找该分类下面的标签信息
-  * @param {string|number} productType 产品分类ID
-  */
-  @get('/GetProductType')
-  async GetProductType(ctx: Context) {
-      let { productType } = ctx.query
-      //   debugger
-      //   console.log(productType)
+    /**
+    * 通过产品分类ID查找该分类下面的标签信息
+    * @param {string|number} productType 产品分类ID
+    */
+    @get('/GetProductType')
+    async GetProductType(ctx: Context) {
+        let { productType } = ctx.query
+        //   debugger
+        //   console.log(productType)
 
-      if (!productType) { 
-          ctx.body = new ErrorModel({})
+        if (!productType) {
+            ctx.body = new ErrorModel({})
 
-      } else {
-          let models = await GetProductTypeByProductTypeRm(productType)
-          ctx.body = models
-      }
+        } else {
+            let models = await GetProductTypeByProductTypeRm(productType)
+            ctx.body = models
+        }
 
-  }
+    }
+
+
+    /**
+       * 根据公司ID获得所有产品分类
+       * BycompanyId
+       */
+    @get('/GetCompanyProductType')
+    async GetCompanyProductType(ctx: Context) {
+        let { companyId } = ctx.query
+        console.log(companyId)
+        let models = await GetCompanyProductTypeRm({ companyId })
+
+        ctx.body = models
+    }
 
 }
 

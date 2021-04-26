@@ -1,5 +1,6 @@
 import { ResIndustryTypeModel } from '../../../../model/industry/resIndustryType'
 import { ResProductTypeModel } from '../../../../model/product/resproductType'
+import { ResproductTypeListModel } from '../../../../model/reputation/resreputation'
 import config from '../config/env'
 import http from './http'
 
@@ -17,3 +18,10 @@ export const GetProductIndustry = async (industry: string | number) => await htt
  */
 export const GetProductType = async (productType: string | number) => await http.get<ResProductTypeModel[]>(`/api/product/GetProductType`, { params: {productType}})
 
+
+
+/**
+ * 根据公司ID获得所有产品分类
+ * BycompanyId
+ */
+export const GetCompanyProductType = async (companyId: number): Promise<ResproductTypeListModel> => await http.get<any>(`/api/product/GetCompanyProductType`, { params: { companyId } })

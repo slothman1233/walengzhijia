@@ -1,61 +1,49 @@
-import { bodyModel } from '../resModel'
-
-
-
-export interface ResReputationModelListReturnModel extends bodyModel<ResReputationModel[]>{
-
-}
-
+import { priceShowStatusEnums } from '../../enums/enums'
 
 /**
- * 口碑返回模型
- * @param {number} createUser 口碑发表人
- * @param {string} userName 发表人名称
- * @param {string} userIcon 发表人头像
- * @param {string} productName 产品名称
- * @param {number} productId 产品ID
- * @param {number} companyId 公司ID
- * @param {string} summary 口碑描述内容
- * @param {string} productCover 产品封面图
- * @param {ResReputationStatisticsModel} statisticsModel 口碑发表人
+ * 口碑模型
+ * @param {number} companyId 公司标识ID
+ * @param {number} productId 产品标识ID
+ * @param {string} buyTime 购买时间
+ * @param {string} useTime 使用时间
+ * @param {number} purchasePrice 购买价格
+ * @param {priceShowStatusEnums} priceShowStatus 价格显示状态 - 显示价格，显示数字第一位有小数点，不现实价格
+ * @param {string} summary 口碑描述
+ * @param {string} reputationIcon 口碑封面图
+ * @param {number} createUser 创建用户
+ * @param {ReputationScoreModel[]} reputationScores 口碑评分模型
  */
-export interface ResReputationModel {
-
-  createUser: number
-  userName: string
-  userIcon: string
-  productName: string
-  productId: number
-  companyName: string
-  companyId: number
+export interface ReputationModel {
+  companyId?: number
+  productId?: number
+  buyTime?: string
+  useTime?: string
+  purchasePrice?: number
+  priceShowStatus?: priceShowStatusEnums
   summary: string
-  productCover: string
-  statisticsModel: ResReputationStatisticsModel
+  reputationIcon: string
+  createUser: number
+  reputationScores: ReputationScoreModel[]
 }
 
 /**
- * 口碑统计信息
- * @param {number} score 口碑评分(总分)
- * @param {number} reputationCount 口碑数量
- * @param {ResReputationScoreStatisticsModel[]} reputationScore 聚合统计
+ * 口碑评分模型
+ * @param {number} reputationId 口碑标识ID
+ * @param {number} reputationTypeId 口碑评分项标识ID
+ * @param {number} score 口碑评分
  */
-export interface ResReputationStatisticsModel {
-  score: number
-  reputationCount: number
-  reputationScore: ResReputationScoreStatisticsModel[]
-
-
+export interface ReputationScoreModel {
+  reputationId?: number
+  reputationTypeId?: number
+  score?: number
 }
 
 /**
- * 口碑评分统计信息
- * @param {number} reputationTypeId 口碑评分项
- * @param {string} reputationTypeName： 口碑评分项名称
- * @param {number} reputationScore 口碑评分项聚合统计值
- * 
+ * 所有产品分类
+ * @param {number} productTypeId 分类id
+ * @param {string} productTypeName 分类名称
  */
-export interface ResReputationScoreStatisticsModel {
-  reputationTypeId: number
-  reputationTypeName: string
-  reputationScore: number
+export interface productTypeListModel {
+  productTypeId: number,
+  productTypeName: string
 }

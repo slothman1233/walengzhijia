@@ -6,7 +6,7 @@
  * @param {number} newsId 修改新闻快讯，移除新闻快讯使用
  * @param {number} companyId 公司ID
  * @param {number} productId 对应产品的ID
- * @param {number} newsType 新闻类型
+ * @param {string[]} newsType 新闻类型
  * @param {string} newsTitle 新闻标题
  * @param {string} source 来源
  * @param {string} newsContent 新闻内容
@@ -17,7 +17,7 @@ export interface NewsInfoModel {
   newsId?: number
   companyId?: number
   productId?: number
-  newsType?: number
+  newsType?: string[]
   newsTitle: string
   source: string
   newsContent: string

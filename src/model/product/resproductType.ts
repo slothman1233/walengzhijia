@@ -1,4 +1,5 @@
 
+import { ResReputationStatisticsModel } from '../reputation/resreputation'
 import { bodyModel } from '../resModel'
 import { ProductTypeDetailModel, ProductTypeModel } from './ProductType'
 
@@ -6,12 +7,15 @@ import { ProductTypeDetailModel, ProductTypeModel } from './ProductType'
 
 /**
  * 	产品分类返回
- * @param {number} industryId 行业标识ID
+ * @param {number} productTypeId 产品分类标识ID
  * @param {string} productType 行业产品类型名称
  * @param {string} productTypeIcon 行业产品分类icon图标
  * @param {ResProductTypeDetailModel} productTypeLabels 产分分类标签
  */
-export interface ResProductTypeModel extends ProductTypeModel {
+export interface ResProductTypeModel {
+  productTypeId: number;
+  productType: string
+  productTypeIcon: string
   productTypeLabels: ResProductTypeDetailModel[]
 }
 
@@ -68,7 +72,7 @@ export interface ResProductIndexPageModel {
  * @param {string} abbrName 公司简称
  * @param {string} logo 公司封面图
  * @param {number} companySort 排序
- * @param {ResReputationModel} reputation 口碑概要信息
+ * @param {	ResReputationStatisticsModel} reputation 口碑概要信息
  * @param {string} companyLabels 公司标签
  */
 export interface ResCompanyInfoIndexPageModel {
@@ -77,16 +81,6 @@ export interface ResCompanyInfoIndexPageModel {
   abbrName: string
   logo: string
   companySort: number
-  reputation: ResReputationModel
+  reputation: ResReputationStatisticsModel
   companyLabels: string
-}
-
-/**
- * 口碑概要信息
- * @param {number} score 口碑评分
- * @param {number} reputationCount 口碑数量
- */
-export interface ResReputationModel {
-  score: number
-  reputationCount: number
 }
