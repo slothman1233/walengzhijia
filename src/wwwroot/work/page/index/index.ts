@@ -10,6 +10,7 @@ import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { GetHighQualityReputationRm } from '../../common/service/Reputation.services'
 import { Charts } from '../../components/chart/chart'
 import { ResReputationModel, ResReputationScoreStatisticsModel } from '../../../../model/reputation/resreputation'
+import { subCodeEnums } from '../../../../enums/enums'
 declare const $: JQueryStatic
 declare const reshighKbChart: any[]
 
@@ -114,7 +115,7 @@ declare const document: Document
 
 
         let data: bodyModel<String> = await getcomponent({ path: 'components/list.njk', name: 'kblist1', data: {args: reshighKb} })
-        if (data.code === 0) {
+        if (data.code === 0 ) {
             kblist1.outerHTML = data.bodyMessage
 
             reshighKbChart.forEach((item: any, index: number) => {

@@ -2,7 +2,7 @@
 import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
 import { GetCompanyInfoById, GetSalersByCompanyId } from '../../controller/company.controller'
-import { GetCompanyProduct, GetCompanyProductByTypeId } from '../../controller/product.controller'
+import { GetCompanyProduct, GetCompanyProductByTypeId, GetCompanyProductType } from '../../controller/product.controller'
 import { GetReputationByCompany, GetReputationStatisticsByProduct } from '../../controller/Reputation.controller'
 
 
@@ -12,21 +12,69 @@ export default class Business {
     @get('/:companyId?')
     async index(ctx: Context, next: Next) {
         let { companyId } = ctx.params
-        //  let models = await GetReputationByCompany(companyId)
+        let productTypeId = 0
+        console.log(companyId)
         //公司信息
         let companyinfo = await GetCompanyInfoById({ companyId })
 
-        //根据公司ID获得所有产品信息
-        let reputationinfo = await GetCompanyProduct({ companyId })
+        //根据公司ID获得所有产品分类
+        let reputationtype = await GetCompanyProductType({ companyId })
 
+        let reputationtypeinfo: any[] = []
+        reputationtype.forEach((item, index) => {
+            if (index === 0) {
+                productTypeId = item.productTypeId
+            }
+            reputationtypeinfo.push({
+                class: '',
+                title: item.productTypeName,
+                id: item.productTypeId,
+                nlink: 'javascript:(0)'
+            })
+        })
+        //----------------------------------------------
+        //根据公司ID和产品id 获取产品列表
+        let GetCompanyProduct = await GetCompanyProductByTypeId({ companyId, productTypeId })
+        //----------------------------------------------
+        ///api/Reputation/GetReputationByCompany
+        let Reputation = await GetReputationByCompany(companyId)
+
+        let reshighKb: any[] = []
+        let reshighKbChart: any[] = []
+        if (Reputation !== null) {
+            Reputation.forEach((item) => {
+                reshighKb.push({
+                    hread: item.userIcon,
+                    img: item.productCover,
+                    name: item.userName,
+                    kbscore: item.statisticsModel.score,
+                    link: `/business/product/${item.companyId}/${item.productId}`,
+                    title: item.productName,
+                    description: item.summary
+                })
+
+                let name: any[] = []
+                let value: any[] = []
+                item.statisticsModel.reputationScore.forEach((kbitem) => {
+                    name.push(kbitem.reputationTypeName)
+                    value.push(kbitem.reputationScore)
+                })
+                reshighKbChart.push({
+                    name,
+                    value
+                })
+            })
+        }
         //----------------------------------------------
 
-
         await ctx.render('business/index', {
-
+            Reputation,
             companyId,
             companyinfo,
-            reputationinfo
+            reputationtypeinfo,
+            GetCompanyProduct,
+            reshighKb,
+            reshighKbChart: JSON.stringify(reshighKbChart)
         })
 
     }

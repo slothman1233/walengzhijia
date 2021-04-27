@@ -115,6 +115,7 @@ if (notJest) {
             ms = Date.now() - start
             // log.info(ctx, ms)
         } catch (error) {
+            await get404(ctx)
             //记录异常日志
             ms = Date.now() - start
             log.error({ ctx, error, resTime: ms })
@@ -204,15 +205,7 @@ async function start() {
 
     app.use(async (ctx: Context) => {
 
-        //给文件添加类型
-        let baseurl = path.basename(ctx.path)
-        if (/\./.exec(baseurl)) {
-            ctx.type = baseurl.split('.')[1]
-        }
-        //必须赋值不赋值的情况如果资源是404的话   返回的还是200
-        ctx.status = 404
-
-        await ctx.render('error/404')
+        await get404(ctx)
     })
 
     // 错误处理
@@ -220,6 +213,18 @@ async function start() {
     //     console.error('server error', err.message, err.stack)
     //     await ctx.render('error/error')
     // })
+}
+
+async function get404(ctx: Context) {
+    //给文件添加类型
+    let baseurl = path.basename(ctx.path)
+    if (/\./.exec(baseurl)) {
+        ctx.type = baseurl.split('.')[1]
+    }
+    //必须赋值不赋值的情况如果资源是404的话   返回的还是200
+    ctx.status = 404
+
+    await ctx.render('error/404')
 }
 
 

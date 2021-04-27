@@ -4,9 +4,10 @@
 
 
 import { Context } from 'koa'
-import { post } from '../../../common/decorator/httpMethod'
+import { post, get } from '../../../common/decorator/httpMethod'
 import { ReputationModel } from '../../../model/reputation/reputation'
 import { PostAddReputaion } from '../../../controller/ManageLepackReputaion.controller'
+import { GetReputationByCompanyRm } from '../../../controller/Reputation.controller'
 
 export default class Index {
     /**
@@ -18,6 +19,11 @@ export default class Index {
         let models = await PostAddReputaion((<ReputationModel>ctx.request.body))
         ctx.body = models
     }
+
+  
+
+
+
 
 
 }

@@ -104,7 +104,7 @@ async function multi(file: File, filename: string, { success, error }: optionsTy
     try {
 
         // object-key可以自定义为文件名（例如file.txt）或目录（例如abc/test/file.txt）的形式，实现将文件上传至当前Bucket或Bucket下的指定目录。
-        let result = await (<any>client.multipartUpload)(filename, file, options(filename, {
+        let result = await (<any>client.multipartUpload)('/temp/' + filename, file, options(filename, {
             tempCheckpoint: cacheAry[filename].tempCheckpoint,
         }))
 

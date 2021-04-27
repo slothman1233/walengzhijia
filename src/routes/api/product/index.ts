@@ -9,7 +9,8 @@ import { Controller, get, middlewares, post } from '../../../common/decorator/ht
 import commonService from '../../../services/common/component.services'
 import { ComponentModel } from '../../../model/component'
 import { ErrorModel, SuccessModel } from '../../../model/resModel'
-import { GetCompanyProductTypeRm, GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
+import { GetCompanyProductByTypeIdRm, GetCompanyProductTypeRm, GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
+import { ProductByTypeId } from '../../../services/Product.services'
 
 export default class Index {
     /**
@@ -63,6 +64,23 @@ export default class Index {
 
         ctx.body = models
     }
+
+
+    /**
+     * 根据公司ID和产品分类获得所有产品信息
+     * BycompanyId productTypeId
+     */
+    @get('/GetCompanyProductByTypeId')
+    async GetCompanyProductByTypeId(ctx: Context) {
+        let { companyId, productTypeId }:ProductByTypeId = ctx.query
+        console.log(companyId)
+        let models = await GetCompanyProductByTypeIdRm({ companyId, productTypeId })
+
+        ctx.body = models
+    }
+
+
+
 
 }
 

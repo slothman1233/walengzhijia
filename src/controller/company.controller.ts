@@ -48,6 +48,7 @@ export async function GetCompanyInfoByUserRm(params: GetCompanyInfoByUserModel):
  */
 export async function GetCompanyInfoById(params: ByCompanyIdModel): Promise<ResCompanyInfoModel | null> {
     let rm = await GetCompanyInfoByIdRm(params)
+    debugger
     let models = JSONParse<ResCompanyInfoModel | null>(rm.code, rm.bodyMessage)
     return models
 }

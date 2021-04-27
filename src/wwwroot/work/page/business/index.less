@@ -292,9 +292,10 @@
               margin : @space_3 0;
 
               img {
-                display: block;
-                width  : @width;
-                height : 140px;
+                display : block;
+                width   : @width;
+                height  : 140px;
+                overflow: hidden;
               }
 
             }
@@ -313,8 +314,6 @@
               line-height: 20px;
               color      : @color_gray_c1;
               .ellipsis();
-
-
             }
 
             .kb {
@@ -350,6 +349,11 @@
                 color    : @color_gray_c2;
                 font-size: @font_size_12;
               }
+            }
+
+            .productArgs {
+              height  : 80px;
+              overflow: hidden;
             }
 
             .enquiry {

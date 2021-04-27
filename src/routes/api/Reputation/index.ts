@@ -14,7 +14,7 @@ import commonService from '../../../services/common/component.services'
 import { ComponentModel } from '../../../model/component'
 import { ErrorModel, SuccessModel } from '../../../model/resModel'
 import { GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
-import { GetHighQualityReputationRm } from '../../../controller/Reputation.controller'
+import { GetHighQualityReputationRm, GetReputationByCompanyRm } from '../../../controller/Reputation.controller'
 
 export default class Index {
   /**
@@ -29,7 +29,18 @@ export default class Index {
         ctx.body = models
 
     }
+  /**
+   * 根据公司获得该公司对应的口碑的bodyModel模型返回
+   * @param {number} companyId 品牌商id
+   */
+  @get('/GetReputationByCompany')
+  async GetReputationByCompany(ctx: Context) {
+      let { companyId } = ctx.query
+      if (!companyId) { throw (`companyId不能为空`) }
+      let models = await GetReputationByCompanyRm(companyId)
+      ctx.body = models
 
+  }
 
 }
 

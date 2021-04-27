@@ -75,6 +75,11 @@ export interface ResCompanyProductInfoDetailModel {
  * 产品信息
  * @param {number} productId 产品ID
  * @param {string} productName 产品名称
+ * @param {number} listingDateYear 上市年份
+ * @param {number} listingDateMonth 上市月份
+ * @param {string} productVideo 产品视频介绍地址
+ * @param {string} productCover 产品封面图
+ * @param {string} summary 产品详细描述信息
  * @param { { [index: string]: any } } classify  允许提交多个三级标签场景
  * @param {ResReputationStatisticsModel} statisticsModel 	口碑统计信息
  * @param {ResCompanyProductInfoDetailModel[]} productArgs 产品参数指标
@@ -82,10 +87,20 @@ export interface ResCompanyProductInfoDetailModel {
 export interface ResCompanyProductInfoModel {
   productId?: number
   productName: string
+  listingDateYear?: number
+  listingDateMonth?: number
+  productVideo: string
+  productCover: string
+  summary: string
   classify: { [index: string]: any }
   statisticsModel: ResReputationStatisticsModel
   productArgs: ResCompanyProductInfoDetailModel[]
 }
+
+
+
+
+
 
 /**
  * 产品信息的bodyModel模型
