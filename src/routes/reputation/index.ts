@@ -1,8 +1,9 @@
 
 import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
-import { GetCompnays, GetSalersByCompanyId } from '../../controller/company.controller'
-import { GetCompanyProductType } from '../../controller/product.controller'
+import { GetCompnays } from '../../controller/company.controller'
+import { GetCompanyProduct, GetCompanyProductById, GetCompanySimilarProductById } from '../../controller/product.controller'
+import { GetReputationByProductId } from '../../controller/Reputation.controller'
 import { scoreItems } from '../../enums/enums'
 
 
@@ -12,7 +13,7 @@ import { scoreItems } from '../../enums/enums'
  */
 export default class Reputation {
     @get('/publish/:companyId?/:productId?')
-    async publish(ctx: Context, next: Next) {
+    async publish(ctx: Context) {
         let { companyId, productId } = ctx.params
         //获取所有品牌商
         let allbrandingSelectOption: any = { selectIndex: 1, data: [] };
@@ -28,16 +29,23 @@ export default class Reputation {
         })
         //----------------------------------------------
         // 获取品牌商对应的产品
-        let CompanyProduct = await GetCompanyProductType({ companyId })
-        console.log(CompanyProduct)
-        let CompanyProductType: any[] = []
-        CompanyProduct.forEach(item => {
-            CompanyProductType.push({
-                id: item.productTypeId,
-                value: item.productTypeName
+        let CompanyProduct = await GetCompanyProduct({ companyId })
+        let companyProductObject: any = {
+            selectIndex: 0,
+            data: []
+        }
+
+
+        CompanyProduct.forEach((item, index) => {
+            if (item.productId === parseInt(productId)) {
+                companyProductObject.selectIndex = index
+            }
+            companyProductObject.data.push({
+                id: item.productId,
+                value: item.productName
             })
         })
-       
+
 
 
         //评分项
@@ -45,16 +53,55 @@ export default class Reputation {
         //----------------------------------------------
         await ctx.render('reputation/publish', {
             allbrandingSelectOption,
-            CompanyProductType,
-            scoreItems
+            companyProductObject,
+            scoreItems,
+            companyId,
+            productId: productId || CompanyProduct[0].productId
         })
 
     }
 
-    @get('/:id?')
-    async index(ctx: Context, next: Next) {
+    /**
+    * @param {number} companyId 品牌商ID
+    * @param {number} productId 产品ID
+    */
+    @get('/:companyId?/:productId?')
+    async index(ctx: Context) {
+        let { companyId, productId } = ctx.params
+        //获取产品信息
+        let CompanyProduct = await GetCompanyProductById({ productId })
 
-        await ctx.render('reputation/index', {})
+        //-------------------------------
+        //获取产品分类
+        let reputationtypeinfo: any[] = []
+        reputationtypeinfo.push({
+            id: CompanyProduct.productId,
+            value: CompanyProduct.productName
+        })
+
+        let reputationtype = await GetCompanySimilarProductById({ productId })
+
+        reputationtype.forEach(item => {
+            reputationtypeinfo.push({
+                id: item.productId,
+                value: item.productName
+            })
+        })
+        //-------------------------------
+        //获取口碑信息
+        let ReputationData = await GetReputationByProductId(productId) || []
+
+
+        //-------------------------------
+
+
+        await ctx.render('reputation/index', {
+            companyId,
+            productId,
+            CompanyProduct,
+            reputationtypeinfo,
+            ReputationData
+        })
 
     }
 

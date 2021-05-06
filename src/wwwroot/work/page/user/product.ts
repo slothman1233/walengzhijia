@@ -2,8 +2,17 @@ import { kkpager } from '@stl/kkpager'
 import { on } from '@stl/tool-ts/src/common/event/on'
 import { navigationbar2, usernavigationbar } from '../../components/navigationbar'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
+import { GetCompanyProductByTypeId } from '../../common/service/product.services'
+import { ResCompanyProductInfoModelPagedModel, ResCompanyProductInfoModelPagedModelReturnModel } from '../../../../model/reputation/resreputation'
+import { subCodeEnums } from '../../../../enums/enums'
+import { CompanyProductInfoModel } from '../../../../model/company/Company'
+import { getcomponent } from '../../common/service/ComponentService/ComponentService'
+import { bodyModel } from '../../../../model/resModel'
 declare const tabType: any
 declare const pageIndex: number
+declare const totalPages: number
+declare const companyId: any
+declare const pageSize: any
 declare const $: JQueryStatic
 
 //已发布
@@ -16,12 +25,14 @@ declare const $: JQueryStatic
         thatshowdom.show()
     })
 })();
+
+
 (function () {
     //已发布下的分页
     if (document.getElementById('publish_kkpage')) {
         kkpager({
             pagerid: 'publish_kkpage',
-            total: 20,
+            total: totalPages,
             pno: pageIndex,
             mode: 'click',
             isShowFirstPageBtn: false,
@@ -43,16 +54,26 @@ declare const $: JQueryStatic
 
     //已发布 下的切换
     navigationbar2('usermain', async (dom: Element) => {
-      
-        let id = $(dom).data('id')
-        
-        let html = await getdata(id)
+
+        let productTypeId = $(dom).data('id')
+
+
+        let datajson = await GetCompanyProductByTypeId({
+            companyId,
+            productTypeId,
+            pageIndex: 1,
+            pageSize
+        })
+
+
+
+        let html = await getdata(datajson)
 
         $('#usermain .publish .child_box').html(html)
 
         kkpager({
             pagerid: 'publish_kkpage',
-            total: 20,
+            total: datajson.bodyMessage.totalPages,
             pno: 1,
             mode: 'click',
             isShowFirstPageBtn: false,
@@ -63,7 +84,16 @@ declare const $: JQueryStatic
                 nextPageText: '下一页',
             },
             click: async function (i: number) {
-                let html = await getdata(id)
+                let datajson = await GetCompanyProductByTypeId({
+                    companyId,
+                    productTypeId,
+                    pageIndex: i,
+                    pageSize
+                })
+
+
+
+                let html = await getdata(datajson)
                 $('#usermain .publish .child_box').html(html)
             }
 
@@ -74,73 +104,41 @@ declare const $: JQueryStatic
 })()
 
 //获取数据
-async function getdata(id:any){
-    let d = {
-        title: '全部',
-        id: '123',
-        count: '24',
-        child: [{
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）5555',
-            label: ['分类A', '分类A', '分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        },
-        {
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）22111',
-            label: ['分类A', '分类A', '分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        },
-        {
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）',
-            label: ['分类A', '分类A', '分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        },
-        {
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）',
-            label: ['分类A', '分类A', '分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        },
-        {
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）',
-            label: ['分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        }]
-    }
-  
-    let html = ''
-    for (let i = 0; i < d.child.length; i++) {
-        let item = d.child[i]
-        let labelhtml = ''
-        for (let j = 0; j < item.label.length; j++) {
-            labelhtml += `<span>${item.label[j]}</span>`
+async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
+    if (data.code === 0 && data.subCode === subCodeEnums.success) {
+        let items = data.bodyMessage.items
+        let html = ''
+        for (let i = 0; i < items.length; i++) {
+            let item = items[i]
+            let labelhtml = ''
+
+            Object.keys(item.classify).forEach(function (index) {
+                labelhtml += `<span>${item.classify[index]}</span>`
+            })
+
+            html += `<div class="child">
+            <img src="${item.productCover}"/>
+            <div class="c">
+              <h3>${item.productName}</h3>
+                <p class="clearfix">
+                    ${labelhtml}
+                </p>
+              <p class="createtime">发布时间：${item.listingDateYear}-${item.listingDateMonth}</p>
+    
+            </div>
+            <div class="r">
+              <a href="/user/sales/2/11">修改</a>
+              <a href="javascript:(0)" data-id="${item.productId}" class="stick" style='display:${i === 0 ? 'none' : 'block'}'>置顶</a>
+            </div>
+          </div>`
         }
-
-        html += `<div class="child">
-        <img src="${item.logo}"/>
-        <div class="c">
-          <h3>${item.title}</h3>
-            <p class="clearfix">
-                ${labelhtml}
-            </p>
-          <p class="createtime">发布时间：${item.createTime}</p>
-
-        </div>
-        <div class="r">
-          <a href="/user/sales/2/11">修改</a>
-          <a href="javascript:(0)" data-id="${item.id}" class="stick" style='display:${i === 0 ? 'none' : 'block'}'>置顶</a>
-        </div>
-      </div>`
+        return html
+    } else {
+        return ''
     }
-    return html
+
+
+
 }
 
 (function () {
@@ -168,11 +166,11 @@ async function getdata(id:any){
 //----------------------------------------------
 
 //审核中
-(function(){
+(function () {
     //已发布下的分页
     if (document.getElementById('drafts_kkpage')) {
         kkpager({
-            pagerid: 'drafts_kkpage',
+            pagerid: 'review_kkpage',
             total: 20,
             pno: pageIndex,
             mode: 'click',
@@ -192,4 +190,61 @@ async function getdata(id:any){
 
         })
     }
+})();
+
+//草稿
+(async function () {
+
+    let draftsStorage = 'draftsStorage'
+    let data = JSON.parse(localStorage.getItem(draftsStorage)) || {}
+
+    let keyAry = Object.keys(data)
+    let html = ''
+    if (keyAry.length <= 0) {
+        html = `<div class="empty">
+                    <p>没有草稿</p>
+                </div>`
+    } else {
+        let contentData: any[] = []
+        for (let i = 0; i < keyAry.length; i++) {
+            let item: CompanyProductInfoModel = data[keyAry[i]]
+            contentData.push({
+                logo: item.productCover || '/assets/images/loading.png',
+                title: item.productName,
+                id: keyAry[i]
+            })
+        }
+        let datas: bodyModel<string> = await getcomponent({ path: 'components/user/productlist.njk', name: 'productlist', data: { type: 3, companyObject: contentData } })
+
+        if (datas.code === 0) {
+            html = datas.bodyMessage
+        }
+
+    }
+
+
+
+    let drafts = document.getElementById('usermain').querySelector('.drafts .child_box')
+
+    drafts.innerHTML = html
+
+    //-------------------------------
+    //删除方法
+    let del: HTMLElement = document.getElementById('usermain').querySelector('.del')
+
+    on({
+        agent: document.getElementById('usermain').querySelector('.drafts'),
+        events: 'click',
+        ele: '.del',
+        fn: function (dom: HTMLElement, e: Event) {
+
+            let id = dom.getAttribute('data-id')
+
+            $(dom).parents('.child').remove()
+            delete data[id]
+            localStorage.setItem(draftsStorage, JSON.stringify(data))
+            alert('删除成功')
+        }
+    })
+
 })()

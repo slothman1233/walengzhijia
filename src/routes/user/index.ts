@@ -2,10 +2,11 @@
 import { Context, Next } from 'koa'
 import { get, middlewares } from '../../common/decorator/httpMethod'
 import { getCookie } from '../../common/utils/cookies'
-import { GetCompanyProductType, GetProductIndustryByIndustry } from '../../controller/product.controller'
-import { publishNews, publishNewsTypeEnums } from '../../enums/enums'
+import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType, GetProductIndustryByIndustry } from '../../controller/product.controller'
+import { productImgTypeEnums, publishNews, publishNewsTypeEnums } from '../../enums/enums'
 import { user_login_middleware } from '../../middleware/login'
 import { productTypeListModel } from '../../model/reputation/reputation'
+import { ResCompanyProductInfoModel } from '../../model/reputation/resreputation'
 import { userlogin } from '../../routes/login'
 
 
@@ -42,12 +43,64 @@ export default class User {
 
 
     @middlewares([user_login_middleware])
-    @get('/product/:tabType?/:pageIndex?')
+    @get('/product')
     async product(ctx: Context, next: Next) {
-        let { tabType, pageIndex } = ctx.params
+
+        let productTypeId = 0
+        let cookie = getCookie(ctx, userlogin)
+        let companyId = 1
+        if (cookie !== 'undefined') {
+            companyId = JSON.parse(cookie).company.companyId
+        }
+
+
+        //根据公司ID获得所有产品分类
+        let reputationtype = await GetCompanyProductType({ companyId })
+
+        let reputationtypeinfo: any[] = []
+        reputationtype.forEach((item, index) => {
+            if (index === 0) {
+                productTypeId = item.productTypeId
+            }
+            reputationtypeinfo.push({
+                class: '',
+                title: item.productTypeName,
+                id: item.productTypeId,
+                nlink: 'javascript:(0)'
+            })
+        })
+        //----------------------------------------------
+        //根据公司ID和产品id 获取产品列表
+        let pageSize = 10
+        let GetCompanyProduct = await GetCompanyProductByTypeId({ companyId, productTypeId, pageIndex: 1, pageSize })
+
+        let companyObject: any[] = []
+
+        //ResCompanyProductInfoModel
+
+        GetCompanyProduct.items.forEach(item => {
+            let label: string[] = []
+            Object.keys(item.classify).forEach(function (index) {
+                label.push(item.classify[index])
+            })
+            companyObject.push({
+                logo: item.productCover,
+                title: item.productName,
+                label,
+                id: item.productId,
+                createTime: `${item.listingDateYear}-${item.listingDateMonth}`
+            })
+        })
+        //----------------------------------------------
+
+
         await ctx.render('user/product', {
-            tabType: tabType || 1,
-            pageIndex: pageIndex || 1
+            reputationtypeinfo,
+            companyId,
+            pageSize,
+            companyObject,
+            totalPages: GetCompanyProduct.totalPages,
+            pageIndex: GetCompanyProduct.pageIndex
         })
     }
 
@@ -90,25 +143,72 @@ export default class User {
     }
 
     @middlewares([user_login_middleware])
-    @get('/publishproduct/:productId?')
+    @get('/publishproduct/:productId?/:drafts?')
     async publishproduct(ctx: Context, next: Next) {
-        let { productId } = ctx.params
+        let { productId, drafts } = ctx.params
+        let industryObject: any = {
+            selectIndex: 0,
+            data: []
+        }
+        let editorContent = ''
+        // 外观图
+        let externalImgAry: string[] = []
+        //细节图
+        let detaileddrawAry: string[] = []
+        let productClassifyTypeAry: any[] = []
+        let puroductInfo: ResCompanyProductInfoModel
+        if (productId && !drafts) {
+            //根据产品id获取产品数据
+            puroductInfo = await GetCompanyProductById({ productId })
+
+            editorContent = puroductInfo.summary
+
+            puroductInfo.companyProductImages.forEach(item => {
+                switch (item.productImgType) {
+                    case productImgTypeEnums.external:
+                        externalImgAry.push(`"${item.imageUrl}"`)
+                        break
+                    case productImgTypeEnums.detaileddraw:
+                        detaileddrawAry.push(`"${item.imageUrl}"`)
+                        break
+                    default:
+                        break
+                }
+            })
+
+
+            productClassifyTypeAry = Object.keys(puroductInfo.classify)
+
+            //--------------------------------------------------------
+        }
 
         //获取所有的二级分类
         let ProductIndustry = await GetProductIndustryByIndustry(1)
-        let industryOption: any[] = []
         //第一个二级分类的所有三级产品
         let productTypeLabels: any[] = []
         ProductIndustry[0].productType.forEach((product, index) => {
-            if (index === 0) {
-                product.productTypeLabels.forEach((label) => {
-                    productTypeLabels.push({
-                        id: label.productTypeDetailId,
-                        name: label.productTypeDetail
+            if (puroductInfo && puroductInfo.productTypeId) {
+                if (product.productTypeId === parseInt(puroductInfo.productTypeId)) {
+                    industryObject.selectIndex = index
+                    product.productTypeLabels.forEach((label) => {
+                        productTypeLabels.push({
+                            id: label.productTypeDetailId,
+                            name: label.productTypeDetail
+                        })
                     })
-                })
+                }
+            } else {
+                if (index === 0) {
+                    product.productTypeLabels.forEach((label) => {
+                        productTypeLabels.push({
+                            id: label.productTypeDetailId,
+                            name: label.productTypeDetail
+                        })
+                    })
+                }
             }
-            industryOption.push({
+
+            industryObject.data.push({
                 id: product.productTypeId,
                 value: product.productType
             })
@@ -116,8 +216,15 @@ export default class User {
         //--------------------------------------------------------
 
         await ctx.render('user/publishproduct', {
-            industryOption,
-            productTypeLabels
+            industryObject,
+            productTypeLabels,
+            puroductInfo,
+            productId,
+            editorContent,
+            externalImgAry,
+            detaileddrawAry,
+            productClassifyTypeAry,
+            drafts: !!drafts
         })
     }
 
@@ -136,7 +243,7 @@ export default class User {
         let labels = publishNews
 
         //公司的产品集合
-        let productType: productTypeListModel[] = await GetCompanyProductType({ companyId }) || []
+        let productType: ResCompanyProductInfoModel[] = await GetCompanyProduct({ companyId }) || []
 
         console.log(productType)
 
@@ -144,8 +251,8 @@ export default class User {
         //数据转化
         productType.forEach((item) => {
             productSelectOption.push({
-                id: item.productTypeId,
-                value: item.productTypeName
+                id: item.productId,
+                value: item.productName
             })
         })
 

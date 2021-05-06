@@ -18,6 +18,10 @@ navigationbar2 %}
 {% endblock style %}
 
 {% block script %}
+  <script type="text/javascript">
+    var companyId = {{companyId}}
+    var productId = {{productId}}
+  </script>
   <script type="text/javascript" src="/dist/scripts/reputation/index.js"></script>
 {% endblock script %}
 
@@ -29,107 +33,49 @@ navigationbar2 %}
         title: "当前位置：",
         select: 4,
         map: [
-          {
+            {
             name: "首页",
-            link: "#"
+            link: "/"
 
           }, {
             name: "品牌商",
-            link: "#"
+            link: "/list"
 
           }, {
-            name: "京山轻机",
-            link: "#"
-          }, {
-            name: "原纸架",
-            link: "#"
+            name: CompanyProduct.company.fullName,
+            link: "/business/"+ companyId
 
-          }
-        ]
+          }, {
+              name: CompanyProduct.productName,
+              link: "/business/product/"+ companyId +"/" + productId
+
+            }
+          ]
       })}}
     </div>
 
     <div class="row1 clearfix">
       <div class="l">
-        <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+        <img src="{{CompanyProduct.productCover}}"/>
       </div>
 
       <div class="c" id="option1">
         {{selectOption({
-  selectIndex: 1,
-  data: [
-    {
-      id: 0,
-      value: "纸板加工设备及零配件"
-    }, {
-      id: 1,
-      value: "纸板加工设备及零配件"
-    }, {
-      id: 2,
-      value: "纸板加工设备及零配件"
-    }, {
-      id: 3,
-      value: "纸板加工设备及零配件"
-    }, {
-      id: 4,
-      value: "纸板加工设备及零配件"
-    },
-    {
-      id: 0,
-      value: "纸板加工设备及零配件"
-    }, {
-      id: 1,
-      value: "纸板加工设备及零配件"
-    }, {
-      id: 2,
-      value: "纸板加工设备及零配件"
-    }, {
-      id: 3,
-      value: "纸板加工设备及零配件"
-    }, {
-      id: 4,
-      value: "纸板加工设备及零配件"
-    }
-  ]
-
-})}}
+          selectIndex: 0,
+          data: reputationtypeinfo
+        })}}
         <span>产品口碑分</span>
         <div class="score">
-          <span>4.68</span>
-          {{star()}}
-          <b>38条口碑</b>
+          <span>{{CompanyProduct.statisticsModel.score}}</span>
+          {{star(CompanyProduct.statisticsModel.score)}}
+          <b>{{CompanyProduct.statisticsModel.reputationCount}}条口碑</b>
         </div>
         <div class="configuration">
-          {% set confData = [
-                {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }, {
-                  name: "性能",
-                  number: "4.56"
-                }
-              ]%}
-
-          {% if (confData != null) and (confData.length > 0) %}
-            {% for item in confData %}
-              <p>
-                <span>{{item.name}}</span>
-                <span>{{item.number}}</span>
+          {% if (CompanyProduct.statisticsModel.reputationScore != null) and (CompanyProduct.statisticsModel.reputationScore.length > 0) %}
+            {% for item in CompanyProduct.statisticsModel.reputationScore %}
+              <p data-id="{{item.reputationTypeId}}">
+                <span>{{item.reputationTypeName}}</span>
+                <span>{{item.reputationScore}}</span>
               </p>
             {% endfor %}
           {% endif %}
@@ -143,7 +89,7 @@ navigationbar2 %}
       <div class="tab">
         {{navigationbar({
                 isMore: true,
-                link: "/reputation/123",
+                link: "/reputation/publish/"+companyId,
                 MoreText:"发布口碑",
                 isSelect: "1",
                 data: [
@@ -256,65 +202,45 @@ navigationbar2 %}
             }
           ] %}
 
-          {% for item in kblistdata %}
+          {% for item in ReputationData %}
             <div class="child">
               <div class="l">
                 <div class="user">
                   <div>
-                    <img src="{{item.hread}}"/>
-                    <i>{{item.name}}</i>
+                    <img src="{{item.userIcon}}"/>
+                    <i>{{item.userName}}</i>
                   </div>
-                  <p>购买价格:{{item.price}}</p>
-                  <p>购买时间:{{item.buytime}}</p>
-                  <p>投入使用:{{item.actiontime}}</p>
+                  <p>购买价格：{{item.purchasePrice}}</p>
+                  <p>购买时间：{{item.buyTime | ge_time_format(3)}}</p>
+                  <p>投入使用：{{item.useTime | ge_time_format(3)}}</p>
                 </div>
 
                 <div class="grade">
                   <span>用户评分</span>
                   <div class="score">
-                    <span>4.68</span>
-                    {{star()}}
+                    <span>{{item.statisticsModel.score}}</span>
+                    {{star(item.statisticsModel.score)}}
                   </div>
-                  <div class="configuration">
-                    <p>
-                      <span>性能:</span>
-                      <span>{{item.xingneng}}</span>
-                    </p>
-                    <p>
-                      <span>配置:</span>
-                      <span>{{item.peizhi}}</span>
-                    </p>
-                    <p>
-                      <span>外观:</span>
-                      <span>{{item.waiguan}}</span>
-                    </p>
-                    <p>
-                      <span>质量:</span>
-                      <span>{{item.zhiliang}}</span>
-                    </p>
-                    <p>
-                      <span>售后:</span>
-                      <span>{{item.shouhou}}</span>
-                    </p>
-                    <p>
-                      <span>能耗:</span>
-                      <span>{{item.nenghao}}</span>
-                    </p>
-                    <p>
-                      <span>自动化:</span>
-                      <span>{{item.zidonghua}}</span>
-                    </p>
+                  {% if item.statisticsModel.reputationScore != null and item.statisticsModel.reputationScore.length > 0 %}
+                    <div class="configuration">
+                      {% for reputationScoreItem in item.statisticsModel.reputationScore %}
+                        <p data-id="{{reputationScoreItem.reputationTypeId}}">
+                          <span>{{reputationScoreItem.reputationTypeName}}：</span>
+                          <span>{{reputationScoreItem.reputationScore}}</span>
+                        </p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
 
-                  </div>
                 </div>
 
                 <div class="more">
-                  <a href="{{item.id}}" target="_blank">查看口碑详情</a>
+                  <a href="/news/reputation/{{item.reputationId}}" target="_blank">查看口碑详情</a>
                 </div>
               </div>
 
               <div class="r">
-                <p>{{item.description}}</p>
+                <p>{{item.summary}}</p>
                 <div class="atlas">
                   {% for imgurl in item.atlas %}
                     <img src="{{imgurl}}"/>

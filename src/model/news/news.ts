@@ -1,3 +1,4 @@
+import { NewsContentTypeEnums } from '../../enums/enums'
 
 
 
@@ -12,6 +13,7 @@
  * @param {string} newsContent 新闻内容
  * @param {string} newsIcon 新闻封面图
  * @param {number} createUser 新闻创建者
+ * @param {NewsContentTypeEnums} newsContentType 文章内容类型
  */
 export interface NewsInfoModel {
   newsId?: number
@@ -23,4 +25,5 @@ export interface NewsInfoModel {
   newsContent: string
   newsIcon: string
   createUser?: number
+  newsContentType?:NewsContentTypeEnums
 }

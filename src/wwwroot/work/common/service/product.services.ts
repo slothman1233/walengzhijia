@@ -1,6 +1,6 @@
 import { ResIndustryTypeModel } from '../../../../model/industry/resIndustryType'
 import { ResProductTypeModel } from '../../../../model/product/resproductType'
-import { ResCompanyProductInfoModelListReturnModel, ResproductTypeListModel } from '../../../../model/reputation/resreputation'
+import { ResCompanyProductInfoModelListReturnModel, ResCompanyProductInfoModelPagedModelReturnModel, ResproductTypeListModel } from '../../../../model/reputation/resreputation'
 import { ProductByTypeId } from '../../../../services/Product.services'
 import config from '../config/env'
 import http from './http'
@@ -19,6 +19,11 @@ export const GetProductIndustry = async (industry: string | number) => await htt
  */
 export const GetProductType = async (productType: string | number) => await http.get<ResProductTypeModel[]>(`/api/product/GetProductType`, { params: { productType } })
 
+/**
+ * 根据公司ID获得所有产品信息
+ * BycompanyId
+ */
+export const GetCompanyProduct = async (companyId: number): Promise<ResCompanyProductInfoModelListReturnModel> => await http.get<any>(`/api/product/GetCompanyProduct`, { params: { companyId } })
 
 
 /**
@@ -29,10 +34,10 @@ export const GetCompanyProductType = async (companyId: number): Promise<Resprodu
 
 
 /**
- * 根据公司ID获得所有产品分类
+ * 根据公司ID和产品分类获得所有产品信息,需要分页模型接收
  * BycompanyId
  */
-export const GetCompanyProductByTypeId = async (params: ProductByTypeId): Promise<ResCompanyProductInfoModelListReturnModel> => await http.get<any>(`/api/product/GetCompanyProductByTypeId`, { params })
+export const GetCompanyProductByTypeId = async (params: ProductByTypeId): Promise<ResCompanyProductInfoModelPagedModelReturnModel> => await http.get<any>(`/api/product/GetCompanyProductByTypeId`, { params })
 
 
 

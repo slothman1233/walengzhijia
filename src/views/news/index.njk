@@ -24,19 +24,15 @@
     <div class="map">
       {{satemap1({
         title: "当前位置：",
-        select: 4,
+        select: 2,
         map: [
           {
             name: "首页",
-            link: "#"
-
-          }, {
-            name: "新闻",
-            link: "#"
+            link: "/"
 
           }, {
             name: "正文",
-            link: "#"
+            link: "/news/" + newsId
           }
         ]
       })}}
@@ -45,25 +41,20 @@
     <div class="container clearfix">
       <div class="l">
         <div class="news_content">
-          <h1>早高FENG：应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计</h1>
+          <h1>{{newsDetail.newsDetail.newsTitle}}</h1>
           <div class="title clearfix">
-            <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
-            <span>文大帅哥</span>
-            <span>发布于：11-02 09:23</span>
+            <img src="{{newsDetail.newsDetail.userIcon}}"/>
+            <span>{{newsDetail.newsDetail.createUser}}</span>
+            <span>发布于：{{newsDetail.newsDetail.newsTime | ge_time_format}}</span>
 
             <div class="praise">
-              <i>#</i>
+              <i class="iconfont_wlzj">&#xE018;</i>
               <span>24</span>
             </div>
           </div>
 
           <div class="content clearfix">
-            <p>应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计手机三星正式推出了W215G 折叠屏三星正式推出了W215G折叠屏三星正式推出折叠屏三星正式推出了 W215G折叠屏三星正式推出了W215G 折叠屏三星正式推出了 W21 5G 折叠屏三星正式推出了 W21 5G 折叠屏。</p>
-            <p>应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计手机三星正式推出了W215G 折叠屏三星正式推出了W215G折叠屏三星正式推出折叠屏三星正式推出了 W215G折叠屏三星正式推出了W215G 折叠屏三星正式推出了 W21 5G 折叠屏三星正式推出了 W21 5G 折叠屏。</p>
-            <p><img data-viewer="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0" src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/></p>
-            <p><img data-viewer="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0" src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/></p>
-            <p>应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计手机三星正式推出了W215G 折叠屏三星正式推出了W215G折叠屏三星正式推出折叠屏三星正式推出了 W215G折叠屏三星正式推出了W215G 折叠屏三星正式推出了 W21 5G 折叠屏三星正式推出了 W21 5G 折叠屏。</p>
-            <p>应用加载速度对比iPhone 12 Pro胜三星旗舰/谷歌回应屏幕缝隙问题：正常设计手机三星正式推出了W215G 折叠屏三星正式推出了W215G折叠屏三星正式推出折叠屏三星正式推出了 W215G折叠屏三星正式推出了W215G 折叠屏三星正式推出了 W21 5G 折叠屏三星正式推出了 W21 5G 折叠屏。</p>
+            {{newsDetail.newsDetail.newsContent | safe}}
           </div>
 
           <div class="share">
@@ -99,39 +90,11 @@
         <div class="list1 hotnews">
           <p>热门新闻</p>
           <div class="list">
-            {% set listdata = [
-              {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }, {
-                id: "0",
-                content: "iPhone替换音质文件教程，已经解决相机测距仪bug，并附上可以替换的..."
-              }
-            ] %}
-
-            {% for item in listdata %}
+            {% for item in newsDetail.hotNews %}
               <div class="child clearfix">
                 <i>●</i>
-                <a href="{{item.id}}" title="{{item.content}}" target="_blank">
-                  {{item.content}}
+                <a href="{{item.newsId}}" title="{{item.newsTitle}}" target="_blank">
+                  {{item.newsTitle}}
                 </a>
               </div>
             {% endfor %}
@@ -141,20 +104,20 @@
         <div class="list1 relatedproducts">
           <p>相关产品</p>
           <div class="box">
-            <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+            <img src="{{newsDetail.product.producerCover}}"/>
             <div class="content">
               <div class="left">
                 <p>
-                  <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
-                  <span>BHS</span>
+                  <img src="{{newsDetail.product.companyIcon}}"/>
+                  <span>{{newsDetail.product.companyName}}</span>
                 </p>
-                <p>YWZJ-C型液压无轴纸架</p>
+                <p>{{newsDetail.product.productName}}</p>
               </div>
-
-              <a class="btn" href="/news/reputaion/123" target="_blank">查看详情</a>
-
+              <a class="btn" href="/business/product/{{newsDetail.product.companyId}}/{{newsDetail.product.productId}}" target="_blank">查看详情</a>
             </div>
           </div>
+
+          
         </div>
       </div>
     </div>

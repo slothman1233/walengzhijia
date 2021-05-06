@@ -21,6 +21,8 @@
     var productid = {{productid}}
     var sortid = {{sortid}}
     var pageIndex = {{pageIndex}}
+    var totalPages = {{totalPages}}
+    var tabIndex = {{tabIndex}}
   </script>
   <script type="text/javascript" src="/dist/scripts/index/list.js"></script>
 {% endblock script %}
@@ -74,83 +76,16 @@
 
       <div class="left">
         <div class="row">
-          {{ navigationbar({
+          {{navigationbar({
                 isMore: false,
-                id:"123",
-                isSelect: "1",
-                data: [
-                  {
-                    title: "综合排序",
-                    link: "javascript:(0)"
-                  }, {
-                    title: "热门排序",
-                    link: "javascript:(0)"
-                  }
-                ]
-
-              }) }}
+                id:"",
+                isSelect: tabIndex,
+                data: productTabList
+              })}}
         </div>
 
         <div class="list">
-          {{list2([
-  {
-    logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    link:"/business/1",
-    name: "广东万联",
-    kbscore: "5.00",
-    classify:['sdfdsf','adfasfd'],
-    kbcount: 56,
-    favorablerate: "100",
-    kbgood: 18,
-    label: [
-      "上市公司", "优质品牌商", "权威品牌"
-    ],
-    brandtype: "优质品牌商"
-
-  }, {
-    logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    link:"/business/1",
-    name: "广东万联",
-    kbscore: "5.00",
-    classify:['sdfdsf','adfasfd'],
-    kbcount: 56,
-    favorablerate: "100",
-    kbgood: 18,
-    label: [
-      "上市公司", "优质品牌商", "权威品牌"
-    ],
-    brandtype: "优质品牌商"
-
-  }, {
-    logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    link:"/business/1",
-    name: "广东万联",
-    kbscore: "5.00",
-    classify:['sdfdsf','adfasfd'],
-    kbcount: 56,
-    favorablerate: "100",
-    kbgood: 18,
-    label: [
-      "上市公司", "优质品牌商", "权威品牌"
-    ],
-    brandtype: "优质品牌商"
-
-  }, {
-    logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    link:"/business/1",
-    name: "广东万联",
-    kbscore: "5.00",
-    classify:['sdfdsf','adfasfd'],
-    kbcount: 56,
-    favorablerate: "100",
-    kbgood: 18,
-    label: [
-      "上市公司", "优质品牌商", "权威品牌"
-    ],
-    brandtype: "优质品牌商"
-
-  }
-])}}
+          {{list2(companylistJson)}}
         </div>
 
         <div id="kkpage"></div>
@@ -172,9 +107,11 @@
                   <div class="right">
                     <a href="/business/{{item.id}}" target="_blank">{{item.fullName}}</a>
 
-                    <p class='{{(item.brandtype == "优质品牌商") | ternary("superior","")}}'>
-                      {{item.companyLabels}}
-                    </p>
+                    {% if (item.hotType != 0) %}
+                      <p class='{{(item.hotType == 1) | ternary("superior","")}}'>
+                        {{item.hotType | get_companyHotType}}
+                      </p>
+                    {% endif %}
 
                   </div>
 

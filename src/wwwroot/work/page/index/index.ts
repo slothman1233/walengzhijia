@@ -10,7 +10,10 @@ import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { GetHighQualityReputationRm } from '../../common/service/Reputation.services'
 import { Charts } from '../../components/chart/chart'
 import { ResReputationModel, ResReputationScoreStatisticsModel } from '../../../../model/reputation/resreputation'
-import { subCodeEnums } from '../../../../enums/enums'
+import { NewsContentTypeArray, subCodeEnums } from '../../../../enums/enums'
+import { GetNewsList } from '../../common/service/news.services'
+import { get_unix_time_stamp, ge_time_format } from '../../../../common/utils/util'
+import { navigationbar } from '../../components/navigationbar'
 declare const $: JQueryStatic
 declare const reshighKbChart: any[]
 
@@ -89,7 +92,7 @@ declare const document: Document
         if (highKb === null || highKb.code === -1) { return }
 
 
-        highKb.bodyMessage.forEach((item:ResReputationModel) => {
+        highKb.bodyMessage.forEach((item: ResReputationModel) => {
             reshighKb.push({
                 hread: item.userIcon,
                 img: item.productCover,
@@ -102,7 +105,7 @@ declare const document: Document
 
             let name: any[] = []
             let value: any[] = []
-            item.statisticsModel.reputationScore.forEach((kbitem:ResReputationScoreStatisticsModel) => {
+            item.statisticsModel.reputationScore.forEach((kbitem: ResReputationScoreStatisticsModel) => {
                 name.push(kbitem.reputationTypeName)
                 value.push(kbitem.reputationScore)
             })
@@ -114,8 +117,8 @@ declare const document: Document
 
 
 
-        let data: bodyModel<String> = await getcomponent({ path: 'components/list.njk', name: 'kblist1', data: {args: reshighKb} })
-        if (data.code === 0 ) {
+        let data: bodyModel<String> = await getcomponent({ path: 'components/list.njk', name: 'kblist1', data: { args: reshighKb } })
+        if (data.code === 0) {
             kblist1.outerHTML = data.bodyMessage
 
             reshighKbChart.forEach((item: any, index: number) => {
@@ -130,77 +133,77 @@ declare const document: Document
 
 //热门口碑
 (function () {
-    let data = {
-        args: [
-            {
-                link: '#',
-                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-                author: '作者大大',
-                time: '2021-11-11',
-                businesslogo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                businessname: '万联',
-                slug: ['视频', '音频']
-            }, {
-                link: '#',
-                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-                author: '作者大大',
-                time: '2021-11-11'
-            }, {
-                link: '#',
-                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-                author: '作者大大',
-                time: '2021-11-11'
-            }, {
-                link: '#',
-                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-                author: '作者大大',
-                time: '2021-11-11'
-            }
-        ]
-    }
     let isloaded = false
     let nownew = $('.information .nownew')
     document.onscroll = async function () {
         if (document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight <= 150) {
             if (isloaded) { return }
-
-
             isloaded = true
-            setTimeout(async () => {
-                let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: data })
+
+            let id = $('#main').find('.nownew .list .select').parent().data('id')
+            let child = $('#main').find('.nownew .list_box .list1').find('.child')
+            let timetick = $(child[child.length - 1]).data('timetick')
+            let newsList = await GetNewsList(parseInt(id), parseInt(timetick))
+            let NewsList: any[] = []
+            if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
+                newsList.bodyMessage.forEach((item) => {
+                    NewsList.push({
+                        link: '/news/' + item.newsId,
+                        img: item.newsIcon,
+                        title: item.newsTitle,
+                        content: item.newsContent.replace(/<[^>]*>|/g, ''),
+                        author: item.createUser,
+                        time: ge_time_format(item.newsTime, '2'),
+                        businesslogo: item.companyIcon,
+                        businessname: item.companyName,
+                        timetick: get_unix_time_stamp(item.newsTime, 2),
+                        slug: [NewsContentTypeArray[item.NewsContentType]]
+                    })
+                })
+                let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })
 
                 if (datas.code === 0) {
                     nownew.find('.list_box').append(datas.bodyMessage)
                     isloaded = false
                 }
-            }, 500)
+            }
+
 
 
         }
     }
 
-    let navigationbar = nownew.find('.list a')
-    navigationbar.click(function () {
-        let i = $(this).index()
-        console.log(i)
+    navigationbar(nownew[0], async (dom: HTMLElement) => {
+        let id = dom.getAttribute('data-id')
+        let newsList = await GetNewsList(parseInt(id))
+        let NewsList: any[] = []
+        if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
 
-        setTimeout(async () => {
-            let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: data })
+            newsList.bodyMessage.forEach((item) => {
+                NewsList.push({
+                    link: '/news/' + item.newsId,
+                    img: item.newsIcon,
+                    title: item.newsTitle,
+                    content: item.newsContent.replace(/<[^>]*>|/g, ''),
+                    author: item.createUser,
+                    time: ge_time_format(item.newsTime, '2'),
+                    businesslogo: item.companyIcon,
+                    businessname: item.companyName,
+                    timetick: get_unix_time_stamp(item.newsTime, 2),
+                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                })
+            })
+            let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })
 
             if (datas.code === 0) {
                 nownew.find('.list_box').html(datas.bodyMessage)
                 isloaded = false
             }
-        }, 500)
+            isloaded = false
+        }
     })
+
+
 
 })()
 

@@ -1,8 +1,9 @@
 
+import { HotCompanyDefine } from '../../enums/enums'
 import { string } from '../../wwwroot/assets/plugin/xlsx/jszip'
 import { pageTypeModel } from '../pageModel'
 import { ResCompanyInfoIndexPageModel } from '../product/resproductType'
-import { ResReputationStatisticsModel } from '../reputation/resreputation'
+import { ResCompanyProductInfoModel, ResReputationStatisticsModel } from '../reputation/resreputation'
 import { bodyModel } from '../resModel'
 
 
@@ -18,6 +19,12 @@ import { bodyModel } from '../resModel'
  * @param {string} addr 公司联系地址
  * @param {string} desc 公司介绍
  * @param {string} license 营业执照图片
+ * @param {number} totalReputationCount 总口碑数
+ * @param {number} favorableRate 好评率
+ * @param {number} highReputationCount 优质口碑数
+ * @param {number} reputationScore 整体口碑得分
+ * @param {string} stockInfo 股票信息
+ * @param {HotCompanyDefine} hotDefine 品牌商类型
  */
 export interface ResCompanyInfoModel {
   companyId: number
@@ -28,7 +35,12 @@ export interface ResCompanyInfoModel {
   addr: string
   desc: string
   license: string
-
+  totalReputationCount: number
+  favorableRate: number
+  highReputationCount: number
+  reputationScore: number
+  stockInfo: string
+  hotDefine:HotCompanyDefine
 }
 
 /**
@@ -58,6 +70,7 @@ export interface ResCompanyInfoModelReturnModel extends bodyModel<ResCompanyInfo
  * @param {number} companySort 排序
  * @param {ResReputationStatisticsModel} reputation 口碑概要信息
  * @param {string[]} companyLabels 公司标签
+ * @param {HotCompanyDefine} hotType 品牌商的类型标记
  */
 export interface ResCompanyHotModel {
   companyId?: number
@@ -66,8 +79,10 @@ export interface ResCompanyHotModel {
   logo: string
   companySort: number
   reputation: ResReputationStatisticsModel
-  companyLabels: string
+  companyLabels: string[]
+  hotType: HotCompanyDefine
 }
+
 
 /**
  * 销售返回模型
@@ -230,5 +245,42 @@ export interface ResCompanyBrandModelPagedModel extends pageTypeModel<ResCompany
  * @param {string[]} productTypes 公司的产品覆盖的产品二级分类有那些
  */
 export interface ResCompanyBrandModelPagedModelReturnModel extends bodyModel<ResCompanyBrandModelPagedModel> {
+
+}
+
+
+/**
+ * 产品信息的bodyModel 模型
+ * @param {number} productId 产品ID
+ * @param {string} productName 产品名称
+ * @param {number} listingDateYear 上市年份
+ * @param {number} listingDateMonth 上市月份
+ * @param {string} productVideo 产品视频介绍地址
+ * @param {string} productCover 产品封面图
+ * @param {string} summary 产品详细描述信息
+ * @param { { [index: string]: any } } classify  允许提交多个三级标签场景
+ * @param {ResReputationStatisticsModel} statisticsModel 	口碑统计信息
+ * @param {ResCompanyProductInfoDetailModel[]} productArgs 产品参数指标
+ */
+export interface ResCompanyProductInfoModelReturnModel extends bodyModel<ResCompanyProductInfoModel> {
+
+}
+
+
+/**
+ * 同类产品模型
+ * @param {number} productId 产品ID
+ * @param {string} productName 产品名称
+ */
+export interface ResCompanySimilarProductModel {
+  productId: number
+  productName: string
+
+}
+
+/**
+ * 同类产品模型
+ */
+export interface ResCompanySimilarProductModelListReturnModel extends bodyModel<ResCompanySimilarProductModel[]> {
 
 }

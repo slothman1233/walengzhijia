@@ -164,7 +164,7 @@ list1 %}
         <div class="row">
           {{ navigationbar({
                 isMore: true,
-                link: "/list/1/0/1",
+                link: "/list",
                 isSelect: "1",
                 MoreText:"查看全部",
                 data: [
@@ -216,22 +216,22 @@ list1 %}
               kbscore: "5.00"
             }
           ] %}
-          {% for item in kbrankdata %}
+          {% for item in hotReputation %}
             <div class="child">
 
               <i>{{loop.index}}</i>
               <div class="cr">
-                <a class="l" href="/business/{{item.id}}" title="{{item.name}}" target="_blank">
+                <a class="l" href="/business/{{item.companyId}}" title="{{item.name}}" target="_blank">
                   <img src="{{item.logo}}"/>
                 </a>
                 <div class="c">
-                  <a href="/business/{{item.id}}" title="{{item.title}}" target="_blank">{{item.name}}</a>
-                  <p>{{item.kbcount}}条口碑</p>
+                  <a href="/business/{{item.companyId}}" title="{{item.companyName}}" target="_blank">{{item.companyName}}</a>
+                  <p>{{item.reputationCount}}条口碑</p>
                 </div>
 
                 <div class="r">
                   <span>口碑分</span>
-                  <h2>{{item.kbscore}}</h2>
+                  <h2>{{item.reputationScore}}</h2>
                 </div>
               </div>
 
@@ -266,7 +266,7 @@ list1 %}
         }) }}
 
         <div class="list_box">
-          {{list1()}}
+          {{list1(firstNewsList)}}
         </div>
 
       </div>

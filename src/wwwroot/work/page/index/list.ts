@@ -9,10 +9,12 @@ declare const document: Document
 declare const pageIndex: number
 declare const productid: any
 declare const sortid: any
+declare const totalPages: any
+declare const tabIndex: any
 (function () {
     let kkpage = kkpager({
         pagerid: 'kkpage',
-        total: 20,
+        total: totalPages,
         pno: pageIndex,
         mode: 'link',
         isShowFirstPageBtn: false,
@@ -23,7 +25,7 @@ declare const sortid: any
             nextPageText: '下一页',
         },
         getLink: (t: any) => {
-            return `/list/${productid}/${sortid}/${t}`
+            return `/list/${productid}/${sortid}/${tabIndex}/${t}`
         }
         // click: (i: number) => {
         //     console.log(i)
@@ -69,7 +71,7 @@ declare const sortid: any
             let data = await GetProductType(dom.id)
 
             if (data.code === 0) {
-                let model =  data.bodyMessage[0]
+                let model = data.bodyMessage[0]
                 for (let i = 0; i < model.productTypeLabels.length; i++) {
                     let item = model.productTypeLabels[i]
                     let { productTypeDetailId, productTypeDetail } = item
@@ -97,7 +99,7 @@ declare const sortid: any
 
             let bid = bCategories.querySelector('.active').id
             let sid = dom.id
-            document.location.href = `/list/${bid}/${sid}`
+            document.location.href = `/list/${bid}/${sid}/${tabIndex}/1`
         }
     })
 

@@ -82,5 +82,5 @@ export interface ResCompanyInfoIndexPageModel {
   logo: string
   companySort: number
   reputation: ResReputationStatisticsModel
-  companyLabels: string
+  companyLabels: string[]
 }

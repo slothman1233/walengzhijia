@@ -5,10 +5,10 @@ import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import config from '../../common/config/env'
 import { selectOption1 } from '../../components/select'
 import window from '../../common/win/windows'
-import { editor_uploadimg } from '../../components/editor'
+import { editor_uploadimg, editor_uploadvideo } from '../../components/editor'
 import { uploadfilefnImg } from '../../components/uploadfile'
 import { AddNews } from '../../common/service/news.services'
-import { subCodeEnums } from '../../../../enums/enums'
+import { NewsContentTypeEnums, subCodeEnums } from '../../../../enums/enums'
 declare const $: JQueryStatic
 declare const document: any
 declare const laydate: any
@@ -40,7 +40,8 @@ let publishData: NewsInfoModel = {
     source: '',
     newsContent: '',
     newsIcon: null,
-    createUser: userId
+    createUser: userId,
+    newsContentType: NewsContentTypeEnums.content
 }
 
 let usermain = document.getElementById('usermain');
@@ -117,7 +118,16 @@ let usermain = document.getElementById('usermain');
     window.onload = function () {
         onload && onload()
         window.publishnews_ue.ready(function () {
-            editor_uploadimg('edit_container', window.edit_container_ue, {
+            editor_uploadimg('edit_container', window.publishnews_ue, {
+                success: function (imgdom: HTMLImageElement) {
+                    console.log(imgdom)
+                },
+                error: function (e: any) {
+                    console.log(e)
+                }
+            })
+
+            editor_uploadvideo('edit_container', window.publishnews_ue, {
                 success: function (imgdom: HTMLImageElement) {
                     console.log(imgdom)
                 },
@@ -187,11 +197,13 @@ async function getsubContent() {
 
 
     //新闻内容
-    publishData.newsContent = window.publishnews_ue.getContent()
-
-    console.log(publishData)
-
-
+    publishData.newsContent = window.publishnews_ue.body.innerHTML
+    
+    //判断文章是否有音频
+    //有音频则为音频类型
+    if (window.publishnews_ue.body.querySelector('video')) {
+        publishData.newsContentType = NewsContentTypeEnums.video
+    }
 
     let datajson = await AddNews(publishData)
 

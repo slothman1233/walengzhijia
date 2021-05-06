@@ -24,6 +24,9 @@ kblist1 %}
   <script type="text/javascript">
     var companyId = {{companyId}}
     var reshighKbChart = {{reshighKbChart | safe}}
+    var pageIndex = {{GetCompanyProduct.pageIndex}}
+    var totalPages = {{GetCompanyProduct.totalPages}}
+    var pageSize = {{GetCompanyProduct.pageSize}}
   </script>
 
   <script type="text/javascript" src="/assets/plugin/echarts/echarts.min.js"></script>
@@ -36,7 +39,25 @@ kblist1 %}
   <div id="main">
 
     <div class="map">
-      {{satemap1()}}
+      {{satemap1({
+        title: "当前位置：",
+        select: 3,
+        map: [
+          {
+            name: "首页",
+            link: "/"
+
+          }, {
+            name: "品牌商",
+            link: "/list"
+
+          }, {
+            name: companyinfo.fullName,
+            link: "/business/"+ companyId
+
+          }
+        ]
+      })}}
     </div>
 
     <div class="row1">
@@ -50,17 +71,22 @@ kblist1 %}
 
       <div class="center">
         <div class="title">
-          <p>{{companyinfo.abbrName}}</p>
-          <span>
-            <i><img src="/assets/images/union.png"/></i>优质品牌商</span>
+          <p>{{companyinfo.fullName}}</p>
+          {% if companyinfo.hotDefine == 1 %}
+             <span>
+            <i><img src="/assets/images/union.png"/></i>
+            {{companyinfo.hotDefine | get_companyHotType}}
+          </span>
+          {% endif %}
+         
         </div>
         <div class="signboard">
-          <span>A股 | 000821 SZ</span>
+          <span>{{companyinfo.stockInfo}}</span>
         </div>
 
         <div class="brief">
           <p class="l">
-            <span>企业全称：</span>{{companyinfo.abbrName}}</p>
+            <span>企业全称：</span>{{companyinfo.fullName}}</p>
           <p>
             <span>电话：</span>{{companyinfo.phone}}</p>
           <p class="l">
@@ -77,16 +103,16 @@ kblist1 %}
       <div class="right">
         <p>企业产品口碑总分</p>
         <div class="scort">
-          <span>4.88</span>
-          {{star()}}
+          <span>{{companyinfo.reputationScore}}</span>
+          {{star(companyinfo.reputationScore)}}
         </div>
         <p class="kbs">
-          <span>38条口碑</span>
-          <span>18条优质口碑</span>
+          <span>{{companyinfo.totalReputationCount}}条口碑</span>
+          <span>{{companyinfo.highReputationCount}}条优质口碑</span>
         </p>
 
         <div class="btn clearfix">
-          <a class="issue" href="/reputation/publish/0/0" target="_blank">发布口碑</a>
+          <a class="issue" href="/reputation/publish/{{companyId}}" target="_blank">发布口碑</a>
           <a class="enquiry" href="/enquiry/{{companyId}}/0" target="_blank">向销售询价</a>
         </div>
 
@@ -118,8 +144,8 @@ kblist1 %}
         <div class="container">
           <div class="container_box">
 
-            {% if (GetCompanyProduct != null) and (GetCompanyProduct.length > 0) %}
-              {% for item in GetCompanyProduct %}
+            {% if (GetCompanyProduct.items != null) and (GetCompanyProduct.items.length > 0) %}
+              {% for item in GetCompanyProduct.items %}
                 <div class="child">
                   <a class="logo" href="/business/product/{{companyId}}/{{item.productId}}" target="_blank">
                     <img src="{{item.productCover}}"/>
@@ -269,44 +295,11 @@ kblist1 %}
 
       <div class="list">
         <div class="tab" id="consult">
-          {{navigationbar2()}}
+          {{navigationbar2(newTypes)}}
         </div>
 
         <div class="container">
-          {{list1([
-  {
-    link: "/news/123",
-    img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
-    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
-    author: "作者大大",
-    time: "2021-11-11",
-    businesslogo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    businessname: "万联",
-    slug: ["视频", "音频"]
-  }, {
-    link: "/news/123",
-    img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
-    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
-    author: "作者大大",
-    time: "2021-11-11"
-  }, {
-    link: "/news/123",
-    img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
-    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
-    author: "作者大大",
-    time: "2021-11-11"
-  }, {
-    link: "/news/123",
-    img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
-    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
-    author: "作者大大",
-    time: "2021-11-11"
-  }
-])}}
+          {{list1(firstNewsList)}}
         </div>
 
       </div>

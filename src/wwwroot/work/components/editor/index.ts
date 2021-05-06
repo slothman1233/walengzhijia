@@ -93,14 +93,12 @@ export function editor_uploadvideo(parentId: string | HTMLElement, ue: any, {
 
             multipartUpload(files[i], {
                 success: function (url: string) {
-                    let img = $(ue.body).find(`img[src="${loadurl}"]`)
+                    let img = $(ue.body).find(`img[src="${document.location.origin + loadurl}"]`)
                     let video: HTMLVideoElement = document.createElement('video')
                     video.controls = true
                     video.src = url
-
-                    ue.body.replaceChild(video, img[0])
-
-                    img.attr('src', url)
+                    
+                    img[0].parentNode.replaceChild(video, img[0])
                     success && success(<HTMLVideoElement>video[0])
                 },
                 error,

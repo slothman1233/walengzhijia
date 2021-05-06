@@ -3,12 +3,17 @@ import { getcomponent } from '../../common/service/ComponentService/ComponentSer
 import { navigationbar2 } from '../../components/navigationbar'
 import { selectOption1 } from '../../components/select'
 
+declare const companyId: any
+declare const productId: any
 
 
 (function () {
 
     selectOption1('option1', (id, e, option) => {
-        document.location.href = `/reputation/${id}`
+        if (parseInt(productId) === id) {
+            return
+        }
+        { document.location.href = `/reputation/${companyId}/${id}` }
         option.style.display = 'none'
     })
 })();

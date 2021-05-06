@@ -7,7 +7,7 @@ import { ResCompanyBrandModelPagedModel, ResCompanyBrandModelPagedModelReturnMod
 import { ResIndustryTypeModel, ResIndustryTypeModelListReturnModel } from '../model/industry/resIndustryType'
 import { ResProductTypeModel, ResProductTypeModelListReturnModel } from '../model/product/resproductType'
 import { bodyModel, ErrorModel } from '../model/resModel'
-import companys, { ByAdvisoryId, ByCompanyIdModel, ByProductId, CompanyBrand, GetCompanyInfoByUserModel } from '../services/company.services'
+import companys, { ByAdvisoryId, ByCompanyIdModel, ByProductId, GetCompanyInfoByUserModel } from '../services/company.services'
 /**
  * 首页中显示热门公司品牌，根据产品ID类型来获得公司产品信息
  */
@@ -149,22 +149,6 @@ export async function GetCompnaysRm(): Promise<ResCompanyInfoModelListReturnMode
     return await companys.GetCompnays().catch(data => data)
 }
 
-
-/**
- * 获得企业品牌商模型
- */
-export async function GetCompanyBrand(params: CompanyBrand): Promise<ResCompanyBrandModelPagedModel> {
-    let rm = await GetCompanyBrandRm(params)
-    let models = JSONParse<ResCompanyBrandModelPagedModel>(rm.code, rm.bodyMessage)
-    return models
-}
-
-/**
- * 获得企业品牌商模型
- */
-export async function GetCompanyBrandRm(params: CompanyBrand): Promise<ResCompanyBrandModelPagedModelReturnModel> {
-    return await companys.GetCompanyBrand(params).catch(data => data)
-}
 
 
 

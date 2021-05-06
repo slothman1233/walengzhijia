@@ -16,20 +16,21 @@ import { nunRender, nunRenderMacroString } from '../common/nunjucks'
 import { writeFile, EnsureFile, readFile, moveFile, copyFile } from '../common/utils/file'
 import Business from './business'
 import Products from '../services/Product.services'
-import { GetCompanyProductType, GetIndexPageProduct, GetProductIndustryByIndustry } from '../controller/product.controller'
+import { GetCompanyBrand, GetCompanyProduct, GetCompanyProductType, GetIndexPageProduct, GetProductIndustryByIndustry } from '../controller/product.controller'
 import { ResIndustryTypeModel } from '../model/industry/resIndustryType'
 import { GetCompanyHot, GetCompanyInfoById, GetSalersByCompanyId } from '../controller/company.controller'
 import { ResCompanyInfoIndexPageModel, ResProductIndexPageModel } from '../model/product/resproductType'
 import { ResCompanyHotModel } from '../model/company/resCompany'
 import { GetNewsList } from '../controller/news.controller'
 import { ResNewsModel } from '../model/news/resNews'
-import { GetHighQualityReputation } from '../controller/Reputation.controller'
+import { GetHighQualityReputation, GetHotReputation } from '../controller/Reputation.controller'
 import ManageLepackReputaions from '../services/ManageLepackReputaion.services'
-import { publishNews, adTypeEnums } from '../enums/enums'
+import { publishNews, adTypeEnums, ProductSortType, HotCompanyDefineItems, NewsContentTypeObject, NewsContentTypeArray } from '../enums/enums'
 import { GetWebLinks } from '../controller/websitelink.controller'
 import { ResWebLinkModel } from '../model/link/weblink'
 import { GetAdvertising } from '../controller/Advertising.controller'
 import { ResAdvertisingModel } from '../model/Advertising'
+import { get_unix_time_stamp, ge_time_format } from '../common/utils/util'
 // import Business from './list'
 
 
@@ -70,9 +71,9 @@ export default class Index {
         })
 
         //------------------------------------------------------------------------------------------------------------------
-        //热门分类
+        //新闻分类
         let newTypes: any[] = []
-
+        // 0 最新资讯 1 行业新闻 2 经验分享 3 优惠活动 4 展会相关 5 其他
         publishNews.forEach((item) => {
             newTypes.push({
                 id: item.id,
@@ -80,7 +81,24 @@ export default class Index {
                 link: 'javascript:(0)'
             })
         })
-
+        //------------------------------------------------------------------------------------------------------------------
+        //新闻第一个分类的列表
+        let firstNews: ResNewsModel[] = await GetNewsList(publishNews[0].id)
+        let firstNewsList: any[] = []
+        firstNews.forEach((item) => {
+            firstNewsList.push({
+                link: '/news/' + item.newsId,
+                img: item.newsIcon,
+                title: item.newsTitle,
+                content: item.newsContent.replace(/<[^>]*>|/g, ''),
+                author: item.createUser,
+                time: ge_time_format(item.newsTime, '2'),
+                businesslogo: item.companyIcon,
+                businessname: item.companyName,
+                timetick: get_unix_time_stamp(item.newsTime, 2),
+                slug: [NewsContentTypeArray[item.NewsContentType]]
+            })
+        })
         //------------------------------------------------------------------------------------------------------------------
         //热门新闻
         let HotNews: ResNewsModel[] = await GetNewsList()
@@ -148,16 +166,20 @@ export default class Index {
             size: 5
         })
         //------------------------------------------------------------------------------------------------------------------
+        //获得热门口碑排行信息
 
-
+        let hotReputation = await GetHotReputation()
+        //------------------------------------------------------------------------------------------------------------------
         await ctx.render('index', {
             productTypeData: productTypeData[0].productType,
             brandData,
             newList,
             reshighKb,
             reshighKbChart: JSON.stringify(reshighKbChart),
+            firstNewsList,
             newTypes,
             getlinks,
+            hotReputation,
             ad: {
                 adtoponeData,
                 adtoptowData,
@@ -165,17 +187,17 @@ export default class Index {
             }
         })
     }
-    // hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    // img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    // name: "李女士",
-    // kbscore: "5.00",
-    // link: "/business/product/0",
-    // title: "阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬",
-    // description: "a阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德"
 
-    @get('/list/:productid?/:sortid?/:pageIndex?')
+    /**
+     * @param {number} productid 二级分类
+     * @param {number} sortid 三级分类
+     * @param {ProductSortTypeEnums} tabIndex 品牌商类型
+     * @param {number} pageIndex 当前页码
+     */
+    @get('/list/:productid?/:sortid?/:tabIndex?/:pageIndex?')
     async lists(ctx: Context, next: Next) {
-        let { productid, sortid, pageIndex } = ctx.params
+        let { productid = 1, sortid = 0, tabIndex = 1, pageIndex = 1 } = ctx.params
+        let pageSize = 10
         //行业信息
         let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
         //------------------------------------------------------------------------------------
@@ -183,24 +205,56 @@ export default class Index {
         //获取热门品牌商
         let GetCompanyHotData = await GetCompanyHot()
         //------------------------------------------------------------------------------------
+        //品牌商分类
+        let productTabList: any[] = []
+        ProductSortType.forEach((item, index) => {
+            productTabList.push({
+                id: item.id,
+                title: item.value,
+                blank: false,
+                link: `/list/${productid}/${sortid}/${index + 1}/${pageIndex}`
+            })
+        })
+        //----------------------------------------------------------------
+        //品牌商列表数据
+        let GetCompanyJson = await GetCompanyBrand({
+            productType: productid,
+            classifyType: sortid,
+            pageIndex,
+            pageSize,
+            queryType: tabIndex
+        })
+
+        let companylistJson: any[] = []
+        if (GetCompanyJson?.items) {
+            GetCompanyJson.items.forEach(item => {
+                companylistJson.push({
+                    logo: item.company.logo,
+                    link: '/business/' + item.company.companyId,
+                    name: item.company.fullName,
+                    kbscore: item.company.reputation.score,
+                    classify: item.productTypes,
+                    kbcount: item.company.reputation.reputationCount,
+                    favorablerate: item.favorableRate * 100,
+                    kbgood: item.highReputationCount,
+                    label: item.company.companyLabels,
+                    brandtype: HotCompanyDefineItems[item.company.hotType]
+                })
+            })
+        }
+        //----------------------------------------------------------------
         await ctx.render('list', {
-            productid: productid || 1,
-            sortid: sortid || 0,
-            pageIndex: pageIndex || 1,
+            productid,
+            sortid,
+            pageIndex,
+            tabIndex,
             productTypeData: productTypeData[0].productType,
-            GetCompanyHotData
+            GetCompanyHotData,
+            productTabList,
+            totalPages: GetCompanyJson?.totalPages || 0,
+            companylistJson
         })
     }
-
-    @get('/list')
-    async list(ctx: Context, next: Next) {
-        await ctx.render('list', {
-            productid: 0,
-            sortid: 0,
-            pageIndex: 1
-        })
-    }
-
     /**
     * @param {number} companyId 品牌商ID
     * @param {number} companyId 销售ID
@@ -216,12 +270,12 @@ export default class Index {
         //----------------------------------------------
         // 获取公司的产品集合
 
-        let ProductType = await GetCompanyProductType({ companyId })
+        let ProductType = await GetCompanyProduct({ companyId })
         let productTypeAry: any[] = []
         ProductType.forEach(item => {
             productTypeAry.push({
-                id: item.productTypeId,
-                value: item.productTypeName
+                id: item.productId,
+                value: item.productName
             })
         })
 

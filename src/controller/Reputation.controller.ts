@@ -2,7 +2,7 @@
 
 
 import { JSONParse } from '../common/utils/ModelHelper'
-import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel } from '../model/reputation/resreputation'
+import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel, ResHotReputationModel, ResHotReputationModelListReturnModel } from '../model/reputation/resreputation'
 import { bodyModel } from '../model/resModel'
 import Reputations, { GetHighQualityReputationModel, GetReputationByCompanyModel, GetReputationByProductIdModel } from '../services/Reputation.services'
 
@@ -109,4 +109,22 @@ export async function GetReputationStatisticsByProductRm(productId: number): Pro
     return await Reputations.GetReputationStatisticsByProduct(params).catch(data => data)
 }
 
+
+
+/**
+ * 获得热门口碑排行信息
+ */
+export async function GetHotReputation(): Promise<ResHotReputationModel[] | null> {
+    let rm = await GetHotReputationRm()
+    let models = JSONParse<ResHotReputationModel[] | null>(rm.code, rm.bodyMessage)
+    return models
+}
+
+
+/**
+* 获得热门口碑排行信息
+*/
+export async function GetHotReputationRm(): Promise<ResHotReputationModelListReturnModel> {
+    return await Reputations.GetHotReputation().catch(data => data)
+}
 

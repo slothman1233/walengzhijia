@@ -1,7 +1,7 @@
 import config from '../common/config/env'
 import http from '../common/utils/net'
 
-import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel } from '../model/reputation/resreputation'
+import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel, ResHotReputationModel, ResHotReputationModelListReturnModel } from '../model/reputation/resreputation'
 import { bodyModel } from '../model/resModel'
 
 
@@ -47,6 +47,13 @@ class Reputation {
     async GetReputationStatisticsByProduct(params: GetReputationByProductIdModel): Promise<bodyModel<ResReputationStatisticsModel[]>> {
         return await http.get<ResReputationStatisticsModel[]>(`${config.apiPath}api/Reputation/GetReputationStatisticsByProduct`, { params, headers: { 'Content-Type': 'application/json' } })
     }
+
+    // 获得热门口碑排行信息
+    //@CacheInterceptor('AreaInfo_GetAreaInfoInfoByUser', CacheTime.Min3)
+    async GetHotReputation(): Promise<ResHotReputationModelListReturnModel> {
+        return await http.get<ResHotReputationModel[]>(`${config.apiPath}api/Reputation/GetHotReputation`, { headers: { 'Content-Type': 'application/json' } })
+    }
+
 }
 
 

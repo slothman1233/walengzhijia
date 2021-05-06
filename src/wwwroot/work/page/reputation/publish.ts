@@ -1,16 +1,18 @@
 import { NodeListToArray } from '@stl/tool-ts/src/common/obj/NodeListToArray'
-import { ReputationModel } from '../../../../model/reputation/reputation'
+import { ReputationModel, ReputationScoreModel } from '../../../../model/reputation/reputation'
 import window from '../../common/win/windows'
-import { editor_uploadimg } from '../../components/editor'
+import { editor_uploadimg, editor_uploadvideo } from '../../components/editor'
 import { selectOption1 } from '../../components/select'
 import { starfn } from '../../components/star'
 import { uploadfilefnImg } from '../../components/uploadfile'
 import config from '../../common/config/env'
 import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
 import { subCodeEnums } from '../../../../enums/enums'
-import { GetCompanyProductType } from '../../common/service/product.services'
+import { GetCompanyProduct, GetCompanyProductType } from '../../common/service/product.services'
 
 declare const laydate: any
+declare const companyId: any
+declare const productId: any
 
 let main = document.getElementById('main')
 //用户id
@@ -39,8 +41,8 @@ let userId = 0;
  * @param {ReputationScoreModel[]} reputationScores 口碑评分模型
  */
 let PublishData: ReputationModel = {
-    companyId: 0,
-    productId: 0,
+    companyId,
+    productId,
     buyTime: '',
     useTime: '',
     purchasePrice: 0,
@@ -50,6 +52,26 @@ let PublishData: ReputationModel = {
     createUser: userId,
     reputationScores: []
 };
+
+// {
+//     "companyId": 0,
+//     "productId": 0,
+//     "buyTime": "2021-04-30T05:54:20.615Z",
+//     "useTime": "2021-04-30T05:54:20.615Z",
+//     "purchasePrice": 0,
+//     "priceShowStatus": 0,
+//     "summary": "string",
+//     "reputationIcon": "string",
+//     "createUser": 0,
+//     "reputationScores": [
+//       {
+//         "reputationId": 0,
+//         "reputationTypeId": 0,
+//         "score": 0
+//       }
+//     ]
+//   }
+
 // lay('#version').html('-v' + laydate.v)
 
 //执行一个laydate实例
@@ -86,8 +108,7 @@ window.onload = function () {
     onload && onload()
 
     window.ue.ready(function () {
-        //获取内容
-        window.ue.getContent()
+
 
         editor_uploadimg('edit_container', window.ue, {
             success: (name) => {
@@ -95,12 +116,12 @@ window.onload = function () {
             },
             error: () => { }
         })
-        // editor_uploadvideo('edit_container', window.ue, {
-        //     success: (ename) => {
-        //         console.log(name)
-        //     },
-        //     error: (e) => { }
-        // })
+        editor_uploadvideo('edit_container', window.ue, {
+            success: (ename) => {
+                console.log(name)
+            },
+            error: (e) => { }
+        })
     })
 };
 
@@ -115,7 +136,7 @@ window.onload = function () {
         PublishData.companyId = id
         //GetCompanyProductType 
         // 绑定错误
-        let data = await GetCompanyProductType(id)
+        let data = await GetCompanyProduct(id)
 
         let html = ``
         if (data.code === 0 && data.subCode === subCodeEnums.success) {
@@ -123,11 +144,11 @@ window.onload = function () {
             selectOption.querySelector('span').innerHTML = ''
             data.bodyMessage.forEach((item, index) => {
                 if (index === 0) {
-                    PublishData.productId = item.productTypeId
-                    selectOption.querySelector('h1').setAttribute('data-id', item.productTypeId.toString())
-                    selectOption.querySelector('span').innerHTML = item.productTypeName
+                    PublishData.productId = item.productId
+                    selectOption.querySelector('h1').setAttribute('data-id', item.productId.toString())
+                    selectOption.querySelector('span').innerHTML = item.productName
                 }
-                html += `<p data-id="${item.productTypeId}">${item.productTypeName}</p>`
+                html += `<p data-id="${item.productId}">${item.productName}</p>`
             })
         }
         s2option.innerHTML = html
@@ -138,6 +159,11 @@ window.onload = function () {
         // option.style.display = 'none'
         PublishData.productId = id
     })
+})();
+
+//价格显示状态
+(function () {
+
 })();
 
 
@@ -227,4 +253,45 @@ async function submitFn() {
     }
 
 
+    let checkeDom = main.querySelector('.price input:checked')
+    if (!checkeDom) {
+        alert('请选择价格显示的方式')
+        return
+    }
+
+    if (window.ue.body.innerHTML.length <= 0) {
+        alert('观点描述不能为空！')
+        return
+    }
+
+    //评分项
+    let child = NodeListToArray(document.querySelectorAll('.star_box > div'))
+    let scores: ReputationScoreModel[] = []
+    for (let i = 0; i < child.length; i++) {
+        let item = child[i]
+        let id = item.getAttribute('data-id')
+        let score = parseFloat(item.querySelectorAll('span')[2].innerText)
+
+        if (score <= 0) {
+            alert('评分项每个都必须选择')
+            return
+        }
+
+        scores.push({
+            reputationTypeId: parseInt(id),
+            score
+        })
+    }
+
+    if (PublishData.reputationIcon.length <= 0) {
+        alert('封面图不能为空！')
+        return
+    }
+
+
+    PublishData.purchasePrice = parseFloat(price.value)
+    PublishData.priceShowStatus = parseInt(checkeDom.getAttribute('data-id'))
+    PublishData.summary = window.ue.body.innerHTML
+    PublishData.reputationScores = scores
+    console.log(PublishData)
 }

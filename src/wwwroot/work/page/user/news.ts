@@ -51,9 +51,9 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
 
     //已发布 下的切换
     navigationbar2('usermain', async (dom: Element) => {
-      
+
         let id = $(dom).data('id')
-        
+
         let html = await getdata(id)
 
         $('#usermain .publish .child_box').html(html)
@@ -82,7 +82,7 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
 })()
 
 //获取数据
-async function getdata(id:any){
+async function getdata(id: any) {
     let d = {
         title: '全部',
         id: '123',
@@ -123,7 +123,7 @@ async function getdata(id:any){
             createTime: '2020-08-01'
         }]
     }
-  
+
     let html = ''
     for (let i = 0; i < d.child.length; i++) {
         let item = d.child[i]
@@ -199,14 +199,14 @@ async function getdata(id:any){
                 createUser: userId
             })
 
-            if(datajson.code === 0 && datajson.subCode === subCodeEnums.success){
+            if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
                 $(dom).parents('.child').remove()
                 alert('删除成功')
-            }else{
+            } else {
                 alert('删除失败')
             }
 
-           
+
         }
     })
 
@@ -227,7 +227,7 @@ async function getdata(id:any){
 //----------------------------------------------
 
 //审核中
-(function(){
+(function () {
     //已发布下的分页
     if (document.getElementById('drafts_kkpage')) {
         kkpager({

@@ -23,6 +23,18 @@ uploadfileVideo %}
 {% endblock style %}
 
 {% block script %}
+  <script type="text/javascript">
+    var productId = {{productId}}
+    var isdrafts = {{drafts}}
+    var productTypeId = "{{puroductInfo.productTypeId | ternary(puroductInfo.productTypeId,"null")}}"
+    var listingDateYear = "{{puroductInfo.listingDateYear | ternary(puroductInfo.listingDateYear,'')}}"
+    var listingDateMonth = "{{puroductInfo.listingDateMonth | ternary(puroductInfo.listingDateMonth,'')}}"
+    var externalImgAry = [{{externalImgAry | safe}}]
+    var detaileddrawAry = [{{detaileddrawAry | safe}}]
+    var productClassifyTypeAry = [{{productClassifyTypeAry | safe}}]
+    var productCover = "{{puroductInfo.productCover}}"
+    var productVideo = "{{puroductInfo.productVideo}}"
+  </script>
   <script type="text/javascript" src="/assets/plugin/xlsx/xlsx.core.min.js"></script>
   <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
   <script type="text/javascript" src="/assets/plugin/ueditor/dist/ueditor.config.js"></script>
@@ -50,10 +62,7 @@ uploadfileVideo %}
           <div class="row clearfix">
             <p>产品分类<span>*</span></p>
             <div class="s1" id="s1">
-              {{selectOption({
-                selectIndex: 0,
-                data: industryOption
-              })}}
+              {{selectOption(industryObject)}}
             </div>
           </div>
 
@@ -61,12 +70,22 @@ uploadfileVideo %}
             <div class="row clearfix">
               <p>细节标签<span>*</span></p>
               <div class="Detailslabel">
+                {% if puroductInfo %}
+
+                  {% for v, k in puroductInfo.classify %}
+                    <span data-id="{{v}}">
+                      <b>{{k}}</b>
+                      <i data-id="{{v}}" class="iconfont_wlzj">&#xE01E;</i>
+                    </span>
+                  {% endfor %}
+                {% endif %}
+
               </div>
 
             </div>
             <p class="clearfix">请选择产品的二级分类标签，如没有对应的标签，可选择“其它”或“添加标签”</p>
             <div class="list clearfix">
-          
+
               {% for item in productTypeLabels %}
                 <span data-id="{{item.id}}">{{item.name}}</span>
               {% endfor %}
@@ -75,13 +94,18 @@ uploadfileVideo %}
 
           <div class="row clearfix">
             <p>产品名称<span>*</span></p>
-            <input class="productname" placeholder="请输入产品名称"/>
+            <input class="productname" placeholder="请输入产品名称" value="{{puroductInfo.productName}}"/>
           </div>
 
           <div class="row clearfix">
             <p>上市时间<span>*</span></p>
             <div class="input">
-              <input type="text" placeholder="选择日期" id="purchastime" lay-key="1">
+              {% if puroductInfo %}
+                <input type="text" placeholder="选择日期" id="purchastime" value="{{puroductInfo.listingDateYear}}-{{puroductInfo.listingDateMonth}}" lay-key="1">
+              {% else %}
+                <input type="text" placeholder="选择日期" id="purchastime" value="" lay-key="1">
+              {% endif %}
+
               <i class="iconfont_wlzj">&#xE00C;</i>
             </div>
           </div>
@@ -103,42 +127,49 @@ uploadfileVideo %}
 
         <div class="table">
           <table border="1">
-            <tr>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-            </tr>
-            <tr>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-            </tr>
-            <tr>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-            </tr>
-            <tr>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-            </tr>
-            <tr>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-            </tr>
-            <tr>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-              <td contenteditable="plaintext-only"></td>
-            </tr>
+            {% if puroductInfo %}
+
+              {% for item in puroductInfo.productArgs %}
+
+                {% if loop.index0 % 2 == 0 %}
+                  <tr>
+                    <td contenteditable="plaintext-only">{{item.productKey}}</td>
+                    <td contenteditable="plaintext-only">{{item.productValue}}</td>
+                  {% else %}
+                    <td contenteditable="plaintext-only">{{item.productKey}}</td>
+                    <td contenteditable="plaintext-only">{{item.productValue}}</td>
+                  </tr>
+                {% endif %}
+
+              {% endfor %}
+
+            {% else %}
+              <tr>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+              </tr>
+              <tr>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+              </tr>
+              <tr>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+              </tr>
+              <tr>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+                <td contenteditable="plaintext-only"></td>
+              </tr>
+            {% endif %}
+
           </table>
 
           <div class="add">
@@ -154,6 +185,9 @@ uploadfileVideo %}
           <p>产品概要是潜在客户了解产品的主要途径之一，请认真填写</p>
         </div>
 
+        <div id="editorContent" style="display:none">
+          {{editorContent | safe}}
+        </div>
         {{editor({
             documentname: "edit_container_ue",
             id: "edit_container",
@@ -182,7 +216,7 @@ uploadfileVideo %}
               <div class="uploadfile external">
                 <div>
                   <p>点此添加封面</p>
-                  <div class="preview">
+                  <div class="preview" style="{{(externalImgAry.length > 0) | ternary('background-image: url('+externalImgAry[0]+'); display: block;','')}}">
                     <p>替换</p>
                   </div>
                 </div>
@@ -196,7 +230,7 @@ uploadfileVideo %}
               <div class="uploadfile detaileddraw">
                 <div>
                   <p>点此添加封面</p>
-                  <div class="preview">
+                  <div class="preview" style="{{(detaileddrawAry.length > 0) | ternary('background-image: url('+detaileddrawAry[0]+'); display: block;','')}}">
                     <p>替换</p>
                   </div>
                 </div>
@@ -211,11 +245,12 @@ uploadfileVideo %}
         <div class="imglist clearfix">
           <div class="child clearfix uploadimg_box">
             <p>产品封面</p>
+
             <div class="uploadimg">
               {{uploadfileImg({
                 description : "点此添加封面",
-                previewIsShow:false,
-                previewImg:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+                previewIsShow:puroductInfo.productCover.length > 0,
+                previewImg: puroductInfo.productCover,
                 previewTitle:"替换"
               })}}
 
@@ -225,10 +260,11 @@ uploadfileVideo %}
           <div class="child clearfix uploadVideo_box">
             <p>产品视频</p>
             <div class="uploadimg">
+
               {{uploadfileVideo({
                 description : "点此添加封面",
-                previewIsShow:false,
-                previewVideo:"",
+                previewIsShow:puroductInfo.productVideo.length > 0,
+                previewVideo:puroductInfo.productVideo,
                 previewTitle:"替换"
               })}}
 
@@ -241,7 +277,11 @@ uploadfileVideo %}
 
       <div class="submit">
         <a href="javascript:(0)" class='sub'>立即发布</a>
-        <a href="javascript:(0)" class="drafts">保存草稿</a>
+         <a href="javascript:(0)" class="drafts">保存草稿</a>
+        {% if productId == null %}
+          <a href="javascript:(0)" class="drafts">保存草稿</a>
+        {% endif %}
+
       </div>
 
     </div>

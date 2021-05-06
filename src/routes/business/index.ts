@@ -1,9 +1,13 @@
 
 import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
+import { get_unix_time_stamp, ge_time_format } from '../../common/utils/util'
 import { GetCompanyInfoById, GetSalersByCompanyId } from '../../controller/company.controller'
-import { GetCompanyProduct, GetCompanyProductByTypeId, GetCompanyProductType } from '../../controller/product.controller'
-import { GetReputationByCompany, GetReputationStatisticsByProduct } from '../../controller/Reputation.controller'
+import { GetNewsByCompanyId, GetNewsByProductId } from '../../controller/news.controller'
+import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType } from '../../controller/product.controller'
+import { GetReputationByCompany, GetReputationByProductId, GetReputationStatisticsByProduct } from '../../controller/Reputation.controller'
+import { NewsContentTypeArray, publishNews } from '../../enums/enums'
+import { ResNewsModel } from '../../model/news/resNews'
 
 
 
@@ -13,7 +17,7 @@ export default class Business {
     async index(ctx: Context, next: Next) {
         let { companyId } = ctx.params
         let productTypeId = 0
-        console.log(companyId)
+
         //公司信息
         let companyinfo = await GetCompanyInfoById({ companyId })
 
@@ -34,9 +38,9 @@ export default class Business {
         })
         //----------------------------------------------
         //根据公司ID和产品id 获取产品列表
-        let GetCompanyProduct = await GetCompanyProductByTypeId({ companyId, productTypeId })
+        let GetCompanyProduct = await GetCompanyProductByTypeId({ companyId, productTypeId, pageIndex: 1, pageSize: 10 })
         //----------------------------------------------
-        ///api/Reputation/GetReputationByCompany
+        ///获得公司口碑集合
         let Reputation = await GetReputationByCompany(companyId)
 
         let reshighKb: any[] = []
@@ -66,10 +70,47 @@ export default class Business {
             })
         }
         //----------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------
+        //新闻分类
+        let newTypes: any = {
+            isSelect: '1',
+            data: []
+        }
+        // 0 最新资讯 1 行业新闻 2 经验分享 3 优惠活动 4 展会相关 5 其他
+        publishNews.forEach((item) => {
+            newTypes.data.push({
+                id: item.id,
+                title: item.value,
+                class: ''
+            })
+        })
+        //------------------------------------------------------------------------------------------------------------------
+        //新闻第一个分类的列表
+        let firstNews: ResNewsModel[] = await GetNewsByCompanyId(companyId, publishNews[0].id)
+        let firstNewsList: any[] = []
+        if (firstNews) {
+            firstNews.forEach((item) => {
+                firstNewsList.push({
+                    link: '/news/' + item.newsId,
+                    img: item.newsIcon,
+                    title: item.newsTitle,
+                    content: item.newsContent.replace(/<[^>]*>|/g, ''),
+                    author: item.createUser,
+                    time: ge_time_format(item.newsTime, '2'),
+                    businesslogo: item.companyIcon,
+                    businessname: item.companyName,
+                    timetick: get_unix_time_stamp(item.newsTime, 2),
+                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                })
+            })
+        }
+        //------------------------------------------------------------------------------------------------------------------
 
         await ctx.render('business/index', {
             Reputation,
             companyId,
+            newTypes,
+            firstNewsList,
             companyinfo,
             reputationtypeinfo,
             GetCompanyProduct,
@@ -81,21 +122,23 @@ export default class Business {
 
     /**
     * @param {number} companyId 品牌商ID
-    * @param {number} productTypeId 产品ID
+    * @param {number} productId 产品ID
     */
-    @get('/product/:companyId/:productTypeId?')
+    @get('/product/:companyId?/:productId?')
     async product(ctx: Context, next: Next) {
 
-        let { companyId, productTypeId } = ctx.params
+        let { companyId, productId } = ctx.params
 
         //销售信息
         let salers = await GetSalersByCompanyId({ companyId })
         //----------------------------------------------
 
         //获取产品信息
-        // let CompanyProductInfo = await GetCompanyProductByTypeId({
-        //     companyId, productTypeId
-        // })
+        let CompanyProductInfo = await GetCompanyProductById({
+            productId: productId
+        })
+        //----------------------------------------------
+
         //品牌商资料
         let kbByProduct = await GetReputationStatisticsByProduct(1)
         let kbscoreData: any[] = []
@@ -110,13 +153,55 @@ export default class Business {
             })
         }
         //----------------------------------------------
+        //获取产品的口碑信息
+        let ReputationData = await GetReputationByProductId(productId)
+        //----------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------
+        //新闻分类
+        let newTypes: any = {
+            isSelect: '1',
+            data: []
+        }
+        // 0 最新资讯 1 行业新闻 2 经验分享 3 优惠活动 4 展会相关 5 其他
+        publishNews.forEach((item) => {
+            newTypes.data.push({
+                id: item.id,
+                title: item.value,
+                class: ''
+            })
+        })
+        //------------------------------------------------------------------------------------------------------------------
+        //新闻第一个分类的列表
+        let firstNews: ResNewsModel[] = await GetNewsByProductId(productId, publishNews[0].id)
+        let firstNewsList: any[] = []
+        if (firstNews) {
+            firstNews.forEach((item) => {
+                firstNewsList.push({
+                    link: '/news/' + item.newsId,
+                    img: item.newsIcon,
+                    title: item.newsTitle,
+                    content: item.newsContent.replace(/<[^>]*>|/g, ''),
+                    author: item.createUser,
+                    time: ge_time_format(item.newsTime, '2'),
+                    businesslogo: item.companyIcon,
+                    businessname: item.companyName,
+                    timetick: get_unix_time_stamp(item.newsTime, 2),
+                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                })
+            })
+        }
+
+        //------------------------------------------------------------------------------------------------------------------
 
         await ctx.render('business/product', {
             companyId,
-            productTypeId,
+            productId,
             kbByProduct,
             kbscoreData,
-            salers
+            salers,
+            ReputationData,
+            CompanyProductInfo,
+            firstNewsList
         })
 
     }

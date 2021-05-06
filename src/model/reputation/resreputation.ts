@@ -1,3 +1,6 @@
+import { priceShowStatusEnums, productImgTypeEnums } from '../../enums/enums'
+import { ResCompanyInfoModel } from '../company/resCompany'
+import { PageModel, pageTypeModel } from '../pageModel'
 import { bodyModel } from '../resModel'
 import { productTypeListModel } from './reputation'
 
@@ -15,8 +18,13 @@ export interface ResReputationModelListReturnModel extends bodyModel<ResReputati
  * @param {number} productId 产品ID
  * @param {number} companyId 公司ID
  * @param {string} summary 口碑描述内容
+ * @param {number} reputationId 口碑ID
  * @param {string} productCover 产品封面图
- * @param {ResReputationStatisticsModel} statisticsModel 口碑发表人
+ * @param {string} buyTime 购买时间
+ * @param {string} useTime 使用时间 
+ * @param {number} purchasePrice 购买价格
+ * @param {priceShowStatusEnums} priceShowStatus 价格显示状态-显示价格，显示数字第一位有小数点，不现实价格
+ * @param {ResReputationStatisticsModel} statisticsModel 口碑统计信息
  */
 export interface ResReputationModel {
 
@@ -28,10 +36,14 @@ export interface ResReputationModel {
   companyName: string
   companyId: number
   summary: string
+  reputationId: number
+  buyTime: string
+  useTime: string
+  purchasePrice: number
   productCover: string
+  priceShowStatus: priceShowStatusEnums
   statisticsModel: ResReputationStatisticsModel
 }
-
 
 /**
  * 口碑统计信息
@@ -83,6 +95,8 @@ export interface ResCompanyProductInfoDetailModel {
  * @param { { [index: string]: any } } classify  允许提交多个三级标签场景
  * @param {ResReputationStatisticsModel} statisticsModel 	口碑统计信息
  * @param {ResCompanyProductInfoDetailModel[]} productArgs 产品参数指标
+ * @param {ResCompanyInfoModel} company 公司信息
+ * @param {ResCompanyProductImageModel[]}companyProductImages 产品细节图集合对象
  */
 export interface ResCompanyProductInfoModel {
   productId?: number
@@ -91,14 +105,27 @@ export interface ResCompanyProductInfoModel {
   listingDateMonth?: number
   productVideo: string
   productCover: string
+  productTypeId:string
   summary: string
   classify: { [index: string]: any }
   statisticsModel: ResReputationStatisticsModel
-  productArgs: ResCompanyProductInfoDetailModel[]
+  productArgs: ResCompanyProductInfoDetailModel[],
+  company: ResCompanyInfoModel
+  companyProductImages: ResCompanyProductImageModel[]
 }
 
+/**
+ * 产品细节图
+ * @param {productImgTypeEnums} productImgType 产品图片类型-外观图，细节图，等等
+ * @param {string} imageUrl 图片地址
+ * @param {string} imageDesc 图片描述信息
+ */
+export interface ResCompanyProductImageModel {
+  productImgType: productImgTypeEnums
+  imageUrl: string
+  imageDesc: string
 
-
+}
 
 
 
@@ -115,10 +142,76 @@ export interface ResCompanyProductInfoModelListReturnModel extends bodyModel<Res
 }
 
 /**
+ * 根据公司ID和产品分类获得所有产品信息,需要分页模型接收 bodyModel的返回
+ * @param {number} productId 产品ID
+ * @param {string} productName 产品名称
+ * @param {number} listingDateYear 上市年份
+ * @param {number} listingDateMonth 上市月份
+ * @param {string} productVideo 产品视频介绍地址
+ * @param {string} productCover 产品封面图
+ * @param {string} summary 产品详细描述信息
+ * @param { { [index: string]: any } } classify  允许提交多个三级标签场景
+ * @param {ResReputationStatisticsModel} statisticsModel 	口碑统计信息
+ * @param {ResCompanyProductInfoDetailModel[]} productArgs 产品参数指标
+ * @param {ResCompanyInfoModel} company 公司信息
+ */
+export interface ResCompanyProductInfoModelPagedModelReturnModel extends bodyModel<ResCompanyProductInfoModelPagedModel> {
+
+}
+
+/**
+ * 根据公司ID和产品分类获得所有产品信息,需要分页模型接收
+ * @param {number} productId 产品ID
+ * @param {string} productName 产品名称
+ * @param {number} listingDateYear 上市年份
+ * @param {number} listingDateMonth 上市月份
+ * @param {string} productVideo 产品视频介绍地址
+ * @param {string} productCover 产品封面图
+ * @param {string} summary 产品详细描述信息
+ * @param { { [index: string]: any } } classify  允许提交多个三级标签场景
+ * @param {ResReputationStatisticsModel} statisticsModel 	口碑统计信息
+ * @param {ResCompanyProductInfoDetailModel[]} productArgs 产品参数指标
+ * @param {ResCompanyInfoModel} company 公司信息
+ */
+export interface ResCompanyProductInfoModelPagedModel extends pageTypeModel<ResCompanyProductInfoModel> {
+
+}
+
+
+/**
  * 所有产品分类的bodyModel模型
  * @param {number} 分类id
  * @param {string} 分类名称
  */
 export interface ResproductTypeListModel extends bodyModel<productTypeListModel[]> {
+
+}
+
+/**
+ * 获得热门口碑排行数据模型
+ * @param {string} companyName 公司名称
+ * @param {nuber} companyId 公司ID
+ * @param {string} logo 公司封面图
+ * @param {number} reputationCount 口碑数量（涵盖所有）
+ * @param {number} reputationScore 热门口碑分数
+ */
+export interface ResHotReputationModel {
+  companyName?: string
+  companyId: number
+  logo: string
+  reputationCount: number
+  reputationScore: number
+}
+
+
+/**
+ * 获得热门口碑排行数据模型返回的bodyModel
+ * @param {string} companyName 公司名称
+ * @param {nuber} companyId 公司ID
+ * @param {string} logo 公司封面图
+ * @param {number} reputationCount 口碑数量（涵盖所有）
+ * @param {number} reputationScore 热门口碑分数
+ */
+export interface ResHotReputationModelListReturnModel extends bodyModel<ResHotReputationModel[]> {
 
 }

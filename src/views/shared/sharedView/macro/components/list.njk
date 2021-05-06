@@ -9,6 +9,7 @@
     time: "2021-11-11",
     businesslogo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
     businessname: "万联",
+    timetick:'1234567890',
     slug: ["视频", "音频"]
   }, {
     link: "#",
@@ -16,6 +17,7 @@
     title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
     content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
     author: "作者大大",
+    timetick:'1234567890',
     time: "2021-11-11"
   }, {
     link: "#",
@@ -23,6 +25,7 @@
     title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
     content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
     author: "作者大大",
+    timetick:'1234567890',
     time: "2021-11-11"
   }, {
     link: "#",
@@ -30,6 +33,7 @@
     title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
     content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
     author: "作者大大",
+    timetick:'1234567890',
     time: "2021-11-11"
   }
 ]) %}
@@ -38,7 +42,7 @@
 
     {% if (args != null) and (args.length > 0) %}
       {% for item in args %}
-        <div class="child">
+        <div class="child" data-timetick="{{item.timetick}}">
           <a class="left" href="{{item.link}}" target="_blank">
             <img src="{{item.img}}"/>
           </a>
@@ -139,7 +143,10 @@
         <div class="child">
           <div class="left">
             <a href="{{item.link}}" target="_blank">
-              <i>{{item.brandtype}}</i>
+            
+              {% if item.brandtype.length > 0 %}
+                <i>{{item.brandtype}}</i>
+              {% endif %}
               <img src="{{item.logo}}"/>
             </a>
           </div>

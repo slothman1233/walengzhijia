@@ -1,6 +1,7 @@
 
 import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
+import { GetNewsById } from '../../controller/news.controller'
 
 
 export default class News {
@@ -10,7 +11,7 @@ export default class News {
   @get('/reputation/:id?')
     async reputation(ctx: Context, next: Next) {
 
-        
+
 
 
         await ctx.render('news/reputation', {})
@@ -18,10 +19,21 @@ export default class News {
     }
 
 
-  @get('/:type?/:id?')
+  @get('/:newsId?')
   async index(ctx: Context, next: Next) {
 
-      await ctx.render('news/index', {})
+      let { newsId } = ctx.params
+
+      //新闻详情
+      let newsDetail = await GetNewsById(newsId)
+
+
+      //-------------------------------
+
+      await ctx.render('news/index', {
+          newsId,
+          newsDetail
+      })
 
   }
 

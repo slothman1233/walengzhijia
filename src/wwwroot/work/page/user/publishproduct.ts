@@ -16,6 +16,21 @@ import { GetProductType } from '../../common/service/product.services'
 declare const $: JQueryStatic
 declare const document: any
 declare const laydate: any
+declare const listingDateYear: any
+declare const listingDateMonth: any
+declare const productTypeId: any
+declare let productClassifyTypeAry: any[]
+declare const productCover: string
+declare const productVideo: string
+declare const productId: string
+
+//产品外观图集
+declare let externalImgAry: string[]
+//产品细节图集
+declare let detaileddrawAry: string[]
+//是否是草稿
+declare const isdrafts: boolean
+
 let usermain = document.getElementById('usermain')
 
 //用户id
@@ -24,10 +39,13 @@ let userId = JSON.parse(getCookie(config.userlogin)).userId
 //品牌商id
 let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId
 
+
+let draftsStorage = 'draftsStorage'
+
 //产品外观图集
-let externalImgAry: string[] = []
+// let externalImgAry: string[] = []
 //产品细节图集
-let detaileddrawAry: string[] = []
+// let detaileddrawAry: string[] = []
 
 let publishData: CompanyProductInfoModel = {
     companyId: companyId || 2,
@@ -45,6 +63,130 @@ let publishData: CompanyProductInfoModel = {
     },
     productMedias: []
 };
+
+
+//草稿默认赋值 
+(async function () {
+    if (!isdrafts) { return }
+    let cache = JSON.parse(localStorage.getItem(draftsStorage)) || {}
+
+    if (!cache[productId]) { return }
+
+    let data = cache[productId]
+
+    publishData = data
+
+
+    //产品分类 细节标签
+    let selectOption = usermain.querySelector('.selectOption')
+    let option = selectOption.querySelector('.option')
+    let labels = usermain.querySelector('.basicinfo .labels')
+    let list: HTMLElement = labels.querySelector('.list')
+    let Detailslabel: HTMLElement = labels.querySelector('.Detailslabel')
+    let selectDom = $(option).find('p[data-id="' + publishData.productType.productTypeId + '"]')
+    if (selectDom) {
+        $(selectOption).find('h1 span').text(selectDom.text())
+        let id = publishData.productType.productTypeId
+        let data = await GetProductType(id)
+
+        let html = ``
+        let detailsHTML = ``
+        if (data.code === 0 && data.subCode === subCodeEnums.success) {
+            data.bodyMessage[0].productTypeLabels.forEach((item) => {
+
+                if (publishData.productType.productClassifyType.indexOf(item.productTypeDetailId) >= 0) {
+                    detailsHTML += `<span data-id='${item.productTypeDetailId}'>
+                    <b>${item.productTypeDetail}</b>
+                    <i data-id='${item.productTypeDetailId}' class="iconfont_wlzj">&#xE01E;</i>
+                </span>`
+                }
+
+                html += `<span data-id="${item.productTypeDetailId}">${item.productTypeDetail}</span>`
+            })
+        }
+        list.innerHTML = html
+
+        Detailslabel.innerHTML = detailsHTML
+    }
+    //-------------------------------------------------------------------------------------------
+    //产品名称 上市时间
+    let productname = usermain.querySelector('.productname')
+    productname.value = publishData.productName
+
+    let purchastime = usermain.querySelector('#purchastime')
+    purchastime.value = `${publishData.listingDateYear}-${publishData.listingDateMonth}`
+    //-------------------------------------------------------------------------------------------
+    //产品基本信息
+    let product = document.querySelector('#usermain .product')
+    let html = ``
+    publishData.productDetailArguments.forEach((item, index) => {
+        if (index % 2 === 0) {
+            html += '<tr>'
+            html += ` <td contenteditable="plaintext-only">${item.productKey}</td>`
+            html += ` <td contenteditable="plaintext-only">${item.productValue}</td>`
+
+        } else {
+            html += ` <td contenteditable="plaintext-only">${item.productKey}</td>`
+            html += ` <td contenteditable="plaintext-only">${item.productValue}</td>`
+            html += '</tr>'
+        }
+    })
+    product.querySelector('table').innerHTML = html
+    //-------------------------------------------------------------------------------------------
+    //产品外观图 和 细节图
+    let externalDom = usermain.querySelector('.external')
+    let detaileddrawDom = usermain.querySelector('.detaileddraw')
+    externalImgAry = []
+    detaileddrawAry = []
+    publishData.productMedias.forEach(item => {
+        switch (item.productImgType) {
+            case productImgTypeEnums.external:
+                externalImgAry.push(item.imageUrl)
+                break
+            case productImgTypeEnums.detaileddraw:
+                detaileddrawAry.push(item.imageUrl)
+                break
+            default:
+                break
+        }
+
+    })
+    externalDom.querySelector('.preview').style.backgroundImage = `url(${externalImgAry[0]})`
+    externalDom.querySelector('.preview').style.display = 'block'
+    detaileddrawDom.querySelector('.preview').style.backgroundImage = `url(${detaileddrawAry[0]})`
+    detaileddrawDom.querySelector('.preview').style.display = 'block'
+    //-------------------------------------------------------------------------------------------
+    //产品封面 和 产品视频
+    let uploadimg_box = usermain.querySelector('.uploadimg_box')
+
+    let uploadVideo_box = usermain.querySelector('.uploadVideo_box')
+    if (publishData.productCover.length > 0) {
+        uploadimg_box.querySelector('.preview').style.backgroundImage = `url(${publishData.productCover})`
+        uploadimg_box.querySelector('.preview').style.display = 'block'
+        uploadimg_box.querySelector('.delete').style.display = 'block'
+    }
+    if (publishData.productVideo.length > 0) {
+        uploadVideo_box.querySelector('.preview').style.backgroundImage = `url(${publishData.productVideo})`
+        uploadVideo_box.querySelector('.preview').style.display = 'block'
+        uploadVideo_box.querySelector('.delete').style.display = 'block'
+    }
+
+
+})();
+
+
+//修改的初始化
+(function () {
+    if (isdrafts) { return }
+    publishData.productType.productTypeId = productTypeId
+    publishData.productType.productClassifyType = productClassifyTypeAry
+    if (listingDateYear.length > 0 && listingDateMonth.length > 0) {
+        publishData.listingDateYear = listingDateYear
+        publishData.listingDateMonth = listingDateMonth
+    }
+    publishData.productCover = productCover.length > 0 ? productCover : null
+    publishData.productVideo = productVideo.length > 0 ? productVideo : null
+})();
 
 //xlsx的操作
 (function () {
@@ -101,9 +243,10 @@ let publishData: CompanyProductInfoModel = {
 
 //产品类别
 (function () {
+
     let labels = usermain.querySelector('.basicinfo .labels')
     let list: HTMLElement = labels.querySelector('.list')
-    let Detailslabel: HTMLElement  = labels.querySelector('.Detailslabel')
+    let Detailslabel: HTMLElement = labels.querySelector('.Detailslabel')
     selectOption1(usermain.querySelector('#s1'), async (id: number, e: Event, option: HTMLElement) => {
         // console.log(id, e, option)
         publishData.productType.productTypeId = id
@@ -128,10 +271,6 @@ let publishData: CompanyProductInfoModel = {
     let labels = usermain.querySelector('.basicinfo .labels')
     let Detailslabel = labels.querySelector('.Detailslabel')
     let list = labels.querySelector('.list')
-
-
-    let productClassifyTypeAry: any[] = []
-
     //点击X删除
     on({
         agent: Detailslabel,
@@ -176,6 +315,9 @@ let publishData: CompanyProductInfoModel = {
 
 //上市时间
 (function () {
+
+
+
     laydate.render({
         elem: '#purchastime', //指定元素
         type: 'month',
@@ -197,6 +339,15 @@ let publishData: CompanyProductInfoModel = {
     window.onload = function () {
         onload && onload()
         window.edit_container_ue.ready(function () {
+            if (!isdrafts) {
+                //修改
+                window.edit_container_ue.setContent(document.getElementById('editorContent').innerHTML)
+            } else {
+                //草稿
+                window.edit_container_ue.setContent(publishData.summary)
+            }
+
+
             editor_uploadimg('edit_container', window.edit_container_ue, {
                 success: function (imgdom: HTMLImageElement) {
                     console.log(imgdom)
@@ -212,6 +363,7 @@ let publishData: CompanyProductInfoModel = {
 //上传产品封面
 //上传产品视频
 (function () {
+
     //传产品封面
     let printDom = usermain.querySelector('.uploadproduct .uploadimg_box')
     uploadfilefnImg(printDom, {
@@ -224,6 +376,8 @@ let publishData: CompanyProductInfoModel = {
             publishData.productCover = null
         }
     })
+
+
     //上传产品视频
     let uploadVideo = usermain.querySelector('.uploadproduct .uploadVideo_box')
     uploadfilefnVideo(uploadVideo, {
@@ -296,13 +450,33 @@ let publishData: CompanyProductInfoModel = {
     }
 })();
 
+
+//保存为草稿
+(function () {
+
+    let submit = usermain.querySelector('.submit')
+    let drafts = submit.querySelector('.drafts')
+    let productIds = Date.now().toString()
+    drafts.onclick = function () {
+        let draftsCache = localStorage.getItem(draftsStorage) || '{}'
+        let cachejson = JSON.parse(draftsCache)
+        if (isdrafts) {
+            productIds = productId
+        }
+        setPublishData()
+
+        cachejson[productIds] = publishData
+
+        localStorage.setItem(draftsStorage, JSON.stringify(cachejson))
+    }
+})();
+
 //提交
 (function () {
     let productname = usermain.querySelector('.productname')
     //提交
     let submit = usermain.querySelector('.submit')
     let sub = submit.querySelector('.sub')
-    let drafts = submit.querySelector('.drafts')
 
     sub.onclick = function () {
         getsubContent()
@@ -314,28 +488,8 @@ let publishData: CompanyProductInfoModel = {
 })()
 
 
-async function getsubContent() {
+function setPublishData() {
     let productname = usermain.querySelector('.productname')
-    //产品名称
-    if (productname.value.length <= 0) {
-        alert('请输入产品名称')
-        return
-    }
-
-    if (!publishData.listingDateYear || !publishData.listingDateMonth) {
-        alert('请选择产品上市时间')
-        return
-    }
-
-    if (!publishData.productType.productTypeId) {
-        alert('请选择产品分类')
-        return
-    }
-
-    if (!publishData.productType.productClassifyType && publishData.productType.productClassifyType.length <= 0) {
-        alert('请选择产品的细节标签')
-        return
-    }
     //产品名称
     publishData.productName = productname.value
 
@@ -371,11 +525,53 @@ async function getsubContent() {
             imageDesc: ''
         })
     })
+}
+
+async function getsubContent() {
+    let productname = usermain.querySelector('.productname')
+    //产品名称
+    if (productname.value.length <= 0) {
+        alert('请输入产品名称')
+        return
+    }
+
+    if (!publishData.listingDateYear || !publishData.listingDateMonth) {
+        alert('请选择产品上市时间')
+        return
+    }
+
+    if (!publishData.productType.productTypeId) {
+        alert('请选择产品分类')
+        return
+    }
+
+    if (!publishData.productType.productClassifyType && publishData.productType.productClassifyType.length <= 0) {
+        alert('请选择产品的细节标签')
+        return
+    }
+
+    if (!publishData.productCover) {
+        alert('请上传产品封面图')
+        return
+    }
+    // if (!publishData.productVideo) {
+    //     alert('请选择产品分类')
+    //     return
+    // }
+
+    setPublishData()
 
 
     let datajson = await AddCompanyProduct(publishData)
 
     if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
+
+        if(isdrafts){
+            let cache = JSON.parse(localStorage.getItem(draftsStorage)) || {}
+            delete cache[productId]
+            localStorage.setItem(draftsStorage, JSON.stringify(cache))
+        }
+
         alert('发布成功')
     } else {
         alert(datajson.bodyMessage)

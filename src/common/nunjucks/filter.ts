@@ -1,3 +1,5 @@
+import { HotCompanyDefineItems } from '../../enums/enums'
+import { ge_time_format } from '../utils/util'
 
 
 /**
@@ -39,6 +41,19 @@ export default {
             return str.split(decollator)
         } catch (e) {
             return str
+        }
+    },
+    //ge_time_format 时间格式化
+    'ge_time_format': function (str: string, type?: string) {
+        return ge_time_format(str, type)
+    },
+    //获取品牌商的类型标记
+    //HotCompanyDefine
+    'get_companyHotType': function (type: string) {
+        try {
+            return HotCompanyDefineItems[parseInt(type)]
+        } catch (e) {
+            return HotCompanyDefineItems[0]
         }
     }
 

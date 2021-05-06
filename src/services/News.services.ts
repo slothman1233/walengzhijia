@@ -10,7 +10,7 @@ import { ResProductIndexPageModelListReturnModel, ResProductTypeModelListReturnM
 import { bodyModel } from '../model/resModel'
 import { ProductTypeDetailModel, ProductTypeModel } from '../model/product/ProductType'
 import { NewsInfoModel } from '../model/news/news'
-import { ResNewsModelListReturnModel } from '../model/news/resNews'
+import { ResNewsDetailModel, ResNewsModelListReturnModel } from '../model/news/resNews'
 
 /**
  * 获得新闻内容，通过列表集合返回
@@ -18,10 +18,42 @@ import { ResNewsModelListReturnModel } from '../model/news/resNews'
  * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
  */
 export type GetNewsListModel = {
-  newsType: number
-  timetick: number
+    newsType: number
+    timetick: number
 }
 
+
+/**
+ * 通过公司ID获取具体的新闻内容
+ * @param {number} companyId 公司id
+ * @param {number} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
+ * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
+ */
+export type GetNewsByCompanyIdModel = {
+    companyId: number
+    newsType:number
+    timetick: number
+}
+
+/**
+ * 通过产品ID获取具体的新闻内容
+ * @param {number} productId 产品id
+ * @param {number} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
+ * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
+ */
+export type GetNewsByProductIdModel = {
+    productId: number
+    newsType:number
+    timetick: number
+}
+
+/**
+ * 通过新闻id获取新闻详情
+ * @param {number} newsId 新闻id
+ */
+export type GetNewsByIdModel = {
+    newsId:number
+}
 
 class News {
     // 获得新闻内容，通过列表集合返回
@@ -35,23 +67,50 @@ class News {
     // 添加新闻
     // @CacheInterceptor('News_GetNewsIndustry', CacheTime.Min30)
     async AddNews(params: NewsInfoModel) {
-        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/AddNews`, params, {  headers: { 'Content-Type': 'application/json' } })
+        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/AddNews`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
     // 修改新闻快讯内容
     // @CacheInterceptor('News_GetNewsIndustry', CacheTime.Min30)
     async UpdateNews(params: NewsInfoModel) {
-        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/UpdateNews`, params, {  headers: { 'Content-Type': 'application/json' } })
+        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/UpdateNews`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
     // 删除新闻信息
     // @CacheInterceptor('News_GetNewsIndustry', CacheTime.Min30)
     async DeleteNews(params: NewsInfoModel) {
-        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/DeleteNews`, params, {  headers: { 'Content-Type': 'application/json' } })
+        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/News/DeleteNews`, params, { headers: { 'Content-Type': 'application/json' } })
+    }
+
+    /**
+     * 通过公司ID获取具体的新闻内容
+     * @param {number} companyId 公司id
+     * @param {number} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
+     * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
+     */
+    async GetNewsByCompanyId(params: GetNewsByCompanyIdModel) {
+        return await http.get<ResNewsModelListReturnModel>(`${config.apiPath}api/News/GetNewsByCompanyId`, { params, headers: { 'Content-Type': 'application/json' } })
+    }
+
+    /**
+     * 通过产品ID获取具体的新闻内容
+     * @param {number} productId 产品id
+     * @param {number} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
+     * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
+     */
+    async GetNewsByProductId(params: GetNewsByProductIdModel) {
+        return await http.get<ResNewsModelListReturnModel>(`${config.apiPath}api/News/GetNewsByProductId`, { params, headers: { 'Content-Type': 'application/json' } })
+    }
+
+    /**
+     * 通过产品ID获取具体的新闻内容
+     * @param {number} newsId 新闻Id
+     */
+    async GetNewsById(params: GetNewsByIdModel) {
+        return await http.get<ResNewsDetailModel>(`${config.apiPath}api/News/GetNewsById`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 
 }
-
 
 let New = new News()
 

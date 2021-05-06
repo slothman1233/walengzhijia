@@ -132,6 +132,7 @@ export enum newsTypeEnums {
 
 /**
  * 发表新闻的类型
+ * 0 最新资讯
  * 1 行业新闻
  * 2 经验分享
  * 3 优惠活动
@@ -139,6 +140,7 @@ export enum newsTypeEnums {
  * 5 其他
  */
 export enum publishNewsTypeEnums {
+  new = 0,
   trade = 1,
   experience = 2,
   activity = 3,
@@ -148,6 +150,7 @@ export enum publishNewsTypeEnums {
 
 /**
  * 发表新闻的类型object数组对象
+ * 0 最新资讯
  * 1 行业新闻
  * 2 经验分享
  * 3 优惠活动
@@ -155,6 +158,10 @@ export enum publishNewsTypeEnums {
  * 5 其他
  */
 export const publishNews = [
+    {
+        id: publishNewsTypeEnums.new,
+        value: '最新资讯',
+    },
     {
         id: publishNewsTypeEnums.trade,
         value: '行业新闻'
@@ -200,13 +207,34 @@ export enum adTypeEnums {
 
 /**
  * 品牌商类型
+ * 0 默认 不显示
  * 1 优质品牌商
  * 2 品牌商
  */
 export enum HotCompanyDefine {
+  Define = 0,
   QualityBrand = 1,
   Brand = 2
 }
+
+export const HotCompanyDefineItems = ['', '优质品牌商', '品牌商']
+
+export const HotCompanyDefineObject = [
+    {
+        id: HotCompanyDefine.Define,
+        value: HotCompanyDefineItems[HotCompanyDefine.Define]
+    },
+    {
+        id: HotCompanyDefine.QualityBrand,
+        value: HotCompanyDefineItems[HotCompanyDefine.QualityBrand]
+    },
+    {
+        id: HotCompanyDefine.Brand,
+        value: HotCompanyDefineItems[HotCompanyDefine.Brand]
+    }
+]
+
+
 /**
  * 评分项
  * 1 性能
@@ -263,3 +291,66 @@ export const scoreItems = [
     }
 ]
 
+/**
+ * 品牌商排序枚举
+ * 1 综合排序
+ * 2 口碑排序
+ * 3 热门排序
+ */
+export enum ProductSortTypeEnums {
+  synthesize = 1,
+  reputation = 2,
+  hot = 3
+}
+
+/**
+ * 品牌商排序数组object对象
+ * 1 综合排序
+ * 2 口碑排序
+ * 3 热门排序
+ */
+export const ProductSortType = [
+    {
+        id: ProductSortTypeEnums.synthesize,
+        value: '综合排序'
+    },
+    {
+        id: ProductSortTypeEnums.reputation,
+        value: '口碑排序'
+    },
+    {
+        id: ProductSortTypeEnums.hot,
+        value: '热门排序'
+    }
+]
+
+/**
+ * 文章内容类型
+ * 0 文章
+ * 1 视频
+ */
+export enum NewsContentTypeEnums {
+  content = 1,
+  video = 2
+}
+/**
+ * 文章内容类型
+ * 0 文章
+ * 1 视频
+ */
+export const NewsContentTypeObject = [
+    {
+        id: NewsContentTypeEnums.content,
+        value: '文章'
+    },
+    {
+        id: NewsContentTypeEnums.video,
+        value: '视频'
+    }
+]
+/**
+ * 文章内容类型
+ * 0 文章
+ * 1 视频
+ */
+export const NewsContentTypeArray = ['文章', '视频']

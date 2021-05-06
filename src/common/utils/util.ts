@@ -38,8 +38,8 @@ export const formatDate = (date: Date) => {
 
     return (
         [year, month, day].map(formatNumber).join('/') +
-    ' ' +
-    [hour, minute, second].map(formatNumber).join(':')
+        ' ' +
+        [hour, minute, second].map(formatNumber).join(':')
     )
 }
 
@@ -93,6 +93,54 @@ function formatTime(str: string): string {
     return i
 }
 
+
+/**
+ * 获取当前的日期函数
+ * 传入一个时间戳,如果不传则为当前时间
+ * 注意：如果是uinx时间戳记得乘于1000, 比如php函数time()获得的时间戳就要乘于1000
+ * @type String timestamp 要转换的时间戳格式 1469504554276
+ * @returns {String} 日期格式: 2016-07-26 10:55:38
+ */
+export function ge_time_format(timestamp: string, type: string = '1') {
+    let date: Date
+    let types: string = (type === undefined) ? '1' : type, t
+    if (timestamp) {
+        date = new Date(timestamp)
+    } else {
+        date = new Date()
+    }
+    let mstring, dstring, Hstring, istring, sstring
+    let Y = date.getFullYear(),
+        m = date.getMonth() + 1,
+        d = date.getDate(),
+        H = date.getHours(),
+        i = date.getMinutes(),
+        s = date.getSeconds()
+
+    mstring = m < 10 ? '0' + m : m.toString()
+    dstring = d < 10 ? '0' + d : d.toString()
+    Hstring = H < 10 ? '0' + H : H.toString()
+    istring = i < 10 ? '0' + i : i.toString()
+    sstring = s < 10 ? '0' + s : s.toString()
+    switch (parseInt(types)) {
+        case 1:
+            t = Y + '-' + mstring + '-' + dstring + ' ' + Hstring + ':' + istring + ':' + sstring
+            break
+        case 2:
+            t = Y + '-' + mstring + '-' + dstring
+            break
+        case 3:
+            t = Y + '-' + mstring
+            break
+        case 4:
+            t = H + ':' + istring + ':' + sstring
+            break
+        default: break
+    }
+
+    return t
+}
+
 /**
  * html encode
  * html转码
@@ -107,6 +155,29 @@ function htmlEncode(str: string): string {
         .replace(/ /g, '&nbsp;')
         .replace(/'/g, '&#39;')
         .replace(/"/g, '&quot;')
+}
+
+/**
+      * 日期函数转为时间戳格式
+      * 传入一个日期时间格式,如果不传入就是获取现在的时间了
+      * @param {string} strtime 要转换的日期时间格式 2016-07-26 10:55:38
+      * @param {number} type 类型 1 10位时间戳  2 13位时间戳
+      * @return {string} 时间戳格式: 1469504554276
+      */
+export function get_unix_time_stamp(strtime: string, type: number) {
+    let date: Date
+    if (strtime) {
+        date = new Date(strtime)
+    } else {
+        date = new Date()
+    }
+    let time1 = date.getTime()   //会精确到毫秒---长度为13位
+    //time2 = date.valueOf(); //会精确到毫秒---长度为13位
+    //time3 = Date.parse(date); //只能精确到秒，毫秒将用0来代替---长度为10位
+    if (type === 2) {
+        time1 = parseInt((time1 / 1000).toString())
+    }
+    return time1
 }
 
 /**

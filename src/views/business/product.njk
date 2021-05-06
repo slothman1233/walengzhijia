@@ -19,6 +19,10 @@ navigationbar2 %}
 {% endblock style %}
 
 {% block script %}
+  <script type="text/javascript">
+    var productId = {{productId}}
+    var companyId = {{companyId}}
+  </script>
   <script type="text/javascript" src="/dist/scripts/business/product.js"></script>
 {% endblock script %}
 
@@ -30,21 +34,20 @@ navigationbar2 %}
           select: 4,
           map: [
             {
-              name: "首页",
-              link: "#"
+            name: "首页",
+            link: "/"
 
-            }, {
-              name: "品牌商",
-              link: "#"
+          }, {
+            name: "品牌商",
+            link: "/list"
 
-            }, {
-              name: "京山轻机",
-              link: "#"
+          }, {
+            name: CompanyProductInfo.company.fullName,
+            link: "/business/"+ companyId
 
-            }
-            , {
-              name: "原纸架",
-              link: "#"
+          }, {
+              name: CompanyProductInfo.productName,
+              link: "/business/product/"+ companyId +"/" + productId
 
             }
           ]
@@ -56,17 +59,24 @@ navigationbar2 %}
       <div class="left">
         <div class="row1">
           <div class="left">
-            <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+            <img src="{{CompanyProductInfo.productCover}}"/>
             <p>
               <span>
-                <i class='iconfont_wlzj'>&#xE01B;</i>产品视频介绍</span>
+                <i class='iconfont_wlzj' data-video="{{CompanyProductInfo.productVideo}}">&#xE01B;</i>产品视频介绍</span>
               <span>更多图片</span>
+              <div style="display:none">
+                {% if CompanyProductInfo.companyProductImages and CompanyProductInfo.companyProductImages.length > 0 %}
+                  {% for item in CompanyProductInfo.companyProductImages %}
+                    <img src="{{item.imageUrl}}" data-view="{{item.imageUrl}}" data-productImgType="{{item.productImgType}}" data-imageDesc="{{item.imageDesc}}"/>
+                  {% endfor %}
+                {% endif %}
+              </div>
             </p>
           </div>
 
           <div class="right">
             {% if kbByProduct %}
-              <h1>YWZJ-C型液压无轴纸架</h1>
+              <h1>{{CompanyProductInfo.productName}}</h1>
               <span>产品口碑分</span>
               <div class="score">
                 <span>{{kbByProduct.score}}</span>
@@ -84,7 +94,7 @@ navigationbar2 %}
                 {% endif %}
 
               </div>
-              <a href="/reputation/123" target="_blank" class="more">产看该产品的全部口碑 ></a>
+              <a href="/reputation/{{companyId}}/{{productId}}" target="_blank" class="more">产看该产品的全部口碑 ></a>
 
             {% endif %}
           </div>
@@ -108,38 +118,12 @@ navigationbar2 %}
             <div class="information">
               <h1>产品参数</h1>
               <div class="table">
-                {% set tableData = [
-                  {
-                    key: "夹持卷纸筒最大直径",
-                    value: "最大直径1500mm"
-                  }, {
-                    key: "夹持卷纸筒最大直径",
-                    value: "最大直径1500mm"
-                  }, {
-                    key: "夹持卷纸筒最大直径",
-                    value: "最大直径1500mm"
-                  }, {
-                    key: "夹持卷纸筒最大直径",
-                    value: "最大直径1500mm"
-                  }, {
-                    key: "夹持卷纸筒最大直径",
-                    value: "最大直径1500mm"
-                  }, {
-                    key: "夹持卷纸筒最大直径",
-                    value: "最大直径1500mm"
-                  }, {
-                    key: "夹持卷纸筒最大直径",
-                    value: "最大直径1500mm"
-                  }, {
-                    key: "夹持卷纸筒最大直径",
-                    value: "最大直径1500mm"
-                  }
-                ] %}
-                {% if (tableData != null) and (tableData.length > 0) %}
-                  {% for item in tableData %}
+
+                {% if (CompanyProductInfo.productArgs != null) and (CompanyProductInfo.productArgs.length > 0) %}
+                  {% for item in CompanyProductInfo.productArgs %}
                     <p>
-                      <span>{{item.key}}</span>
-                      <span>{{item.value}}</span>
+                      <span>{{item.productKey}}</span>
+                      <span>{{item.productValue}}</span>
                     </p>
                   {% endfor %}
                 {% endif %}
@@ -148,12 +132,13 @@ navigationbar2 %}
 
               <h1>产品概要</h1>
               <div class="html">
-                <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
+                {{CompanyProductInfo.summary | safe}}
+                {# <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
                 <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
                 <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
                 <p><img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"></p>
                 <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
-                <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
+                <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p> #}
               </div>
             </div>
 
@@ -164,7 +149,7 @@ navigationbar2 %}
           <div class="tab">
             {{navigationbar({
                 isMore: true,
-                link: "/reputation/123",
+                link: "/reputation/" + companyId + '/' + productId,
                 MoreText:"查看更多",
                 isSelect: "1",
                 data: [
@@ -195,54 +180,26 @@ navigationbar2 %}
             </div>
 
             <div class="list">
-              {% set crlistdata = [
-                {
-                  id: 11,
-                  hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                  name: "李女士",
-                  price: "300万",
-                  buytime: "2019-06",
-                  actiontime: "2020-12",
-                  description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做..."
-                }, {
-                  id: 11,
-                  hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                  name: "李女士",
-                  price: "300万",
-                  buytime: "2019-06",
-                  actiontime: "2020-12",
-                  description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做..."
-                }, {
-                  id: 11,
-                  hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                  name: "李女士",
-                  price: "300万",
-                  buytime: "2019-06",
-                  actiontime: "2020-12",
-                  description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做..."
-                }
-              ] %}
-
-              {% for item in crlistdata %}
+              {% for item in ReputationData %}
                 <div class="child">
                   <div class="clearfix">
                     <div class="l">
                       <div>
-                        <img src="{{item.hread}}"/>
-                        <i>{{item.name}}</i>
+                        <img src="{{item.userIcon}}"/>
+                        <i>{{item.userName}}</i>
                       </div>
-                      <p>购买价格:{{item.price}}</p>
-                      <p>购买时间:{{item.buytime}}</p>
-                      <p>投入使用:{{item.actiontime}}</p>
+                      <p>购买价格：{{item.purchasePrice}}</p>
+                      <p>购买时间：{{item.buyTime | ge_time_format(3)}}</p>
+                      <p>投入使用：{{item.useTime | ge_time_format(3)}}</p>
                     </div>
 
                     <div class="r">
-                      {{item.description}}
+                      {{item.summary}}
                     </div>
                   </div>
 
                   <div class="more clearfix">
-                    <a href="/news/reputation/{{item.id}}" target="_blank">查看详情</a>
+                    <a href="/news/reputation/{{item.reputationId}}" target="_blank">查看详情</a>
                   </div>
                 </div>
               {% endfor %}
@@ -266,40 +223,7 @@ navigationbar2 %}
           </div>
 
           <div class="list">
-            {{list1([
-  {
-    link: "/news/1231",
-    img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
-    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
-    author: "作者大大",
-    time: "2021-11-11",
-    businesslogo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    businessname: "万联",
-    slug: ["视频", "音频"]
-  }, {
-    link: "/news/1231",
-    img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
-    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
-    author: "作者大大",
-    time: "2021-11-11"
-  }, {
-    link: "/news/1231",
-    img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
-    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
-    author: "作者大大",
-    time: "2021-11-11"
-  }, {
-    link: "/news/1231",
-    img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
-    content: "显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。",
-    author: "作者大大",
-    time: "2021-11-11"
-  }
-])}}
+            {{list1(firstNewsList)}}
           </div>
         </div>
       </div>

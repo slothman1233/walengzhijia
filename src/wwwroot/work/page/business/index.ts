@@ -9,18 +9,22 @@ import { navigationbar2 } from '../../components/navigationbar'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { imgPreview } from '@stl/image-preview'
 import { GetCompanyProductByTypeId } from '../../common/service/product.services'
-import { subCodeEnums } from '../../../../enums/enums'
+import { NewsContentTypeArray, subCodeEnums } from '../../../../enums/enums'
 import { productTypeListModel } from '../../../../model/reputation/reputation'
 import { ResCompanyProductInfoModel, ResReputationModel, ResReputationScoreStatisticsModel } from '../../../../model/reputation/resreputation'
 import { Charts } from '../../components/chart/chart'
 import { GetReputationByCompany } from '../../common/service/Reputation.services'
+import { GetNewsByCompanyId } from '../../common/service/news.services'
+import { get_unix_time_stamp, ge_time_format } from '../../../../common/utils/util'
 declare const $: JQueryStatic
 // eslint-disable-next-line no-undef
 declare const document: Document
 declare const echarts: any
 declare const companyId: any
 declare const reshighKbChart: any[]
-
+declare const pageIndex: any
+declare const totalPages: any
+declare const pageSize: any
 //公司介绍视频
 (function () {
 
@@ -38,8 +42,8 @@ declare const reshighKbChart: any[]
 (function () {
     kkpager({
         pagerid: 'kkpage',
-        total: 20,
-        pno: 1,
+        total: totalPages,
+        pno: pageIndex,
         mode: 'click',
         isShowFirstPageBtn: false,
         isShowLastPageBtn: false,
@@ -56,31 +60,69 @@ declare const reshighKbChart: any[]
 
 
 //全部产品
-(function () {
+(async function () {
     let row2 = document.querySelector('.row2')
-    //let navigationbar2 = row2.querySelector('.navigationbar2')
 
     navigationbar2('product', async (dom: HTMLElement) => {
         let productTypeId = parseInt(dom.getAttribute('data-id'))
-        let html = ''
-        //
-        let datajson = await GetCompanyProductByTypeId({
-            companyId,
-            productTypeId
-        })
+
+        let { datajson, html } = await GetCompanyProduct({ companyId, productTypeId, pageIndex, pageSize })
 
         if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
-            let data: ResCompanyProductInfoModel[] = datajson.bodyMessage
-            for (let i = 0; i < data.length; i++) {
-                let item = data[i]
-                let star: bodyModel<string> = await getcomponent({ path: 'components/star/star.njk', name: 'star', data: { score: item.statisticsModel && item.statisticsModel.score || 0 } })
+            let container_box = row2.querySelector('.container_box')
+            container_box.innerHTML = html
 
-                let productArgshtml = ``
-                item.productArgs.forEach(item => {
-                    productArgshtml += ` <p>${item.productKey}：${item.productValue}</p>`
-                })
+            let kkpage = row2.querySelector('#kkpage')
+            kkpage.innerHTML = ''
+            kkpager({
+                pagerid: 'kkpage',
+                total: datajson.bodyMessage.totalPages,
+                pno: datajson.bodyMessage.pageIndex,
+                mode: 'click',
+                isShowFirstPageBtn: false,
+                isShowLastPageBtn: false,
+                isShowLastPage: false,
+                lang: {
+                    prePageText: '上一页',
+                    nextPageText: '下一页',
+                },
+                click: async function (i: number) {
+                    let { datajson, html } = await GetCompanyProduct({ companyId, productTypeId, pageIndex: i, pageSize })
+                    container_box.innerHTML = html
+                }
+            })
+        }
+    })
 
-                html += `<div class="child">
+})()
+
+async function GetCompanyProduct({ companyId,
+    productTypeId,
+    pageIndex,
+    pageSize }: any) {
+
+
+    let html = ''
+    //
+    let datajson = await GetCompanyProductByTypeId({
+        companyId,
+        productTypeId,
+        pageIndex,
+        pageSize
+    })
+
+    if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
+        let data: ResCompanyProductInfoModel[] = datajson.bodyMessage.items
+        for (let i = 0; i < data.length; i++) {
+            let item = data[i]
+            let star: bodyModel<string> = await getcomponent({ path: 'components/star/star.njk', name: 'star', data: { score: item.statisticsModel && item.statisticsModel.score || 0 } })
+
+            let productArgshtml = ``
+            item.productArgs.forEach(item => {
+                productArgshtml += ` <p>${item.productKey}：${item.productValue}</p>`
+            })
+
+            html += `<div class="child">
                 <a class="logo" href="/business/product/${companyId}/${item.productId}" target="_blank">
                   <img src="${item.productCover || ''}"/>
                 </a>
@@ -98,39 +140,11 @@ declare const reshighKbChart: any[]
     
                 <a class="enquiry" href="/enquiry/${companyId}/0" target="_blank">立即询价</a>
               </div>`
-            }
-
-
-
-            let container_box = row2.querySelector('.container_box')
-            container_box.innerHTML = html
-
-            let kkpage = row2.querySelector('#kkpage')
-            kkpage.innerHTML = ''
-            kkpager({
-                pagerid: 'kkpage',
-                total: 20,
-                pno: 2,
-                mode: 'click',
-                isShowFirstPageBtn: false,
-                isShowLastPageBtn: false,
-                isShowLastPage: false,
-                lang: {
-                    prePageText: '上一页',
-                    nextPageText: '下一页',
-                },
-                click: function (i: number) {
-                    // console.log(i)
-                }
-            })
-
         }
+    }
 
-
-
-    })
-
-})();
+    return { datajson, html }
+}
 
 // 优质口碑
 (function () {
@@ -178,7 +192,7 @@ declare const reshighKbChart: any[]
             })
         })
 
-        let data: bodyModel<String> = await getcomponent({ path: 'components/list.njk', name: 'kblist1', data: {args: reshighKb} })
+        let data: bodyModel<String> = await getcomponent({ path: 'components/list.njk', name: 'kblist1', data: { args: reshighKb } })
 
 
 
@@ -195,75 +209,80 @@ declare const reshighKbChart: any[]
 
 
 
-//相关咨询
+//相关资讯
 (function () {
-    let data = {
-        args: [
-            {
-                link: '/news/123',
-                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                title: '为解决供应短2323缺问题 iPhone 12 Pro零件不够iPad来凑？',
-                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-                author: '作者大大',
-                time: '2021-11-11',
-                businesslogo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                businessname: '万联',
-                slug: ['视频', '音频']
-            }, {
-                link: '/news/123',
-                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-                author: '作者大大',
-                time: '2021-11-11'
-            }, {
-                link: '/news/123',
-                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-                author: '作者大大',
-                time: '2021-11-11'
-            }, {
-                link: '/news/123',
-                img: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-                title: '为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？',
-                content: '显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。显示一行正文内容。',
-                author: '作者大大',
-                time: '2021-11-11'
-            }
-        ]
-    }
-
-    navigationbar2('consult', async (dom: HTMLElement) => {
-        let id = dom.attributes['data-id']
-
-        let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: data })
-
-
-        let container: HTMLElement = document.querySelector('.row5 .container')
-        container.innerHTML = datas.bodyMessage
-
-    })
 
     let isloaded = false
     let container = $('.row5 .container')
     document.onscroll = async function (e) {
         if (document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight <= 150) {
             if (isloaded) { return }
-
-
             isloaded = true
-            setTimeout(async () => {
-                let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: data })
+            let id = $('#main').find('.row5 .list .tab .select').data('id')
+            let child = $('#main').find('.row5 .list .container .list1').find('.child')
+            let timetick = $(child[child.length - 1]).data('timetick')
+            let newsList = await GetNewsByCompanyId(companyId, parseInt(id), parseInt(timetick))
+            let NewsList: any[] = []
+            if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
+                newsList.bodyMessage.forEach((item) => {
+                    NewsList.push({
+                        link: '/news/' + item.newsId,
+                        img: item.newsIcon,
+                        title: item.newsTitle,
+                        content: item.newsContent.replace(/<[^>]*>|/g, ''),
+                        author: item.createUser,
+                        time: ge_time_format(item.newsTime, '2'),
+                        businesslogo: item.companyIcon,
+                        businessname: item.companyName,
+                        timetick: get_unix_time_stamp(item.newsTime, 2),
+                        slug: [NewsContentTypeArray[item.NewsContentType]]
+                    })
+                })
+                let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: newsList })
 
                 if (datas.code === 0) {
                     container.append(datas.bodyMessage)
                     isloaded = false
                 }
-            }, 500)
+            }
+
 
 
         }
     }
+
+    navigationbar2('consult', async (dom: HTMLElement) => {
+        let id = dom.getAttribute('data-id')
+
+        let newsList = await GetNewsByCompanyId(companyId, parseInt(id))
+        let NewsList: any[] = []
+        if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
+
+            newsList.bodyMessage.forEach((item) => {
+                NewsList.push({
+                    link: '/news/' + item.newsId,
+                    img: item.newsIcon,
+                    title: item.newsTitle,
+                    content: item.newsContent.replace(/<[^>]*>|/g, ''),
+                    author: item.createUser,
+                    time: ge_time_format(item.newsTime, '2'),
+                    businesslogo: item.companyIcon,
+                    businessname: item.companyName,
+                    timetick: get_unix_time_stamp(item.newsTime, 2),
+                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                })
+            })
+            let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })
+
+            if (datas.code === 0) {
+                let container: HTMLElement = document.querySelector('.row5 .container')
+                container.innerHTML = datas.bodyMessage
+
+                isloaded = false
+            }
+            isloaded = false
+        }
+
+    })
 
 })()

@@ -30,6 +30,7 @@
         width  : @leftwidth - 2;
         height : @height - 2;
         border : 1px solid @color_grey_line1;
+        overflow: hidden;
       }
     }
 
@@ -256,7 +257,7 @@
                   font-size   : @font_size_24;
                   margin-right: @space_1;
                 }
-
+                .star1(90px);
                 .star {
                   display     : block;
                   float       : left;
@@ -264,8 +265,9 @@
                   font-size   : @font_size_20;
                   margin-right: @space_1;
                   position    : relative;
+                  top: 7px;
                 }
-
+                
                 .ellipsis();
               }
 
