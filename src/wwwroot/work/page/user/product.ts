@@ -43,9 +43,15 @@ declare const $: JQueryStatic
                 nextPageText: '下一页',
             },
             click: async function (i: number) {
-                let id = $('#usermain .publish .navigationbar2 .select').data('id')
-                console.log(id)
-                let html = await getdata(id)
+
+                let productTypeId = $('#usermain .publish .navigationbar2 .select').data('id')
+                let datajson = await GetCompanyProductByTypeId({
+                    companyId,
+                    productTypeId,
+                    pageIndex: i,
+                    pageSize
+                })
+                let html = await getdata(datajson)
                 $('#usermain .publish .child_box').html(html)
             }
 
@@ -91,8 +97,6 @@ declare const $: JQueryStatic
                     pageSize
                 })
 
-
-
                 let html = await getdata(datajson)
                 $('#usermain .publish .child_box').html(html)
             }
@@ -117,12 +121,19 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
             })
 
             html += `<div class="child">
-            <img src="${item.productCover}"/>
+            <a href="/business/product/${companyId}/${item.productId}" target="_blank"><img src="${item.productCover}"/></a>
+            
             <div class="c">
-              <h3>${item.productName}</h3>
-                <p class="clearfix">
+              <h3>
+                <a href="/business/product/${companyId}/${item.productId}" target="_blank">
+                    <p>${item.productName}</p>
+                </a>
+              </h3>
+          
+                <p class="clearfix label">
                     ${labelhtml}
                 </p>
+             
               <p class="createtime">发布时间：${item.listingDateYear}-${item.listingDateMonth}</p>
     
             </div>
@@ -167,7 +178,7 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
 
 //审核中
 (function () {
-    //已发布下的分页
+
     if (document.getElementById('drafts_kkpage')) {
         kkpager({
             pagerid: 'review_kkpage',
@@ -211,7 +222,8 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
             contentData.push({
                 logo: item.productCover || '/assets/images/loading.png',
                 title: item.productName,
-                id: keyAry[i]
+                id: keyAry[i],
+                companyId
             })
         }
         let datas: bodyModel<string> = await getcomponent({ path: 'components/user/productlist.njk', name: 'productlist', data: { type: 3, companyObject: contentData } })

@@ -1,10 +1,22 @@
 {% macro productlist(type, companyObject) %}
   {% for item in companyObject %}
     <div class="child">
-      <img src="{{item.logo}}"/>
+      {% if type == 1 %}
+        <a href="/business/product/{{item.companyId}}/{{item.id}}" target="_blank"><img src="{{item.logo}}"/></a>
+      {% else %}
+        <img src="{{item.logo}}"/>
+      {% endif %}
+
       <div class="c">
         <h3>
-          <p>{{item.title}}</p>
+          {% if type == 1 %}
+            <a href="/business/product/{{item.companyId}}/{{item.id}}" target="_blank">
+              <p>{{item.title}}</p>
+            </a>
+          {% else %}
+            <p>{{item.title}}</p>
+          {% endif %}
+
           {% if type == 2 %}
             <span>审核中</span>
           {% endif %}

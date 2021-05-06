@@ -468,6 +468,7 @@ let publishData: CompanyProductInfoModel = {
         cachejson[productIds] = publishData
 
         localStorage.setItem(draftsStorage, JSON.stringify(cachejson))
+        alert('保存草稿成功')
     }
 })();
 

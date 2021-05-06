@@ -88,6 +88,7 @@ export default class User {
                 title: item.productName,
                 label,
                 id: item.productId,
+                companyId,
                 createTime: `${item.listingDateYear}-${item.listingDateMonth}`
             })
         })
