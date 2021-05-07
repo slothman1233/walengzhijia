@@ -9,6 +9,9 @@ import config from '../../common/config/env'
 import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
 import { subCodeEnums } from '../../../../enums/enums'
 import { GetCompanyProduct, GetCompanyProductType } from '../../common/service/product.services'
+import { AddReputaion } from '../../common/service/reputaion.services'
+import { bodyModel } from '../../../../model/resModel'
+import { GetReputationTypeById } from '../../common/service/ManageLepackReputaion'
 
 declare const laydate: any
 declare const companyId: any
@@ -53,6 +56,7 @@ let PublishData: ReputationModel = {
     reputationScores: []
 };
 
+
 // {
 //     "companyId": 0,
 //     "productId": 0,
@@ -81,7 +85,7 @@ let PublishData: ReputationModel = {
         elem: '#purchastime', //指定元素
         type: 'month',
         change: function (value: any, date: any) {
-            console.log(value, date)
+            // console.log(value, date)
             // lay('#testView').html(value);
             PublishData.buyTime = value
 
@@ -94,7 +98,6 @@ let PublishData: ReputationModel = {
         elem: '#use', //指定元素
         type: 'month',
         change: function (value: any, date: any) {
-            console.log(value, date)
             // lay('#testView').html(value);
             PublishData.useTime = value
 
@@ -112,13 +115,13 @@ window.onload = function () {
 
         editor_uploadimg('edit_container', window.ue, {
             success: (name) => {
-                console.log(name)
+                // console.log(name)
             },
             error: () => { }
         })
         editor_uploadvideo('edit_container', window.ue, {
-            success: (ename) => {
-                console.log(name)
+            success: (name) => {
+                //    console.log(name)
             },
             error: (e) => { }
         })
@@ -134,8 +137,7 @@ window.onload = function () {
         let s2option = document.getElementById('s2').querySelector('.option')
         let selectOption = document.getElementById('s2').querySelector('.selectOption')
         PublishData.companyId = id
-        //GetCompanyProductType 
-        // 绑定错误
+
         let data = await GetCompanyProduct(id)
 
         let html = ``
@@ -145,30 +147,65 @@ window.onload = function () {
             data.bodyMessage.forEach((item, index) => {
                 if (index === 0) {
                     PublishData.productId = item.productId
-                    selectOption.querySelector('h1').setAttribute('data-id', item.productId.toString())
+                    selectOption.querySelector('h1').setAttribute('data-id', `${item.productId}_${item.productTypeId}`)
                     selectOption.querySelector('span').innerHTML = item.productName
+                    //获取产品类型对应的口碑评分项
+                    GetReputationType(parseInt(item.productTypeId))
                 }
-                html += `<p data-id="${item.productId}">${item.productName}</p>`
+                html += `<p data-id="${item.productId}_${item.productTypeId}">${item.productName}</p>`
             })
         }
         s2option.innerHTML = html
 
     })
 
-    selectOption1((<HTMLElement>document.getElementById('main').querySelector('#s2')), function (id) {
+    selectOption1((<HTMLElement>document.getElementById('main').querySelector('#s2')), function (ids) {
         // option.style.display = 'none'
-        PublishData.productId = id
+        let productId = parseInt(ids.toString().split('_')[0])
+        let productTypeId = parseInt(ids.toString().split('_')[1])
+        PublishData.productId = productId
+        GetReputationType(productTypeId)
     })
-})();
+})()
 
-//价格显示状态
-(function () {
+/**
+ * 口碑评分项赋值
+ * @param {number} productTypeId 产品类型
+ */
+async function GetReputationType(productTypeId: number) {
 
-})();
+
+    let grade = main.querySelector('.grade > h2 i')
+    let star_box = main.querySelector('.star_box')
+
+    //清空评分
+    grade.innerHTML = '0.00'
+    star_box.innerHTML = ''
+    PublishData.reputationScores = []
+
+    let GetReputationType = await GetReputationTypeById({ productTypeId })
+    if (GetReputationType && GetReputationType.code === 0 && GetReputationType.subCode === subCodeEnums.success) {
+        let ResReputationType = GetReputationType.bodyMessage
+        let html = ''
+        ResReputationType.forEach((item) => {
+            html += `<div data-id="${item.reputationTypeId}"><span>${item.reputationName}：</span><div class="star"><span style="width:0%"></span></div><span>0</span> <i></i></div>`
+        })
+
+        star_box.innerHTML = html
+        selectstarfn()
+
+    } else {
+        alert('获取评分项失败')
+    }
+
+}
 
 
 //选中星星
 (function () {
+    selectstarfn()
+})()
+function selectstarfn() {
     let em = ['很差', '低于预期', '中规中矩', '不错', '优秀']
 
     NodeListToArray(document.querySelectorAll('.star_box > div')).forEach((item: HTMLElement) => {
@@ -179,8 +216,7 @@ window.onload = function () {
         })
 
     })
-
-})()
+}
 
 //计算总得分
 function allScore() {
@@ -293,5 +329,12 @@ async function submitFn() {
     PublishData.priceShowStatus = parseInt(checkeDom.getAttribute('data-id'))
     PublishData.summary = window.ue.body.innerHTML
     PublishData.reputationScores = scores
-    console.log(PublishData)
+
+    let data: bodyModel<boolean> = await AddReputaion(PublishData)
+
+    if (data.code === 0 && data.subCode === subCodeEnums.success) {
+        alert('发表成功')
+    } else {
+        alert(data.message)
+    }
 }

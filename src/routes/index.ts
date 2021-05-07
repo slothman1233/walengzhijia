@@ -86,8 +86,12 @@ export default class Index {
         let firstNews: ResNewsModel[] = await GetNewsList(publishNews[0].id)
         let firstNewsList: any[] = []
         firstNews.forEach((item) => {
+            let link = '/news/' + item.newsId
+            if(item.reputationId !== 0){
+                link = '/news/reputation/' + item.newsId
+            }
             firstNewsList.push({
-                link: '/news/' + item.newsId,
+                link,
                 img: item.newsIcon,
                 title: item.newsTitle,
                 content: item.newsContent.replace(/<[^>]*>|/g, ''),

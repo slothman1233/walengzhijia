@@ -1,8 +1,6 @@
-import { ResNewsModelListReturnModel } from '../model/news/resNews'
 import { BrowseModel, PraiseModel } from '../model/PraiseBrowse'
 import { bodyModel } from '../model/resModel'
 import PraiseBrowses from '../services/common/PraiseBrowse.services'
-import { GetNewsListModel } from '../services/News.services'
 
 /**
  * 添加点赞

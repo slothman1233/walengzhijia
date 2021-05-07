@@ -225,8 +225,12 @@ async function GetCompanyProduct({ companyId,
             let NewsList: any[] = []
             if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
                 newsList.bodyMessage.forEach((item) => {
+                    let link = '/news/' + item.newsId
+                    if(item.reputationId !== 0){
+                        link = '/news/reputation/' + item.newsId
+                    }
                     NewsList.push({
-                        link: '/news/' + item.newsId,
+                        link,
                         img: item.newsIcon,
                         title: item.newsTitle,
                         content: item.newsContent.replace(/<[^>]*>|/g, ''),
@@ -259,8 +263,12 @@ async function GetCompanyProduct({ companyId,
         if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
 
             newsList.bodyMessage.forEach((item) => {
+                let link = '/news/' + item.newsId
+                if(item.reputationId !== 0){
+                    link = '/news/reputation/' + item.newsId
+                }
                 NewsList.push({
-                    link: '/news/' + item.newsId,
+                    link,
                     img: item.newsIcon,
                     title: item.newsTitle,
                     content: item.newsContent.replace(/<[^>]*>|/g, ''),

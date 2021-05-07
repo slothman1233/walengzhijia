@@ -57,15 +57,15 @@
             <div class="pr clearfix">
               <p>
                 <span>购买价格</span>
-                <i>300万</i>
+                <i>{{newsDetail.newsDetail.PurchasePrice | getPurchasePrice(newsDetail.newsDetail.PriceShowStatus)}}万</i>
               </p>
               <p>
                 <span>购买时间</span>
-                <i>2019年6月</i>
+                <i>{{newsDetail.newsDetail.buyTime | ge_time_format(2)}}</i>
               </p>
               <p>
                 <span>投入使用</span>
-                <i>2020年1月</i>
+                <i>{{newsDetail.newsDetail.useTime | ge_time_format(2)}}</i>
               </p>
             </div>
 
@@ -73,46 +73,23 @@
               <h4>用户评分</h4>
               <div class="ct_box clearfix">
                 <div class="score">
-                  <p>4.35</p>
-                  {{star()}}
+                  <p>{{newsDetail.newsDetail.statisticsModel.score}}</p>
+                  {{star(newsDetail.newsDetail.statisticsModel.score)}}
                 </div>
                 <div class="configuration">
-                  <p>
-                    <span>性能:</span>
-                    <i>5</i>
-                  </p>
-                  <p>
-                    <span>配置:</span>
-                    <i>5</i>
-                  </p>
-                  <p>
-                    <span>外观:</span>
-                    <i>5</i>
-                  </p>
-                  <p>
-                    <span>质量:</span>
-                    <i>5</i>
-                  </p>
-                  <p>
-                    <span>售后:</span>
-                    <i>5</i>
-                  </p>
-                  <p>
-                    <span>能耗:</span>
-                    <i>5</i>
-                  </p>
-                  <p>
-                    <span>自动化:</span>
-                    <i>5</i>
-                  </p>
-
+                  {% for item in newsDetail.newsDetail.statisticsModel.reputationScore %}
+                    <p>
+                      <span>{{item.reputationTypeName}}:</span>
+                      <i>{{item.reputationScore}}</i>
+                    </p>
+                  {% endfor %}
                 </div>
               </div>
             </div>
           </div>
 
           <div class="content clearfix">
-           {{newsDetail.newsDetail.newsContent | safe}}
+            {{newsDetail.newsDetail.newsContent | safe}}
           </div>
 
           <div class="share">
@@ -151,7 +128,7 @@
 
         <div class="list1 relatedproducts">
           <p>相关产品</p>
-           <div class="box">
+          <div class="box">
             <img src="{{newsDetail.product.producerCover}}"/>
             <div class="content">
               <div class="left">
@@ -165,50 +142,21 @@
             </div>
           </div>
 
-          
         </div>
 
         <div class="list1 kbmore">
           <p>看看其它口碑</p>
           <div class="box">
-
-            {% set kbmoredata = [
-            {
-              id:"123213",
-              title:"YWZJ-C型液压无轴纸架",
-              hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-              name:"上海于工",
-              score:"4.6",
-              content:"最满意的地方就是内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评容评容评容评容评容评论..."
-            },
-            {
-              id:"123213",
-              title:"YWZJ-C型液压无轴纸架",
-              hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-              name:"上海于工",
-              score:"4.6",
-              content:"最满意的地方就是内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评容评容评容评容评容评论..."
-            },
-            {
-              id:"123213",
-              title:"YWZJ-C型液压无轴纸架",
-              hread:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-              name:"上海于工",
-              score:"4.6",
-              content:"最满意的地方就是内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评容评容评容评容评容评论..."
-            }
-          ] %}
-
-            {% for item in kbmoredata %}
+            {% for item in newsDetail.hotReputations %}
               <div class="child">
-                <a class="title" href="/news/reputation/{{item.id}}" target="_blank">{{item.title}}</a>
+                <a class="title" href="/news/reputation/{{item.newsId}}" target="_blank">{{item.productName}}</a>
                 <div class="clearfix">
-                  <img src="{{item.hread}}"/>
-                  <span>{{item.name}}</span>
-                  <i>{{item.score}}</i>
-                  {{star()}}
+                  <img src="{{item.userIcon}}"/>
+                  <span>{{item.userName}}</span>
+                  <i>{{item.statisticsModel.score}}</i>
+                  {{star(item.statisticsModel.score)}}
                 </div>
-                <a class="content" href="/news/reputation/{{item.id}}" target="_blank">{{item.content}}</a>
+                <a class="content" href="/news/reputation/{{item.newsId}}" target="_blank">{{item.summary}}</a>
               </div>
             {% endfor %}
           </div>

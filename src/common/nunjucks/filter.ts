@@ -1,4 +1,4 @@
-import { HotCompanyDefineItems } from '../../enums/enums'
+import { HotCompanyDefineItems, priceShowStatusEnums } from '../../enums/enums'
 import { ge_time_format } from '../utils/util'
 
 
@@ -54,6 +54,27 @@ export default {
             return HotCompanyDefineItems[parseInt(type)]
         } catch (e) {
             return HotCompanyDefineItems[0]
+        }
+    },
+    //口碑购买价格显示的方法
+    'getPurchasePrice': function (str: string, type: priceShowStatusEnums) {
+        switch (type) {
+            case priceShowStatusEnums.showAll:
+                return str
+            case priceShowStatusEnums.showPart:
+                let s = ''
+                for (let i = 0; i < str.length; i++) {
+                    if (i === 0 || str[i] === '.') {
+                        s += str[i]
+                    } else {
+                        s += '*'
+                    }
+                }
+                return s
+            case priceShowStatusEnums.blank:
+                return '***'
+            default:
+                return str
         }
     }
 

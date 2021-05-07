@@ -42,6 +42,7 @@ export default class Business {
         //----------------------------------------------
         ///获得公司口碑集合
         let Reputation = await GetReputationByCompany(companyId)
+        console.log(Reputation)
 
         let reshighKb: any[] = []
         let reshighKbChart: any[] = []
@@ -90,8 +91,12 @@ export default class Business {
         let firstNewsList: any[] = []
         if (firstNews) {
             firstNews.forEach((item) => {
+                let link = '/news/' + item.newsId
+                if(item.reputationId !== 0){
+                    link = '/news/reputation/' + item.newsId
+                }
                 firstNewsList.push({
-                    link: '/news/' + item.newsId,
+                    link,
                     img: item.newsIcon,
                     title: item.newsTitle,
                     content: item.newsContent.replace(/<[^>]*>|/g, ''),
@@ -176,8 +181,12 @@ export default class Business {
         let firstNewsList: any[] = []
         if (firstNews) {
             firstNews.forEach((item) => {
+                let link = '/news/' + item.newsId
+                if(item.reputationId !== 0){
+                    link = '/news/reputation/' + item.newsId
+                }
                 firstNewsList.push({
-                    link: '/news/' + item.newsId,
+                    link,
                     img: item.newsIcon,
                     title: item.newsTitle,
                     content: item.newsContent.replace(/<[^>]*>|/g, ''),
@@ -215,6 +224,3 @@ export default class Business {
 
 
 }
-
-
-export const ss = function () { return 1 }

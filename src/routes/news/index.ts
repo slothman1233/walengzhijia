@@ -8,13 +8,21 @@ export default class News {
 
 
 
-  @get('/reputation/:id?')
+  @get('/reputation/:newsId?')
     async reputation(ctx: Context, next: Next) {
+        let { newsId } = ctx.params
+        //新闻详情
+        let newsDetail = await GetNewsById(newsId)
+
+        // newsDetail.newsDetail 在口碑新闻中是ResNewsReputationModel类型
+
+        //-------------------------------
 
 
-
-
-        await ctx.render('news/reputation', {})
+        await ctx.render('news/reputation', {
+            newsId,
+            newsDetail
+        })
 
     }
 

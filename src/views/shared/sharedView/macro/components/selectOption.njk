@@ -23,7 +23,7 @@
 }) %}
   <div class="selectOption">
     {% if (args != null) and (args.data != null) and (args.data.length > 0) %}
-      <h1><span>{{args.data[args.selectIndex].value}}</span>
+      <h1  data-id="{{args.data[args.selectIndex].id}}"><span>{{args.data[args.selectIndex].value}}</span>
         <i class="iconfont_wlzj">&#xE00C;</i>
       </h1>
       <div class="option">

@@ -2,9 +2,10 @@
 import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
 import { GetCompnays } from '../../controller/company.controller'
+import { GetReputationTypeById } from '../../controller/ManageLepackReputaion.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanySimilarProductById } from '../../controller/product.controller'
 import { GetReputationByProductId } from '../../controller/Reputation.controller'
-import { scoreItems } from '../../enums/enums'
+
 
 
 /**
@@ -27,6 +28,7 @@ export default class Reputation {
             })
 
         })
+
         //----------------------------------------------
         // 获取品牌商对应的产品
         let CompanyProduct = await GetCompanyProduct({ companyId })
@@ -36,12 +38,22 @@ export default class Reputation {
         }
 
 
+        let productTypeId = 0
         CompanyProduct.forEach((item, index) => {
-            if (item.productId === parseInt(productId)) {
-                companyProductObject.selectIndex = index
+            if (productId) {
+                if (item.productId === parseInt(productId)) {
+                    companyProductObject.selectIndex = index
+                    productTypeId = parseInt(item.productTypeId)
+                }
+            } else {
+                //没有传产品默认给第一个产品的产品类型
+                if (index === 0) {
+                    productTypeId = parseInt(item.productTypeId)
+                }
             }
+
             companyProductObject.data.push({
-                id: item.productId,
+                id: `${item.productId}_${item.productTypeId}`,
                 value: item.productName
             })
         })
@@ -49,7 +61,8 @@ export default class Reputation {
 
 
         //评分项
-        // scoreItems
+        let scoreItems = await GetReputationTypeById({ productTypeId })
+
         //----------------------------------------------
         await ctx.render('reputation/publish', {
             allbrandingSelectOption,
@@ -112,5 +125,3 @@ export default class Reputation {
 
 }
 
-
-export const ss = function () { return 1 }

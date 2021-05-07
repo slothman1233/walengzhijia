@@ -33,9 +33,16 @@ export function selectOption1(parentId: string | HTMLElement, callback: navigati
                 return
             } else if (path[i] === option && path[i - 1]) {
                 let id = e.target.dataset['id']
+
+                if (selectOption.getAttribute('data-id') === id) {
+                    option.style.display = 'none'
+                    return
+                }
+
                 selectOption.querySelector('span').innerText = e.target.innerText
                 selectOption.dataset['id'] = id
-                callback && callback(parseInt(id), e, option)
+                id = isNaN(id) ? id : parseInt(id)
+                callback && callback(id, e, option)
                 option.style.display = 'none'
                 return
             }

@@ -16,6 +16,7 @@ export interface ResReputationModelListReturnModel extends bodyModel<ResReputati
  * @param {string} userIcon 发表人头像
  * @param {string} productName 产品名称
  * @param {number} productId 产品ID
+ * @param {number} newsId 新闻ID
  * @param {number} companyId 公司ID
  * @param {string} summary 口碑描述内容
  * @param {number} reputationId 口碑ID
@@ -34,6 +35,7 @@ export interface ResReputationModel {
   productName: string
   productId: number
   companyName: string
+  newsId: string
   companyId: number
   summary: string
   reputationId: number
@@ -105,7 +107,7 @@ export interface ResCompanyProductInfoModel {
   listingDateMonth?: number
   productVideo: string
   productCover: string
-  productTypeId:string
+  productTypeId: string
   summary: string
   classify: { [index: string]: any }
   statisticsModel: ResReputationStatisticsModel
@@ -215,3 +217,29 @@ export interface ResHotReputationModel {
 export interface ResHotReputationModelListReturnModel extends bodyModel<ResHotReputationModel[]> {
 
 }
+
+
+/**
+ * 口碑评分项属性的bodyModel
+ * @param {number} reputationTypeId 口碑属性的标识ID，用于在score关联
+ * @param {number} productTypeId 产品类型ID
+ * @param {string} reputationName 口碑评分项的属性字段值
+ * 
+ */
+export interface ResReputationTypeModelListReturnModel extends bodyModel<ResReputationTypeModel[]> {
+
+}
+
+/**
+ * 口碑评分项属性字段
+ * @param {number} reputationTypeId 口碑属性的标识ID，用于在score关联
+ * @param {number} productTypeId 产品类型ID
+ * @param {string} reputationName 口碑评分项的属性字段值
+ * 
+ */
+export interface ResReputationTypeModel {
+  reputationTypeId?: number
+  productTypeId?: number
+  reputationName: string
+}
+

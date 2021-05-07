@@ -143,7 +143,7 @@
         <div class="child">
           <div class="left">
             <a href="{{item.link}}" target="_blank">
-            
+
               {% if item.brandtype.length > 0 %}
                 <i>{{item.brandtype}}</i>
               {% endif %}
@@ -153,10 +153,17 @@
 
           <div class="right">
             <span>口碑得分</span>
-            <p>{{item.kbscore}}
-              <i>分</i>
-            </p>
-            {{star(item.kbscore)}}
+            {% if item.kbcount <= 0 %}
+              <h2>暂无口碑分</h2>
+            {% elif item.kbcount <= 4 %}
+              <h2>口碑较少</h2>
+            {% else %}
+              <p>{{item.kbscore}}
+                <i>分</i>
+              </p>
+              {{star(item.kbscore)}}
+            {% endif %}
+
           </div>
 
           <div class="center">

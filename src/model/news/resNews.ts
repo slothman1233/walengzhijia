@@ -1,4 +1,5 @@
-import { NewsContentTypeEnums } from '../../enums/enums'
+import { NewsContentTypeEnums, priceShowStatusEnums } from '../../enums/enums'
+import { ResReputationModel, ResReputationStatisticsModel } from '../reputation/resreputation'
 import { bodyModel } from '../resModel'
 
 
@@ -7,6 +8,7 @@ import { bodyModel } from '../resModel'
  * @param {number} newsId 新闻标识ID
  * @param {number} createUser 创建者
  * @param {string} userIcon 用户头像
+ * @param {number} reputationId 口碑ID
  * @param {number} companyId 公司ID
  * @param {string} companyName 公司名称
  * @param {string} companyIcon 公司的log标识
@@ -23,7 +25,8 @@ import { bodyModel } from '../resModel'
 export interface ResNewsModel {
   newsId?: number
   createUser?: number
-  userIcon:string
+  userIcon: string
+  reputationId?: number
   companyId?: number
   companyName: string
   companyIcon: string
@@ -93,12 +96,18 @@ export interface ResNewsHotModel {
  * @param {ResNewsModel} newsDetail 新闻模型
  * @param {ResNewsProductModel} product 关联产品信息
  * @param {ResNewsHotModel[]} hotNews 热门新闻
+ * @param {ResReputationModel[]} hotReputations 热门的口碑新闻
  */
 export interface ResNewsDetailModel {
   newsDetail: ResNewsModel
   product: ResNewsProductModel
   hotNews: ResNewsHotModel[]
+  hotReputations: ResReputationModel[]
 }
+
+
+
+
 
 /**
  * 新闻详情页的bodyModel返回
@@ -108,4 +117,21 @@ export interface ResNewsDetailModel {
  */
 export interface ResNewsDetailModelReturnModel extends bodyModel<ResNewsDetailModel> {
 
+}
+
+
+/**
+ * 口碑新闻类型内容
+ * @param {string} buyTime 购买时间
+ * @param {string} useTime 使用时间
+ * @param {number} PurchasePrice 购买价格
+ * @param {priceShowStatusEnums} priceShowStatus 价格显示状态-显示价格，显示数字第一位有小数点，不现实价格
+ * @param {ResReputationStatisticsModel} statisticsModel 口碑统计信息
+ */
+export interface ResNewsReputationModel extends ResNewsModel {
+  buyTime: string
+  useTime: string
+  PurchasePrice: number
+  PriceShowStatus: priceShowStatusEnums
+  statisticsModel: ResReputationStatisticsModel
 }
