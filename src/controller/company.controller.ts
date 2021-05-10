@@ -3,11 +3,11 @@
 
 import { JSONParse } from '../common/utils/ModelHelper'
 import { CompanyProductAdvisoryModel, CompanyProductInfoModel } from '../model/company/Company'
-import { ResCompanyBrandModelPagedModel, ResCompanyBrandModelPagedModelReturnModel, ResCompanyHotModel, ResCompanyHotModelListReturnModel, ResCompanyInfoModel, ResCompanyInfoModelListReturnModel, ResCompanyInfoModelReturnModel, ResCompanyProductAdvisoryModel, ResCompanyProductAdvisoryModelListReturnModel, ResCompanyProductAdvisoryModelReturnModel, ResCompanySalerModel, ResCompanySalerModelListReturnModel } from '../model/company/resCompany'
+import { ResCompanyBrandModelPagedModel, ResCompanyBrandModelPagedModelReturnModel, ResCompanyHotModel, ResCompanyHotModelListReturnModel, ResCompanyInfoModel, ResCompanyInfoModelListReturnModel, ResCompanyInfoModelReturnModel, ResCompanyProductAdvisoryModel, ResCompanyProductAdvisoryModelListReturnModel, ResCompanyProductAdvisoryModelReturnModel, ResCompanySalerModel, ResCompanySalerModelListReturnModel, ResCompanySalerModelReturnModel } from '../model/company/resCompany'
 import { ResIndustryTypeModel, ResIndustryTypeModelListReturnModel } from '../model/industry/resIndustryType'
 import { ResProductTypeModel, ResProductTypeModelListReturnModel } from '../model/product/resproductType'
 import { bodyModel, ErrorModel } from '../model/resModel'
-import companys, { ByAdvisoryId, ByCompanyIdModel, ByProductId, GetCompanyInfoByUserModel } from '../services/company.services'
+import companys, { ByAdvisoryId, ByCompanyIdModel, ByProductId, GetCompanyInfoByUserModel, SalerById } from '../services/company.services'
 /**
  * 首页中显示热门公司品牌，根据产品ID类型来获得公司产品信息
  */
@@ -186,4 +186,20 @@ export async function PostDeleteCompanyProductAdvisory(params: CompanyProductAdv
 
 
 
+/**
+ * 根据销售id获取销售信息
+ * SalerById
+ */
+export async function GetCompanySalerById(params: SalerById): Promise<ResCompanySalerModel | null> {
+    let rm = await GetCompanySalerByIdRm(params)
+    let models = JSONParse<ResCompanySalerModel | null>(rm.code, rm.bodyMessage)
+    return models
+}
 
+/**
+ * 根据销售id获取销售信息
+ * SalerById
+ */
+export async function GetCompanySalerByIdRm(params: SalerById): Promise<ResCompanySalerModelReturnModel> {
+    return await companys.GetCompanySalerById(params).catch(data => data)
+}

@@ -40,7 +40,7 @@ export interface ResCompanyInfoModel {
   highReputationCount: number
   reputationScore: number
   stockInfo: string
-  hotDefine:HotCompanyDefine
+  hotDefine: HotCompanyDefine
 }
 
 /**
@@ -95,6 +95,7 @@ export interface ResCompanyHotModel {
  * @param {string} salerSummary 销售介绍
  * @param {string} salerWorkYears 销售从业年限
  * @param {number} sortId 销售排序ID
+ * @param {string} createTime 创建时间
  */
 export interface ResCompanySalerModel {
   salerId?: number
@@ -106,6 +107,24 @@ export interface ResCompanySalerModel {
   salerSummary: string
   salerWorkYears: string
   sortId?: number
+  createTime: string
+}
+
+/**
+ * 销售返回的bodyModel模型
+ * @param {number} salerId 销售ID，删除和修改信息时候使用
+ * @param {number} companyId  公司ID-对应公司下面的销售人员
+ * @param {string} salerName 销售员名称
+ * @param {string} salerPosition 销售职位
+ * @param {string} salerFunction 销售职能
+ * @param {string} salerIcon 销售头像
+ * @param {string} salerSummary 销售介绍
+ * @param {string} salerWorkYears 销售从业年限
+ * @param {number} sortId 销售排序ID
+ * @param {string} createTime 创建时间
+ */
+export interface ResCompanySalerModelReturnModel extends bodyModel<ResCompanySalerModel>{
+
 }
 
 
@@ -283,4 +302,31 @@ export interface ResCompanySimilarProductModel {
  */
 export interface ResCompanySimilarProductModelListReturnModel extends bodyModel<ResCompanySimilarProductModel[]> {
 
+}
+
+
+/**
+ * 添加销售
+ * @param {number} salerId 销售ID，删除和修改信息时候使用
+ * @param {number} companyId 公司ID-对应公司下面的销售人员
+ * @param {string} salerName 销售员名称
+ * @param {string} salerPosition 销售职位
+ * @param {string} salerFunction 销售职能
+ * @param {string} salerIcon 销售头像
+ * @param {string} salerSummary 销售介绍
+ * @param {string} salerWorkYears 销售从业年限
+ * @param {number} sortId 销售排序ID
+ * @param {number} createUser 添加用户
+ */
+export interface CompanyProductSalerModel {
+  salerId?: number
+  companyId?: number
+  salerName?: string
+  salerPosition?: string
+  salerFunction?: string
+  salerIcon?: string
+  salerSummary?: string
+  salerWorkYears?: string
+  sortId?: number
+  createUser?: number
 }

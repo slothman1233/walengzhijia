@@ -1,16 +1,15 @@
+import { PraiseBrowsePraiseTypeEnum } from '../enums/enums'
 
 
 /**
  * 点赞模型
- * @param {number} praiseId 取消点赞时使用
- * @param {number} targetId 对应点赞目标的标识ID
- * @param {number} praiseType 点赞类型
+ * @param {number} targetId 对应点赞目标的标识ID    注意：口碑新闻传口碑id
+ * @param {PraiseBrowsePraiseType} praiseType 点赞类型  1 新闻  2口碑包含口碑新闻  3 评论 4评论回复
  * @param {number} praiseUser 点赞用户，为0为匿名
  */
 export interface PraiseModel {
-  praiseId?: number
   targetId?: number
-  praiseType?: number
+  praiseType?: PraiseBrowsePraiseTypeEnum
   praiseUser?: number
 }
 

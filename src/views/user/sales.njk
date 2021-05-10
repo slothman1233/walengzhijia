@@ -19,7 +19,7 @@
   <script>
     //type 1 是新增 2 是修改
     var type = {{type}}
-    var userid = {{userid}}
+    var salerId = {{salerId}}
   </script>
   <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
   <script type="text/javascript" src="/dist/scripts/user/sales.js"></script>
@@ -57,13 +57,13 @@
 
         <div class="child clearfix">
           <p>姓名：</p>
-          <div class="textarea" contenteditable="false">姓名</div>
+          <div class="textarea salerName" contenteditable="false">{{salerInfo.salerName}}</div>
           <a href="javascript:void(0)" class="applyfor">编辑</a>
           <a href="javascript:void(0)" class="submit">确认</a>
         </div>
         <div class="child clearfix">
           <p>头像：</p>
-          <div class="padding"><img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0"></div>
+          <div class="padding"><img class="salerIcon" src="{{salerInfo.salerIcon}}"></div>
           <a href="javascript:void(0)">
             上传头像
             <input type="file" class="uploadfileinput" multiple="multiple" accept="image/*">
@@ -71,19 +71,19 @@
         </div>
         <div class="child clearfix">
           <p>职称：</p>
-          <div class="textarea" contenteditable="false">--</div>
+          <div class="textarea salerPosition" contenteditable="false">{{salerInfo.salerPosition}}</div>
           <a href="javascript:void(0)" class="applyfor">编辑</a>
           <a href="javascript:void(0)" class="submit">确认</a>
         </div>
         <div class="child clearfix">
           <p>职能：</p>
-          <div class="textarea" contenteditable="false">--</div>
+          <div class="textarea salerFunction" contenteditable="false">{{salerInfo.salerFunction}}</div>
           <a href="javascript:void(0)" class="applyfor">编辑</a>
           <a href="javascript:void(0)" class="submit">确认</a>
         </div>
         <div class="child clearfix">
           <p>行业经验：</p>
-          <div class="textarea" contenteditable="false">10年</div>
+          <div class="textarea salerWorkYears" contenteditable="false">{{salerInfo.salerWorkYears}}</div>
           <a href="javascript:void(0)" class="applyfor">编辑</a>
           <a href="javascript:void(0)" class="submit">确认</a>
         </div>

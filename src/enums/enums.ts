@@ -354,3 +354,19 @@ export const NewsContentTypeObject = [
  * 1 视频
  */
 export const NewsContentTypeArray = ['文章', '视频']
+
+
+
+/**
+ * 点赞类型
+ * 1 新闻
+ * 2 口碑 包含口碑新闻
+ * 3 评论
+ * 4 评论回复
+ */
+export enum PraiseBrowsePraiseTypeEnum {
+  news = 1,
+  praise = 2,
+  comment = 3,
+  commentReply = 4
+}

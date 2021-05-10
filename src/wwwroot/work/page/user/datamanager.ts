@@ -3,6 +3,11 @@ import { on } from '@stl/tool-ts/src/common/event/on'
 import { siblings } from '@stl/tool-ts/src/common/dom/siblings'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { uploadfilefn } from '../../components/uploadfile'
+import { contentType, popupType } from '../../public/script/popup'
+import { DeleteCompanySaler } from '../../common/service/ManageLepackCompany'
+import { subCodeEnums } from '../../../../enums/enums'
+import config from '../../common/config/env'
+import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
 declare const $: JQueryStatic
 declare const tabType: any
 // 基本信息
@@ -85,8 +90,32 @@ declare const tabType: any
         ele: '.del',
         fn: function (dom: any, ev: any) {
             let id = $(dom).data('id')
-            $(dom).parents('.child').remove()
-            alert('删除成功')
+
+            alert({
+                str: '确定要删除吗？',
+                type: popupType.b,
+                contentType: contentType.warning,
+                successCallback: async function () {
+
+                    let userData = JSON.parse(getCookie(config.userlogin))
+                    let companyId = userData.company.companyId
+                    let userId = userData.userId
+                    let delData = await DeleteCompanySaler({
+                        salerId: id,
+                        companyId,
+                        createUser: userId
+                    })
+                    if (delData.code === 0 && delData.subCode === subCodeEnums.success) {
+                        $(dom).parents('.child').remove()
+                        alert('删除成功')
+                    } else {
+                        alert('删除失败，请重新删除')
+                    }
+
+                }
+            })
+
+
         }
     })
 

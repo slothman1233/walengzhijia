@@ -16,7 +16,7 @@ export type ByProductId = { productId: number }
 
 export type ByAdvisoryId = { advisoryId: number }
 
-
+export type SalerById = { salerId: number }
 
 
 class company {
@@ -105,9 +105,13 @@ class company {
     async GetCompnays() {
         return await http.get<ResCompanyInfoModel[]>(`${config.apiPath}api/Company/GetCompnays`, { headers: { 'Content-Type': 'application/json' } })
     }
-    
-    
 
+
+    // 根据销售id获取销售信息
+    //@CacheInterceptor('company_AddCompanyProduct', CacheTime.Min3)
+    async GetCompanySalerById(params: SalerById) {
+        return await http.get<ResCompanySalerModel>(`${config.apiPath}api/Company/GetCompanySalerById`, { params, headers: { 'Content-Type': 'application/json' } })
+    }
 
 
 }

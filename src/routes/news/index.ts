@@ -13,9 +13,7 @@ export default class News {
         let { newsId } = ctx.params
         //新闻详情
         let newsDetail = await GetNewsById(newsId)
-
         // newsDetail.newsDetail 在口碑新闻中是ResNewsReputationModel类型
-
         //-------------------------------
 
 
@@ -34,7 +32,6 @@ export default class News {
 
       //新闻详情
       let newsDetail = await GetNewsById(newsId)
-
 
       //-------------------------------
 

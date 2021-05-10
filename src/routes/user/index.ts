@@ -2,6 +2,7 @@
 import { Context, Next } from 'koa'
 import { get, middlewares } from '../../common/decorator/httpMethod'
 import { getCookie } from '../../common/utils/cookies'
+import { GetCompanySalerById, GetSalersByCompanyId } from '../../controller/company.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType, GetProductIndustryByIndustry } from '../../controller/product.controller'
 import { productImgTypeEnums, publishNews, publishNewsTypeEnums } from '../../enums/enums'
 import { user_login_middleware } from '../../middleware/login'
@@ -25,18 +26,40 @@ export default class User {
     @get('/datamanager/:tabType?')
     async datamanager(ctx: Context, next: Next) {
         let { tabType } = ctx.params
+
+        let cookie = getCookie(ctx, userlogin)
+        let companyId = 1
+        if (cookie !== 'undefined') {
+            companyId = JSON.parse(cookie).company.companyId
+        }
+
+        //获取销售信息
+        let salersList = await GetSalersByCompanyId({ companyId })
+        //--------------------------------------------------------
+
+
         await ctx.render('user/datamanager', {
-            tabType: tabType || 1
+            tabType: tabType || 1,
+            salersList
         })
     }
 
     @middlewares([user_login_middleware])
-    @get('/sales/:type?/:userid?')
+    @get('/sales/:type?/:salerId?')
     async sales(ctx: Context, next: Next) {
-        let { type, userid } = ctx.params
+        //type 1 是新增 2 是修改
+        let { type, salerId } = ctx.params
+        let salerInfo = {}
+        if (salerId) {
+            salerInfo = await GetCompanySalerById({ salerId }) || {}
+            console.log(salerInfo)
+        }
+
+
         await ctx.render('user/sales', {
             type: type || 1,
-            userid: userid || 0
+            salerId: salerId || 0,
+            salerInfo
         })
     }
 
