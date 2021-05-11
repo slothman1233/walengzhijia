@@ -370,3 +370,14 @@ export enum PraiseBrowsePraiseTypeEnum {
   comment = 3,
   commentReply = 4
 }
+
+
+/**
+ * 评论类型
+ * 1 新闻 
+ * 2 口碑 包含口碑新闻
+ */
+export enum CommentTargetTypeEnum {
+  news = 1,
+  praise = 2 
+}

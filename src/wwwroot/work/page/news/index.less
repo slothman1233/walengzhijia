@@ -16,7 +16,7 @@
   .container {
 
     .l {
-      width: @DefindWidth - @DefindRight3 - @space_11;
+      width: 734px;
       float: left;
 
       .news_content {
@@ -131,6 +131,7 @@
       float: right;
       width: @DefindRight3;
       .list1();
+      border: none;
 
       .hotnews {
         margin-bottom: @space_2 ;
@@ -164,13 +165,14 @@
       }
 
       .relatedproducts {
+        margin-bottom: @space_2 ;
         .box {
-          padding: 30px @space_5;
+          padding: @space_2 @space_3;
 
           &>img {
-            width  : 280px;
+            width  : 100%;
             display: block;
-            margin : 0 auto 30px 0;
+            margin : 0 auto @space_2 0;
           }
 
           .content {

@@ -142,6 +142,21 @@ export function ge_time_format(timestamp: string, type: string = '1') {
 }
 
 /**
+ * 时间传时间戳
+ * 2021-05-11T09:15:49+08:00
+ * 2021-05-11T09:15:49
+ * 2021-05-11
+ * @param {string} time 时间
+ */
+export function get_time_timestamp(time: string) {
+    try {
+        return new Date(time).getTime()
+    } catch (e) {
+        return time
+    }
+}
+
+/**
  * html encode
  * html转码
  * @param  {String} str [description]

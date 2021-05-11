@@ -148,11 +148,13 @@ async function GetCompanyProduct({ companyId,
 
 // 优质口碑
 (function () {
+    try {
 
-    reshighKbChart.forEach((item: any, index: number) => {
-        Charts(document.getElementById(`ecahr${index}`), item)
-    })
 
+        reshighKbChart.forEach((item: any, index: number) => {
+            Charts(document.getElementById(`ecahr${index}`), item)
+        })
+    } catch (e) { }
 
 
 
@@ -226,7 +228,7 @@ async function GetCompanyProduct({ companyId,
             if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
                 newsList.bodyMessage.forEach((item) => {
                     let link = '/news/' + item.newsId
-                    if(item.reputationId !== 0){
+                    if (item.reputationId !== 0) {
                         link = '/news/reputation/' + item.newsId
                     }
                     NewsList.push({
@@ -264,7 +266,7 @@ async function GetCompanyProduct({ companyId,
 
             newsList.bodyMessage.forEach((item) => {
                 let link = '/news/' + item.newsId
-                if(item.reputationId !== 0){
+                if (item.reputationId !== 0) {
                     link = '/news/reputation/' + item.newsId
                 }
                 NewsList.push({

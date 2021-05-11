@@ -44,6 +44,7 @@ let userId = 0;
  * @param {ReputationScoreModel[]} reputationScores 口碑评分模型
  */
 let PublishData: ReputationModel = {
+    title: '',
     companyId,
     productId,
     buyTime: '',
@@ -54,6 +55,7 @@ let PublishData: ReputationModel = {
     reputationIcon: '',
     createUser: userId,
     reputationScores: []
+
 };
 
 
@@ -261,6 +263,10 @@ async function submitFn() {
     // @param {number} companyId 公司标识ID
     // * @param {number} productId 产品标识ID
 
+    let reputationtitle: HTMLInputElement = main.querySelector('.reputationtitle')
+
+
+
     if (!PublishData.companyId) {
         alert('公司标识不能为空！')
         return
@@ -299,6 +305,12 @@ async function submitFn() {
         alert('观点描述不能为空！')
         return
     }
+
+    if (reputationtitle.value.length <= 0) {
+        alert('标题不能为空！')
+        return
+    }
+    PublishData.title = reputationtitle.value
 
     //评分项
     let child = NodeListToArray(document.querySelectorAll('.star_box > div'))

@@ -11,14 +11,14 @@ import comments, { GetCommentReplyListModel } from '../services/comment.services
 * 添加评论
 * CommentModel
 */
-export async function AddComment(params: CommentModel): Promise<bodyModel<boolean>> {
+export async function AddComment(params: CommentModel): Promise<bodyModel<number>> {
     return await comments.AddComment(params).catch(data => data)
 }
 /**
 * 添加评论回复信息
 * CommentReplyModel
 */
-export async function AddCommentReply(params: CommentReplyModel): Promise<bodyModel<boolean>> {
+export async function AddCommentReply(params: CommentReplyModel): Promise<bodyModel<number>> {
     return await comments.AddCommentReply(params).catch(data => data)
 }
 

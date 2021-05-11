@@ -5,7 +5,7 @@
   @height         : 48px;
   padding         : 12px 0;
   margin-right    : @space_2;
-
+  height: 730px;
   a {
     display    : block;
     height     : @height;
@@ -13,9 +13,13 @@
     padding    : 0 @space_2;
     border-left: 4px solid transparent;
 
-    &:hover,
+    
     &.select {
       border-color    : @color_subject;
+      background-color: rgba(248, 215, 132, 0.15);
+    }
+
+    &:hover{
       background-color: rgba(248, 215, 132, 0.15);
     }
 

@@ -10,7 +10,7 @@ import { SuccessModel } from '../../model/resModel'
 
 
 export default class Index {
-  @post('/component')
+    @post('/component')
     async component(ctx: Context) {
         let { name, data, path }: ComponentModel = ctx.request.body
         debugger
@@ -24,5 +24,11 @@ export default class Index {
 
     }
 
+
+    //获取当前时间
+    @get('/currenttime')
+    async currenttime(ctx: Context) {
+        ctx.body = Date.now()
+    }
 }
 

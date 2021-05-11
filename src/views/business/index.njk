@@ -24,9 +24,9 @@ kblist1 %}
   <script type="text/javascript">
     var companyId = {{companyId}}
     var reshighKbChart = {{reshighKbChart | safe}}
-    var pageIndex = {{GetCompanyProduct.pageIndex}}
-    var totalPages = {{GetCompanyProduct.totalPages}}
-    var pageSize = {{GetCompanyProduct.pageSize}}
+    var pageIndex = {{GetCompanyProduct.pageIndex | ternary(GetCompanyProduct.pageIndex,1)}}
+    var totalPages = {{GetCompanyProduct.totalPages | ternary(GetCompanyProduct.totalPages,1)}}
+    var pageSize = {{GetCompanyProduct.pageSize | ternary(GetCompanyProduct.pageSize,1)}}
   </script>
 
   <script type="text/javascript" src="/assets/plugin/echarts/echarts.min.js"></script>
@@ -88,7 +88,7 @@ kblist1 %}
           <p class="l">
             <span>企业全称：</span>{{companyinfo.fullName}}</p>
           <p>
-            <span>电话：</span>{{companyinfo.phone}}</p>
+            <span>电话：</span>{{companyinfo.contactPhone}}</p>
           <p class="l">
             <span>官网：</span>{{companyinfo.website}}</p>
           <p>

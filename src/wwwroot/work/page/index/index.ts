@@ -60,7 +60,6 @@ declare const document: Document
                     continue
                 }
                 removeClass(dom.querySelector('span'), 'select')
-
             }
 
             hide(list_box.querySelectorAll('.list_item'))

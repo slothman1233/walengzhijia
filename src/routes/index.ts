@@ -85,32 +85,37 @@ export default class Index {
         //新闻第一个分类的列表
         let firstNews: ResNewsModel[] = await GetNewsList(publishNews[0].id)
         let firstNewsList: any[] = []
-        firstNews.forEach((item) => {
-            let link = '/news/' + item.newsId
-            if(item.reputationId !== 0){
-                link = '/news/reputation/' + item.newsId
-            }
-            firstNewsList.push({
-                link,
-                img: item.newsIcon,
-                title: item.newsTitle,
-                content: item.newsContent.replace(/<[^>]*>|/g, ''),
-                author: item.createUser,
-                time: ge_time_format(item.newsTime, '2'),
-                businesslogo: item.companyIcon,
-                businessname: item.companyName,
-                timetick: get_unix_time_stamp(item.newsTime, 2),
-                slug: [NewsContentTypeArray[item.NewsContentType]]
+        if (firstNews && firstNews.length > 0) {
+
+            firstNews.forEach((item) => {
+                let link = '/news/' + item.newsId
+                if (item.reputationId !== 0) {
+                    link = '/news/reputation/' + item.newsId
+                }
+                firstNewsList.push({
+                    link,
+                    img: item.newsIcon,
+                    title: item.newsTitle,
+                    content: item.newsContent.replace(/<[^>]*>|/g, ''),
+                    author: item.createUser,
+                    time: ge_time_format(item.newsTime, '2'),
+                    businesslogo: item.companyIcon,
+                    businessname: item.companyName,
+                    timetick: get_unix_time_stamp(item.newsTime, 2),
+                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                })
             })
-        })
+        }
         //------------------------------------------------------------------------------------------------------------------
         //热门新闻
         let HotNews: ResNewsModel[] = await GetNewsList()
         let newList: any[] = []
+        if (HotNews && HotNews.length > 0) {
+            HotNews.forEach(item => {
+                newList.push({ id: item.newsId, title: item.newsTitle })
+            })
+        }
 
-        HotNews.forEach(item => {
-            newList.push({ id: item.newsId, title: item.newsTitle })
-        })
         //------------------------------------------------------------------------------------------------------------------
 
         //优质口碑
@@ -221,6 +226,13 @@ export default class Index {
         })
         //----------------------------------------------------------------
         //品牌商列表数据
+        // console.log({
+        //     productType: productid,
+        //     classifyType: sortid,
+        //     pageIndex,
+        //     pageSize,
+        //     queryType: tabIndex
+        // })
         let GetCompanyJson = await GetCompanyBrand({
             productType: productid,
             classifyType: sortid,
@@ -232,18 +244,21 @@ export default class Index {
         let companylistJson: any[] = []
         if (GetCompanyJson?.items) {
             GetCompanyJson.items.forEach(item => {
-                companylistJson.push({
-                    logo: item.company.logo,
-                    link: '/business/' + item.company.companyId,
-                    name: item.company.fullName,
-                    kbscore: item.company.reputation.score,
-                    classify: item.productTypes,
-                    kbcount: item.company.reputation.reputationCount,
-                    favorablerate: item.favorableRate * 100,
-                    kbgood: item.highReputationCount,
-                    label: item.company.companyLabels,
-                    brandtype: HotCompanyDefineItems[item.company.hotType]
-                })
+                if (item.company) {
+                    companylistJson.push({
+                        logo: item.company.logo,
+                        link: '/business/' + item.company.companyId,
+                        name: item.company.fullName,
+                        kbscore: item.company.reputation.score,
+                        classify: item.productTypes,
+                        kbcount: item.company.reputation.reputationCount,
+                        favorablerate: item.favorableRate * 100,
+                        kbgood: item.highReputationCount,
+                        label: item.company.companyLabels,
+                        brandtype: HotCompanyDefineItems[item.company.hotType]
+                    })
+                }
+
             })
         }
         //----------------------------------------------------------------

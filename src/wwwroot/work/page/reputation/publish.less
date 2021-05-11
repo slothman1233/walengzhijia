@@ -145,6 +145,12 @@ body {
         margin-right: @space_3;
         position    : relative;
 
+        &:hover {
+          label {
+            border-color: @color_rank;
+          }
+        }
+
         &>input {
 
           float   : left;
@@ -252,17 +258,25 @@ body {
       @width          : @DefindWidth - (@space_3 * 2);
       background-color: #FFF;
 
-      margin-bottom: @space_2;
+      margin-bottom: @space_1;
 
       h2 {
         font-weight  : @font_weight;
         color        : @color_main_c1;
         font-size    : @font_size_16;
         line-height  : @line_height;
-        margin-bottom: @space_3;
+        margin-bottom: @space_1;
       }
     }
 
+    .reputationtitle {
+      font-size    : @font_size_20;
+      line-height  : 28px;
+      font-weight  : @font_weight;
+      margin-bottom: @space_2;
+      color        : @color_main_c1;
+      width: 100%;
+    }
 
 
     .uploadcover {

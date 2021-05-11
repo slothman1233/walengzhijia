@@ -15,6 +15,13 @@
       background-color: #FFF;
       cursor          : pointer;
 
+      span {
+        display: block;
+        float  : left;
+        width  : calc(100% - 32px);
+        .over_group();
+      }
+
       i {
         float       : right;
         margin-right: @space_1;
@@ -42,7 +49,7 @@
         line-height : @height;
         padding-left: @space_2;
         cursor      : pointer;
-
+        .over_group();
         &:hover {
           background-color: #f7f7f7;
         }

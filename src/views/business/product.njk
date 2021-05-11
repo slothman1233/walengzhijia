@@ -9,7 +9,7 @@ navigationbar2 %}
 {% block title %}
 54123123213333
 {% endblock title %}
-
+{# CompanyProductInfo #}
 {% block keywords %}{% endblock %}
 
 {% block description %}{% endblock %}
@@ -60,18 +60,31 @@ navigationbar2 %}
         <div class="row1">
           <div class="left">
             <img src="{{CompanyProductInfo.productCover}}"/>
-            <p>
-              <span>
-                <i class='iconfont_wlzj' data-video="{{CompanyProductInfo.productVideo}}">&#xE01B;</i>产品视频介绍</span>
-              <span>更多图片</span>
-              <div style="display:none">
+            <div class="more">
+              {% if CompanyProductInfo.productVideo != null %}
+                <span class="productVideo" data-viewer="{{CompanyProductInfo.productVideo}}">
+                  <i class='iconfont_wlzj'>&#xE01B;</i>产品视频介绍
+                </span>
+              {% endif %}
+
+              <span class="productimg" >
                 {% if CompanyProductInfo.companyProductImages and CompanyProductInfo.companyProductImages.length > 0 %}
-                  {% for item in CompanyProductInfo.companyProductImages %}
-                    <img src="{{item.imageUrl}}" data-view="{{item.imageUrl}}" data-productImgType="{{item.productImgType}}" data-imageDesc="{{item.imageDesc}}"/>
-                  {% endfor %}
+                  <i data-viewer="{{CompanyProductInfo.companyProductImages[0].imageUrl}}">更多图片</i>
                 {% endif %}
-              </div>
-            </p>
+
+                <p style="display:none">
+                  {% if CompanyProductInfo.companyProductImages and CompanyProductInfo.companyProductImages.length > 0 %}
+                    {% for item in CompanyProductInfo.companyProductImages %}
+                      {% if loop.index !== 1 %}
+                        <img src="{{item.imageUrl}}" data-viewer="{{item.imageUrl}}" data-productImgType="{{item.productImgType}}" data-imageDesc="{{item.imageDesc}}"/>
+                      {% endif %}
+
+                    {% endfor %}
+                  {% endif %}
+                </p>
+              </span>
+
+            </div>
           </div>
 
           <div class="right">

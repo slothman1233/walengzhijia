@@ -31,6 +31,8 @@ export interface ResCommentReplyModelListReturnModel extends bodyModel<ResCommen
  * @param {string} commentUserIcon 评论用户头像
  * @param {string} commentUserName 评论用户昵称
  * @param {number} praiseCount 评论回复点赞数
+ * @param {ResCommentReplyModel} at at的资料 渲染需要
+ * @param {string} commentContent 渲染模板需要
  */
 export interface ResCommentReplyModel {
   replyId?: number
@@ -43,6 +45,8 @@ export interface ResCommentReplyModel {
   commentUserIcon: string
   commentUserName: string
   praiseCount?: number
+  at?: ResCommentReplyModel
+  commentContent?:string
 }
 
 /**
@@ -67,7 +71,7 @@ export interface ResCommentModelListReturnModel extends bodyModel<ResCommentMode
  * @param {number} targetId 评论的目标标识ID
  * @param {number} targetType 评论目标的类型（新闻，产品，公司等等）
  * @param {number} commentId 评论唯一ID，点赞的时候需要将该评论ID传给后台用于计数
- * @param {number} commentUser 评论用户
+ * @param {number} commentUser 评论用户ID
  * @param {string} commentUserIcon 评论用户头像
  * @param {string} commentUserName 评论用户昵称
  * @param {string} commentContent 评论内容

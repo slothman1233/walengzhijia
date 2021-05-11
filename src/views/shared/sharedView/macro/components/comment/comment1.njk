@@ -1,80 +1,82 @@
-{% macro comment(arg = {
-  username: "fff",
-  userid: "123213",
-  userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+{% from "./commonchild.njk" import commonchild %}
+
+{% macro comment(args = {
+  commentUserName: "fff",
+  commentUser: "100007",
+  commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
   data: [
     {
-      username: "fff",
-      userid: "123213",
-      userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-      createtime: "2021-11-11",
-      content: "1.5L和1.3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-      praise: "2000",
-      child: [
+      commentUserName: "fff",
+      commentUser: "123213",
+      commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+      commentTime: "2021-11-11",
+      commentContent: "1.5L和1.3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+      praiseCount: "2000",
+      replys: [
         {
           parentId: '123213',
-          username: "fff",
-          userid: "123213",
-          userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-          createtime: "2021-11-11",
-          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-          praise: "2000",
+          commentUserName: "fff",
+          commentUser: "123213",
+          commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+          commentTime: "2021-11-11",
+          commentContent: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praiseCount: "2000",
           at: {
-            username: "fff",
-            userid: "123213",
-            content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
+            commentUserName: "fff",
+            commentUser: "123213",
+            commentContent: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
           }
         }, {
           parentId: '123213',
-          username: "fff",
-          userid: "123213",
-          userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-          createtime: "2021-11-11",
-          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-          praise: "2000",
+          commentUserName: "fff",
+          commentUser: "123213",
+          commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+          commentTime: "2021-11-11",
+          commentContent: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praiseCount: "2000",
           at: {
-            username: "fff",
-            userid: "123213",
-            content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
+            commentUserName: "fff",
+            commentUser: "123213",
+            commentContent: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
           }
         }, {
-          username: "fff",
-          userid: "123213",
-          userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-          createtime: "2021-11-11",
-          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-          praise: "2000"
+          commentUserName: "fff",
+          commentUser: "123213",
+          commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+          commentTime: "2021-11-11",
+          commentContent: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praiseCount: "2000"
         }
       ]
     }, {
-      username: "fff",
-      userid: "123213",
-      userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-      createtime: "2021-11-11",
-      content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-      praise: "2000",
-      child: [
+      commentUserName: "fff",
+      commentUser: "123213",
+      commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+      commentTime: "2021-11-11",
+      commentContent: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+      praiseCount: "2000",
+      replys: [
         {
-          username: "fff",
-          userid: "123213",
-          userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-          createtime: "2021-11-11",
-          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-          praise: "2000"
+          commentUserName: "fff",
+          commentUser: "123213",
+          commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+          commentTime: "2021-11-11",
+          commentContent: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praiseCount: "2000"
         }, {
-          username: "fff",
-          userid: "123213",
-          userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-          createtime: "2021-11-11",
-          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-          praise: "2000"
+          commentUserName: "fff",
+          commentUser: "123213",
+          commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+          commentTime: "2021-11-11",
+          commentContent: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praiseCount: "2000"
         }, {
-          username: "fff",
-          userid: "123213",
-          userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-          createtime: "2021-11-11",
-          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-          praise: "2000"
+          commentUserName: "fff",
+          commentUser: "123213",
+          commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+          commentTime: "2021-11-11",
+          commentContent: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
+          praiseCount: "2000"
         }
       ]
     }
@@ -83,8 +85,8 @@
 
   <div class="common1">
     <div class="submit clearfix">
-      <img src="{{arg.userhread}}" title="{{arg.username}}"/>
-      <a href="javascript:(0)" data-id="{{arg.userid}}">提交回答</a>
+      <img src="{{args.commentUserIcon}}" title="{{args.commentUserName}}"/>
+      <a href="javascript:(0)" data-commentId="{{item.commentId}}" data-id="{{args.commentUser}}">提交回答</a>
       <div class="input">
         <input type="text" value="" placeholder="写下你的回答"/>
       </div>
@@ -92,139 +94,15 @@
     </div>
 
     <div class="list_box">
-      {{commonchild(arg.data)}}
+      {{commonchild(args.data)}}
     </div>
+    {% if (args.data != null) and (args.data.length >= 10) %}
+      <div class="more parentMore">
+      加载更多
+    </div>
+    {% endif %}
 
   </div>
 
 {% endmacro %}
 
-{% macro commonchild(args = [
-  {
-    username: "fff",
-    userid: "123213",
-    userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    createtime: "2021-11-11",
-    content: "1.5L和1.3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-    praise: "2000",
-    child: [
-      {
-        parentId: '123213',
-        username: "fff",
-        userid: "123213",
-        userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        createtime: "2021-11-11",
-        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-        praise: "2000",
-        at: {
-          username: "fff",
-          userid: "123213",
-          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
-        }
-      }, {
-        parentId: '123213',
-        username: "fff",
-        userid: "123213",
-        userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        createtime: "2021-11-11",
-        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-        praise: "2000",
-        at: {
-          username: "fff",
-          userid: "123213",
-          content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?"
-        }
-      }, {
-        parentId: '123213',
-        username: "fff",
-        userid: "123213",
-        userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        createtime: "2021-11-11",
-        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-        praise: "2000"
-      }
-    ]
-  }, {
-    username: "fff",
-    userid: "123213",
-    userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    createtime: "2021-11-11",
-    content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-    praise: "2000",
-    child: [
-      {
-        username: "fff",
-        userid: "123213",
-        userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        createtime: "2021-11-11",
-        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-        praise: "2000"
-      }, {
-        username: "fff",
-        userid: "123213",
-        userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        createtime: "2021-11-11",
-        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-        praise: "2000"
-      }, {
-        username: "fff",
-        userid: "123213",
-        userhread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-        createtime: "2021-11-11",
-        content: "1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?1.5L和1.3T的哪个更值得买?",
-        praise: "2000"
-      }
-    ]
-  }
-]) %}
-  {% for item in args %}
-    <div class="child clearfix">
-      <div class="hread">
-        <img src="{{item.userhread}}"/>
-      </div>
-      <div class="common_details">
-        <div class="h clearfix">
-          <span>{{item.username}}</span>
-          {% if item.at %}
-            <span>@</span>
-            <span>{{item.at.username}}</span>
-          {% endif %}
-          <span class="createtime">{{item.createtime}}</span>
-        </div>
-        <div class="content">
-          {% if item.at %}
-            <p>{{item.at.content}}</p>
-          {% endif %}
-          {{item.content}}
-        </div>
-        <div class="reply clearfix">
-          <a href="javascript:(0)" data-id="{{item.id}}">回复</a>
-          {# {% if (item.child) and (item.child.length > 0) %} #}
-            <span style="display:{{(item.child and item.child.length > 0) | ternary('block','none') }}"><b>{{item.child | ternary(item.child.length,0) }}</b>条回复<i class="iconfont_wlzj">&#xE007;</i>
-            </span>
-          {# {% endif %} #}
-          <div class="reply_r clearfix">
-            <a href="javascript:(0)" data-id="{{item.userid}}">举报</a>
-            <p class="praise" data-id="{{item.userid}}">
-              <i class="iconfont_wlzj">&#xE018;</i>
-              <span>{{item.praise}}</span>
-            </p>
-          </div>
-
-        </div>
-
-        <div class="sub clearfix" style="display:none;">
-          <div class="input"><input type="text" value="" placeholder="写下你的回答"></div>
-          <a href="javascript:(0)" data-id="{{item.userid}}"  data-parentid="{{item.parentId}}">提交回答</a>
-        </div>
-        <div class="child_box" style="display:none;">
-          {% if (item.child) and (item.child.length > 0) %}
-            {{commonchild(item.child)}}
-          {% endif %}
-        </div>
-
-      </div>
-
-    </div>
-  {% endfor %}
-{% endmacro %}

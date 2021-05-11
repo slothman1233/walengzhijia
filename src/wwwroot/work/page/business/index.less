@@ -127,7 +127,7 @@
           padding         : 0 4px;
           line-height     : 20px;
           margin-right    : @space_1;
-
+          font-size       : @font_size_13;
         }
       }
 
@@ -282,8 +282,12 @@
             padding : 0 @space_2 @space_2 @space_2;
             border  : 1px solid @border_color;
             margin  : 0 @space_1 @space_1 0;
+            background-color: #FFF;
             .border-radius(4px);
-
+            &:hover{
+              filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.15));
+             
+            }
 
             .logo {
               display: block;

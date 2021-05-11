@@ -6,6 +6,7 @@ import { navigationbar2 } from '../../components/navigationbar'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
+import { imgPreview } from '@stl/image-preview'
 declare const companyId: any
 declare const productId: any
 declare const $: JQueryStatic
@@ -26,7 +27,7 @@ declare const $: JQueryStatic
             if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
                 newsList.bodyMessage.forEach((item) => {
                     let link = '/news/' + item.newsId
-                    if(item.reputationId !== 0){
+                    if (item.reputationId !== 0) {
                         link = '/news/reputation/' + item.newsId
                     }
                     NewsList.push({
@@ -52,4 +53,27 @@ declare const $: JQueryStatic
         }
     }
 
+})();
+
+//图片放大
+(function () {
+    imgPreview({
+        parentEle: document.querySelector('.row1 .productVideo'),
+        key: 'video',
+     
+        clickCallback: function (dom, ev) {
+            console.log(dom, ev)
+            return true
+        }
+    })
+
+    imgPreview({
+        parentEle: document.querySelector('.row1 .productimg'),
+        key: 'img',
+     
+        clickCallback: function (dom, ev) {
+            console.log(dom, ev)
+            return true
+        }
+    })
 })()

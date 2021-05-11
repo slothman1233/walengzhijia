@@ -47,7 +47,7 @@ body {
             height : @height;
           }
 
-          p {
+          .more {
             position: absolute;
             left    : 12px;
             bottom  : @space_2;
@@ -62,10 +62,11 @@ body {
               line-height: 24px;
               padding    : 0 14px;
               font-size  : @font_size_12;
-
+              cursor: pointer;
               i {
                 margin-right: 4px;
                 float       : left;
+               
               }
             }
           }
@@ -99,7 +100,7 @@ body {
 
           .score {
             overflow     : hidden;
-            margin-bottom: @space_2;
+            margin-bottom: 4px;
             height       : 50px;
             .star1(90px);
 
@@ -142,7 +143,7 @@ body {
 
           .configuration {
             overflow: hidden;
-
+            margin-bottom: 4px;
             p {
               width        : (@rightwidth - @space_3) / 2;
               overflow     : hidden;
@@ -266,7 +267,7 @@ body {
       }
 
       .row3 {
-
+        margin-bottom: @space_2;
         .tab {
           .navigationbar {
             border: none;

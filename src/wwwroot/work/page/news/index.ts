@@ -5,7 +5,7 @@ import window from '../../common/win/windows'
 
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { AddPraise, DeletePraise, GetIsPraise } from '../../common/service/PraiseBrowse.services'
-import { PraiseBrowsePraiseTypeEnum, subCodeEnums } from '../../../../enums/enums'
+import { CommentTargetTypeEnum, PraiseBrowsePraiseTypeEnum, subCodeEnums } from '../../../../enums/enums'
 declare const $: JQueryStatic
 declare const document: any
 
@@ -13,21 +13,17 @@ declare const document: any
 declare const newsId: any
 
 
-let main = document.querySelector('#main')
-
-let shareObj = new share({
-    qrcodeBox: document.getElementById('qrcode'),
-    qrcodeDeploy: {
-        width: 200,
-        height: 200,
-        colorDark: '#0000ff',
-    }
-})
+let main = document.querySelector('#main');
 
 
-comment1fn(document.querySelector('.questions_box'), (value) => {
-    console.log(value)
-});
+//评论
+(async function () {
+    comment1fn(document.querySelector('.questions_box'), {
+        type: CommentTargetTypeEnum.news,
+        newsId
+    })
+})();
+
 
 //图片放大
 (function () {
@@ -122,7 +118,7 @@ let praiseObjectDefineProperty = {
                 givelike.querySelector('span').innerText = (count - 1).toString()
                 let praisecount = parseInt(praise.innerText)
                 praise.innerText = (praisecount - 1).toString()
-                
+
                 alert('取消点赞成功')
                 praiseObjectDefineProperty.ispraise = true
             } else {

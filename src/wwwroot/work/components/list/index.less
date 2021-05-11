@@ -8,7 +8,7 @@
 
     .child {
 
-      @height      : 134px;
+      @height      : 120px;
       padding      : @space_3 0;
       border-bottom: 1px solid @color_grey_line1;
       overflow     : hidden;
@@ -21,14 +21,14 @@
       .left {
         display : block;
         height  : @height;
-        width   : 200px;
+        width   : 180px;
         position: absolute;
         left    : 0;
         top     : @space_3;
 
         img {
           height  : @height;
-          width   : 200px;
+          width   : 180px;
           overflow: hidden;
         }
       }
@@ -36,7 +36,7 @@
       .right {
         height     : @height;
         position   : relative;
-        margin-left: 200 + @space_3;
+        margin-left: 180 + @space_3;
 
         .title {
           display      : block;
@@ -44,16 +44,17 @@
           font-weight  : @font_weight;
           font-size    : @font_size_20;
           line-height  : 28px;
-          margin-bottom: 12px;
-          .ellipsis();
+          margin-bottom: @space_1;
+          .lineclamp(2);
         }
 
         p {
           max-height : 48px;
           overflow   : hidden;
-          font-size  : @font_size_16;
+          font-size  : @font_size_14;
           line-height: 24px;
           color      : @color_gray_c1;
+          .over_group();
         }
 
         .list_foot {
@@ -75,6 +76,7 @@
               height          : @height;
               background-color: @color_grey_line1;
               padding         : 0 @space_1;
+              font-size       : @font_size_13;
               .border-radius(2px);
             }
 
@@ -386,6 +388,13 @@
               display     : block;
               float       : left;
               margin-right: @space_1;
+            }
+
+            .star1(100px);
+
+            .star {
+              position: relative;
+              top     : 4px;
             }
           }
 

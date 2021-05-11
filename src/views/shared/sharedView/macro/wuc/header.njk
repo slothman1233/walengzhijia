@@ -54,12 +54,24 @@
     </div>
 
     <script type="text/javascript">
-        let header = document.querySelector('#header')
-        let search = header.querySelector('.search')
-        let sub = search.querySelector('a')
-        let input = search.querySelector('input')
-        sub.onclick = function () {
-            document.location.href = `/search/1/${encodeURI(input.value)}`
-        }
+        (function () {
+            var header = document.querySelector('#header')
+            var search = header.querySelector('.search')
+            var sub = search.querySelector('a')
+            var input = search.querySelector('input')
+            sub.onclick = function () {
+                document.location.href = `/search/1/${encodeURI(input.value)}`
+            }
+
+            var href = document.location.pathname
+            var row_list = header.querySelector('.row_list')
+            var children = row_list.children
+            if (href === '/') {
+                children[0].className = 'select'
+            }else if(href === '/list' || href.indexOf('/list/') >= 0){
+                  children[1].className = 'select'
+            }
+
+        })();
     </script>
 {% endmacro %}

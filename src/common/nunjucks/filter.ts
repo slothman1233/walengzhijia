@@ -1,5 +1,5 @@
 import { HotCompanyDefineItems, priceShowStatusEnums } from '../../enums/enums'
-import { ge_time_format } from '../utils/util'
+import { get_time_timestamp, ge_time_format } from '../utils/util'
 
 
 /**
@@ -46,6 +46,10 @@ export default {
     //ge_time_format 时间格式化
     'ge_time_format': function (str: string, type?: string) {
         return ge_time_format(str, type)
+    },
+    //get_time_timestamp  时间转时间戳
+    'get_time_timestamp': function(str: string){
+        return get_time_timestamp(str)
     },
     //获取品牌商的类型标记
     //HotCompanyDefine

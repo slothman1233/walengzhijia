@@ -88,26 +88,14 @@
           </div>
 
           <div class="questions_box">
-            {{comment()}}
+            {# {{comment()}} #}
           </div>
         </div>
 
       </div>
 
       <div class="r">
-        <div class="list1 hotnews">
-          <p>热门新闻</p>
-          <div class="list">
-            {% for item in newsDetail.hotNews %}
-              <div class="child clearfix">
-                <i>●</i>
-                <a href="{{item.newsId}}" title="{{item.newsTitle}}" target="_blank">
-                  {{item.newsTitle}}
-                </a>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
+      
 
         <div class="list1 relatedproducts">
           <p>相关产品</p>
@@ -126,6 +114,22 @@
           </div>
 
         </div>
+
+
+          <div class="list1 hotnews">
+          <p>热门新闻</p>
+          <div class="list">
+            {% for item in newsDetail.hotNews %}
+              <div class="child clearfix">
+                <i>●</i>
+                <a href="{{item.newsId}}" title="{{item.newsTitle}}" target="_blank">
+                  {{item.newsTitle}}
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>

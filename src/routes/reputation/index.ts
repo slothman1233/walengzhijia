@@ -17,8 +17,9 @@ export default class Reputation {
     async publish(ctx: Context) {
         let { companyId, productId } = ctx.params
         //获取所有品牌商
-        let allbrandingSelectOption: any = { selectIndex: 1, data: [] };
-        (await GetCompnays()).forEach((item, index) => {
+        let allbrandingSelectOption: any = { selectIndex: 1, data: [] }
+        let CompnaysAll = await GetCompnays()
+        CompnaysAll.forEach((item, index) => {
             if (parseInt(companyId) === item.companyId) {
                 allbrandingSelectOption.selectIndex = index
             }
@@ -31,6 +32,9 @@ export default class Reputation {
 
         //----------------------------------------------
         // 获取品牌商对应的产品
+        if (!companyId) {
+            companyId = CompnaysAll[0].companyId
+        }
         let CompanyProduct = await GetCompanyProduct({ companyId })
         let companyProductObject: any = {
             selectIndex: 0,
@@ -39,25 +43,30 @@ export default class Reputation {
 
 
         let productTypeId = 0
-        CompanyProduct.forEach((item, index) => {
-            if (productId) {
-                if (item.productId === parseInt(productId)) {
-                    companyProductObject.selectIndex = index
-                    productTypeId = parseInt(item.productTypeId)
+        if (CompanyProduct) {
+            CompanyProduct.forEach((item, index) => {
+                if (productId) {
+                    if (item.productId === parseInt(productId)) {
+                        companyProductObject.selectIndex = index
+                        productTypeId = parseInt(item.productTypeId)
+                    }
+                } else {
+                    //没有传产品默认给第一个产品的产品类型
+                    if (index === 0) {
+                        productTypeId = parseInt(item.productTypeId)
+                    }
                 }
-            } else {
-                //没有传产品默认给第一个产品的产品类型
-                if (index === 0) {
-                    productTypeId = parseInt(item.productTypeId)
-                }
-            }
 
-            companyProductObject.data.push({
-                id: `${item.productId}_${item.productTypeId}`,
-                value: item.productName
+                companyProductObject.data.push({
+                    id: `${item.productId}_${item.productTypeId}`,
+                    value: item.productName
+                })
             })
-        })
+        } else {
 
+        }
+
+        //----------------------------------------------
 
 
         //评分项
@@ -87,19 +96,24 @@ export default class Reputation {
         //-------------------------------
         //获取产品分类
         let reputationtypeinfo: any[] = []
-        reputationtypeinfo.push({
-            id: CompanyProduct.productId,
-            value: CompanyProduct.productName
-        })
+        if (CompanyProduct) {
+            reputationtypeinfo.push({
+                id: CompanyProduct.productId,
+                value: CompanyProduct.productName
+            })
+
+        }
 
         let reputationtype = await GetCompanySimilarProductById({ productId })
-
-        reputationtype.forEach(item => {
-            reputationtypeinfo.push({
-                id: item.productId,
-                value: item.productName
+        if (reputationtype) {
+            reputationtype.forEach(item => {
+                reputationtypeinfo.push({
+                    id: item.productId,
+                    value: item.productName
+                })
             })
-        })
+        }
+
         //-------------------------------
         //获取口碑信息
         let ReputationData = await GetReputationByProductId(productId) || []

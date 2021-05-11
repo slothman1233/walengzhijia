@@ -140,12 +140,12 @@ export default class Business {
 
         //获取产品信息
         let CompanyProductInfo = await GetCompanyProductById({
-            productId: productId
+            productId
         })
         //----------------------------------------------
 
         //品牌商资料
-        let kbByProduct = await GetReputationStatisticsByProduct(1)
+        let kbByProduct = await GetReputationStatisticsByProduct(productId)
         let kbscoreData: any[] = []
 
         if (kbByProduct) {

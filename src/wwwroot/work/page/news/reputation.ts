@@ -4,28 +4,26 @@ import window from '../../common/win/windows'
 
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { AddPraise, DeletePraise, GetIsPraise } from '../../common/service/PraiseBrowse.services'
-import { PraiseBrowsePraiseTypeEnum, subCodeEnums } from '../../../../enums/enums'
+import { CommentTargetTypeEnum, PraiseBrowsePraiseTypeEnum, subCodeEnums } from '../../../../enums/enums'
 declare const $: JQueryStatic
 declare const document: any
 declare const reputationId: any
+//新闻id
+declare const newsId: any
 
-let main = document.querySelector('#main')
-
-let shareObj = new share({
-    qrcodeBox: document.getElementById('qrcode'),
-    qrcodeDeploy: {
-        width: 200,
-        height: 200,
-        colorDark: '#0000ff',
-    }
-})
+let main = document.querySelector('#main');
 
 
-comment1fn(document.querySelector('.questions_box'), (value) => {
-    console.log(value)
-})
 
 
+//评论
+(async function () {
+    comment1fn(document.querySelector('.questions_box'), {
+        type: CommentTargetTypeEnum.praise,
+        newsId,
+        reputationId
+    })
+})()
 
 //点赞模型
 let praiseObject = {

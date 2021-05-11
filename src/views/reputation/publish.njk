@@ -89,7 +89,7 @@
         <p>万元</p>
 
         <div class="radio_box">
-          <input type="radio" id="radio_check1" data-id='1' name="radio_b" value="显示价格">
+          <input type="radio" id="radio_check1" checked="checked" data-id='1' name="radio_b" value="显示价格">
           <label for="radio_check1" title="显示价格"></label>
           <span>显示价格</span>
         </div>
@@ -129,6 +129,7 @@
       <div class="description">
         <h2>观点描述</h2>
       </div>
+      <input class="reputationtitle" type="text" placeholder="好的标题会更吸引阅读哦（限5-30字）"/>
       {{editor({
           documentname: "ue",
           id: "edit_container",

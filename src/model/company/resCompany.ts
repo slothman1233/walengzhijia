@@ -17,6 +17,7 @@ import { bodyModel } from '../resModel'
  * @param {string} logo 公司封面图
  * @param {string} website 公司网站首页
  * @param {string} addr 公司联系地址
+ * @param {string} contactPhone 联系电话
  * @param {string} desc 公司介绍
  * @param {string} license 营业执照图片
  * @param {number} totalReputationCount 总口碑数
@@ -33,6 +34,7 @@ export interface ResCompanyInfoModel {
   logo: string
   website: string
   addr: string
+  contactPhone:string
   desc: string
   license: string
   totalReputationCount: number

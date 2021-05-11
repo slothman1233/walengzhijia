@@ -2,6 +2,7 @@ import { priceShowStatusEnums } from '../../enums/enums'
 
 /**
  * 口碑模型
+ * @param {string} title 标题
  * @param {number} companyId 公司标识ID
  * @param {number} productId 产品标识ID
  * @param {string} buyTime 购买时间
@@ -14,6 +15,7 @@ import { priceShowStatusEnums } from '../../enums/enums'
  * @param {ReputationScoreModel[]} reputationScores 口碑评分模型
  */
 export interface ReputationModel {
+  title: string
   companyId?: number
   productId?: number
   buyTime?: string

@@ -67,6 +67,7 @@ export const nunRender = (filepath: string, options: any) => {
 export const nunRenderString = (str: string, options: any) => {
     if (!str) { return null }
     let html = htmlMinifier.minify(
+
         nunjucksEVN.renderString(str, Object.assign({}, options)),
         {
             collapseWhitespace: true
@@ -98,15 +99,16 @@ export const nunRenderMacroString = async (filepath: string, name: string, optio
     let obj = {}
     let res
 
-
+    let macroAllHtml = ``
     let hreadstring = getstring.replace(reg, function ($1, $2, $3): string {
+        macroAllHtml += $1
         obj[$2.trim()] = $3
         return ''
     })
 
     if (!obj[name]) { return '' }
 
-    let sprit = os.platform().indexOf('win' ) >=0 ? '\\' : '/'    
+    let sprit = os.platform().indexOf('win') >= 0 ? '\\' : '/'
 
 
     let filep = paths.slice(0, paths.lastIndexOf(sprit))
@@ -117,11 +119,11 @@ export const nunRenderMacroString = async (filepath: string, name: string, optio
             return s && s.trim()
         })
 
-        let paths=''
+        let paths = ''
 
-        if(path.sep === '/'){
+        if (path.sep === '/') {
             paths = pathArg.join('/')
-        }else{
+        } else {
             paths = pathArg.join('\\\\')
         }
 
@@ -130,7 +132,8 @@ export const nunRenderMacroString = async (filepath: string, name: string, optio
 
     let html = ''
     try {
-        html = nunRenderString(hreadstring + obj[name], options)
+        //hreadstring + macroAllHtml + obj[name]  顺序不能变
+        html = nunRenderString(hreadstring + macroAllHtml + obj[name], options)
     } catch (e) {
         log.error({ error: e.stack.toString(), resTime: Date.now() })
     }
