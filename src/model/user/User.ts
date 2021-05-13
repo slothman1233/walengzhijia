@@ -1,9 +1,10 @@
-import { LoginEnums, ValidateCodeDefine } from '../../enums/enums'
+import { LoginEnums, UserUpdateTypeDefine, ValidateCodeDefine } from '../../enums/enums'
 
 
 /**
  * 用户模型
  * @param {string} uuid 用户UUID，guid值
+ * @param {string} userId 用户id
  * @param {string} name 用户名
  * @param {string} pwd 密码
  * @param {string} userIcon 用户头像
@@ -16,15 +17,16 @@ import { LoginEnums, ValidateCodeDefine } from '../../enums/enums'
  */
 export interface LepackUserModel {
   uuid: string
+  userId?:string
   name: string
   pwd: string
   userIcon: string
-  sex: number
+  sex?: number
   industry: string
-  areaCode: number
+  areaCode?: number
   areaCodeValue: string
   phoneNumber: string
-  createUser: number
+  createUser?: number
 }
 
 /**
@@ -68,3 +70,16 @@ export interface LepackUserValidateModel {
   validateCodeType?: ValidateCodeDefine
 }
 
+
+/**
+ * 用户数据单项修改
+ * @param {number} userId 用户ID
+ * @param {string} itemValue 单项修改值
+ * @param {UserUpdateTypeDefine} itemType 用户修改类型属性字段枚举
+ */
+export interface LepackUserItemModel {
+  userId?: number
+  itemValue: string
+  itemType: UserUpdateTypeDefine
+
+}

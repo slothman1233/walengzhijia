@@ -1,4 +1,4 @@
-import { HotCompanyDefineItems, priceShowStatusEnums } from '../../enums/enums'
+import { HotCompanyDefineItems, priceShowStatusEnums, sexEnum } from '../../enums/enums'
 import { get_time_timestamp, ge_time_format } from '../utils/util'
 
 
@@ -48,7 +48,7 @@ export default {
         return ge_time_format(str, type)
     },
     //get_time_timestamp  时间转时间戳
-    'get_time_timestamp': function(str: string){
+    'get_time_timestamp': function (str: string) {
         return get_time_timestamp(str)
     },
     //获取品牌商的类型标记
@@ -80,7 +80,53 @@ export default {
             default:
                 return str
         }
+    },
+
+    // 用户性别转化
+    'user_sex': function (type: string) {
+        switch (parseInt(type)) {
+            case sexEnum.man:
+                return '男'
+            case sexEnum.woman:
+                return '女'
+            default:
+                return '男'
+        }
+    },
+
+    /**
+     * 用户的手机号码显示
+     * @param {string} str 手机号码 
+     * @param {string} digit 隐藏的位数
+     */
+    'user_iphone': function (str: string, digit: string = '4') {
+        let dt = Math.max(parseInt(digit), 0)
+        dt = Math.min(parseInt(digit), 8)
+        let reg = RegExp('(\\d{3})\\d{' + dt + '}(.*)')
+        let s = ''
+        for (let i = 0; i < dt; i++) {
+            s += '*'
+        }
+        try {
+            return str.replace(reg, `$1${s}$2`)
+        } catch (e) {
+            return str
+        }
+
+    },
+    /**
+     * 只保留图片
+     * @param str 
+     */
+    'onlyimg': function (str: string) {
+        let imgAry: any[] = [];
+        (<any>str.replace)(/<img .*?src=["|'](.*?)["|'][^>].*?>/ig, function ($1: any, $2: any, $3: any) {
+            imgAry.push($2)
+        })
+        return imgAry
     }
+
+
 
 }
 

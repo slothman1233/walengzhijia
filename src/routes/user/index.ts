@@ -2,10 +2,12 @@
 import { Context, Next } from 'koa'
 import { get, middlewares } from '../../common/decorator/httpMethod'
 import { getCookie } from '../../common/utils/cookies'
+import { GetAreaInfosByCode } from '../../controller/AreaInfo.controller'
 import { GetCompanySalerById, GetSalersByCompanyId } from '../../controller/company.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType, GetProductIndustryByIndustry } from '../../controller/product.controller'
 import { productImgTypeEnums, publishNews, publishNewsTypeEnums } from '../../enums/enums'
 import { user_login_middleware } from '../../middleware/login'
+import { userLoginModel } from '../../model/common'
 import { productTypeListModel } from '../../model/reputation/reputation'
 import { ResCompanyProductInfoModel } from '../../model/reputation/resreputation'
 import { userlogin } from '../../routes/login'
@@ -151,9 +153,41 @@ export default class User {
     @middlewares([user_login_middleware])
     @get('/information')
     async information(ctx: Context, next: Next) {
-        let { notificationType, pageIndex } = ctx.params
-        await ctx.render('user/information', {
 
+        // { "userId": 100007,
+        //  "uuid": "b201c7eb-2437-4fa5-b2ed-14723020561f", 
+        //  "name": "slothman",
+        //   "pwd": "*********", 
+        //   "userIcon": "https://lepack.oss-cn-hangzhou.aliyuncs.com/2021-05-11/VAHgSRaNgcms.png",
+        //   "sex": 0, 
+        //   "industry": null,
+        //   "areaCode": 0, 
+        //   "areaCodeValue": null,
+        //   "phoneNumber": "18182117887",
+        //   "company": { 
+        //       "companyId": 2, 
+        //       "fullName": "测试公司信息1", 
+        //       "abbrName": "测试公司1", 
+        //       "logo": "https://lepack.oss-cn-hangzhou.aliyuncs.com/2021-05-08/mtvjMqlPQtNY.png", "website": "www.baidu.com", 
+        //       "addr": "china", 
+        //       "desc": "china", 
+        //       "license": "/2021-04-27/IAwewNtmIDCE.png", 
+        //       "totalReputationCount": 12, 
+        //       "favorableRate": 1, 
+        //       "highReputationCount": 0, 
+        //       "reputationScore": 2.07, 
+        //       "stockInfo": "", 
+        //       "hotDefine": 1 
+        //     } 
+        // }
+
+        let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+
+        
+
+        //areaCode
+        await ctx.render('user/information', {
+            cookieuserinfo
         })
     }
 

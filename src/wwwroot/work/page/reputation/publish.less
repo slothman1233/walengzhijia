@@ -6,6 +6,7 @@
 @import (less) "../../components/star/index.less";
 @import (less) "../../components/uploadfile/index.less";
 @import (less) "../../components/editor/index.less";
+@import (less) "../../components/choicebox/index.less";
 
 body {
   background: #F7F8FB;
@@ -140,57 +141,7 @@ body {
         float       : left;
       }
 
-      .radio_box {
-        float       : left;
-        margin-right: @space_3;
-        position    : relative;
-
-        &:hover {
-          label {
-            border-color: @color_rank;
-          }
-        }
-
-        &>input {
-
-          float   : left;
-          height  : 100%;
-          width   : 100%;
-          position: absolute;
-          left    : 0;
-          top     : 0;
-          .opacity(0);
-
-          &:checked+label::after {
-            position  : absolute;
-            content   : "";
-            width     : 10px;
-            height    : 10px;
-            top       : 3px;
-            left      : 3px;
-            background: @color_rank;
-          }
-
-
-        }
-
-        label {
-          @size   : 16px;
-          float   : left;
-          position: relative;
-          width   : @size;
-          height  : @size;
-          border  : 1px solid @color_gray_5;
-          margin  : (@itemheight - @size)/2 @space_1 (@itemheight - @size)/2 0;
-          .border-radius(2px);
-        }
-
-        span {
-          display: block;
-          float  : left;
-        }
-
-      }
+      .choicebox()
     }
 
   }

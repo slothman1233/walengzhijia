@@ -1,3 +1,4 @@
+import imgPreview from '../../common/utils/imgPreview/imgPreview'
 import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { navigationbar2 } from '../../components/navigationbar'
@@ -6,7 +7,7 @@ import { selectOption1 } from '../../components/select'
 declare const companyId: any
 declare const productId: any
 
-
+let mian = document.querySelector('#main');
 (function () {
 
     selectOption1('option1', (id, e, option) => {
@@ -16,6 +17,21 @@ declare const productId: any
         { document.location.href = `/reputation/${companyId}/${id}` }
         option.style.display = 'none'
     })
+})();
+
+(function () {
+    mian.querySelector('.cr .list_box').querySelectorAll('.child').forEach((item:HTMLElement) => {
+      
+        imgPreview({
+            parentEle: item.querySelector('.atlas'),
+            key: 'img',
+            clickCallback: function (dom, ev) {
+                return true
+            }
+        })
+    })
+   
+
 })();
 
 (function () {

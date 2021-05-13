@@ -1,3 +1,4 @@
+import { sexEnum } from '../../enums/enums'
 import { bodyModel } from '../resModel'
 
 
@@ -33,6 +34,6 @@ export interface ResUserModel {
 /**
  * 用户模型的bodyModel模型
  */
-export interface ResUserModelReturnModel extends bodyModel<ResUserModel>{
+export interface ResUserModelReturnModel extends bodyModel<ResUserModel> {
 
 }

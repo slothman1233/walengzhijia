@@ -56,6 +56,8 @@ export function editor_uploadimg(parentId: string | HTMLElement, ue: any, {
                 success: function (url: string) {
                     let img = $(ue.body).find(`img[src="${document.location.origin + loadurl}"]`)
                     img.attr('src', url)
+                    img.attr('data-viewer', url)
+                    img.attr('_src', url)
                     success && success(<HTMLImageElement>img[0])
                 },
                 error,
@@ -97,7 +99,7 @@ export function editor_uploadvideo(parentId: string | HTMLElement, ue: any, {
                     let video: HTMLVideoElement = document.createElement('video')
                     video.controls = true
                     video.src = url
-                    
+
                     img[0].parentNode.replaceChild(video, img[0])
                     success && success(<HTMLVideoElement>video[0])
                 },

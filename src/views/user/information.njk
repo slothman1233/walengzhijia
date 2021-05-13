@@ -2,7 +2,8 @@
 
 {% from "../shared/sharedView/macro/components/navigationbar.njk" import usernavigationbar %}
 {% from "../shared/sharedView/macro/components/title.njk" import usertitle %}
-
+{% from "../shared/sharedView/macro/components/choicebox/index.njk" import choicebox %}
+{% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
 {% block title %}
 54123123213333
 {% endblock title %}
@@ -16,7 +17,9 @@
 {% endblock style %}
 
 {% block script %}
-<script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
+  <script type="text/javascript">
+  </script>
+  <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
   <script type="text/javascript" src="/dist/scripts/user/information.js"></script>
 {% endblock script %}
 
@@ -43,18 +46,18 @@
       <div class="information_content clearfix">
         <div class="l">
           <p>个人资料</p>
-          <p style='margin-top: 207px;'>帐号设置</p>
+          <p style='margin-top: 264px;'>帐号设置</p>
         </div>
-        <div class="r">
+        <div class="r" data-uuid="{{cookieuserinfo.uuid}}">
           <div class="child clearfix">
             <p>用户名：</p>
-            <div class="textarea" contenteditable="false">姓名</div>
-            <a href="javascript:void(0)" class="applyfor">编辑</a>
-            <a href="javascript:void(0)" class="submit">确认</a>
+            <div class="textarea" contenteditable="false">{{cookieuserinfo.name}}</div>
+            <a href="javascript:void(0)" class="applyfor username">编辑</a>
+            <a href="javascript:void(0)" class="submit username">确认</a>
           </div>
           <div class="child clearfix">
             <p>头像：</p>
-            <div class="padding"><img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0"></div>
+            <div class="padding"><img src="{{cookieuserinfo.userIcon}}"></div>
             <a href="javascript:void(0)">
             更换头像
             <input type="file" class="uploadfileinput" multiple="multiple" accept="image/*">
@@ -62,27 +65,52 @@
           </div>
           <div class="child clearfix">
             <p>性别：</p>
-            <div class="textarea" contenteditable="false">男</div>
-            <a href="javascript:void(0)" class="applyfor">编辑</a>
-            <a href="javascript:void(0)" class="submit">确认</a>
+            <div class="textarea" contenteditable="false">{{cookieuserinfo.sex | user_sex }}</div>
+
+            <div class="inputradio" style="display:none">
+              {{choicebox({
+              figuratetype: '1',
+              type: 'radio',
+              defaultselect: '0',
+              name: 'radio',
+              data: [
+                {
+                  id: 1,
+                  value: '男'
+                }, {
+                  id: 2,
+                  value: '女'
+                }
+              ]
+            })}}
+            </div>
+
+            <a href="javascript:void(0)" class="applyfor sex">编辑</a>
+            <a href="javascript:void(0)" class="submit sex">确认</a>
           </div>
           <div class="child clearfix">
             <p>所在行业：</p>
-            <div class="textarea" contenteditable="false">--</div>
-            <a href="javascript:void(0)" class="applyfor">编辑</a>
-            <a href="javascript:void(0)" class="submit">确认</a>
+            <div class="textarea" contenteditable="false">{{cookieuserinfo.industry}}</div>
+            <a href="javascript:void(0)" class="applyfor industry">编辑</a>
+            <a href="javascript:void(0)" class="submit industry">确认</a>
           </div>
           <div class="child clearfix">
             <p>所在地区：</p>
-            <div class="textarea" contenteditable="false">湖南 长沙</div>
-            <a href="javascript:void(0)" class="applyfor">编辑</a>
-            <a href="javascript:void(0)" class="submit">确认</a>
+            <div class="textarea" contenteditable="false">{{cookieuserinfo.areaCodeValue}}</div>
+
+            <div class="selectOption_box" style='display:none'>
+              <div class="selectOption_area"></div>
+
+              <div class="selectOption_city"></div>
+            </div>
+            <a href="javascript:void(0)" class="applyfor area">编辑</a>
+            <a href="javascript:void(0)" class="submit area">确认</a>
           </div>
           <div class="child clearfix">
             <p>绑定手机：</p>
-            <div class="textarea" contenteditable="false">188****8888</div>
-            <a href="javascript:void(0)" class="applyfor">编辑</a>
-            <a href="javascript:void(0)" class="submit">确认</a>
+            <div class="textarea" contenteditable="false">{{cookieuserinfo.phoneNumber | user_iphone}}</div>
+            {# <a href="javascript:void(0)" class="applyfor iphone">编辑</a>
+            <a href="javascript:void(0)" class="submit iphone">确认</a> #}
           </div>
           {# <div class="child clearfix">
             <p>所在地区：</p>

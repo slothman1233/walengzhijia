@@ -1,5 +1,5 @@
 import { share } from '@stl/share'
-import { imgPreview } from '@stl/image-preview'
+import imgPreview from '../../common/utils/imgPreview/imgPreview'
 import { comment1fn } from '../../components/comment/comment1'
 import window from '../../common/win/windows'
 

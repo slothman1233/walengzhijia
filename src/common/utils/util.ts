@@ -105,7 +105,7 @@ export function ge_time_format(timestamp: string, type: string = '1') {
     let date: Date
     let types: string = (type === undefined) ? '1' : type, t
     if (timestamp) {
-        date = new Date(timestamp)
+        date = new Date(parseInt(timestamp))
     } else {
         date = new Date()
     }
@@ -272,7 +272,32 @@ function charCount(str: string): number {
     return str.replace(reg, 'a').length
 }
 
-
+/**
+ * 写入cookie
+ * @param {String} name  cookie名
+ * @param {String} value cookie值
+ * @param {String} time  存储时间 收一个字符是代表的时间名词
+                        s20是代表20秒
+                        h是指小时，如12小时则是：h12
+                        d是天数，30天则：d30
+ */
+function setCookie(name: string, value: string, time: string, domain?: string) {
+    let strsec = getsec(time)
+    let exp: any = new Date()
+    let domainStr = domain ? ';domain=' + domain : ''
+    exp.setTime(exp.getTime() + strsec * 1)
+    document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + exp.toGMTString() + ';path=/' + domainStr
+}
+function getsec(str: string) {
+    let str1: number = parseFloat(str.substring(1, str.length))
+    let str2: string = str.substring(0, 1)
+    switch (str2) {
+        case 's': return str1 * 1000
+        case 'm': return str1 * 60 * 1000
+        case 'h': return str1 * 60 * 60 * 1000
+        default: return str1 * 24 * 60 * 60 * 1000
+    }
+}
 
 
 export {
@@ -284,6 +309,6 @@ export {
     getContentSummary,
     charCount,
     wordCount,
-
+    setCookie
 
 }

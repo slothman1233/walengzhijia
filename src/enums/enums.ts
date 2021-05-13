@@ -379,5 +379,55 @@ export enum PraiseBrowsePraiseTypeEnum {
  */
 export enum CommentTargetTypeEnum {
   news = 1,
-  praise = 2 
+  praise = 2
+}
+
+/**
+ * 性别枚举
+ * 1 男
+ * 2 女
+ */
+export enum sexEnum {
+  man = 1,
+  woman = 2
+}
+
+/**
+ * 用户修改类型
+ * 1 修改用户名
+ * 2 修改头像
+ * 3 修改性别
+ * 4 修改行业
+ * 5 修改所在地区
+ */
+export enum UserUpdateTypeDefine {
+  Update_UserName = 1,
+  Update_Icon = 2,
+  Update_Sex = 3,
+  Update_Industry = 4,
+  Update_AreaCode = 5
+}
+
+
+
+/**
+ * 公司企业修改类型属性字段枚举
+ * 1 修改公司名称-简称
+ * 2 修改公司名称-全称
+ * 3 修改Logo
+ * 4 修改公司网址信息
+ * 5 修改公司电话
+ * 6 修改公司地址
+ * 7 修改公司介绍信息
+ * 8 修改公司营业执照
+ */
+export enum CompanyUpdateTypeDefine {
+  Update_AbbrName = 1,
+  Update_FullName = 2,
+  Update_Logo = 3,
+  Update_Website = 4,
+  Update_ContactPhone = 5,
+  Update_Addr = 6,
+  Update_Description = 7,
+  Update_Licence = 8,
 }

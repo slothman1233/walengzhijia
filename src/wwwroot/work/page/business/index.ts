@@ -7,7 +7,6 @@ import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { navigationbar2 } from '../../components/navigationbar'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
-import { imgPreview } from '@stl/image-preview'
 import { GetCompanyProductByTypeId } from '../../common/service/product.services'
 import { NewsContentTypeArray, subCodeEnums } from '../../../../enums/enums'
 import { productTypeListModel } from '../../../../model/reputation/reputation'
@@ -16,6 +15,7 @@ import { Charts } from '../../components/chart/chart'
 import { GetReputationByCompany } from '../../common/service/Reputation.services'
 import { GetNewsByCompanyId } from '../../common/service/news.services'
 import { get_unix_time_stamp, ge_time_format } from '../../../../common/utils/util'
+import imgPreview from '../../common/utils/imgPreview/imgPreview'
 declare const $: JQueryStatic
 // eslint-disable-next-line no-undef
 declare const document: Document

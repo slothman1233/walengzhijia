@@ -1,6 +1,8 @@
 @import (reference) "../../public/style/common/PublicDefind.less";
 @import (reference) "../../public/style/common/Animation.less";
 @import (less) "../../components/navigationbar/index.less";
+@import (less) "../../components/choicebox/index.less";
+@import (less) "../../components/select/index.less";
 
 #simplelayoutmain #simplelayoutright {
   background-color: transparent;
@@ -41,6 +43,10 @@
 
       .r {
         padding-left: @leftwidth;
+
+        .choicebox();
+
+        .selectOption1();
 
         .child {
 
@@ -111,6 +117,16 @@
           }
 
 
+        }
+
+
+
+        .selectOption_box {
+          &>div {
+            float       : left;
+            min-width   : 200px;
+            margin-right: @space_2;
+          }
         }
       }
     }

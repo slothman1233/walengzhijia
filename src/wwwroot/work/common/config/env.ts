@@ -42,5 +42,5 @@ const baseUrl = {
 
 
 // API
-export default baseUrl.pre
+export default baseUrl.dev
 

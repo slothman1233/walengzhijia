@@ -1,0 +1,37 @@
+{# 
+  形状类型
+  figuratetype   1 圆形   2 方形
+  单选和复选框
+  type:"radio"   radio 或者 checkbox  
+
+ #}
+{% macro choicebox(args = {
+  figuratetype: '1',
+  type: 'radio',
+  defaultselect: '1',
+  name: 'radio',
+  data: [
+    {
+      id: 1,
+      value: '显示价格'
+    }, {
+      id: 2,
+      value: '显示首位数字(如:8**.*万元)'
+    }, {
+      id: 3,
+      value: '不显示价格'
+    }
+  ]
+}) %}
+  <div class="radio {{(args.figuratetype != null) and (args.figuratetype == 1) | ternary('circle','square')}}">
+    {% if (args.data != null) and (args.data.length > 0) %}
+      {% for item in args.data %}
+        <div class="radio_box">
+          <input type="radio" {{(args.defaultselect == item.id) | ternary('checked','')}} id="radio_check{{loop.index}}" data-id="{{item.id}}" name="{{args.name  | ternary(args.name,'radio')}}" value="{{item.value}}">
+          <label for="radio_check{{loop.index}}" title="{{item.value}}"></label>
+          <span>{{item.value}}</span>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endmacro %}

@@ -6,7 +6,7 @@ import { navigationbar2 } from '../../components/navigationbar'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
-import { imgPreview } from '@stl/image-preview'
+import imgPreview from '../../common/utils/imgPreview/imgPreview'
 declare const companyId: any
 declare const productId: any
 declare const $: JQueryStatic

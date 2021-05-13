@@ -13,7 +13,6 @@ export default class Index {
     @post('/component')
     async component(ctx: Context) {
         let { name, data, path }: ComponentModel = ctx.request.body
-        debugger
         if (!name || !path) {
             ctx.body = ''
 

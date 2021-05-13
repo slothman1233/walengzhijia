@@ -306,8 +306,8 @@ async function submitFn() {
         return
     }
 
-    if (reputationtitle.value.length <= 0) {
-        alert('标题不能为空！')
+    if (reputationtitle.value.length < 5 || reputationtitle.value.length > 30) {
+        alert('标题限制哎5-30个字之内！')
         return
     }
     PublishData.title = reputationtitle.value

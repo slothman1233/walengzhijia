@@ -118,7 +118,7 @@ export default class Reputation {
         //获取口碑信息
         let ReputationData = await GetReputationByProductId(productId) || []
 
-
+        console.log(ReputationData)
         //-------------------------------
 
 

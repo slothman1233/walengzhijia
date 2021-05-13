@@ -5,6 +5,7 @@
 {% from "../shared/sharedView/macro/components/uploadfile/uploadfile.njk" import uploadfileImg %}
 {% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
 {% from "../shared/sharedView/macro/components/editor/index.njk" import editor %}
+{% from "../shared/sharedView/macro/components/choicebox/index.njk" import choicebox %}
 
 {% block title %}
 54123123213333
@@ -88,7 +89,26 @@
         </div>
         <p>万元</p>
 
-        <div class="radio_box">
+        {{choicebox({
+            figuratetype: '2',
+            type: 'radio',
+            defaultselect: '1',
+            name: 'radio',
+            data: [
+              {
+                id: 1,
+                value: '显示价格'
+              }, {
+                id: 2,
+                value: '显示首位数字(如:8**.*万元)'
+              }, {
+                id: 3,
+                value: '不显示价格'
+              }
+            ]
+          })}}
+
+        {# <div class="radio_box">
           <input type="radio" id="radio_check1" checked="checked" data-id='1' name="radio_b" value="显示价格">
           <label for="radio_check1" title="显示价格"></label>
           <span>显示价格</span>
@@ -104,7 +124,7 @@
           <input type="radio" id="radio_check3" data-id='3' name="radio_b" value="不显示价格">
           <label for="radio_check3"  title="不显示价格"></label>
           <span>不显示价格</span>
-        </div>
+        </div> #}
 
       </div>
 

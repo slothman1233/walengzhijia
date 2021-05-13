@@ -12,14 +12,15 @@ type navigationbar2cb = (id: number, e: Event, option: HTMLElement) => void
 export function selectOption1(parentId: string | HTMLElement, callback: navigationbar2cb) {
     let parentdom: any = parentId
     if (isString(parentId)) { parentdom = document.getElementById(<string>parentId) }
-    let option: HTMLElement = parentdom.querySelector('.option')
+    
     if (!parentdom) { return }
 
-    let selectOption: HTMLElement = parentdom.querySelector('.selectOption h1')
+
 
 
     addEvent(document, 'click', function (e: any) {
-
+        let selectOption: HTMLElement = parentdom.querySelector('.selectOption h1')
+        let option: HTMLElement = parentdom.querySelector('.option')
         let ev = e || event
         let path = eventsPath(ev)
 

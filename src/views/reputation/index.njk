@@ -211,8 +211,8 @@ navigationbar2 %}
                     <i>{{item.userName}}</i>
                   </div>
                   <p>购买价格：{{item.purchasePrice}}</p>
-                  <p>购买时间：{{item.buyTime | ge_time_format(3)}}</p>
-                  <p>投入使用：{{item.useTime | ge_time_format(3)}}</p>
+                  <p>购买时间：{{item.buyTime | get_time_timestamp | ge_time_format(2)}}</p>
+                  <p>投入使用：{{item.useTime | get_time_timestamp | ge_time_format(2)}}</p>
                 </div>
 
                 <div class="grade">
@@ -235,15 +235,16 @@ navigationbar2 %}
                 </div>
 
                 <div class="more">
-                  <a href="/news/reputation/{{item.reputationId}}" target="_blank">查看口碑详情</a>
+                  <a href="/news/reputation/{{item.newsId}}" target="_blank">查看口碑详情</a>
                 </div>
               </div>
 
               <div class="r">
-                <p>{{item.summary}}</p>
+                <p>{{item.summary | safe}}</p>
                 <div class="atlas">
-                  {% for imgurl in item.atlas %}
-                    <img src="{{imgurl}}"/>
+                
+                  {% for imgurl in (item.summary | onlyimg) %}
+                    <img src="{{imgurl}}" data-viewer="{{imgurl}}"/>
                   {% endfor %}
                 </div>
               </div>
