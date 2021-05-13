@@ -1,4 +1,4 @@
-import { priceShowStatusEnums } from '../../enums/enums'
+import { NewsContentTypeEnums, priceShowStatusEnums } from '../../enums/enums'
 
 /**
  * 口碑模型
@@ -13,6 +13,7 @@ import { priceShowStatusEnums } from '../../enums/enums'
  * @param {string} reputationIcon 口碑封面图
  * @param {number} createUser 创建用户
  * @param {ReputationScoreModel[]} reputationScores 口碑评分模型
+ * @param {NewsContentTypeEnums} newsContentType 新闻内容类型
  */
 export interface ReputationModel {
   title: string
@@ -26,6 +27,7 @@ export interface ReputationModel {
   reputationIcon: string
   createUser: number
   reputationScores: ReputationScoreModel[]
+  newsContentType: NewsContentTypeEnums
 }
 
 /**

@@ -52,14 +52,16 @@
             <div class="child clearfix">
               <span>已绑定手机号</span>
               <div>
-                <input type="text" disabled value="188***8888"/>
+                <input type="text" disabled value="{{phoneNumber | user_iphone}}"/>
               </div>
             </div>
             <div class="child clearfix">
               <span>验证码</span>
+              
               <div>
                 <input type="text" placeholder="请输入验证码" class="validation"  value=""/>
                 <a href="javascript:void(0)" class="getvalidation">获取验证码</a>
+                <span class="countdown">60S</span>
               </div>
             </div>
             <div class="child clearfix">
@@ -71,7 +73,7 @@
           </div>
         </div>
 
-        <div class="two">
+        <div class="two" style='display:none'>
           <div class="process_title">
             <span>1 验证身份</span>
             <i></i>
@@ -83,13 +85,13 @@
             <div class="child clearfix">
               <span>新密码</span>
               <div>
-                <input type="password" placeholder="请输入新密码"/>
+                <input class="newspwd" type="password" placeholder="请输入新密码"/>
               </div>
             </div>
             <div class="child clearfix">
               <span>确认密码</span>
               <div>
-                <input type="password" placeholder="请确认新密码"/>
+                <input class="confirmpwd" type="password" placeholder="请确认新密码"/>
               </div>
             </div>
             <div class="child clearfix">
@@ -101,7 +103,7 @@
           </div>
         </div>
 
-        <div class="three">
+        <div class="three" style='display:none'>
           <p>密码修改成功</p>
           <a href="javascript:void(0)">重新登录</a>
         </div>

@@ -207,13 +207,15 @@ navigationbar2 %}
                     </div>
 
                     <div class="r">
-                      {{item.summary}}
+                      {{item.summary |safe}}
                     </div>
                   </div>
+                  {% if item.newId != null and item.newId != 0 %}
+                    <div class="more clearfix">
+                      <a href="/news/reputation/{{item.newId}}" target="_blank">查看详情</a>
+                    </div>
+                  {% endif %}
 
-                  <div class="more clearfix">
-                    <a href="/news/reputation/{{item.reputationId}}" target="_blank">查看详情</a>
-                  </div>
                 </div>
               {% endfor %}
             </div>

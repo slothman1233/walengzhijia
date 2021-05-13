@@ -7,7 +7,7 @@ import { starfn } from '../../components/star'
 import { uploadfilefnImg } from '../../components/uploadfile'
 import config from '../../common/config/env'
 import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
-import { subCodeEnums } from '../../../../enums/enums'
+import { NewsContentTypeEnums, subCodeEnums } from '../../../../enums/enums'
 import { GetCompanyProduct, GetCompanyProductType } from '../../common/service/product.services'
 import { AddReputaion } from '../../common/service/reputaion.services'
 import { bodyModel } from '../../../../model/resModel'
@@ -42,6 +42,7 @@ let userId = 0;
  * @param {string} reputationIcon 口碑封面图
  * @param {number} createUser 创建用户
  * @param {ReputationScoreModel[]} reputationScores 口碑评分模型
+ * @param {NewsContentTypeEnums} newsContentType 新闻内容类型
  */
 let PublishData: ReputationModel = {
     title: '',
@@ -54,7 +55,8 @@ let PublishData: ReputationModel = {
     summary: '',
     reputationIcon: '',
     createUser: userId,
-    reputationScores: []
+    reputationScores: [],
+    newsContentType: NewsContentTypeEnums.content
 
 };
 
@@ -336,6 +338,11 @@ async function submitFn() {
         return
     }
 
+    //判断文章是否有音频
+    //有音频则为音频类型
+    if (window.publishnews_ue.body.querySelector('video')) {
+        PublishData.newsContentType = NewsContentTypeEnums.video
+    }
 
     PublishData.purchasePrice = parseFloat(price.value)
     PublishData.priceShowStatus = parseInt(checkeDom.getAttribute('data-id'))

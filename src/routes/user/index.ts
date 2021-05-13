@@ -181,22 +181,25 @@ export default class User {
         //     } 
         // }
 
-        let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+        // let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
 
-        
+
 
         //areaCode
         await ctx.render('user/information', {
-            cookieuserinfo
+            // cookieuserinfo
         })
     }
 
     @middlewares([user_login_middleware])
     @get('/changepwd')
     async changepwd(ctx: Context, next: Next) {
-        let { notificationType, pageIndex } = ctx.params
-        await ctx.render('user/changepwd', {
 
+        let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+
+
+        await ctx.render('user/changepwd', {
+            phoneNumber: cookieuserinfo.phoneNumber
         })
     }
 

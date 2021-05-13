@@ -78,6 +78,8 @@
             font-size   : @font_size_16;
           }
 
+
+
           &>div {
             width: @rightwidth;
             float: right;
@@ -111,10 +113,29 @@
               color      : @color_main_c1;
               height     : @size;
               line-height: @size;
-              
+
               .box-sizing();
               .border-radius(2px);
             }
+
+            .countdown {
+              display         : none;
+              width           : @leftwidth;
+              padding         : 0 8px;
+              margin          : 0;
+              font-size       : 14px;
+              float           : right;
+              color           : @color_gray_c1;
+              border          : 1px solid @color_gray_c2;
+              background-color: @color_gray_c2;
+              height          : @size;
+              line-height     : @size;
+              text-align      : center;
+              .border-radius(4px);
+              .box-sizing();
+            }
+
+           
 
             .next {
               display         : block;
@@ -128,6 +149,8 @@
             }
           }
         }
+
+
       }
 
       .three {
@@ -142,7 +165,7 @@
           line-height  : @line_height;
           font-weight  : @font_weight;
           margin-bottom: @space_6;
-          text-align      : center;
+          text-align   : center;
         }
 
         a {

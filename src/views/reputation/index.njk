@@ -233,16 +233,18 @@ navigationbar2 %}
                   {% endif %}
 
                 </div>
+                {% if item.newsId != null and item.newsId != 0 %}
+                  <div class="more">
+                    <a href="/news/reputation/{{item.newsId}}" target="_blank">查看口碑详情</a>
+                  </div>
+                {% endif %}
 
-                <div class="more">
-                  <a href="/news/reputation/{{item.newsId}}" target="_blank">查看口碑详情</a>
-                </div>
               </div>
 
               <div class="r">
                 <p>{{item.summary | safe}}</p>
                 <div class="atlas">
-                
+
                   {% for imgurl in (item.summary | onlyimg) %}
                     <img src="{{imgurl}}" data-viewer="{{imgurl}}"/>
                   {% endfor %}

@@ -20,6 +20,10 @@ type w = {
      */
     getuserid?: () => number
     /**
+     * 删除用户cookie
+     */
+    removeusercookie?: () => void
+    /**
      * 弹出登录界面
      * @param {logintype} type 显示登录界面默认展示的类型
      */

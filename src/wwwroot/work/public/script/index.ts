@@ -3,7 +3,8 @@ import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
 import './top'
 import './popup'
 import window from '../../common/win/windows'
-import { setCookie } from '../../../../common/utils/util'
+import { delCookie, setCookie } from '../../common/utils/common'
+
 
 
 /**
@@ -22,6 +23,10 @@ window.getusercookie = function () {
  */
 window.setusercookie = function (value: string, time: string = 'd999') {
     return setCookie(config.userlogin, value, time)
+}
+
+window.removeusercookie = function () {
+    return delCookie(config.userlogin)
 }
 
 /**
