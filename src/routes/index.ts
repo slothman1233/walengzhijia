@@ -25,7 +25,7 @@ import { GetNewsList } from '../controller/news.controller'
 import { ResNewsModel } from '../model/news/resNews'
 import { GetHighQualityReputation, GetHotReputation } from '../controller/Reputation.controller'
 import ManageLepackReputaions from '../services/ManageLepackReputaion.services'
-import { publishNews, adTypeEnums, ProductSortType, HotCompanyDefineItems, NewsContentTypeObject, NewsContentTypeArray } from '../enums/enums'
+import { publishNews, adTypeEnums, ProductSortType, HotCompanyDefineItems, NewsContentTypeObject, NewsContentTypeArray, NewsType } from '../enums/enums'
 import { GetWebLinks } from '../controller/websitelink.controller'
 import { ResWebLinkModel } from '../model/link/weblink'
 import { GetAdvertising } from '../controller/Advertising.controller'
@@ -74,7 +74,7 @@ export default class Index {
         //新闻分类
         let newTypes: any[] = []
         // 0 最新资讯 1 行业新闻 2 经验分享 3 优惠活动 4 展会相关 5 其他
-        publishNews.forEach((item) => {
+        NewsType.forEach((item) => {
             newTypes.push({
                 id: item.id,
                 title: item.value,
@@ -85,6 +85,7 @@ export default class Index {
         //新闻第一个分类的列表
         let firstNews: ResNewsModel[] = await GetNewsList(publishNews[0].id)
         let firstNewsList: any[] = []
+        
         if (firstNews && firstNews.length > 0) {
 
             firstNews.forEach((item) => {
@@ -102,7 +103,7 @@ export default class Index {
                     businesslogo: item.companyIcon,
                     businessname: item.companyName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
-                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                    slug: [NewsContentTypeArray[item.newsContentType]]
                 })
             })
         }
@@ -205,7 +206,7 @@ export default class Index {
      */
     @get('/list/:productid?/:sortid?/:tabIndex?/:pageIndex?')
     async lists(ctx: Context, next: Next) {
-        let { productid = 1, sortid = 0, tabIndex = 1, pageIndex = 1 } = ctx.params
+        let { productid = 0, sortid = 0, tabIndex = 1, pageIndex = 1 } = ctx.params
         let pageSize = 10
         //行业信息
         let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
@@ -241,6 +242,7 @@ export default class Index {
             queryType: tabIndex
         })
 
+
         let companylistJson: any[] = []
         if (GetCompanyJson?.items) {
             GetCompanyJson.items.forEach(item => {
@@ -248,7 +250,7 @@ export default class Index {
                     companylistJson.push({
                         logo: item.company.logo,
                         link: '/business/' + item.company.companyId,
-                        name: item.company.fullName,
+                        name: item.company.abbrName,
                         kbscore: item.company.reputation.score,
                         classify: item.productTypes,
                         kbcount: item.company.reputation.reputationCount,

@@ -117,8 +117,6 @@ export enum priceShowStatusEnums {
  * 4 展会相关
  * 5 其他
  * 6 首页热门新闻
- * 公司页新闻
- * 产品新闻
  */
 export enum newsTypeEnums {
   new = 0,
@@ -129,6 +127,40 @@ export enum newsTypeEnums {
   other = 5,
   hot = 6
 }
+
+/**
+ * 新闻的类型object数组对象
+ * 0 最新资讯
+ * 1 行业新闻
+ * 2 经验分享
+ * 3 优惠活动
+ * 4 展会相关
+ * 5 其他
+ */
+export const NewsType = [
+    {
+        id: newsTypeEnums.new,
+        value: '最新资讯',
+    },
+    {
+        id: newsTypeEnums.trade,
+        value: '行业新闻'
+    },
+    {
+        id: newsTypeEnums.experience,
+        value: '经验分享'
+    },
+    {
+        id: newsTypeEnums.activity,
+        value: '优惠活动'
+    }, {
+        id: newsTypeEnums.exhibition,
+        value: '展会相关'
+    }, {
+        id: newsTypeEnums.other,
+        value: '其他'
+    }
+]
 
 /**
  * 发表新闻的类型
@@ -148,9 +180,10 @@ export enum publishNewsTypeEnums {
   other = 5
 }
 
+export const publishNewsTypeEnumsAry = ['最新资讯', '行业新闻', '经验分享', '优惠活动', '展会相关', '其他']
+
 /**
  * 发表新闻的类型object数组对象
- * 0 最新资讯
  * 1 行业新闻
  * 2 经验分享
  * 3 优惠活动
@@ -158,10 +191,6 @@ export enum publishNewsTypeEnums {
  * 5 其他
  */
 export const publishNews = [
-    {
-        id: publishNewsTypeEnums.new,
-        value: '最新资讯',
-    },
     {
         id: publishNewsTypeEnums.trade,
         value: '行业新闻'
@@ -326,8 +355,8 @@ export const ProductSortType = [
 
 /**
  * 文章内容类型
- * 0 文章
- * 1 视频
+ * 1 文章
+ * 2 视频
  */
 export enum NewsContentTypeEnums {
   content = 1,
@@ -335,8 +364,8 @@ export enum NewsContentTypeEnums {
 }
 /**
  * 文章内容类型
- * 0 文章
- * 1 视频
+ * 1 文章
+ * 2 视频
  */
 export const NewsContentTypeObject = [
     {
@@ -350,10 +379,11 @@ export const NewsContentTypeObject = [
 ]
 /**
  * 文章内容类型
- * 0 文章
- * 1 视频
+ * 0 默认  文章
+ * 1 文章
+ * 2 视频
  */
-export const NewsContentTypeArray = ['文章', '视频']
+export const NewsContentTypeArray = ['文章', '文章', '视频']
 
 
 

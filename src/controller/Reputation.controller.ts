@@ -91,7 +91,11 @@ export async function GetHighQualityReputationRm(pageIndex: number): Promise<Res
  */
 export async function GetReputationStatisticsByProduct(productId: number): Promise<ResReputationStatisticsModel | null> {
     let rm = await GetReputationStatisticsByProductRm(productId)
-    let models = JSONParse<ResReputationStatisticsModel | null>(rm.code, rm.bodyMessage)
+    let models = null
+    if (rm) {
+        models = JSONParse<ResReputationStatisticsModel | null>(rm.code, rm.bodyMessage)
+    }
+
     return models
 }
 

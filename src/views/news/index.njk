@@ -46,9 +46,9 @@
         <div class="news_content">
           <h1>{{newsDetail.newsDetail.newsTitle}}</h1>
           <div class="title clearfix">
-            <img src="{{newsDetail.newsDetail.userIcon}}"/>
+            <img _src_="{{newsDetail.newsDetail.userIcon}}"/>
             <span>{{newsDetail.newsDetail.createUser}}</span>
-            <span>发布于：{{newsDetail.newsDetail.newsTime | ge_time_format}}</span>
+            <span>发布于：{{newsDetail.newsDetail.newsTime | get_time_timestamp | ge_time_format(2)}}</span>
 
             <div class="praise">
               <i class="iconfont_wlzj">&#xE018;</i>
@@ -60,11 +60,11 @@
             {{newsDetail.newsDetail.newsContent | safe}}
           </div>
 
-          <div class="share">
-            <em>分享：</em>
-            <i class="weixin" title="微信" data-bshare="{type:'weixin',url:'11',pop:true,title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！',images:''}">微信</i>
-            <i class="weibo" title="微博" data-bshare="{type:'weibo',url:'22',title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！（分享至@FX110）',images:''}">微博</i>
-            <i class="qzone" title="QQ空间" data-bshare="{type:'qzone',url:'33',title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！',images:''}">QQ空间</i>
+          <div class="share clearfix">
+            <em class="share_text">分享</em>
+            <i class="weixin" title="微信" data-bshare="{type:'weixin',url:'11',pop:true,title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！',images:''}"></i>
+            <i class="weibo" title="微博" data-bshare="{type:'weibo',url:'22',title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！（分享至@FX110）',images:''}"></i>
+            <i class="qzone" title="QQ空间" data-bshare="{type:'qzone',url:'33',title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！',images:''}"></i>
 
             <div class=" givelike">
               <i class="iconfont_wlzj">&#xE017;</i>
@@ -100,11 +100,11 @@
         <div class="list1 relatedproducts">
           <p>相关产品</p>
           <div class="box">
-            <img src="{{newsDetail.product.producerCover}}"/>
+            <img _src_="{{newsDetail.product.producerCover}}"/>
             <div class="content">
               <div class="left">
                 <p>
-                  <img src="{{newsDetail.product.companyIcon}}"/>
+                  <img _src_="{{newsDetail.product.companyIcon}}"/>
                   <span>{{newsDetail.product.companyName}}</span>
                 </p>
                 <p>{{newsDetail.product.productName}}</p>

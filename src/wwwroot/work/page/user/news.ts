@@ -2,16 +2,21 @@ import { kkpager } from '@stl/kkpager'
 import { on } from '@stl/tool-ts/src/common/event/on'
 import { navigationbar2, usernavigationbar } from '../../components/navigationbar'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
-import { delNews } from '../../common/service/news.services'
+import { delNews, GetNewsByCompanyId } from '../../common/service/news.services'
 import config from '../../common/config/env'
 import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
-import { subCodeEnums } from '../../../../enums/enums'
+import { NewsContentTypeArray, subCodeEnums } from '../../../../enums/enums'
+import window from '../../common/win/windows'
+import { bodyModel } from '../../../../model/resModel'
+import { getcomponent } from '../../common/service/ComponentService/ComponentService'
+import { NewsInfoModel } from '../../../../model/news/news'
 declare const tabType: any
 declare const pageIndex: number
 declare const $: JQueryStatic
+
 //用户id
 let userId = JSON.parse(getCookie(config.userlogin)).userId
-
+let usermain = document.querySelector('#usermain')
 //品牌商id
 let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
 //已发布
@@ -44,6 +49,7 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
                 console.log(id)
                 let html = await getdata(id)
                 $('#usermain .publish .child_box').html(html)
+                window.imgload()
             }
 
         })
@@ -57,7 +63,7 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
         let html = await getdata(id)
 
         $('#usermain .publish .child_box').html(html)
-
+        window.imgload()
         kkpager({
             pagerid: 'publish_kkpage',
             total: 20,
@@ -73,81 +79,85 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
             click: async function (i: number) {
                 let html = await getdata(id)
                 $('#usermain .publish .child_box').html(html)
+                window.imgload()
             }
 
         })
 
     })
 
+})();
+
+//初始化草稿
+(async function () {
+    let child_box = usermain.querySelector('.drafts .child_box')
+    let newsStorage = 'newsStorage'
+    let data = JSON.parse(localStorage.getItem(newsStorage)) || {}
+
+    let keyAry = Object.keys(data)
+    let html = ''
+    if (keyAry.length <= 0) {
+        html = `<div class="empty">
+                    <p>没有草稿</p>
+                </div>`
+    } else {
+        let contentData: any[] = []
+        for (let i = 0; i < keyAry.length; i++) {
+            let item: NewsInfoModel = data[keyAry[i]]
+            contentData.push({
+                logo: item.newsIcon || '/assets/images/loading.png',
+                label: [NewsContentTypeArray[item.newsContentType]],
+                title: item.newsTitle,
+                id: keyAry[i]
+
+            })
+        }
+
+        // logo: item.newsIcon,
+        // title: item.newsTitle,
+        // label: [NewsContentTypeArray[item.newsContentType]],
+        // id: item.newsId,
+        // author: item.companyName,
+        // createTime: item.newsTime
+
+        let datas: bodyModel<string> = await getcomponent({ path: 'components/user/newslist.njk', name: 'newslist', data: { type: 2, newdata: contentData } })
+
+        if (datas.code === 0) {
+            child_box.innerHTML = datas.bodyMessage
+        }
+
+    }
+
+
 })()
 
 //获取数据
 async function getdata(id: any) {
-    let d = {
-        title: '全部',
-        id: '123',
-        count: '24',
-        child: [{
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）5555',
-            label: ['分类A', '分类A', '分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        },
-        {
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）22111',
-            label: ['分类A', '分类A', '分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        },
-        {
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）',
-            label: ['分类A', '分类A', '分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        },
-        {
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）',
-            label: ['分类A', '分类A', '分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        },
-        {
-            logo: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            title: 'WL C220 2200（产品名称）',
-            label: ['分类A'],
-            id: '11',
-            createTime: '2020-08-01'
-        }]
-    }
+    let cookieuserinfo = JSON.parse(window.getusercookie())
+    let html = ``
 
-    let html = ''
-    for (let i = 0; i < d.child.length; i++) {
-        let item = d.child[i]
-        let labelhtml = ''
-        for (let j = 0; j < item.label.length; j++) {
-            labelhtml += `<span>${item.label[j]}</span>`
+    let newdata = await GetNewsByCompanyId(cookieuserinfo.company.companyId, id, 0)
+    let newslist: any = []
+    if (newdata.code === 0 && newdata.subCode === subCodeEnums.success) {
+        newdata.bodyMessage.forEach(item => {
+            newslist.push({
+                logo: item.newsIcon,
+                title: item.newsTitle,
+                label: [NewsContentTypeArray[item.newsContentType]],
+                id: item.newsId,
+                author: item.companyName,
+                createTime: item.newsTime
+            })
+        })
+
+        let datas: bodyModel<string> = await getcomponent({ path: 'components/user/newslist.njk', name: 'newslist', data: { type: 1, newdata: newslist } })
+
+        if (datas.code === 0) {
+            html = datas.bodyMessage
         }
-
-        html += `<div class="child">
-        <img src="${item.logo}"/>
-        <div class="c">
-          <h3>${item.title}</h3>
-            <p class="clearfix">
-                ${labelhtml}
-            </p>
-          <p class="createtime">发布时间：${item.createTime}</p>
-
-        </div>
-        <div class="r">
-          <a href="/user/sales/2/11">修改</a>
-          <a href="javascript:(0)" data-id="${item.id}" class="stick" style='display:${i === 0 ? 'none' : 'block'}'>置顶</a>
-        </div>
-      </div>`
     }
+
+
     return html
 }
 
@@ -223,32 +233,6 @@ async function getdata(id: any) {
         }
     })
 
-})();
+})()
 //----------------------------------------------
 
-//审核中
-(function () {
-    //已发布下的分页
-    if (document.getElementById('drafts_kkpage')) {
-        kkpager({
-            pagerid: 'drafts_kkpage',
-            total: 20,
-            pno: pageIndex,
-            mode: 'click',
-            isShowFirstPageBtn: false,
-            isShowLastPageBtn: false,
-            isShowLastPage: false,
-            lang: {
-                prePageText: '上一页',
-                nextPageText: '下一页',
-            },
-            click: async function (i: number) {
-                let id = $('#usermain .drafts .navigationbar2 .select').data('id')
-                console.log(id)
-                let html = await getdata(id)
-                $('#usermain .drafts .child_box').html(html)
-            }
-
-        })
-    }
-})()

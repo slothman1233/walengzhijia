@@ -2,6 +2,7 @@
 
 {% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar2,
 usernavigationbar %}
+{% from "../shared/sharedView/macro/components/user/newslist.njk" import newslist %}
 {% block title %}
 54123123213333
 {% endblock title %}
@@ -47,116 +48,21 @@ usernavigationbar %}
             ]
 
     }) }}
-    {% set publish = [
-                      {
-                        title:"全部",
-                        id:"123",
-                        count:'24',
-                        child:[{
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）",
-                                label:['分类A','分类A','分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              },
-                              {
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）22",
-                                label:['分类A','分类A','分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              },
-                              {
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）",
-                                label:['分类A','分类A','分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              },
-                              {
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）",
-                                label:['分类A','分类A','分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              },
-                              {
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）",
-                                label:['分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              }]
-                      },
-                      {
-                        title:"热门品牌",
-                        id:"123",
-                        count:'24',
-                        child:[{
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）",
-                                label:['分类A','分类A','分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              },
-                              {
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）",
-                                label:['分类A','分类A','分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              },
-                              {
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）",
-                                label:['分类A','分类A','分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              },
-                              {
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）",
-                                label:['分类A','分类A','分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              },
-                              {
-                                logo:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-                                title:"WL C220 2200（产品名称）",
-                                label:['分类A'],
-                                id:"11",
-                                author :"某某某",createTime:"2020-08-01"
-                              }]
-                      }
-            
-
-          ] %}
+   
     <div class="box">
       <div class="publish" style='display:{{(tabType == 1) | ternary("block","none")}}'>
-        {% set publishary = [] %}
-
-        <div style="display:none">
-          {% for item in publish %}
-            {{publishary.push({
-                class:'',
-                title:item.title,
-                id:item.id,
-                nlink: 'javascript:(0)'
-              }) }}
-          {% endfor %}
-        </div>
-
-        {% if publish != null and publish.length > 0%}
-          <div class="tab">
+      
+        {% if firstnewlist != null and firstnewlist.length > 0%}
+          <div class="tab"> 
             {{navigationbar2({
               isSelect: 1,
-              data: publishary
+              data: newlabels
             })}}
 
           </div>
 
           <div class="child_box">
-            {{productlist(1,publish)}}
+            {{newslist(1,firstnewlist)}}
           </div>
 
           <div id="publish_kkpage"></div>
@@ -172,9 +78,8 @@ usernavigationbar %}
 
       <div class="drafts" style='display:{{(tabType == 2) | ternary("block","none")}}'>
         <div class="child_box">
-          {{productlist(2,publish)}}
+          {# {{newslist(2,publish)}} #}
         </div>
-        <div id="drafts_kkpage"></div>
       </div>
 
       <div class="havadel" style='display:{{(tabType == 3) | ternary("block","none")}}'>2</div>
@@ -184,43 +89,3 @@ usernavigationbar %}
   </div>
 
 {% endblock body %}
-
-{% macro productlist(type, publish) %}
-  {% for item in publish[0].child %}
-    <div class="child">
-      <img src="{{item.logo}}"/>
-      <div class="c">
-        <h3>
-          <p>{{item.title}}</p>
-          {% if type == 1 %}
-            <span class="zd" style='display:{{(type == 1) and (loop.index == 1) | ternary("inline-block","none")}}'>已置顶</span>
-          {% endif %}
-
-          {% if type == 2 %}
-            <span>审核中</span>
-          {% endif %}
-
-        </h3>
-        {% if item.label != null and item.label.length > 0 %}
-          <p class="clearfix label">
-            {% for labelitem in item.label %}
-              <span>{{labelitem}}</span>
-            {% endfor %}
-          </p>
-        {% endif %}
-        <p class="createtime">
-          <span>发布时间：{{item.createTime}}</span>
-          <span>发布者：{{item.author}}</span>
-        </p>
-
-      </div>
-      {% if type == 1 %}
-        <div class="r">
-          <a href="/user/sales/2/11">修改</a>
-          <a href="javascript:(0)" data-id="{{item.id}}" class="del">删除</a>
-          <a href="javascript:(0)" data-id="{{item.id}}" class="stick">{{ (loop.index0 === 0) | ternary("取消置顶","置顶") }}</a>
-        </div>
-      {% endif %}
-    </div>
-  {% endfor %}
-{% endmacro %}

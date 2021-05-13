@@ -56,7 +56,7 @@ navigationbar2 %}
 
     <div class="row1 clearfix">
       <div class="l">
-        <img src="{{CompanyProduct.productCover}}"/>
+        <img _src_="{{CompanyProduct.productCover}}"/>
       </div>
 
       <div class="c" id="option1">
@@ -207,7 +207,7 @@ navigationbar2 %}
               <div class="l">
                 <div class="user">
                   <div>
-                    <img src="{{item.userIcon}}"/>
+                    <img _src_="{{item.userIcon}}"/>
                     <i>{{item.userName}}</i>
                   </div>
                   <p>购买价格：{{item.purchasePrice}}</p>
@@ -246,7 +246,7 @@ navigationbar2 %}
                 <div class="atlas">
 
                   {% for imgurl in (item.summary | onlyimg) %}
-                    <img src="{{imgurl}}" data-viewer="{{imgurl}}"/>
+                    <img _src_="{{imgurl}}" data-viewer="{{imgurl}}"/>
                   {% endfor %}
                 </div>
               </div>

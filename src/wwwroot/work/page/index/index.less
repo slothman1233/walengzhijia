@@ -42,8 +42,8 @@
                 width      : 100%;
 
                 img {
-                    height: @imgHeight;
-                    width : 100%;
+                    max-height: @imgHeight;
+                    max-width : 100%;
                     margin: auto;
                 }
             }
@@ -54,7 +54,13 @@
                 line-height: @pheight;
                 color      : @color_main_c1;
                 font-size  : @font_size_12;
+                font-weight: @font_weight;
+               
                 .over_group()
+            }
+
+            &:hover p{
+                color: @link_hover;
             }
         }
     }

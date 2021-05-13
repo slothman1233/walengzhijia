@@ -453,11 +453,19 @@ let publishData: CompanyProductInfoModel = {
 
 //保存为草稿
 (function () {
-
+    if (productId && !isdrafts) { return }
+   
     let submit = usermain.querySelector('.submit')
     let drafts = submit.querySelector('.drafts')
     let productIds = Date.now().toString()
     drafts.onclick = function () {
+        let productname = usermain.querySelector('.productname')
+        //产品名称
+        if (productname.value.length <= 0) {
+            alert('请输入产品名称')
+            return
+        }
+
         let draftsCache = localStorage.getItem(draftsStorage) || '{}'
         let cachejson = JSON.parse(draftsCache)
         if (isdrafts) {
@@ -567,7 +575,7 @@ async function getsubContent() {
 
     if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
 
-        if(isdrafts){
+        if (isdrafts) {
             let cache = JSON.parse(localStorage.getItem(draftsStorage)) || {}
             delete cache[productId]
             localStorage.setItem(draftsStorage, JSON.stringify(cache))

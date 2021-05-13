@@ -16,6 +16,7 @@ import { GetReputationByCompany } from '../../common/service/Reputation.services
 import { GetNewsByCompanyId } from '../../common/service/news.services'
 import { get_unix_time_stamp, ge_time_format } from '../../../../common/utils/util'
 import imgPreview from '../../common/utils/imgPreview/imgPreview'
+import window from '../../common/win/windows'
 declare const $: JQueryStatic
 // eslint-disable-next-line no-undef
 declare const document: Document
@@ -89,6 +90,7 @@ declare const pageSize: any
                 click: async function (i: number) {
                     let { datajson, html } = await GetCompanyProduct({ companyId, productTypeId, pageIndex: i, pageSize })
                     container_box.innerHTML = html
+                    window.imgload()
                 }
             })
         }
@@ -124,7 +126,7 @@ async function GetCompanyProduct({ companyId,
 
             html += `<div class="child">
                 <a class="logo" href="/business/product/${companyId}/${item.productId}" target="_blank">
-                  <img src="${item.productCover || ''}"/>
+                  <img _src_="${item.productCover || ''}"/>
                 </a>
                 <a href="/business/product/${companyId}/${item.productId}" target="_blank">
                   <h1>${item.productName}</h1>
@@ -150,10 +152,15 @@ async function GetCompanyProduct({ companyId,
 (function () {
     try {
 
+        if (reshighKbChart.length > 0) {
+            reshighKbChart.forEach((item: any, index: number) => {
+                if (item.name.length > 0 && item.value.length > 0) {
+                    Charts(document.getElementById(`ecahr${index}`), item)
+                }
 
-        reshighKbChart.forEach((item: any, index: number) => {
-            Charts(document.getElementById(`ecahr${index}`), item)
-        })
+            })
+        }
+
     } catch (e) { }
 
 
@@ -200,10 +207,15 @@ async function GetCompanyProduct({ companyId,
 
         if (data.code === 0) {
             kblist1.outerHTML = data.bodyMessage
+            if (reshighKbChart.length > 0) {
+                reshighKbChart.forEach((item: any, index: number) => {
+                    if (item.name.length > 0 && item.value.length > 0) {
+                        Charts(document.getElementById(`ecahr${index}`), item)
+                    }
 
-            reshighKbChart.forEach((item: any, index: number) => {
-                Charts(document.getElementById(`ecahr${index}`), item)
-            })
+                })
+            }
+
         }
 
     }
@@ -241,7 +253,7 @@ async function GetCompanyProduct({ companyId,
                         businesslogo: item.companyIcon,
                         businessname: item.companyName,
                         timetick: get_unix_time_stamp(item.newsTime, 2),
-                        slug: [NewsContentTypeArray[item.NewsContentType]]
+                        slug: [NewsContentTypeArray[item.newsContentType]]
                     })
                 })
                 let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: newsList })
@@ -249,6 +261,7 @@ async function GetCompanyProduct({ companyId,
                 if (datas.code === 0) {
                     container.append(datas.bodyMessage)
                     isloaded = false
+                    window.imgload()
                 }
             }
 
@@ -279,7 +292,7 @@ async function GetCompanyProduct({ companyId,
                     businesslogo: item.companyIcon,
                     businessname: item.companyName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
-                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                    slug: [NewsContentTypeArray[item.newsContentType]]
                 })
             })
             let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })

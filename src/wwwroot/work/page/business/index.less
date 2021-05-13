@@ -150,8 +150,9 @@
           &.introduction {
             width        : @width;
             margin-bottom: 0;
-            height       : @height*3;
+            height       : @height*4;
             white-space  : normal;
+            .lineclamp(4);
 
             a {
               color: @color_link ;
@@ -274,19 +275,20 @@
           overflow : hidden;
 
           .child {
-            @height : 392px - @space_2;
-            @width  : (@allwidth/4) - (@space_2*2) - @space_1 - 2;
-            width   : @width;
-            height  : @height;
-            float   : left;
-            padding : 0 @space_2 @space_2 @space_2;
-            border  : 1px solid @border_color;
-            margin  : 0 @space_1 @space_1 0;
+            @height         : 392px - @space_2;
+            @width          : (@allwidth/4) - (@space_2*2) - @space_1 - 2;
+            width           : @width;
+            height          : @height;
+            float           : left;
+            padding         : 0 @space_2 @space_2 @space_2;
+            border          : 1px solid @border_color;
+            margin          : 0 @space_1 @space_1 0;
             background-color: #FFF;
             .border-radius(4px);
-            &:hover{
+
+            &:hover {
               filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.15));
-             
+
             }
 
             .logo {

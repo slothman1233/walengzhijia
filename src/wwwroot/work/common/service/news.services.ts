@@ -5,7 +5,7 @@ import http from './http'
 import env from '../config/env'
 import { bodyModel } from '../../../../model/resModel'
 import { NewsInfoModel } from '../../../../model/news/news'
-import { ResNewsModel } from '../../../../model/news/resNews'
+import { ResNewsDetailModelReturnModel, ResNewsModel } from '../../../../model/news/resNews'
 
 
 
@@ -14,6 +14,13 @@ import { ResNewsModel } from '../../../../model/news/resNews'
  * NewsInfoModel
  */
 export const AddNews = async (options: NewsInfoModel): Promise<bodyModel<string>> => await http.post<any>(`/api/news/AddNews`, options)
+
+/**
+ * 修改新闻
+ * NewsInfoModel
+ */
+export const UpdateNews = async (options: NewsInfoModel): Promise<bodyModel<string>> => await http.post<any>(`/api/news/UpdateNews`, options)
+
 
 
 /**
@@ -47,3 +54,12 @@ export const GetNewsByCompanyId = async (companyId: number = 0, newsType: number
  * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
  */
 export const GetNewsByProductId = async (productId: number = 0, newsType: number = 0, timetick: number = 0): Promise<bodyModel<ResNewsModel[]>> => await http.get<any>(`/api/news/GetNewsByProductId`, { params: { productId, timetick, newsType } })
+
+/**
+ * 通过新闻ID获取具体新闻信息
+ * @param {number} newsId 新闻id
+
+ */
+export const GetNewsById = async (newsId: number = 0): Promise<ResNewsDetailModelReturnModel> => await http.get<any>(`/api/news/GetNewsById`, { params: { newsId } })
+
+

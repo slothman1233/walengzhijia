@@ -101,11 +101,11 @@
               {% for item in GetCompanyHotData %}
                 <div class = "child">
                   <a class="left" href="/business/{{item.companyId}}" target="_blank">
-                    <img src="{{item.logo}}"/>
+                    <img _src_="{{item.logo}}" />
                   </a>
 
                   <div class="right">
-                    <a href="/business/{{item.id}}" target="_blank">{{item.fullName}}</a>
+                    <a href="/business/{{item.id}}" target="_blank">{{item.abbrName}}</a>
 
                     {% if (item.hotType != 0) %}
                       <p class='{{(item.hotType == 1) | ternary("superior","")}}'>

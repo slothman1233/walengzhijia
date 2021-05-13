@@ -110,14 +110,14 @@ let mian = document.querySelector('#main');
             let imghtml = ''
 
             for (let i = 0; i < datas[j].atlas.length; i++) {
-                imghtml += `<img src="${datas[j].atlas[i]}"/>`
+                imghtml += `<img _src_="${datas[j].atlas[i]}"/>`
             }
 
             html += ` <div class="child">
         <div class="l">
           <div class="user">
             <div>
-              <img src="${datas[j].hread}"/>
+              <img _src_="${datas[j].hread}"/>
               <i>${datas[j].name}</i>
             </div>
             <p>购买价格:${datas[j].price}</p>

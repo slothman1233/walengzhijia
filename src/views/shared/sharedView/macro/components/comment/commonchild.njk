@@ -77,7 +77,7 @@
   {% for item in args %}
     <div class="child clearfix" data-commentId="{{item.commentId}}"  data-time='{{item.commentTime | ternary(item.commentTime,item.replyTime) | get_time_timestamp}}'>
       <div class="hread">
-        <img src="{{item.commentUserIcon}}"/>
+        <img _src_="{{item.commentUserIcon}}"/>
       </div>
       <div class="common_details">
         <div class="h clearfix">

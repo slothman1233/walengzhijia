@@ -59,7 +59,7 @@ navigationbar2 %}
       <div class="left">
         <div class="row1">
           <div class="left">
-            <img src="{{CompanyProductInfo.productCover}}"/>
+            <img _src_="{{CompanyProductInfo.productCover}}"/>
             <div class="more">
               {% if CompanyProductInfo.productVideo != null %}
                 <span class="productVideo" data-viewer="{{CompanyProductInfo.productVideo}}">
@@ -76,7 +76,7 @@ navigationbar2 %}
                   {% if CompanyProductInfo.companyProductImages and CompanyProductInfo.companyProductImages.length > 0 %}
                     {% for item in CompanyProductInfo.companyProductImages %}
                       {% if loop.index !== 1 %}
-                        <img src="{{item.imageUrl}}" data-viewer="{{item.imageUrl}}" data-productImgType="{{item.productImgType}}" data-imageDesc="{{item.imageDesc}}"/>
+                        <img _src_="{{item.imageUrl}}" data-viewer="{{item.imageUrl}}" data-productImgType="{{item.productImgType}}" data-imageDesc="{{item.imageDesc}}"/>
                       {% endif %}
 
                     {% endfor %}
@@ -149,7 +149,7 @@ navigationbar2 %}
                 {# <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
                 <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
                 <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
-                <p><img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"></p>
+                <p><img _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"></p>
                 <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p>
                 <p>阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬安抚阿斯蒂芬</p> #}
               </div>
@@ -198,12 +198,12 @@ navigationbar2 %}
                   <div class="clearfix">
                     <div class="l">
                       <div>
-                        <img src="{{item.userIcon}}"/>
+                        <img _src_="{{item.userIcon}}"/>
                         <i>{{item.userName}}</i>
                       </div>
                       <p>购买价格：{{item.purchasePrice}}</p>
-                      <p>购买时间：{{item.buyTime | ge_time_format(3)}}</p>
-                      <p>投入使用：{{item.useTime | ge_time_format(3)}}</p>
+                      <p>购买时间：{{item.buyTime | get_time_timestamp | ge_time_format(2)}}</p>
+                      <p>投入使用：{{item.useTime | get_time_timestamp | ge_time_format(2)}}</p>
                     </div>
 
                     <div class="r">
@@ -263,7 +263,7 @@ navigationbar2 %}
               {% for item in salers %}
                 <div class="child">
                   <div class="in">
-                    <img class="hread" src="{{item.salerIcon}}"/>
+                    <img class="hread" _src_="{{item.salerIcon}}"/>
                     <div class="r">
                       <div>
                         <p>{{item.salerName}}</p>
@@ -364,7 +364,7 @@ navigationbar2 %}
 
         </div>
 
-        <a class="advertising" href="#"><img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0" class=""></a>
+        <a class="advertising" href="#"><img _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0" class=""></a>
 
         {# <div id="informationsub">
           <h2>立即提交</h2>

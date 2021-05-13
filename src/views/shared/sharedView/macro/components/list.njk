@@ -44,22 +44,24 @@
       {% for item in args %}
         <div class="child" data-timetick="{{item.timetick}}">
           <a class="left" href="{{item.link}}" target="_blank">
-            <img src="{{item.img}}"/>
+            <img _src_="{{item.img}}"/>
           </a>
           <div class="right">
             <a class="title" href="{{item.link}}" target="_blank">{{item.title}}</a>
             <p>{{item.content}}</p>
             <div class="list_foot">
               {% if item.businesslogo %}
-                <span><img src="{{item.businesslogo}}"/></span>
+                <span><img _src_="{{item.businesslogo}}"/></span>
               {% endif %}
 
               <span>{{item.businessname}}</span>
               <span>{{item.author}}</span>
-              <span>{{item.time}}</span>
+              <span>{{item.time | get_time_timestamp | ge_time_format(2)}}</span>
+              
               {% if (item.slug) and (item.slug.length > 0) %}
                 {% for val in item.slug %}
-                  <span class="slug">{{val}}</span>
+               
+                  <span class="slug">{{val | ternary(val,'文章')}}</span>
                 {% endfor %}
 
               {% endif %}
@@ -147,7 +149,7 @@
               {% if item.brandtype.length > 0 %}
                 <i>{{item.brandtype}}</i>
               {% endif %}
-              <img src="{{item.logo}}"/>
+              <img _src_="{{item.logo}}"/>
             </a>
           </div>
 
@@ -236,13 +238,13 @@
         <div class="hd">
           <div class="l">
             <p>
-              <img src="{{item.hread}}"/>
+              <img _src_="{{item.hread}}"/>
               <span>{{item.name}}</span>
             </p>
             <a href="{{item.link}}" title="{{item.title}}" target="_blank">{{item.title}}</a>
           </div>
           <div class="r">
-            <img src="{{item.img}}"/>
+            <img _src_="{{item.img}}"/>
           </div>
         </div>
 

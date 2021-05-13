@@ -25,17 +25,20 @@ export default class Business {
         let reputationtype = await GetCompanyProductType({ companyId })
 
         let reputationtypeinfo: any[] = []
-        reputationtype.forEach((item, index) => {
-            if (index === 0) {
-                productTypeId = item.productTypeId
-            }
-            reputationtypeinfo.push({
-                class: '',
-                title: item.productTypeName,
-                id: item.productTypeId,
-                nlink: 'javascript:(0)'
+        if(reputationtype && reputationtype.length > 0){
+            reputationtype.forEach((item, index) => {
+                if (index === 0) {
+                    productTypeId = item.productTypeId
+                }
+                reputationtypeinfo.push({
+                    class: '',
+                    title: item.productTypeName,
+                    id: item.productTypeId,
+                    nlink: 'javascript:(0)'
+                })
             })
-        })
+        }
+       
         //----------------------------------------------
         //根据公司ID和产品id 获取产品列表
         let GetCompanyProduct = await GetCompanyProductByTypeId({ companyId, productTypeId, pageIndex: 1, pageSize: 10 })
@@ -105,12 +108,12 @@ export default class Business {
                     businesslogo: item.companyIcon,
                     businessname: item.companyName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
-                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                    slug: [NewsContentTypeArray[item.newsContentType]]
                 })
             })
         }
         //------------------------------------------------------------------------------------------------------------------
-
+        console.log(reshighKbChart)
         await ctx.render('business/index', {
             Reputation,
             companyId,
@@ -160,7 +163,6 @@ export default class Business {
         //----------------------------------------------
         //获取产品的口碑信息
         let ReputationData = await GetReputationByProductId(productId)
-        //----------------------------------------------
         //------------------------------------------------------------------------------------------------------------------
         //新闻分类
         let newTypes: any = {
@@ -195,7 +197,7 @@ export default class Business {
                     businesslogo: item.companyIcon,
                     businessname: item.companyName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
-                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                    slug: [NewsContentTypeArray[item.newsContentType]]
                 })
             })
         }

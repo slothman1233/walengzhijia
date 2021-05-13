@@ -190,6 +190,47 @@
           line-height: 20px;
           cursor     : pointer;
 
+          .share_text {
+            float       : left;
+            margin-right: @space_2;
+          }
+
+          .weixin,
+          .weibo,
+          .qzone {
+            display        : block;
+            float          : left;
+            width          : 24px;
+            height         : 24px;
+            margin-right   : @space_1;
+            background-size: 100% 100%;
+            cursor         : pointer;
+          }
+
+          .weixin {
+            background-image:url('@{ImgUrl}/share/weixin.png');
+
+            &:hover {
+              background-image: url('@{ImgUrl}/share/weixinhover.png');
+            }
+          }
+
+          .weibo {
+            background-image :url('@{ImgUrl}/share/weibo.png');
+
+            &:hover {
+              background-image: url('@{ImgUrl}/share/weibohover.png');
+            }
+          }
+
+          .qzone {
+            background-image :url('@{ImgUrl}/share/qq.png');
+
+            &:hover {
+              background-image: url('@{ImgUrl}/share/qqhover.png');
+            }
+          }
+
           .givelike {
             float: right;
 

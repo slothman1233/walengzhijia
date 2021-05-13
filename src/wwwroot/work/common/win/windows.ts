@@ -2,6 +2,10 @@
 
 type w = {
     /**
+     * 图片加载
+     */
+    imgload?:() => void
+    /**
      * 获取用户cookie
      */
     getusercookie?: () => string,

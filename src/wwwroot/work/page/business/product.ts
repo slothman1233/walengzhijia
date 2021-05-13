@@ -7,6 +7,7 @@ import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import imgPreview from '../../common/utils/imgPreview/imgPreview'
+import window from '../../common/win/windows'
 declare const companyId: any
 declare const productId: any
 declare const $: JQueryStatic
@@ -40,7 +41,7 @@ declare const $: JQueryStatic
                         businesslogo: item.companyIcon,
                         businessname: item.companyName,
                         timetick: get_unix_time_stamp(item.newsTime, 2),
-                        slug: [NewsContentTypeArray[item.NewsContentType]]
+                        slug: [NewsContentTypeArray[item.newsContentType]]
                     })
                 })
                 let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: newsList })
@@ -48,6 +49,7 @@ declare const $: JQueryStatic
                 if (datas.code === 0) {
                     container.append(datas.bodyMessage)
                     isloaded = false
+                    window.imgload()
                 }
             }
         }

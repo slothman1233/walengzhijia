@@ -140,7 +140,11 @@ export async function GetCompanyProductByTypeIdRm(params: ProductByTypeId): Prom
  */
 export async function GetCompanyProductById(params: CompanyProductByIdModel): Promise<ResCompanyProductInfoModel | null> {
     let rm = await GetCompanyProductByIdRm(params)
-    let models = JSONParse<ResCompanyProductInfoModel | null>(rm.code, rm.bodyMessage)
+    let models: any = null
+    if (rm) {
+        models = JSONParse<ResCompanyProductInfoModel | null>(rm.code, rm.bodyMessage)
+    }
+
     return models
 }
 

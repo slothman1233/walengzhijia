@@ -32,11 +32,12 @@ list1 %}
     {% if productTypeData %}
       <div class="row_hot">
         {% for item in productTypeData %}
-          <a href="/list/{{item.productTypeId}}" title="{{item.productType}}" target="_blank">
-            <div><img src="{{item.productTypeIcon}}"/></div>
-            <p>{{item.productType}}</p>
-          </a>
-
+          {% if loop.index != 1 %}
+            <a href="/list/{{item.productTypeId}}" title="{{item.productType}}" target="_blank">
+              <div><img _src_="{{item.productTypeIcon}}" /></div>
+              <p>{{item.productType}}</p>
+            </a>
+          {% endif %}
         {% endfor %}
       </div>
     {% endif %}
@@ -45,19 +46,19 @@ list1 %}
       <div class="ads">
         {% for item in ad.adtoponeData %}
           <a href="{{item.adLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
-            <img src="{{item.icon}}"/>
+            <img _src_="{{item.icon}}"/>
           </a>
         {% endfor %}
       </div>
     {% endif %}
-  {% if (ad.adtoptowData != null) and (ad.adtoptowData.length > 0) %}
-    <div class="rowImg">
-      {% for item in ad.adtoptowData %}
-           <a href="{{item.adLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
-            <img src="{{item.icon}}"/>
+    {% if (ad.adtoptowData != null) and (ad.adtoptowData.length > 0) %}
+      <div class="rowImg">
+        {% for item in ad.adtoptowData %}
+          <a href="{{item.adLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
+            <img _src_="{{item.icon}}"/>
           </a>
-      {% endfor %}
-    </div>
+        {% endfor %}
+      </div>
     {% endif %}
     <div class="brand">
       <div class="row">
@@ -81,11 +82,11 @@ list1 %}
               {% for item in items %}
 
                 <div class="listchild">
-                  <a class="left" href="/business/{{item.companyId}}" title="{{item.fullName}}" target="_blank">
-                    <img src="{{item.logo}}"/>
+                  <a class="left" href="/business/{{item.companyId}}" title="{{item.abbrName}}" target="_blank">
+                    <img _src_="{{item.logo}}"/>
                   </a>
                   <div class="right">
-                    <a href="/business/{{item.companyId}}" title="{{item.fullName}}" target="_blank">{{item.fullName}}</a>
+                    <a href="/business/{{item.companyId}}" title="{{item.abbrName}}" target="_blank">{{item.abbrName}}</a>
 
                     <div class="kb">
                       <span>{{item.reputation.score}}</span>
@@ -117,7 +118,7 @@ list1 %}
               {% for item in ad.adslideData %}
                 <li class="slider_list" data-id="{{item.adId}}">
                   <a href="{{item.adLink}}" title="{{item.desc}}" target="_blank">
-                    <img src="{{item.icon}}"/>
+                    <img _src_="{{item.icon}}"/>
                     <p>{{item.desc}}</p>
                   </a>
                 </li>
@@ -128,7 +129,6 @@ list1 %}
         </div>
 
       </div>
-
 
       <div class="kbranklist">
         <div class="row">
@@ -148,14 +148,14 @@ list1 %}
         </div>
 
         <div class="list_box">
-     
+
           {% for item in hotReputation %}
             <div class="child">
 
               <i>{{loop.index}}</i>
               <div class="cr">
                 <a class="l" href="/business/{{item.companyId}}" title="{{item.name}}" target="_blank">
-                  <img src="{{item.logo}}"/>
+                  <img _src_="{{item.logo}}"/>
                 </a>
                 <div class="c">
                   <a href="/business/{{item.companyId}}" title="{{item.companyName}}" target="_blank">{{item.companyName}}</a>

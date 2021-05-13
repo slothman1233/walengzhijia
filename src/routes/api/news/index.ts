@@ -13,7 +13,7 @@ import { ErrorModel, SuccessModel } from '../../../model/resModel'
 import { GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
 import { PostAddCompanyProduct } from '../../../controller/company.controller'
 import { CompanyProductInfoModel } from '../../../model/company/Company'
-import { GetNewsByCompanyIdRm, GetNewsByProductIdRm, GetNewsList, GetNewsListRm, PostAddNews, PostDeleteNews } from '../../../controller/news.controller'
+import { GetNewsByCompanyIdRm, GetNewsByIdRm, GetNewsByProductIdRm, GetNewsList, GetNewsListRm, PostAddNews, PostDeleteNews, PostUpdateNews } from '../../../controller/news.controller'
 import { NewsInfoModel } from '../../../model/news/news'
 export default class componentapi {
     /**
@@ -27,6 +27,17 @@ export default class componentapi {
         ctx.body = models
     }
 
+    /**
+     * 修改新闻
+     * NewsInfoModel
+     */
+    @post('/UpdateNews')
+    async UpdateNews(ctx: Context) {
+
+        let models = await PostUpdateNews((<NewsInfoModel>ctx.request.body))
+        ctx.body = models
+    }
+    
     /**
      * 删除新闻
      * NewsInfoModel
@@ -56,7 +67,7 @@ export default class componentapi {
      */
     @get('/GetNewsByCompanyId')
     async GetNewsByCompanyId(ctx: Context) {
-        debugger
+
         let { companyId, timetick, newsType } = ctx.query
         let models = await GetNewsByCompanyIdRm(companyId, newsType, timetick)
         ctx.body = models
@@ -68,9 +79,20 @@ export default class componentapi {
      */
     @get('/GetCompanyProductById')
     async GetNewsByProductId(ctx: Context) {
-        debugger
+
         let { productId, timetick, newsType } = ctx.query
         let models = await GetNewsByProductIdRm(productId, newsType, timetick)
+        ctx.body = models
+    }
+
+    /**
+     * 通过新闻ID获得新闻信息
+     * newsId: number
+     */
+    @get('/GetNewsById')
+    async GetNewsById(ctx: Context) {
+        let { newsId } = ctx.query
+        let models = await GetNewsByIdRm(newsId)
         ctx.body = models
     }
 

@@ -58,8 +58,8 @@ export async function PostDeleteNews(params: NewsInfoModel): Promise<bodyModel<s
      * @param {number} companyId 公司id
      * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
      */
-export async function GetNewsByCompanyId(companyId: number = 0, timetick: number = 0): Promise<ResNewsModel[] | null> {
-    let rm = await GetNewsByCompanyIdRm(companyId, timetick)
+export async function GetNewsByCompanyId(companyId: number = 0, newsType: number = 0, timetick: number = 0): Promise<ResNewsModel[] | null> {
+    let rm = await GetNewsByCompanyIdRm(companyId, newsType, timetick)
     let models = JSONParse<ResNewsModel[] | null>(rm.code, rm.bodyMessage)
     return models
 }

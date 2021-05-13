@@ -4,10 +4,12 @@ import { get, middlewares } from '../../common/decorator/httpMethod'
 import { getCookie } from '../../common/utils/cookies'
 import { GetAreaInfosByCode } from '../../controller/AreaInfo.controller'
 import { GetCompanySalerById, GetSalersByCompanyId } from '../../controller/company.controller'
+import { GetNewsByCompanyId, GetNewsById } from '../../controller/news.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType, GetProductIndustryByIndustry } from '../../controller/product.controller'
-import { productImgTypeEnums, publishNews, publishNewsTypeEnums } from '../../enums/enums'
+import { NewsContentTypeArray, productImgTypeEnums, publishNews, publishNewsTypeEnums, publishNewsTypeEnumsAry } from '../../enums/enums'
 import { user_login_middleware } from '../../middleware/login'
 import { userLoginModel } from '../../model/common'
+import { ResNewsDetailModel } from '../../model/news/resNews'
 import { productTypeListModel } from '../../model/reputation/reputation'
 import { ResCompanyProductInfoModel } from '../../model/reputation/resreputation'
 import { userlogin } from '../../routes/login'
@@ -134,9 +136,47 @@ export default class User {
     @get('/news/:tabType?/:pageIndex?')
     async news(ctx: Context, next: Next) {
         let { tabType, pageIndex } = ctx.params
+        //获取新闻分类
+        let labels = [{
+            id: 0,
+            value: '全部'
+        }]
+
+        labels.push(...publishNews)
+
+        let newlabels: any[] = []
+        labels.forEach(item => {
+            newlabels.push({
+                class: '',
+                title: item.value,
+                id: item.id,
+                nlink: 'javascript:(0)'
+            })
+        })
+
+        //--------------------------------
+        //获取新闻列表
+        let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+
+
+        let newdata = await GetNewsByCompanyId(cookieuserinfo.company.companyId, 0, 0)
+        let firstnewlist: any = []
+        newdata.forEach(item => {
+            firstnewlist.push({
+                logo: item.newsIcon,
+                title: item.newsTitle,
+                label: [NewsContentTypeArray[item.newsContentType]],
+                id: item.newsId,
+                author: item.companyName,
+                createTime: item.newsTime
+            })
+        })
+        //--------------------------------
         await ctx.render('user/news', {
             tabType: tabType || 1,
-            pageIndex: pageIndex || 1
+            pageIndex: pageIndex || 1,
+            newlabels,
+            firstnewlist
         })
     }
 
@@ -181,13 +221,13 @@ export default class User {
         //     } 
         // }
 
-        // let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+        let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
 
 
 
         //areaCode
         await ctx.render('user/information', {
-            // cookieuserinfo
+            cookieuserinfo
         })
     }
 
@@ -290,36 +330,53 @@ export default class User {
     }
 
     @middlewares([user_login_middleware])
-    @get('/publishnews')
+    @get('/publishnews/:newsId?/:drafts?')
     async publishnews(ctx: Context, next: Next) {
-
+        let { newsId, drafts } = ctx.params
         let cookie = getCookie(ctx, userlogin)
         let companyId = 1
         if (cookie !== 'undefined') {
             companyId = JSON.parse(cookie).company.companyId
         }
 
-        let { newsId } = ctx.params
+        //修改
+        let newsinfo: ResNewsDetailModel
+        let newsTypeList: any[] = []
+        if (newsId && !drafts) {
+            newsinfo = await GetNewsById(newsId)
+
+            newsinfo.newsDetail.newsType.forEach(type => {
+                newsTypeList.push({
+                    id: type,
+                    value: publishNewsTypeEnumsAry[parseInt(type)]
+                })
+            })
+        }
         //细节标签
         let labels = publishNews
-
+        //----------------------------------------------------------------
         //公司的产品集合
+        let selectOptionbject: any = { selectIndex: 0, data: [] }
         let productType: ResCompanyProductInfoModel[] = await GetCompanyProduct({ companyId }) || []
+        productType.forEach((item, index) => {
+            if (newsId && !drafts && newsinfo.product.productId === item.productId) {
+                selectOptionbject.selectIndex = index
+            }
 
-        console.log(productType)
-
-        let productSelectOption: any[] = []
-        //数据转化
-        productType.forEach((item) => {
-            productSelectOption.push({
+            selectOptionbject.data.push({
                 id: item.productId,
                 value: item.productName
             })
         })
-
+        //----------------------------------------------------------------
         await ctx.render('user/publishnews', {
             labels,
-            productSelectOption
+            drafts: !!drafts,
+            newsId,
+            newsinfo,
+            newsTypeList,
+            selectOptionbject,
+            newsType: newsinfo?.newsDetail?.newsType || []
         })
     }
 

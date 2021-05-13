@@ -14,6 +14,7 @@ import { NewsContentTypeArray, subCodeEnums } from '../../../../enums/enums'
 import { GetNewsList } from '../../common/service/news.services'
 import { get_unix_time_stamp, ge_time_format } from '../../../../common/utils/util'
 import { navigationbar } from '../../components/navigationbar'
+import window from '../../common/win/windows'
 declare const $: JQueryStatic
 declare const reshighKbChart: any[]
 
@@ -160,7 +161,7 @@ declare const document: Document
                         businesslogo: item.companyIcon,
                         businessname: item.companyName,
                         timetick: get_unix_time_stamp(item.newsTime, 2),
-                        slug: [NewsContentTypeArray[item.NewsContentType]]
+                        slug: [NewsContentTypeArray[item.newsContentType]]
                     })
                 })
                 let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })
@@ -168,6 +169,8 @@ declare const document: Document
                 if (datas.code === 0) {
                     nownew.find('.list_box').append(datas.bodyMessage)
                     isloaded = false
+
+                    window.imgload()
                 }
             }
 
@@ -179,6 +182,7 @@ declare const document: Document
     navigationbar(nownew[0], async (dom: HTMLElement) => {
         let id = dom.getAttribute('data-id')
         let newsList = await GetNewsList(parseInt(id))
+        console.log(newsList)
         let NewsList: any[] = []
         if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
 
@@ -197,7 +201,7 @@ declare const document: Document
                     businesslogo: item.companyIcon,
                     businessname: item.companyName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
-                    slug: [NewsContentTypeArray[item.NewsContentType]]
+                    slug: [NewsContentTypeArray[item.newsContentType]]
                 })
             })
             let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })
@@ -205,6 +209,7 @@ declare const document: Document
             if (datas.code === 0) {
                 nownew.find('.list_box').html(datas.bodyMessage)
                 isloaded = false
+                window.imgload()
             }
             isloaded = false
         }

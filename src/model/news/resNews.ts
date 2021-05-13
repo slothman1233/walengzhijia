@@ -21,7 +21,7 @@ import { bodyModel } from '../resModel'
  * @param {string} newsIcon 新闻封面图
  * @param {string} newsTime 新闻时间
  * @param {number} praiseCount 点赞数
- * @param {NewsContentTypeEnums} NewsContentType 文章内容类型
+ * @param {NewsContentTypeEnums} newsContentType 文章内容类型
  */
 export interface ResNewsModel {
   newsId?: number
@@ -40,7 +40,7 @@ export interface ResNewsModel {
   newsIcon: string
   newsTime: string
   praiseCount:number
-  NewsContentType: NewsContentTypeEnums
+  newsContentType: NewsContentTypeEnums
 }
 
 /**

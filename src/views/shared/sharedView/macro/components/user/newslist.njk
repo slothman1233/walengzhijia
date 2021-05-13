@@ -1,0 +1,55 @@
+{% macro newslist(type, newdata) %}
+  {% for item in newdata %}
+    <div class="child">
+      {% if type == 1 %}
+        <a href="/news/{{item.id}}" target="_blank">
+          <img _src_="{{item.logo}}" />
+        </a>
+      {% else %}
+        <img _src_="{{item.logo}}"/>
+      {% endif %}
+
+      <div class="c">
+        <h3>
+          {% if type == 1 %}
+            <a href="/news/{{item.id}}" target="_blank">
+              <p>{{item.title}}</p>
+            </a>
+          {% else %}
+            <p>{{item.title}}</p>
+          {% endif %}
+          {% if type == 1 %}
+            <span class="zd" style='display:{{(type == 1) and (loop.index == 1) | ternary("inline-block","none")}}'>已置顶</span>
+          {% endif %}
+
+        </h3>
+        {% if item.label != null and item.label.length > 0 %}
+          <p class="clearfix label">
+            {% for labelitem in item.label %}
+              <span>{{labelitem}}</span>
+            {% endfor %}
+          </p>
+        {% endif %}
+
+        {% if type == 1 %}
+          <p class="createtime">
+            <span>发布时间：{{item.createTime  | get_time_timestamp | ge_time_format(2)}}</span>
+            <span>发布者：{{item.author}}</span>
+          </p>
+        {% endif %}
+      </div>
+      <div class="r">
+        {% if type == 1 %}
+          <a href="/user/publishnews/{{item.id}}">修改</a>
+          <a href="javascript:(0)" data-id="{{item.id}}" class="del">删除</a>
+          <a href="javascript:(0)" data-id="{{item.id}}" class="stick">{{ (loop.index0 === 0) | ternary("取消置顶","置顶") }}</a>
+        {% elif type == 2 %}
+          <a href="/user/publishnews/{{item.id}}/1">修改</a>
+          <a href="javascript:(0)" data-id="{{item.id}}" class="del">删除</a>
+
+        {% endif %}
+      </div>
+    </div>
+    {# {% endif %} #}
+  {% endfor %}
+{% endmacro %}

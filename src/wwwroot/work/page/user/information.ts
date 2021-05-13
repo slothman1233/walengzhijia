@@ -258,6 +258,7 @@ async function getSelectOptionHtml(object: any) {
                 }
 
                 usercookie.areaCode = parseInt(id)
+                usercookie.areaCodeValue = `${area} ${city}`
                 window.setusercookie(JSON.stringify(usercookie))
                 selectOptin_box.hide()
                 $(dom).siblings('.textarea').show()

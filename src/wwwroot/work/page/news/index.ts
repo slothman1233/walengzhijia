@@ -15,6 +15,10 @@ declare const newsId: any
 
 let main = document.querySelector('#main');
 
+//分享
+(function () {
+    new share({})
+})();
 
 //评论
 (async function () {

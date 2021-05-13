@@ -7,11 +7,16 @@ import { selectOption1 } from '../../components/select'
 import window from '../../common/win/windows'
 import { editor_uploadimg, editor_uploadvideo } from '../../components/editor'
 import { uploadfilefnImg } from '../../components/uploadfile'
-import { AddNews } from '../../common/service/news.services'
-import { NewsContentTypeEnums, subCodeEnums } from '../../../../enums/enums'
+import { AddNews, UpdateNews } from '../../common/service/news.services'
+import { NewsContentTypeArray, NewsContentTypeEnums, publishNewsTypeEnumsAry, subCodeEnums } from '../../../../enums/enums'
 declare const $: JQueryStatic
 declare const document: any
 declare const laydate: any
+declare const isdrafts: any
+declare const newsId: any
+declare let newsIcon: any
+declare let newsType: any[]
+let newsStorage = 'newsStorage'
 
 //用户id
 let userId = JSON.parse(getCookie(config.userlogin)).userId
@@ -32,19 +37,73 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId
  * @param {number} createUser 新闻创建者
  */
 let publishData: NewsInfoModel = {
-    newsId: 0,
+    newsId: newsId || 0,
     companyId: companyId,
     productId: document.getElementById('s1').querySelector('.option p').getAttribute('data-id') || 0,
-    newsType: null,
+    newsType,
     newsTitle: '',
     source: '',
     newsContent: '',
-    newsIcon: null,
+    newsIcon: newsIcon,
     createUser: userId,
     newsContentType: NewsContentTypeEnums.content
 }
 
 let usermain = document.getElementById('usermain');
+
+
+//草稿默认赋值 
+(async function () {
+    if (!isdrafts) { return }
+    let cache = JSON.parse(localStorage.getItem(newsStorage)) || {}
+
+    if (!cache[newsId]) { return }
+
+    let data = cache[newsId]
+
+    publishData = data
+
+    let Detailslabel = usermain.querySelector('.Detailslabel')
+    //标签选择 
+    let labelhtml = ``
+    if (publishData.newsType && publishData.newsType.length > 0) {
+        publishData.newsType.forEach(id => {
+            let value = publishNewsTypeEnumsAry[parseInt(id)]
+            labelhtml += `<span data-id="${id}">
+            <b>${value}</b>
+            <i data-id="${id}" class="iconfont_wlzj"></i>
+        </span>`
+        })
+    }
+
+    Detailslabel.innerHTML = labelhtml
+    //----------------------------------------------------------------
+    //新闻标题
+    let productname = usermain.querySelector('.summary .title p input')
+    productname.value = publishData.newsTitle
+    //----------------------------------------------------------------
+    //关联产品
+    let selectOption = usermain.querySelector('.selectOption')
+    let option = selectOption.querySelector('.option')
+    let h1: HTMLElement = selectOption.querySelector('h1')
+    let span = h1.querySelector('span')
+    h1.setAttribute('data-id', publishData.productId.toString())
+    span.innerHTML = option.querySelector('p[data-id="' + publishData.productId + '"]').innerText
+    //----------------------------------------------------------------
+    //产品封面
+
+    let uploadimg = usermain.querySelector('.uploadproduct .uploadimg')
+    if (publishData.newsIcon.length > 0) {
+        uploadimg.querySelector('.preview').style.backgroundImage = `url(${publishData.newsIcon})`
+        uploadimg.querySelector('.preview').style.display = 'block'
+        uploadimg.querySelector('.delete').style.display = 'block'
+    }
+
+
+    //----------------------------------------------------------------
+    window.imgload()
+})();
+
 
 //选择标签
 (function () {
@@ -54,7 +113,7 @@ let usermain = document.getElementById('usermain');
     let list = labels.querySelector('.list')
 
 
-    let newsTypeAry: any[] = []
+    let newsTypeAry: any[] = newsType
 
     //点击X删除
     on({
@@ -118,6 +177,14 @@ let usermain = document.getElementById('usermain');
     window.onload = function () {
         onload && onload()
         window.publishnews_ue.ready(function () {
+            if (!isdrafts) {
+                //修改
+                window.publishnews_ue.setContent(document.getElementById('editorContent').innerHTML)
+            } else {
+                //草稿
+                window.publishnews_ue.setContent(publishData.newsContent)
+            }
+
             editor_uploadimg('edit_container', window.publishnews_ue, {
                 success: function (imgdom: HTMLImageElement) {
                     console.log(imgdom)
@@ -156,6 +223,35 @@ let usermain = document.getElementById('usermain');
     })
 })();
 
+//保存为草稿
+(function () {
+    if (newsId && !isdrafts) { return }
+
+    let submit = usermain.querySelector('.submit')
+    let drafts = submit.querySelector('.drafts')
+    let newsIds = Date.now().toString()
+    drafts.onclick = function () {
+        let productname = usermain.querySelector('.summary .title p input')
+
+        //产品名称
+        if (productname.value.length <= 0) {
+            alert('请输入新闻标题')
+            return
+        }
+
+        let draftsCache = localStorage.getItem(newsStorage) || '{}'
+        let cachejson = JSON.parse(draftsCache)
+        if (isdrafts) {
+            newsIds = newsId
+        }
+        setPublishData()
+        cachejson[newsIds] = publishData
+
+        localStorage.setItem(newsStorage, JSON.stringify(cachejson))
+        alert('保存草稿成功')
+    }
+})();
+
 
 //提交
 (function () {
@@ -172,6 +268,14 @@ let usermain = document.getElementById('usermain');
 
 })()
 
+function setPublishData() {
+    let productname = usermain.querySelector('.summary .title p input')
+    //新闻标题
+    publishData.newsTitle = productname.value
+
+    //新闻内容
+    publishData.newsContent = window.publishnews_ue.body.innerHTML
+}
 
 async function getsubContent() {
     let productname = usermain.querySelector('.summary .title p input')
@@ -192,23 +296,43 @@ async function getsubContent() {
         return
     }
 
-    //新闻标题
-    publishData.newsTitle = productname.value
+    if (!publishData.newsIcon) {
+        alert('请上传产品封面')
+        return
+    }
 
 
-    //新闻内容
-    publishData.newsContent = window.publishnews_ue.body.innerHTML
-    
+
+    setPublishData()
+
     //判断文章是否有音频
     //有音频则为音频类型
     if (window.publishnews_ue.body.querySelector('video')) {
         publishData.newsContentType = NewsContentTypeEnums.video
     }
 
-    let datajson = await AddNews(publishData)
+
+
+    let datajson
+    if ((newsId && isdrafts) || !newsId) {
+        //草稿  和  发布
+        datajson = await AddNews(publishData)
+    } else {
+        //修改
+        datajson = await UpdateNews(publishData)
+    }
 
     if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
+        if (isdrafts) {
+            let cache = JSON.parse(localStorage.getItem(newsStorage)) || {}
+            delete cache[newsId]
+            localStorage.setItem(newsStorage, JSON.stringify(cache))
+        }
+
         alert('添加成功')
+        setTimeout(() => {
+            document.location.href = '/user/news'
+        }, 3000)
     } else {
         alert(datajson.bodyMessage)
     }

@@ -42,7 +42,7 @@ Node.js >= 8.0.0 required. You can use 4.x in Node.js < 8.
 ### QA
 You can join DingDing Talk Group, [Group Link](https://qr.dingtalk.com/action/joingroup?code=v1,k1,inkSDqCxm7LilkaR/kknRVBDQ8PDA0Lj5hj4Cf9io3w=&_dt_no_comment=1&origin=11)
 
-<img src="task/dingding.jpg" height="400" title="dingding" width="300">
+<img _src_="task/dingding.jpg" height="400" title="dingding" width="300">
 
 ## License
 

@@ -98,7 +98,7 @@ function getImgcollection(imgArray: string[]) {
     let html = ``
     for (let i = 0; i < imgArray.length; i++) {
         html += `<div class="child">
-           <img src="${imgArray[i]}"/>
+           <img _src_="${imgArray[i]}"/>
            <span><i class="iconfont_wlzj">&#xE01E;</i></span>
          </div>`
     }

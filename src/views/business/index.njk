@@ -66,15 +66,15 @@ kblist1 %}
           {# <img data-viewer="https://vd2.bdstatic.com/mda-mdgffn3rwmgtyi5p/sc/cae_h264/1618628392/mda-mdgffn3rwmgtyi5p.mp4?v_from_s=hkapp-haokan-suzhou&auth_key=1618649702-0-0-ec5628162127f28779c191caa8e7744a&bcevod_channel=searchbox_feed&pd=1&pt=3&abtest=3000165_1" /> #}
           <i class="iconfont_wlzj">&#xE01B;</i>公司介绍视频
         </span>
-        <img src="{{companyinfo.logo}}"/>
+        <img _src_="{{companyinfo.logo}}"/>
       </div>
 
       <div class="center">
         <div class="title">
-          <p>{{companyinfo.fullName}}</p>
+          <p>{{companyinfo.abbrName}}</p>
           {% if companyinfo.hotDefine == 1 %}
              <span>
-            <i><img src="/assets/images/union.png"/></i>
+            <i><img _src_="/assets/images/union.png"/></i>
             {{companyinfo.hotDefine | get_companyHotType}}
           </span>
           {% endif %}
@@ -95,7 +95,7 @@ kblist1 %}
             <span>地址： </span>{{companyinfo.addr}}</p>
           <p class="introduction">
             <span>公司简介：</span>{{companyinfo.desc}}
-            <a href="{copanyinfo.companyId}}">更多</a>
+            {# <a href="{{copanyinfo.companyId}}">更多</a> #}
           </p>
         </div>
       </div>
@@ -148,7 +148,7 @@ kblist1 %}
               {% for item in GetCompanyProduct.items %}
                 <div class="child">
                   <a class="logo" href="/business/product/{{companyId}}/{{item.productId}}" target="_blank">
-                    <img src="{{item.productCover}}"/>
+                    <img _src_="{{item.productCover}}"/>
                   </a>
                   <a href="/business/product/{{companyId}}/{{item.productId}}" target="_blank">
                     <h1>{{item.productName}}</h1>
@@ -261,7 +261,7 @@ kblist1 %}
             <div class="child">
               <a class="title" href="/business/answer/{{item.id}}" target="_blank">{{item.title}}</a>
               <div class="author">
-                <img src="{{item.hread}}"/>
+                <img _src_="{{item.hread}}"/>
                 <span>{{item.author}}</span>
                 <span>{{item.time}}</span>
                 <span>提问</span>

@@ -68,7 +68,7 @@
           <div class="child clearfix logo">
             <p>公司LOGO：</p>
             <div class="padding">
-              <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+              <img _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
 
               <p>（logo比例3：2  需为纯色底并小于1M）</p>
             </div>
@@ -114,7 +114,7 @@
             <p>营业执照照片：</p>
 
             <div class="padding">
-              <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+              <img _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
             </div>
             <a href="javascript:void(0)">上传营业执照<input type="file" class="uploadfileinput" multiple="multiple" accept="image/*"/></a>
           </div>
@@ -126,7 +126,7 @@
         {% if salersList != null and salersList.length > 0 %}
           {% for item in salersList %}
             <div class="child">
-              <img src="{{item.salerIcon}}"/>
+              <img _src_="{{item.salerIcon}}"/>
               <div class="c">
                 <h3>{{item.salerName}}</h3>
                 <p class="clearfix">
@@ -134,7 +134,7 @@
                   <span>职能：{{item.salerFunction}}</span>
                   <span>从业时间：{{item.salerWorkYears}}年</span>
                 </p>
-                <p class="createtime">添加时间：{{item.createTime | ge_time_format(2)}}</p>
+                <p class="createtime">添加时间：{{item.createTime | get_time_timestamp | ge_time_format(2)}}</p>
               </div>
               <div class="r">
                 <a href="/user/sales/2/{{item.salerId}}">修改</a>

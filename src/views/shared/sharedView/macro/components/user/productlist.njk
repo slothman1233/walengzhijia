@@ -2,9 +2,9 @@
   {% for item in companyObject %}
     <div class="child">
       {% if type == 1 %}
-        <a href="/business/product/{{item.companyId}}/{{item.id}}" target="_blank"><img src="{{item.logo}}"/></a>
+        <a href="/business/product/{{item.companyId}}/{{item.id}}" target="_blank"><img _src_="{{item.logo}}"/></a>
       {% else %}
-        <img src="{{item.logo}}"/>
+        <img _src_="{{item.logo}}"/>
       {% endif %}
 
       <div class="c">

@@ -1,6 +1,7 @@
 import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
+import window from '../../common/win/windows'
 declare const $: JQueryStatic
 (function () {
     let search = document.querySelector('#main .search')
@@ -68,6 +69,7 @@ declare const $: JQueryStatic
                     let list_box = $('#main .list_box')
                     list_box.append(datas.bodyMessage)
                     isloaded = false
+                    window.imgload()
                 }
             }, 500)
 

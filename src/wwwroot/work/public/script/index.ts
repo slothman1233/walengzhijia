@@ -4,8 +4,27 @@ import './top'
 import './popup'
 import window from '../../common/win/windows'
 import { delCookie, setCookie } from '../../common/utils/common'
+//全部图片加载
+//img的src不用赋值   只用加个 _src_  属性就OK
+window.imgload = function () {
+    let imgAry = document.body.querySelectorAll('img[_src_]')
+    imgAry.forEach((dom: HTMLImageElement) => {
+        let path = dom.getAttribute('_src_')
+        if (path && !dom.src) {
+            dom.onerror = function (r: any) {
+                this.src = '/assets/images/loading.png'
+            }
 
+            dom.src = path
+        } else if (!path && !dom.src) {
+            dom.src = '/assets/images/loading.png'
+        }
+    })
+};
 
+(function () {
+    window.imgload()
+})()
 
 /**
  * 获取用户cookie

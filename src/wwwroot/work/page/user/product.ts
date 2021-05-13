@@ -8,6 +8,7 @@ import { subCodeEnums } from '../../../../enums/enums'
 import { CompanyProductInfoModel } from '../../../../model/company/Company'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { bodyModel } from '../../../../model/resModel'
+import window from '../../common/win/windows'
 declare const tabType: any
 declare const pageIndex: number
 declare const totalPages: number
@@ -53,6 +54,7 @@ declare const $: JQueryStatic
                 })
                 let html = await getdata(datajson)
                 $('#usermain .publish .child_box').html(html)
+                window.imgload()
             }
 
         })
@@ -74,9 +76,8 @@ declare const $: JQueryStatic
 
 
         let html = await getdata(datajson)
-
         $('#usermain .publish .child_box').html(html)
-
+        window.imgload()
         kkpager({
             pagerid: 'publish_kkpage',
             total: datajson.bodyMessage.totalPages,
@@ -99,6 +100,7 @@ declare const $: JQueryStatic
 
                 let html = await getdata(datajson)
                 $('#usermain .publish .child_box').html(html)
+                window.imgload()
             }
 
         })
@@ -121,7 +123,7 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
             })
 
             html += `<div class="child">
-            <a href="/business/product/${companyId}/${item.productId}" target="_blank"><img src="${item.productCover}"/></a>
+            <a href="/business/product/${companyId}/${item.productId}" target="_blank"><img _src_="${item.productCover}"/></a>
             
             <div class="c">
               <h3>
@@ -197,6 +199,7 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
                 console.log(id)
                 let html = await getdata(id)
                 $('#usermain .drafts .child_box').html(html)
+                window.imgload()
             }
 
         })

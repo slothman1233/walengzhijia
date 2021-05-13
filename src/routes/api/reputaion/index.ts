@@ -20,8 +20,18 @@ export default class Index {
         ctx.body = models
     }
 
-  
 
+    /**
+         * 根据公司获得该公司对应的口碑
+         * @param {string|number} id 行业标识ID
+         */
+    @get('/GetReputationByCompany')
+    async GetReputationByCompany(ctx: Context) {
+        let { companyId } = ctx.query
+
+        let models = await GetReputationByCompanyRm(companyId)
+        ctx.body = models
+    }
 
 
 
