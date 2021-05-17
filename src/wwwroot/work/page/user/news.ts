@@ -10,8 +10,10 @@ import window from '../../common/win/windows'
 import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { NewsInfoModel } from '../../../../model/news/news'
+import { GetNewsPagesByCompanyId } from '../../common/service/ManageLepackNews'
 declare const tabType: any
 declare const pageIndex: number
+declare const totalPages: number
 declare const $: JQueryStatic
 
 //用户id
@@ -34,7 +36,7 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
     if (document.getElementById('publish_kkpage')) {
         kkpager({
             pagerid: 'publish_kkpage',
-            total: 20,
+            total: totalPages,
             pno: pageIndex,
             mode: 'click',
             isShowFirstPageBtn: false,
@@ -47,8 +49,8 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
             click: async function (i: number) {
                 let id = $('#usermain .publish .navigationbar2 .select').data('id')
                 console.log(id)
-                let html = await getdata(id)
-                $('#usermain .publish .child_box').html(html)
+                let d = await getdata(id, i)
+                $('#usermain .publish .child_box').html(d.html)
                 window.imgload()
             }
 
@@ -60,13 +62,13 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
 
         let id = $(dom).data('id')
 
-        let html = await getdata(id)
+        let d = await getdata(id, 1)
 
-        $('#usermain .publish .child_box').html(html)
+        $('#usermain .publish .child_box').html(d.html)
         window.imgload()
         kkpager({
             pagerid: 'publish_kkpage',
-            total: 20,
+            total: d.totalPages,
             pno: 1,
             mode: 'click',
             isShowFirstPageBtn: false,
@@ -77,8 +79,8 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
                 nextPageText: '下一页',
             },
             click: async function (i: number) {
-                let html = await getdata(id)
-                $('#usermain .publish .child_box').html(html)
+                let d = await getdata(id, i)
+                $('#usermain .publish .child_box').html(d.html)
                 window.imgload()
             }
 
@@ -113,13 +115,6 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
             })
         }
 
-        // logo: item.newsIcon,
-        // title: item.newsTitle,
-        // label: [NewsContentTypeArray[item.newsContentType]],
-        // id: item.newsId,
-        // author: item.companyName,
-        // createTime: item.newsTime
-
         let datas: bodyModel<string> = await getcomponent({ path: 'components/user/newslist.njk', name: 'newslist', data: { type: 2, newdata: contentData } })
 
         if (datas.code === 0) {
@@ -132,20 +127,26 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
 })()
 
 //获取数据
-async function getdata(id: any) {
+async function getdata(id: any, pageIndex: number) {
     let cookieuserinfo = JSON.parse(window.getusercookie())
     let html = ``
 
-    let newdata = await GetNewsByCompanyId(cookieuserinfo.company.companyId, id, 0)
+    let newdata = await GetNewsPagesByCompanyId(
+        {
+            companyId: cookieuserinfo.company.companyId,
+            newsType: id,
+            pageIndex
+        }
+    )
     let newslist: any = []
     if (newdata.code === 0 && newdata.subCode === subCodeEnums.success) {
-        newdata.bodyMessage.forEach(item => {
+        newdata.bodyMessage.items.forEach(item => {
             newslist.push({
                 logo: item.newsIcon,
                 title: item.newsTitle,
                 label: [NewsContentTypeArray[item.newsContentType]],
                 id: item.newsId,
-                author: item.companyName,
+                author: item.userName,
                 createTime: item.newsTime
             })
         })
@@ -157,8 +158,7 @@ async function getdata(id: any) {
         }
     }
 
-
-    return html
+    return { html, totalPages: newdata?.bodyMessage?.totalPages || 1 }
 }
 
 (function () {

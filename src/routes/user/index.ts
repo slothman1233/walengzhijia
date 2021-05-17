@@ -4,6 +4,7 @@ import { get, middlewares } from '../../common/decorator/httpMethod'
 import { getCookie } from '../../common/utils/cookies'
 import { GetAreaInfosByCode } from '../../controller/AreaInfo.controller'
 import { GetCompanySalerById, GetSalersByCompanyId } from '../../controller/company.controller'
+import { GetNewsPagesByCompanyId } from '../../controller/ManageLepackNews.controller'
 import { GetNewsByCompanyId, GetNewsById } from '../../controller/news.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType, GetProductIndustryByIndustry } from '../../controller/product.controller'
 import { NewsContentTypeArray, productImgTypeEnums, publishNews, publishNewsTypeEnums, publishNewsTypeEnumsAry } from '../../enums/enums'
@@ -33,18 +34,22 @@ export default class User {
 
         let cookie = getCookie(ctx, userlogin)
         let companyId = 1
+        let cookieJson = JSON.parse(cookie)
         if (cookie !== 'undefined') {
-            companyId = JSON.parse(cookie).company.companyId
+            companyId = cookieJson.company.companyId
         }
 
         //获取销售信息
         let salersList = await GetSalersByCompanyId({ companyId })
         //--------------------------------------------------------
 
+        console.log(cookie)
+
 
         await ctx.render('user/datamanager', {
             tabType: tabType || 1,
-            salersList
+            salersList,
+            company: cookieJson.company
         })
     }
 
@@ -158,23 +163,29 @@ export default class User {
         //获取新闻列表
         let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
 
-
-        let newdata = await GetNewsByCompanyId(cookieuserinfo.company.companyId, 0, 0)
+        //GetNewsPagesByCompanyId
+        let newdata = await GetNewsPagesByCompanyId({
+            companyId: cookieuserinfo.company.companyId,
+            newsType: publishNewsTypeEnums.new,
+            pageIndex: 1
+        })
         let firstnewlist: any = []
-        newdata.forEach(item => {
+        newdata.items.forEach(item => {
             firstnewlist.push({
                 logo: item.newsIcon,
                 title: item.newsTitle,
                 label: [NewsContentTypeArray[item.newsContentType]],
                 id: item.newsId,
-                author: item.companyName,
+                author: item.userName,
                 createTime: item.newsTime
             })
         })
         //--------------------------------
+
         await ctx.render('user/news', {
             tabType: tabType || 1,
-            pageIndex: pageIndex || 1,
+            pageIndex: newdata.pageIndex,
+            totalPages: newdata.totalPages,
             newlabels,
             firstnewlist
         })

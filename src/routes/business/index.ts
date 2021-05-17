@@ -16,7 +16,7 @@ export default class Business {
     @get('/:companyId?')
     async index(ctx: Context, next: Next) {
         let { companyId } = ctx.params
-        let productTypeId = 0
+        //  let productTypeId = 0
 
         //公司信息
         let companyinfo = await GetCompanyInfoById({ companyId })
@@ -24,12 +24,17 @@ export default class Business {
         //根据公司ID获得所有产品分类
         let reputationtype = await GetCompanyProductType({ companyId })
 
-        let reputationtypeinfo: any[] = []
-        if(reputationtype && reputationtype.length > 0){
+        let reputationtypeinfo: any[] = [{
+            class: '',
+            title: '全部',
+            id: 0,
+            nlink: 'javascript:(0)'
+        }]
+        if (reputationtype && reputationtype.length > 0) {
             reputationtype.forEach((item, index) => {
-                if (index === 0) {
-                    productTypeId = item.productTypeId
-                }
+                // if (index === 0) {
+                //     productTypeId = item.productTypeId
+                // }
                 reputationtypeinfo.push({
                     class: '',
                     title: item.productTypeName,
@@ -38,14 +43,13 @@ export default class Business {
                 })
             })
         }
-       
+
         //----------------------------------------------
         //根据公司ID和产品id 获取产品列表
-        let GetCompanyProduct = await GetCompanyProductByTypeId({ companyId, productTypeId, pageIndex: 1, pageSize: 10 })
+        let GetCompanyProduct = await GetCompanyProductByTypeId({ companyId, productTypeId: 0, pageIndex: 1, pageSize: 10 })
         //----------------------------------------------
         ///获得公司口碑集合
         let Reputation = await GetReputationByCompany(companyId)
-        console.log(Reputation)
 
         let reshighKb: any[] = []
         let reshighKbChart: any[] = []
@@ -95,7 +99,7 @@ export default class Business {
         if (firstNews) {
             firstNews.forEach((item) => {
                 let link = '/news/' + item.newsId
-                if(item.reputationId !== 0){
+                if (item.reputationId !== 0) {
                     link = '/news/reputation/' + item.newsId
                 }
                 firstNewsList.push({
@@ -103,7 +107,7 @@ export default class Business {
                     img: item.newsIcon,
                     title: item.newsTitle,
                     content: item.newsContent.replace(/<[^>]*>|/g, ''),
-                    author: item.createUser,
+                    author: item.userName,
                     time: ge_time_format(item.newsTime, '2'),
                     businesslogo: item.companyIcon,
                     businessname: item.companyName,
@@ -184,7 +188,7 @@ export default class Business {
         if (firstNews) {
             firstNews.forEach((item) => {
                 let link = '/news/' + item.newsId
-                if(item.reputationId !== 0){
+                if (item.reputationId !== 0) {
                     link = '/news/reputation/' + item.newsId
                 }
                 firstNewsList.push({
@@ -195,7 +199,7 @@ export default class Business {
                     author: item.createUser,
                     time: ge_time_format(item.newsTime, '2'),
                     businesslogo: item.companyIcon,
-                    businessname: item.companyName,
+                    businessname: item.userName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
                     slug: [NewsContentTypeArray[item.newsContentType]]
                 })

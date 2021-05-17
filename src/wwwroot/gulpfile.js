@@ -26,7 +26,7 @@ let config = require('./node/gulp/config')
 let paths = build.paths
 // var isArrayFn = build.isArrayFn;
 // var babelify = require("babelify");
-plumber = require('gulp-plumber')
+let plumber = require('gulp-plumber')
 // var babel = require('gulp-babel');
 
 const { createGulpEsbuild } = require('./node/common/gulp_esbuild')
@@ -61,7 +61,7 @@ function bundle(src, cb, overmessge = true) {
             //去掉开头的work\\
             path.dirname = path.dirname.replace(/^work\\/i, '')
             //把page\\替换成scripts
-            if (path.dirname.indexOf('page\\') == 0) {
+            if (path.dirname.indexOf('page\\') === 0) {
                 path.dirname = path.dirname.replace(/^page\\/i, 'scripts\\')
             }
         }))
@@ -255,7 +255,10 @@ gulp.task('devStart',
     gulp.series(
         //  'clean',
         gulp.parallel('build', 'less', 'publicless'),
-    ),
+    ), function(cb){
+        console.log(123123)
+        cb&&cb()
+    }
 )
 
 gulp.task('watch',

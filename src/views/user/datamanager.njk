@@ -42,6 +42,8 @@
 
           }) }}
 
+  
+
     <div class="box">
       <div class="basic" style='display:{{(tabType == 1) | ternary("block","none") }}'>
         <div class="title">基本信息</div>
@@ -50,7 +52,7 @@
           <div class="child clearfix">
             <p>公司名称：</p>
             <div class="textarea" contenteditable="false">
-             公司名称******************
+             {{company.abbrName}}
             </div>
             <a href="javascript:void(0)" class="applyfor">申请修改</a>
             <a href="javascript:void(0)" class="submit">确认修改</a>
@@ -59,7 +61,7 @@
           <div class="child clearfix">
             <p>公司全称：</p>
             <div class="textarea" contenteditable="false">
-             公司名称******************
+             {{company.fullName}}
             </div>
             <a href="javascript:void(0)" class="applyfor">申请修改</a>
             <a href="javascript:void(0)" class="submit">确认修改</a>
@@ -68,7 +70,7 @@
           <div class="child clearfix logo">
             <p>公司LOGO：</p>
             <div class="padding">
-              <img _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+              <img _src_="  {{company.logo}}"/>
 
               <p>（logo比例3：2  需为纯色底并小于1M）</p>
             </div>
@@ -78,7 +80,7 @@
           <div class="child clearfix">
             <p>公司网址：</p>
             <div class="textarea" contenteditable="false">
-             公司名称******************
+              {{company.website}}
             </div>
             <a href="javascript:void(0)" class="applyfor">申请修改</a>
             <a href="javascript:void(0)" class="submit">确认修改</a>
@@ -87,7 +89,7 @@
           <div class="child clearfix">
             <p>公司电话：</p>
             <div class="textarea" contenteditable="false">
-             公司名称******************
+             {{company.contactPhone}}
             </div>
             <a href="javascript:void(0)" class="applyfor">申请修改</a>
             <a href="javascript:void(0)" class="submit">确认修改</a>
@@ -96,7 +98,7 @@
           <div class="child clearfix">
             <p>公司地址：</p>
             <div class="textarea" contenteditable="false">
-             公司名称******************
+             {{company.addr}}
             </div>
             <a href="javascript:void(0)" class="applyfor">申请修改</a>
             <a href="javascript:void(0)" class="submit">确认修改</a>
@@ -104,7 +106,7 @@
           <div class="child clearfix">
             <p>公司介绍：</p>
             <div class="textarea" contenteditable="false">
-              湖北京山轻工机械股份有限公司（简称“京山轻机”）是中国最大的纸箱、纸盒包装机械生产和出口基地，是中国轻工总会和中国包装总公司定点生产纸制品包装机械的最大骨干企业。1998年6月26日在深圳证券交易所正式挂牌上市（股票代码：000821）。近几年，公司积极对接武汉大学、华科大、武中国轻工总会和中国包装总公司定点生产纸制品包装机械的最大骨干企业。1998年6月26日在深圳证券交易所正式挂牌中国轻工总会和中国包装总公司定点生产纸制品包装机械的最大骨干企业。1998年6月26日在深圳证券交易所正式挂牌。
+             {{companyinfo.desc}}
             </div>
             <a href="javascript:void(0)" class="applyfor">申请修改</a>
             <a href="javascript:void(0)" class="submit">确认修改</a>
@@ -114,7 +116,7 @@
             <p>营业执照照片：</p>
 
             <div class="padding">
-              <img _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
+              <img _src_="{{company.license}}"/>
             </div>
             <a href="javascript:void(0)">上传营业执照<input type="file" class="uploadfileinput" multiple="multiple" accept="image/*"/></a>
           </div>

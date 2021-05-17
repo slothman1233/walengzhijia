@@ -60,8 +60,9 @@ navigationbar2 %}
         <div class="row1">
           <div class="left">
             <img _src_="{{CompanyProductInfo.productCover}}"/>
+
             <div class="more">
-              {% if CompanyProductInfo.productVideo != null %}
+              {% if CompanyProductInfo.productVideo != null and CompanyProductInfo.productVideo.length > 0%}
                 <span class="productVideo" data-viewer="{{CompanyProductInfo.productVideo}}">
                   <i class='iconfont_wlzj'>&#xE01B;</i>产品视频介绍
                 </span>
@@ -83,7 +84,6 @@ navigationbar2 %}
                   {% endif %}
                 </p>
               </span>
-
             </div>
           </div>
 
@@ -283,7 +283,7 @@ navigationbar2 %}
 
         {% endif %}
 
-        <div class="question">
+        {# <div class="question">
           <div class="title">
             {{navigationbar({
                 isMore: false,
@@ -362,7 +362,7 @@ navigationbar2 %}
             <a href="#">我要提问</a>
           </div>
 
-        </div>
+        </div> #}
 
         <a class="advertising" href="#"><img _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0" class=""></a>
 

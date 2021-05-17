@@ -57,51 +57,51 @@ declare const tabIndex: any
 
 
 
-    on({
-        agent: bCategories,
-        events: 'click',
-        ele: 'span',
-        fn: async function (dom: any, e: any) {
-            let html = ''
-            siblings(dom, function (d: any) {
-                removeClass(d, 'active')
-            })
-            addClass(dom, 'active')
+    // on({
+    //     agent: bCategories,
+    //     events: 'click',
+    //     ele: 'span',
+    //     fn: async function (dom: any, e: any) {
+    //         let html = ''
+    //         siblings(dom, function (d: any) {
+    //             removeClass(d, 'active')
+    //         })
+    //         addClass(dom, 'active')
 
-            let data = await GetProductType(dom.id)
+    //         let data = await GetProductType(dom.id)
 
-            if (data.code === 0) {
-                let model = data.bodyMessage[0]
-                for (let i = 0; i < model.productTypeLabels.length; i++) {
-                    let item = model.productTypeLabels[i]
-                    let { productTypeDetailId, productTypeDetail } = item
-                    html += '<span class="" id="' + productTypeDetailId + '">' + productTypeDetail + '</span>'
-                }
+    //         if (data.code === 0) {
+    //             let model = data.bodyMessage[0]
+    //             for (let i = 0; i < model.productTypeLabels.length; i++) {
+    //                 let item = model.productTypeLabels[i]
+    //                 let { productTypeDetailId, productTypeDetail } = item
+    //                 html += '<span class="" id="' + productTypeDetailId + '">' + productTypeDetail + '</span>'
+    //             }
 
-            }
-
-
+    //         }
 
 
-            sCategories.innerHTML = html
-        }
-    })
 
-    on({
-        agent: sCategories,
-        events: 'click',
-        ele: 'span',
-        fn: function (dom: any, e: any) {
-            siblings(dom, function (d: any) {
-                removeClass(d, 'active')
-            })
-            addClass(dom, 'active')
 
-            let bid = bCategories.querySelector('.active').id
-            let sid = dom.id
-            document.location.href = `/list/${bid}/${sid}/${tabIndex}/1`
-        }
-    })
+    //         sCategories.innerHTML = html
+    //     }
+    // })
+
+    // on({
+    //     agent: sCategories,
+    //     events: 'click',
+    //     ele: 'span',
+    //     fn: function (dom: any, e: any) {
+    //         siblings(dom, function (d: any) {
+    //             removeClass(d, 'active')
+    //         })
+    //         addClass(dom, 'active')
+
+    //         let bid = bCategories.querySelector('.active').id
+    //         let sid = dom.id
+    //         document.location.href = `/list/${bid}/${sid}/${tabIndex}/1`
+    //     }
+    // })
 
 
 

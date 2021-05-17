@@ -39,7 +39,7 @@ declare const $: JQueryStatic
                         author: item.createUser,
                         time: ge_time_format(item.newsTime, '2'),
                         businesslogo: item.companyIcon,
-                        businessname: item.companyName,
+                        businessname: item.userName,
                         timetick: get_unix_time_stamp(item.newsTime, 2),
                         slug: [NewsContentTypeArray[item.newsContentType]]
                     })

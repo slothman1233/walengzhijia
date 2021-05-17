@@ -25,16 +25,18 @@ declare const document: Document
 
 
 (function () {
-    let imgSliders = new imageSlider({
-        sliderWindowId: 'slider_parents',
-        intervals: 3000,
-        time: 500,
-        hover: false,
-        switchType: 'hover',
-        sliderDomId: 'slider_doms',
-        sliderListName: '.slider_list',
-        switch: false
-    })
+    try {
+        let imgSliders = new imageSlider({
+            sliderWindowId: 'slider_parents',
+            intervals: 3000,
+            time: 500,
+            hover: false,
+            switchType: 'hover',
+            sliderDomId: 'slider_doms',
+            sliderListName: '.slider_list',
+            switch: false
+        })
+    } catch (e) { }
 })();
 
 (function () {
@@ -148,7 +150,7 @@ declare const document: Document
             if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
                 newsList.bodyMessage.forEach((item) => {
                     let link = '/news/' + item.newsId
-                    if(item.reputationId !== 0){
+                    if (item.reputationId !== 0) {
                         link = '/news/reputation/' + item.newsId
                     }
                     NewsList.push({
@@ -159,7 +161,7 @@ declare const document: Document
                         author: item.createUser,
                         time: ge_time_format(item.newsTime, '2'),
                         businesslogo: item.companyIcon,
-                        businessname: item.companyName,
+                        businessname: item.userName,
                         timetick: get_unix_time_stamp(item.newsTime, 2),
                         slug: [NewsContentTypeArray[item.newsContentType]]
                     })
@@ -188,7 +190,7 @@ declare const document: Document
 
             newsList.bodyMessage.forEach((item) => {
                 let link = '/news/' + item.newsId
-                if(item.reputationId !== 0){
+                if (item.reputationId !== 0) {
                     link = '/news/reputation/' + item.newsId
                 }
                 NewsList.push({
@@ -199,7 +201,7 @@ declare const document: Document
                     author: item.createUser,
                     time: ge_time_format(item.newsTime, '2'),
                     businesslogo: item.companyIcon,
-                    businessname: item.companyName,
+                    businessname: item.userName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
                     slug: [NewsContentTypeArray[item.newsContentType]]
                 })

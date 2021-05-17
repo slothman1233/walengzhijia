@@ -1,5 +1,6 @@
 
 import { JSONParse } from '../common/utils/ModelHelper'
+import { publishNewsTypeEnums } from '../enums/enums'
 import { NewsInfoModel } from '../model/news/news'
 import { ResNewsDetailModel, ResNewsDetailModelReturnModel, ResNewsModel, ResNewsModelListReturnModel } from '../model/news/resNews'
 import { bodyModel } from '../model/resModel'
@@ -58,8 +59,8 @@ export async function PostDeleteNews(params: NewsInfoModel): Promise<bodyModel<s
      * @param {number} companyId 公司id
      * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
      */
-export async function GetNewsByCompanyId(companyId: number = 0, newsType: number = 0, timetick: number = 0): Promise<ResNewsModel[] | null> {
-    let rm = await GetNewsByCompanyIdRm(companyId, newsType, timetick)
+export async function GetNewsByCompanyId(companyId: number = 0, newsType: publishNewsTypeEnums = publishNewsTypeEnums.new, timetick: number = 0, isReputation: boolean = true): Promise<ResNewsModel[] | null> {
+    let rm = await GetNewsByCompanyIdRm(companyId, newsType, timetick, isReputation)
     let models = JSONParse<ResNewsModel[] | null>(rm.code, rm.bodyMessage)
     return models
 }
@@ -69,10 +70,10 @@ export async function GetNewsByCompanyId(companyId: number = 0, newsType: number
      * @param {number} companyId 公司id
      * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
      */
-export async function GetNewsByCompanyIdRm(companyId: number = 0, newsType: number = 0, timetick: number = 0): Promise<ResNewsModelListReturnModel> {
+export async function GetNewsByCompanyIdRm(companyId: number = 0, newsType: publishNewsTypeEnums = publishNewsTypeEnums.new, timetick: number = 0, isReputation: boolean = true): Promise<ResNewsModelListReturnModel> {
     let params: GetNewsByCompanyIdModel
     params = {
-        companyId, timetick, newsType
+        companyId, timetick, newsType, isReputation
     }
     return await news.GetNewsByCompanyId(params).catch(data => data)
 }
@@ -83,9 +84,8 @@ export async function GetNewsByCompanyIdRm(companyId: number = 0, newsType: numb
  * @param {number} productId 产品id
  * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
  */
-export async function GetNewsByProductId(productId: number = 0, newsType: number = 0, timetick: number = 0): Promise<ResNewsModel[] | null> {
-    debugger
-    let rm = await GetNewsByProductIdRm(productId, newsType, timetick)
+export async function GetNewsByProductId(productId: number = 0, newsType: publishNewsTypeEnums = publishNewsTypeEnums.new, timetick: number = 0, isReputation: boolean = true): Promise<ResNewsModel[] | null> {
+    let rm = await GetNewsByProductIdRm(productId, newsType, timetick, isReputation)
     let models = JSONParse<ResNewsModel[] | null>(rm.code, rm.bodyMessage)
     return models
 }
@@ -95,10 +95,10 @@ export async function GetNewsByProductId(productId: number = 0, newsType: number
  * @param {number} productId 产品id
  * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
  */
-export async function GetNewsByProductIdRm(productId: number = 0, newsType: number = 0, timetick: number = 0): Promise<ResNewsModelListReturnModel> {
+export async function GetNewsByProductIdRm(productId: number = 0, newsType: publishNewsTypeEnums = publishNewsTypeEnums.new, timetick: number = 0, isReputation: boolean = true): Promise<ResNewsModelListReturnModel> {
     let params: GetNewsByProductIdModel
     params = {
-        productId, timetick, newsType
+        productId, timetick, newsType, isReputation
     }
     return await news.GetNewsByProductId(params).catch(data => data)
 }
@@ -109,7 +109,6 @@ export async function GetNewsByProductIdRm(productId: number = 0, newsType: numb
  * @param {number} newsId 新闻Id
  */
 export async function GetNewsById(newsId: number): Promise<ResNewsDetailModel | null> {
-    debugger
     let rm = await GetNewsByIdRm(newsId)
     let models = JSONParse<ResNewsDetailModel | null>(rm.code, rm.bodyMessage)
     return models

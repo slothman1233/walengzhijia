@@ -62,10 +62,11 @@ kblist1 %}
 
     <div class="row1">
       <div class="left">
-        <span>
-          {# <img data-viewer="https://vd2.bdstatic.com/mda-mdgffn3rwmgtyi5p/sc/cae_h264/1618628392/mda-mdgffn3rwmgtyi5p.mp4?v_from_s=hkapp-haokan-suzhou&auth_key=1618649702-0-0-ec5628162127f28779c191caa8e7744a&bcevod_channel=searchbox_feed&pd=1&pt=3&abtest=3000165_1" /> #}
-          <i class="iconfont_wlzj">&#xE01B;</i>公司介绍视频
+        {% if companyinfo.VideoIntroduce != null and companyinfo.VideoIntroduce.length > 0 %}
+          <span data-viewer='{{companyinfo.VideoIntroduce}}'>
+            <i class="iconfont_wlzj">&#xE01B;</i>公司介绍视频
         </span>
+        {% endif %}
         <img _src_="{{companyinfo.logo}}"/>
       </div>
 
@@ -73,12 +74,12 @@ kblist1 %}
         <div class="title">
           <p>{{companyinfo.abbrName}}</p>
           {% if companyinfo.hotDefine == 1 %}
-             <span>
-            <i><img _src_="/assets/images/union.png"/></i>
-            {{companyinfo.hotDefine | get_companyHotType}}
-          </span>
+            <span>
+              <i><img _src_="/assets/images/union.png"/></i>
+              {{companyinfo.hotDefine | get_companyHotType}}
+            </span>
           {% endif %}
-         
+
         </div>
         <div class="signboard">
           <span>{{companyinfo.stockInfo}}</span>
@@ -209,7 +210,8 @@ kblist1 %}
         </div>
       </div>
     {% endif %}
-    <div class="row4">
+
+    {# <div class="row4">
       <div class="tab">
         {{navigationbar({
   isMore: true,
@@ -276,7 +278,7 @@ kblist1 %}
 
       </div>
 
-    </div>
+    </div> #}
 
     <div class="row5">
       <div class="title">

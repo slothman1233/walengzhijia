@@ -26,6 +26,8 @@ import { bodyModel } from '../resModel'
  * @param {number} reputationScore 整体口碑得分
  * @param {string} stockInfo 股票信息
  * @param {HotCompanyDefine} hotDefine 品牌商类型
+ * @param {string} VideoIntroduce 视频介绍
+ * @param {number} Weight 公司权重，在排名的时候优先按照公司权重进行排序处理
  */
 export interface ResCompanyInfoModel {
   companyId: number
@@ -34,7 +36,7 @@ export interface ResCompanyInfoModel {
   logo: string
   website: string
   addr: string
-  contactPhone:string
+  contactPhone: string
   desc: string
   license: string
   totalReputationCount: number
@@ -43,6 +45,8 @@ export interface ResCompanyInfoModel {
   reputationScore: number
   stockInfo: string
   hotDefine: HotCompanyDefine
+  VideoIntroduce: string
+  Weight: number
 }
 
 /**
@@ -125,7 +129,7 @@ export interface ResCompanySalerModel {
  * @param {number} sortId 销售排序ID
  * @param {string} createTime 创建时间
  */
-export interface ResCompanySalerModelReturnModel extends bodyModel<ResCompanySalerModel>{
+export interface ResCompanySalerModelReturnModel extends bodyModel<ResCompanySalerModel> {
 
 }
 

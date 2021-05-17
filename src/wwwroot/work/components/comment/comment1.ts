@@ -86,6 +86,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
 
             if (data.code === 0) {
                 $(list_box).prepend(data.bodyMessage)
+                window.imgload()
             }
             input.value = ''
             alert('提交成功！')
@@ -206,6 +207,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
                         child_content.prepend(data.bodyMessage)
                         reply = child_box.siblings('.reply')
                     }
+                    
                     if (reply.find('span').css('display') === 'none') { reply.find('span').show() }
                     let b = reply.find('span b')
                     let repliesCount = parseInt(b.text())
@@ -213,6 +215,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
                     input.val('')
                     alert('提交成功！')
                     sub.hide()
+                    window.imgload()
                 }
             }
 
@@ -276,7 +279,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
                 cacheJson[getuser][newsId].push(id)
 
                 localStorage.setItem(givelikeCache, JSON.stringify(cacheJson))
-
+                window.imgload()
             } else {
                 alert('点赞失败，请重试')
             }
@@ -312,6 +315,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
                 if (data.code === 0) {
                     child_content.append(data.bodyMessage)
                     givelikeinit(parentId, newsId)
+                    window.imgload()
                 }
 
             }
@@ -352,6 +356,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
                 if (data.code === 0) {
                     list_box.append(data.bodyMessage)
                     givelikeinit(parentId, newsId)
+                    window.imgload()
                 }
 
             }
@@ -407,6 +412,7 @@ async function commentInit(parentdom: HTMLElement, newsId: string, type: Comment
         let data: bodyModel<string> = await getcomponent({ path: 'components/comment/comment1.njk', name: 'comment', data: { args: commentData } })
         if (data.code === 0) {
             parentdom.innerHTML = data.bodyMessage
+            window.imgload()
         }
 
     }

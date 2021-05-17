@@ -53,15 +53,16 @@
 
     <div class="information">
       <h2>产品基本信息</h2>
-
-      <div class="selectproduct clearfix">
-        <span class="title">选择产品<i>*</i>
-        </span>
-        <div class="s1" id="s1">
-          {{selectOption(allbrandingSelectOption)}}
+      {% if companyProductObject.data.length > 0 %}
+        <div class="selectproduct clearfix">
+          <span class="title">选择产品<i>*</i>
+          </span>
+          <div class="s1" id="s1">
+            {{selectOption(allbrandingSelectOption)}}
+          </div>
+          <div class="s2" id="s2">{{selectOption(companyProductObject)}}</div>
         </div>
-        <div class="s2" id="s2">{{selectOption(companyProductObject)}}</div>
-      </div>
+      {% endif %}
 
       <div class="purchastime clearfix">
         <span class="title">购买时间<i>*</i>

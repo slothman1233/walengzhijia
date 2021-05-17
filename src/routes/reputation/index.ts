@@ -68,7 +68,6 @@ export default class Reputation {
 
         //----------------------------------------------
 
-
         //评分项
         let scoreItems = await GetReputationTypeById({ productTypeId })
 
@@ -78,7 +77,7 @@ export default class Reputation {
             companyProductObject,
             scoreItems,
             companyId,
-            productId: productId || CompanyProduct[0].productId
+            productId: productId || (CompanyProduct && CompanyProduct[0]?.productId) || 0
         })
 
     }
@@ -118,7 +117,6 @@ export default class Reputation {
         //获取口碑信息
         let ReputationData = await GetReputationByProductId(productId) || []
 
-        console.log(ReputationData)
         //-------------------------------
 
 

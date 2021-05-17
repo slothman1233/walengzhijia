@@ -85,7 +85,7 @@ export default class Index {
         //新闻第一个分类的列表
         let firstNews: ResNewsModel[] = await GetNewsList(publishNews[0].id)
         let firstNewsList: any[] = []
-        
+
         if (firstNews && firstNews.length > 0) {
 
             firstNews.forEach((item) => {
@@ -101,7 +101,7 @@ export default class Index {
                     author: item.createUser,
                     time: ge_time_format(item.newsTime, '2'),
                     businesslogo: item.companyIcon,
-                    businessname: item.companyName,
+                    businessname: item.userName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
                     slug: [NewsContentTypeArray[item.newsContentType]]
                 })
@@ -241,7 +241,6 @@ export default class Index {
             pageSize,
             queryType: tabIndex
         })
-
 
         let companylistJson: any[] = []
         if (GetCompanyJson?.items) {

@@ -37,7 +37,7 @@ export default class componentapi {
         let models = await PostUpdateNews((<NewsInfoModel>ctx.request.body))
         ctx.body = models
     }
-    
+
     /**
      * 删除新闻
      * NewsInfoModel
@@ -68,8 +68,8 @@ export default class componentapi {
     @get('/GetNewsByCompanyId')
     async GetNewsByCompanyId(ctx: Context) {
 
-        let { companyId, timetick, newsType } = ctx.query
-        let models = await GetNewsByCompanyIdRm(companyId, newsType, timetick)
+        let { companyId, timetick, newsType, isReputation } = ctx.query
+        let models = await GetNewsByCompanyIdRm(companyId, newsType, timetick, isReputation)
         ctx.body = models
     }
 
@@ -80,8 +80,8 @@ export default class componentapi {
     @get('/GetCompanyProductById')
     async GetNewsByProductId(ctx: Context) {
 
-        let { productId, timetick, newsType } = ctx.query
-        let models = await GetNewsByProductIdRm(productId, newsType, timetick)
+        let { productId, timetick, newsType, isReputation } = ctx.query
+        let models = await GetNewsByProductIdRm(productId, newsType, timetick, isReputation)
         ctx.body = models
     }
 

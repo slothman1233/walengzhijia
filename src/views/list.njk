@@ -44,36 +44,43 @@
 
           <div class="bCategories">
             {% for item in productTypeData %}
-              <span class="{{ (item.productTypeId == productid) | ternary('active','') }}" id="{{item.productTypeId}}">
-                {{item.productType}}
-              </span>
+              <a href="/list/{{item.productTypeId}}/0/{{tabIndex}}/1">
+                <span class="{{ (item.productTypeId == productid) | ternary('active','') }}" id="{{item.productTypeId}}">
+                  {{item.productType}}
+                </span>
+              </a>
             {% endfor %}
           </div>
 
-          <div class="line"></div>
-          <div class="sCategories" display="block">
-            {% for item in productTypeData %}
-              {% if item.productTypeId == productid %}
-                {% for labels in item.productTypeLabels %}
-                  <span class="{{ (labels.productTypeDetailId == sortid) | ternary('active','') }}" id="{{labels.productTypeDetailId}}">
-                    {{labels.productTypeDetail}}
+          {% if productid != 0 %}
+            <div class="line"></div>
+            <div class="sCategories" display="block">
+              {% for item in productTypeData %}
+                {% if item.productTypeId == productid %}
+                  <a href="/list/{{productid}}/{{0}}/{{tabIndex}}/1">
+                    <span class="{{ (sortid == 0) | ternary('active','') }}" data-id="0">
+                        全部
+                      </span>
+                  </a>
+                  {% for labels in item.productTypeLabels %}
+                    <a href="/list/{{productid}}/{{labels.productTypeDetailId}}/{{tabIndex}}/1">
+                      <span class="{{ (labels.productTypeDetailId == sortid) | ternary('active','') }}" data-id="{{labels.productTypeDetailId}}">
+                        {{labels.productTypeDetail}}
+                      </span>
+                    </a>
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            </div>
 
-                  </span>
-                {% endfor %}
-              {% endif %}
-            {% endfor %}
-          </div>
-
-          <div class="packup">
-        收起 
-        </div>
+            <div class="packup">收起</div>
+          {% endif %}
 
         </div>
 
       </div>
     {% endif %}
     <div id="businessList">
-
       <div class="left">
         <div class="row">
           {{navigationbar({
@@ -101,7 +108,7 @@
               {% for item in GetCompanyHotData %}
                 <div class = "child">
                   <a class="left" href="/business/{{item.companyId}}" target="_blank">
-                    <img _src_="{{item.logo}}" />
+                    <img _src_="{{item.logo}}"/>
                   </a>
 
                   <div class="right">

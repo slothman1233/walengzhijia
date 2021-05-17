@@ -4,6 +4,9 @@ import './top'
 import './popup'
 import window from '../../common/win/windows'
 import { delCookie, setCookie } from '../../common/utils/common'
+
+
+
 //全部图片加载
 //img的src不用赋值   只用加个 _src_  属性就OK
 window.imgload = function () {
@@ -12,15 +15,19 @@ window.imgload = function () {
         let path = dom.getAttribute('_src_')
         if (path && !dom.src) {
             dom.onerror = function (r: any) {
+                //   this.style.backgroundImage = 'none'
                 this.src = '/assets/images/loading.png'
             }
-
+            dom.removeAttribute('_src_')
+            // dom.style.backgroundImage = 'none'
             dom.src = path
         } else if (!path && !dom.src) {
+            //  dom.style.backgroundImage = 'none'
             dom.src = '/assets/images/loading.png'
         }
     })
 };
+
 
 (function () {
     window.imgload()

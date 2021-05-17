@@ -26,6 +26,7 @@ let main = document.querySelector('#main');
         type: CommentTargetTypeEnum.news,
         newsId
     })
+    
 })();
 
 

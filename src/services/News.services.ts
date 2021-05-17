@@ -2,7 +2,7 @@ import config from '../common/config/env'
 import http from '../common/utils/net'
 
 import CacheInterceptor from '../common/decorator/CacheInterceptor'
-import { CacheTime } from '../enums/enums'
+import { CacheTime, publishNewsTypeEnums } from '../enums/enums'
 import { ComponentModel } from '../model/component'
 import { nunRenderMacroString } from '../common/nunjucks'
 import { ResIndustryTypeModelListReturnModel } from '../model/industry/resIndustryType'
@@ -26,25 +26,29 @@ export type GetNewsListModel = {
 /**
  * 通过公司ID获取具体的新闻内容
  * @param {number} companyId 公司id
- * @param {number} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
+ * @param {publishNewsTypeEnums} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
  * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
+ * @param {boolean} isReputation 是否获取口碑新闻
  */
 export type GetNewsByCompanyIdModel = {
     companyId: number
-    newsType:number
+    newsType: publishNewsTypeEnums
     timetick: number
+    isReputation?: boolean
 }
 
 /**
  * 通过产品ID获取具体的新闻内容
  * @param {number} productId 产品id
- * @param {number} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
+ * @param {publishNewsTypeEnums} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
  * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
+ * @param {boolean} isReputation 是否获取口碑新闻
  */
 export type GetNewsByProductIdModel = {
     productId: number
-    newsType:number
+    newsType: publishNewsTypeEnums
     timetick: number
+    isReputation?: boolean
 }
 
 /**
@@ -52,7 +56,7 @@ export type GetNewsByProductIdModel = {
  * @param {number} newsId 新闻id
  */
 export type GetNewsByIdModel = {
-    newsId:number
+    newsId: number
 }
 
 class News {
@@ -85,8 +89,9 @@ class News {
     /**
      * 通过公司ID获取具体的新闻内容
      * @param {number} companyId 公司id
-     * @param {number} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
+     * @param {publishNewsTypeEnums} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
      * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
+     * @param {boolean} isReputation 是否获取口碑新闻
      */
     async GetNewsByCompanyId(params: GetNewsByCompanyIdModel) {
         return await http.get<ResNewsModelListReturnModel>(`${config.apiPath}api/News/GetNewsByCompanyId`, { params, headers: { 'Content-Type': 'application/json' } })
@@ -95,8 +100,9 @@ class News {
     /**
      * 通过产品ID获取具体的新闻内容
      * @param {number} productId 产品id
-     * @param {number} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
+     * @param {publishNewsTypeEnums} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
      * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
+     * @param {boolean} isReputation 是否获取口碑新闻
      */
     async GetNewsByProductId(params: GetNewsByProductIdModel) {
         return await http.get<ResNewsModelListReturnModel>(`${config.apiPath}api/News/GetNewsByProductId`, { params, headers: { 'Content-Type': 'application/json' } })

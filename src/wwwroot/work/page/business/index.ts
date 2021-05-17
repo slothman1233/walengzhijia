@@ -72,7 +72,7 @@ declare const pageSize: any
         if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
             let container_box = row2.querySelector('.container_box')
             container_box.innerHTML = html
-
+            window.imgload()
             let kkpage = row2.querySelector('#kkpage')
             kkpage.innerHTML = ''
             kkpager({
@@ -207,6 +207,7 @@ async function GetCompanyProduct({ companyId,
 
         if (data.code === 0) {
             kblist1.outerHTML = data.bodyMessage
+            window.imgload()
             if (reshighKbChart.length > 0) {
                 reshighKbChart.forEach((item: any, index: number) => {
                     if (item.name.length > 0 && item.value.length > 0) {
@@ -248,7 +249,7 @@ async function GetCompanyProduct({ companyId,
                         img: item.newsIcon,
                         title: item.newsTitle,
                         content: item.newsContent.replace(/<[^>]*>|/g, ''),
-                        author: item.createUser,
+                        author: item.userName,
                         time: ge_time_format(item.newsTime, '2'),
                         businesslogo: item.companyIcon,
                         businessname: item.companyName,
@@ -287,7 +288,7 @@ async function GetCompanyProduct({ companyId,
                     img: item.newsIcon,
                     title: item.newsTitle,
                     content: item.newsContent.replace(/<[^>]*>|/g, ''),
-                    author: item.createUser,
+                    author: item.userName,
                     time: ge_time_format(item.newsTime, '2'),
                     businesslogo: item.companyIcon,
                     businessname: item.companyName,
@@ -300,7 +301,7 @@ async function GetCompanyProduct({ companyId,
             if (datas.code === 0) {
                 let container: HTMLElement = document.querySelector('.row5 .container')
                 container.innerHTML = datas.bodyMessage
-
+                window.imgload()
                 isloaded = false
             }
             isloaded = false
