@@ -1,6 +1,5 @@
 {% macro userlistbox(args) %}
-
-  {% set userlistboxdata = [
+  {% set company = [
     {
       icon: "&#xE00E;",
       title: "消息中心",
@@ -32,26 +31,65 @@
     }
   ] %}
 
-  <div class="userlistbox">
-    {% for item in userlistboxdata %}
-      <a href="{{item.link}}" class='{{item.link | replace("/user/","")}}'>
-        <i class="iconfont_wlzj">{{item.icon | safe}}</i>
-        <span>{{item.title}}</span></a>
-    {% endfor %}
-  </div>
+  {% set notcompany = [
+    {
+      icon: "&#xE00E;",
+      title: "消息中心",
+      link: '/user/index'
+    }, {
+      icon: "&#xE006;",
+      title: "发布内容管理",
+      link: '/user/content'
+    }, {
+      icon: "&#xE001;",
+      title: "个人信息",
+      link: '/user/information'
+    }, {
+      icon: "&#xE01A;",
+      title: "修改密码",
+      link: '/user/changepwd'
+    }
+  ] %}
+
+  {% if args.isCompany == true %}
+    <div class="userlistbox">
+      {% for item in company %}
+        <a href="{{item.link}}" class='{{item.link | replace("/user/","")}}'>
+          <i class="iconfont_wlzj">{{item.icon | safe}}</i>
+          <span>{{item.title}}</span></a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="userlistbox">
+      {% for item in notcompany %}
+        <a href="{{item.link}}" class='{{item.link | replace("/user/","")}}'>
+          <i class="iconfont_wlzj">{{item.icon | safe}}</i>
+          <span>{{item.title}}</span></a>
+      {% endfor %}
+    </div>
+  {% endif %}
 
   <script type="text/javascript">
     (function () {
       let userlistbox = document.querySelector('.userlistbox')
-      let urlAry = [
-        'index',
-        'datamanager',
-        'product',
-        'news',
-        'content',
-        'information',
-        'changepwd'
-      ]
+    {% if args.isCompany == true %}
+        let urlAry = [
+          'index',
+          'datamanager',
+          'product',
+          'news',
+          'content',
+          'information',
+          'changepwd'
+        ]
+      {% else %}
+        let urlAry = [
+          'index',
+          'content',
+          'information',
+          'changepwd'
+        ]
+      {% endif %}
 
       urlAry.forEach((item, index) => {
         if (document.location.href.indexOf(`/user/${item}`) >= 0) {

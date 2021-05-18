@@ -39,12 +39,12 @@
       {% if type == 1 %}
         <div class="r">
           <a href="/user/publishproduct/{{item.id}}">修改</a>
-          <a href="javascript:(0)" data-id="{{item.id}}" class="stick" style='display:{{ (loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
+          <a href="javascript:void(0);" data-id="{{item.id}}" class="stick" style='display:{{ (loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
         </div>
       {% elif type == 3 %}
         <div class="r">
           <a href="/user/publishproduct/{{item.id}}/1">修改</a>
-          <a href="javascript:(0)" data-id="{{item.id}}" class="del">删除</a>
+          <a href="javascript:void(0);" data-id="{{item.id}}" class="del">删除</a>
         </div>
       {% endif %}
     </div>

@@ -10,7 +10,7 @@ import { ResProductIndexPageModelListReturnModel, ResProductTypeModelListReturnM
 import { bodyModel } from '../model/resModel'
 import { ProductTypeDetailModel, ProductTypeModel } from '../model/product/ProductType'
 import { NewsInfoModel } from '../model/news/news'
-import { ResNewsDetailModel, ResNewsModelListReturnModel } from '../model/news/resNews'
+import { ResNewsDetailModel, ResNewsModel, ResNewsModelListReturnModel } from '../model/news/resNews'
 
 /**
  * 获得新闻内容，通过列表集合返回
@@ -116,7 +116,16 @@ class News {
         return await http.get<ResNewsDetailModel>(`${config.apiPath}api/News/GetNewsById`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 
+    /**
+     * 获得首页热门新闻
+     */
+    async GetHotNews() {
+        return await http.get<ResNewsModel[]>(`${config.apiPath}api/News/GetHotNews`, { headers: { 'Content-Type': 'application/json' } })
+    }
+
 }
+
+//
 
 let New = new News()
 

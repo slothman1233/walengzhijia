@@ -43,8 +43,6 @@ export default class User {
         let salersList = await GetSalersByCompanyId({ companyId })
         //--------------------------------------------------------
 
-        console.log(cookie)
-
 
         await ctx.render('user/datamanager', {
             tabType: tabType || 1,
@@ -98,7 +96,7 @@ export default class User {
                 class: '',
                 title: item.productTypeName,
                 id: item.productTypeId,
-                nlink: 'javascript:(0)'
+                nlink: 'javascript:void(0);'
             })
         })
         //----------------------------------------------
@@ -155,7 +153,7 @@ export default class User {
                 class: '',
                 title: item.value,
                 id: item.id,
-                nlink: 'javascript:(0)'
+                nlink: 'javascript:void(0);'
             })
         })
 
@@ -359,7 +357,7 @@ export default class User {
             newsinfo.newsDetail.newsType.forEach(type => {
                 newsTypeList.push({
                     id: type,
-                    value: publishNewsTypeEnumsAry[parseInt(type)]
+                    value: publishNewsTypeEnumsAry[parseInt(type.toString())]
                 })
             })
         }

@@ -166,7 +166,7 @@ type bpopupModel = {
          </div>
          
          <div class="btn" style="position:absolute; right:32px; bottom:24px;">
-          <a href="javascript:(0)" class="cancel" style='
+          <a href="javascript:void(0);" class="cancel" style='
           background: #FFF;
           border-radius: 2px;
           margin-right:8px;
@@ -178,7 +178,7 @@ type bpopupModel = {
               display: inline-block; 
            '
            >取消</a>
-          <a href="javascript:(0)" class="submit"  style='
+          <a href="javascript:void(0);" class="submit"  style='
           background: #FFDD88;
           border-radius: 2px;
           color:rgba(42, 43, 46, 1);

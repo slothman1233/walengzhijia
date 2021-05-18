@@ -1,5 +1,6 @@
 import config from '../common/config/env'
 import http from '../common/utils/net'
+import { ManageCompanyInfoItemModel } from '../model/company/Company'
 import { CompanyProductSalerModel } from '../model/company/resCompany'
 import { ProductTypeDetailModel, ProductTypeModel } from '../model/product/ProductType'
 import { ReputationModel } from '../model/reputation/reputation'
@@ -33,6 +34,13 @@ class ManageLepackCompany {
     }
 
 
+    // 修改公司信息-单项修改
+    // ManageCompanyInfoItemModel
+    //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
+    async UpdateCompanyInfoByItem(params: ManageCompanyInfoItemModel) {
+        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/ManageLepackCompany/UpdateCompanyInfoByItem`, params, { headers: { 'Content-Type': 'application/json' } })
+    }
+    
 }
 
 

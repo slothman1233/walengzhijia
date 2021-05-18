@@ -1,6 +1,7 @@
 import { Context } from 'koa'
 import { post } from '../../../common/decorator/httpMethod'
-import { AddCompanySaler, DeleteCompanySaler, UpdateCompanySaler } from '../../../controller/ManageLepackCompany.controller'
+import { AddCompanySaler, DeleteCompanySaler, UpdateCompanyInfoByItem, UpdateCompanySaler } from '../../../controller/ManageLepackCompany.controller'
+import { ManageCompanyInfoItemModel } from '../../../model/company/Company'
 import { CompanyProductSalerModel } from '../../../model/company/resCompany'
 export default class ManageLepackCompanyapi {
   /**
@@ -30,6 +31,16 @@ export default class ManageLepackCompanyapi {
   @post('/DeleteCompanySaler')
   async DeleteCompanySaler(ctx: Context) {
       let models = await DeleteCompanySaler((<CompanyProductSalerModel>ctx.request.body))
+      ctx.body = models
+  }
+
+  /**
+   * 修改公司信息-单项修改
+   * ManageCompanyInfoItemModel
+   */
+  @post('/UpdateCompanyInfoByItem')
+  async UpdateCompanyInfoByItem(ctx: Context) {
+      let models = await UpdateCompanyInfoByItem((<ManageCompanyInfoItemModel>ctx.request.body))
       ctx.body = models
   }
 }

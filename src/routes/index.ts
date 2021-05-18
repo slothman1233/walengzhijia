@@ -21,7 +21,7 @@ import { ResIndustryTypeModel } from '../model/industry/resIndustryType'
 import { GetCompanyHot, GetCompanyInfoById, GetSalersByCompanyId } from '../controller/company.controller'
 import { ResCompanyInfoIndexPageModel, ResProductIndexPageModel } from '../model/product/resproductType'
 import { ResCompanyHotModel } from '../model/company/resCompany'
-import { GetNewsList } from '../controller/news.controller'
+import { GetHotNews, GetNewsList } from '../controller/news.controller'
 import { ResNewsModel } from '../model/news/resNews'
 import { GetHighQualityReputation, GetHotReputation } from '../controller/Reputation.controller'
 import ManageLepackReputaions from '../services/ManageLepackReputaion.services'
@@ -57,16 +57,16 @@ export default class Index {
             companyInfo: GetCompanyHotData || []
         }
 
-        //获得首页板块分类公司信息（除热门信息以外的）
+        //获得首页板块分类公司信息
         let GetIndexPageProductData = await GetIndexPageProduct()
 
         //首页分类公司信息 组合
         let brandDataAll: ResProductIndexPageModel[] = []
-        brandDataAll.push(companyHotData, ...GetIndexPageProductData)
+        brandDataAll.push(...GetIndexPageProductData)
 
         let brandData: { title: any[], data: ResCompanyInfoIndexPageModel[][] } = { title: [], data: [] }
         brandDataAll.forEach(item => {
-            brandData.title.push({ id: item.productTypeId, sort: item.sort, title: item.productTypeName, nlink: `/list/${item.productTypeId}` })
+            brandData.title.push({ id: item.productTypeId, sort: item.sort, title: item.productTypeName, link: `/list/${item.productTypeId}` })
             brandData.data.push(item.companyInfo)
         })
 
@@ -78,7 +78,7 @@ export default class Index {
             newTypes.push({
                 id: item.id,
                 title: item.value,
-                link: 'javascript:(0)'
+                link: 'javascript:void(0);'
             })
         })
         //------------------------------------------------------------------------------------------------------------------
@@ -98,10 +98,10 @@ export default class Index {
                     img: item.newsIcon,
                     title: item.newsTitle,
                     content: item.newsContent.replace(/<[^>]*>|/g, ''),
-                    author: item.createUser,
+                    author: item.userName,
                     time: ge_time_format(item.newsTime, '2'),
                     businesslogo: item.companyIcon,
-                    businessname: item.userName,
+                    businessname: item.companyName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
                     slug: [NewsContentTypeArray[item.newsContentType]]
                 })
@@ -109,13 +109,7 @@ export default class Index {
         }
         //------------------------------------------------------------------------------------------------------------------
         //热门新闻
-        let HotNews: ResNewsModel[] = await GetNewsList()
-        let newList: any[] = []
-        if (HotNews && HotNews.length > 0) {
-            HotNews.forEach(item => {
-                newList.push({ id: item.newsId, title: item.newsTitle })
-            })
-        }
+        let HotNews: ResNewsModel[] = await GetHotNews()
 
         //------------------------------------------------------------------------------------------------------------------
 
@@ -183,7 +177,7 @@ export default class Index {
         await ctx.render('index', {
             productTypeData: productTypeData[0].productType,
             brandData,
-            newList,
+            HotNews,
             reshighKb,
             reshighKbChart: JSON.stringify(reshighKbChart),
             firstNewsList,
@@ -213,7 +207,7 @@ export default class Index {
         //------------------------------------------------------------------------------------
 
         //获取热门品牌商
-        let GetCompanyHotData = await GetCompanyHot()
+        let GetCompanyHotData = await GetIndexPageProduct()
         //------------------------------------------------------------------------------------
         //品牌商分类
         let productTabList: any[] = []
@@ -269,7 +263,7 @@ export default class Index {
             pageIndex,
             tabIndex,
             productTypeData: productTypeData[0].productType,
-            GetCompanyHotData,
+            GetCompanyHotData: GetCompanyHotData[0].companyInfo,
             productTabList,
             totalPages: GetCompanyJson?.totalPages || 0,
             companylistJson

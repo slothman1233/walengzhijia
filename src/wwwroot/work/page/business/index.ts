@@ -167,58 +167,59 @@ async function GetCompanyProduct({ companyId,
 
     let navigationbar: any = document.querySelector('.navigationbar')
     let sub: any = document.querySelector('.navigationbar > a')
+    if (sub) {
+        sub.onclick = async function () {
+            let kblist1: any = document.querySelector('.row3 .kblist1')
 
-    sub.onclick = async function () {
-        let kblist1: any = document.querySelector('.row3 .kblist1')
+            let highKb = await GetReputationByCompany(companyId)
+            let reshighKb: any[] = []
+            let reshighKbChart: any[] = []
 
-        let highKb = await GetReputationByCompany(companyId)
-        let reshighKb: any[] = []
-        let reshighKbChart: any[] = []
-
-        if (highKb === null || highKb.code === -1) { return }
-
-
-        highKb.bodyMessage.forEach((item: ResReputationModel) => {
-            reshighKb.push({
-                hread: item.userIcon,
-                img: item.productCover,
-                name: item.userName,
-                kbscore: item.statisticsModel.score,
-                link: `/business/product/${item.companyId}/${item.productId}`,
-                title: item.productName,
-                description: item.summary
-            })
-
-            let name: any[] = []
-            let value: any[] = []
-            item.statisticsModel.reputationScore.forEach((kbitem: ResReputationScoreStatisticsModel) => {
-                name.push(kbitem.reputationTypeName)
-                value.push(kbitem.reputationScore)
-            })
-            reshighKbChart.push({
-                name,
-                value
-            })
-        })
-
-        let data: bodyModel<String> = await getcomponent({ path: 'components/list.njk', name: 'kblist1', data: { args: reshighKb } })
+            if (highKb === null || highKb.code === -1) { return }
 
 
-
-        if (data.code === 0) {
-            kblist1.outerHTML = data.bodyMessage
-            window.imgload()
-            if (reshighKbChart.length > 0) {
-                reshighKbChart.forEach((item: any, index: number) => {
-                    if (item.name.length > 0 && item.value.length > 0) {
-                        Charts(document.getElementById(`ecahr${index}`), item)
-                    }
-
+            highKb.bodyMessage.forEach((item: ResReputationModel) => {
+                reshighKb.push({
+                    hread: item.userIcon,
+                    img: item.productCover,
+                    name: item.userName,
+                    kbscore: item.statisticsModel.score,
+                    link: `/business/product/${item.companyId}/${item.productId}`,
+                    title: item.productName,
+                    description: item.summary
                 })
+
+                let name: any[] = []
+                let value: any[] = []
+                item.statisticsModel.reputationScore.forEach((kbitem: ResReputationScoreStatisticsModel) => {
+                    name.push(kbitem.reputationTypeName)
+                    value.push(kbitem.reputationScore)
+                })
+                reshighKbChart.push({
+                    name,
+                    value
+                })
+            })
+
+            let data: bodyModel<String> = await getcomponent({ path: 'components/list.njk', name: 'kblist1', data: { args: reshighKb } })
+
+
+
+            if (data.code === 0) {
+                kblist1.outerHTML = data.bodyMessage
+                window.imgload()
+                if (reshighKbChart.length > 0) {
+                    reshighKbChart.forEach((item: any, index: number) => {
+                        if (item.name.length > 0 && item.value.length > 0) {
+                            Charts(document.getElementById(`ecahr${index}`), item)
+                        }
+
+                    })
+                }
+
             }
 
         }
-
     }
 })();
 
@@ -238,7 +239,7 @@ async function GetCompanyProduct({ companyId,
             let timetick = $(child[child.length - 1]).data('timetick')
             let newsList = await GetNewsByCompanyId(companyId, parseInt(id), parseInt(timetick))
             let NewsList: any[] = []
-            if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
+            if (newsList && newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
                 newsList.bodyMessage.forEach((item) => {
                     let link = '/news/' + item.newsId
                     if (item.reputationId !== 0) {

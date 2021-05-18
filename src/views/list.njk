@@ -114,11 +114,11 @@
                   <div class="right">
                     <a href="/business/{{item.id}}" target="_blank">{{item.abbrName}}</a>
 
-                    {% if (item.hotType != 0) %}
+                    {# {% if (item.hotType != 0) %} #}
                       <p class='{{(item.hotType == 1) | ternary("superior","")}}'>
                         {{item.hotType | get_companyHotType}}
                       </p>
-                    {% endif %}
+                    {# {% endif %} #}
 
                   </div>
 

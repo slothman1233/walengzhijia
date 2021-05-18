@@ -34,7 +34,7 @@ list1 %}
         {% for item in productTypeData %}
           {% if loop.index != 1 %}
             <a href="/list/{{item.productTypeId}}" title="{{item.productType}}" target="_blank">
-              <div><img _src_="{{item.productTypeIcon}}" /></div>
+              <div><img _src_="{{item.productTypeIcon}}"/></div>
               <p>{{item.productType}}</p>
             </a>
           {% endif %}
@@ -89,50 +89,58 @@ list1 %}
                     <a href="/business/{{item.companyId}}" title="{{item.abbrName}}" target="_blank">{{item.abbrName}}</a>
 
                     <div class="kb">
-                      <span>{{item.reputation.score}}</span>
-                      {{star(item.reputation.score)}}
-                      <b>{{item.reputation.reputationCount}}条口碑</b>
+                      {% if item.reputation.score != null%}
+                        <span>{{item.reputation.score}}</span>
+                        {{star(item.reputation.score)}}
+                        <b>{{item.reputation.reputationCount}}条口碑</b>
+                      {% else %}
+                        <h2>暂无评分</h2>
+                      {% endif %}
+
+                      
+
+
                     </div>
                     <div class="label">
                       {% for label in (item.companyLabels | split(',')) %}
                         <span>{{label}}</span>
-                      {% endfor %}
+                        {% endfor %}
 
+                      </div>
                     </div>
                   </div>
-                </div>
 
-              {% endfor %}
-            </div>
-          {% endfor %}
-        {% endif %}
+                {% endfor %}
+              </div>
+            {% endfor %}
+          {% endif %}
 
+        </div>
       </div>
-    </div>
 
-    <div class="hotnew">
-      <div class="banner">
-        <div id="slider_parents" class="slider_parent">
-          <ul class="slider_box" id="slider_doms">
-            {% if (ad.adslideData != null) and (ad.adslideData.length > 0) %}
-              {% for item in ad.adslideData %}
-                <li class="slider_list" data-id="{{item.adId}}">
-                  <a href="{{item.adLink}}" title="{{item.desc}}" target="_blank">
-                    <img _src_="{{item.icon}}"/>
-                    <p>{{item.desc}}</p>
-                  </a>
-                </li>
-              {% endfor %}
-            {% endif %}
+      <div class="hotnew">
+        <div class="banner">
+          <div id="slider_parents" class="slider_parent">
+            <ul class="slider_box" id="slider_doms">
+              {% if (ad.adslideData != null) and (ad.adslideData.length > 0) %}
+                {% for item in ad.adslideData %}
+                  <li class="slider_list" data-id="{{item.adId}}">
+                    <a href="{{item.adLink}}" title="{{item.desc}}" target="_blank">
+                      <img _src_="{{item.icon}}"/>
+                      <p>{{item.desc}}</p>
+                    </a>
+                  </li>
+                {% endfor %}
+              {% endif %}
 
-          </ul>
+            </ul>
+          </div>
+
         </div>
 
-      </div>
-
-      <div class="kbranklist">
-        <div class="row">
-          {{ navigationbar({
+        <div class="kbranklist">
+          <div class="row">
+            {{ navigationbar({
                 isMore: true,
                 link: "/list",
                 isSelect: "1",
@@ -140,56 +148,56 @@ list1 %}
                 data: [
                   {
                     title: "口碑排行榜",
-                    link: "javascript:(0)"
+                    link: "javascript:void(0);"
                   }
                 ]
 
               }) }}
-        </div>
+          </div>
 
-        <div class="list_box">
+          <div class="list_box">
 
-          {% for item in hotReputation %}
-            <div class="child">
+            {% for item in hotReputation %}
+              <div class="child">
 
-              <i>{{loop.index}}</i>
-              <div class="cr">
-                <a class="l" href="/business/{{item.companyId}}" title="{{item.name}}" target="_blank">
-                  <img _src_="{{item.logo}}"/>
-                </a>
-                <div class="c">
-                  <a href="/business/{{item.companyId}}" title="{{item.companyName}}" target="_blank">{{item.companyName}}</a>
-                  <p>{{item.reputationCount}}条口碑</p>
+                <i>{{loop.index}}</i>
+                <div class="cr">
+                  <a class="l" href="/business/{{item.companyId}}" title="{{item.name}}" target="_blank">
+                    <img _src_="{{item.logo}}"/>
+                  </a>
+                  <div class="c">
+                    <a href="/business/{{item.companyId}}" title="{{item.companyName}}" target="_blank">{{item.companyName}}</a>
+                    <p>{{item.reputationCount}}条口碑</p>
+                  </div>
+
+                  <div class="r">
+                    <span>口碑分</span>
+                    <h2>{{item.reputationScore}}</h2>
+                  </div>
                 </div>
 
-                <div class="r">
-                  <span>口碑分</span>
-                  <h2>{{item.reputationScore}}</h2>
-                </div>
               </div>
+            {% endfor %}
 
-            </div>
-          {% endfor %}
-
-        </div>
-        {# {% for item in bannerListData %}
+          </div>
+          {# {% for item in bannerListData %}
           <a href="{{item.link}}" title="{{item.title}}" target="_blank">{{item.title}}</a>
         {% endfor %} #}
 
+        </div>
       </div>
-    </div>
 
-    <div class="kbsuperior clearfix">
-      <div class="row">
-        <p>优质口碑</p>
-        <a>换一批</a>
+      <div class="kbsuperior clearfix">
+        <div class="row">
+          <p>优质口碑</p>
+          <a>换一批</a>
+        </div>
+        {{kblist1(reshighKb)}}
       </div>
-      {{kblist1(reshighKb)}}
-    </div>
 
-    <div class="information clearfix">
-      <div class="nownew">
-        {{ navigationbar({
+      <div class="information clearfix">
+        <div class="nownew">
+          {{ navigationbar({
           isMore: false,
           MoreText: "更多>>",
           link: "#",
@@ -198,15 +206,15 @@ list1 %}
 
         }) }}
 
-        <div class="list_box">
-          {{list1(firstNewsList)}}
+          <div class="list_box">
+            {{list1(firstNewsList)}}
+          </div>
+
         </div>
 
-      </div>
-
-      <div class="hotinformation">
-        <div class="hotmsg">
-          {{ navigationbar( {
+        <div class="hotinformation">
+          <div class="hotmsg">
+            {{ navigationbar( {
                 isMore: false,
                 link: "#",
                 isSelect: "1",
@@ -218,29 +226,28 @@ list1 %}
                 ]
 
               }) }}
+            <div class="newList">
+              {% if (HotNews != null) and (HotNews.length > 0) %}
+                {% for item in HotNews %}
+                  <a href="/news/{{(item.reputationId != 0) | ternary('reputation/','')}}{{item.newsId}}" title="{{item.newsTitle}}" target="_blank">
+                    <i>{{loop.index}}</i>
+                    <p>
+                      {{item.newsTitle}}</p>
+                  </a>
+                {% endfor %}
+              {% endif %}
 
-          <div class="newList">
-            {% if (newList != null) and (newList.length > 0) %}
-              {% for item in newList %}
-                <a href="/news/{{item.id}}" title="{{item.title}}" target="_blank">
-                  <i>{{loop.index}}</i>
-                  <p>
-                    {{item.title}}</p>
-                </a>
-              {% endfor %}
-            {% endif %}
+            </div>
 
           </div>
 
+          <div class="blogroll">
+            {{rfooter(getlinks)}}
+          </div>
+          <div></div>
         </div>
-
-        <div class="blogroll">
-          {{rfooter(getlinks)}}
-        </div>
-        <div></div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
 {% endblock body %}

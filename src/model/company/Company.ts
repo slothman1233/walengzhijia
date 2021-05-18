@@ -1,4 +1,4 @@
-import { productImgTypeEnums } from '../../enums/enums'
+import { CompanyUpdateTypeDefine, productImgTypeEnums } from '../../enums/enums'
 
 
 
@@ -102,4 +102,19 @@ export interface CompanyProductAdvisorySalerModel {
   advisorySalerId?: number
   advisoryId?: number
   salerId?: number
+}
+
+
+/**
+ * 公司单项修改内容
+ * @param {number} companyId 公司ID
+ * @param {number} userId 用户是否存在
+ * @param {string} itemValue 单项值
+ * @param {CompanyUpdateTypeDefine} itemType 公司企业修改类型属性字段枚举
+ */
+export interface ManageCompanyInfoItemModel {
+  companyId?: number
+  userId?: number
+  itemValue: string
+  itemType?: CompanyUpdateTypeDefine
 }

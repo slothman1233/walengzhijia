@@ -23,7 +23,11 @@
 {% endblock script %}
 
 {% block body %}
-
+  {# {
+                title: "问答",
+                link: "javascript:void(0);",
+                id: "1"
+              },  #}
   <div id="usermain">
     {{ usernavigationbar({
             isMore: false,
@@ -31,13 +35,10 @@
             link: "#",
             isSelect: tabType,
             data: [
-               {
-                title: "问答",
-                link: "javascript:(0)",
-                id: "1"
-              }, {
+              
+              {
                 title: "口碑",
-                link: "javascript:(0)",
+                link: "javascript:void(0);",
                 id: "1"
               }
             ]
@@ -79,15 +80,15 @@
     ] %}
 
     <div class="box">
-      <div class="questions" style='display:{{(tabType == 1) | ternary("block","none")}}'>
+      {# <div class="questions" style='display:{{(tabType == 1) | ternary("block","none")}}'>
         {% if contentData != null and contentData.length > 0 %}
           <div class="container">
             {% for item in contentData %}
 
               <div class="child clearfix">
                 <div class="r">
-                  <a href="javascript:(0)">详情</a>
-                  <a href="javascript:(0)">删除</a>
+                  <a href="javascript:void(0);">详情</a>
+                  <a href="javascript:void(0);">删除</a>
                 </div>
                 <div class="l">
                   <div class="child_title">
@@ -116,16 +117,16 @@
           </div>
         {% endif %}
 
-      </div>
-      <div class="kb" style='display:{{(tabType == 2) | ternary("block","none")}}'>
+      </div> #}
+      <div class="kb" style='display:{{(tabType == 1) | ternary("block","none")}}'>
         {% if contentData != null and contentData.length > 0 %}
           <div class="container">
             {% for item in contentData %}
 
               <div class="child clearfix">
                 <div class="r">
-                  <a href="javascript:(0)">详情</a>
-                  <a href="javascript:(0)">删除</a>
+                  <a href="javascript:void(0);">详情</a>
+                  <a href="javascript:void(0);">删除</a>
                 </div>
                 <div class="l">
                   <div class="child_title">

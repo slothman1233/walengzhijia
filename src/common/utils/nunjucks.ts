@@ -101,7 +101,7 @@ export default (params: paramsModel) => {
                     collapseWhitespace: true
                 }
             )
-            html = await getWUCHtml(html)
+            html = await getWUCHtml(html, ctx)
 
             ctx.body = html
         }
@@ -113,7 +113,7 @@ export default (params: paramsModel) => {
 }
 
 //获取部分页的html处理
-async function getWUCHtml(str:string):Promise<string>{
+async function getWUCHtml(str:string, ctx:Context):Promise<string>{
     let data:any[] = []
     let i =0
     str = str.replace(/{@{(.*?)}@}/ig, function($1:string, $2:string):string{
@@ -131,7 +131,7 @@ async function getWUCHtml(str:string):Promise<string>{
     for (let i = 0; i < data.length; i++) {
         let item = data[i]
 
-        let html = await hf.getHtml(item.funStr)
+        let html = await hf.getHtml(ctx, item.funStr)
         str = str.replace(item.indexStr, html)
     }
     return str

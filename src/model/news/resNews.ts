@@ -1,4 +1,4 @@
-import { NewsContentTypeEnums, priceShowStatusEnums } from '../../enums/enums'
+import { NewsContentTypeEnums, newsTypeEnums, priceShowStatusEnums } from '../../enums/enums'
 import { PageModel } from '../pageModel'
 import { ResReputationModel, ResReputationStatisticsModel } from '../reputation/resreputation'
 import { bodyModel } from '../resModel'
@@ -16,7 +16,7 @@ import { bodyModel } from '../resModel'
  * @param {string} companyIcon 公司的log标识
  * @param {number} productId 对应产品的ID
  * @param {string} productName 产品名称
- * @param {string[]} newsType 新闻类型
+ * @param {newsTypeEnums[]} newsType 新闻类型
  * @param {string} newsTitle 标题
  * @param {string} source 来源
  * @param {string} newsContent 新闻内容
@@ -36,7 +36,7 @@ export interface ResNewsModel {
   companyIcon: string
   productId?: number
   productName: string
-  newsType: string[]
+  newsType: newsTypeEnums[]
   newsTitle: string
   source: string
   newsContent: string

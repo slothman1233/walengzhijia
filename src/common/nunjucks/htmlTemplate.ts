@@ -1,4 +1,5 @@
 import tpl from './htmlTemplateStr'
+import { Context, Next } from 'koa'
 
 
 
@@ -6,7 +7,7 @@ class htmlFilter {
 
 
 
-    async getHtml(funStr: string): Promise<string> {
+    async getHtml(ctx: Context, funStr: string): Promise<string> {
         try {
             let that = this
             let arg: any[] = []
@@ -14,7 +15,8 @@ class htmlFilter {
                 arg = that.argFunc($2)
                 return ''
             })
-
+            console.log(arg)
+            arg.unshift(ctx)
             return tpl[funName].apply(null, arg)
 
         }
@@ -48,7 +50,7 @@ class htmlFilter {
                     ary[s] = eval(`(${args[ary[s]]})`)
                 }
             }
-            
+
             return ary
         } catch (e) {
             return []

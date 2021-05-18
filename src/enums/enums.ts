@@ -246,7 +246,7 @@ export enum HotCompanyDefine {
   Brand = 2
 }
 
-export const HotCompanyDefineItems = ['', '优质品牌商', '品牌商']
+export const HotCompanyDefineItems = ['品牌商', '优质品牌商', '品牌商']
 
 export const HotCompanyDefineObject = [
     {
@@ -450,6 +450,7 @@ export enum UserUpdateTypeDefine {
  * 6 修改公司地址
  * 7 修改公司介绍信息
  * 8 修改公司营业执照
+ * 9 修改公司介绍视频
  */
 export enum CompanyUpdateTypeDefine {
   Update_AbbrName = 1,
@@ -460,4 +461,6 @@ export enum CompanyUpdateTypeDefine {
   Update_Addr = 6,
   Update_Description = 7,
   Update_Licence = 8,
+  Update_Video = 9
 }
+

@@ -95,14 +95,14 @@
           <span>{{item.commentContent}}</span>
         </div>
         <div class="reply clearfix">
-          <a href="javascript:(0)" data-id="{{item.id}}">回复</a>
+          <a href="javascript:void(0);" data-id="{{item.id}}">回复</a>
           {# {% if (item.child) and (item.child.length > 0) %} #}
           <span style="display:{{(item.replys and item.replys.length > 0) | ternary('block','none') }}">
             <b>{{item.replys | ternary(item.replys.length,0) }}</b>条回复<i class="iconfont_wlzj">&#xE007;</i>
           </span>
           {# {% endif %} #}
           <div class="reply_r clearfix">
-            <a href="javascript:(0)" data-id="{{item.replyId | ternary(item.replyId,item.commentId)}}">举报</a>
+            <a href="javascript:void(0);" data-id="{{item.replyId | ternary(item.replyId,item.commentId)}}">举报</a>
             <p class="praiseCount"  data-replyId="{{item.replyId}}" data-id="{{item.replyId | ternary(item.replyId,item.commentId)}}">
               <i class="iconfont_wlzj">&#xE018;</i>
               <span>{{item.praiseCount}}</span>
@@ -113,7 +113,7 @@
 
         <div class="sub clearfix" style="display:none;">
           <div class="input"><input type="text" value="" placeholder="写下你的回答"></div>
-          <a href="javascript:(0)" data-commentId="{{item.commentId}}"  data-id="{{item.replyId}}"  data-parentid="{{item.commentUser}}">提交回答</a>
+          <a href="javascript:void(0);" data-commentId="{{item.commentId}}"  data-id="{{item.replyId}}"  data-parentid="{{item.commentUser}}">提交回答</a>
         </div>
         <div class="child_box" style="display:none;">
           <div class="child_content">

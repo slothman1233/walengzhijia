@@ -4,6 +4,7 @@ import http from './http'
 
 import { bodyModel } from '../../../../model/resModel'
 import { CompanyProductSalerModel } from '../../../../model/company/resCompany'
+import { ManageCompanyInfoItemModel } from '../../../../model/company/Company'
 
 
 
@@ -26,4 +27,11 @@ export const UpdateCompanySaler = async (options: CompanyProductSalerModel): Pro
  * CompanyProductSalerModel
  */
 export const DeleteCompanySaler = async (options: CompanyProductSalerModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/api/ManageLepackCompany/DeleteCompanySaler`, options)
+
+
+/**
+ * 修改公司信息-单项修改
+ * ManageCompanyInfoItemModel
+ */
+export const UpdateCompanyInfoByItem = async (options: ManageCompanyInfoItemModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/api/ManageLepackCompany/UpdateCompanyInfoByItem`, options)
 

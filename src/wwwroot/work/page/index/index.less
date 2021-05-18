@@ -44,7 +44,7 @@
                 img {
                     max-height: @imgHeight;
                     max-width : 100%;
-                    margin: auto;
+                    margin    : auto;
                 }
             }
 
@@ -55,11 +55,11 @@
                 color      : @color_main_c1;
                 font-size  : @font_size_12;
                 font-weight: @font_weight;
-               
+
                 .over_group()
             }
 
-            &:hover p{
+            &:hover p {
                 color: @link_hover;
             }
         }
@@ -128,6 +128,23 @@
         .row {
             width        : @DefindWidth;
             margin-bottom: @space_2;
+
+            .navigationbar {
+                .list {
+                    a {
+                        font-size   : @font_size_14;
+                        margin-right: @space_3;
+
+                        & span.select {
+                            font-size: @font_size_20;
+                        }
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -178,10 +195,12 @@
                         bottom  : @space_1;
                         left    : 166px;
                         .star1(80px);
-                        .star{
+
+                        .star {
                             position: relative;
-                            top:17px;
+                            top     : 17px;
                         }
+
                         &>a {
                             display      : block;
                             height       : 24px;
@@ -228,6 +247,14 @@
                                 position   : absolute;
                                 right      : 0;
                                 top        : 14px;
+                            }
+
+                            h2 {
+                                font-size  : @font_size_16;
+                                color      : @color_gray_c2;
+                                font-weight: @font_weight;
+                                line-height: @line_height;
+                                margin-top : 4px;
                             }
                         }
 
@@ -533,12 +560,12 @@
                 z-index         : 10;
             }
 
-            .list_box{
+            .list_box {
                 .list1();
-             
+
             }
 
-          
+
         }
 
 

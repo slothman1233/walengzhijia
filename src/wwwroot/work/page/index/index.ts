@@ -158,10 +158,10 @@ declare const document: Document
                         img: item.newsIcon,
                         title: item.newsTitle,
                         content: item.newsContent.replace(/<[^>]*>|/g, ''),
-                        author: item.createUser,
+                        author: item.userName,
                         time: ge_time_format(item.newsTime, '2'),
                         businesslogo: item.companyIcon,
-                        businessname: item.userName,
+                        businessname: item.companyName,
                         timetick: get_unix_time_stamp(item.newsTime, 2),
                         slug: [NewsContentTypeArray[item.newsContentType]]
                     })
@@ -198,10 +198,10 @@ declare const document: Document
                     img: item.newsIcon,
                     title: item.newsTitle,
                     content: item.newsContent.replace(/<[^>]*>|/g, ''),
-                    author: item.createUser,
+                    author: item.userName,
                     time: ge_time_format(item.newsTime, '2'),
                     businesslogo: item.companyIcon,
-                    businessname: item.userName,
+                    businessname: item.companyName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
                     slug: [NewsContentTypeArray[item.newsContentType]]
                 })

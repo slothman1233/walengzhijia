@@ -28,7 +28,7 @@ export default class Business {
             class: '',
             title: '全部',
             id: 0,
-            nlink: 'javascript:(0)'
+            nlink: 'javascript:void(0);'
         }]
         if (reputationtype && reputationtype.length > 0) {
             reputationtype.forEach((item, index) => {
@@ -39,7 +39,7 @@ export default class Business {
                     class: '',
                     title: item.productTypeName,
                     id: item.productTypeId,
-                    nlink: 'javascript:(0)'
+                    nlink: 'javascript:void(0);'
                 })
             })
         }
@@ -117,7 +117,6 @@ export default class Business {
             })
         }
         //------------------------------------------------------------------------------------------------------------------
-        console.log(reshighKbChart)
         await ctx.render('business/index', {
             Reputation,
             companyId,

@@ -126,6 +126,21 @@ export async function GetNewsByIdRm(newsId: number): Promise<ResNewsDetailModelR
     return await news.GetNewsById(params).catch(data => data)
 }
 
+/**
+ * 获得首页热门新闻
+ */
+export async function GetHotNews(): Promise<ResNewsModel[] | null> {
+    let rm = await GetHotNewsRm()
+    let models = JSONParse<ResNewsModel[] | null>(rm.code, rm.bodyMessage)
+    return models
+}
 
+/**
+ * 获得首页热门新闻
+ */
+export async function GetHotNewsRm(): Promise<ResNewsModelListReturnModel> {
+
+    return await news.GetHotNews().catch(data => data)
+}
 
 

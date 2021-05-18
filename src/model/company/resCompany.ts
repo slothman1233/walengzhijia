@@ -336,3 +336,4 @@ export interface CompanyProductSalerModel {
   sortId?: number
   createUser?: number
 }
+
