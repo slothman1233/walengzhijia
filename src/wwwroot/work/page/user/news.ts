@@ -196,25 +196,36 @@ async function getdata(id: any, pageIndex: number) {
         ele: '.del',
         fn: async function (dom: any, ev: any) {
             let id = $(dom).data('id')
+            window.alert({
+                title: '确定要删除这条新闻吗？',
+                str: '删除后无法复原',
+                type: 1,
+                contentType: 2,
+                successCallback: async () => {
+                    let datajson = await delNews({
+                        newsId: id,
+                        companyId: companyId,
+                        productId: 0,
+                        newsType: [],
+                        newsTitle: '',
+                        source: '',
+                        newsContent: '',
+                        newsIcon: '',
+                        createUser: userId
+                    })
 
-            let datajson = await delNews({
-                newsId: id,
-                companyId: companyId,
-                productId: 0,
-                newsType: [],
-                newsTitle: '',
-                source: '',
-                newsContent: '',
-                newsIcon: '',
-                createUser: userId
+                    if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
+                        $(dom).parents('.child').remove()
+                        alert('删除成功')
+                    } else {
+                        alert('删除失败')
+                    }
+                }
             })
 
-            if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
-                $(dom).parents('.child').remove()
-                alert('删除成功')
-            } else {
-                alert('删除失败')
-            }
+
+
+
 
 
         }

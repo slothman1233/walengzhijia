@@ -5,6 +5,7 @@ import { getCookie } from '../../common/utils/cookies'
 import { GetAreaInfosByCode } from '../../controller/AreaInfo.controller'
 import { GetCompanySalerById, GetSalersByCompanyId } from '../../controller/company.controller'
 import { GetNewsPagesByCompanyId } from '../../controller/ManageLepackNews.controller'
+import { GetReuputationPagedByUser } from '../../controller/ManageLepackReputaion.controller'
 import { GetNewsByCompanyId, GetNewsById } from '../../controller/news.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType, GetProductIndustryByIndustry } from '../../controller/product.controller'
 import { NewsContentTypeArray, productImgTypeEnums, publishNews, publishNewsTypeEnums, publishNewsTypeEnumsAry } from '../../enums/enums'
@@ -193,9 +194,19 @@ export default class User {
     @get('/content/:tabType?/:pageIndex?')
     async content(ctx: Context, next: Next) {
         let { tabType, pageIndex } = ctx.params
+        //获取用户对应的口碑
+        let userinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+        let pageData = await GetReuputationPagedByUser({
+            userId: parseInt(userinfo.userId),
+            pageIndex: 1
+        })
+
+        //------------------------------------------------------------------------------------------
         await ctx.render('user/content', {
             tabType: tabType || 1,
-            pageIndex: pageIndex || 1
+            pageIndex: pageIndex || 1,
+            totalPages: pageData?.totalPages || 1,
+            kbData: pageData?.items || []
         })
     }
 

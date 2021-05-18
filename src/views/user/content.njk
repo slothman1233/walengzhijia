@@ -18,6 +18,7 @@
   <script>
     var tabType = {{tabType}}
     var pageIndex = {{pageIndex}}
+    var totalPages = {{totalPages}}
   </script>
   <script type="text/javascript" src="/dist/scripts/user/content.js"></script>
 {% endblock script %}
@@ -47,31 +48,37 @@
 
     {% set contentData = [
       {
+        id: '11',
         content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
         createTime: "2020-08-01",
         commentCount: 3333,
         praiseCount: 55555
       }, {
+        id: '11',
         content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
         createTime: "2020-08-01",
         commentCount: 3333,
         praiseCount: 55555
       }, {
+        id: '11',
         content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
         createTime: "2020-08-01",
         commentCount: 3333,
         praiseCount: 55555
       }, {
+        id: '11',
         content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
         createTime: "2020-08-01",
         commentCount: 3333,
         praiseCount: 55555
       }, {
+        id: '11',
         content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
         createTime: "2020-08-01",
         commentCount: 3333,
         praiseCount: 55555
       }, {
+        id: '11',
         content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
         createTime: "2020-08-01",
         commentCount: 3333,
@@ -119,26 +126,28 @@
 
       </div> #}
       <div class="kb" style='display:{{(tabType == 1) | ternary("block","none")}}'>
-        {% if contentData != null and contentData.length > 0 %}
+        {% if kbData != null and kbData.length > 0 %}
           <div class="container">
-            {% for item in contentData %}
+            {% for item in kbData %}
 
               <div class="child clearfix">
                 <div class="r">
-                  <a href="javascript:void(0);">详情</a>
-                  <a href="javascript:void(0);">删除</a>
+                  <a href="/news/reputation/{{item.newsId}}" target="_blank">详情</a>
+                  <a href="javascript:void(0);" class="del" data-id="{{item.reputationId}}">删除</a>
                 </div>
                 <div class="l">
-                  <div class="child_title">
-                   123{{item.content}}
+                  <a class="child_title" href="/news/reputation/{{item.newsId}}" target="_blank">
+                    {{item.title | delHtmlTag}}
+                  </a>
+                  <div class="child_summary">
+                    {{item.summary | delHtmlTag}}
                   </div>
-                  <i>{{item.createTime}}</i>
                   <p>
-                    <span>评论
-                <i>{{item.commentCount}}</i>
+                    <span>发表时间<i>{{item.createTime | get_time_timestamp | ge_time_format(2)}}</i>
                     </span>
-                    <span>赞
-                <i>{{item.praiseCount}}</i>
+                    <span>评论<i>{{item.commentCount}}</i>
+                    </span>
+                    <span>赞<i>{{item.praiseCount}}</i>
                     </span>
                   </p>
                 </div>
@@ -151,7 +160,7 @@
 
         {% else %}
           <div class="empty">
-            <p>暂无相关内容</p>
+            <p>暂无口碑</p>
           </div>
         {% endif %}
 

@@ -51,3 +51,15 @@ export interface productTypeListModel {
   productTypeId: number,
   productTypeName: string
 }
+
+
+
+/**
+ * 逻辑移除口碑模型
+ * @param {number} reputationId 口碑ID
+ * @param {number} createUser 创建用户
+ */
+export interface ReputationDelModel {
+  reputationId: number
+  createUser: number
+}

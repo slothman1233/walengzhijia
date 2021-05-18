@@ -11,7 +11,7 @@ export interface ResReputationModelListReturnModel extends bodyModel<ResReputati
 
 /**
  * 口碑返回模型
- * @param {number} createUser 口碑发表人
+ * @param {number} createUser 口碑发表人id
  * @param {string} userName 发表人名称
  * @param {string} userIcon 发表人头像
  * @param {string} productName 产品名称
@@ -19,6 +19,7 @@ export interface ResReputationModelListReturnModel extends bodyModel<ResReputati
  * @param {number} newsId 新闻ID
  * @param {number} companyId 公司ID
  * @param {string} summary 口碑描述内容
+ * @param {string} title 口碑标题
  * @param {number} reputationId 口碑ID
  * @param {string} productCover 产品封面图
  * @param {string} buyTime 购买时间
@@ -26,9 +27,11 @@ export interface ResReputationModelListReturnModel extends bodyModel<ResReputati
  * @param {number} purchasePrice 购买价格
  * @param {priceShowStatusEnums} priceShowStatus 价格显示状态-显示价格，显示数字第一位有小数点，不现实价格
  * @param {ResReputationStatisticsModel} statisticsModel 口碑统计信息
+ * @param {string} createTime 创建时间
+ * @param {number} commentCount 评论数
+ * @param {number} praiseCount 点赞数
  */
 export interface ResReputationModel {
-
   createUser: number
   userName: string
   userIcon: string
@@ -38,6 +41,7 @@ export interface ResReputationModel {
   newsId: string
   companyId: number
   summary: string
+  title: string
   reputationId: number
   buyTime: string
   useTime: string
@@ -45,6 +49,10 @@ export interface ResReputationModel {
   productCover: string
   priceShowStatus: priceShowStatusEnums
   statisticsModel: ResReputationStatisticsModel
+  createTime: string
+  commentCount: number
+  praiseCount: number
+
 }
 
 /**
@@ -242,4 +250,56 @@ export interface ResReputationTypeModel {
   productTypeId?: number
   reputationName: string
 }
+
+
+/**
+ * 根据用户id获取对应的口碑 分页模型
+ * @param {number} createUser 口碑发表人
+ * @param {string} userName 发表人名称
+ * @param {string} userIcon 发表人头像
+ * @param {string} productName 产品名称
+ * @param {number} productId 产品ID
+ * @param {number} newsId 新闻ID
+ * @param {number} companyId 公司ID
+ * @param {string} summary 口碑描述内容
+ * @param {number} reputationId 口碑ID
+ * @param {string} productCover 产品封面图
+ * @param {string} buyTime 购买时间
+ * @param {string} useTime 使用时间 
+ * @param {number} purchasePrice 购买价格
+ * @param {priceShowStatusEnums} priceShowStatus 价格显示状态-显示价格，显示数字第一位有小数点，不现实价格
+ * @param {ResReputationStatisticsModel} statisticsModel 口碑统计信息
+ * @param {string} createTime 创建时间
+ * @param {number} commentCount 评论数
+ * @param {number} praiseCount 点赞数
+ */
+export interface ResReputationModelPagedModelReturnModel extends bodyModel<ResReputationModelPagedModel> {
+
+}
+
+/**
+ * 根据用户id获取对应的口碑 分页模型
+ * @param {number} createUser 口碑发表人
+ * @param {string} userName 发表人名称
+ * @param {string} userIcon 发表人头像
+ * @param {string} productName 产品名称
+ * @param {number} productId 产品ID
+ * @param {number} newsId 新闻ID
+ * @param {number} companyId 公司ID
+ * @param {string} summary 口碑描述内容
+ * @param {number} reputationId 口碑ID
+ * @param {string} productCover 产品封面图
+ * @param {string} buyTime 购买时间
+ * @param {string} useTime 使用时间 
+ * @param {number} purchasePrice 购买价格
+ * @param {priceShowStatusEnums} priceShowStatus 价格显示状态-显示价格，显示数字第一位有小数点，不现实价格
+ * @param {ResReputationStatisticsModel} statisticsModel 口碑统计信息
+ * @param {string} createTime 创建时间
+ * @param {number} commentCount 评论数
+ * @param {number} praiseCount 点赞数
+ */
+export interface ResReputationModelPagedModel extends PageModel<ResReputationModel> {
+
+}
+
 

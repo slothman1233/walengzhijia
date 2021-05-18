@@ -30,7 +30,8 @@
   .box {
     padding: 0 @space_4;
 
-    .questions,.kb {
+    .questions,
+    .kb {
       .container {
         .child {
           padding      : @space_2 0;
@@ -39,6 +40,23 @@
 
           .l {
             margin-right: 50px;
+
+            .child_title {
+              display      : block;
+              font-size    : @font_size_18;
+              line-height  : @line_height;
+              color        : @color_main_c1;
+              font-weight  : @font_weight;
+              margin-bottom: 4px;
+            }
+
+            .child_summary {
+              font-size  : @font_size_16;
+              line-height: @line_height;
+              color      : @color_main_c1;
+              margin-bottom: 4px;
+              .lineclamp(2);
+            }
 
             .title {
               color    : @color_main_c1;
@@ -56,12 +74,12 @@
             p {
               span {
                 color       : @color_main_c1;
-                font-size   : @font_size_14;
+                font-size   : @font_size_12;
                 margin-right: @space_3;
 
                 i {
 
-                  margin-left: 4px;
+                  margin-left: @space_1;
                 }
               }
             }
@@ -69,7 +87,7 @@
 
           .r {
             float     : right;
-            margin-top: 20px;
+            margin-top: 12px;
 
             a {
               display      : block;
@@ -81,7 +99,8 @@
         }
       }
 
-      #questions_kkpage,#kb_kkpage {
+      #questions_kkpage,
+      #kb_kkpage {
         margin    : @space_3 0 @space_5 0;
         text-align: center;
         .kkpager()
