@@ -31,6 +31,8 @@ import { ResWebLinkModel } from '../model/link/weblink'
 import { GetAdvertising } from '../controller/Advertising.controller'
 import { ResAdvertisingModel } from '../model/Advertising'
 import { get_unix_time_stamp, ge_time_format } from '../common/utils/util'
+import { getCookie } from '../common/utils/cookies'
+import { userlogin } from './login'
 // import Business from './list'
 
 
@@ -281,6 +283,13 @@ export default class Index {
         //----------------------------------------------
         //销售信息
         let salers = await GetSalersByCompanyId({ companyId })
+        let phoneNumber = ''
+        let userinfostr = await getCookie(ctx, userlogin)
+      
+        if (userinfostr !== 'undefined') {
+            phoneNumber = JSON.parse(userinfostr).phoneNumber
+        }
+        console.log(phoneNumber)
         //----------------------------------------------
         // 获取公司的产品集合
 
@@ -290,6 +299,7 @@ export default class Index {
             productTypeAry.push({
                 id: item.productId,
                 value: item.productName
+                
             })
         })
 
@@ -303,7 +313,8 @@ export default class Index {
             companydata,
             salesid,
             salers,
-            productTypeAry
+            productTypeAry,
+            phoneNumber
         })
     }
 

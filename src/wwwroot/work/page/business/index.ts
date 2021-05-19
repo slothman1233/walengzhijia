@@ -41,22 +41,30 @@ declare const pageSize: any
 })();
 
 (function () {
-    kkpager({
-        pagerid: 'kkpage',
-        total: totalPages,
-        pno: pageIndex,
-        mode: 'click',
-        isShowFirstPageBtn: false,
-        isShowLastPageBtn: false,
-        isShowLastPage: false,
-        lang: {
-            prePageText: '上一页',
-            nextPageText: '下一页',
-        },
-        click: function (i: number) {
-            // console.log(i)
-        }
-    })
+    if(totalPages > 1){
+        let row2 = document.querySelector('.row2')
+        let productTypeId = parseInt(document.getElementById('product').querySelector('.select').getAttribute('data-id'))
+        let container_box = row2.querySelector('.container_box')
+        kkpager({
+            pagerid: 'kkpage',
+            total: totalPages,
+            pno: pageIndex,
+            mode: 'click',
+            isShowFirstPageBtn: false,
+            isShowLastPageBtn: false,
+            isShowLastPage: false,
+            lang: {
+                prePageText: '上一页',
+                nextPageText: '下一页',
+            },
+            click: async  function (i: number) {
+                let { datajson, html } = await GetCompanyProduct({ companyId, productTypeId, pageIndex: i, pageSize })
+                container_box.innerHTML = html
+                window.imgload()
+            }
+        })
+    }
+   
 })();
 
 

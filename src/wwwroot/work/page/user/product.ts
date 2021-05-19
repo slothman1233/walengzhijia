@@ -143,7 +143,7 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
     
             </div>
             <div class="r">
-              <a href="/user/sales/2/11">修改</a>
+              <a href="/user/publishproduct/${item.productId}">修改</a>
               <a href="javascript:void(0);" data-id="${item.productId}" class="stick" style='display:${i === 0 ? 'none' : 'block'}'>置顶</a>
             </div>
           </div>`

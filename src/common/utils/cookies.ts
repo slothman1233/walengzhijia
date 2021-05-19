@@ -1,6 +1,7 @@
 import { Context } from 'koa'
 import { GetUserById } from '../../controller/ManageLepackUser.controller'
 import { CacheTime } from '../../enums/enums'
+import { userlogin } from '../../routes/login'
 import config from '../config/env/index'
 /**
  * cookie模型
@@ -56,12 +57,17 @@ export function setCookie(ctx: Context, name: string, value: string, option: set
  * @param {string} name 
  */
 export async function getCookie(ctx: Context, name: string) {
+
     let buf = ctx.cookies.get(name)
     let cookiestr = decodeURIComponent(buf)
-    if (cookiestr && cookiestr !== 'undefined') {
-        let userinfo = await GetUserById({ userId: JSON.parse(cookiestr).userId })
-        return JSON.stringify(userinfo)
+    //获取用户数据
+    if (name === userlogin) {
+        if (cookiestr && cookiestr !== 'undefined') {
+            let userinfo = await GetUserById({ userId: JSON.parse(cookiestr).userId })
+            return JSON.stringify(userinfo)
+        }
     }
+
 
     return cookiestr
 

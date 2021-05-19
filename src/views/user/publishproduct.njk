@@ -127,7 +127,7 @@ uploadfileVideo %}
 
         <div class="table">
           <table border="1">
-            {% if puroductInfo %}
+            {% if puroductInfo and puroductInfo.productArgs.length > 0 %}
 
               {% for item in puroductInfo.productArgs %}
 
@@ -215,7 +215,7 @@ uploadfileVideo %}
             <div class="uploadimg">
               <div class="uploadfile external">
                 <div>
-                  <p>点此添加封面</p>
+                  <p>点此添加外观图</p>
                   <div class="preview" style="{{(externalImgAry.length > 0) | ternary('background-image: url('+externalImgAry[0]+'); display: block;','')}}">
                     <p>替换</p>
                   </div>
@@ -229,7 +229,7 @@ uploadfileVideo %}
             <div class="uploadimg">
               <div class="uploadfile detaileddraw">
                 <div>
-                  <p>点此添加封面</p>
+                  <p>点此添加细节图</p>
                   <div class="preview" style="{{(detaileddrawAry.length > 0) | ternary('background-image: url('+detaileddrawAry[0]+'); display: block;','')}}">
                     <p>替换</p>
                   </div>
@@ -262,7 +262,7 @@ uploadfileVideo %}
             <div class="uploadimg">
 
               {{uploadfileVideo({
-                description : "点此添加封面",
+                description : "点此添加视频",
                 previewIsShow:puroductInfo.productVideo.length > 0,
                 previewVideo:puroductInfo.productVideo,
                 previewTitle:"替换"
