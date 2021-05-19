@@ -1,10 +1,10 @@
 import config from '../../common/config/env'
 import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
-import './top'
+
 import './popup'
 import window from '../../common/win/windows'
 import { delCookie, setCookie } from '../../common/utils/common'
-
+import './top'
 
 
 //全部图片加载
@@ -37,6 +37,14 @@ window.imgload = function () {
  * 获取用户cookie
  */
 window.getusercookie = function () {
+    let cookie = getCookie(config.userlogin)
+    if (cookie) {
+        let v = JSON.parse(cookie)
+        if (v.company) {
+            v.company = JSON.parse(decodeURIComponent(localStorage.getItem(config.userlogin)))
+        }
+        return JSON.stringify(v)
+    }
     return getCookie(config.userlogin)
 }
 /**
@@ -55,6 +63,20 @@ window.removeusercookie = function () {
     return delCookie(config.userlogin)
 }
 
+
+
+window.getlocalStorageuser = function () {
+    return decodeURIComponent(localStorage.getItem(config.userlogin))
+}
+
+window.setlocalStorageuser = function (value: string) {
+    return localStorage.setItem(config.userlogin, encodeURI(value))
+}
+window.removelocalStorageuser = function () {
+    return localStorage.removeItem(config.userlogin)
+}
+
+
 /**
  * 获取登录用户id
  * @return {number} 0 是没登录
@@ -69,3 +91,7 @@ window.getuserid = function () {
     }
     return userId
 }
+
+
+
+

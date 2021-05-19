@@ -1,4 +1,5 @@
 import { sexEnum } from '../../enums/enums'
+import { ResCompanyInfoModel } from '../company/resCompany'
 import { bodyModel } from '../resModel'
 
 
@@ -28,7 +29,7 @@ export interface ResUserModel {
   areaCode: number
   areaCodeValue: string
   phoneNumber: string
-
+  company: ResCompanyInfoModel
 }
 
 /**

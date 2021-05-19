@@ -34,10 +34,10 @@ declare const isdrafts: boolean
 let usermain = document.getElementById('usermain')
 
 //用户id
-let userId = JSON.parse(getCookie(config.userlogin)).userId
+let userId = window.getuserid()
 
 //品牌商id
-let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId
+let companyId = JSON.parse(window.getusercookie()).company.companyId
 
 
 let draftsStorage = 'draftsStorage'
@@ -70,9 +70,11 @@ let publishData: CompanyProductInfoModel = {
     if (!isdrafts) { return }
     let cache = JSON.parse(localStorage.getItem(draftsStorage)) || {}
 
-    if (!cache[productId]) { return }
+    if (!cache[userId]) { return }
 
-    let data = cache[productId]
+    if (!cache[userId][productId]) { return }
+
+    let data = cache[userId][productId]
 
     publishData = data
 
@@ -114,23 +116,56 @@ let publishData: CompanyProductInfoModel = {
     productname.value = publishData.productName
 
     let purchastime = usermain.querySelector('#purchastime')
-    purchastime.value = `${publishData.listingDateYear}-${publishData.listingDateMonth}`
+    if (publishData?.listingDateYear && publishData?.listingDateMonth) {
+        purchastime.value = `${publishData.listingDateYear}-${publishData.listingDateMonth}`
+    }
+
     //-------------------------------------------------------------------------------------------
     //产品基本信息
     let product = document.querySelector('#usermain .product')
     let html = ``
-    publishData.productDetailArguments.forEach((item, index) => {
-        if (index % 2 === 0) {
-            html += '<tr>'
-            html += ` <td contenteditable="plaintext-only">${item.productKey}</td>`
-            html += ` <td contenteditable="plaintext-only">${item.productValue}</td>`
+    if (publishData.productDetailArguments.length <= 0) {
+        html += `
+        <tr>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        </tr>
+        <tr>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        </tr>
+        <tr>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        </tr>
+        <tr>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        <td contenteditable="plaintext-only"></td>
+        </tr>
+        `
+    } else {
+        publishData.productDetailArguments.forEach((item, index) => {
+            if (index % 2 === 0) {
+                html += '<tr>'
+                html += ` <td contenteditable="plaintext-only">${item.productKey}</td>`
+                html += ` <td contenteditable="plaintext-only">${item.productValue}</td>`
 
-        } else {
-            html += ` <td contenteditable="plaintext-only">${item.productKey}</td>`
-            html += ` <td contenteditable="plaintext-only">${item.productValue}</td>`
-            html += '</tr>'
-        }
-    })
+            } else {
+                html += ` <td contenteditable="plaintext-only">${item.productKey}</td>`
+                html += ` <td contenteditable="plaintext-only">${item.productValue}</td>`
+                html += '</tr>'
+            }
+        })
+    }
+
     product.querySelector('table').innerHTML = html
     //-------------------------------------------------------------------------------------------
     //产品外观图 和 细节图
@@ -256,7 +291,10 @@ let publishData: CompanyProductInfoModel = {
         let html = ``
         if (data.code === 0 && data.subCode === subCodeEnums.success) {
             data.bodyMessage[0].productTypeLabels.forEach((item) => {
-                html += `<span data-id="${item.productTypeDetailId}">${item.productTypeDetail}</span>`
+                if (item.productTypeDetailId !== 0) {
+                    html += `<span data-id="${item.productTypeDetailId}">${item.productTypeDetail}</span>`
+                }
+
             })
         }
         Detailslabel.innerHTML = ''
@@ -454,29 +492,34 @@ let publishData: CompanyProductInfoModel = {
 //保存为草稿
 (function () {
     if (productId && !isdrafts) { return }
-   
+
     let submit = usermain.querySelector('.submit')
     let drafts = submit.querySelector('.drafts')
     let productIds = Date.now().toString()
-    drafts.onclick = function () {
-        let productname = usermain.querySelector('.productname')
-        //产品名称
-        if (productname.value.length <= 0) {
-            alert('请输入产品名称')
-            return
+    if (drafts) {
+
+
+        drafts.onclick = function () {
+            let productname = usermain.querySelector('.productname')
+            //产品名称
+            if (productname.value.length <= 0) {
+                alert('请输入产品名称')
+                return
+            }
+
+            let draftsCache = localStorage.getItem(draftsStorage) || '{}'
+            let cachejson = JSON.parse(draftsCache)
+            if (!cachejson[userId]) { cachejson[userId] = {} }
+            if (isdrafts) {
+                productIds = productId
+            }
+            setPublishData()
+
+            cachejson[userId][productIds] = publishData
+
+            localStorage.setItem(draftsStorage, JSON.stringify(cachejson))
+            alert('保存草稿成功')
         }
-
-        let draftsCache = localStorage.getItem(draftsStorage) || '{}'
-        let cachejson = JSON.parse(draftsCache)
-        if (isdrafts) {
-            productIds = productId
-        }
-        setPublishData()
-
-        cachejson[productIds] = publishData
-
-        localStorage.setItem(draftsStorage, JSON.stringify(cachejson))
-        alert('保存草稿成功')
     }
 })();
 
@@ -577,11 +620,14 @@ async function getsubContent() {
 
         if (isdrafts) {
             let cache = JSON.parse(localStorage.getItem(draftsStorage)) || {}
-            delete cache[productId]
+            delete cache[userId][productId]
             localStorage.setItem(draftsStorage, JSON.stringify(cache))
         }
 
         alert('发布成功')
+        setTimeout(() => {
+            document.location.href = '/user/product'
+        }, 3000)
     } else {
         alert(datajson.bodyMessage)
     }

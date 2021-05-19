@@ -1,6 +1,8 @@
+import { JSONParse } from '../common/utils/ModelHelper'
 import { bodyModel } from '../model/resModel'
+import { ResUserModel, ResUserModelReturnModel } from '../model/user/resUser'
 import { LepackUserItemModel, LepackUserModel } from '../model/user/User'
-import ManageLepackUsers from '../services/ManageLepackUser.services'
+import ManageLepackUsers, { getuserByuserIdModel } from '../services/ManageLepackUser.services'
 
 /**
  * 修改用户
@@ -18,3 +20,22 @@ export async function UpdateUserByItem(params: LepackUserItemModel): Promise<bod
     return await ManageLepackUsers.UpdateUserByItem(params).catch(data => data)
 }
 
+
+
+/**
+ * 根据用户id用户完成的用户信息
+ * getuserByuserIdModel
+ */
+export async function GetUserById(params: getuserByuserIdModel): Promise<ResUserModel | null> {
+    let rm = await GetUserByIdRm(params)
+    let models = JSONParse<ResUserModel | null>(rm.code, rm.bodyMessage)
+    return models
+}
+
+/**
+ * 根据用户id用户完成的用户信息
+ * getuserByuserIdModel
+ */
+export async function GetUserByIdRm(params: getuserByuserIdModel): Promise<ResUserModelReturnModel> {
+    return await ManageLepackUsers.GetUserById(params).catch(data => data)
+}

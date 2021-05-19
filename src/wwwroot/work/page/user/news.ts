@@ -11,16 +11,17 @@ import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { NewsInfoModel } from '../../../../model/news/news'
 import { GetNewsPagesByCompanyId, SetNewsTop, DelNewsTop } from '../../common/service/ManageLepackNews'
+import { contentType, popupType } from '../../public/script/popup'
 declare const tabType: any
 declare const pageIndex: number
 declare const totalPages: number
 declare const $: JQueryStatic
 
 //用户id
-let userId = JSON.parse(getCookie(config.userlogin)).userId
+let userId = window.getuserid()
 let usermain = document.querySelector('#usermain')
 //品牌商id
-let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
+let companyId = JSON.parse(window.getusercookie()).company.companyId;
 //已发布
 (function () {
     //tab切换
@@ -94,7 +95,9 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
 (async function () {
     let child_box = usermain.querySelector('.drafts .child_box')
     let newsStorage = 'newsStorage'
-    let data = JSON.parse(localStorage.getItem(newsStorage)) || {}
+    let d = JSON.parse(localStorage.getItem(newsStorage)) || {}
+
+    let data = d[userId] || {}
 
     let keyAry = Object.keys(data)
     let html = ''
@@ -102,6 +105,7 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
         html = `<div class="empty">
                     <p>没有草稿</p>
                 </div>`
+        child_box.innerHTML = html
     } else {
         let contentData: any[] = []
         for (let i = 0; i < keyAry.length; i++) {
@@ -119,9 +123,37 @@ let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId;
 
         if (datas.code === 0) {
             child_box.innerHTML = datas.bodyMessage
+            window.imgload()
         }
 
+
+
+        on({
+            agent: document.getElementById('usermain').querySelector('.drafts'),
+            events: 'click',
+            ele: '.del',
+            fn: function (dom: HTMLElement, e: Event) {
+                alert({
+                    str: '确定要删除吗？',
+                    type: popupType.b,
+                    contentType: contentType.warning,
+                    successCallback: async function () {
+                        let id = dom.getAttribute('data-id')
+
+                        $(dom).parents('.child').remove()
+                        delete d[userId][id]
+                        localStorage.setItem(newsStorage, JSON.stringify(d))
+                        alert('删除成功')
+                    }
+                })
+
+
+            }
+        })
     }
+
+
+
 
 
 })()

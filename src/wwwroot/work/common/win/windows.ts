@@ -4,7 +4,7 @@ type w = {
     /**
      * 图片加载
      */
-    imgload?:() => void
+    imgload?: () => void
     /**
      * 获取用户cookie
      */
@@ -18,6 +18,14 @@ type w = {
                             d是天数，30天则：d30
     */
     setusercookie?: (value: string, time?: string) => void
+
+
+    getlocalStorageuser?: () => string,
+
+    setlocalStorageuser?: (value: string) => any,
+
+    removelocalStorageuser?: () => any,
+
     /**
      * 获取登录用户id
      * @return {number} 0 是没登录

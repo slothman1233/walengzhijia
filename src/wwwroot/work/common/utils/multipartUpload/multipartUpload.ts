@@ -109,7 +109,7 @@ async function multi(file: File, filename: string, { success, error }: optionsTy
         let result = await (<any>client.multipartUpload)(`/${config.osspath}/${time}/` + filename, file, options(filename, {
             tempCheckpoint: cacheAry[filename].tempCheckpoint,
         }))
-        let url = result.res.requestUrls[0].split('?')[0]
+        let url = result.res.requestUrls[0].split('?')[0].replace('http://', 'https://')
         success(url)
         cacheAry[filename].url = url
         cacheAry[filename].state = true

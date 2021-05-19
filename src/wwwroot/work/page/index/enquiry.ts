@@ -17,17 +17,8 @@ let main = document.getElementById('main')
 
 
 //用户id
-let userId = 0;
-(function () {
-    //用户id
-    let usercookie = getCookie(config.userlogin)
-    if (!usercookie) {
-        window.loginshow()
-    } else {
-        userId = JSON.parse(getCookie(config.userlogin)).userId
-    }
+let userId = window.getuserid()
 
-})()
 
 let PublishData: CompanyProductAdvisoryModel = {
     companyId: companyId,

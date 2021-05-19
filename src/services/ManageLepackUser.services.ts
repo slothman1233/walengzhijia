@@ -1,10 +1,15 @@
 import config from '../common/config/env'
 import http from '../common/utils/net'
 import { bodyModel } from '../model/resModel'
+import { ResUserModel } from '../model/user/resUser'
 import { LepackUserItemModel, LepackUserModel } from '../model/user/User'
 
 export type productTypeIdModel = {
-  productTypeId: number
+    productTypeId: number
+}
+
+export type getuserByuserIdModel = {
+    userId: number
 }
 
 class ManageLepackUser {
@@ -21,7 +26,17 @@ class ManageLepackUser {
     async UpdateUserByItem(params: LepackUserItemModel) {
         return await http.post<bodyModel<boolean>>(`${config.apiPath}api/ManageLepackUser/UpdateUserByItem`, params, { headers: { 'Content-Type': 'application/json' } })
     }
+
+    /**
+    * 根据用户id用户完成的用户信息
+    * getuserByuserIdModel
+    */
+    async GetUserById(params: getuserByuserIdModel) {
+        return await http.get<ResUserModel>(`${config.apiPath}api/ManageLepackUser/GetUserById`, { params, headers: { 'Content-Type': 'application/json' } })
+    }
 }
+
+
 
 
 

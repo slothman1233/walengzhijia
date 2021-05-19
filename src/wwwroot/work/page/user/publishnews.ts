@@ -19,10 +19,10 @@ declare let newsType: any[]
 let newsStorage = 'newsStorage'
 
 //用户id
-let userId = JSON.parse(getCookie(config.userlogin)).userId
+let userId = window.getuserid()
 
 //品牌商id
-let companyId = JSON.parse(getCookie(config.userlogin)).company.companyId
+let companyId = JSON.parse(window.getusercookie()).company.companyId
 
 /**
  * 新闻模型
@@ -57,9 +57,11 @@ let usermain = document.getElementById('usermain');
     if (!isdrafts) { return }
     let cache = JSON.parse(localStorage.getItem(newsStorage)) || {}
 
-    if (!cache[newsId]) { return }
+    if (!cache[userId]) { return }
 
-    let data = cache[newsId]
+    if (!cache[userId][newsId]) { return }
+
+    let data = cache[userId][newsId]
 
     publishData = data
 
@@ -241,11 +243,12 @@ let usermain = document.getElementById('usermain');
 
         let draftsCache = localStorage.getItem(newsStorage) || '{}'
         let cachejson = JSON.parse(draftsCache)
+        if(!cachejson[userId]) {cachejson[userId] = {}}
         if (isdrafts) {
             newsIds = newsId
         }
         setPublishData()
-        cachejson[newsIds] = publishData
+        cachejson[userId][newsIds] = publishData
 
         localStorage.setItem(newsStorage, JSON.stringify(cachejson))
         alert('保存草稿成功')
@@ -325,7 +328,7 @@ async function getsubContent() {
     if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
         if (isdrafts) {
             let cache = JSON.parse(localStorage.getItem(newsStorage)) || {}
-            delete cache[newsId]
+            delete cache[userId][newsId]
             localStorage.setItem(newsStorage, JSON.stringify(cache))
         }
 

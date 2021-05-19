@@ -10,7 +10,7 @@ import { userlogin } from '../routes/login'
  * @param {Next} next 
  */
 export async function user_login_middleware(ctx: Context, next: Next) {
-    let userinfo = getCookie(ctx, userlogin)
+    let userinfo = await getCookie(ctx, userlogin)
     if (!userinfo || userinfo === 'undefined') {
         ctx.redirect('/')
     } else {

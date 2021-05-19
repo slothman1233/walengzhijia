@@ -24,7 +24,11 @@ usernavigationbar %}
   </script>
   <script type="text/javascript" src="/dist/scripts/user/product.js"></script>
 {% endblock script %}
-
+ {# {
+                title: "审核中",
+                link: "javascript:void(0);",
+                id: "2"
+              }, #}
 {% block body %}
   <div id="usermain">
     {{ usernavigationbar({
@@ -37,11 +41,8 @@ usernavigationbar %}
                 title: "已发布",
                 link: "javascript:void(0);",
                 id: "1"
-              }, {
-                title: "审核中",
-                link: "javascript:void(0);",
-                id: "2"
               },
+              
                {
                 title: "草稿",
                 link: "javascript:void(0);",
@@ -79,7 +80,7 @@ usernavigationbar %}
 
       </div>
 
-      <div class="review" style='display:none'>
+      {# <div class="review" style='display:none'>
 
         {% if companyObject != null and companyObject.length > 0%}
           <div class="child_box">
@@ -93,14 +94,14 @@ usernavigationbar %}
           </div>
         {% endif %}
 
-      </div>
+      </div> #}
 
       <div class="drafts" style='display:none'>
 
         {% if companyObject != null and companyObject.length > 0%}
           <div class="child_box">
 
-            {{productlist(3,companyObject)}}
+            {# {{productlist(3,companyObject)}} #}
           </div>
           <div id="drafts_kkpage"></div>
         {% else %}

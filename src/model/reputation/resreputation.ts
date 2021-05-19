@@ -110,18 +110,18 @@ export interface ResCompanyProductInfoDetailModel {
  */
 export interface ResCompanyProductInfoModel {
   productId?: number
-  productName: string
+  productName?: string
   listingDateYear?: number
   listingDateMonth?: number
-  productVideo: string
-  productCover: string
-  productTypeId: string
-  summary: string
-  classify: { [index: string]: any }
-  statisticsModel: ResReputationStatisticsModel
-  productArgs: ResCompanyProductInfoDetailModel[],
-  company: ResCompanyInfoModel
-  companyProductImages: ResCompanyProductImageModel[]
+  productVideo?: string
+  productCover?: string
+  productTypeId?: string
+  summary?: string
+  classify?: { [index: string]: any }
+  statisticsModel?: ResReputationStatisticsModel
+  productArgs?: ResCompanyProductInfoDetailModel[],
+  company?: ResCompanyInfoModel
+  companyProductImages?: ResCompanyProductImageModel[]
 }
 
 /**

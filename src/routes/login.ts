@@ -33,14 +33,21 @@ export default class login {
         let { phoneNumber, validateCode, type, pwd }: LepackUserLoginModel = ctx.request.body
         switch (type) {
             case LoginEnums.Phone:
+                debugger
                 let loginDataPhone = await PhoneLogin({
                     phoneNumber,
                     validateCode,
                     pwd
                 })
                 if (loginDataPhone.subCode === subCodeEnums.success) {
+                    let company = loginDataPhone.bodyMessage.company
+                    if (loginDataPhone.bodyMessage.company) {
+                        (<any>loginDataPhone.bodyMessage.company) = true
+                    }
                     cookie.setCookie(ctx, userlogin, JSON.stringify(loginDataPhone.bodyMessage), { maxAge: CacheTime.Day1 * 1000, httpOnly: false })
+                    loginDataPhone.bodyMessage.company = company
                 }
+
                 ctx.body = loginDataPhone
                 break
             case LoginEnums.AccountPwd:
@@ -49,7 +56,12 @@ export default class login {
                     pwd
                 })
                 if (loginDataPwd.subCode === subCodeEnums.success) {
+                    let company = loginDataPhone.bodyMessage.company
+                    if (loginDataPhone.bodyMessage.company) {
+                        (<any>loginDataPhone.bodyMessage.company) = true
+                    }
                     cookie.setCookie(ctx, userlogin, JSON.stringify(loginDataPhone.bodyMessage), { maxAge: CacheTime.Day1 * 1000, httpOnly: false })
+                    loginDataPhone.bodyMessage.company = company
                 }
                 ctx.body = loginDataPwd
                 break

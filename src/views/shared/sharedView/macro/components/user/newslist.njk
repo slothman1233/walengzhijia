@@ -42,8 +42,8 @@
         {% if type == 1 %}
           <a href="/user/publishnews/{{item.id}}">修改</a>
           <a href="javascript:void(0);" data-id="{{item.id}}" class="del">删除</a>
-          <a href="javascript:void(0);" data-id="{{item.id}}" class="stick" style='display:{{(item.isTop == false) | ternary("block","none")}}'>置顶</a>
-          <a href="javascript:void(0);" data-id="{{item.id}}" class="closestick" style='display:{{(item.isTop == false) | ternary("none","block")}}'>取消置顶</a>
+          {# <a href="javascript:void(0);" data-id="{{item.id}}" class="stick" style='display:{{(item.isTop == false) | ternary("block","none")}}'>置顶</a>
+          <a href="javascript:void(0);" data-id="{{item.id}}" class="closestick" style='display:{{(item.isTop == false) | ternary("none","block")}}'>取消置顶</a> #}
         {% elif type == 2 %}
           <a href="/user/publishnews/{{item.id}}/1">修改</a>
           <a href="javascript:void(0);" data-id="{{item.id}}" class="del">删除</a>

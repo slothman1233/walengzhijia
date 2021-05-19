@@ -40,16 +40,16 @@ usernavigationbar %}
                 title: "草稿",
                 link: "javascript:void(0);",
                 id: "1"
-              },
-               {
-                title: "已删除",
-                link: "javascript:void(0);",
-                id: "1"
               }
             ]
 
     }) }}
-   
+   {# ,
+               {
+                title: "已删除",
+                link: "javascript:void(0);",
+                id: "1"
+              } #}
     <div class="box">
       <div class="publish" style='display:{{(tabType == 1) | ternary("block","none")}}'>
       
@@ -83,7 +83,7 @@ usernavigationbar %}
         </div>
       </div>
 
-      <div class="havadel" style='display:{{(tabType == 3) | ternary("block","none")}}'>2</div>
+      {# <div class="havadel" style='display:{{(tabType == 3) | ternary("block","none")}}'>2</div> #}
 
     </div>
 

@@ -46,7 +46,7 @@ export default class Business {
 
         //----------------------------------------------
         //根据公司ID和产品id 获取产品列表
-        let GetCompanyProduct = await GetCompanyProductByTypeId({ companyId, productTypeId: 0, pageIndex: 1, pageSize: 10 })
+        let GetCompanyProduct = await GetCompanyProductByTypeId({ companyId, productTypeId: 0, pageIndex: 1, pageSize: 8 })
         //----------------------------------------------
         ///获得公司口碑集合
         let Reputation = await GetReputationByCompany(companyId)

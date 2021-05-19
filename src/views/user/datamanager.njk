@@ -141,7 +141,7 @@
               <div class="r">
                 <a href="/user/sales/2/{{item.salerId}}">修改</a>
                 <a href="javascript:void(0);" data-id="{{item.salerId}}" class="del">删除</a>
-                <a href="javascript:void(0);" data-id="{{item.salerId}}" class="stick" style='display:{{ (loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
+                {# <a href="javascript:void(0);" data-id="{{item.salerId}}" class="stick" style='display:{{ (loop.index0 === 0) | ternary("none","block") }}'>置顶</a> #}
               </div>
             </div>
           {% endfor %}

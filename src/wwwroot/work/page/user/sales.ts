@@ -8,6 +8,7 @@ import config from '../../common/config/env'
 import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
 import { subCodeEnums } from '../../../../enums/enums'
 import { CompanyProductSalerModel } from '../../../../model/company/resCompany'
+import window from '../../common/win/windows'
 declare const $: JQueryStatic
 declare const type: any
 declare const salerId: any
@@ -76,7 +77,9 @@ let usermain = document.querySelector('#usermain');
             success: async (url: string) => {
 
                 $(input).parent().siblings('.padding').find('img').attr('src', url)
-
+                if (type === 1) {
+                    return
+                }
                 let publishData = await setPublishData()
 
                 if (!publishData) { return }
@@ -89,7 +92,7 @@ let usermain = document.querySelector('#usermain');
 
                     alert('修改头像成功')
 
-                }else{
+                } else {
                     alert('修改头像失败请重新上传')
                 }
             },
@@ -117,7 +120,9 @@ let usermain = document.querySelector('#usermain');
         if (data.code === 0 && data.subCode === subCodeEnums.success) {
 
             alert('添加销售信息成功')
-
+            setTimeout(() => {
+                document.location.href = '/user/datamanager/2'
+            }, 3000)
         } else {
             alert('添加失败重新添加')
 
@@ -160,7 +165,7 @@ async function setPublishData() {
         return false
     }
 
-    let userData = JSON.parse(getCookie(config.userlogin))
+    let userData = JSON.parse(window.getusercookie())
 
     let publishData: CompanyProductSalerModel = {
         companyId: userData.company.companyId,

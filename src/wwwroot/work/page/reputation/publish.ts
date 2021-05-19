@@ -19,17 +19,7 @@ declare const productId: any
 
 let main = document.getElementById('main')
 //用户id
-let userId = 0;
-(function () {
-    //用户id
-    let usercookie = getCookie(config.userlogin)
-    if (!usercookie) {
-        window.loginshow()
-    } else {
-        userId = JSON.parse(getCookie(config.userlogin)).userId
-    }
-
-})()
+let userId = window.getuserid()
 /**
  * 口碑模型
  * @param {number} companyId 公司标识ID

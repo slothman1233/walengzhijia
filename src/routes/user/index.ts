@@ -33,7 +33,7 @@ export default class User {
     async datamanager(ctx: Context, next: Next) {
         let { tabType } = ctx.params
 
-        let cookie = getCookie(ctx, userlogin)
+        let cookie = await getCookie(ctx, userlogin)
         let companyId = 1
         let cookieJson = JSON.parse(cookie)
         if (cookie !== 'undefined') {
@@ -78,7 +78,7 @@ export default class User {
     async product(ctx: Context, next: Next) {
 
         let productTypeId = 0
-        let cookie = getCookie(ctx, userlogin)
+        let cookie = await getCookie(ctx, userlogin)
         let companyId = 1
         if (cookie !== 'undefined') {
             companyId = JSON.parse(cookie).company.companyId
@@ -89,17 +89,20 @@ export default class User {
         let reputationtype = await GetCompanyProductType({ companyId })
 
         let reputationtypeinfo: any[] = []
-        reputationtype.forEach((item, index) => {
-            if (index === 0) {
-                productTypeId = item.productTypeId
-            }
-            reputationtypeinfo.push({
-                class: '',
-                title: item.productTypeName,
-                id: item.productTypeId,
-                nlink: 'javascript:void(0);'
+        if (reputationtype) {
+            reputationtype.forEach((item, index) => {
+                if (index === 0) {
+                    productTypeId = item.productTypeId
+                }
+                reputationtypeinfo.push({
+                    class: '',
+                    title: item.productTypeName,
+                    id: item.productTypeId,
+                    nlink: 'javascript:void(0);'
+                })
             })
-        })
+        }
+
         //----------------------------------------------
         //根据公司ID和产品id 获取产品列表
         let pageSize = 10
@@ -108,21 +111,23 @@ export default class User {
         let companyObject: any[] = []
 
         //ResCompanyProductInfoModel
+        if (GetCompanyProduct) {
+            GetCompanyProduct.items.forEach(item => {
+                let label: string[] = []
+                Object.keys(item.classify).forEach(function (index) {
+                    label.push(item.classify[index])
+                })
+                companyObject.push({
+                    logo: item.productCover,
+                    title: item.productName,
+                    label,
+                    id: item.productId,
+                    companyId,
+                    createTime: `${item.listingDateYear}-${item.listingDateMonth}`
+                })
+            })
+        }
 
-        GetCompanyProduct.items.forEach(item => {
-            let label: string[] = []
-            Object.keys(item.classify).forEach(function (index) {
-                label.push(item.classify[index])
-            })
-            companyObject.push({
-                logo: item.productCover,
-                title: item.productName,
-                label,
-                id: item.productId,
-                companyId,
-                createTime: `${item.listingDateYear}-${item.listingDateMonth}`
-            })
-        })
         //----------------------------------------------
 
 
@@ -131,8 +136,8 @@ export default class User {
             companyId,
             pageSize,
             companyObject,
-            totalPages: GetCompanyProduct.totalPages,
-            pageIndex: GetCompanyProduct.pageIndex
+            totalPages: GetCompanyProduct?.totalPages || 1,
+            pageIndex: GetCompanyProduct?.pageIndex || 1
         })
     }
 
@@ -160,7 +165,7 @@ export default class User {
 
         //--------------------------------
         //获取新闻列表
-        let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+        let cookieuserinfo: userLoginModel = JSON.parse(await getCookie(ctx, userlogin))
 
         //GetNewsPagesByCompanyId
         let newdata = await GetNewsPagesByCompanyId({
@@ -169,23 +174,26 @@ export default class User {
             pageIndex: 1
         })
         let firstnewlist: any = []
-        newdata.items.forEach(item => {
-            firstnewlist.push({
-                logo: item.newsIcon,
-                title: item.newsTitle,
-                label: [NewsContentTypeArray[item.newsContentType]],
-                id: item.newsId,
-                author: item.userName,
-                createTime: item.newsTime,
-                isTop: item.isTop
+        if (newdata && newdata.items && newdata.items.length > 0) {
+            newdata.items.forEach(item => {
+                firstnewlist.push({
+                    logo: item.newsIcon,
+                    title: item.newsTitle,
+                    label: [NewsContentTypeArray[item.newsContentType]],
+                    id: item.newsId,
+                    author: item.userName,
+                    createTime: item.newsTime,
+                    isTop: item.isTop
+                })
             })
-        })
+        }
+
         //--------------------------------
 
         await ctx.render('user/news', {
             tabType: tabType || 1,
-            pageIndex: newdata.pageIndex,
-            totalPages: newdata.totalPages,
+            pageIndex: newdata?.pageIndex || 1,
+            totalPages: newdata?.totalPages || 1,
             newlabels,
             firstnewlist
         })
@@ -196,7 +204,7 @@ export default class User {
     async content(ctx: Context, next: Next) {
         let { tabType, pageIndex } = ctx.params
         //获取用户对应的口碑
-        let userinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+        let userinfo: userLoginModel = JSON.parse(await getCookie(ctx, userlogin))
         let pageData = await GetReuputationPagedByUser({
             userId: parseInt(userinfo.userId),
             pageIndex: 1
@@ -242,7 +250,7 @@ export default class User {
         //     } 
         // }
 
-        let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+        let cookieuserinfo: userLoginModel = JSON.parse(await getCookie(ctx, userlogin))
 
 
 
@@ -256,7 +264,7 @@ export default class User {
     @get('/changepwd')
     async changepwd(ctx: Context, next: Next) {
 
-        let cookieuserinfo: userLoginModel = JSON.parse(getCookie(ctx, userlogin))
+        let cookieuserinfo: userLoginModel = JSON.parse(await getCookie(ctx, userlogin))
 
 
         await ctx.render('user/changepwd', {
@@ -278,7 +286,7 @@ export default class User {
         //细节图
         let detaileddrawAry: string[] = []
         let productClassifyTypeAry: any[] = []
-        let puroductInfo: ResCompanyProductInfoModel
+        let puroductInfo: ResCompanyProductInfoModel = {}
         if (productId && !drafts) {
             //根据产品id获取产品数据
             puroductInfo = await GetCompanyProductById({ productId })
@@ -320,7 +328,8 @@ export default class User {
                     })
                 }
             } else {
-                if (index === 0) {
+                if (index === 1) {
+                    puroductInfo.productTypeId = product.productTypeId.toString()
                     product.productTypeLabels.forEach((label) => {
                         productTypeLabels.push({
                             id: label.productTypeDetailId,
@@ -330,10 +339,13 @@ export default class User {
                 }
             }
 
-            industryObject.data.push({
-                id: product.productTypeId,
-                value: product.productType
-            })
+            if (product.productTypeId !== 0) {
+                industryObject.data.push({
+                    id: product.productTypeId,
+                    value: product.productType
+                })
+            }
+
         })
         //--------------------------------------------------------
 
@@ -354,7 +366,7 @@ export default class User {
     @get('/publishnews/:newsId?/:drafts?')
     async publishnews(ctx: Context, next: Next) {
         let { newsId, drafts } = ctx.params
-        let cookie = getCookie(ctx, userlogin)
+        let cookie = await getCookie(ctx, userlogin)
         let companyId = 1
         if (cookie !== 'undefined') {
             companyId = JSON.parse(cookie).company.companyId

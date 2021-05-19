@@ -1,0 +1,76 @@
+{% from '../sharedView/macro/wuc/footer.njk' import footer %}
+{% from '../sharedView/macro/wuc/header.njk' import header %}
+{# {% from '../sharedView/macro/components/login/login.njk' import login1 %} #}
+{% from '../../login/login.njk' import login1 %}
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 使用浏览器最高版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 使用webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 使用IE兼容内核 -->
+    <meta name="renderer" content="ie-comp">
+    <!-- 使用IE标准内核 -->
+    <meta name="renderer" content="ie-stand">
+    <!-- 综合写法 浏览器会根据左到右的顺序，使用自己有的内核 -->
+    <meta name="renderer" content="webkit|ie-comp">
+
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <title>
+      {% block title %}我是title{% endblock title %}
+    </title>
+    <meta name="keywords" content="{% block keywords %}keywords{% endblock keywords %}">
+    <meta name="description" content="{% block description %}我是description{% endblock description %}">
+    <link href="/assets/font/iconfont.css" rel="stylesheet">
+    <link href="/dist/public/style/index.css" rel="stylesheet">
+    {% block style %}{% endblock style %}
+    <script src="/assets/plugin/screenadaptation/adaptation.js" type="text/javascript"></script>
+    <script src="/assets/plugin/screenadaptation/mui.min.js" type="text/javascript"></script>
+    <script src="/assets/plugin/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+
+  </head>
+
+  <body>
+
+    {% block headers %}
+      {{header()}}
+    {% endblock headers %}
+
+    {% block body %}
+      <div>
+            mmmmmbody部分
+           </div>
+    {% endblock body %}
+
+    {% block foot %}
+      {{footer()}}
+    {% endblock foot %}
+
+    {{login1()}}
+
+    <script src="/dist/public/script/index.js" type="text/javascript"></script>
+    {% block script %}{% endblock script %}
+
+  </body>
+
+</html>

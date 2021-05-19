@@ -4,6 +4,7 @@ import http from './http'
 
 import env from '../config/env'
 import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserValidateModel } from '../../../../model/user/User'
+import { ResUserModelReturnModel } from '../../../../model/user/resUser'
 
 
 
@@ -14,7 +15,7 @@ import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserValidateModel 
  * @param {number} validateCode 验证码
  * @param {string} pwd 密码
  */
-export const Login = async (options: LepackUserLoginModel): Promise<any> => await http.post<any>(`/login`, options)
+export const Login = async (options: LepackUserLoginModel): Promise<ResUserModelReturnModel> => await http.post<any>(`/login`, options)
 
 /**
  * 登录

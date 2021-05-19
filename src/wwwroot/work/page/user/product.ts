@@ -9,13 +9,16 @@ import { CompanyProductInfoModel } from '../../../../model/company/Company'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { bodyModel } from '../../../../model/resModel'
 import window from '../../common/win/windows'
+import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
+import config from '../../common/config/env'
+import { contentType, popupType } from '../../public/script/popup'
 declare const tabType: any
 declare const pageIndex: number
 declare const totalPages: number
 declare const companyId: any
 declare const pageSize: any
 declare const $: JQueryStatic
-
+let userId = window.getuserid();
 //已发布
 (function () {
     //tab切换
@@ -181,7 +184,7 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
 //审核中
 (function () {
 
-    if (document.getElementById('drafts_kkpage')) {
+    if (document.getElementById('review_kkpage')) {
         kkpager({
             pagerid: 'review_kkpage',
             total: 20,
@@ -210,14 +213,17 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
 (async function () {
 
     let draftsStorage = 'draftsStorage'
-    let data = JSON.parse(localStorage.getItem(draftsStorage)) || {}
-
+    let d = JSON.parse(localStorage.getItem(draftsStorage)) || {}
+    let data = d[userId] || {}
     let keyAry = Object.keys(data)
     let html = ''
+    let drafts = document.getElementById('usermain').querySelector('.drafts .child_box')
     if (keyAry.length <= 0) {
         html = `<div class="empty">
                     <p>没有草稿</p>
                 </div>`
+        drafts.innerHTML = html
+        return
     } else {
         let contentData: any[] = []
         for (let i = 0; i < keyAry.length; i++) {
@@ -233,15 +239,17 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
 
         if (datas.code === 0) {
             html = datas.bodyMessage
+            drafts.innerHTML = html
+            window.imgload()
         }
 
     }
 
 
 
-    let drafts = document.getElementById('usermain').querySelector('.drafts .child_box')
 
-    drafts.innerHTML = html
+
+
 
     //-------------------------------
     //删除方法
@@ -252,13 +260,21 @@ async function getdata(data: ResCompanyProductInfoModelPagedModelReturnModel) {
         events: 'click',
         ele: '.del',
         fn: function (dom: HTMLElement, e: Event) {
+            alert({
+                str: '确定要删除吗？',
+                type: popupType.b,
+                contentType: contentType.warning,
+                successCallback: async function () {
+                    let id = dom.getAttribute('data-id')
 
-            let id = dom.getAttribute('data-id')
+                    $(dom).parents('.child').remove()
+                    delete d[userId][id]
+                    localStorage.setItem(draftsStorage, JSON.stringify(d))
+                    alert('删除成功')
+                }
+            })
 
-            $(dom).parents('.child').remove()
-            delete data[id]
-            localStorage.setItem(draftsStorage, JSON.stringify(data))
-            alert('删除成功')
+
         }
     })
 

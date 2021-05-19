@@ -17,7 +17,7 @@ export default {
 
     },
     'userlistbox': async function (ctx: Context, url: string, ...arg: any) {
-        let cookie = getCookie(ctx, userlogin)
+        let cookie = await getCookie(ctx, userlogin)
         let isCompany = false
         if (cookie && JSON.parse(cookie).company !== null) {
             isCompany = true

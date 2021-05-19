@@ -77,7 +77,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                 if (data.code === 0 && data.subCode === subCodeEnums.success) {
                     alert('修改成功')
                     usercookie.company.abbrName = value
-                    window.setusercookie(JSON.stringify(usercookie))
+                    window.setlocalStorageuser(JSON.stringify(usercookie.company))
                     $(dom).siblings('.textarea').attr('contenteditable', 'false')
                     $(dom).hide()
                     $(dom).siblings('.applyfor').show()
@@ -103,7 +103,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                 if (data.code === 0 && data.subCode === subCodeEnums.success) {
                     alert('修改成功')
                     usercookie.company.fullName = value
-                    window.setusercookie(JSON.stringify(usercookie))
+                    window.setlocalStorageuser(JSON.stringify(usercookie.company))
                     $(dom).siblings('.textarea').attr('contenteditable', 'false')
                     $(dom).hide()
                     $(dom).siblings('.applyfor').show()
@@ -128,7 +128,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                 if (data.code === 0 && data.subCode === subCodeEnums.success) {
                     alert('修改成功')
                     usercookie.company.website = value
-                    window.setusercookie(JSON.stringify(usercookie))
+                    window.setlocalStorageuser(JSON.stringify(usercookie.company))
                     $(dom).siblings('.textarea').attr('contenteditable', 'false')
                     $(dom).hide()
                     $(dom).siblings('.applyfor').show()
@@ -154,7 +154,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                 if (data.code === 0 && data.subCode === subCodeEnums.success) {
                     alert('修改成功')
                     usercookie.company.contactPhone = value
-                    window.setusercookie(JSON.stringify(usercookie))
+                    window.setlocalStorageuser(JSON.stringify(usercookie.company))
                     $(dom).siblings('.textarea').attr('contenteditable', 'false')
                     $(dom).hide()
                     $(dom).siblings('.applyfor').show()
@@ -180,7 +180,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                 if (data.code === 0 && data.subCode === subCodeEnums.success) {
                     alert('修改成功')
                     usercookie.company.addr = value
-                    window.setusercookie(JSON.stringify(usercookie))
+                    window.setlocalStorageuser(JSON.stringify(usercookie.company))
                     $(dom).siblings('.textarea').attr('contenteditable', 'false')
                     $(dom).hide()
                     $(dom).siblings('.applyfor').show()
@@ -206,7 +206,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                 if (data.code === 0 && data.subCode === subCodeEnums.success) {
                     alert('修改成功')
                     usercookie.company.desc = value
-                    window.setusercookie(JSON.stringify(usercookie))
+                    window.setlocalStorageuser(JSON.stringify(usercookie.company))
                     $(dom).siblings('.textarea').attr('contenteditable', 'false')
                     $(dom).hide()
                     $(dom).siblings('.applyfor').show()
@@ -239,7 +239,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                         $(input).parent().siblings('.padding').find('img').attr('src', url)
                         alert('上传成功')
                         usercookie.company.logo = url
-                        window.setusercookie(JSON.stringify(usercookie))
+                        window.setlocalStorageuser(JSON.stringify(usercookie.company))
 
                     } else {
                         alert('修改错误，请重新提交！')
@@ -257,7 +257,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                         $(input).parent().siblings('.padding').find('img').attr('src', url)
                         alert('上传成功')
                         usercookie.company.license = url
-                        window.setusercookie(JSON.stringify(usercookie))
+                        window.setlocalStorageuser(JSON.stringify(usercookie.company))
 
                     } else {
                         alert('修改错误，请重新提交！')
@@ -295,8 +295,8 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                 type: popupType.b,
                 contentType: contentType.warning,
                 successCallback: async function () {
-
-                    let userData = JSON.parse(getCookie(config.userlogin))
+                   
+                    let userData = JSON.parse(window.getusercookie())
                     let companyId = userData.company.companyId
                     let userId = userData.userId
                     let delData = await DeleteCompanySaler({

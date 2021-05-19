@@ -5,7 +5,6 @@ import { Login, Register, sendCode } from '../../common/service/login.services'
 import window from '../../common/win/windows'
 import { LoginEnums, subCodeEnums, ValidateCodeDefine } from '../../../../enums/enums'
 
-
 let login_container = document.getElementById('login_container')
 let login_verification: any
 let register_verification: any
@@ -163,6 +162,8 @@ let pwdReg = new RegExp(/^(?![^a-zA-Z]+$)(?!\D+$)/);
         if (data && data.code === 0 && data.subCode === subCodeEnums.success) {
             alert('登录成功')
             closeCallback()
+            window.setlocalStorageuser(JSON.stringify(data.bodyMessage.company))
+
             document.location.href = document.location.href
             return
         }
@@ -207,6 +208,7 @@ let pwdReg = new RegExp(/^(?![^a-zA-Z]+$)(?!\D+$)/);
         if (data && data.code === 0 && data.subCode === subCodeEnums.success) {
             alert('登录成功')
             closeCallback()
+            window.setlocalStorageuser(JSON.stringify(data.bodyMessage.company))
             document.location.href = document.location.href
             return
         }
@@ -299,8 +301,8 @@ export enum logintype {
     phonelogin = 1,
     pwdlogin = 2,
     register = 3
-  }
-  
+}
+
 /**
    * 弹出登录界面
    * @param {logintype} type 显示登录界面默认展示的类型
@@ -325,8 +327,8 @@ window.loginshow = function loginshow(type: logintype = logintype.phonelogin) {
                 $(login_container).find('.phone_login').siblings().hide()
                 $(login_container).find('.phone_login').show()
         }
-  
+
         login_container.style.display = 'block'
-  
+
     }
 }

@@ -1,4 +1,5 @@
 import { Context } from 'koa'
+import { GetUserById } from '../../controller/ManageLepackUser.controller'
 import { CacheTime } from '../../enums/enums'
 import config from '../config/env/index'
 /**
@@ -18,6 +19,7 @@ export type setCookieModel = {
     httpOnly?: boolean,
     overwrite?: boolean,
     secure?: boolean
+    signed?: boolean
 }
 
 
@@ -37,16 +39,15 @@ export type setCookieModel = {
           * @param {boolean} secure 安全 cookie   默认false，设置成true表示只有 https可以访问
  */
 export function setCookie(ctx: Context, name: string, value: string, option: setCookieModel) {
-
-
-    return ctx.cookies.set(name,  encodeURI(value), {
+    return ctx.cookies.set(name, encodeURI(value), {
         domain: option.domain || config.domain, // 写cookie所在的域名
         path: option.path || '/',       // 写cookie所在的路径
         maxAge: option.maxAge || 1000 * 60 * 60 * 24,   // cookie有效时长
         expires: option.expires, // cookie失效时间
         httpOnly: option.httpOnly === undefined ? true : option.httpOnly,  // 是否只用于http请求中获取
-        overwrite: option.overwrite === undefined ? true :option.overwrite,
-        secure: option.secure  === undefined ? false :option.secure
+        overwrite: option.overwrite === undefined ? true : option.overwrite,
+        secure: option.secure === undefined ? false : option.secure,
+        signed: option.signed === undefined ? false : option.signed
     })
 }
 
@@ -54,10 +55,16 @@ export function setCookie(ctx: Context, name: string, value: string, option: set
  * 获取cookie
  * @param {string} name 
  */
-export function getCookie(ctx: Context, name: string) {
+export async function getCookie(ctx: Context, name: string) {
     let buf = ctx.cookies.get(name)
-    return decodeURIComponent(buf)
-    
+    let cookiestr = decodeURIComponent(buf)
+    if (cookiestr && cookiestr !== 'undefined') {
+        let userinfo = await GetUserById({ userId: JSON.parse(cookiestr).userId })
+        return JSON.stringify(userinfo)
+    }
+
+    return cookiestr
+
 }
 
 /**
