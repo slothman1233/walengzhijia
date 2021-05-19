@@ -3,7 +3,7 @@
     <div class="child">
       {% if type == 1 %}
         <a href="/news/{{item.id}}" target="_blank">
-          <img _src_="{{item.logo}}" />
+          <img _src_="{{item.logo}}"/>
         </a>
       {% else %}
         <img _src_="{{item.logo}}"/>
@@ -19,7 +19,7 @@
             <p>{{item.title}}</p>
           {% endif %}
           {% if type == 1 %}
-            <span class="zd" style='display:{{(type == 1) and (loop.index == 1) | ternary("inline-block","none")}}'>已置顶</span>
+            <span class="zd" style='display:{{(type == 1) and (item.isTop == true) | ternary("inline-block","none")}}'>已置顶</span>
           {% endif %}
 
         </h3>
@@ -42,7 +42,8 @@
         {% if type == 1 %}
           <a href="/user/publishnews/{{item.id}}">修改</a>
           <a href="javascript:void(0);" data-id="{{item.id}}" class="del">删除</a>
-          <a href="javascript:void(0);" data-id="{{item.id}}" class="stick">{{ (loop.index0 === 0) | ternary("取消置顶","置顶") }}</a>
+          <a href="javascript:void(0);" data-id="{{item.id}}" class="stick" style='display:{{(item.isTop == false) | ternary("block","none")}}'>置顶</a>
+          <a href="javascript:void(0);" data-id="{{item.id}}" class="closestick" style='display:{{(item.isTop == false) | ternary("none","block")}}'>取消置顶</a>
         {% elif type == 2 %}
           <a href="/user/publishnews/{{item.id}}/1">修改</a>
           <a href="javascript:void(0);" data-id="{{item.id}}" class="del">删除</a>

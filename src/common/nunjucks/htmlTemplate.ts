@@ -15,7 +15,6 @@ class htmlFilter {
                 arg = that.argFunc($2)
                 return ''
             })
-            console.log(arg)
             arg.unshift(ctx)
             return tpl[funName].apply(null, arg)
 

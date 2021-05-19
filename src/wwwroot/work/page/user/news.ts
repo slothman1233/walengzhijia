@@ -10,7 +10,7 @@ import window from '../../common/win/windows'
 import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { NewsInfoModel } from '../../../../model/news/news'
-import { GetNewsPagesByCompanyId } from '../../common/service/ManageLepackNews'
+import { GetNewsPagesByCompanyId, SetNewsTop, DelNewsTop } from '../../common/service/ManageLepackNews'
 declare const tabType: any
 declare const pageIndex: number
 declare const totalPages: number
@@ -147,11 +147,12 @@ async function getdata(id: any, pageIndex: number) {
                 label: [NewsContentTypeArray[item.newsContentType]],
                 id: item.newsId,
                 author: item.userName,
-                createTime: item.newsTime
+                createTime: item.newsTime,
+                isTop: item.isTop
             })
         })
 
-        let datas: bodyModel<string> = await getcomponent({ path: 'components/user/newslist.njk', name: 'newslist', data: { type: 1, newdata: newslist } })
+        let datas: bodyModel<string> = await getcomponent({ path: 'components/user/newslist.njk', name: 'newslist', data: { type: id === 0 ? 1 : 2, newdata: newslist } })
 
         if (datas.code === 0) {
             html = datas.bodyMessage
@@ -168,82 +169,77 @@ async function getdata(id: any, pageIndex: number) {
         agent: child_box,
         events: 'click',
         ele: '.stick',
-        fn: function (dom: any, ev: any) {
-            let id = $(dom).data('id')
-            if (pageIndex === 1) {
-                $($(child_box).find('.child')[0]).find('.stick').show()
-                $(child_box).prepend($(dom).parents('.child'))
-                $(dom).hide()
-                alert('置顶成功')
-            } else {
-                $(dom).parents('.child').remove()
-                alert('置顶成功')
-            }
-
-        }
-    })
-})();
-
-
-//销售信息
-(function () {
-    let market = document.querySelector('#usermain .publish .child_box')
-
-    //删除
-    on({
-        agent: market,
-        events: 'click',
-        ele: '.del',
         fn: async function (dom: any, ev: any) {
             let id = $(dom).data('id')
-            window.alert({
-                title: '确定要删除这条新闻吗？',
-                str: '删除后无法复原',
-                type: 1,
-                contentType: 2,
-                successCallback: async () => {
-                    let datajson = await delNews({
-                        newsId: id,
-                        companyId: companyId,
-                        productId: 0,
-                        newsType: [],
-                        newsTitle: '',
-                        source: '',
-                        newsContent: '',
-                        newsIcon: '',
-                        createUser: userId
-                    })
-
-                    if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
-                        $(dom).parents('.child').remove()
-                        alert('删除成功')
-                    } else {
-                        alert('删除失败')
-                    }
-                }
+            let data = await SetNewsTop({
+                newsId: id,
+                isTop: true,
+                createUser: userId
             })
 
+            if (data && data.code === 0 && data.subCode === subCodeEnums.success) {
+                $(dom).parents('.child').find('.c .zd').show()
+                $(dom).hide()
+                $(dom).siblings('.closestick').show()
+                alert('置顶成功')
+            } else {
+                alert('置顶失败，请重试')
+            }
 
 
+
+            // if (pageIndex === 1) {
+            //     // $($(child_box).find('.child')[0]).find('.stick').show()
+            //     // $(child_box).prepend($(dom).parents('.child'))
+            //     $(dom).hide()
+            //     $(dom).siblings('.closestick').show()
+            //     alert('置顶成功')
+            // } else {
+            //     //$(dom).parents('.child').remove()
+            //     $(dom).hide()
+            //     $(dom).siblings('.closestick').show()
+            //     alert('置顶成功')
+            // }
 
 
 
         }
     })
 
-    //置顶
+    //取消置顶
     on({
-        agent: market,
+        agent: child_box,
         events: 'click',
-        ele: '.stick',
-        fn: function (dom: any, ev: any) {
+        ele: '.closestick',
+        fn: async function (dom: any, ev: any) {
             let id = $(dom).data('id')
-            $($(market).find('.child')[0]).find('.stick').show()
-            $(market).prepend($(dom).parents('.child'))
-            $(dom).hide()
+
+            let data = await DelNewsTop({
+                newsId: id,
+                isTop: true,
+                createUser: userId
+            })
+
+            if (data && data.code === 0 && data.subCode === subCodeEnums.success) {
+                $(dom).parents('.child').find('.c .zd').hide()
+                $(dom).hide()
+                $(dom).siblings('.stick').show()
+                alert('取消置顶成功')
+            } else {
+                alert('取消置顶失败，请重试')
+            }
+
+
+            // if (pageIndex === 1) {
+            //     // $($(child_box).find('.child')[0]).find('.stick').show()
+            //     // $(child_box).prepend($(dom).parents('.child'))
+            //     $(dom).hide()
+            //     alert('置顶成功')
+            // } else {
+            //     $(dom).parents('.child').remove()
+            //     alert('置顶成功')
+            // }
+
         }
     })
-
 })()
-//----------------------------------------------
-

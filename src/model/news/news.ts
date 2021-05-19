@@ -25,5 +25,20 @@ export interface NewsInfoModel {
   newsContent: string
   newsIcon: string
   createUser?: number
-  newsContentType?:NewsContentTypeEnums
+  newsContentType?: NewsContentTypeEnums
+}
+
+
+/**
+ * 新闻置顶功能
+ * @param {number} newsId 新闻ID
+ * @param {boolean} isTop 是否置顶
+ * @param {number} topWeight 置顶权重
+ * @param {number} createUser 操作用户
+ */
+export interface NewsTopModel {
+  newsId: number
+  isTop?: boolean
+  topWeight?: number
+  createUser?: number
 }

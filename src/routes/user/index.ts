@@ -176,7 +176,8 @@ export default class User {
                 label: [NewsContentTypeArray[item.newsContentType]],
                 id: item.newsId,
                 author: item.userName,
-                createTime: item.newsTime
+                createTime: item.newsTime,
+                isTop: item.isTop
             })
         })
         //--------------------------------

@@ -4,7 +4,7 @@ import http from './http'
 
 import env from '../config/env'
 import { bodyModel } from '../../../../model/resModel'
-import { NewsInfoModel } from '../../../../model/news/news'
+import { NewsInfoModel, NewsTopModel } from '../../../../model/news/news'
 import { ResNewsDetailModelReturnModel, ResNewsModel, ResNewsModelPagedModelReturnModel } from '../../../../model/news/resNews'
 import { GetNewsByNewsIdModel } from '../../../../services/ManageLepackNews.services'
 
@@ -18,3 +18,16 @@ import { GetNewsByNewsIdModel } from '../../../../services/ManageLepackNews.serv
  * @param {boolean} isReputation 是否获取口碑新闻
  */
 export const GetNewsPagesByCompanyId = async (params: GetNewsByNewsIdModel): Promise<ResNewsModelPagedModelReturnModel> => await http.get<any>(`/api/ManageLepackNews/GetNewsPagesByCompanyId`, { params })
+
+/**
+ * 新闻置顶
+ * NewsTopModel
+ */
+export const SetNewsTop = async (options: NewsTopModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/api/ManageLepackNews/SetNewsTop`, options)
+
+
+/**
+ * 取消新闻置顶
+ * NewsTopModel
+ */
+export const DelNewsTop = async (options: NewsTopModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/api/ManageLepackNews/DelNewsTop`, options)

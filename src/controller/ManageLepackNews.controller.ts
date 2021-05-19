@@ -1,6 +1,8 @@
 
 import { JSONParse } from '../common/utils/ModelHelper'
+import { NewsTopModel } from '../model/news/news'
 import { ResNewsModel, ResNewsModelListReturnModel, ResNewsModelPagedModel, ResNewsModelPagedModelReturnModel } from '../model/news/resNews'
+import { bodyModel } from '../model/resModel'
 import ManageLepackNewss, { GetNewsByNewsIdModel } from '../services/ManageLepackNews.services'
 
 /**
@@ -28,7 +30,21 @@ export async function GetNewsPagesByCompanyIdRm(params: GetNewsByNewsIdModel): P
 }
 
 
+/**
+ * 新闻置顶操作
+ * NewsTopModel
+ */
+export async function SetNewsTop(params: NewsTopModel): Promise<bodyModel<boolean>> {
+    return await ManageLepackNewss.SetNewsTop(params).catch(data => data)
+}
 
+/**
+ * 取消置顶操作
+ * NewsTopModel
+ */
+export async function DelNewsTop(params: NewsTopModel): Promise<bodyModel<boolean>> {
+    return await ManageLepackNewss.DelNewsTop(params).catch(data => data)
+}
 
 
 

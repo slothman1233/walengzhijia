@@ -24,6 +24,8 @@ import { bodyModel } from '../resModel'
  * @param {string} newsTime 新闻时间
  * @param {number} praiseCount 点赞数
  * @param {NewsContentTypeEnums} newsContentType 文章内容类型
+ * @param {boolean} isTop 是否置顶
+ * @param {number} topWeight 置顶权重
  */
 export interface ResNewsModel {
   newsId?: number
@@ -44,6 +46,9 @@ export interface ResNewsModel {
   newsTime: string
   praiseCount: number
   newsContentType: NewsContentTypeEnums
+  isTop?: boolean
+  topWeight?: number
+
 }
 
 /**
