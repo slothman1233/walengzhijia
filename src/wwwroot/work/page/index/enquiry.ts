@@ -153,6 +153,7 @@ async function publish() {
     // PublishData.contactPhone
 
     if (PublishData.createUser === 0) {
+        window.loginshow()
         alert('需要登录后才能发表询价')
         return
     }
