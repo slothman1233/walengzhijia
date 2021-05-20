@@ -64,7 +64,7 @@ declare const $: JQueryStatic
         key: 'video',
      
         clickCallback: function (dom, ev) {
-            console.log(dom, ev)
+            // console.log(dom, ev)
             return true
         }
     })
@@ -74,7 +74,7 @@ declare const $: JQueryStatic
         key: 'img',
      
         clickCallback: function (dom, ev) {
-            console.log(dom, ev)
+            // console.log(dom, ev)
             return true
         }
     })

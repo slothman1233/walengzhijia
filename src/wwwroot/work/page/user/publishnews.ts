@@ -168,7 +168,7 @@ let usermain = document.getElementById('usermain');
 //关联产品
 (function () {
     selectOption1(usermain.querySelector('#s1'), (id: number, e: Event, option: HTMLElement) => {
-        console.log(id, e, option)
+        // console.log(id, e, option)
         publishData.productId = id
     })
 })();
@@ -189,19 +189,19 @@ let usermain = document.getElementById('usermain');
 
             editor_uploadimg('edit_container', window.publishnews_ue, {
                 success: function (imgdom: HTMLImageElement) {
-                    console.log(imgdom)
+                    // console.log(imgdom)
                 },
                 error: function (e: any) {
-                    console.log(e)
+                    // console.log(e)
                 }
             })
 
             editor_uploadvideo('edit_container', window.publishnews_ue, {
                 success: function (imgdom: HTMLImageElement) {
-                    console.log(imgdom)
+                    // console.log(imgdom)
                 },
                 error: function (e: any) {
-                    console.log(e)
+                    // console.log(e)
                 }
             })
         })

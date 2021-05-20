@@ -288,7 +288,6 @@ export default class Index {
         if (userinfostr !== 'undefined') {
             phoneNumber = JSON.parse(userinfostr).phoneNumber
         }
-        console.log(phoneNumber)
         //----------------------------------------------
         // 获取公司的产品集合
 

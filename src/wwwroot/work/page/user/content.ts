@@ -114,7 +114,7 @@ let usermain: HTMLElement = document.querySelector('#usermain');
                 type: 1,
                 contentType: 2,
                 successCallback: async () => {
-                    console.log(id)
+                    // console.log(id)
                     let data = await DeleteReputation({
                         reputationId: parseInt(id),
                         createUser: parseInt(usercookie.userId)

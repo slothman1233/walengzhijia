@@ -55,7 +55,6 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
 
     //地区
     selectOption1(selectOption_area, async (id: number, e: Event, option: HTMLElement) => {
-        console.log(id)
 
         let cityJSON = await getAreaByCodeInfo(id)
         selectOption_city.innerHTML = cityJSON.html
@@ -294,7 +293,7 @@ async function getSelectOptionHtml(object: any) {
                 alert('上传失败请重新上传')
             },
             progress: (i: number) => {
-                console.log(i)
+                // console.log(i)
             }
         })
     })

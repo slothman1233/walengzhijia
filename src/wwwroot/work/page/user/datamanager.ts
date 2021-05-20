@@ -270,7 +270,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                 alert('上传失败请重新上传')
             },
             progress: (i: number) => {
-                console.log(i)
+                // console.log(i)
             }
         })
     })

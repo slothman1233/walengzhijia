@@ -184,7 +184,7 @@ declare const document: Document
     navigationbar(nownew[0], async (dom: HTMLElement) => {
         let id = dom.getAttribute('data-id')
         let newsList = await GetNewsList(parseInt(id))
-        console.log(newsList)
+        // console.log(newsList)
         let NewsList: any[] = []
         if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
 

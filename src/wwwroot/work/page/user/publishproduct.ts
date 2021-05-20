@@ -250,7 +250,7 @@ let publishData: CompanyProductInfoModel = {
             product.querySelector('table').innerHTML = html
         },
         error: function (e) {
-            console.log(e)
+            // console.log(e)
         }
     })
 })();
@@ -361,7 +361,7 @@ let publishData: CompanyProductInfoModel = {
         elem: '#purchastime', //指定元素
         type: 'month',
         change: function (value: any, date: any) { //监听日期被切换
-            console.log(value, date)
+            // console.log(value, date)
             // lay('#testView').html(value);
             publishData.listingDateYear = date.year
             publishData.listingDateMonth = date.month
@@ -389,10 +389,10 @@ let publishData: CompanyProductInfoModel = {
 
             editor_uploadimg('edit_container', window.edit_container_ue, {
                 success: function (imgdom: HTMLImageElement) {
-                    console.log(imgdom)
+                    // console.log(imgdom)
                 },
                 error: function (e: any) {
-                    console.log(e)
+                    // console.log(e)
                 }
             })
         })

@@ -100,7 +100,7 @@ let usermain = document.querySelector('#usermain');
                 alert('修改头像失败请重新上传')
             },
             progress: (i: number) => {
-                console.log(i)
+                // console.log(i)
             }
         })
     })

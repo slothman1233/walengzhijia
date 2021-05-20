@@ -23,7 +23,7 @@ new swiper('.swiper-container', {
     },
     on: {
         progress: function (t) {
-            console.log('progress' + t)
+            // console.log('progress' + t)
             // for (let e = 0; e < this.slides.length; e++) {
             //     let n = this.slides.eq(e),
             //         o = this.slides[e].progress,
@@ -39,7 +39,7 @@ new swiper('.swiper-container', {
             // }
         },
         setTransition: function (t) {
-            console.log('setTransition' + t)
+            // console.log('setTransition' + t)
             // for (let e = 0; e < this.slides.length; e++) { this.slides.eq(e).transition(t) }
         }
     }

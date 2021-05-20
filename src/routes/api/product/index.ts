@@ -38,8 +38,6 @@ export default class Index {
     @get('/GetProductType')
     async GetProductType(ctx: Context) {
         let { productType } = ctx.query
-        //   debugger
-        //   console.log(productType)
 
         if (!productType) {
             ctx.body = new ErrorModel({})
@@ -58,7 +56,6 @@ export default class Index {
       @get('/GetCompanyProduct')
     async GetCompanyProduct(ctx: Context) {
         let { companyId } = ctx.query
-        console.log(companyId)
         let models = await GetCompanyProductRm({ companyId })
   
         ctx.body = models
@@ -72,7 +69,6 @@ export default class Index {
     @get('/GetCompanyProductType')
       async GetCompanyProductType(ctx: Context) {
           let { companyId } = ctx.query
-          console.log(companyId)
           let models = await GetCompanyProductTypeRm({ companyId })
 
           ctx.body = models
@@ -86,7 +82,7 @@ export default class Index {
     @get('/GetCompanyProductByTypeId')
     async GetCompanyProductByTypeId(ctx: Context) {
         let { companyId, productTypeId, pageIndex, pageSize }: ProductByTypeId = ctx.query
-        console.log(companyId)
+
         let models = await GetCompanyProductByTypeIdRm({ companyId, productTypeId, pageIndex, pageSize })
 
         ctx.body = models

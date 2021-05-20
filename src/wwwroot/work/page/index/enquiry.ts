@@ -198,7 +198,7 @@ async function publish() {
         return
     }
 
-    console.log(PublishData)
+    // console.log(PublishData)
     let dataJson = await AddCompanyProductAdvisory(PublishData)
 
     if (data.code === 0 && data.subCode === subCodeEnums.success) {
