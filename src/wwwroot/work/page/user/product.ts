@@ -83,6 +83,9 @@ let oneWeight = parseInt(document.getElementById('usermain').querySelector('.pub
 
         let html = await getdata(1, datajson)
         $('#usermain .publish .child_box').html(html)
+
+        oneWeight = parseInt(document.getElementById('usermain').querySelector('.publish .child_box').querySelectorAll('.child')[0].getAttribute('data-wight')) || 99
+        
         window.imgload()
         kkpager({
             pagerid: 'publish_kkpage',
@@ -189,8 +192,8 @@ async function getdata(type: number, data: ResCompanyProductInfoModelPagedModelR
             let index = 1
             try {
                 index = parseInt(document.getElementById('usermain').querySelector('#publish_kkpage').querySelector('.curr').innerHTML)
-            } catch (e) {}
-            
+            } catch (e) { }
+
             if (data && data.code === 0 && data.subCode === subCodeEnums.success) {
                 oneWeight = topWeight
                 if (index === 1) {
