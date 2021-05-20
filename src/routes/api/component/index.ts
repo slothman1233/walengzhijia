@@ -11,7 +11,7 @@ import company from '../../../services/company.services'
 import { ComponentModel } from '../../../model/component'
 import { ErrorModel, SuccessModel } from '../../../model/resModel'
 import { GetCompanyProductType, GetCompanyProductTypeRm, GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
-import { PostAddCompanyProduct, PostAddCompanyProductAdvisory } from '../../../controller/company.controller'
+import { PostAddCompanyProduct, PostAddCompanyProductAdvisory, UpdateCompanyProduct } from '../../../controller/company.controller'
 import { CompanyProductAdvisoryModel, CompanyProductInfoModel } from '../../../model/company/Company'
 export default class componentapi {
     /**
@@ -23,6 +23,19 @@ export default class componentapi {
         let models = await PostAddCompanyProduct((<CompanyProductInfoModel>ctx.request.body))
         ctx.body = models
     }
+
+    /**
+     * 修改公司产品
+     * CompanyProductInfoModel
+     */
+    @post('/UpdateCompanyProduct')
+    async UpdateCompanyProduct(ctx: Context) {
+        let models = await UpdateCompanyProduct((<CompanyProductInfoModel>ctx.request.body))
+        ctx.body = models
+    }
+
+
+    
 
     /**
     * 添加产品询价信息,调用该接口前先调用SendCode 发送手机号码验证接口 和ValidateCode 验证验证码

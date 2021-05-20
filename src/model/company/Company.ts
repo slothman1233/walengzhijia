@@ -17,6 +17,7 @@ import { CompanyUpdateTypeDefine, productImgTypeEnums } from '../../enums/enums'
  * @param {CompanyProductInfoDetailModel[]} productDetailArguments 产品基本信息，自定义参数列表信息
  * @param {CompanyProductTypeModel} productType 公司添加产品的分类信息
  * @param {CompanyProductMediaModel[]} productMedias 产品图片，外观，视频媒体资源等
+ * @param {number} productId 产品id
  */
 export interface CompanyProductInfoModel {
   companyId?: number
@@ -31,7 +32,8 @@ export interface CompanyProductInfoModel {
   summary: string
   productDetailArguments: CompanyProductInfoDetailModel[]
   productType?: CompanyProductTypeModel
-  productMedias: CompanyProductMediaModel[]
+  productMedias: CompanyProductMediaModel[],
+  productId: number
 }
 
 /**
@@ -117,4 +119,19 @@ export interface ManageCompanyInfoItemModel {
   userId?: number
   itemValue: string
   itemType?: CompanyUpdateTypeDefine
+}
+
+
+/**
+ * 企业产品置顶操作
+ * @param {number} productId 产品id
+ * @param {boolean} isTop 是否置顶
+ * @param {number} topWeight 置顶权重 -对应SortId字段
+ * @param {number} createUser 操作用户
+ */
+export interface CompanyProductInfoTopModel {
+  productId: number
+  isTop?: boolean
+  topWeight?: number
+  createUser: number
 }

@@ -23,9 +23,10 @@ let paths = {
         getSrc('./user/sales.ts'),
         getSrc('./user/publishproduct.ts'),
         getSrc('./user/publishnews.ts'),
-        getSrc('./login/login.ts')
+        getSrc('./login/login.ts'),
 
-        
+        //移动端
+        getSrc('./m/index/index.ts')
 
     ]
 }

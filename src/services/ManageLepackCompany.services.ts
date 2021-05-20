@@ -1,6 +1,6 @@
 import config from '../common/config/env'
 import http from '../common/utils/net'
-import { ManageCompanyInfoItemModel } from '../model/company/Company'
+import { CompanyProductInfoTopModel, ManageCompanyInfoItemModel } from '../model/company/Company'
 import { CompanyProductSalerModel } from '../model/company/resCompany'
 import { ProductTypeDetailModel, ProductTypeModel } from '../model/product/ProductType'
 import { ReputationModel } from '../model/reputation/reputation'
@@ -8,7 +8,7 @@ import { ResReputationTypeModel } from '../model/reputation/resreputation'
 import { bodyModel } from '../model/resModel'
 
 export type productTypeIdModel = {
-  productTypeId: number
+    productTypeId: number
 }
 
 class ManageLepackCompany {
@@ -40,8 +40,25 @@ class ManageLepackCompany {
     async UpdateCompanyInfoByItem(params: ManageCompanyInfoItemModel) {
         return await http.post<bodyModel<boolean>>(`${config.apiPath}api/ManageLepackCompany/UpdateCompanyInfoByItem`, params, { headers: { 'Content-Type': 'application/json' } })
     }
-    
+
+    // 产品置顶操作
+    // CompanyProductInfoTopModel
+    //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
+    async SetProductTop(params: CompanyProductInfoTopModel) {
+        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/ManageLepackCompany/SetProductTop`, params, { headers: { 'Content-Type': 'application/json' } })
+    }
+
+    // 取消产品置顶操作
+    // CompanyProductInfoTopModel
+    //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
+    async DelProductTop(params: CompanyProductInfoTopModel) {
+        return await http.post<bodyModel<boolean>>(`${config.apiPath}api/ManageLepackCompany/DelProductTop`, params, { headers: { 'Content-Type': 'application/json' } })
+    }
 }
+
+
+
+
 
 
 let ManageLepackCompanys = new ManageLepackCompany()

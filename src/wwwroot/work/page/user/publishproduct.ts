@@ -10,7 +10,7 @@ import { editor_uploadimg } from '../../components/editor'
 import { uploadfilefnImg, uploadfilefnVideo } from '../../components/uploadfile'
 import filecollection from '../../components/uploadfile/filecollection'
 import { productImgTypeEnums, subCodeEnums } from '../../../../enums/enums'
-import { AddCompanyProduct } from '../../common/service/company.services'
+import { AddCompanyProduct, UpdateCompanyProduct } from '../../common/service/company.services'
 import { GetProductType } from '../../common/service/product.services'
 
 declare const $: JQueryStatic
@@ -61,7 +61,8 @@ let publishData: CompanyProductInfoModel = {
         productTypeId: null,
         productClassifyType: null
     },
-    productMedias: []
+    productMedias: [],
+    productId: productId ? parseInt(productId) : 0
 };
 
 
@@ -614,8 +615,14 @@ async function getsubContent() {
     setPublishData()
 
 
-    let datajson = await AddCompanyProduct(publishData)
-
+    let datajson
+    if ((productId && isdrafts) || !productId) {
+        //草稿  和  发布
+        datajson = await AddCompanyProduct(publishData)
+    } else {
+        //修改
+        datajson = await UpdateCompanyProduct(publishData)
+    }
     if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
 
         if (isdrafts) {

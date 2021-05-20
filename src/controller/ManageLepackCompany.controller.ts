@@ -1,4 +1,4 @@
-import { ManageCompanyInfoItemModel } from '../model/company/Company'
+import { CompanyProductInfoTopModel, ManageCompanyInfoItemModel } from '../model/company/Company'
 import { CompanyProductSalerModel } from '../model/company/resCompany'
 import { bodyModel } from '../model/resModel'
 import ManageLepackCompanys from '../services/ManageLepackCompany.services'
@@ -34,5 +34,23 @@ export async function DeleteCompanySaler(params: CompanyProductSalerModel): Prom
  */
 export async function UpdateCompanyInfoByItem(params: ManageCompanyInfoItemModel): Promise<bodyModel<boolean>> {
     return await ManageLepackCompanys.UpdateCompanyInfoByItem(params).catch(data => data)
+}
+
+
+/**
+ * 产品置顶操作
+ * CompanyProductInfoTopModel
+ */
+export async function SetProductTop(params: CompanyProductInfoTopModel): Promise<bodyModel<boolean>> {
+    return await ManageLepackCompanys.SetProductTop(params).catch(data => data)
+}
+
+
+/**
+ * 取消产品置顶操作
+ * CompanyProductInfoTopModel
+ */
+export async function DelProductTop(params: CompanyProductInfoTopModel): Promise<bodyModel<boolean>> {
+    return await ManageLepackCompanys.DelProductTop(params).catch(data => data)
 }
 

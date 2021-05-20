@@ -28,8 +28,13 @@ export async function UpdateUserByItem(params: LepackUserItemModel): Promise<bod
  */
 export async function GetUserById(params: getuserByuserIdModel): Promise<ResUserModel | null> {
     let rm = await GetUserByIdRm(params)
-    let models = JSONParse<ResUserModel | null>(rm.code, rm.bodyMessage)
-    return models
+    try {
+        let models = JSONParse<ResUserModel | null>(rm.code, rm.bodyMessage)
+        return models
+    } catch (e) {
+        return null
+    }
+
 }
 
 /**

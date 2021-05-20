@@ -60,7 +60,6 @@ export default class User {
         let salerInfo = {}
         if (salerId) {
             salerInfo = await GetCompanySalerById({ salerId }) || {}
-            console.log(salerInfo)
         }
 
 
@@ -90,15 +89,21 @@ export default class User {
 
         let reputationtypeinfo: any[] = []
         if (reputationtype) {
+            reputationtypeinfo.push({
+                class: '',
+                title: '全部',
+                id: 0,
+                link: 'javascript:void(0);'
+            })
             reputationtype.forEach((item, index) => {
-                if (index === 0) {
-                    productTypeId = item.productTypeId
-                }
+                // if (index === 0) {
+                //     productTypeId = item.productTypeId
+                // }
                 reputationtypeinfo.push({
                     class: '',
                     title: item.productTypeName,
                     id: item.productTypeId,
-                    nlink: 'javascript:void(0);'
+                    link: 'javascript:void(0);'
                 })
             })
         }
@@ -123,13 +128,13 @@ export default class User {
                     label,
                     id: item.productId,
                     companyId,
-                    createTime: `${item.listingDateYear}-${item.listingDateMonth}`
+                    createTime: `${item.listingDateYear}-${item.listingDateMonth}`,
+                    topWeight: item.topWeight
                 })
             })
         }
 
         //----------------------------------------------
-
 
         await ctx.render('user/product', {
             reputationtypeinfo,

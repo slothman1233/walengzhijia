@@ -17,6 +17,7 @@ declare const pageIndex: number
 declare const totalPages: number
 declare const $: JQueryStatic
 
+
 //用户id
 let userId = window.getuserid()
 let usermain = document.querySelector('#usermain')

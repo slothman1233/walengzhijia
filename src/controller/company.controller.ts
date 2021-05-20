@@ -161,6 +161,15 @@ export async function PostAddCompanyProduct(params: CompanyProductInfoModel): Pr
 }
 
 /**
+ * 修改公司产品
+ * CompanyProductInfoModel
+ */
+export async function UpdateCompanyProduct(params: CompanyProductInfoModel): Promise<bodyModel<string>> {
+    return await companys.UpdateCompanyProduct(params).catch(data => data)
+}
+
+
+/**
  * 添加产品询价信息,调用该接口前先调用SendCode 发送手机号码验证接口 和ValidateCode 验证验证码
  * CompanyProductAdvisoryModel
  */

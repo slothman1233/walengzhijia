@@ -19,6 +19,13 @@ export const AddCompanyProduct = async (options: CompanyProductInfoModel): Promi
 
 
 /**
+ * 修改公司产品
+ * CompanyProductInfoModel
+ */
+export const UpdateCompanyProduct = async (options: CompanyProductInfoModel): Promise<bodyModel<string>> => await http.post<any>(`/api/component/UpdateCompanyProduct`, options)
+
+
+/**
  * 添加产品询价信息,调用该接口前先调用SendCode 发送手机号码验证接口 和ValidateCode 验证验证码
  * CompanyProductInfoModel
  */

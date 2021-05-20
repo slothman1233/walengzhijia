@@ -1,7 +1,7 @@
 import { Context } from 'koa'
 import { post } from '../../../common/decorator/httpMethod'
-import { AddCompanySaler, DeleteCompanySaler, UpdateCompanyInfoByItem, UpdateCompanySaler } from '../../../controller/ManageLepackCompany.controller'
-import { ManageCompanyInfoItemModel } from '../../../model/company/Company'
+import { AddCompanySaler, DeleteCompanySaler, DelProductTop, SetProductTop, UpdateCompanyInfoByItem, UpdateCompanySaler } from '../../../controller/ManageLepackCompany.controller'
+import { CompanyProductInfoTopModel, ManageCompanyInfoItemModel } from '../../../model/company/Company'
 import { CompanyProductSalerModel } from '../../../model/company/resCompany'
 export default class ManageLepackCompanyapi {
   /**
@@ -43,5 +43,26 @@ export default class ManageLepackCompanyapi {
       let models = await UpdateCompanyInfoByItem((<ManageCompanyInfoItemModel>ctx.request.body))
       ctx.body = models
   }
+
+  /**
+   * 产品置顶操作
+   * CompanyProductInfoTopModel
+   */
+  @post('/SetProductTop')
+  async SetProductTop(ctx: Context) {
+      let models = await SetProductTop((<CompanyProductInfoTopModel>ctx.request.body))
+      ctx.body = models
+  }
+
+  /**
+   * 取消产品置顶操作
+   * CompanyProductInfoTopModel
+   */
+  @post('/DelProductTop')
+  async DelProductTop(ctx: Context) {
+      let models = await DelProductTop((<CompanyProductInfoTopModel>ctx.request.body))
+      ctx.body = models
+  }
 }
+
 

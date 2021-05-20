@@ -48,6 +48,16 @@ class company {
         return await http.post<bodyModel<string>>(`${config.apiPath}api/Company/AddCompanyProduct`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
+    // 修改公司产品
+    // CompanyProductInfoModel
+    //@CacheInterceptor('company_AddCompanyProduct', CacheTime.Min3)
+    async UpdateCompanyProduct(params: CompanyProductInfoModel) {
+        return await http.post<bodyModel<string>>(`${config.apiPath}api/Company/UpdateCompanyProduct`, params, { headers: { 'Content-Type': 'application/json' } })
+    }
+
+
+    
+
 
     // 通过公司ID获得该公司的销售信息
     // GetSalersByCompanyIdModel

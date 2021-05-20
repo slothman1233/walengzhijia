@@ -102,6 +102,10 @@ export interface ResCompanyProductInfoDetailModel {
  * @param {string} productVideo 产品视频介绍地址
  * @param {string} productCover 产品封面图
  * @param {string} summary 产品详细描述信息
+ * @param {string} productTypeName 产品分类名称
+ * @param {boolean} isTop 是否置顶标识
+ * @param {number} topWeight 置顶排序
+ * @param {boolean} isTop 创建时间
  * @param { { [index: string]: any } } classify  允许提交多个三级标签场景
  * @param {ResReputationStatisticsModel} statisticsModel 	口碑统计信息
  * @param {ResCompanyProductInfoDetailModel[]} productArgs 产品参数指标
@@ -117,6 +121,10 @@ export interface ResCompanyProductInfoModel {
   productCover?: string
   productTypeId?: string
   summary?: string
+  productTypeName?: string
+  topWeight?: number
+  isTop?: boolean
+  createTime?: string
   classify?: { [index: string]: any }
   statisticsModel?: ResReputationStatisticsModel
   productArgs?: ResCompanyProductInfoDetailModel[],

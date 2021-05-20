@@ -1,7 +1,8 @@
+{# type 为 0 代表是1 且不是第一页 #}
 {% macro productlist(type, companyObject) %}
   {% for item in companyObject %}
-    <div class="child">
-      {% if type == 1 %}
+    <div class="child" data-wight="{{item.topWeight}}">
+      {% if type == 1 or type == 0 %}
         <a href="/business/product/{{item.companyId}}/{{item.id}}" target="_blank"><img _src_="{{item.logo}}"/></a>
       {% else %}
         <img _src_="{{item.logo}}"/>
@@ -9,7 +10,7 @@
 
       <div class="c">
         <h3>
-          {% if type == 1 %}
+          {% if type == 1 or type == 0 %}
             <a href="/business/product/{{item.companyId}}/{{item.id}}" target="_blank">
               <p>{{item.title}}</p>
             </a>
@@ -29,17 +30,17 @@
             {% endfor %}
           </p>
         {% endif %}
-        {% if type == 1 %}
+        {% if type == 1 or type == 0 %}
           <p class="createtime">
             <span>发布时间：{{item.createTime}}</span>
           </p>
         {% endif %}
 
       </div>
-      {% if type == 1 %}
+      {% if type == 1 or type == 0 %}
         <div class="r">
           <a href="/user/publishproduct/{{item.id}}">修改</a>
-          <a href="javascript:void(0);" data-id="{{item.id}}" class="stick" style='display:{{ (loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
+          <a href="javascript:void(0);" data-id="{{item.id}}" class="stick" style='display:{{ (type != 0 and loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
         </div>
       {% elif type == 3 %}
         <div class="r">
