@@ -16,7 +16,7 @@ import { nunRender, nunRenderMacroString } from '../common/nunjucks'
 import { writeFile, EnsureFile, readFile, moveFile, copyFile } from '../common/utils/file'
 import Business from './business'
 import Products from '../services/Product.services'
-import { GetCompanyBrand, GetCompanyProduct, GetCompanyProductType, GetIndexPageProduct, GetProductIndustryByIndustry } from '../controller/product.controller'
+import { GetCompanyBrand, GetCompanyProduct, GetCompanyProductType, GetHotCompanyIndexPageProduct, GetIndexPageProduct, GetProductIndustryByIndustry } from '../controller/product.controller'
 import { ResIndustryTypeModel } from '../model/industry/resIndustryType'
 import { GetCompanyHot, GetCompanyInfoById, GetSalersByCompanyId } from '../controller/company.controller'
 import { ResCompanyInfoIndexPageModel, ResProductIndexPageModel } from '../model/product/resproductType'
@@ -60,8 +60,7 @@ export default class Index {
         }
 
         //获得首页板块分类公司信息
-        let GetIndexPageProductData = await GetIndexPageProduct()
-
+        let GetIndexPageProductData = await GetHotCompanyIndexPageProduct()
         //首页分类公司信息 组合
         let brandDataAll: ResProductIndexPageModel[] = []
         brandDataAll.push(...GetIndexPageProductData)

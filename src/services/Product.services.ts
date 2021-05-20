@@ -74,6 +74,14 @@ class Product {
         return await http.get<ResProductIndexPageModel[]>(`${config.apiPath}api/Product/GetIndexPageProduct`, { headers: { 'Content-Type': 'application/json' } })
     }
 
+    // 获得首页热门品牌公司信息
+    // @CacheInterceptor('Product_GetProductType', CacheTime.Min30)
+    async GetHotCompanyIndexPageProduct() {
+        return await http.get<ResProductIndexPageModel[]>(`${config.apiPath}api/Product/GetHotCompanyIndexPageProduct`, { headers: { 'Content-Type': 'application/json' } })
+    }
+
+    
+
     // 根据公司ID获得所有产品信息
     // BycompanyId
     // @CacheInterceptor('Product_GetProductType', CacheTime.Min30)
@@ -115,9 +123,7 @@ class Product {
         return await http.post<ResCompanyBrandModelPagedModel>(`${config.apiPath}api/Product/GetCompanyBrand`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
-
-
-
+   
 }
 
 

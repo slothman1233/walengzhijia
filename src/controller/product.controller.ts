@@ -46,6 +46,34 @@ export async function GetIndexPageProduct(): Promise<ResProductIndexPageModel[] 
     return models
 }
 
+
+/**
+* 获得首页板块分类公司信息
+*/
+export async function GetIndexPageProductRm(): Promise<ResProductIndexPageModelListReturnModel> {
+
+    return await Products.GetIndexPageProduct().catch(data => data)
+}
+
+/**
+* 获得首页热门品牌公司信息
+*/
+export async function GetHotCompanyIndexPageProduct(): Promise<ResProductIndexPageModel[] | null> {
+    let rm = await GetHotCompanyIndexPageProductRm()
+    let models = JSONParse<ResProductIndexPageModel[] | null>(rm.code, rm.bodyMessage)
+    return models
+}
+
+
+/**
+* 获得首页热门品牌公司信息
+*/
+export async function GetHotCompanyIndexPageProductRm(): Promise<ResProductIndexPageModelListReturnModel> {
+
+    return await Products.GetHotCompanyIndexPageProduct().catch(data => data)
+}
+
+
 /**
  * 根据产品行业标识ID获得该行业下面所有的产品分类信息
  * @param {string|number} id 行业标识ID
@@ -71,14 +99,6 @@ export async function GetProductTypeByProductTypeRm(productType: number): Promis
     return await Products.GetProductType(params).catch(data => data)
 }
 
-
-/**
-* 获得首页板块分类公司信息
-*/
-export async function GetIndexPageProductRm(): Promise<ResProductIndexPageModelListReturnModel> {
-
-    return await Products.GetIndexPageProduct().catch(data => data)
-}
 
 
 /**

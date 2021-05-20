@@ -103,6 +103,17 @@
 
 
       }
+   .salerName,.salerPosition,.salerFunction,.salerWorkYears{
+        &:empty:before{
+          content: attr(placeholder);
+          color: @color_gray_c2;
+        }
+
+        &:focus:before{
+          content:none;
+        }
+      }
+
     }
 
 

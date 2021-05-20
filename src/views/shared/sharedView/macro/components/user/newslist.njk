@@ -18,9 +18,9 @@
           {% else %}
             <p>{{item.title}}</p>
           {% endif %}
-          {% if type == 1 %}
+          {# {% if type == 1 %}
             <span class="zd" style='display:{{(type == 1) and (item.isTop == true) | ternary("inline-block","none")}}'>已置顶</span>
-          {% endif %}
+          {% endif %} #}
 
         </h3>
         {% if item.label != null and item.label.length > 0 %}
