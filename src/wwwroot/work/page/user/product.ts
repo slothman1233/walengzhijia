@@ -68,10 +68,7 @@ let oneWeight = parseInt(document.getElementById('usermain').querySelector('.pub
 
     //已发布 下的切换
     navigationbar2('usermain', async (dom: Element) => {
-
         let productTypeId = $(dom).data('id')
-
-
         let datajson = await GetCompanyProductByTypeId({
             companyId,
             productTypeId,
@@ -81,11 +78,11 @@ let oneWeight = parseInt(document.getElementById('usermain').querySelector('.pub
 
 
 
-        let html = await getdata(1, datajson)
+        let html = await getdata(parseInt(productTypeId) === 0 ? 1 : 10, datajson)
         $('#usermain .publish .child_box').html(html)
 
         oneWeight = parseInt(document.getElementById('usermain').querySelector('.publish .child_box').querySelectorAll('.child')[0].getAttribute('data-wight')) || 99
-        
+
         window.imgload()
         kkpager({
             pagerid: 'publish_kkpage',

@@ -1,8 +1,16 @@
-{# type 为 0 代表是1 且不是第一页 #}
+{# 
+type 
+      0 代表是1 且不是第一页 
+      10  代表是1 但是不是全部分类的 因为只有全部才有置顶功能
+      1 为已发布
+      2 审核中
+      3 草稿
+
+ #}
 {% macro productlist(type, companyObject) %}
   {% for item in companyObject %}
     <div class="child" data-wight="{{item.topWeight}}">
-      {% if type == 1 or type == 0 %}
+      {% if type == 1 or type == 0 or type == 10 %}
         <a href="/business/product/{{item.companyId}}/{{item.id}}" target="_blank"><img _src_="{{item.logo}}"/></a>
       {% else %}
         <img _src_="{{item.logo}}"/>
@@ -10,7 +18,7 @@
 
       <div class="c">
         <h3>
-          {% if type == 1 or type == 0 %}
+          {% if type == 1 or type == 0 or type == 10 %}
             <a href="/business/product/{{item.companyId}}/{{item.id}}" target="_blank">
               <p>{{item.title}}</p>
             </a>
@@ -37,10 +45,12 @@
         {% endif %}
 
       </div>
-      {% if type == 1 or type == 0 %}
+      {% if type == 1 or type == 0 or type == 10 %}
         <div class="r">
           <a href="/user/publishproduct/{{item.id}}">修改</a>
-          <a href="javascript:void(0);" data-id="{{item.id}}" class="stick" style='display:{{ (type != 0 and loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
+          {% if type != 10 %}
+              <a href="javascript:void(0);" data-id="{{item.id}}" class="stick" style='display:{{ (type != 0 and loop.index0 === 0) | ternary("none","block") }}'>置顶</a>
+          {% endif %}
         </div>
       {% elif type == 3 %}
         <div class="r">

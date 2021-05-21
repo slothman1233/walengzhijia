@@ -60,15 +60,22 @@ export default class Index {
         }
 
         //获得首页板块分类公司信息
-        let GetIndexPageProductData = await GetHotCompanyIndexPageProduct()
+        let GetIndexPageProductData = await GetIndexPageProduct()
+        //获得首页板块 热门分类公司信息
+        let hotData = await GetHotCompanyIndexPageProduct()
+
         //首页分类公司信息 组合
         let brandDataAll: ResProductIndexPageModel[] = []
         brandDataAll.push(...GetIndexPageProductData)
-
         let brandData: { title: any[], data: ResCompanyInfoIndexPageModel[][] } = { title: [], data: [] }
-        brandDataAll.forEach(item => {
+        brandDataAll.forEach((item, index) => {
+            if (index === 0) {
+                item = hotData[0]
+            }
             brandData.title.push({ id: item.productTypeId, sort: item.sort, title: item.productTypeName, link: `/list/${item.productTypeId}` })
             brandData.data.push(item.companyInfo)
+
+
         })
 
         //------------------------------------------------------------------------------------------------------------------
@@ -217,7 +224,7 @@ export default class Index {
                 id: item.id,
                 title: item.value,
                 blank: false,
-                link: `/list/${productid}/${sortid}/${index + 1}/${pageIndex}`
+                link: `/list/${productid}/${sortid}/${index + 1}/1`
             })
         })
         //----------------------------------------------------------------
@@ -284,7 +291,7 @@ export default class Index {
         let salers = await GetSalersByCompanyId({ companyId })
         let phoneNumber = ''
         let userinfostr = await getCookie(ctx, userlogin)
-      
+
         if (userinfostr !== 'undefined') {
             phoneNumber = JSON.parse(userinfostr).phoneNumber
         }
@@ -297,7 +304,7 @@ export default class Index {
             productTypeAry.push({
                 id: item.productId,
                 value: item.productName
-                
+
             })
         })
 

@@ -42,16 +42,18 @@ declare const tabIndex: any
     let sCategories: HTMLElement = category.querySelector('.sCategories')
     let bCategories: HTMLElement = category.querySelector('.bCategories')
     let packup: HTMLElement = category.querySelector('.packup')
-
-    packup.onclick = function () {
-        if (sCategories.style.display === 'none') {
-            sCategories.style.display = 'block'
-            packup.innerText = '收起'
-        } else {
-            sCategories.style.display = 'none'
-            packup.innerText = '展开'
+    if (packup) {
+        packup.onclick = function () {
+            if (sCategories.style.display === 'none') {
+                sCategories.style.display = 'block'
+                packup.innerText = '收起'
+            } else {
+                sCategories.style.display = 'none'
+                packup.innerText = '展开'
+            }
         }
     }
+
 
 
 

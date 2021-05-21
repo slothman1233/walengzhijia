@@ -124,7 +124,7 @@ let usermain = document.querySelector('#usermain');
                 document.location.href = '/user/datamanager/2'
             }, 3000)
         } else {
-            alert('添加失败重新添加')
+            alert(data.message || '添加失败重新添加')
 
         }
     })
