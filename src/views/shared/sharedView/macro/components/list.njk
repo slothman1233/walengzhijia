@@ -42,14 +42,14 @@
 
     {% if (args != null) and (args.length > 0) %}
       {% for item in args %}
-        <div class="child" data-timetick="{{item.timetick}}">
-          <a class="left" href="{{item.link}}" target="_blank">
+        <a class="child" data-timetick="{{item.timetick}}" href="{{item.link}}" target="_blank">
+          <h4 class="left">
             <img _src_="{{item.img}}"/>
-          </a>
-          <div class="right">
-            <a class="title" href="{{item.link}}" target="_blank">{{item.title}}</a>
-            <p>{{item.content}}</p>
-            <div class="list_foot">
+          </h4>
+          <section class="right">
+            <h3 class="title">{{item.title}}</h3>
+            <p class="content">{{item.content}}</p>
+            <p class="list_foot">
               {% if item.businesslogo %}
                 <span><img _src_="{{item.businesslogo}}"/></span>
               {% endif %}
@@ -65,10 +65,10 @@
                 {% endfor %}
 
               {% endif %}
-            </div>
+            </p>
 
-          </div>
-        </div>
+          </section>
+        </a>
       {% endfor %}
     {% endif %}
 
@@ -84,7 +84,7 @@
     name: "广东万联",
     kbscore: "5.00",
     classify:['sdfdsf','adfasfd'],
-    kbcount: 56,
+    kbcount: 0,
     favorablerate: "100",
     kbgood: 18,
     label: [
@@ -142,18 +142,18 @@
     {% if (args != null) and (args.length > 0) %}
       {% for item in args %}
 
-        <div class="child">
-          <div class="left">
-            <a href="{{item.link}}" target="_blank">
+        <a class="child"  href="{{item.link}}" target="_blank">
+          <section class="left">
+            <asection class="logo">
 
               {% if item.brandtype.length > 0 %}
                 <i>{{item.brandtype}}</i>
               {% endif %}
               <img _src_="{{item.logo}}"/>
-            </a>
-          </div>
+            </asection>
+          </section>
 
-          <div class="right">
+          <section class="right {{(item.kbcount <= 4) | ternary('few','')}}">
             <span>口碑得分</span>
             {% if item.kbcount <= 0 %}
               <h2>暂无口碑分</h2>
@@ -166,20 +166,20 @@
               {{star(item.kbscore)}}
             {% endif %}
 
-          </div>
+          </section>
 
-          <div class="center">
-            <a class="name" href="{{item.link}}" target="_blank">
+          <section class="center">
+            <section class="name" href="{{item.link}}" target="_blank">
               {{item.name}}
-            </a>
+            </section>
 
             {% if (item.label != null) and (item.label.length > 0) %}
-              <div class="label">
+              <section class="label">
                 {% for labelItem in item.label %}
                   <span>{{labelItem}}</span>
                 {% endfor %}
 
-              </div>
+              </section>
             {% endif %}
 
             <p class="description">
@@ -190,14 +190,14 @@
             </p>
             <p class="kb">
               <i class="iconfont_wlzj">&#xE009;</i>
-              <span>{{item.kbcount}}条口碑</span>
-              <span>好评率{{item.favorablerate}}%</span>
+              <span class="kbcount">{{item.kbcount}}条口碑</span>
+              <span class="favorable">好评率{{item.favorablerate}}%</span>
               <span class="kbgood">{{item.kbgood}}条优质口碑</span>
             </p>
 
-          </div>
+          </section>
 
-        </div>
+        </a>
 
       {% endfor %}
     {% endif %}
@@ -256,7 +256,9 @@
               {{star(item.kbscore)}}
             </span>
             <p>
+             <a href="/news/reputation/{{item.newsId}}" target="_blank">
               {{item.description | delHtmlTag}}
+             </a>
             </p>
           </div>
 

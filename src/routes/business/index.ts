@@ -62,7 +62,8 @@ export default class Business {
                     kbscore: item.statisticsModel.score,
                     link: `/business/product/${item.companyId}/${item.productId}`,
                     title: item.productName,
-                    description: item.summary
+                    description: item.summary,
+                    newsId: item.newsId
                 })
 
                 let name: any[] = []

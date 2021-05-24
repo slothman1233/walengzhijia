@@ -1,10 +1,12 @@
 
 import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
-import { GetCompnays } from '../../controller/company.controller'
+import { GetCompanyInfoById, GetCompnays } from '../../controller/company.controller'
 import { GetReputationTypeById } from '../../controller/ManageLepackReputaion.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanySimilarProductById } from '../../controller/product.controller'
 import { GetReputationByProductId } from '../../controller/Reputation.controller'
+import { ResCompanyInfoModel } from '../../model/company/resCompany'
+import { ResReputationStatisticsModel } from '../../model/reputation/resreputation'
 
 
 
@@ -88,25 +90,34 @@ export default class Reputation {
     */
     @get('/:companyId?/:productId?')
     async index(ctx: Context) {
-        let { companyId, productId } = ctx.params
+        let { companyId, productId = 0 } = ctx.params
         //获取产品信息
-        let CompanyProduct = await GetCompanyProductById({ productId })
-
+        let CompanyProducts = await GetCompanyProduct({ companyId })
+        let CompanyProduct
+        //-------------------------------
+        //获取公司信息
+        let companyInfo: ResCompanyInfoModel
+        if ( parseInt(productId) === 0) {
+            companyInfo = await GetCompanyInfoById({ companyId })
+        }
         //-------------------------------
         //获取产品分类
-        let reputationtypeinfo: any[] = []
-        if (CompanyProduct) {
-            reputationtypeinfo.push({
-                id: CompanyProduct.productId,
-                value: CompanyProduct.productName
-            })
 
+        let reputationSelectOption: any = {
+            selectIndex: 0,
+            data: [{
+                id: '0',
+                value: '全部产品'
+            }]
         }
 
-        let reputationtype = await GetCompanySimilarProductById({ productId })
-        if (reputationtype) {
-            reputationtype.forEach(item => {
-                reputationtypeinfo.push({
+        if (CompanyProducts) {
+            CompanyProducts.forEach((item, index) => {
+                if (item.productId === parseInt(productId)) {
+                    reputationSelectOption.selectIndex = index + 1
+                    CompanyProduct = item
+                }
+                reputationSelectOption.data.push({
                     id: item.productId,
                     value: item.productName
                 })
@@ -124,8 +135,9 @@ export default class Reputation {
             companyId,
             productId,
             CompanyProduct,
-            reputationtypeinfo,
-            ReputationData
+            reputationSelectOption,
+            ReputationData,
+            companyInfo
         })
 
     }

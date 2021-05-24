@@ -13,6 +13,7 @@ import { AddReputaion } from '../../common/service/reputaion.services'
 import { bodyModel } from '../../../../model/resModel'
 import { GetReputationTypeById } from '../../common/service/ManageLepackReputaion'
 
+
 declare const laydate: any
 declare const companyId: any
 declare const productId: any
@@ -330,7 +331,7 @@ async function submitFn() {
 
     //判断文章是否有音频
     //有音频则为音频类型
-    if (window.publishnews_ue.body.querySelector('video')) {
+    if (window.ue.body.querySelector('video')) {
         PublishData.newsContentType = NewsContentTypeEnums.video
     }
 
@@ -343,6 +344,9 @@ async function submitFn() {
 
     if (data.code === 0 && data.subCode === subCodeEnums.success) {
         alert('发表成功')
+        setTimeout(() => { 
+            document.location.href = document.location.href
+        }, 3000)
     } else {
         alert(data.message)
     }

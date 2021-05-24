@@ -86,7 +86,7 @@
             <span>回复</span>
             <span>{{item.at.commentUserName}}</span>
           {% endif %}
-          <span class="createtime">{{item.commentTime  | ternary(item.commentTime,item.replyTime) | ge_time_format}}</span>
+          <span class="createtime">{{item.commentTime  | ternary(item.commentTime,item.replyTime) |  get_time_timestamp | ge_time_format(2)}}</span>
         </div>
         <div class="content">
           {% if item.at %}

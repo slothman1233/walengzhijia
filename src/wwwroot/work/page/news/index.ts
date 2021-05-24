@@ -13,7 +13,7 @@ declare const document: any
 declare const newsId: any
 
 
-let main = document.querySelector('#main');
+let main: HTMLElement = document.querySelector('#main');
 
 //分享
 (function () {
@@ -26,7 +26,7 @@ let main = document.querySelector('#main');
         type: CommentTargetTypeEnum.news,
         newsId
     })
-    
+
 })();
 
 
@@ -59,7 +59,7 @@ let praiseObjectDefineProperty = {
 //点赞初始化
 (async function () {
     let share = main.querySelector('.share')
-    let givelike: HTMLElement = share.querySelector('.givelike')
+    let givelike = main.querySelectorAll('.givelike')
     praiseObject.praiseUser = window.getuserid()
     Object.defineProperty(praiseObjectDefineProperty, 'ispraise', {
         configurable: true,
@@ -89,47 +89,52 @@ let praiseObjectDefineProperty = {
     }
 
     let share = main.querySelector('.share')
-    let givelike: HTMLElement = share.querySelector('.givelike')
-    let news_content = main.querySelector('.news_content')
-    let praise = news_content.querySelector('.title .praise span')
-
-    givelike.onclick = async function () {
-        if (praiseObject.praiseUser === 0) {
-            window.loginshow()
-            alert('登录后才能点赞')
-            return
-        }
-
-        if (praiseObjectDefineProperty.ispraise) {
-            let data = await AddPraise(praiseObject)
-            if (data.code === 0 && data.subCode === subCodeEnums.success) {
-                //点赞数量变化
-                let count = parseInt(givelike.querySelector('span').innerText)
-                givelike.querySelector('span').innerText = (count + 1).toString()
-                let praisecount = parseInt(praise.innerText)
-                praise.innerText = (praisecount + 1).toString()
-
-                alert('点赞成功')
-
-                praiseObjectDefineProperty.ispraise = false
-            } else {
-                alert('点赞失败')
+    let givelike = main.querySelectorAll('.givelike')
+    let news_content: HTMLElement = main.querySelector('.news_content')
+    let praise: HTMLElement = news_content.querySelector('.title .praise span')
+    givelike.forEach((item: HTMLElement) => {
+        item.onclick = async function () {
+            if (praiseObject.praiseUser === 0) {
+                window.loginshow()
+                alert('登录后才能点赞')
+                return
             }
-        } else {
-            let data = await DeletePraise(praiseObject)
-            if (data.code === 0 && data.subCode === subCodeEnums.success) {
-                //点赞数量变化
-                let count = parseInt(givelike.querySelector('span').innerText)
-                givelike.querySelector('span').innerText = (count - 1).toString()
-                let praisecount = parseInt(praise.innerText)
-                praise.innerText = (praisecount - 1).toString()
 
-                alert('取消点赞成功')
-                praiseObjectDefineProperty.ispraise = true
+            if (praiseObjectDefineProperty.ispraise) {
+                let data = await AddPraise(praiseObject)
+                if (data.code === 0 && data.subCode === subCodeEnums.success) {
+                    //点赞数量变化
+                    let count = parseInt(item.querySelector('span').innerText)
+
+                    givelike.forEach(items => {
+                        items.querySelector('span').innerText = (count + 1).toString()
+                    })
+
+                    alert('点赞成功')
+
+                    praiseObjectDefineProperty.ispraise = false
+                } else {
+                    alert('点赞失败')
+                }
             } else {
-                alert('取消点赞失败')
+                let data = await DeletePraise(praiseObject)
+                if (data.code === 0 && data.subCode === subCodeEnums.success) {
+                    //点赞数量变化
+                    let count = parseInt(item.querySelector('span').innerText)
+                    givelike.forEach(items => {
+                        items.querySelector('span').innerText = (count - 1).toString()
+                    })
+
+
+
+                    alert('取消点赞成功')
+                    praiseObjectDefineProperty.ispraise = true
+                } else {
+                    alert('取消点赞失败')
+                }
             }
         }
-    }
+    })
+
 })()
 

@@ -134,7 +134,8 @@ export default class Index {
                     kbscore: item.statisticsModel.score,
                     link: `/business/product/${item.companyId}/${item.productId}`,
                     title: item.productName,
-                    description: item.summary
+                    description: item.summary,
+                    newsId: item.newsId
                 })
 
                 let name: any[] = []
@@ -244,6 +245,14 @@ export default class Index {
             queryType: tabIndex
         })
 
+        console.log({
+            productType: productid,
+            classifyType: sortid,
+            pageIndex,
+            pageSize,
+            queryType: tabIndex
+        })
+
         let companylistJson: any[] = []
         if (GetCompanyJson?.items) {
             GetCompanyJson.items.forEach(item => {
@@ -254,7 +263,7 @@ export default class Index {
                         name: item.company.abbrName,
                         kbscore: item.company.reputation.score,
                         classify: item.productTypes,
-                        kbcount: item.company.reputation.reputationCount,
+                        kbcount: item.totalReputationCount,
                         favorablerate: item.favorableRate * 100,
                         kbgood: item.highReputationCount,
                         label: item.company.companyLabels,

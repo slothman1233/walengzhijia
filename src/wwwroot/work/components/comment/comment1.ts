@@ -76,7 +76,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
                     commentUserName: userJSON.name,
                     commentUser: userJSON.userId,
                     commentUserIcon: userJSON.userIcon,
-                    commentTime: ge_time_format(createtime),
+                    commentTime: createtime,
                     commentContent: input.value,
                     praiseCount: 0
                 }]
@@ -207,7 +207,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
                         child_content.prepend(data.bodyMessage)
                         reply = child_box.siblings('.reply')
                     }
-                    
+
                     if (reply.find('span').css('display') === 'none') { reply.find('span').show() }
                     let b = reply.find('span b')
                     let repliesCount = parseInt(b.text())

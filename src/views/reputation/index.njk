@@ -28,6 +28,7 @@ navigationbar2 %}
 {% block body %}
 
   <div id="main">
+
     <div class="map">
       {{satemap1({
         title: "当前位置：",
@@ -42,11 +43,11 @@ navigationbar2 %}
             link: "/list"
 
           }, {
-            name: CompanyProduct.company.fullName,
+            name: (productId==0)| ternary(companyInfo.abbrName,CompanyProduct.company.abbrName),
             link: "/business/"+ companyId
 
           }, {
-              name: CompanyProduct.productName,
+              name:  (productId==0)| ternary('全部产品',CompanyProduct.productName),
               link: "/business/product/"+ companyId +"/" + productId
 
             }
@@ -56,19 +57,16 @@ navigationbar2 %}
 
     <div class="row1 clearfix">
       <div class="l">
-        <img _src_="{{CompanyProduct.productCover}}"/>
+        <img _src_="{{(productId==0)| ternary(companyInfo.logo,CompanyProduct.productCover)}}"/>
       </div>
 
       <div class="c" id="option1">
-        {{selectOption({
-          selectIndex: 0,
-          data: reputationtypeinfo
-        })}}
+        {{selectOption(reputationSelectOption)}}
         <span>产品口碑分</span>
         <div class="score">
-          <span>{{CompanyProduct.statisticsModel.score}}</span>
-          {{star(CompanyProduct.statisticsModel.score)}}
-          <b>{{CompanyProduct.statisticsModel.reputationCount}}条口碑</b>
+          <span>{{(productId==0)| ternary(companyInfo.reputationScore,CompanyProduct.statisticsModel.score)}}</span>
+          {{star((productId==0)| ternary(companyInfo.reputationScore,CompanyProduct.statisticsModel.score))}}
+          <b>{{(productId==0)| ternary(companyInfo.totalReputationCount,CompanyProduct.statisticsModel.reputationCount)}}条口碑</b>
         </div>
         <div class="configuration">
           {% if (CompanyProduct.statisticsModel.reputationScore != null) and (CompanyProduct.statisticsModel.reputationScore.length > 0) %}
@@ -141,66 +139,6 @@ navigationbar2 %}
         </div>
 
         <div class="list_box">
-          {% set kblistdata = [
-            {
-              id: 11,
-              hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-              name: "李女士",
-              price: "300万",
-              buytime: "2019-06",
-              actiontime: "2020-12",
-              description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做...",
-              atlas: [
-                "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0", "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0", "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0", "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"
-              ],
-              kbgrade: "5.00",
-              xingneng: "5",
-              waiguan: "5",
-              shouhou: "5",
-              zidonghua: "5",
-              peizhi: "5",
-              zhiliang: "5",
-              nenghao: "5"
-            }, {
-              id: 11,
-              hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-              name: "李女士",
-              price: "300万",
-              buytime: "2019-06",
-              actiontime: "2020-12",
-              description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做...",
-              atlas: [
-                "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0", "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0", "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0", "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"
-              ],
-              kbgrade: "5.00",
-              xingneng: "5",
-              waiguan: "5",
-              shouhou: "5",
-              zidonghua: "5",
-              peizhi: "5",
-              zhiliang: "5",
-              nenghao: "5"
-            }, {
-              id: 11,
-              hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-              name: "李女士",
-              price: "300万",
-              buytime: "2019-06",
-              actiontime: "2020-12",
-              description: "外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做...",
-              atlas: [
-                "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0", "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0", "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0", "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"
-              ],
-              kbgrade: "5.00",
-              xingneng: "5",
-              waiguan: "5",
-              shouhou: "5",
-              zidonghua: "5",
-              peizhi: "5",
-              zhiliang: "5",
-              nenghao: "5"
-            }
-          ] %}
 
           {% for item in ReputationData %}
             <div class="child">

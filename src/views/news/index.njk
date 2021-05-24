@@ -50,10 +50,12 @@
             <span>{{newsDetail.newsDetail.userName}}</span>
             <span>发布于：{{newsDetail.newsDetail.newsTime | get_time_timestamp | ge_time_format(2)}}</span>
 
-            <div class="praise">
-              <i class="iconfont_wlzj">&#xE018;</i>
+            <div class="givelike toppraise">
+              <i class="iconfont_wlzj">&#xE017;</i>
               <span>{{newsDetail.newsDetail.praiseCount}}</span>
             </div>
+
+
           </div>
 
           <div class="content clearfix">
@@ -66,7 +68,7 @@
             <i class="weibo" title="微博" data-bshare="{type:'weibo',url:'22',title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！（分享至@FX110）',images:''}"></i>
             <i class="qzone" title="QQ空间" data-bshare="{type:'qzone',url:'33',title:'代理承诺的返佣少给20万，FX110介入，立马达成补偿协议！',summary:'少发20万返佣沟通1个多月无果，FX110介入，立马达成补偿协议！',images:''}"></i>
 
-            <div class=" givelike">
+            <div class="givelike">
               <i class="iconfont_wlzj">&#xE017;</i>
               <span>{{newsDetail.newsDetail.praiseCount}}</span>
             </div>
@@ -80,7 +82,7 @@
                 isSelect: "1",
                 data: [
                   {
-                    title: "回答",
+                    title: "评论",
                     link: "javascript:void(0);"
                   }
                 ]
@@ -123,7 +125,7 @@
               <div class="child clearfix">
                 <i>●</i>
                 <a href="{{item.newsId}}" title="{{item.newsTitle}}" target="_blank">
-                  {{item.newsTitle}}
+                  {{item.newsTitle | delHtmlTag}}
                 </a>
               </div>
             {% endfor %}

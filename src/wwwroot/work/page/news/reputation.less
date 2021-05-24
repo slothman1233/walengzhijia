@@ -53,9 +53,10 @@
             margin-right: @space_3;
           }
 
-          .praise {
-            float: right;
-            color: rgba(153, 156, 160, 1);
+          .toppraise {
+            float : right;
+            color : rgba(153, 156, 160, 1);
+            cursor: pointer;
 
             span {
               float : right;
@@ -64,6 +65,15 @@
 
             }
           }
+
+
+          .praise {
+            i {
+              color: @color_rank;
+            }
+          }
+
+
         }
 
         .kb {
@@ -347,6 +357,7 @@
 
             .title {
               display      : block;
+              font-weight  : @font_weight;
               font-size    : @font_size_14;
               line-height  : @line_height;
               color        : @color_main_c1;

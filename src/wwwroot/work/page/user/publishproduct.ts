@@ -51,8 +51,8 @@ let publishData: CompanyProductInfoModel = {
     companyId: companyId || 2,
     createUser: userId,
     productName: null,
-    listingDateYear: null,
-    listingDateMonth: null,
+    listingDateYear: 0,
+    listingDateMonth: 0,
     productVideo: null,
     productCover: null,
     summary: null,
@@ -230,7 +230,7 @@ let publishData: CompanyProductInfoModel = {
     let product = document.querySelector('#usermain .product')
     xlsxtojson(imFile, {
         success: function (data) {
-            let d = ArraytoJSON(data)
+            // let d = ArraytoJSON(data)
             // console.log(d)
             let html = ''
 
@@ -588,10 +588,10 @@ async function getsubContent() {
         return
     }
 
-    if (!publishData.listingDateYear || !publishData.listingDateMonth) {
-        alert('请选择产品上市时间')
-        return
-    }
+    // if (!publishData.listingDateYear || !publishData.listingDateMonth) {
+    //     alert('请选择产品上市时间')
+    //     return
+    // }
 
     if (!publishData.productType.productTypeId) {
         alert('请选择产品分类')
@@ -623,7 +623,7 @@ async function getsubContent() {
         //修改
         datajson = await UpdateCompanyProduct(publishData)
     }
-    if (datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
+    if (datajson && datajson.code === 0 && datajson.subCode === subCodeEnums.success) {
 
         if (isdrafts) {
             let cache = JSON.parse(localStorage.getItem(draftsStorage)) || {}
@@ -636,7 +636,7 @@ async function getsubContent() {
             document.location.href = '/user/product'
         }, 3000)
     } else {
-        alert(datajson.bodyMessage)
+        alert(datajson?.bodyMessage || '发布失败，请重新发布')
     }
 }
 

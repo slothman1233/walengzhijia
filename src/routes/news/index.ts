@@ -20,7 +20,6 @@ export default class News {
         // newsDetail.newsDetail 在口碑新闻中是ResNewsReputationModel类型
         //-------------------------------
 
-
         await ctx.render('news/reputation', {
             newsId,
             newsDetail

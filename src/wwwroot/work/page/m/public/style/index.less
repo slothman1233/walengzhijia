@@ -1,0 +1,159 @@
+@import (reference) "../../../../public/style/common/PublicDefind.less";
+@import (reference) "../../../../public/style/common/Animation.less";
+
+html * {
+  outline                    : 0;
+  -webkit-text-size-adjust   : none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-family                : '微软雅黑', sans-serif, '宋体', Arial;
+}
+
+body {
+  margin                 : 0;
+  width                  : 100%;
+  font-family            : '微软雅黑', sans-serif, '宋体', Arial;
+  font-size              : 14px;
+  -webkit-font-smoothing : antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#simplelayoutmain {
+  width : @DefindWidth;
+  margin: @space_2 auto;
+
+  #simplelayoutright {
+    float           : right;
+    width           : @simplelayoutRightWidth;
+    background-color: #FFF;
+  }
+}
+
+
+
+
+
+.simplelayoutbody {
+  background-color: @color_grey_bg1;
+}
+
+* {
+  word-wrap : break-word;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+img,
+
+ul,
+li,
+p {
+  margin     : 0;
+  padding    : 0;
+  border     : 0;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+h4 {
+  font-size: 13px;
+}
+
+input,
+textarea {
+  margin : 0;
+  padding: 0;
+  resize : none;
+  outline: none;
+  border : none;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+em {
+  font-style: normal;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+a {
+  color: @font_defind_color;
+
+  &:hover {
+    color: @link_hover  !important;
+  }
+}
+
+//间距
+@space_1  : 0.2rem;
+@space_2  : 2 * @space_1;
+@space_3  : 3 * @space_1;
+@space_4  : 4 * @space_1;
+@space_5  : 5 * @space_1;
+@space_6  : 6 * @space_1;
+@space_7  : 7 * @space_1;
+@space_8  : 8 * @space_1;
+@space_9  : 9 * @space_1;
+@space_10 : 10 * @space_1;
+@space_11 : 11 * @space_1;
+@space_12 : 12 * @space_1;
+
+.mui-content,
+body {
+  background-color: #fff;
+}
+
+.footer {
+  -webkit-box-shadow: none;
+  background        : #f7f8fc;
+  box-shadow        : none;
+
+  font-size: @font_size_14;
+  color    : @color_gray_c1;
+}
+
+.swiper-pagination-bullet {
+  height: 4px !important;
+  .border-radius(8px);
+}
+
+.swiper-pagination-bullet-active {
+  color           : @color_rank;
+  background-color: @color_rank  !important;
+  width           : 16px !important;
+
+}
+
+.mui-bar-tab .mui-tab-item.mui-active {
+  color: @color_rank;
+}
+
+.clearfix::after {
+  content  : ' ';
+  display  : block;
+  clear    : both;
+  font-size: 0;
+}

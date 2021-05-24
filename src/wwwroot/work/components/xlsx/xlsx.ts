@@ -7,8 +7,8 @@ declare const XLSX: any
  * @param {Function(e)} error 失败后的回调      e 错误
  */
 export type xlsxUploadType = {
-  success?: successType
-  error?: errorType
+    success?: successType
+    error?: errorType
 
 }
 
@@ -31,7 +31,7 @@ export default function xlsxtojson(inputDom: HTMLInputElement, {
     error
 }: xlsxUploadType) {
     inputDom.onchange = function (e: any) {
-        importFile(e, {
+        importFile(inputDom, e, {
             success,
             error
         })
@@ -73,7 +73,7 @@ function fixdata(data: any) { // 文件流转BinaryString
         .apply(null, new Uint8Array(data.slice(l * w)))
     return o
 }
-function importFile(e: any, {
+function importFile(inputDom: HTMLInputElement, e: any, {
     success,
     error
 }: xlsxUploadType) { //input事件
@@ -110,7 +110,8 @@ function importFile(e: any, {
                 let da = [...outdata]
 
                 success && success(da)
-
+                //清空input里面的内容
+                inputDom.value = ''
             }
             reader.readAsArrayBuffer(f)
         }

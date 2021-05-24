@@ -102,7 +102,8 @@ declare const document: Document
                 kbscore: item.statisticsModel.score,
                 link: `/business/product/${item.companyId}/${item.productId}`,
                 title: item.productName,
-                description: item.summary
+                description: item.summary,
+                newsId: item.newsId
             })
 
             let name: any[] = []
@@ -118,7 +119,6 @@ declare const document: Document
         })
 
 
-
         let data: bodyModel<String> = await getcomponent({ path: 'components/list.njk', name: 'kblist1', data: { args: reshighKb } })
         if (data.code === 0) {
             kblist1.outerHTML = data.bodyMessage
@@ -128,6 +128,8 @@ declare const document: Document
             })
 
         }
+
+        window.imgload()
 
     }
 })();

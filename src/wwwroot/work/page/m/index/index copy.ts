@@ -2,10 +2,10 @@ import swiper from 'swiper'
 
 declare const mui: any
 
-// mui.previewImage()
+mui.previewImage()
 
 
-//图片轮播
+
 new swiper('.swiper-container', {
     watchSlidesProgress: !0,
     direction: 'horizontal',
@@ -31,4 +31,3 @@ new swiper('.swiper-container', {
         }
     }
 })
-
