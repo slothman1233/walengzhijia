@@ -1,6 +1,7 @@
 {% extends "../shared/layout/mdefaultLayou.njk" %}
 {% from "../shared/sharedView/macro/components/star/star.njk" import star %}
-{% from "../shared/sharedView/macro/components/list.njk" import list1,list2 %}
+{% from "../shared/sharedView/macro/components/list.njk" import list1,
+list2 %}
 {% from "../shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
 
 {% block title %}
@@ -74,26 +75,14 @@
 
       <section class="swiper-container clearfix">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <p>阿斯顿发送到发送到发斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发送</p>
-            <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          </div>
-          <div class="swiper-slide">
-            <p>阿斯顿发送到发送到发斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发送</p>
-            <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          </div>
-          <div class="swiper-slide">
-            <p>阿斯顿发送到发送到发斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发送</p>
-            <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          </div>
-          <div class="swiper-slide">
-            <p>阿斯顿发送到发送到发斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发送</p>
-            <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          </div>
-          <div class="swiper-slide">
-            <p>阿斯顿发送到发送到发斯蒂芬阿斯蒂芬阿萨德发斯蒂芬阿萨德发送</p>
-            <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          </div>
+          {% if (ad.adslideData != null) and (ad.adslideData.length > 0) %}
+            {% for item in ad.adslideData %}
+              <a class="swiper-slide" href="{{item.adLink}}" title="{{item.desc}}" target="_blank">
+                <p>{{item.desc}}</p>
+                <img _src_="{{item.icon}}"/>
+              </a>
+            {% endfor %}
+          {% endif %}
 
         </div>
 
@@ -101,172 +90,61 @@
       </section>
 
       <section class="rowImg clearfix">
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>品牌大全</span>
-        </div>
+
+        {% if (ad.adtoptowData != null) and (ad.adtoptowData.length > 0) %}
+          {% for item in ad.adtoptowData %}
+            <a class="child" href="{{item.adLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
+              <img _src_="{{item.icon}}"/>
+              <span>{{item.desc}}</span>
+            </a>
+          {% endfor %}
+          <a class="child tab_list_2" title="更多品牌" data-id="0">
+            <img _src_=""/>
+            <span>更多品牌</span>
+          </a>
+        {% endif %}
 
       </section>
 
       <section class="kbhot">
         <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
           <div class="mui-scroll">
-
-            <a class="child">
-              <section class="title clearfix">
-                <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;"/>
-                <span>阿斯顿发斯蒂芬</span>
-              </section>
-              <section class="kb clearfix">
-                <b>5.0</b>
-                {{star(5)}}
-              </section>
-              <p class="clearfix">
-                <span>12条优质口碑</span>
-                <i>38条口碑</i>
-              </p>
-            </a>
-            <a class="child">
-              <section class="title clearfix">
-                <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;"/>
-                <span>阿斯顿发斯蒂芬</span>
-              </section>
-              <section class="kb clearfix">
-                <b>5.0</b>
-                {{star(5)}}
-              </section>
-              <p class="clearfix">
-                <span>12条优质口碑</span>
-                <i>38条口碑</i>
-              </p>
-            </a>
-            <a class="child">
-              <section class="title clearfix">
-                <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;"/>
-                <span>阿斯顿发斯蒂芬</span>
-              </section>
-              <section class="kb clearfix">
-                <b>5.0</b>
-                {{star(5)}}
-              </section>
-              <p class="clearfix">
-                <span>12条优质口碑</span>
-                <i>38条口碑</i>
-              </p>
-            </a>
-            <a class="child">
-              <section class="title clearfix">
-                <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;"/>
-                <span>阿斯顿发斯蒂芬</span>
-              </section>
-              <section class="kb clearfix">
-                <b>5.0</b>
-                {{star(5)}}
-              </section>
-              <p class="clearfix">
-                <span>12条优质口碑</span>
-                <i>38条口碑</i>
-              </p>
-            </a>
-            <a class="child">
-              <section class="title clearfix">
-                <img src="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&amp;pid=hp&amp;"/>
-                <span>阿斯顿发斯蒂芬</span>
-              </section>
-              <section class="kb clearfix">
-                <b>5.0</b>
-                {{star(5)}}
-              </section>
-              <p class="clearfix">
-                <span>12条优质口碑</span>
-                <i>38条口碑</i>
-              </p>
-            </a>
-
+            {% if (hotData != null) and (hotData.length > 0) %}
+              {% for item in hotData %}
+                <a class="child" href="/business/{{item.companyId}}" target="_blank">
+                  <section class="title clearfix">
+                    <img src="{{item.logo}}"/>
+                    <span>{{item.abbrName}}</span>
+                  </section>
+                  <section class="kb clearfix">
+                    <b>{{item.reputation.score}}</b>
+                    {{star(item.reputation.score)}}
+                  </section>
+                  <p class="clearfix">
+                    <span>{{item.reputation.reputationCount}}条优质口碑</span>
+                    <i>{{item.reputation.reputationCount}}条口碑</i>
+                  </p>
+                </a>
+              {% endfor %}
+            {% endif %}
           </div>
         </div>
       </section>
 
       <section class="news">
-        {{navigationbar( {
-          isMore: false,
-          MoreText: "更多>>",
-          link: "#",
-          isSelect: "1",
-          data: [
-            {
-              title: "热门品牌",
-              link: "javascript:void(0);",
-              id: "1",
-              blank: true
-            }, {
-              title: "热门品牌",
-              link: "javascript:void(0);",
-              id: "1",
-              blank: true
-            }, {
-              title: "热门品牌",
-              link: "javascript:void(0);",
-              id: "1",
-              blank: true
-            }, {
-              title: "热门品牌",
-              link: "javascript:void(0);",
-              id: "1",
-              blank: true
-            }, {
-              title: "热门品牌",
-              link: "javascript:void(0);",
-              id: "1",
-              blank: true
-            }, {
-              title: "热门品牌",
-              link: "javascript:void(0);",
-              id: "1",
-              blank: true
-            }
-          ]
-
-        })}}
-
+        <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+          <div class="mui-scroll">
+            {{navigationbar( {
+              isMore: true,
+              MoreText: "更多>>",
+              link: "#",
+              isSelect: "1",
+              data:newTypes
+            })}}
+          </div>
+        </div>
         <section class="listbox">
-          {{list1()}}
+          {{list1(firstNewsList)}}
 
         </section>
 
@@ -280,31 +158,32 @@
       </section>
 
       <section class="category">
-        {{navigationbar( {
-          isMore: false,
-          MoreText: "更多>>",
-          link: "#",
-          isSelect: "1",
-          data: [
-            {
-              title: "热门品牌",
-              link: "javascript:void(0);",
-              id: "1",
-              blank: true
-            }, {
-              title: "热门品牌",
-              link: "javascript:void(0);",
-              id: "1",
-              blank: true
-            }, {
-              title: "热门品牌",
-              link: "javascript:void(0);",
-              id: "1",
-              blank: true
-            }
-          ]
 
-        })}}
+        {{navigationbar( {
+              isMore: false,
+              MoreText: "更多>>",
+              link: "#",
+              isSelect: "1",
+              data: [
+                {
+                  title: "热门品牌",
+                  link: "javascript:void(0);",
+                  id: "1",
+                  blank: true
+                }, {
+                  title: "热门品牌",
+                  link: "javascript:void(0);",
+                  id: "1",
+                  blank: true
+                }, {
+                  title: "热门品牌",
+                  link: "javascript:void(0);",
+                  id: "1",
+                  blank: true
+                }
+              ]
+
+            })}}
 
         <div class="sCategories">
           <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
@@ -324,7 +203,7 @@
       </section>
 
       <div class="list_box">
-       {{list2()}}
+        {{list2()}}
       </div>
 
     </div>

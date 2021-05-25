@@ -135,7 +135,7 @@ declare const document: Document
 })();
 
 
-//热门口碑
+//热门新闻
 (function () {
     let isloaded = false
     let nownew = $('.information .nownew')

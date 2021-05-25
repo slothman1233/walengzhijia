@@ -1,7 +1,8 @@
 
 
 import http from './http'
-import { ResReputationModel, ResReputationModelListReturnModel } from '../../../../model/reputation/resreputation'
+import { ResReputationFilterModel, ResReputationFilterModelReturnModel, ResReputationModel, ResReputationModelListReturnModel } from '../../../../model/reputation/resreputation'
+import { ReputationTypeEnum } from '../../../../enums/enums'
 
 /**
  * 获得优质口碑，随机
@@ -14,6 +15,16 @@ export const GetHighQualityReputationRm = async (pageIndex: number = -1): Promis
  * @param {number} companyId 品牌商id
  */
 export const GetReputationByCompany = async (companyId: number): Promise<ResReputationModelListReturnModel> => await http.get<ResReputationModel[]>(`/api/Reputation/GetReputationByCompany`, { params: { companyId } })
+
+
+/**
+ * 根据产品获得该产品下面对应的口碑信息的bodyModel模型返回
+ * @param {number} productId 产品id
+ * @param {number} timeTicks 10位时间戳
+ * @param {number} pageSize 分页数量
+ * @param {ReputationTypeEnum} reputationType 口碑类型
+ */
+export const GetReputationByProductId = async (productId: number, timeTicks: number, pageSize: number, reputationType: ReputationTypeEnum): Promise<ResReputationFilterModelReturnModel> => await http.get<ResReputationFilterModel>(`/api/Reputation/GetReputationByProductId`, { params: { productId, timeTicks, pageSize, reputationType } })
 
 
 

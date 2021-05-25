@@ -3,9 +3,15 @@ import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { navigationbar2 } from '../../components/navigationbar'
 import { selectOption1 } from '../../components/select'
-
+import { GetReputationByProductId } from '../../common/service/Reputation.services'
+import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
+import { subCodeEnums } from '../../../../enums/enums'
+import window from '../../common/win/windows'
+declare const $: JQueryStatic
 declare const companyId: any
 declare const productId: any
+declare const pageSize: any
+declare const reputationType: any
 
 let mian = document.querySelector('#main');
 (function () {
@@ -20,8 +26,8 @@ let mian = document.querySelector('#main');
 })();
 
 (function () {
-    mian.querySelector('.cr .list_box').querySelectorAll('.child').forEach((item:HTMLElement) => {
-      
+    mian.querySelector('.cr .list_box').querySelectorAll('.child').forEach((item: HTMLElement) => {
+
         imgPreview({
             parentEle: item.querySelector('.atlas'),
             key: 'img',
@@ -30,154 +36,58 @@ let mian = document.querySelector('#main');
             }
         })
     })
-   
+
 
 })();
 
 (function () {
-    let datas =
-    [
-        {
-            id: 11,
-            hread: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            name: '李女士111',
-            price: '300万',
-            buytime: '2019-06',
-            actiontime: '2020-12',
-            description: '外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做...',
-            atlas: [
-                'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0', 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0', 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0', 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0'
-            ],
-            kbgrade: '5.00',
-            xingneng: '5',
-            waiguan: '5',
-            shouhou: '5',
-            zidonghua: '5',
-            peizhi: '5',
-            zhiliang: '5',
-            nenghao: '5'
-        }, {
-            id: 11,
-            hread: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            name: '李女士',
-            price: '300万',
-            buytime: '2019-06',
-            actiontime: '2020-12',
-            description: '外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做...',
-            atlas: [
-                'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0', 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0', 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0', 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0'
-            ],
-            kbgrade: '5.00',
-            xingneng: '5',
-            waiguan: '5',
-            shouhou: '5',
-            zidonghua: '5',
-            peizhi: '5',
-            zhiliang: '5',
-            nenghao: '5'
-        }, {
-            id: 11,
-            hread: 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0',
-            name: '李女士',
-            price: '300万',
-            buytime: '2019-06',
-            actiontime: '2020-12',
-            description: '外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做工精致，用料考究。外观大气，空间宽大，较老款乘座舒适性有很大提高，驾驭起来底盘扎实，提速较快，新平台，新技术。做...',
-            atlas: [
-                'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0', 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0', 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0', 'https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0'
-            ],
-            kbgrade: '5.00',
-            xingneng: '5',
-            waiguan: '5',
-            shouhou: '5',
-            zidonghua: '5',
-            peizhi: '5',
-            zhiliang: '5',
-            nenghao: '5'
-        }
-    ]
+    //是否加载完成获取是否还有更多
+    let isloaded = false
 
-
+    let row2 = document.querySelector('.row2')
+    let list_box = row2.querySelector('.list_box')
     navigationbar2('reputationlist', async (dom) => {
+        let id = dom.getAttribute('data-id')
+       
+        let data = await GetReputationByProductId(parseInt(productId), 0, parseInt(pageSize), parseInt(id))
 
-        let row2 = document.querySelector('.row2')
-        let list_box = row2.querySelector('.list_box')
-        let html = ''
-
-        for (let j = 0; j < datas.length; j++) {
-            let star: bodyModel<string> = await getcomponent({ path: 'components/star/star.njk', name: 'star', data: {} })
-
-            let imghtml = ''
-
-            for (let i = 0; i < datas[j].atlas.length; i++) {
-                imghtml += `<img _src_="${datas[j].atlas[i]}"/>`
+        if (data.code === 0 && data.subCode === subCodeEnums.success && data.bodyMessage) {
+            let dataobj: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'reputationtemp', data: { args: data.bodyMessage.reputations } })
+            if (dataobj.code === 0) {
+                list_box.innerHTML = dataobj.bodyMessage
+                isloaded = false
+                window.imgload()
             }
-
-            html += ` <div class="child">
-        <div class="l">
-          <div class="user">
-            <div>
-              <img _src_="${datas[j].hread}"/>
-              <i>${datas[j].name}</i>
-            </div>
-            <p>购买价格:${datas[j].price}</p>
-            <p>购买时间:${datas[j].buytime}</p>
-            <p>投入使用:${datas[j].actiontime}</p>
-          </div>
-
-          <div class="grade">
-            <span>用户评分</span>
-            <div class="score">
-              <span>4.68</span>
-              ${star.bodyMessage}
-            </div>
-            <div class="configuration">
-              <p>
-                <span>性能:</span>
-                <span>${datas[j].xingneng}</span>
-              </p>
-              <p>
-                <span>配置:</span>
-                <span>${datas[j].peizhi}</span>
-              </p>
-              <p>
-                <span>外观:</span>
-                <span>${datas[j].waiguan}</span>
-              </p>
-              <p>
-                <span>质量:</span>
-                <span>${datas[j].zhiliang}</span>
-              </p>
-              <p>
-                <span>售后:</span>
-                <span>${datas[j].shouhou}</span>
-              </p>
-              <p>
-                <span>能耗:</span>
-                <span>${datas[j].nenghao}</span>
-              </p>
-              <p>
-                <span>自动化:</span>
-                <span>${datas[j].zidonghua}</span>
-              </p>
-
-            </div>
-          </div>
-
-          <div class="more">
-            <a href="${datas[j].id}" target="_blank">查看口碑详情</a>
-          </div>
-        </div>
-
-        <div class="r">
-          <p>${datas[j].description}</p>
-          <div class="atlas">
-           ${imghtml}
-          </div>
-        </div>
-      </div>`
         }
-        list_box.innerHTML = html
-
     })
+
+
+
+    document.onscroll = async function () {
+
+        if (document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight <= 150) {
+
+            if (isloaded) { return }
+            isloaded = true
+            let id = row2.querySelector('#reputationlist .select').getAttribute('data-id')
+            let length = $(list_box).find('.child').length
+            let time = $(list_box).find('.child')[length - 1].getAttribute('data-time')
+            time = time.substr(0, 10)
+            let data = await GetReputationByProductId(parseInt(productId), parseInt(time), parseInt(pageSize), parseInt(id))
+
+            if (data.code === 0 && data.subCode === subCodeEnums.success && data.bodyMessage) {
+
+                let dataobj: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'reputationtemp', data: { args: data.bodyMessage.reputations } })
+                if (dataobj.code === 0) {
+                    $(list_box).append(dataobj.bodyMessage)
+                    window.imgload()
+                    isloaded = data.bodyMessage.reputations.length < parseInt(pageSize) ? true : false
+
+
+                }
+            }
+        }
+    }
+
+
 })()

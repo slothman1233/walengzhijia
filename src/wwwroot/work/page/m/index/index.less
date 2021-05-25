@@ -87,6 +87,7 @@
     }
 
     .swiper-slide {
+      display : block;
       position: relative;
 
       p {
@@ -120,6 +121,7 @@
     margin-bottom: @space_3;
 
     .child {
+      display: block;
       .flexGrow(1);
       padding: @size_1 * 6;
       width  : 20%;
@@ -183,6 +185,7 @@
           float       : left;
           position    : relative;
           top         : -@size_1 * 8;
+          overflow    : hidden;
           .border-radius(4px);
         }
 
@@ -240,6 +243,12 @@
   .news {
     .navigationbar {
       margin-bottom: @space_1;
+    }
+
+    .mui-slider-indicator.mui-segmented-control {
+      position        : sticky;
+      background-color: #FFF;
+      z-index         : 10;
     }
 
     .list1();

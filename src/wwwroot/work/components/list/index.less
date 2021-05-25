@@ -453,3 +453,178 @@
     }
   }
 }
+
+.reputationtemp(@leftwidth:284px,@rightwidth:884px) {
+  .reputationtemp {
+    .child {
+      overflow     : hidden;
+      padding      : @space_3 0;
+      border-bottom: 1px solid @color_grey_line1;
+
+      .l {
+        width       : @leftwidth;
+        float       : left;
+        margin-right: @space_2;
+
+        .user {
+          margin-bottom: @space_3;
+
+          &>div {
+            margin-bottom: @space_1;
+            overflow     : hidden;
+
+            img {
+              display     : block;
+              float       : left;
+              height      : 24px;
+              width       : 24px;
+              margin-right: 12px;
+              .border-radius(50%);
+            }
+
+            i {
+              display    : block;
+              float      : left;
+              color      : @color_main_c1;
+              line-height: @line_height;
+              font-size  : @font_size_16;
+
+            }
+          }
+
+          p {
+            line-height  : 22px;
+            color        : @color_gray_c2;
+            font-size    : @font_size_12;
+            margin-bottom: 4px;
+
+            &:last-child {
+              margin: 0;
+            }
+          }
+        }
+
+        .grade {
+          margin-bottom: @space_3;
+
+          &>span {
+            display    : block;
+            color      : @color_gray_c2;
+            font-size  : @font_size_14;
+            line-height: @line_height;
+          }
+
+          .score {
+            overflow     : hidden;
+            margin-bottom: @space_2;
+            height       : 32px;
+            line-height  : 32px;
+
+            span {
+              display     : block;
+              float       : left;
+              font-weight : @font_weight;
+              font-size   : @font_size_24;
+              margin-right: @space_1;
+            }
+
+            .star1(90px);
+
+            .star {
+              display     : block;
+              float       : left;
+              color       : @color_rank;
+              font-size   : @font_size_20;
+              margin-right: @space_1;
+              position    : relative;
+              top         : 7px;
+            }
+
+            .ellipsis();
+          }
+
+          .configuration {
+            overflow: hidden;
+
+            p {
+              width        : (@leftwidth - @space_3) / 2;
+              overflow     : hidden;
+              margin-bottom: @space_1;
+              float        : left;
+              .ellipsis();
+
+              span {
+                display      : block;
+                float        : left;
+                width        : 50%;
+                padding-right: @space_1;
+                color        : @color_gray_c1;
+                font-size    : @font_size_14;
+                line-height  : @line_height;
+                .ellipsis();
+                .box-sizing();
+
+                &:last-child {
+                  font-weight: @font_weight;
+                }
+              }
+
+              &:nth-child(odd) {
+                margin-right: @space_3;
+              }
+            }
+          }
+        }
+
+        & .more {
+          @height   : 32px;
+          height    : @height;
+          text-align: center;
+
+          a {
+            display    : inline-block;
+            line-height: @height;
+            font-size  : @font_size_14;
+            color      : @color_main_c1;
+            border     : 1px solid @color_gray_c3;
+            padding    : 0 32px;
+            .border-radius(2px);
+          }
+        }
+
+      }
+
+      .r {
+        width: @rightwidth;
+        float: left;
+
+        p {
+          margin-bottom: @space_4;
+          color        : @color_main_c1;
+          font-size    : @font_size_16;
+          line-height  : @line_height;
+          text-align   : justify;
+
+          img {
+            display: none !important;
+          }
+        }
+
+        .atlas {
+          img {
+            display     : block;
+            float       : left;
+            height      : 154px;
+            width       : (@rightwidth + @space_1)/4 - @space_1;
+            margin-right: @space_1;
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}

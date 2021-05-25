@@ -91,7 +91,7 @@ export default class Index {
         })
         //------------------------------------------------------------------------------------------------------------------
         //新闻第一个分类的列表
-        let firstNews: ResNewsModel[] = await GetNewsList(publishNews[0].id)
+        let firstNews: ResNewsModel[] = await GetNewsList(0)
         let firstNewsList: any[] = []
 
         if (firstNews && firstNews.length > 0) {
@@ -163,7 +163,6 @@ export default class Index {
         })
         //------------------------------------------------------------------------------------------------------------------
         //广告
-        debugger
         let adtoponeData: ResAdvertisingModel[] = await GetAdvertising({
             adType: adTypeEnums.topone,
             size: 4
@@ -245,13 +244,13 @@ export default class Index {
             queryType: tabIndex
         })
 
-        console.log({
-            productType: productid,
-            classifyType: sortid,
-            pageIndex,
-            pageSize,
-            queryType: tabIndex
-        })
+        // console.log({
+        //     productType: productid,
+        //     classifyType: sortid,
+        //     pageIndex,
+        //     pageSize,
+        //     queryType: tabIndex
+        // })
 
         let companylistJson: any[] = []
         if (GetCompanyJson?.items) {

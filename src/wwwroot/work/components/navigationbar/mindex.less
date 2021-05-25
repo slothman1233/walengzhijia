@@ -2,21 +2,17 @@
 
 .navigationbar {
   @height    : @size_1 * 38;
-  width      : 100%;
+  width      : auto;
   height     : @height;
   position   : relative;
   @morewidth : 60px;
 
   .list {
-    position: absolute;
-    left    : 0;
-    right   : @morewidth;
-    height  : @height;
-    .ellipsis();
+    height: @height;
+    float : left;
 
     a {
-      display     : block;
-      float       : left;
+      display     : inline-block;
       height      : @height;
       margin-right: @space_2;
 
@@ -40,7 +36,7 @@
             content         : '';
             display         : block;
             position        : relative;
-            bottom          : 4px;
+            bottom          : 7px;
             height          : 4px;
             width           : 16px;
             margin          : auto;

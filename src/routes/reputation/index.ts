@@ -5,6 +5,7 @@ import { GetCompanyInfoById, GetCompnays } from '../../controller/company.contro
 import { GetReputationTypeById } from '../../controller/ManageLepackReputaion.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanySimilarProductById } from '../../controller/product.controller'
 import { GetReputationByProductId } from '../../controller/Reputation.controller'
+import { ReputationTypeArray, ReputationTypeEnum } from '../../enums/enums'
 import { ResCompanyInfoModel } from '../../model/company/resCompany'
 import { ResReputationStatisticsModel } from '../../model/reputation/resreputation'
 
@@ -87,17 +88,18 @@ export default class Reputation {
     /**
     * @param {number} companyId 品牌商ID
     * @param {number} productId 产品ID
+    * @param {number} reputationType 口碑类型 0 全部 1 好  2 中  3 差
     */
-    @get('/:companyId?/:productId?')
+    @get('/:companyId?/:productId?/:reputationType?')
     async index(ctx: Context) {
-        let { companyId, productId = 0 } = ctx.params
+        let { companyId, productId = 0, reputationType = 0 } = ctx.params
         //获取产品信息
         let CompanyProducts = await GetCompanyProduct({ companyId })
         let CompanyProduct
         //-------------------------------
         //获取公司信息
         let companyInfo: ResCompanyInfoModel
-        if ( parseInt(productId) === 0) {
+        if (parseInt(productId) === 0) {
             companyInfo = await GetCompanyInfoById({ companyId })
         }
         //-------------------------------
@@ -125,8 +127,47 @@ export default class Reputation {
         }
 
         //-------------------------------
+        let pageSize = 10
         //获取口碑信息
-        let ReputationData = await GetReputationByProductId(productId) || []
+        let ReputationData = await GetReputationByProductId(productId, 0, pageSize, parseInt(reputationType))
+
+        let reputationTypeObject: any = {
+            isSelect: parseInt(reputationType) + 1,
+            data: []
+        }
+        ReputationTypeArray.forEach((value: string, index: number) => {
+            let number = ReputationData?.reputationCount || 0
+            let title = ''
+            let cls = 'high'
+            switch (index) {
+                case ReputationTypeEnum.All:
+                    title = `${value}（${ReputationData?.reputationCount || 0}）`
+                    cls = 'high'
+                    break
+                case ReputationTypeEnum.good:
+                    title = `${value}（${ReputationData?.goodReputationCount || 0}）`
+                    cls = 'high'
+                    break
+                case ReputationTypeEnum.middel:
+                    title = `${value}（${ReputationData?.middleReputationCount || 0}）`
+                    cls = 'high'
+                    break
+                case ReputationTypeEnum.short:
+                    title = `${value}（${ReputationData?.badReputationCount || 0}）`
+                    cls = ''
+                    break
+                default:
+                    break
+            }
+
+            reputationTypeObject.data.push({
+                class: cls,
+                id: index,
+                title,
+                link: 'javascript:void(0);'
+            })
+
+        })
 
         //-------------------------------
 
@@ -137,7 +178,10 @@ export default class Reputation {
             CompanyProduct,
             reputationSelectOption,
             ReputationData,
-            companyInfo
+            reputationTypeObject,
+            companyInfo,
+            reputationType,
+            pageSize
         })
 
     }

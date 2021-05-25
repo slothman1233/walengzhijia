@@ -221,9 +221,9 @@ body {
               margin-bottom: @space_5;
 
               p {
-                float    : left;
+                float       : left;
                 // width    : @contentwidth / 2;
-                font-size: @font_size_12;
+                font-size   : @font_size_12;
 
 
                 span {
@@ -342,17 +342,23 @@ body {
               height: @height;
               .ellipsis();
 
-              span {
-                display    : block;
-                float      : left;
-                font-size  : @font_size_14;
-                line-height: 30px;
-                padding    : 0 @space_2;
-                color      : @color_rank;
-                margin     : (@height - 30)/2 @space_1 (@height - 30)/2 0;
+              a {
+                display         : block;
+                float           : left;
+                font-size       : @font_size_14;
+                line-height     : 30px;
+                padding         : 0 @space_2;
+                margin          : (@height - 30)/2 @space_1 (@height - 30)/2 0;
+                color           : @color_gray_c2;
+                background-color: @color_grey_line;
 
-                background-color: @color_theme_c2_30;
+                &.high {
+                  color           : @color_rank;
+                  background-color: @color_theme_c2_30;
+                }
               }
+
+
             }
           }
 

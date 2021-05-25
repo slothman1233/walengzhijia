@@ -6,7 +6,7 @@ import { GetCompanyInfoById, GetSalersByCompanyId } from '../../controller/compa
 import { GetNewsByCompanyId, GetNewsByProductId } from '../../controller/news.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType } from '../../controller/product.controller'
 import { GetReputationByCompany, GetReputationByProductId, GetReputationStatisticsByProduct } from '../../controller/Reputation.controller'
-import { NewsContentTypeArray, publishNews } from '../../enums/enums'
+import { NewsContentTypeArray, publishNews, ReputationTypeArray, ReputationTypeEnum } from '../../enums/enums'
 import { ResNewsModel } from '../../model/news/resNews'
 
 
@@ -165,8 +165,49 @@ export default class Business {
             })
         }
         //----------------------------------------------
+        // (productId, 0, pageSize, parseInt(reputationType))
         //获取产品的口碑信息
-        let ReputationData = await GetReputationByProductId(productId)
+        let ReputationData = await GetReputationByProductId(productId, 0, 3, ReputationTypeEnum.All)
+
+        let reputationTypeObject: any[] = []
+        ReputationTypeArray.forEach((value: string, index: number) => {
+            let number = ReputationData?.reputationCount || 0
+            let title = ''
+            let cls = 'high'
+            let link = '/reputation/' + companyId + '/' + productId
+            switch (index) {
+                case ReputationTypeEnum.All:
+                    title = `${value}（${ReputationData?.reputationCount || 0}）`
+                    cls = 'high'
+                    link = '/reputation/' + companyId + '/' + productId
+                    break
+                case ReputationTypeEnum.good:
+                    title = `${value}（${ReputationData?.goodReputationCount || 0}）`
+                    cls = 'high'
+                    link = '/reputation/' + companyId + '/' + productId + '/1'
+                    break
+                case ReputationTypeEnum.middel:
+                    title = `${value}（${ReputationData?.middleReputationCount || 0}）`
+                    cls = 'high'
+                    link = '/reputation/' + companyId + '/' + productId + '/2'
+                    break
+                case ReputationTypeEnum.short:
+                    title = `${value}（${ReputationData?.badReputationCount || 0}）`
+                    cls = ''
+                    link = '/reputation/' + companyId + '/' + productId + '/3'
+                    break
+                default:
+                    break
+            }
+
+            reputationTypeObject.push({
+                class: cls,
+                id: index,
+                title,
+                link
+            })
+
+        })
         //------------------------------------------------------------------------------------------------------------------
         //新闻分类
         let newTypes: any = {
@@ -216,7 +257,8 @@ export default class Business {
             salers,
             ReputationData,
             CompanyProductInfo,
-            firstNewsList
+            firstNewsList,
+            reputationTypeObject
         })
 
     }

@@ -464,3 +464,24 @@ export enum CompanyUpdateTypeDefine {
   Update_Video = 9
 }
 
+/**
+ * 口碑类型枚举
+ * 0 全部口碑
+ * 1 好
+ * 2 中
+ * 3 差
+ */
+export enum ReputationTypeEnum {
+  All = 0,
+  good = 1,
+  middel = 2,
+  short = 3
+}
+/**
+ * 口碑类型枚举
+ * 0 全部口碑
+ * 1 好
+ * 2 中
+ * 3 差
+ */
+export const ReputationTypeArray = ['全部', '好评', '中评', '差评']

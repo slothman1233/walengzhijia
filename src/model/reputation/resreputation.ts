@@ -8,6 +8,38 @@ export interface ResReputationModelListReturnModel extends bodyModel<ResReputati
 
 }
 
+/**
+ * 口碑筛bodyModel选模型
+ * @param {number} reputationCount 口碑总数
+ * @param {number} reputationScore 优质口碑综合分
+ * @param {number} goodReputationCount 好评口碑数
+ * @param {number} middleReputationCount 中评口碑数
+ * @param {number} badReputationCount 差评口碑数
+ * @param {ResReputationModel} reputations 口碑集合信息
+ */
+export interface ResReputationFilterModelReturnModel extends bodyModel<ResReputationFilterModel> {
+
+
+}
+
+/**
+ * 口碑筛选模型
+ * @param {number} reputationCount 口碑总数
+ * @param {number} reputationScore 优质口碑综合分
+ * @param {number} goodReputationCount 好评口碑数
+ * @param {number} middleReputationCount 中评口碑数
+ * @param {number} badReputationCount 差评口碑数
+ * @param {ResReputationModel} reputations 口碑集合信息
+ */
+export interface ResReputationFilterModel {
+  reputationCount?: number
+  reputationScore?: number
+  goodReputationCount?: number
+  middleReputationCount?: number
+  badReputationCount?: number
+  reputations: ResReputationModel[]
+}
+
 
 /**
  * 口碑返回模型

@@ -57,10 +57,10 @@
               <span>{{item.businessname}}</span>
               <span>{{item.author}}</span>
               <span>{{item.time | get_time_timestamp | ge_time_format(2)}}</span>
-              
+
               {% if (item.slug) and (item.slug.length > 0) %}
                 {% for val in item.slug %}
-               
+
                   <span class="slug">{{val | ternary(val,'文章')}}</span>
                 {% endfor %}
 
@@ -256,9 +256,9 @@
               {{star(item.kbscore)}}
             </span>
             <p>
-             <a href="/news/reputation/{{item.newsId}}" target="_blank">
-              {{item.description | delHtmlTag}}
-             </a>
+              <a href="/news/reputation/{{item.newsId}}" target="_blank">
+                {{item.description | delHtmlTag}}
+              </a>
             </p>
           </div>
 
@@ -273,4 +273,58 @@
     {% endfor %}
   </div>
 
+{% endmacro %}
+
+{# 口碑详情页列表页模板 #}
+{% macro reputationtemp(args) %}
+  <div class='reputationtemp'>
+    {% for item in args %}
+      <div class="child" data-time="{{item.createTime | get_time_timestamp}}">
+        <div class="l">
+          <div class="user">
+            <div>
+              <img _src_="{{item.userIcon}}"/>
+              <i>{{item.userName}}</i>
+            </div>
+            <p>购买价格：{{item.purchasePrice}}</p>
+            <p>购买时间：{{item.buyTime | get_time_timestamp | ge_time_format(2)}}</p>
+            <p>投入使用：{{item.useTime | get_time_timestamp | ge_time_format(2)}}</p>
+          </div>
+
+          <div class="grade">
+            <span>用户评分</span>
+            <div class="score">
+              <span>{{item.statisticsModel.score}}</span>
+              {{star(item.statisticsModel.score)}}
+            </div>
+            {% if item.statisticsModel.reputationScore != null and item.statisticsModel.reputationScore.length > 0 %}
+              <div class="configuration">
+                {% for reputationScoreItem in item.statisticsModel.reputationScore %}
+                  <p data-id="{{reputationScoreItem.reputationTypeId}}">
+                    <span>{{reputationScoreItem.reputationTypeName}}：</span>
+                    <span>{{reputationScoreItem.reputationScore}}</span>
+                  </p>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+          </div>
+          <div class="more">
+            <a href="/news/reputation/{{item.newsId}}" target="_blank">查看口碑详情</a>
+          </div>
+
+        </div>
+
+        <div class="r">
+          <p>{{item.summary | safe}}</p>
+          <div class="atlas">
+
+            {% for imgurl in (item.summary | onlyimg) %}
+              <img _src_="{{imgurl}}" data-viewer="{{imgurl}}"/>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endmacro %}

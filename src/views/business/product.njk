@@ -176,24 +176,21 @@ navigationbar2 %}
           <div class="cr_box">
             <div class="hd clearfix">
               <div class="l">
-                <h1>4.35</h1>
+                <h1>{{ReputationData.reputationScore}}</h1>
                 <div>
-                  {{star(4.35)}}
-                  <span>32条口碑</span>
+                  {{star(ReputationData.reputationScore)}}
+                  <span>{{ReputationData.reputationCount}}条口碑</span>
                 </div>
               </div>
               <div class="r">
-                <span>性能优秀</span>
-                <span>性能优秀</span>
-                <span>性能优秀</span>
-                <span>性能优秀</span>
-                <span>性能优秀</span>
-                <span>性能优秀</span>
+                {% for item in reputationTypeObject %}
+                 <a href="{{item.link}}" target="_blank" class="{{item.class}}">{{item.title}}</a>
+                {% endfor %}
               </div>
             </div>
 
             <div class="list">
-              {% for item in ReputationData %}
+              {% for item in ReputationData.reputations %}
                 <div class="child">
                   <div class="clearfix">
                     <div class="l">
@@ -210,11 +207,9 @@ navigationbar2 %}
                       {{item.summary |safe}}
                     </div>
                   </div>
-                  {% if item.newId != null and item.newId != 0 %}
-                    <div class="more clearfix">
-                      <a href="/news/reputation/{{item.newId}}" target="_blank">查看详情</a>
-                    </div>
-                  {% endif %}
+                  <div class="more clearfix">
+                    <a href="/news/reputation/{{item.newsId}}" target="_blank">查看详情</a>
+                  </div>
 
                 </div>
               {% endfor %}

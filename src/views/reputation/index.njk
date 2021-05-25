@@ -5,6 +5,7 @@ navigationbar2 %}
 {% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
 {% from "../shared/sharedView/macro/components/star/star.njk" import star %}
 {% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
+{% from "../shared/sharedView/macro/components/list.njk" import reputationtemp %}
 {% block title %}
 54123123213333
 {% endblock title %}
@@ -19,8 +20,10 @@ navigationbar2 %}
 
 {% block script %}
   <script type="text/javascript">
+    var pageSize = {{pageSize}}
     var companyId = {{companyId}}
     var productId = {{productId}}
+    var reputationType = {{reputationType}}
   </script>
   <script type="text/javascript" src="/dist/scripts/reputation/index.js"></script>
 {% endblock script %}
@@ -101,95 +104,12 @@ navigationbar2 %}
 
       <div class="cr">
         <div class="tab" id="reputationlist">
-          {{navigationbar2({
-            isSelect: "1",
-            data: [
-              {
-                class:"high",
-                title: "全部(24)",
-                link: "javascript:void(0);"
-              }, {
-                class:"high",
-                title: "性能很满意(6)",
-                link: "javascript:void(0);"
-              }, {
-                class:"high",
-                title: "质量很好(4)",
-                link: "javascript:void(0);"
-              }, {
-                class:"high",
-                title: "能耗合理(4)",
-                link: "javascript:void(0);"
-              }, {
-                class:"high",
-                title: "自动化程度高(6)",
-                link: "javascript:void(0);"
-              }, {
-                title: "性能一般(2)",
-                link: "javascript:void(0);"
-              }, {
-                title: "能耗高(6)",
-                link: "javascript:void(0);"
-              }, {
-                title: "售后一般(2)",
-                link: "javascript:void(0);"
-              }
-            ]
-          })}}
+          {{navigationbar2(reputationTypeObject)}}
         </div>
 
         <div class="list_box">
+          {{reputationtemp(ReputationData.reputations)}}
 
-          {% for item in ReputationData %}
-            <div class="child">
-              <div class="l">
-                <div class="user">
-                  <div>
-                    <img _src_="{{item.userIcon}}"/>
-                    <i>{{item.userName}}</i>
-                  </div>
-                  <p>购买价格：{{item.purchasePrice}}</p>
-                  <p>购买时间：{{item.buyTime | get_time_timestamp | ge_time_format(2)}}</p>
-                  <p>投入使用：{{item.useTime | get_time_timestamp | ge_time_format(2)}}</p>
-                </div>
-
-                <div class="grade">
-                  <span>用户评分</span>
-                  <div class="score">
-                    <span>{{item.statisticsModel.score}}</span>
-                    {{star(item.statisticsModel.score)}}
-                  </div>
-                  {% if item.statisticsModel.reputationScore != null and item.statisticsModel.reputationScore.length > 0 %}
-                    <div class="configuration">
-                      {% for reputationScoreItem in item.statisticsModel.reputationScore %}
-                        <p data-id="{{reputationScoreItem.reputationTypeId}}">
-                          <span>{{reputationScoreItem.reputationTypeName}}：</span>
-                          <span>{{reputationScoreItem.reputationScore}}</span>
-                        </p>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-
-                </div>
-                {% if item.newsId != null and item.newsId != 0 %}
-                  <div class="more">
-                    <a href="/news/reputation/{{item.newsId}}" target="_blank">查看口碑详情</a>
-                  </div>
-                {% endif %}
-
-              </div>
-
-              <div class="r">
-                <p>{{item.summary | safe}}</p>
-                <div class="atlas">
-
-                  {% for imgurl in (item.summary | onlyimg) %}
-                    <img _src_="{{imgurl}}" data-viewer="{{imgurl}}"/>
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
-          {% endfor %}
         </div>
       </div>
     </div>

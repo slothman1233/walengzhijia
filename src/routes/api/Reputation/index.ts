@@ -14,7 +14,7 @@ import commonService from '../../../services/common/component.services'
 import { ComponentModel } from '../../../model/component'
 import { ErrorModel, SuccessModel } from '../../../model/resModel'
 import { GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
-import { GetHighQualityReputationRm, GetReputationByCompanyRm } from '../../../controller/Reputation.controller'
+import { GetHighQualityReputationRm, GetReputationByCompanyRm, GetReputationByProductIdRm } from '../../../controller/Reputation.controller'
 
 export default class Index {
   /**
@@ -41,6 +41,21 @@ export default class Index {
       ctx.body = models
 
   }
+
+  /**
+   * 根据产品获得该产品下面对应的口碑信息的bodyModel模型返回
+   */
+  @get('/GetReputationByProductId')
+  async GetReputationByProductId(ctx: Context) {
+      let { productId, timeTicks, pageSize, reputationType } = ctx.query
+      let models = await GetReputationByProductIdRm(productId, timeTicks, pageSize, reputationType)
+      ctx.body = models
+
+  }
+
+
+
+
 
 }
 
