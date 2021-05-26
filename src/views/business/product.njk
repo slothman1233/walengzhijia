@@ -184,7 +184,7 @@ navigationbar2 %}
               </div>
               <div class="r">
                 {% for item in reputationTypeObject %}
-                 <a href="{{item.link}}" target="_blank" class="{{item.class}}">{{item.title}}</a>
+                  <a href="{{item.link}}" target="_blank" class="{{item.class}}">{{item.title}}</a>
                 {% endfor %}
               </div>
             </div>
@@ -239,20 +239,22 @@ navigationbar2 %}
       </div>
 
       <div class="right">
-        {% if (salers != null) and (salers.length > 0) %}
-          <div class="marketing">
-            <div class="title">
-              {{navigationbar({
+
+        <div class="marketing">
+          <div class="title">
+            {{navigationbar({
                 isMore: false,
                 isSelect: "1",
                 data: [
                   {
-                    title: "销售信息",
+                    title: "咨询销售",
                     link: "javascript:void(0);"
                   }
                 ]
             })}}
-            </div>
+          </div>
+
+          {% if (salers != null) and (salers.length > 0) %}
             <div class="list_box">
 
               {% for item in salers %}
@@ -274,9 +276,14 @@ navigationbar2 %}
               {% endfor %}
 
             </div>
-          </div>
-
-        {% endif %}
+          {% else %}
+              <div class="nosalers">
+                    <h2>对此产品感兴趣?</h2>
+                    <p>若您对此产品有兴趣，欢迎联系我们，将由专业的销售人员和您进一步沟通。</p>
+                    <a href="/enquiry/{{companyId}}/0" target="_blank">立即咨询</a>
+              </div>
+          {% endif %}
+        </div>
 
         {# <div class="question">
           <div class="title">

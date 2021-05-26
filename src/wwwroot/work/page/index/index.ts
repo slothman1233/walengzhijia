@@ -42,34 +42,51 @@ declare const document: Document
 (function () {
     let brand = document.querySelector('.brand')
 
-    let list = brand.querySelector('.list')
+    let row: HTMLElement = brand.querySelector('.row')
+
+    let list: HTMLElement = brand.querySelector('.list')
 
     let list_box = brand.querySelector('.list_box')
 
 
+    navigationbar(row, function (dom: any) {
+        let ins = index(dom)
 
-    //热门品牌
-    on({
-        agent: list,
-        events: 'mouseover',
-        ele: 'a',
-        fn: function (dom: any) {
-            let ins = index(dom)
-
-            for (let i = 0; i < list.querySelectorAll('a').length; i++) {
-                let dom = list.querySelectorAll('a')[i]
-                if (i === ins) {
-                    addClass(dom.querySelector('span'), 'select')
-                    continue
-                }
-                removeClass(dom.querySelector('span'), 'select')
+        for (let i = 0; i < list.querySelectorAll('a').length; i++) {
+            let dom = list.querySelectorAll('a')[i]
+            if (i === ins) {
+                addClass(dom.querySelector('span'), 'select')
+                continue
             }
-
-            hide(list_box.querySelectorAll('.list_item'))
-
-            show(list_box.querySelectorAll('.list_item')[ins])
+            removeClass(dom.querySelector('span'), 'select')
         }
+
+        hide(list_box.querySelectorAll('.list_item'))
+
+        show(list_box.querySelectorAll('.list_item')[ins])
     })
+    //热门品牌
+    // on({
+    //     agent: list,
+    //     events: 'mouseover',
+    //     ele: 'a',
+    //     fn: function (dom: any) {
+    //         let ins = index(dom)
+
+    //         for (let i = 0; i < list.querySelectorAll('a').length; i++) {
+    //             let dom = list.querySelectorAll('a')[i]
+    //             if (i === ins) {
+    //                 addClass(dom.querySelector('span'), 'select')
+    //                 continue
+    //             }
+    //             removeClass(dom.querySelector('span'), 'select')
+    //         }
+
+    //         hide(list_box.querySelectorAll('.list_item'))
+
+    //         show(list_box.querySelectorAll('.list_item')[ins])
+    //     }
+    // })
 
 
 })();

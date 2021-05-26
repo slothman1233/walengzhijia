@@ -257,7 +257,6 @@
 
     .list {
       margin-bottom: @space_2;
-      overflow     : hidden;
 
       .tab {
         margin-bottom: @space_2;
@@ -265,25 +264,24 @@
       }
 
       .container {
-        overflow     : hidden;
         width        : @DefindWidth;
         margin-bottom: @space_3;
 
         .container_box {
           @allwidth: @DefindWidth+@space_1;
           width    : @allwidth;
-          overflow : hidden;
+          margin   : -@space_1 /2 0 0 -@space_1 /2;
 
           .child {
-             @height         : 422px - @space_2;
-            @width          : (@allwidth/4) - (@space_2*2) - @space_1 - 2;
-            width           : @width;
+            @height            : 422px - @space_2;
+            @width             : (@allwidth/4) - (@space_2*2) - @space_1 - 2;
+            width              : @width;
             // height          : @height;
-            float           : left;
-            padding         : 0 @space_2 @space_2 @space_2;
-            border          : 1px solid @border_color;
-            margin          : 0 @space_1 @space_1 0;
-            background-color: #FFF;
+            float              : left;
+            padding            : 0 @space_2 @space_2 @space_2;
+            border             : 1px solid @border_color;
+            margin             : @space_1 /2;
+            background-color   : #FFF;
             .border-radius(4px);
 
             &:hover {

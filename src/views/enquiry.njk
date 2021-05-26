@@ -30,7 +30,7 @@
                 isSelect: "1",
                 data: [
                   {
-                    title: "询价",
+                    title: "咨询销售",
                     link: "javascript:void(0);"
                   }
                 ]
@@ -55,9 +55,21 @@
           </div>
         </div>
 
+        <div class="company">
+          <span>公司<i>*</i>
+          </span>
+          <input type="text" placeholder="请填写您的公司名称"/>
+        </div>
+
+        <div class="email">
+          <span>邮箱</span>
+          <input type="text" placeholder="请填写邮箱"/>
+        </div>
+
         <div class="phone">
-          <span>手机号</span>
-          <input type="text" placeholder="请输入11位手机号码" value="{{phoneNumber}}" />
+          <span>手机号<i>*</i>
+          </span>
+          <input type="text" placeholder="请输入11位手机号码" value="{{phoneNumber}}"/>
         </div>
 
         <div class="verification">
@@ -69,7 +81,7 @@
 
         <div class="describe">
           <span> &nbsp; </span>
-          <textarea placeholder="请简单描述你的需求(非必填)"></textarea>
+          <textarea placeholder="请简单描述你的需求"></textarea>
         </div>
         <div class="submitdiv">
           <span> &nbsp; </span>
@@ -77,16 +89,15 @@
         </div>
 
       </div>
+      {% if (salers != null) and (salers.length > 0) %}
+        <div class="salesman">
+          <div class="title">
+            <p>销售人员</p>
+            <span>最多选择2位销售人员</span>
+          </div>
 
-      <div class="salesman">
-        <div class="title">
-          <p>销售人员</p>
-          <span>最多选择2位销售人员</span>
-        </div>
+          <div class="personnelselection">
 
-        <div class="personnelselection">
-
-          {% if (salers != null) and (salers.length > 0) %}
             {% for item in salers %}
               <div class="itembox">
                 <input type="checkbox"  data-id='{{item.salerId}}' class="radio" {{(item.salerId == salesid) | ternary('checked=true','')}} name="radio" id="radio_{{item.salerId}}"/>
@@ -108,11 +119,12 @@
                 </div>
               </div>
             {% endfor %}
-          {% endif %}
+
+          </div>
 
         </div>
 
-      </div>
+      {% endif %}
 
     </div>
 

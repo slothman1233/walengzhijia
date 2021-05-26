@@ -42,8 +42,8 @@
                 width      : 100%;
 
                 img {
-                    max-height: @imgHeight;
-                    max-width : 100%;
+                    max-height: 48px;
+                    max-width : 48px;
                     margin    : auto;
                 }
             }
@@ -52,7 +52,7 @@
                 @pheight   : 20px;
                 height     : @pheight;
                 line-height: @pheight;
-                color      : @color_main_c1;
+                color      : @color_gray_c1;
                 font-size  : @font_size_12;
                 font-weight: @font_weight;
 
@@ -317,6 +317,7 @@
                                 display: block;
                                 width  : @defaultLeftWidth;
                                 height : @height;
+                                .border-radius(2px);
                             }
 
                             p {

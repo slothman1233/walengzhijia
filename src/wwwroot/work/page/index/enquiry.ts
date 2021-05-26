@@ -27,7 +27,9 @@ let PublishData: CompanyProductAdvisoryModel = {
     summary: '',
     status: 0,
     createUser: userId,
-    salers: []
+    salers: [],
+    companyName: '',
+    email: ''
 };
 //产品id
 (function () {
@@ -89,6 +91,8 @@ let PublishData: CompanyProductAdvisoryModel = {
 //选择销售客服
 (function () {
     let salesman = main.querySelector('.salesman')
+    if (!salesman) { return }
+
     let personnelselection = salesman.querySelector('.personnelselection')
 
     on({
@@ -145,12 +149,18 @@ async function publish() {
     let popup_succee: HTMLElement = document.querySelector('.popup_succee')
     let container: HTMLElement = main.querySelector('.container')
     let from: HTMLElement = container.querySelector('.form')
+    let company: HTMLInputElement = from.querySelector('.company').querySelector('input')
+    let email: HTMLInputElement = from.querySelector('.email').querySelector('input')
     let phone: HTMLInputElement = from.querySelector('.phone').querySelector('input')
     let verification: HTMLInputElement = from.querySelector('.verification input')
     let describe: HTMLTextAreaElement = from.querySelector('.describe textarea')
     let salesman = main.querySelector('.salesman')
-    let personnelselection = salesman.querySelector('.personnelselection')
-    // PublishData.contactPhone
+    let personnelselection
+    if (salesman) {
+        personnelselection = salesman.querySelector('.personnelselection')
+    }
+
+
 
     if (PublishData.createUser === 0) {
         window.loginshow()
@@ -158,7 +168,10 @@ async function publish() {
         return
     }
 
-    if (!phoneReg.test(phone.value)) {
+    if (company.value.length <= 0) {
+        alert('公司不能为空')
+        return
+    } else if (!phoneReg.test(phone.value)) {
         alert('手机号码格式不正确')
         return
     } else if (verification.value.length <= 0) {
@@ -182,21 +195,25 @@ async function publish() {
 
     PublishData.contactPhone = phone.value
     PublishData.summary = describe.value
-
-
-    let inputary: any[] = NodeListToArray(personnelselection.querySelectorAll('input'))
-    PublishData.salers = []
-    inputary.forEach((item: HTMLInputElement) => {
-        if (item.getAttribute('checked') === 'true') {
-            PublishData.salers.push({
-                salerId: parseInt(item.getAttribute('data-id'))
-            })
-        }
-    })
-    if (PublishData.salers.length <= 0) {
-        alert('请选择需要询价的销售')
-        return
+    PublishData.companyName = company.value
+    PublishData.email = email.value
+    if (personnelselection) {
+        let inputary: any[] = NodeListToArray(personnelselection.querySelectorAll('input'))
+        PublishData.salers = []
+        inputary.forEach((item: HTMLInputElement) => {
+            if (item.getAttribute('checked') === 'true') {
+                PublishData.salers.push({
+                    salerId: parseInt(item.getAttribute('data-id'))
+                })
+            }
+        })
     }
+
+
+    // if (PublishData.salers.length <= 0) {
+    //     alert('请选择需要询价的销售')
+    //     return
+    // }
 
     // console.log(PublishData)
     let dataJson = await AddCompanyProductAdvisory(PublishData)

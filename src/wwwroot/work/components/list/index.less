@@ -312,12 +312,12 @@
 
     .child {
       background-color: #FFF;
-      @childwidth     : (@width - @space_2)/3 - @space_2 - (@space_2 * 2);
-      flex-grow       : 1;
+      @childwidth     : (@width - @space_2*2)/3; //(@width - @space_2)/3 - @space_2 - (@space_2 * 2);
+        // flex-grow     : 1;
       display         : block;
       float           : left;
       text-align      : left;
-      flex-direction  : column;
+      // flex-direction  : column;
       width           : @childwidth;
       height          : 224 - (@space_2*2);
       margin-right    : @space_2;
@@ -454,7 +454,7 @@
   }
 }
 
-.reputationtemp(@leftwidth:284px,@rightwidth:884px) {
+.reputationtemp(@leftwidth: 284px, @rightwidth: 884px) {
   .reputationtemp {
     .child {
       overflow     : hidden;

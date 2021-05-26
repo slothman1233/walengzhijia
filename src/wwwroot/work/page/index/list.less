@@ -48,10 +48,16 @@
           .border-radius(2px);
           .box-sizing();
 
-          &:hover,
+
           &.active {
             background-color: @color_subject;
             color           : @color_main_c1;
+            font-weight     : @font_weight;
+          }
+
+          &:hover {
+            background-color: @color_theme_c2_30;
+            color           : @color_gray_c1;
             font-weight     : @font_weight;
           }
         }
