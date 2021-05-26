@@ -39,14 +39,14 @@ class LepackUser {
     // LepackUserValidateModel
     //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
     async SendCode(params: LepackUserValidateModel) {
-        return await http.post<boolean>(`${config.apiPath}api/LepackUser/SendCode`, { params, headers: { 'Content-Type': 'application/json' } })
+        return await http.post<boolean>(`${config.apiPath}api/LepackUser/SendCode`, params, {  headers: { 'Content-Type': 'application/json' } })
     }
 
     // 判断验证码是否正确
     // LepackUserValidateModel
     //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
     async ValidateCode(params: LepackUserValidateModel) {
-        return await http.post<boolean>(`${config.apiPath}api/LepackUser/ValidateCode`, { params, headers: { 'Content-Type': 'application/json' } })
+        return await http.post<boolean>(`${config.apiPath}api/LepackUser/ValidateCode`, params, {  headers: { 'Content-Type': 'application/json' } })
     }
 
 }
