@@ -1,5 +1,6 @@
 @import (reference) "../../../../public/style/common/mpublicdefind.less";
 @import (reference) "../../../../public/style/common/Animation.less";
+@import (less) "./muirewrite.less";
 
 html * {
   outline                    : 0;
@@ -12,29 +13,14 @@ body {
   margin                 : 0;
   width                  : 100%;
   font-family            : '微软雅黑', sans-serif, '宋体', Arial;
-  font-size              : 14px;
+  font-size              : @font_size_14;
   -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height            : @line_height;
 }
 
 
-.mui-bar-tab {
-  height: @size_1 * 50;
-}
 
-
-.mui-segmented-control.mui-scroll-wrapper {
-  height: @size_1 * 38;
-}
-
-.mui-segmented-control.mui-scroll-wrapper .mui-scroll {
-  height: @size_1 * 40;
-}
-
-.simplelayoutbody {
-  background-color: @color_grey_bg1;
-}
 
 * {
   word-wrap : break-word;
@@ -48,7 +34,6 @@ h4,
 h5,
 h6,
 img,
-
 ul,
 li,
 p {
@@ -59,19 +44,19 @@ p {
 }
 
 h1 {
-  font-size: 22px;
+  font-size: @font_size_22;
 }
 
 h2 {
-  font-size: 18px;
+  font-size: @font_size_18;
 }
 
 h3 {
-  font-size: 16px;
+  font-size: @font_size_16;
 }
 
 h4 {
-  font-size: 13px;
+  font-size: @font_size_13;
 }
 
 input,
@@ -107,24 +92,8 @@ a {
   }
 }
 
-//间距
-@space_1  : 0.2rem;
-@space_2  : 2 * @space_1;
-@space_3  : 3 * @space_1;
-@space_4  : 4 * @space_1;
-@space_5  : 5 * @space_1;
-@space_6  : 6 * @space_1;
-@space_7  : 7 * @space_1;
-@space_8  : 8 * @space_1;
-@space_9  : 9 * @space_1;
-@space_10 : 10 * @space_1;
-@space_11 : 11 * @space_1;
-@space_12 : 12 * @space_1;
 
-.mui-content,
-body {
-  background-color: #fff;
-}
+
 
 .footer {
   -webkit-box-shadow: none;
@@ -133,32 +102,6 @@ body {
 
   font-size: @font_size_14;
   color    : @color_gray_c1;
-}
-
-//swiper
-.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
-  margin          : 0 @size_1 * 4;
-  background-color: #FFF;
-  .opacity(1)
-}
-
-
-
-.swiper-pagination-bullet {
-  width : @size_1 * 8 !important;
-  height: @size_1 * 4 !important;
-  .border-radius(@size_1 * 8);
-}
-
-.swiper-pagination-bullet-active {
-  color           : @color_rank;
-  background-color: @color_rank  !important;
-  width           : @size_1 * 16 !important;
-
-}
-
-.mui-bar-tab .mui-tab-item.mui-active {
-  color: @color_rank;
 }
 
 .clearfix::after {

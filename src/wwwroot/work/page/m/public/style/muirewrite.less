@@ -1,0 +1,45 @@
+@import (reference) "../../../../public/style/common/mpublicdefind.less";
+@import (reference) "../../../../public/style/common/Animation.less";
+
+.mui-content,
+body {
+  background-color: #fff;
+}
+
+.mui-bar-tab .mui-tab-item.mui-active {
+  color: @color_rank;
+}
+
+.mui-bar-tab {
+  height: @size_1 * 50;
+}
+
+
+.mui-segmented-control.mui-scroll-wrapper {
+  height: @size_1 * 38;
+}
+
+.mui-segmented-control.mui-scroll-wrapper .mui-scroll {
+  height: @size_1 * 40;
+}
+
+
+
+//swiper
+.swiper-container-horizontal>.swiper-pagination-bullets {
+  .swiper-pagination-bullet {
+    margin          : 0 @size_1 * 4;
+    background-color: #FFF;
+    width           : @size_1 * 8;
+    height          : @size_1 * 4;
+    .border-radius(@size_1 * 8);
+    .opacity(1)
+  }
+
+  .swiper-pagination-bullet-active {
+    color           : @color_rank;
+    background-color: @color_rank ;
+    width           : @size_1 * 16;
+
+  }
+}
