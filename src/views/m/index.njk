@@ -120,8 +120,8 @@ list2 %}
                     <span>{{item.abbrName}}</span>
                   </section>
                   <section class="kb clearfix">
-                    <b>{{item.reputation.score}}</b>
-                    {{star(item.reputation.score)}}
+                    <b>{{item.reputation.score | ternary(item.reputation.score,0)}}</b>
+                    {{star(item.reputation.score| ternary(item.reputation.score,0))}}
                   </section>
                   <p class="clearfix">
                     <span>{{item.reputation.highReputationCount | ternary(item.reputation.highReputationCount,0)}}条优质口碑</span>

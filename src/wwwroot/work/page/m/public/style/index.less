@@ -1,4 +1,4 @@
-@import (reference) "../../../../public/style/common/PublicDefind.less";
+@import (reference) "../../../../public/style/common/mpublicdefind.less";
 @import (reference) "../../../../public/style/common/Animation.less";
 
 html * {
@@ -15,22 +15,22 @@ body {
   font-size              : 14px;
   -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-#simplelayoutmain {
-  width : @DefindWidth;
-  margin: @space_2 auto;
-
-  #simplelayoutright {
-    float           : right;
-    width           : @simplelayoutRightWidth;
-    background-color: #FFF;
-  }
+  line-height            : @line_height;
 }
 
 
+.mui-bar-tab {
+  height: @size_1 * 50;
+}
 
 
+.mui-segmented-control.mui-scroll-wrapper {
+  height: @size_1 * 38;
+}
+
+.mui-segmented-control.mui-scroll-wrapper .mui-scroll {
+  height: @size_1 * 40;
+}
 
 .simplelayoutbody {
   background-color: @color_grey_bg1;
@@ -135,15 +135,25 @@ body {
   color    : @color_gray_c1;
 }
 
+//swiper
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+  margin          : 0 @size_1 * 4;
+  background-color: #FFF;
+  .opacity(1)
+}
+
+
+
 .swiper-pagination-bullet {
-  height: 4px !important;
-  .border-radius(8px);
+  width : @size_1 * 8 !important;
+  height: @size_1 * 4 !important;
+  .border-radius(@size_1 * 8);
 }
 
 .swiper-pagination-bullet-active {
   color           : @color_rank;
   background-color: @color_rank  !important;
-  width           : 16px !important;
+  width           : @size_1 * 16 !important;
 
 }
 

@@ -36,12 +36,12 @@
             content         : '';
             display         : block;
             position        : relative;
-            bottom          : 7px;
-            height          : 4px;
-            width           : 16px;
+            bottom          : @size_1 * 7;
+            height          : @size_1 * 4;
+            width           : @size_1 * 16;
             margin          : auto;
             background-color: @color_rank;
-            .border-radius(2px);
+            .border-radius(@size_1 * 2);
           }
         }
       }

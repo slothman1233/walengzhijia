@@ -1,13 +1,13 @@
 
-import { Context, Next } from 'koa'
+import { Context } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
 import { GetCompanyInfoById, GetCompnays } from '../../controller/company.controller'
 import { GetReputationTypeById } from '../../controller/ManageLepackReputaion.controller'
-import { GetCompanyProduct, GetCompanyProductById, GetCompanySimilarProductById } from '../../controller/product.controller'
-import { GetReputationByCompany, GetReputationByCompanyFilter, GetReputationByProductId } from '../../controller/Reputation.controller'
+import { GetCompanyProduct } from '../../controller/product.controller'
+import { GetReputationByCompanyFilter, GetReputationByProductId } from '../../controller/Reputation.controller'
 import { ReputationTypeArray, ReputationTypeEnum } from '../../enums/enums'
 import { ResCompanyInfoModel } from '../../model/company/resCompany'
-import { ResReputationFilterModel, ResReputationStatisticsModel } from '../../model/reputation/resreputation'
+import { ResReputationFilterModel } from '../../model/reputation/resreputation'
 
 
 
@@ -143,7 +143,6 @@ export default class Reputation {
             data: []
         }
         ReputationTypeArray.forEach((value: string, index: number) => {
-            let number = ReputationData?.reputationCount || 0
             let title = ''
             let cls = 'high'
             switch (index) {
