@@ -9,7 +9,7 @@ import { Controller, get, middlewares, post } from '../../../common/decorator/ht
 import commonService from '../../../services/common/component.services'
 import { ComponentModel } from '../../../model/component'
 import { ErrorModel, SuccessModel } from '../../../model/resModel'
-import { GetCompanyProductByTypeIdRm, GetCompanyProductRm, GetCompanyProductTypeRm, GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
+import { CompanyBrand, GetCompanyBrandRm, GetCompanyProductByTypeIdRm, GetCompanyProductRm, GetCompanyProductTypeRm, GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
 import { ProductByTypeId } from '../../../services/Product.services'
 
 export default class Index {
@@ -53,11 +53,11 @@ export default class Index {
        * 根据公司ID获得所有产品信息
        * BycompanyId
        */
-      @get('/GetCompanyProduct')
+    @get('/GetCompanyProduct')
     async GetCompanyProduct(ctx: Context) {
         let { companyId } = ctx.query
         let models = await GetCompanyProductRm({ companyId })
-  
+
         ctx.body = models
     }
 
@@ -67,12 +67,12 @@ export default class Index {
        * BycompanyId
        */
     @get('/GetCompanyProductType')
-      async GetCompanyProductType(ctx: Context) {
-          let { companyId } = ctx.query
-          let models = await GetCompanyProductTypeRm({ companyId })
+    async GetCompanyProductType(ctx: Context) {
+        let { companyId } = ctx.query
+        let models = await GetCompanyProductTypeRm({ companyId })
 
-          ctx.body = models
-      }
+        ctx.body = models
+    }
 
 
     /**
@@ -85,6 +85,15 @@ export default class Index {
 
         let models = await GetCompanyProductByTypeIdRm({ companyId, productTypeId, pageIndex, pageSize })
 
+        ctx.body = models
+    }
+
+    /**
+     * 获得企业品牌商模型
+     */
+    @get('/GetCompanyBrand')
+    async GetCompanyBrand(ctx: Context) {
+        let models = await GetCompanyBrandRm(<CompanyBrand>ctx.query)
         ctx.body = models
     }
 

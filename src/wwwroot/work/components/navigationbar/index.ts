@@ -29,7 +29,7 @@ export function navigationbar2(parentId: string, callback: navigationbar2cb) {
     })
 }
 
-export function navigationbar(parentId: string | HTMLElement, callback: navigationbar2cb) {
+export function navigationbar(parentId: string | HTMLElement, callback: navigationbar2cb, events: string = 'mouseover') {
 
 
     let parentdom: any = parentId
@@ -44,7 +44,7 @@ export function navigationbar(parentId: string | HTMLElement, callback: navigati
 
     on({
         agent: navigationbar,
-        events: 'mouseover',
+        events,
         ele: 'a',
         fn: function (dom: any, e: any) {
             let html = ''

@@ -4,10 +4,10 @@ import { get } from '../../common/decorator/httpMethod'
 import { GetCompanyInfoById, GetCompnays } from '../../controller/company.controller'
 import { GetReputationTypeById } from '../../controller/ManageLepackReputaion.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanySimilarProductById } from '../../controller/product.controller'
-import { GetReputationByProductId } from '../../controller/Reputation.controller'
+import { GetReputationByCompany, GetReputationByCompanyFilter, GetReputationByProductId } from '../../controller/Reputation.controller'
 import { ReputationTypeArray, ReputationTypeEnum } from '../../enums/enums'
 import { ResCompanyInfoModel } from '../../model/company/resCompany'
-import { ResReputationStatisticsModel } from '../../model/reputation/resreputation'
+import { ResReputationFilterModel, ResReputationStatisticsModel } from '../../model/reputation/resreputation'
 
 
 
@@ -129,7 +129,14 @@ export default class Reputation {
         //-------------------------------
         let pageSize = 10
         //获取口碑信息
-        let ReputationData = await GetReputationByProductId(productId, 0, pageSize, parseInt(reputationType))
+        let ReputationData:ResReputationFilterModel
+        if(parseInt(productId) === 0){
+            ReputationData  = await GetReputationByCompanyFilter(companyId, 0, pageSize, parseInt(reputationType))
+        }else{
+            ReputationData  = await GetReputationByProductId(productId, 0, pageSize, parseInt(reputationType))
+        }
+      
+        
 
         let reputationTypeObject: any = {
             isSelect: parseInt(reputationType) + 1,

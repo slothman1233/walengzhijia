@@ -3,10 +3,11 @@ import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
 import { navigationbar2 } from '../../components/navigationbar'
 import { selectOption1 } from '../../components/select'
-import { GetReputationByProductId } from '../../common/service/Reputation.services'
+import { GetReputationByCompanyFilter, GetReputationByProductId } from '../../common/service/Reputation.services'
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { subCodeEnums } from '../../../../enums/enums'
 import window from '../../common/win/windows'
+import { ResReputationFilterModelReturnModel } from '../../../../model/reputation/resreputation'
 declare const $: JQueryStatic
 declare const companyId: any
 declare const productId: any
@@ -48,9 +49,15 @@ let mian = document.querySelector('#main');
     let list_box = row2.querySelector('.list_box')
     navigationbar2('reputationlist', async (dom) => {
         let id = dom.getAttribute('data-id')
-       
-        let data = await GetReputationByProductId(parseInt(productId), 0, parseInt(pageSize), parseInt(id))
+        let data: ResReputationFilterModelReturnModel
+        if (parseInt(productId) === 0) {
+            data = await GetReputationByCompanyFilter(parseInt(companyId), 0, parseInt(pageSize), parseInt(id))
+        } else {
+            data = await GetReputationByProductId(parseInt(productId), 0, parseInt(pageSize), parseInt(id))
+        }
 
+
+        //
         if (data.code === 0 && data.subCode === subCodeEnums.success && data.bodyMessage) {
             let dataobj: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'reputationtemp', data: { args: data.bodyMessage.reputations } })
             if (dataobj.code === 0) {
@@ -73,7 +80,12 @@ let mian = document.querySelector('#main');
             let length = $(list_box).find('.child').length
             let time = $(list_box).find('.child')[length - 1].getAttribute('data-time')
             time = time.substr(0, 10)
-            let data = await GetReputationByProductId(parseInt(productId), parseInt(time), parseInt(pageSize), parseInt(id))
+            let data: ResReputationFilterModelReturnModel
+            if (parseInt(productId) === 0) {
+                data = await GetReputationByCompanyFilter(parseInt(companyId), parseInt(time), parseInt(pageSize), parseInt(id))
+            } else {
+                data = await GetReputationByProductId(parseInt(productId), parseInt(time), parseInt(pageSize), parseInt(id))
+            }
 
             if (data.code === 0 && data.subCode === subCodeEnums.success && data.bodyMessage) {
 
@@ -88,6 +100,8 @@ let mian = document.querySelector('#main');
             }
         }
     }
+
+
 
 
 })()

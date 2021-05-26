@@ -63,6 +63,7 @@ export interface ResProductIndexPageModel {
   sort: number
   productTypeName: string
   companyInfo: ResCompanyInfoIndexPageModel[]
+
 }
 
 /**

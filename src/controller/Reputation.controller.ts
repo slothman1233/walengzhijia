@@ -5,7 +5,7 @@ import { JSONParse } from '../common/utils/ModelHelper'
 import { ReputationTypeEnum } from '../enums/enums'
 import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel, ResHotReputationModel, ResHotReputationModelListReturnModel, ResReputationFilterModel, ResReputationFilterModelReturnModel } from '../model/reputation/resreputation'
 import { bodyModel } from '../model/resModel'
-import Reputations, { GetHighQualityReputationModel, GetReputationByCompanyModel, GetReputationByProductIdModel } from '../services/Reputation.services'
+import Reputations, { GetHighQualityReputationModel, GetReputationByCompanyFilterModel, GetReputationByCompanyModel, GetReputationByProductIdModel } from '../services/Reputation.services'
 
 /**
  * @param {number} productId 产品id
@@ -31,9 +31,6 @@ export async function GetReputationByCompany(companyId: number): Promise<ResRepu
     return models
 }
 
-//
-
-
 /**
 * 根据公司获得该公司对应的口碑的bodyModel模型返回
 */
@@ -49,9 +46,35 @@ export async function GetReputationByCompanyRm(companyId: number): Promise<ResRe
 
 
 /**
+ * 根据公司获得该公司对应的口碑
+ */
+export async function GetReputationByCompanyFilter(companyId: number, timeTicks: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModel | null> {
+    let rm = await GetReputationByCompanyFilterRm(companyId, timeTicks, pageSize, reputationType)
+    let models = JSONParse<ResReputationFilterModel | null>(rm.code, rm.bodyMessage)
+    return models
+}
+
+
+/**
+* 根据公司获得该公司对应的口碑的bodyModel模型返回
+*/
+export async function GetReputationByCompanyFilterRm(companyId: number, timeTicks: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModelReturnModel> {
+    let params: GetReputationByCompanyFilterModel
+    params = {
+        companyId,
+        timeTicks,
+        pageSize,
+        reputationType
+    }
+
+    return await Reputations.GetReputationByCompanyFilter(params).catch(data => data)
+}
+
+
+/**
  * 根据产品获得该产品下面对应的口碑信息
  */
-export async function GetReputationByProductId(productId: number, timeTicks: number = 0, pageSize: number = 10, reputationType:ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModel | null> {
+export async function GetReputationByProductId(productId: number, timeTicks: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModel | null> {
     let rm = await GetReputationByProductIdRm(productId, timeTicks, pageSize, reputationType)
     let models = JSONParse<ResReputationFilterModel | null>(rm.code, rm.bodyMessage)
     return models
@@ -64,7 +87,7 @@ export async function GetReputationByProductId(productId: number, timeTicks: num
 * 根据产品获得该产品下面对应的口碑信息的bodyModel模型返回
 
 */
-export async function GetReputationByProductIdRm(productId: number, timeTicks: number = 0, pageSize: number = 10, reputationType:ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModelReturnModel> {
+export async function GetReputationByProductIdRm(productId: number, timeTicks: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModelReturnModel> {
     let params: ReputationByProductIdModel
     params = {
         productId,

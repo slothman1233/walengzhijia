@@ -1,3 +1,5 @@
+import { CompanyBrand } from '../../../../controller/product.controller'
+import { ResCompanyBrandModelPagedModel, ResCompanyBrandModelPagedModelReturnModel } from '../../../../model/company/resCompany'
 import { ResIndustryTypeModel } from '../../../../model/industry/resIndustryType'
 import { ResProductTypeModel } from '../../../../model/product/resproductType'
 import { ResCompanyProductInfoModelListReturnModel, ResCompanyProductInfoModelPagedModelReturnModel, ResproductTypeListModel } from '../../../../model/reputation/resreputation'
@@ -38,6 +40,13 @@ export const GetCompanyProductType = async (companyId: number): Promise<Resprodu
  * BycompanyId
  */
 export const GetCompanyProductByTypeId = async (params: ProductByTypeId): Promise<ResCompanyProductInfoModelPagedModelReturnModel> => await http.get<any>(`/api/product/GetCompanyProductByTypeId`, { params })
+
+
+/**
+ * 获得企业品牌商模型
+ * CompanyBrand
+ */
+export const GetCompanyBrand = async (params: CompanyBrand): Promise<ResCompanyBrandModelPagedModelReturnModel> => await http.get<ResCompanyBrandModelPagedModel>(`/api/product/GetCompanyBrand`, { params })
 
 
 

@@ -6,9 +6,14 @@ import Advertisings, { GetAdvertisingModel } from '../services/common/Advertisin
  * 获取广告
  */
 export async function GetAdvertising(params: GetAdvertisingModel): Promise<ResAdvertisingModel[] | null> {
-    let rm = await GetAdvertisingRm(params)
-    let models = JSONParse<ResAdvertisingModel[] | null>(rm.code, rm.bodyMessage)
-    return models
+    try {
+        let rm = await GetAdvertisingRm(params)
+        let models = JSONParse<ResAdvertisingModel[] | null>(rm.code, rm.bodyMessage)
+        return models
+    } catch (e) {
+        return null
+    }
+
 }
 
 /**

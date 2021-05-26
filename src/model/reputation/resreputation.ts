@@ -91,11 +91,13 @@ export interface ResReputationModel {
  * 口碑统计信息
  * @param {number} score 口碑评分(总分)
  * @param {number} reputationCount 口碑数量
+ * @param {number} highReputationCount 优质口碑数量
  * @param {ResReputationScoreStatisticsModel[]} reputationScore 聚合统计
  */
 export interface ResReputationStatisticsModel {
   score: number
   reputationCount: number
+  highReputationCount: number
   reputationScore: ResReputationScoreStatisticsModel[]
 
 

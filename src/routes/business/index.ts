@@ -6,7 +6,7 @@ import { GetCompanyInfoById, GetSalersByCompanyId } from '../../controller/compa
 import { GetNewsByCompanyId, GetNewsByProductId } from '../../controller/news.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType } from '../../controller/product.controller'
 import { GetReputationByCompany, GetReputationByProductId, GetReputationStatisticsByProduct } from '../../controller/Reputation.controller'
-import { NewsContentTypeArray, publishNews, ReputationTypeArray, ReputationTypeEnum } from '../../enums/enums'
+import { NewsContentTypeArray, NewsType, publishNews, publishNewsTypeEnums, ReputationTypeArray, ReputationTypeEnum } from '../../enums/enums'
 import { ResNewsModel } from '../../model/news/resNews'
 
 
@@ -86,7 +86,7 @@ export default class Business {
             data: []
         }
         // 0 最新资讯 1 行业新闻 2 经验分享 3 优惠活动 4 展会相关 5 其他
-        publishNews.forEach((item) => {
+        NewsType.forEach((item) => {
             newTypes.data.push({
                 id: item.id,
                 title: item.value,
@@ -95,7 +95,7 @@ export default class Business {
         })
         //------------------------------------------------------------------------------------------------------------------
         //新闻第一个分类的列表
-        let firstNews: ResNewsModel[] = await GetNewsByCompanyId(companyId, publishNews[0].id)
+        let firstNews: ResNewsModel[] = await GetNewsByCompanyId(companyId, <any>NewsType[0].id)
         let firstNewsList: any[] = []
         if (firstNews) {
             firstNews.forEach((item) => {
@@ -224,7 +224,7 @@ export default class Business {
         })
         //------------------------------------------------------------------------------------------------------------------
         //新闻第一个分类的列表
-        let firstNews: ResNewsModel[] = await GetNewsByProductId(productId, publishNews[0].id)
+        let firstNews: ResNewsModel[] = await GetNewsByProductId(productId, <any>NewsType[0].id)
         let firstNewsList: any[] = []
         if (firstNews) {
             firstNews.forEach((item) => {

@@ -41,7 +41,7 @@ declare const pageSize: any
 })();
 
 (function () {
-    if(totalPages > 1){
+    if (totalPages > 1) {
         let row2 = document.querySelector('.row2')
         let productTypeId = parseInt(document.getElementById('product').querySelector('.select').getAttribute('data-id'))
         let container_box = row2.querySelector('.container_box')
@@ -57,14 +57,14 @@ declare const pageSize: any
                 prePageText: '上一页',
                 nextPageText: '下一页',
             },
-            click: async  function (i: number) {
+            click: async function (i: number) {
                 let { datajson, html } = await GetCompanyProduct({ companyId, productTypeId, pageIndex: i, pageSize })
                 container_box.innerHTML = html
                 window.imgload()
             }
         })
     }
-   
+
 })();
 
 
@@ -270,7 +270,7 @@ async function GetCompanyProduct({ companyId,
 
                 if (datas.code === 0) {
                     container.append(datas.bodyMessage)
-                    isloaded = false
+                    isloaded = newsList.bodyMessage.length > 10 ? false : true
                     window.imgload()
                 }
             }
@@ -285,6 +285,7 @@ async function GetCompanyProduct({ companyId,
 
         let newsList = await GetNewsByCompanyId(companyId, parseInt(id))
         let NewsList: any[] = []
+        let container: HTMLElement = document.querySelector('.row5 .container')
         if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
 
             newsList.bodyMessage.forEach((item) => {
@@ -308,14 +309,16 @@ async function GetCompanyProduct({ companyId,
             let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })
 
             if (datas.code === 0) {
-                let container: HTMLElement = document.querySelector('.row5 .container')
+
                 container.innerHTML = datas.bodyMessage
                 window.imgload()
                 isloaded = false
             }
             isloaded = false
+        } else {
+            container.innerHTML = ''
         }
-
+        isloaded = false
     })
 
 })()

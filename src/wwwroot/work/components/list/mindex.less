@@ -113,12 +113,13 @@
 .list2() {
   .list2 {
     .child {
-      display      : block;
-      width        : 100%;
-      @allheight   : @size_1 * 66;
-      height       : @allheight + @space_2 + @space_2;
-      padding      : @space_2 0;
-      border-bottom: 0.5px solid @color_grey_line1;
+      display       : block;
+      width         : 100%;
+      @allheight    : @size_1 * 66;
+      height        : @allheight + @space_2;
+      margin-top    : @space_2;
+      padding-bottom: @space_2;
+      border-bottom : 0.5px solid @color_grey_line1;
 
       &:hover {
         .name {

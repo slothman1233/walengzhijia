@@ -76,6 +76,7 @@ export interface ResCompanyInfoModelReturnModel extends bodyModel<ResCompanyInfo
  * @param {number} companySort 排序
  * @param {ResReputationStatisticsModel} reputation 口碑概要信息
  * @param {string[]} companyLabels 公司标签
+ * @param {number} HighReputationCount 优质口碑数
  * @param {HotCompanyDefine} hotType 品牌商的类型标记
  */
 export interface ResCompanyHotModel {
@@ -86,6 +87,7 @@ export interface ResCompanyHotModel {
   companySort: number
   reputation: ResReputationStatisticsModel
   companyLabels: string[]
+  HighReputationCount: number
   hotType: HotCompanyDefine
 }
 

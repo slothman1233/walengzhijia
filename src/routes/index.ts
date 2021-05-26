@@ -51,13 +51,13 @@ export default class Index {
         let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
 
         //首页中显示热门公司品牌，根据产品ID类型来获得公司产品信息
-        let GetCompanyHotData = await GetCompanyHot()
-        let companyHotData: ResProductIndexPageModel = {
-            productTypeId: 0,
-            sort: 0,
-            productTypeName: '热门品牌',
-            companyInfo: GetCompanyHotData || []
-        }
+        // let GetCompanyHotData = await GetCompanyHot()
+        // let companyHotData: ResProductIndexPageModel = {
+        //     productTypeId: 0,
+        //     sort: 0,
+        //     productTypeName: '热门品牌',
+        //     companyInfo: GetCompanyHotData || []
+        // }
 
         //获得首页板块分类公司信息
         let GetIndexPageProductData = await GetIndexPageProduct()
@@ -203,7 +203,7 @@ export default class Index {
     /**
      * @param {number} productid 二级分类
      * @param {number} sortid 三级分类
-     * @param {ProductSortTypeEnums} tabIndex 品牌商类型
+     * @param {ProductSortTypeEnums} tabIndex 查询类型：1=综合排序 2=口碑排序 3=热门排序
      * @param {number} pageIndex 当前页码
      */
     @get('/list/:productid?/:sortid?/:tabIndex?/:pageIndex?')
@@ -229,13 +229,6 @@ export default class Index {
         })
         //----------------------------------------------------------------
         //品牌商列表数据
-        // console.log({
-        //     productType: productid,
-        //     classifyType: sortid,
-        //     pageIndex,
-        //     pageSize,
-        //     queryType: tabIndex
-        // })
         let GetCompanyJson = await GetCompanyBrand({
             productType: productid,
             classifyType: sortid,
@@ -243,14 +236,6 @@ export default class Index {
             pageSize,
             queryType: tabIndex
         })
-
-        // console.log({
-        //     productType: productid,
-        //     classifyType: sortid,
-        //     pageIndex,
-        //     pageSize,
-        //     queryType: tabIndex
-        // })
 
         let companylistJson: any[] = []
         if (GetCompanyJson?.items) {

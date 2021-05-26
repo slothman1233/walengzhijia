@@ -5,15 +5,16 @@ import { Controller, get, middlewares } from '../../common/decorator/httpMethod'
 import { get_unix_time_stamp, ge_time_format } from '../../common/utils/util'
 import { GetAdvertising } from '../../controller/Advertising.controller'
 import { GetNewsList } from '../../controller/news.controller'
-import { GetHotCompanyIndexPageProduct } from '../../controller/product.controller'
+import { GetCompanyBrand, GetHotCompanyIndexPageProduct, GetProductIndustryByIndustry } from '../../controller/product.controller'
 import { GetHighQualityReputation } from '../../controller/Reputation.controller'
-import { adTypeEnums, NewsContentTypeArray, NewsType, publishNews } from '../../enums/enums'
+import { adTypeEnums, HotCompanyDefineItems, NewsContentTypeArray, NewsType, ProductSortType, ProductSortTypeEnums, publishNews } from '../../enums/enums'
 import { ResAdvertisingModel } from '../../model/Advertising'
+import { ResIndustryTypeModel } from '../../model/industry/resIndustryType'
 import { ResNewsModel } from '../../model/news/resNews'
 import { ResReputationModel } from '../../model/reputation/resreputation'
 
 export default class Index {
-  @get('/index')
+    @get('/index')
     async index(ctx: Context) {
 
 
@@ -69,12 +70,60 @@ export default class Index {
             })
         }
         //------------------------------------------------------------------------------------------------------------------
+        //行业信息
+        let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
+        //------------------------------------------------------------------------------------
 
+        //品牌商分类
+        let productTabList: any[] = []
+        ProductSortType.forEach((item, index) => {
+            productTabList.push({
+                id: item.id,
+                title: item.value,
+                blank: false,
+                link: `javascript:void(0);`
+            })
+        })
+        //----------------------------------------------------------------
+        let listpageSize = 10
+        //品牌商列表数据
+        let GetCompanyJson = await GetCompanyBrand({
+            productType: 0,
+            classifyType: 0,
+            pageIndex: 1,
+            pageSize: listpageSize,
+            queryType: ProductSortTypeEnums.synthesize
+        })
 
+        let companylistJson: any[] = []
+        if (GetCompanyJson?.items) {
+            GetCompanyJson.items.forEach(item => {
+                if (item.company) {
+                    companylistJson.push({
+                        logo: item.company.logo,
+                        link: '/business/' + item.company.companyId,
+                        name: item.company.abbrName,
+                        kbscore: item.company.reputation.score,
+                        classify: item.productTypes,
+                        kbcount: item.totalReputationCount,
+                        favorablerate: item.favorableRate * 100,
+                        kbgood: item.highReputationCount,
+                        label: item.company.companyLabels,
+                        brandtype: HotCompanyDefineItems[item.company.hotType]
+                    })
+                }
+
+            })
+        }
+        //----------------------------------------------------------------
         await ctx.render('m/index', {
             hotData: hotData[0]?.companyInfo || [],
             newTypes,
             firstNewsList,
+            productTabList,
+            listpageSize,
+            companylistJson,
+            productTypeData: productTypeData[0].productType,
             ad: {
                 adslideData,
                 adtoptowData

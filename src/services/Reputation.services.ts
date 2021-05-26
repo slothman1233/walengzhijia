@@ -1,13 +1,28 @@
 import config from '../common/config/env'
 import http from '../common/utils/net'
+import { ReputationTypeEnum } from '../enums/enums'
 
-import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel, ResHotReputationModel, ResHotReputationModelListReturnModel } from '../model/reputation/resreputation'
+import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel, ResHotReputationModel, ResHotReputationModelListReturnModel, ResReputationFilterModelReturnModel, ResReputationFilterModel } from '../model/reputation/resreputation'
 import { bodyModel } from '../model/resModel'
 
 
 export type GetReputationByCompanyModel = {
   companyId: number
 }
+
+/**
+ * @param {number} companyId 产品id
+ * @param {number} timeTicks 10位时间戳
+ * @param {number} pageSize 分页数量
+ * @param {ReputationTypeEnum} reputationType 口碑类型
+ */
+export type GetReputationByCompanyFilterModel = {
+  companyId: number
+  timeTicks: number,
+  pageSize: number,
+  reputationType: ReputationTypeEnum
+}
+
 
 export type GetReputationByProductIdModel = {
   productId: number
@@ -25,13 +40,17 @@ class Reputation {
         return await http.get<ResReputationModel[]>(`${config.apiPath}api/Reputation/GetReputationByCompany`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 
-
+    // 根据公司获得该公司对应的口碑
+    //@CacheInterceptor('AreaInfo_GetAreaInfoInfoByUser', CacheTime.Min3)
+    async GetReputationByCompanyFilter(params: GetReputationByCompanyFilterModel): Promise<ResReputationFilterModelReturnModel> {
+        return await http.get<ResReputationFilterModel>(`${config.apiPath}api/Reputation/GetReputationByCompanyFilter`, { params, headers: { 'Content-Type': 'application/json' } })
+    }
 
     // 根据产品获得该产品下面对应的口碑信息
     // {productId:0} 
     //@CacheInterceptor('AreaInfo_GetAreaInfoInfoByUser', CacheTime.Min3)
-    async GetReputationByProductId(params: GetReputationByProductIdModel): Promise<ResReputationModelListReturnModel> {
-        return await http.get<ResReputationModel[]>(`${config.apiPath}api/Reputation/GetReputationByProductId`, { params, headers: { 'Content-Type': 'application/json' } })
+    async GetReputationByProductId(params: GetReputationByProductIdModel): Promise<ResReputationFilterModelReturnModel> {
+        return await http.get<ResReputationFilterModel>(`${config.apiPath}api/Reputation/GetReputationByProductId`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 
     // 获得优质口碑，随机
