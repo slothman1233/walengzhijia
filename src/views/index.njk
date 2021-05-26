@@ -35,7 +35,7 @@ list1 %}
           {% if loop.index != 1 %}
             <a href="/list/{{item.productTypeId}}" title="{{item.productType}}" target="_blank">
               <div><img _src_="{{item.productTypeIcon}}"/></div>
-              <p>{{item.productType}}</p>
+                <p>{{item.productType}}</p>
             </a>
           {% endif %}
         {% endfor %}
@@ -127,7 +127,7 @@ list1 %}
                   <li class="slider_list" data-id="{{item.adId}}">
                     <a href="{{item.adLink}}" title="{{item.desc}}" target="_blank">
                       <img _src_="{{item.icon}}"/>
-                      <p>{{item.desc}}</p>
+                      <p><span>{{item.desc}}</span></p>
                     </a>
                   </li>
                 {% endfor %}

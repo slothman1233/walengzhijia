@@ -177,28 +177,30 @@
       .title {
         position: relative;
         height  : @space_3;
-        .ellipsis();
+
 
         img {
-          height      : @space_4;
-          width       : @space_6;
-          margin-right: @space_1;
-          display     : block;
-          float       : left;
-          position    : relative;
-          top         : -@space_1;
-          overflow    : hidden;
+          height          : @space_4;
+          width           : @space_6;
+          margin-right    : @space_1;
+          display         : block;
+          float           : left;
+          position        : absolute;
+          top             : -@space_1;
+          overflow        : hidden;
+          border          : 1px solid rgba(0, 0, 0, 0.1);
           .border-radius(@size_1 * 4);
         }
 
         span {
-          color      : #FFF;
-          font-size  : @font_size_12;
-          line-height: @size_1 * 20;
-          display    : block;
-          position   : relative;
-          top        : @size_1 * 2;
-          text-align : left;
+          padding-left: @space_7;
+          color       : #FFF;
+          font-size   : @font_size_12;
+          line-height : @size_1 * 20;
+          display     : block;
+          position    : relative;
+          top         : @size_1 * 2;
+          text-align  : left;
           .ellipsis();
         }
       }

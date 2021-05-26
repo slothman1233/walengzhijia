@@ -1,12 +1,7 @@
 import config from '../common/config/env'
 import http from '../common/utils/net'
 
-import CacheInterceptor from '../common/decorator/CacheInterceptor'
-import { CacheTime } from '../enums/enums'
-import { ResCompanyHotModelListReturnModel, ResCompanyInfoModelReturnModel } from '../model/company/resCompany'
-import { bodyModel } from '../model/resModel'
-import { CompanyProductInfoModel } from '../model/company/Company'
-import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserValidateModel } from '../model/user/User'
+import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserUpdatePwdModel, LepackUserValidateModel } from '../model/user/User'
 import { ResUserModel } from '../model/user/resUser'
 
 
@@ -33,8 +28,6 @@ class LepackUser {
         return await http.post<ResUserModel>(`${config.apiPath}api/LepackUser/PhonePasswordLogin`, params, { headers: { 'Content-Type': 'application/json' } })
     }
 
-    //http://114.55.24.27:5000/api/LepackUser/PhonePasswordLogin
-
     // 发送验证码
     // LepackUserValidateModel
     //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
@@ -47,6 +40,13 @@ class LepackUser {
     //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
     async ValidateCode(params: LepackUserValidateModel) {
         return await http.post<boolean>(`${config.apiPath}api/LepackUser/ValidateCode`, params, {  headers: { 'Content-Type': 'application/json' } })
+    }
+
+    // 通过手机验证码修改用户密码
+    // LepackUserUpdatePwdModel
+    //@CacheInterceptor('company_GetCompanyInfoByUser', CacheTime.Min3)
+    async UpdatePasswordByPhone(params: LepackUserUpdatePwdModel) {
+        return await http.post<boolean>(`${config.apiPath}api/LepackUser/UpdatePasswordByPhone`, params, {  headers: { 'Content-Type': 'application/json' } })
     }
 
 }

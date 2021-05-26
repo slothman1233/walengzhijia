@@ -271,7 +271,6 @@ export default class User {
 
         let cookieuserinfo: userLoginModel = JSON.parse(await getCookie(ctx, userlogin))
 
-
         await ctx.render('user/changepwd', {
             phoneNumber: cookieuserinfo.phoneNumber
         })

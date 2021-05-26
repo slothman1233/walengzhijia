@@ -1,7 +1,6 @@
 import { subCodeEnums, ValidateCodeDefine } from '../../../../enums/enums'
 import { userLoginModel } from '../../../../model/common'
-import news from '../../../dist/scripts/news'
-import { sendCode, ValidateCode } from '../../common/service/login.services'
+import { sendCode, UpdatePasswordByPhone, ValidateCode } from '../../common/service/login.services'
 import window from '../../common/win/windows'
 let usermain = document.querySelector('#usermain')
 let usercookie: userLoginModel = JSON.parse(window.getusercookie());
@@ -11,8 +10,6 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
     let one: HTMLElement = usermain.querySelector('.one')
     let two: HTMLElement = usermain.querySelector('.two')
     let getvalidation: HTMLElement = one.querySelector('.getvalidation')
-    // let from: HTMLElement = container.querySelector('.form')
-    // let phone: HTMLInputElement = from.querySelector('.phone').querySelector('input')
     let validation: HTMLInputElement = one.querySelector('.validation')
     let countdown: HTMLElement = one.querySelector('.countdown')
     let next: HTMLElement = one.querySelector('.next')
@@ -78,6 +75,8 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
 
 //第二步
 (function () {
+    let one: HTMLElement = usermain.querySelector('.one')
+    let validation: HTMLInputElement = one.querySelector('.validation')
     let two: HTMLElement = usermain.querySelector('.two')
     let three: HTMLElement = usermain.querySelector('.three')
     let newspwd: HTMLInputElement = two.querySelector('.newspwd')
@@ -95,8 +94,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
             alert('新密码和确认密码不一样！')
             return
         }
-        console.log(usercookie.phoneNumber, newspwd.value)
-
+        let data = await UpdatePasswordByPhone({ phoneNumber: usercookie.phoneNumber, userPwd: newspwd.value, validateCode: parseInt(validation.value) })
         //需要接入修改密码的接口
 
         two.style.display = 'none'
@@ -107,8 +105,11 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
 })();
 
 //第三步
-(function () {
+(async function () {
     let three: HTMLElement = usermain.querySelector('.three')
+
+
+
     three.querySelector('a').onclick = function () {
         document.location.href = '/'
     }

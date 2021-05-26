@@ -19,16 +19,17 @@ declare const $: JQueryStatic
 
 //图片轮播
 new swiper('#index .swiper-container', {
-    watchSlidesProgress: !0,
+    watchSlidesProgress: true,
     direction: 'horizontal',
+    slidesPerView: 'auto',
+    loop: true,
     //  autoplay: true, //可选选项，自动滑动
-    centeredSlides: !0,
+    centeredSlides: true,
     autoplay: {
         delay: 3000,
         stopOnLastSlide: false,
-        disableOnInteraction: true,
+        disableOnInteraction: false,
     },
-    loop: true,
     pagination: {
         el: '.swiper-pagination',
         clickable: true

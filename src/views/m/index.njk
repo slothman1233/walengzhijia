@@ -124,7 +124,8 @@ list2 %}
                     {{star(item.reputation.score| ternary(item.reputation.score,0))}}
                   </section>
                   <p class="clearfix">
-                    <span>{{item.reputation.highReputationCount | ternary(item.reputation.highReputationCount,0)}}条优质口碑</span>
+                  
+                    {# <span>{{item.reputation.highReputationCount | ternary(item.reputation.highReputationCount,0)}}条优质口碑</span> #}
                     <i>{{item.reputation.reputationCount | ternary(item.reputation.reputationCount,0)}}条口碑</i>
                   </p>
                 </a>

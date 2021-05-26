@@ -4,10 +4,10 @@ import conf from '../common/config/env'
 import { post, get } from '../common/decorator/httpMethod'
 import * as cookie from '../common/utils/cookies'
 import { doCrypto } from '../common/utils/cryp'
-import { GetCompanyInfoByUser, PhoneLogin, PhonePasswordLogin, SendCode, ValidateCode } from '../controller/LepackUser.controller'
+import { GetCompanyInfoByUser, PhoneLogin, PhonePasswordLogin, SendCode, UpdatePasswordByPhone, ValidateCode } from '../controller/LepackUser.controller'
 import { CacheTime, LoginEnums, subCodeEnums } from '../enums/enums'
 import { ErrorModel, SuccessModel } from '../model/resModel'
-import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserValidateModel } from '../model/user/User'
+import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserUpdatePwdModel, LepackUserValidateModel } from '../model/user/User'
 import LepackUser from '../services/LepackUser.services'
 
 /**
@@ -56,12 +56,12 @@ export default class login {
                     pwd
                 })
                 if (loginDataPwd.subCode === subCodeEnums.success) {
-                    let company = loginDataPhone.bodyMessage.company
-                    if (loginDataPhone.bodyMessage.company) {
-                        (<any>loginDataPhone.bodyMessage.company) = true
+                    let company = loginDataPwd.bodyMessage.company
+                    if (loginDataPwd.bodyMessage.company) {
+                        (<any>loginDataPwd.bodyMessage.company) = true
                     }
-                    cookie.setCookie(ctx, userlogin, JSON.stringify(loginDataPhone.bodyMessage), { maxAge: CacheTime.Day1 * 1000, httpOnly: false })
-                    loginDataPhone.bodyMessage.company = company
+                    cookie.setCookie(ctx, userlogin, JSON.stringify(loginDataPwd.bodyMessage), { maxAge: CacheTime.Day1 * 1000, httpOnly: false })
+                    loginDataPwd.bodyMessage.company = company
                 }
                 ctx.body = loginDataPwd
                 break
@@ -121,6 +121,20 @@ export default class login {
 
         ctx.body = RegisterData
     }
+
+    @post('/UpdatePasswordByPhone')
+    async UpdatePasswordByPhone(ctx: Context) {
+        let { phoneNumber, validateCode, userPwd }: LepackUserUpdatePwdModel = ctx.request.body
+        let RegisterData = await UpdatePasswordByPhone({
+            phoneNumber,
+            validateCode,
+            userPwd
+        })
+        ctx.body = RegisterData
+    }
+
+
+
 
 }
 

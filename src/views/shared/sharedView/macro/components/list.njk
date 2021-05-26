@@ -156,7 +156,7 @@
           <section class="right {{(item.kbcount <= 4) | ternary('few','')}}">
             <span>口碑得分</span>
             {% if item.kbcount <= 0 %}
-              <h2>暂无口碑分</h2>
+              <h2>暂无口碑</h2>
             {% elif item.kbcount <= 4 %}
               <h2>口碑较少</h2>
             {% else %}

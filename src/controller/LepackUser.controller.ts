@@ -3,7 +3,7 @@
 import { CompanyProductInfoModel } from '../model/company/Company'
 import { bodyModel } from '../model/resModel'
 import { ResUserModel } from '../model/user/resUser'
-import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserValidateModel } from '../model/user/User'
+import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserUpdatePwdModel, LepackUserValidateModel } from '../model/user/User'
 import LepackUsers from '../services/LepackUser.services'
 
 
@@ -44,3 +44,13 @@ export async function SendCode(params: LepackUserValidateModel): Promise<bodyMod
 export async function ValidateCode(params: LepackUserValidateModel): Promise<bodyModel<boolean>> {
     return await LepackUsers.ValidateCode(params).catch(data => data)
 }
+
+/**
+ * 通过手机验证码修改用户密码
+ * LepackUserUpdatePwdModel
+ */
+export async function UpdatePasswordByPhone(params: LepackUserUpdatePwdModel): Promise<bodyModel<boolean>> {
+    return await LepackUsers.UpdatePasswordByPhone(params).catch(data => data)
+}
+
+

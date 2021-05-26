@@ -17,7 +17,7 @@ import { LoginEnums, UserUpdateTypeDefine, ValidateCodeDefine } from '../../enum
  */
 export interface LepackUserModel {
   uuid: string
-  userId?:string
+  userId?: string
   name: string
   pwd: string
   userIcon: string
@@ -70,6 +70,17 @@ export interface LepackUserValidateModel {
   validateCodeType?: ValidateCodeDefine
 }
 
+/**
+ * 通过验证码修改手机号
+ * @param {string} phoneNumber 手机号码
+ * @param {number} validateCode 验证码
+ * @param {string} userPwd 用户密码
+ */
+export interface LepackUserUpdatePwdModel {
+  phoneNumber: string
+  validateCode?: number
+  userPwd: string
+}
 
 /**
  * 用户数据单项修改

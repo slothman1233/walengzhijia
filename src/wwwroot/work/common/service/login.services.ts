@@ -3,8 +3,9 @@
 import http from './http'
 
 import env from '../config/env'
-import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserValidateModel } from '../../../../model/user/User'
+import { LepackUserLoginModel, LepackUserRegisterModel, LepackUserUpdatePwdModel, LepackUserValidateModel } from '../../../../model/user/User'
 import { ResUserModelReturnModel } from '../../../../model/user/resUser'
+import { bodyModel } from '../../../../model/resModel'
 
 
 
@@ -24,7 +25,7 @@ export const Login = async (options: LepackUserLoginModel): Promise<ResUserModel
  * @param {number} validateCode 验证码
  * @param {string} pwd 密码
  */
-export const Register = async (options: LepackUserRegisterModel): Promise<any> => await http.post<any>(`/register`, options)
+export const Register = async (options: LepackUserRegisterModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/register`, options)
 
 
 /**
@@ -33,7 +34,7 @@ export const Register = async (options: LepackUserRegisterModel): Promise<any> =
  * @param {number} validateCode 验证码
  * @param {ValidateCodeDefine} validateCodeType 验证码类型
  */
-export const sendCode = async (options: LepackUserValidateModel): Promise<any> => await http.post<any>(`/sendcode`, options)
+export const sendCode = async (options: LepackUserValidateModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/sendcode`, options)
 
 
 /**
@@ -42,6 +43,15 @@ export const sendCode = async (options: LepackUserValidateModel): Promise<any> =
  * @param {number} validateCode 验证码
  * @param {ValidateCodeDefine} validateCodeType 验证码类型
  */
-export const ValidateCode = async (options: LepackUserValidateModel): Promise<any> => await http.post<any>(`/ValidateCode`, options)
+export const ValidateCode = async (options: LepackUserValidateModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/ValidateCode`, options)
+
+
+/**
+ * 通过验证码修改手机号
+ * @param {string} phoneNumber 手机号码
+ * @param {number} validateCode 验证码
+ * @param {string} userPwd 用户密码
+ */
+export const UpdatePasswordByPhone = async (options: LepackUserUpdatePwdModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/UpdatePasswordByPhone`, options)
 
 

@@ -308,10 +308,10 @@
 
 
                         a {
-                            display : block;
-                            width   : @defaultLeftWidth;
-                            height  : @height;
-                            position: relative;
+                            display   : block;
+                            width     : @defaultLeftWidth;
+                            max-height: @height;
+                            position  : relative;
 
                             img {
                                 display: block;
@@ -320,19 +320,25 @@
                             }
 
                             p {
-                                @height         : 44px;
-                                font-weight     : @font_weight;
-                                position        : absolute;
-                                bottom          : 0;
-                                left            : 0;
-                                right           : 0;
-                                padding         : @space_3 @space_3 @space_3+24 @space_3;
-                                height          : @height * 2;
-                                line-height     : @height;
-                                font-size       : @font_size_36;
-                                color           : #FFFFFF;
-                                text-shadow     : 0px 2px 0px rgba(0, 0, 0, 0.5);
-                                background-color: rgba(0, 0, 0, 0.1);
+                                @height    : 44px;
+                                font-weight: @font_weight;
+                                position   : absolute;
+                                bottom     : 0;
+                                left       : 0;
+                                right      : 0;
+                                padding    : @space_3 @space_3 @space_3+24 @space_3;
+                                max-height : @height * 2;
+                                line-height: @height;
+                                font-size  : @font_size_36;
+                                color      : #FFFFFF;
+                                text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+                                background : linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+
+                                span {
+                                    display: block;
+                                    .lineclamp(2);
+                                    max-height: @height * 2;
+                                }
                             }
                         }
 
