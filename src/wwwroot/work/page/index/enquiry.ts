@@ -28,8 +28,8 @@ let PublishData: CompanyProductAdvisoryModel = {
     status: 0,
     createUser: userId,
     salers: [],
-    companyName: '',
-    email: ''
+    ContactCompany: '',
+    ContactEmail: ''
 };
 //产品id
 (function () {
@@ -195,8 +195,8 @@ async function publish() {
 
     PublishData.contactPhone = phone.value
     PublishData.summary = describe.value
-    PublishData.companyName = company.value
-    PublishData.email = email.value
+    PublishData.ContactCompany = company.value
+    PublishData.ContactEmail = email.value
     if (personnelselection) {
         let inputary: any[] = NodeListToArray(personnelselection.querySelectorAll('input'))
         PublishData.salers = []

@@ -47,8 +47,13 @@ list2 %}
 
   <div class="mui-content">
     <div id="index" class="mui-control-content mui-active">
-      <section class="logo">
+      <section class="hreader">
         <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
+        <a>登录</a>
+        <div class="input">
+          <i class="iconfont_wlzj">&#xE010;</i>
+          <input type='text' placeholder="搜索"/>
+        </div>
       </section>
 
       <section class="search">
@@ -124,7 +129,7 @@ list2 %}
                     {{star(item.reputation.score| ternary(item.reputation.score,0))}}
                   </section>
                   <p class="clearfix">
-                  
+
                     {# <span>{{item.reputation.highReputationCount | ternary(item.reputation.highReputationCount,0)}}条优质口碑</span> #}
                     <i>{{item.reputation.reputationCount | ternary(item.reputation.reputationCount,0)}}条口碑</i>
                   </p>
@@ -156,9 +161,13 @@ list2 %}
 
     </div>
     <div id="list" class="mui-control-content">
-      <section class="logo">
-        <i class="iconfont_wlzj">&#xE010;</i>
+      <section class="hreader">
         <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
+        <a><i class="iconfont_wlzj">&#xE010;</i></a>
+        <div class="title">
+          品牌商
+        </div>
+
       </section>
 
       <section class="category">

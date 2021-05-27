@@ -76,8 +76,8 @@ export interface CompanyProductInfoDetailModel {
  * @param {number} advisoryId 产品询价模型ID，用户修改和删除
  * @param {number} companyId 公司ID
  * @param {number} productId 咨询的公司产品ID
- * @param {string} companyName 公司名称
- * @param {string} email 邮箱
+ * @param {string} ContactCompany 提交者的公司名称
+ * @param {string} ContactEmail 提交者的邮箱
  * @param {string} contactPhone 用户联系电话
  * @param {number} summary 用户需求描述
  * @param {number} status 咨询状态
@@ -88,8 +88,8 @@ export interface CompanyProductAdvisoryModel {
   advisoryId?: number
   companyId?: number
   productId?: number
-  companyName: string
-  email?: string
+  ContactCompany: string
+  ContactEmail?: string
   contactPhone: string
   summary: string
   status: number

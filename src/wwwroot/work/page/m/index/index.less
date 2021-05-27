@@ -12,15 +12,56 @@
 #index {
   padding: 0 @space_2;
 
-  .logo {
-    @height   : @size_1 * 44;
-    text-align: center;
+  .hreader {
+    @height         : @size_1 * 52;
+    margin          : 0 -@space_2;
+    font-size       : @font_size_14;
+    background-color: @color_theme_c4;
+    height          : @height;
+    padding         : @space_1 @space_2;
+    line-height     : @height - @space_1 * 2;
 
     img {
-      margin: @size_1*10 auto;
-      height: @height - @size_1*20;
-
+      height      : @height - @space_1 * 2;
+      margin-right: @space_2;
+      float       : left;
     }
+
+    .input {
+      background: rgba(255, 221, 136, 0.1);
+      border    : 0.5px solid @color_theme_c2_30;
+      position  : relative;
+      .box-sizing();
+      .border-radius(@size_1 * 4);
+      .ellipsis();
+
+      i {
+        color   : @color_subject ;
+        position: absolute;
+        left    : @size_1 * 10;
+      }
+
+      input {
+        font-size       : @font_size_14;
+        left            : @space_2;
+        height          : @height - @space_1 * 2;
+        float           : left;
+        color           : @color_subject ;
+        border          : none;
+        margin          : 0;
+        background-color: transparent;
+        padding         : @space_1 @space_2 @space_1 @space_2+@size_1*14;
+      }
+    }
+
+    a {
+      float       : right;
+      font-size   : @font_size_14;
+      color       : @color_subject ;
+      padding-left: @space_2;
+    }
+
+
   }
 
   .search {
@@ -180,15 +221,15 @@
 
 
         img {
-          height          : @space_4;
-          width           : @space_6;
-          margin-right    : @space_1;
-          display         : block;
-          float           : left;
-          position        : absolute;
-          top             : -@space_1;
-          overflow        : hidden;
-          border          : 1px solid rgba(0, 0, 0, 0.1);
+          height      : @space_4;
+          width       : @space_6;
+          margin-right: @space_1;
+          display     : block;
+          float       : left;
+          position    : absolute;
+          top         : -@space_1;
+          overflow    : hidden;
+          border      : 1px solid rgba(0, 0, 0, 0.1);
           .border-radius(@size_1 * 4);
         }
 
@@ -212,7 +253,7 @@
           font-size   : @font_size_20;
           display     : block;
           float       : left;
-          color       : @color_rank;
+          color       : @color_subject ;
           margin-right: @size_1*5
         }
 
@@ -264,7 +305,51 @@
 #list {
   padding: 0 @space_2;
 
-  .logo {
+  .hreader {
+    @height         : @size_1 * 52;
+    margin          : 0 -@space_2;
+    font-size       : @font_size_14;
+    background-color: @color_theme_c4;
+    height          : @height;
+    padding         : @space_1 @space_2;
+    line-height     : @height - @space_1 * 2;
+    position        : relative;
+
+    img {
+      height      : @height - @space_1 * 2;
+      margin-right: @space_2;
+      float       : left;
+    }
+
+    .title {
+      position   : absolute;
+      color      : #FFF;
+      line-height: @height;
+      font-weight: @font_weight;
+      left       : @size_1 * 95;
+      top        : 0;
+      right      : @size_1 * 95;
+      text-align : center;
+
+      .ellipsis();
+
+    }
+
+    a {
+      float       : right;
+      color       : #FFF;
+      padding-left: @space_2;
+
+      i {
+        font-size  : @font_size_18;
+        font-weight: @font_weight;
+      }
+    }
+
+
+  }
+
+  .title {
     @height   : @size_1 * 44;
     text-align: center;
     position  : relative;
@@ -314,7 +399,7 @@
 
         &.select {
           background-color: @color_theme_c2_30;
-          color           : @color_rank;
+          color           : @color_subject ;
         }
       }
     }
