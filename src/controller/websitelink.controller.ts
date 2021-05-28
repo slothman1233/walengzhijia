@@ -7,7 +7,7 @@ import WebsiteLinks from '../services/websitelink.services'
  */
 export async function GetWebLinks(): Promise<ResWebLinkModel[] | null> {
     let rm = await GetWebLinksRm()
-    let models = JSONParse<ResWebLinkModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResWebLinkModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 

@@ -13,7 +13,7 @@ import news, { GetNewsByCompanyIdModel, GetNewsByIdModel, GetNewsByProductIdMode
  */
 export async function GetNewsList(newsType: number = 0, timetick: number = 0): Promise<ResNewsModel[] | null> {
     let rm = await GetNewsListRm(newsType, timetick)
-    let models = JSONParse<ResNewsModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResNewsModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -61,7 +61,7 @@ export async function PostDeleteNews(params: NewsInfoModel): Promise<bodyModel<s
      */
 export async function GetNewsByCompanyId(companyId: number = 0, newsType: publishNewsTypeEnums = publishNewsTypeEnums.new, timetick: number = 0, isReputation: boolean = true): Promise<ResNewsModel[] | null> {
     let rm = await GetNewsByCompanyIdRm(companyId, newsType, timetick, isReputation)
-    let models = JSONParse<ResNewsModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResNewsModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -86,7 +86,7 @@ export async function GetNewsByCompanyIdRm(companyId: number = 0, newsType: publ
  */
 export async function GetNewsByProductId(productId: number = 0, newsType: publishNewsTypeEnums = publishNewsTypeEnums.new, timetick: number = 0, isReputation: boolean = true): Promise<ResNewsModel[] | null> {
     let rm = await GetNewsByProductIdRm(productId, newsType, timetick, isReputation)
-    let models = JSONParse<ResNewsModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResNewsModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -110,7 +110,7 @@ export async function GetNewsByProductIdRm(productId: number = 0, newsType: publ
  */
 export async function GetNewsById(newsId: number): Promise<ResNewsDetailModel | null> {
     let rm = await GetNewsByIdRm(newsId)
-    let models = JSONParse<ResNewsDetailModel | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResNewsDetailModel | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -131,7 +131,7 @@ export async function GetNewsByIdRm(newsId: number): Promise<ResNewsDetailModelR
  */
 export async function GetHotNews(): Promise<ResNewsModel[] | null> {
     let rm = await GetHotNewsRm()
-    let models = JSONParse<ResNewsModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResNewsModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 

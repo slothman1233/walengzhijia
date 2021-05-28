@@ -48,7 +48,7 @@ export default class Index {
     @get('/')
     async home(ctx: Context) {
         //行业信息
-        let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
+        let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1) || []
 
         //首页中显示热门公司品牌，根据产品ID类型来获得公司产品信息
         // let GetCompanyHotData = await GetCompanyHot()
@@ -60,7 +60,7 @@ export default class Index {
         // }
 
         //获得首页板块分类公司信息
-        let GetIndexPageProductData = await GetIndexPageProduct()
+        let GetIndexPageProductData = await GetIndexPageProduct() || []
         //获得首页板块 热门分类公司信息
         let hotData = await GetHotCompanyIndexPageProduct()
 

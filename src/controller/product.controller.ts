@@ -22,7 +22,7 @@ import Products, { BycompanyId, CompanyProductByIdModel, GetProductIndustryModel
  */
 export async function GetProductIndustryByIndustry(id: number = 1): Promise<ResIndustryTypeModel[] | null> {
     let rm = await GetProductIndustryByIndustryRm(id)
-    let models = JSONParse<ResIndustryTypeModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResIndustryTypeModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -33,7 +33,7 @@ export async function GetProductIndustryByIndustry(id: number = 1): Promise<ResI
 */
 export async function GetProductTypeByProductType(productType: number): Promise<ResProductTypeModel[] | null> {
     let rm = await GetProductTypeByProductTypeRm(productType)
-    let models = JSONParse<ResProductTypeModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResProductTypeModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -42,7 +42,7 @@ export async function GetProductTypeByProductType(productType: number): Promise<
 */
 export async function GetIndexPageProduct(): Promise<ResProductIndexPageModel[] | null> {
     let rm = await GetIndexPageProductRm()
-    let models = JSONParse<ResProductIndexPageModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResProductIndexPageModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -60,7 +60,7 @@ export async function GetIndexPageProductRm(): Promise<ResProductIndexPageModelL
 */
 export async function GetHotCompanyIndexPageProduct(): Promise<ResProductIndexPageModel[] | null> {
     let rm = await GetHotCompanyIndexPageProductRm()
-    let models = JSONParse<ResProductIndexPageModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResProductIndexPageModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -107,7 +107,7 @@ export async function GetProductTypeByProductTypeRm(productType: number): Promis
  */
 export async function GetCompanyProduct(params: BycompanyId): Promise<ResCompanyProductInfoModel[] | null> {
     let rm = await GetCompanyProductRm(params)
-    let models = JSONParse<ResCompanyProductInfoModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanyProductInfoModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -124,7 +124,7 @@ export async function GetCompanyProductRm(params: BycompanyId): Promise<ResCompa
  */
 export async function GetCompanyProductType(params: BycompanyId): Promise<productTypeListModel[] | null> {
     let rm = await GetCompanyProductTypeRm(params)
-    let models = JSONParse<productTypeListModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<productTypeListModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -141,7 +141,7 @@ export async function GetCompanyProductTypeRm(params: BycompanyId): Promise<Resp
  */
 export async function GetCompanyProductByTypeId(params: ProductByTypeId): Promise<ResCompanyProductInfoModelPagedModel | null> {
     let rm = await GetCompanyProductByTypeIdRm(params)
-    let models = JSONParse<ResCompanyProductInfoModelPagedModel | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanyProductInfoModelPagedModel | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -162,7 +162,7 @@ export async function GetCompanyProductById(params: CompanyProductByIdModel): Pr
     let rm = await GetCompanyProductByIdRm(params)
     let models: any = null
     if (rm) {
-        models = JSONParse<ResCompanyProductInfoModel | null>(rm.code, rm.bodyMessage)
+        models = JSONParse<ResCompanyProductInfoModel | null>(rm?.code, rm?.bodyMessage)
     }
 
     return models
@@ -181,7 +181,7 @@ export async function GetCompanyProductByIdRm(params: CompanyProductByIdModel): 
  */
 export async function GetCompanySimilarProductById(params: CompanyProductByIdModel): Promise<ResCompanySimilarProductModel[] | null> {
     let rm = await GetCompanySimilarProductByIdRm(params)
-    let models = JSONParse<ResCompanySimilarProductModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanySimilarProductModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -200,7 +200,7 @@ export async function GetCompanySimilarProductByIdRm(params: CompanyProductByIdM
  */
 export async function GetCompanyBrand(params: CompanyBrand): Promise<ResCompanyBrandModelPagedModel> {
     let rm = await GetCompanyBrandRm(params)
-    let models = JSONParse<ResCompanyBrandModelPagedModel>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanyBrandModelPagedModel>(rm?.code, rm?.bodyMessage)
     return models
 }
 

@@ -8,7 +8,7 @@ import Advertisings, { GetAdvertisingModel } from '../services/common/Advertisin
 export async function GetAdvertising(params: GetAdvertisingModel): Promise<ResAdvertisingModel[] | null> {
     try {
         let rm = await GetAdvertisingRm(params)
-        let models = JSONParse<ResAdvertisingModel[] | null>(rm.code, rm.bodyMessage)
+        let models = JSONParse<ResAdvertisingModel[] | null>(rm?.code, rm?.bodyMessage)
         return models
     } catch (e) {
         return null

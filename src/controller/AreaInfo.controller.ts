@@ -10,7 +10,7 @@ import Advertisings, { GetAdvertisingModel } from '../services/common/Advertisin
  */
 export async function GetAreaInfosByCode(params: GetAreaInfosByCodeModel = { areaCode: 6541 }): Promise<ResAreaInfoModel[] | null> {
     let rm = await GetAreaInfosByCodeRm(params)
-    let models = JSONParse<ResAreaInfoModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResAreaInfoModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -27,7 +27,7 @@ export async function GetAreaInfosByCodeRm(params: GetAreaInfosByCodeModel = { a
  */
 export async function GetParentInfoByCode(params: GetAreaInfosByCodeModel = { areaCode: 6541 }): Promise<ResAreaInfoModel[] | null> {
     let rm = await GetParentInfoByCodeRm(params)
-    let models = JSONParse<ResAreaInfoModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResAreaInfoModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 

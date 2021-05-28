@@ -27,7 +27,7 @@ export type ReputationByProductIdModel = {
  */
 export async function GetReputationByCompany(companyId: number): Promise<ResReputationModel[] | null> {
     let rm = await GetReputationByCompanyRm(companyId)
-    let models = JSONParse<ResReputationModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResReputationModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -50,7 +50,7 @@ export async function GetReputationByCompanyRm(companyId: number): Promise<ResRe
  */
 export async function GetReputationByCompanyFilter(companyId: number, timeTicks: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModel | null> {
     let rm = await GetReputationByCompanyFilterRm(companyId, timeTicks, pageSize, reputationType)
-    let models = JSONParse<ResReputationFilterModel | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResReputationFilterModel | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -76,7 +76,7 @@ export async function GetReputationByCompanyFilterRm(companyId: number, timeTick
  */
 export async function GetReputationByProductId(productId: number, timeTicks: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModel | null> {
     let rm = await GetReputationByProductIdRm(productId, timeTicks, pageSize, reputationType)
-    let models = JSONParse<ResReputationFilterModel | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResReputationFilterModel | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -106,7 +106,7 @@ export async function GetReputationByProductIdRm(productId: number, timeTicks: n
  */
 export async function GetHighQualityReputation(pageIndex: number = -1): Promise<ResReputationModel[] | null> {
     let rm = await GetHighQualityReputationRm(pageIndex)
-    let models = JSONParse<ResReputationModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResReputationModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -133,7 +133,7 @@ export async function GetReputationStatisticsByProduct(productId: number): Promi
     let rm = await GetReputationStatisticsByProductRm(productId)
     let models = null
     if (rm) {
-        models = JSONParse<ResReputationStatisticsModel | null>(rm.code, rm.bodyMessage)
+        models = JSONParse<ResReputationStatisticsModel | null>(rm?.code, rm?.bodyMessage)
     }
 
     return models
@@ -160,7 +160,7 @@ export async function GetReputationStatisticsByProductRm(productId: number): Pro
  */
 export async function GetHotReputation(): Promise<ResHotReputationModel[] | null> {
     let rm = await GetHotReputationRm()
-    let models = JSONParse<ResHotReputationModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResHotReputationModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 

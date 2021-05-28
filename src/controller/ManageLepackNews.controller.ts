@@ -14,7 +14,7 @@ import ManageLepackNewss, { GetNewsByNewsIdModel } from '../services/ManageLepac
  */
 export async function GetNewsPagesByCompanyId(params: GetNewsByNewsIdModel): Promise<ResNewsModelPagedModel | null> {
     let rm = await GetNewsPagesByCompanyIdRm(params)
-    let models = JSONParse<ResNewsModelPagedModel | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResNewsModelPagedModel | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 

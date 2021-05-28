@@ -8,6 +8,9 @@ import { bodyModel } from '../../model/resModel'
 /// <param name="value"></param>
 /// <returns></returns>
 export function JSONParse<T>(code: number, value: any): T | null {
+    if ((!code && code !== 0) || !value) {
+        return null
+    }
     try {
         return code === 0 && value ? JSON.parse(value) : null
     }

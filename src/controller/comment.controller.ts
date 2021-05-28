@@ -31,7 +31,7 @@ export async function AddCommentReply(params: CommentReplyModel): Promise<bodyMo
  */
 export async function GetCommentList(params: CommentQueryModel): Promise<ResCommentModel[] | null> {
     let rm = await GetCommentListRm(params)
-    let models = JSONParse<ResCommentModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCommentModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -52,7 +52,7 @@ export async function GetCommentListRm(params: CommentQueryModel): Promise<ResCo
  */
 export async function GetCommentReplyList(params: GetCommentReplyListModel): Promise<ResCommentReplyModel[] | null> {
     let rm = await GetCommentReplyListRm(params)
-    let models = JSONParse<ResCommentReplyModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCommentReplyModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 

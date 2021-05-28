@@ -550,7 +550,19 @@
         }
 
 
-        .kblist1(@width)
+        .kblist1(@width);
+
+        .kblist1 {
+            .child {
+                width: (@width - @space_2) / 2;
+
+                .cr {
+                    .l {
+                        width: 400px;
+                    }
+                }
+            }
+        }
     }
 
     .information {

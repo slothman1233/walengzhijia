@@ -13,7 +13,7 @@ import companys, { ByAdvisoryId, ByCompanyIdModel, ByProductId, GetCompanyInfoBy
  */
 export async function GetCompanyHot(): Promise<ResCompanyHotModel[] | null> {
     let rm = await GetCompanyHotRm()
-    let models = JSONParse<ResCompanyHotModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanyHotModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -30,7 +30,7 @@ export async function GetCompanyHotRm(): Promise<ResCompanyHotModelListReturnMod
  */
 export async function GetCompanyInfoByUser(params: GetCompanyInfoByUserModel): Promise<ResCompanyInfoModel | null> {
     let rm = await GetCompanyInfoByUserRm(params)
-    let models = JSONParse<ResCompanyInfoModel | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanyInfoModel | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -49,7 +49,7 @@ export async function GetCompanyInfoByUserRm(params: GetCompanyInfoByUserModel):
 export async function GetCompanyInfoById(params: ByCompanyIdModel): Promise<ResCompanyInfoModel | null> {
     try {
         let rm = await GetCompanyInfoByIdRm(params)
-        let models = JSONParse<ResCompanyInfoModel | null>(rm.code, rm.bodyMessage)
+        let models = JSONParse<ResCompanyInfoModel | null>(rm?.code, rm?.bodyMessage)
         return models
     } catch (e) {
         return null
@@ -70,7 +70,7 @@ export async function GetCompanyInfoByIdRm(params: ByCompanyIdModel): Promise<Re
  */
 export async function GetSalersByCompanyId(params: ByCompanyIdModel): Promise<ResCompanySalerModel[] | null> {
     let rm = await GetSalersByCompanyIdRm(params)
-    let models = JSONParse<ResCompanySalerModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanySalerModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -88,7 +88,7 @@ export async function GetSalersByCompanyIdRm(params: ByCompanyIdModel): Promise<
  */
 export async function GetCompanyAdvisoryByCompanyId(params: ByCompanyIdModel): Promise<ResCompanyProductAdvisoryModel[] | null> {
     let rm = await GetCompanyAdvisoryByCompanyIdRm(params)
-    let models = JSONParse<ResCompanyProductAdvisoryModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanyProductAdvisoryModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -106,7 +106,7 @@ export async function GetCompanyAdvisoryByCompanyIdRm(params: ByCompanyIdModel):
  */
 export async function GetCompanyAdvisoryByProductId(params: ByProductId): Promise<ResCompanyProductAdvisoryModel[] | null> {
     let rm = await GetCompanyAdvisoryByProductIdRm(params)
-    let models = JSONParse<ResCompanyProductAdvisoryModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanyProductAdvisoryModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -124,7 +124,7 @@ export async function GetCompanyAdvisoryByProductIdRm(params: ByProductId): Prom
  */
 export async function GetCompanyAdvisoryById(params: ByAdvisoryId): Promise<ResCompanyProductAdvisoryModel[] | null> {
     let rm = await GetCompanyAdvisoryByIdRm(params)
-    let models = JSONParse<ResCompanyProductAdvisoryModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanyProductAdvisoryModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -141,7 +141,7 @@ export async function GetCompanyAdvisoryByIdRm(params: ByAdvisoryId): Promise<Re
  */
 export async function GetCompnays(): Promise<ResCompanyInfoModel[] | null> {
     let rm = await GetCompnaysRm()
-    let models = JSONParse<ResCompanyInfoModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanyInfoModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -204,7 +204,7 @@ export async function PostDeleteCompanyProductAdvisory(params: CompanyProductAdv
  */
 export async function GetCompanySalerById(params: SalerById): Promise<ResCompanySalerModel | null> {
     let rm = await GetCompanySalerByIdRm(params)
-    let models = JSONParse<ResCompanySalerModel | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResCompanySalerModel | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 

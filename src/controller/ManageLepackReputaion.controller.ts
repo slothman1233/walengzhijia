@@ -22,7 +22,7 @@ export async function PostAddReputaion(params: ReputationModel): Promise<bodyMod
  */
 export async function GetReputationTypeById(params: productTypeIdModel): Promise<ResReputationTypeModel[] | null> {
     let rm = await GetReputationTypeByIdRm(params)
-    let models = JSONParse<ResReputationTypeModel[] | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResReputationTypeModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
@@ -40,7 +40,7 @@ export async function GetReputationTypeByIdRm(params: productTypeIdModel): Promi
  */
 export async function GetReuputationPagedByUser(params: PagedByUserModel): Promise<ResReputationModelPagedModel | null> {
     let rm = await GetReuputationPagedByUserRm(params)
-    let models = JSONParse<ResReputationModelPagedModel | null>(rm.code, rm.bodyMessage)
+    let models = JSONParse<ResReputationModelPagedModel | null>(rm?.code, rm?.bodyMessage)
     return models
 }
 
