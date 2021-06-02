@@ -68,6 +68,10 @@
 	content: "\E00B";
 }
 
+.icon-lianjie:before {
+	content: "\E01F";
+}
+
 .icon-menudown:before {
 	content: "\E00C";
 }

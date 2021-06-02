@@ -1,6 +1,7 @@
 {% from "./star/star.njk" import star %}
 {% macro list1(args = [
   {
+  pagetype:'moblie',
     link: "#",
     img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
     title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
@@ -12,6 +13,7 @@
     timetick:'1234567890',
     slug: ["视频", "音频"]
   }, {
+   pagetype:'moblie',
     link: "#",
     img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
     title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
@@ -20,6 +22,7 @@
     timetick:'1234567890',
     time: "2021-11-11"
   }, {
+   pagetype:'moblie',
     link: "#",
     img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
     title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
@@ -28,6 +31,7 @@
     timetick:'1234567890',
     time: "2021-11-11"
   }, {
+   pagetype:'moblie',
     link: "#",
     img: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
     title: "为解决供应短缺问题 iPhone 12 Pro零件不够iPad来凑？",
@@ -42,7 +46,7 @@
 
     {% if (args != null) and (args.length > 0) %}
       {% for item in args %}
-        <a class="child" data-timetick="{{item.timetick}}" href="{{item.link}}" target="_blank">
+        <a class="child" data-timetick="{{item.timetick}}" href="{{item.link}}" target="{{(item.pagetype != undefined and item.pagetype == 'moblie') | ternary('_self','_blank')}}">
           <h4 class="left">
             <img _src_="{{item.img}}"/>
           </h4>
@@ -78,7 +82,7 @@
 
 {% macro list2(args = [
   {
-   
+    pagetype:'moblie',
     logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
     link: "#",
     name: "广东万联",
@@ -93,7 +97,7 @@
     brandtype: "优质品牌商"
 
   }, {
-
+ pagetype:'moblie',
     logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
     link: "#",
     name: "广东万联",
@@ -108,6 +112,7 @@
     brandtype: "优质品牌商"
 
   }, {
+   pagetype:'moblie',
     logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
     link: "#",
     name: "广东万联",
@@ -122,6 +127,7 @@
     brandtype: "优质品牌商"
 
   }, {
+   pagetype:'moblie',
     logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
     link: "#",
     name: "广东万联",
@@ -142,7 +148,7 @@
     {% if (args != null) and (args.length > 0) %}
       {% for item in args %}
 
-        <a class="child"  href="{{item.link}}" target="_blank">
+        <a class="child"  href="{{item.link}}"  target="{{(item.pagetype != undefined and item.pagetype == 'moblie') | ternary('_self','_blank')}}">
           <section class="left">
             <asection class="logo">
 
@@ -153,11 +159,11 @@
             </asection>
           </section>
 
-          <section class="right {{(item.kbcount <= 4) | ternary('few','')}}">
+          <section class="right {{(item.kbgood <= 4) | ternary('few','')}}">
             <span>口碑得分</span>
-            {% if item.kbcount <= 0 %}
+            {% if item.kbgood <= 0 %}
               <h2>暂无口碑</h2>
-            {% elif item.kbcount <= 4 %}
+            {% elif item.kbgood <= 4 %}
               <h2>口碑较少</h2>
             {% else %}
               <p>{{item.kbscore}}
@@ -169,7 +175,7 @@
           </section>
 
           <section class="center">
-            <section class="name" href="{{item.link}}" target="_blank">
+            <section class="name" href="{{item.link}}"  target="{{(item.pagetype != undefined and item.pagetype == 'moblie') | ternary('_self','_blank')}}">
               {{item.name}}
             </section>
 

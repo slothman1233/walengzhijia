@@ -1,0 +1,17 @@
+{% macro mheader(args = {
+  title: "广东万联"
+}) %}
+
+  <header id="mhearder">
+    <section class="left">
+      <i class="iconfont_wlzj">&#xE01D;</i>
+      <i class="iconfont_wlzj">&#xE005;</i>
+    </section>
+    <section class="right">
+      <i class="iconfont_wlzj">&#xE008;</i>
+    </section>
+    <section class="center">{{args.title}}</section>
+
+  </header>
+
+{% endmacro %}

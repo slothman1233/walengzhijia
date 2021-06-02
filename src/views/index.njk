@@ -21,6 +21,7 @@ list1 %}
 {% block script %}
   <script type="text/javascript">
     var reshighKbChart = {{reshighKbChart|safe}}
+    var highKb = {{highKb|safe}}
   </script>
   <script type="text/javascript" src="/assets/plugin/echarts/echarts.min.js"></script>
   <script type="text/javascript" src="/dist/scripts/index/index.js"></script>
@@ -162,12 +163,12 @@ list1 %}
 
                 <i>{{loop.index}}</i>
                 <div class="cr">
-                  <a class="l" href="/business/{{item.companyId}}" title="{{item.name}}" target="_blank">
-                    <img _src_="{{item.logo}}"/>
+                  <a class="l" href="/business/{{item.company.companyId}}" title="{{item.company.abbrName}}" target="_blank">
+                    <img _src_="{{item.company.logo}}"/>
                   </a>
                   <div class="c">
-                    <a href="/business/{{item.companyId}}" title="{{item.companyName}}" target="_blank">{{item.companyName}}</a>
-                    <p>{{item.reputationCount}}条口碑</p>
+                    <a href="/business/{{item.company.companyId}}" title="{{item.company.abbrName}}" target="_blank">{{item.company.abbrName}}</a>
+                    <p>{{item.totalReputationCount}}条口碑</p>
                   </div>
 
                   <div class="r">

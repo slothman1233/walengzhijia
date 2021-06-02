@@ -102,10 +102,10 @@ export async function GetReputationByProductIdRm(productId: number, timeTicks: n
 
 /**
  * 获得优质口碑，随机
- * @param {number} pageIndex 随机获取的数量页码
+ * @param {number} pageSize 随机获取的数量
  */
-export async function GetHighQualityReputation(pageIndex: number = -1): Promise<ResReputationModel[] | null> {
-    let rm = await GetHighQualityReputationRm(pageIndex)
+export async function GetHighQualityReputation(pageSize: number = 9): Promise<ResReputationModel[] | null> {
+    let rm = await GetHighQualityReputationRm(pageSize)
     let models = JSONParse<ResReputationModel[] | null>(rm?.code, rm?.bodyMessage)
     return models
 }
@@ -113,12 +113,12 @@ export async function GetHighQualityReputation(pageIndex: number = -1): Promise<
 
 /**
 * 获得优质口碑，随机的bodyModel模型返回
-* @param {number} pageIndex 随机获取的数量页码
+* @param {number} pageSize 随机获取的数量
 */
-export async function GetHighQualityReputationRm(pageIndex: number): Promise<ResReputationModelListReturnModel> {
+export async function GetHighQualityReputationRm(pageSize: number): Promise<ResReputationModelListReturnModel> {
     let params: GetHighQualityReputationModel
     params = {
-        pageIndex
+        pageSize
     }
 
     return await Reputations.GetHighQualityReputation(params).catch(data => data)

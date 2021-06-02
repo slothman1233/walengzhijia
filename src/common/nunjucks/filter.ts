@@ -120,7 +120,7 @@ export default {
      */
     'onlyimg': function (str: string) {
         let imgAry: any[] = [];
-        (<any>str.replace)(/<img .*?src=["|'](.*?)["|'][^>].*?>/ig, function ($1: any, $2: any, $3: any) {
+        (<any>str.replace)(/<img .*?src=["|'](.*?)["|'].*?>/ig, function ($1: any, $2: any, $3: any) {
             imgAry.push($2)
         })
         return imgAry

@@ -1,0 +1,178 @@
+{% from "../star/star.njk" import star %}
+
+{% macro productlist(args=[
+  {
+    productId:'111',
+    productCover:'https://lepack.oss-cn-hangzhou.aliyuncs.com/dev/2021-05-31/b7f3da62144a8ed08c898dd94c365565.jpg',
+    productName:'YWZJ-C型液压无轴纸架',
+    productTypeName:'单面机',
+    statisticsModel:{score:'4.68'}
+  },
+  {
+    productId:'111',
+    productCover:'https://lepack.oss-cn-hangzhou.aliyuncs.com/dev/2021-05-31/b7f3da62144a8ed08c898dd94c365565.jpg',
+    productName:'YWZJ-C型液压无轴纸架',
+    productTypeName:'单面机',
+    statisticsModel:{score:'4.68'}
+  },
+  {
+    productId:'111',
+    productCover:'https://lepack.oss-cn-hangzhou.aliyuncs.com/dev/2021-05-31/b7f3da62144a8ed08c898dd94c365565.jpg',
+    productName:'YWZJ-C型液压无轴纸架',
+    productTypeName:'单面机',
+    statisticsModel:{score:'4.68'}
+  }
+]) %}
+  <div class="productlist">
+    {% for item in args %}
+      <div class="child clearfix">
+        <a class="logo" data-id='{{item.productId}}'>
+          <img src="{{item.productCover}}" title="{{item.productName}}"/>
+        </a>
+        <section>
+          <a>
+            <h2>{{item.title}}</h2>
+          </a>
+          <p class="clearfix">
+            <span>{{item.productTypeName}}</span>
+
+          </p>
+
+          <section class="score clearfix">
+            <div class="l">
+              <span>{{item.statisticsModel.score | ternary(item.statisticsModel.score,'0')}}</span>
+              {{star(item.statisticsModel.score | ternary(item.statisticsModel.score,'0'))}}
+            </div>
+            <a class="consult">立即咨询</a>
+          </section>
+        </section>
+      </div>
+    {% endfor %}
+
+  </div>
+
+{% endmacro %}
+
+{% macro reputationlist(args=[{
+    newsId:'11',
+    userIcon:'https://lepack.oss-cn-hangzhou.aliyuncs.com/dev/2021-05-31/b7f3da62144a8ed08c898dd94c365565.jpg',
+    userName:'发布者昵称',
+    statisticsModel:{score:'4.68'},
+    productName:'ECUT 1650 ELITE SA全自动模切机',
+    title:'应用加载速度对比iPhone12正常设计,不一定是本身的问题。',
+    summary:'首先是车身外观，别克家族式带翅膀前脸，与老款相比更具时尚气息，精英配备LED自动大灯，这在很多车型当中算好的，很多老一代只配备卤素灯，媳...',
+    isgood:true,
+    purchasePrice:'300',
+    buyTime:'2020/02/23',
+    usetime:'2020/02/23'
+  },{
+    newsId:'11',
+    userIcon:'https://lepack.oss-cn-hangzhou.aliyuncs.com/dev/2021-05-31/b7f3da62144a8ed08c898dd94c365565.jpg',
+    userName:'发布者昵称',
+    statisticsModel:{score:'4.68'},
+    productName:'ECUT 1650 ELITE SA全自动模切机',
+    title:'应用加载速度对比iPhone12正常设计,不一定是本身的问题。',
+    summary:'首先是车身外观，别克家族式带翅膀前脸，与老款相比更具时尚气息，精英配备LED自动大灯，这在很多车型当中算好的，很多老一代只配备卤素灯，媳...',
+    isgood:true,
+    purchasePrice:'300',
+    buyTime:'2020/02/23',
+    usetime:'2020/02/23'
+  }]) %}
+
+  <div class="reputationlist">
+    {% for item in args %}
+      <div class="child" data-id="{{item.newsId}}">
+        <div class="userinfo">
+          <img src="{{item.userIcon}}"/>
+          <p>{{item.userName}}</p>
+        </div>
+
+        <div class="score clearfix">
+          <span>{{item.statisticsModel.score}}</span>
+          {{star(item.statisticsModel.score)}}
+        </div>
+
+        <div class="productname">
+            产品：{{item.productName}}
+        </div>
+
+        <a class="title">{{item.title}}</a>
+
+        <div class="user">
+          <p>
+            <span>购买价格</span>
+            <i>{{item.purchasePrice}}万</i>
+          </p>
+          <p>
+            <span>购买时间</span>
+            <i>{{item.buyTime}}</i>
+          </p>
+          <p>
+            <span>投入使用</span>
+            <i>{{item.useTime}}</i>
+          </p>
+        </div>
+
+        <div class="content">
+          <p>{{item.summary | delHtmlTag}}</p>
+
+          <div class="atlas clearfix">
+
+            {% for imgurl in (item.summary | onlyimg) %}
+              <img _src_="{{imgurl}}" data-viewer="{{imgurl}}"/>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    {% endfor %}
+  </div>
+
+{% endmacro %}
+
+{% macro saleslist(args = [
+  {
+    id: 1,
+    header: "/assets/images/loading.png",
+    name: '李女士',
+    quarters: '海外销售经理',
+    functions: '负责对外商务洽谈业务',
+    experience: 10
+  }, {
+    id: 1,
+    header: "/assets/images/loading.png",
+    name: '李女士',
+    quarters: '海外销售经理',
+    functions: '负责对外商务洽谈业务',
+    experience: 10
+  }, {
+    id: 1,
+    header: "/assets/images/loading.png",
+    name: '李女士',
+    quarters: '海外销售经理',
+    functions: '负责对外商务洽谈业务',
+    experience: 10
+  }
+]) %}
+  <div class="saleslist">
+    {% for item in args %}
+      <div class="child">
+        <div class="info">
+          <div class="header">
+            <img src='{{item.header}}'/>
+          </div>
+          <div class="r">
+            <section class="clearfix">
+              <p>{{item.name}}</p>
+              <span>{{item.quarters}}</span>
+            </section>
+            <p>{{item.functions}}</p>
+            <p>行业经验:{{item.experience}}年</p>
+          </div>
+        </div>
+        <section>向TA咨询</section>
+
+      </div>
+    {% endfor %}
+  </div>
+{% endmacro %}

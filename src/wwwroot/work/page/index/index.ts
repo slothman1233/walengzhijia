@@ -17,7 +17,7 @@ import { navigationbar } from '../../components/navigationbar'
 import window from '../../common/win/windows'
 declare const $: JQueryStatic
 declare const reshighKbChart: any[]
-
+declare const highKb: any[]
 // eslint-disable-next-line no-undef
 declare const document: Document
 
@@ -94,24 +94,51 @@ declare const document: Document
 
 // 优质口碑 
 (function () {
+    //换一批
+    let kbindex = 0
+    let highKbArg: ResReputationModel[][] = []
+    let arg: ResReputationModel[] = []
+    if (highKb !== null || highKb.length > 0) {
+        highKb.forEach((item, index) => {
+            if (index !== 0 && index % 3 === 0) {
+                highKbArg.push(arg)
+                arg = []
+            }
+            arg.push(item)
+        })
+    }
+    if (arg.length > 0) {
+        highKbArg.push(arg)
+        arg = []
+    }
+
+
     //优质口碑首次加载
     reshighKbChart.forEach((item: any, index: number) => {
         Charts(document.getElementById(`ecahr${index}`), item)
     })
 
-    //换一批
+
     let kbsuperior: any = document.querySelector('.kbsuperior')
     let sub: any = kbsuperior.querySelector(' .row a')
     sub.onclick = async function () {
+        if (kbindex >= 2) {
+            kbindex = -1
+        }
         let kblist1 = kbsuperior.querySelector('.kblist1')
-        let highKb = await GetHighQualityReputationRm()
+        // let highKb = await GetHighQualityReputationRm()
         let reshighKb: any[] = []
+        let reshighKbAll: any[] = []
         let reshighKbChart: any[] = []
 
-        if (highKb === null || highKb.code === -1) { return }
+        if (highKb === null || highKb.length <= 0) { return }
 
 
-        highKb.bodyMessage.forEach((item: ResReputationModel) => {
+        if (highKbArg.length > kbindex + 1) {
+            kbindex = kbindex + 1
+        }
+
+        highKbArg[kbindex].forEach((item: ResReputationModel) => {
             reshighKb.push({
                 hread: item.userIcon,
                 img: item.productCover,

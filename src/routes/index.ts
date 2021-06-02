@@ -25,7 +25,7 @@ import { GetHotNews, GetNewsList } from '../controller/news.controller'
 import { ResNewsModel } from '../model/news/resNews'
 import { GetHighQualityReputation, GetHotReputation } from '../controller/Reputation.controller'
 import ManageLepackReputaions from '../services/ManageLepackReputaion.services'
-import { publishNews, adTypeEnums, ProductSortType, HotCompanyDefineItems, NewsContentTypeObject, NewsContentTypeArray, NewsType } from '../enums/enums'
+import { publishNews, adTypeEnums, ProductSortType, HotCompanyDefineItems, NewsContentTypeObject, NewsContentTypeArray, NewsType, ProductSortTypeEnums } from '../enums/enums'
 import { GetWebLinks } from '../controller/websitelink.controller'
 import { ResWebLinkModel } from '../model/link/weblink'
 import { GetAdvertising } from '../controller/Advertising.controller'
@@ -126,7 +126,8 @@ export default class Index {
         let reshighKb: any[] = []
         let reshighKbChart: any[] = []
         if (highKb !== null) {
-            highKb.forEach((item) => {
+            for (let i = 0; i < 3; i++) {
+                let item = highKb[i]
                 reshighKb.push({
                     hread: item.userIcon,
                     img: item.productCover,
@@ -148,7 +149,7 @@ export default class Index {
                     name,
                     value
                 })
-            })
+            }
         }
         //------------------------------------------------------------------------------------------------------------------
 
@@ -180,18 +181,29 @@ export default class Index {
         //------------------------------------------------------------------------------------------------------------------
         //获得热门口碑排行信息
 
-        let hotReputation = await GetHotReputation()
+        // let hotReputation = await GetHotReputation()
+        let option = {
+            productType: 0,
+            classifyType: 0,
+            pageIndex: 1,
+            pageSize: 5,
+            queryType: ProductSortTypeEnums.reputation
+        }
+
+        let hotReputation = await GetCompanyBrand(option)
+
         //------------------------------------------------------------------------------------------------------------------
         await ctx.render('index', {
             productTypeData: productTypeData[0].productType,
             brandData,
             HotNews,
+            highKb: JSON.stringify(highKb),
             reshighKb,
             reshighKbChart: JSON.stringify(reshighKbChart),
             firstNewsList,
             newTypes,
             getlinks,
-            hotReputation,
+            hotReputation: hotReputation.items,
             ad: {
                 adtoponeData,
                 adtoptowData,
@@ -236,6 +248,13 @@ export default class Index {
             pageSize,
             queryType: tabIndex
         })
+        // console.log({
+        //     productType: productid,
+        //     classifyType: sortid,
+        //     pageIndex,
+        //     pageSize,
+        //     queryType: tabIndex
+        // })
 
         let companylistJson: any[] = []
         if (GetCompanyJson?.items) {
@@ -245,7 +264,7 @@ export default class Index {
                         logo: item.company.logo,
                         link: '/business/' + item.company.companyId,
                         name: item.company.abbrName,
-                        kbscore: item.company.reputation.score,
+                        kbscore: item.reputationScore,
                         classify: item.productTypes,
                         kbcount: item.totalReputationCount,
                         favorablerate: item.favorableRate * 100,

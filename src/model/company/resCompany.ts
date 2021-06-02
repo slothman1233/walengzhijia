@@ -22,12 +22,15 @@ import { bodyModel } from '../resModel'
  * @param {string} license 营业执照图片
  * @param {number} totalReputationCount 总口碑数
  * @param {number} favorableRate 好评率
+ * @param {number} middleRate 中评率
+ * @param {number} badRate 差评率
  * @param {number} highReputationCount 优质口碑数
  * @param {number} reputationScore 整体口碑得分
  * @param {string} stockInfo 股票信息
  * @param {HotCompanyDefine} hotDefine 品牌商类型
  * @param {string} VideoIntroduce 视频介绍
  * @param {number} Weight 公司权重，在排名的时候优先按照公司权重进行排序处理
+ * @param {number} productCount 产品总量
  */
 export interface ResCompanyInfoModel {
   companyId: number
@@ -41,12 +44,15 @@ export interface ResCompanyInfoModel {
   license: string
   totalReputationCount: number
   favorableRate: number
+  middleRate:number
+  badRate:number
   highReputationCount: number
   reputationScore: number
   stockInfo: string
   hotDefine: HotCompanyDefine
   VideoIntroduce: string
   Weight: number
+  productCount:number
 }
 
 /**

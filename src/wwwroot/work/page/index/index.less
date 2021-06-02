@@ -17,7 +17,7 @@
     margin: auto;
 
     &>div {
-        margin-top: @space_3;
+        margin-top: @space_2;
     }
 
 
@@ -35,7 +35,7 @@
             margin-right: @space_1;
 
             div {
-                @imgHeight : 60px;
+                @imgHeight : 48px;
                 height     : @imgHeight;
                 line-height: @imgHeight;
                 text-align : center;
@@ -366,11 +366,7 @@
                             color           : @color_rank;
                             background-color: @color_rank;
                         }
-
-
                     }
-
-
                 }
 
             }
@@ -402,8 +398,6 @@
                             font-size  : @font_size_20;
                             border     : none;
                         }
-
-
                     }
                 }
             }
@@ -429,7 +423,6 @@
                         text-align : center;
                         margin     : (@height - 20) / 2 0;
                         font-weight: @font_weight;
-
                     }
 
                     &:nth-child(1)>i {
@@ -447,8 +440,6 @@
                         background-color: #FAC439;
                         color           : #FFF;
                     }
-
-
 
                     .cr {
                         position: absolute;
@@ -503,7 +494,6 @@
                                 font-size  : @font_size_12;
                                 line-height: 20px;
                                 color      : @color_gray_c2;
-
                             }
 
                             h2 {
@@ -511,7 +501,6 @@
                                 color      : @color_rank;
                                 line-height: 24px;
                                 font-weight: @font_weight;
-
                             }
                         }
                     }
@@ -521,6 +510,7 @@
     }
 
     .kbsuperior {
+        margin-top: @space_4;
         @width    : @DefindWidth - (@space_3*2);
         background: linear-gradient(223.32deg, #2F333E 29.74%, rgba(56, 67, 96, 0.75) 100.01%);
         padding   : @space_2 @space_3 @space_3 @space_3;
@@ -549,25 +539,10 @@
             }
         }
 
-
         .kblist1(@width);
-
-        .kblist1 {
-            .child {
-                width: (@width - @space_2) / 2;
-
-                .cr {
-                    .l {
-                        width: 400px;
-                    }
-                }
-            }
-        }
     }
 
     .information {
-
-
         .nownew {
             width: @defaultLeftWidth;
             float: left;
@@ -583,10 +558,7 @@
                 .list1();
 
             }
-
-
         }
-
 
         .hotinformation {
             width: @defaultRightWidth;

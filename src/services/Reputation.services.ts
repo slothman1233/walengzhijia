@@ -29,7 +29,7 @@ export type GetReputationByProductIdModel = {
 }
 
 export type GetHighQualityReputationModel = {
-  pageIndex: number
+  pageSize: number
 }
 
 class Reputation {
@@ -54,7 +54,7 @@ class Reputation {
     }
 
     // 获得优质口碑，随机
-    // {pageIndex:0}  随机获取的数量页码
+    // {pageSize:0}  随机获取的数量页码
     //@CacheInterceptor('AreaInfo_GetAreaInfoInfoByUser', CacheTime.Min3)
     async GetHighQualityReputation(params: GetHighQualityReputationModel): Promise<ResReputationModelListReturnModel> {
         return await http.get<ResReputationModel[]>(`${config.apiPath}api/Reputation/GetHighQualityReputation`, { params, headers: { 'Content-Type': 'application/json' } })

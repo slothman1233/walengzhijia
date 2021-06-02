@@ -62,6 +62,8 @@ export interface ResReputationFilterModel {
  * @param {string} createTime 创建时间
  * @param {number} commentCount 评论数
  * @param {number} praiseCount 点赞数
+ * @param {boolean} isHot 是否精品口碑
+ * @param {boolean} isRecommend 是否首页推荐-用作广告推荐相关
  */
 export interface ResReputationModel {
   createUser: number
@@ -84,7 +86,8 @@ export interface ResReputationModel {
   createTime: string
   commentCount: number
   praiseCount: number
-
+  isHot: boolean
+  isRecommend:boolean
 }
 
 /**

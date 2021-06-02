@@ -66,11 +66,12 @@ new swiper('#index .swiper-container', {
             let NewsList: any[] = []
             if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
                 newsList.bodyMessage.forEach((item) => {
-                    let link = '/news/' + item.newsId
+                    let link = '/m/news/' + item.newsId
                     if (item.reputationId !== 0) {
-                        link = '/news/reputation/' + item.newsId
+                        link = '/m/news/reputation/' + item.newsId
                     }
                     NewsList.push({
+                        pagetype: 'moblie',
                         link,
                         img: item.newsIcon,
                         title: item.newsTitle,
@@ -107,11 +108,12 @@ new swiper('#index .swiper-container', {
         if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
 
             newsList.bodyMessage.forEach((item) => {
-                let link = '/news/' + item.newsId
+                let link = '/m/news/' + item.newsId
                 if (item.reputationId !== 0) {
-                    link = '/news/reputation/' + item.newsId
+                    link = '/m/news/reputation/' + item.newsId
                 }
                 NewsList.push({
+                    pagetype: 'moblie',
                     link,
                     img: item.newsIcon,
                     title: item.newsTitle,
@@ -276,8 +278,9 @@ async function getlistHTML(obj: CompanyBrand) {
             GetCompanyJson.items.forEach((item: ResCompanyBrandModel) => {
                 if (item.company) {
                     companylistJson.push({
+                        pagetype: 'moblie',
                         logo: item.company.logo,
-                        link: '/business/' + item.company.companyId,
+                        link: '/m/business/' + item.company.companyId,
                         name: item.company.abbrName,
                         kbscore: item.company.reputation.score,
                         classify: item.productTypes,

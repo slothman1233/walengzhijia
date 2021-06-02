@@ -1,0 +1,261 @@
+@import (less) "../public/style/wuc/mheader.less";
+@import (less) "../../../components/star/index.less";
+@import (less) "../../../components/navigationbar/mindex.less";
+@import (less) "../../../components/m/list/index.less";
+@import (less) "../../../components/list/mindex.less";
+@import (reference) "../../../public/style/common/mpublicDefind.less";
+@import (reference) "../../../public/style/common/Animation.less";
+
+.header {
+
+  background: linear-gradient(359.23deg, #272935 0.18%, #343749 58.91%, #202126 98.85%);
+
+  #mhearder {
+    margin-bottom: @space_2;
+  }
+
+  .companyinfo {
+    margin: 0 @space_2;
+
+    .info_box {
+      margin-bottom: @space_2;
+      @height      : @size_1 * 76;
+      @left_width  : @size_1 * 114;
+      position     : relative;
+
+      .logo {
+        @width  : @left_width;
+        position: relative;
+        width   : @width;
+        height  : @height;
+        .border-radius(@size_1*4);
+
+        span {
+          display         : block;
+          position        : absolute;
+          background-color: #FFCB93;
+          color           : rgba(119, 59, 19, 1);
+          line-height     : @size_1 * 18;
+          left            : 0;
+          top             : 0;
+          font-size       : @size_1 * 9;
+          padding         : 0 @size_1*5;
+          .border-radius(@size_1*4 0);
+        }
+
+        img {
+          width : @width;
+          height: @height;
+          border: 1px solid #FFCB93;
+          .box-sizing();
+          .border-radius(@size_1*4);
+        }
+      }
+
+      .info {
+        position: absolute;
+        top     : 0;
+        right   : 0;
+        left    : @left_width + @space_1;
+        height  : @height;
+
+        h1 {
+          color        : #FFF;
+          font-size    : @font_size_20;
+          line-height  : @size_1 * 24;
+          font-weight  : @font_weight;
+          margin-bottom: @space_1;
+          .ellipsis();
+        }
+
+        .signboard {
+          @height      : @size_1 * 20;
+          height       : @height;
+          margin-bottom: @space_1;
+          .ellipsis();
+
+          span {
+            float           : left;
+            margin-right    : @size_1 * 4;
+            background-color: rgba(249, 130, 21, 0.15);
+            line-height     : @height;
+            padding         : 0 @size_1 * 6;
+            color           : @color_theme_c0;
+            font-size       : @font_size_10;
+          }
+
+
+        }
+
+        p {
+          @height: @size_1 * 16;
+          height : @height;
+          .ellipsis();
+
+          i {
+            color       : rgba(255, 255, 255, 0.8);
+            font-size   : @font_size_12;
+            float       : left;
+            margin-right: @space_1;
+            line-height : @height;
+          }
+        }
+      }
+    }
+
+    .kb_box {
+      @height      : @size_1 * 88;
+      margin-bottom: @space_1;
+
+      .kbl {
+        @width    : @size_1 * 208;
+        padding   : @size_1*12 @space_2;
+        float     : left;
+        width     : @width;
+        height    : @height;
+        background: rgba(255, 255, 255, 0.05);
+        .border-radius(@size_1*4);
+        .box-sizing();
+
+        &>p {
+          color        : @color_theme_c1_60;
+          font-size    : @font_size_12;
+          line-height  : @size_1 * 16;
+          margin-bottom: @size_1 * 4;
+        }
+
+        &>section {
+          @height : @size_1 * 44;
+
+          h2 {
+            float      : left;
+            color      : @color_subject;
+            font-size  : @font_size_40;
+            font-weight: @font_weight;
+            line-height: @height;
+          }
+
+          &>div {
+            float     : left;
+            color     : @color_subject;
+            margin-top: @size_1 * 8;
+
+            span {
+              font-size  : @font_size_10;
+              line-height: @size_1 * 14;
+              display    : block;
+            }
+
+            .star1(@size_1*85);
+
+            .star1 {}
+          }
+        }
+      }
+
+      .kbr {
+        @width    : @size_1 * 123;
+        float     : right;
+        padding   : @space_2;
+        width     : @width;
+        height    : @height;
+        background: rgba(255, 255, 255, 0.05);
+        .border-radius(@size_1*4);
+        .box-sizing();
+
+        p {
+          height       : @size_1 * 16;
+          line-height  : @size_1 * 16;
+          color        : #FFF;
+          font-size    : @font_size_10;
+          margin-bottom: @size_1 * 6;
+          .ellipsis();
+
+          span {
+            margin-left: @size_1 * 12;
+            font-size  : @font_size_12;
+            font-weight: @font_weight;
+          }
+        }
+      }
+    }
+
+    .cat {
+      @height        : @size_1 * 44;
+      height         : @height;
+      line-height    : @height;
+      justify-content: space-between;
+      text-align     : center;
+      .flex();
+
+      p {
+
+        color    : #FFF;
+        font-size: @font_size_16;
+        .flexGrow(1);
+
+        i {
+          margin-right: @size_1 * 4;
+          position    : relative;
+          top         : @size_1 * 2;
+        }
+      }
+    }
+
+  }
+}
+
+#company_list_box {
+  margin: @size_1*12 @space_2 0 @space_2;
+
+  .sCategories {
+    position  : relative;
+    @height   : @size_1*30;
+    height    : @height;
+    margin-top: @space_1;
+
+    .mui-scroll,
+    .mui-scroll-wrapper {
+      height: @height;
+    }
+
+    span {
+      display         : inline-block;
+      height          : @height;
+      line-height     : @height;
+      padding         : 0 @space_2;
+      margin-right    : @space_1;
+      background-color: @color_grey_bg1;
+      color           : @color_gray_c1;
+      font-size       : @font_size_12;
+      .border-radius(@size_1 * 30);
+
+      &.select {
+        background-color: rgba(249, 130, 21, 0.15);
+        color           : @color_theme_c0 ;
+      }
+    }
+  }
+
+  .product {
+    .list_box {
+      .productlist();
+    }
+
+  }
+
+  .reputation {
+    .list_box {
+      .reputationlist();
+    }
+
+  }
+
+  .news {
+    .list_box {
+      .list1();
+    }
+
+  }
+
+}

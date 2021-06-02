@@ -1,17 +1,15 @@
 
 
-import { Context, Next } from 'koa'
-import { Controller, get, middlewares } from '../../common/decorator/httpMethod'
+import { Context } from 'koa'
+import { get } from '../../common/decorator/httpMethod'
 import { get_unix_time_stamp, ge_time_format } from '../../common/utils/util'
 import { GetAdvertising } from '../../controller/Advertising.controller'
 import { GetNewsList } from '../../controller/news.controller'
 import { GetCompanyBrand, GetHotCompanyIndexPageProduct, GetProductIndustryByIndustry } from '../../controller/product.controller'
-import { GetHighQualityReputation } from '../../controller/Reputation.controller'
-import { adTypeEnums, HotCompanyDefineItems, NewsContentTypeArray, NewsType, ProductSortType, ProductSortTypeEnums, publishNews } from '../../enums/enums'
+import { adTypeEnums, HotCompanyDefineItems, NewsContentTypeArray, NewsType, ProductSortType, ProductSortTypeEnums } from '../../enums/enums'
 import { ResAdvertisingModel } from '../../model/Advertising'
 import { ResIndustryTypeModel } from '../../model/industry/resIndustryType'
 import { ResNewsModel } from '../../model/news/resNews'
-import { ResReputationModel } from '../../model/reputation/resreputation'
 
 export default class Index {
     @get('/index')
@@ -51,11 +49,12 @@ export default class Index {
         if (firstNews && firstNews.length > 0) {
 
             firstNews.forEach((item) => {
-                let link = '/news/' + item.newsId
+                let link = '/m/news/' + item.newsId
                 if (item.reputationId !== 0) {
-                    link = '/news/reputation/' + item.newsId
+                    link = '/m/news/reputation/' + item.newsId
                 }
                 firstNewsList.push({
+                    pagetype: 'moblie',
                     link,
                     img: item.newsIcon,
                     title: item.newsTitle,
@@ -76,7 +75,7 @@ export default class Index {
 
         //品牌商分类
         let productTabList: any[] = []
-        ProductSortType.forEach((item, index) => {
+        ProductSortType.forEach((item) => {
             productTabList.push({
                 id: item.id,
                 title: item.value,
@@ -100,10 +99,11 @@ export default class Index {
             GetCompanyJson.items.forEach(item => {
                 if (item.company) {
                     companylistJson.push({
+                        pagetype: 'moblie',
                         logo: item.company.logo,
-                        link: '/business/' + item.company.companyId,
+                        link: '/m/business/' + item.company.companyId,
                         name: item.company.abbrName,
-                        kbscore: item.company.reputation.score,
+                        kbscore: item.reputationScore,
                         classify: item.productTypes,
                         kbcount: item.totalReputationCount,
                         favorablerate: item.favorableRate * 100,

@@ -119,7 +119,7 @@ list2 %}
           <div class="mui-scroll">
             {% if (hotData != null) and (hotData.length > 0) %}
               {% for item in hotData %}
-                <a class="child" href="/business/{{item.companyId}}" target="_blank">
+                <a class="child" href="/m/business/{{item.companyId}}">
                   <section class="title clearfix">
                     <img src="{{item.logo}}"/>
                     <span>{{item.abbrName}}</span>
@@ -191,6 +191,8 @@ list2 %}
             </div>
           </div>
         </div>
+
+        
       </section>
 
       <div class="list_box">

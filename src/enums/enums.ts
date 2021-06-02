@@ -485,3 +485,39 @@ export enum ReputationTypeEnum {
  * 3 差
  */
 export const ReputationTypeArray = ['全部', '好评', '中评', '差评']
+
+/**
+ * 口碑类型枚举
+ * 0 全部口碑
+ * 1 好
+ * 2 中
+ * 3 差
+ */
+export const ReputationTypeObject = [
+    {
+        id: ReputationTypeEnum.All,
+        value: '全部'
+    },
+    {
+        id: ReputationTypeEnum.good,
+        value: '好评'
+    },
+    {
+        id: ReputationTypeEnum.middel,
+        value: '中评'
+    },
+    {
+        id: ReputationTypeEnum.short,
+        value: '差评'
+    }
+]
+
+/**
+ * 查询结果类型：
+ * 1 品牌商 
+ * 2 新闻资讯 
+ */
+export enum QueryResultType {
+  business = 1,
+  news = 2
+}

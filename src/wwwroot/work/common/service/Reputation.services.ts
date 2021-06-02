@@ -6,9 +6,9 @@ import { ReputationTypeEnum } from '../../../../enums/enums'
 
 /**
  * 获得优质口碑，随机
- * {pageIndex:0}  随机获取的数量页码
+ * {pageIndex:0}  随机获取的数量
  */
-export const GetHighQualityReputationRm = async (pageIndex: number = -1): Promise<ResReputationModelListReturnModel> => await http.get<ResReputationModel[]>(`/api/Reputation/GetHighQualityReputation`, { params: { pageIndex } })
+export const GetHighQualityReputationRm = async (pageSize: number = 9): Promise<ResReputationModelListReturnModel> => await http.get<ResReputationModel[]>(`/api/Reputation/GetHighQualityReputation`, { params: { pageSize } })
 
 /**
  * 根据公司获得该公司对应的口碑的bodyModel模型返回
