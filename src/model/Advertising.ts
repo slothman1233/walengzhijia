@@ -21,7 +21,8 @@ export interface ResAdvertisingModelListReturnModel extends bodyModel<ResAdverti
  * @param {string} desc 添加的文字描述信息
  * @param {number} targetId 拓展ID信息
  * @param {string} extensionArgs 拓展参数
- * @param {string} adLink 广告连接
+ * @param {string} adLink 广告链接
+ * @param {string} MobileAdLink 移动端广告链接
  */
 export interface ResAdvertisingModel {
   adId?: number
@@ -31,6 +32,7 @@ export interface ResAdvertisingModel {
   targetId: number
   extensionArgs: string
   adLink:string
+  MobileAdLink:string
 }
 
 

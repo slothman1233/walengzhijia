@@ -41,14 +41,14 @@ export function navigationbar(parentId: string | HTMLElement, callback: navigati
     if (!parentdom) { return }
 
     let navigationbar = parentdom.querySelector('.navigationbar')
-    let settime = null
+    let settime: any = null
 
     on({
         agent: navigationbar,
         events,
         ele: 'a',
         fn: function (dom: any, e: any) {
-            if (dom.length) {return}
+            if (dom.length) { return }
             if (events === 'mouseover') {
                 (function (dom, e) {
                     settime = setTimeout(() => {
@@ -60,6 +60,12 @@ export function navigationbar(parentId: string | HTMLElement, callback: navigati
                         callback && callback(dom)
                     }, 300)
                 })(dom, e)
+            } else {
+                siblings(dom, function (d: any) {
+                    removeClass(d.querySelector('span'), 'select')
+                })
+                addClass(dom.querySelector('span'), 'select')
+                callback && callback(dom)
             }
 
         }

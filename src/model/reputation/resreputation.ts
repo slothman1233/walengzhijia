@@ -142,7 +142,7 @@ export interface ResCompanyProductInfoDetailModel {
  * @param {string} productTypeName 产品分类名称
  * @param {boolean} isTop 是否置顶标识
  * @param {number} topWeight 置顶排序
- * @param {boolean} isTop 创建时间
+ * @param {boolean} createTime 创建时间
  * @param { { [index: string]: any } } classify  允许提交多个三级标签场景
  * @param {ResReputationStatisticsModel} statisticsModel 	口碑统计信息
  * @param {ResCompanyProductInfoDetailModel[]} productArgs 产品参数指标

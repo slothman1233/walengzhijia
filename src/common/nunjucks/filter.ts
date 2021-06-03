@@ -1,4 +1,5 @@
 import { HotCompanyDefineItems, priceShowStatusEnums, sexEnum } from '../../enums/enums'
+import { isNumber } from '../utils/type_check'
 import { get_time_timestamp, ge_time_format } from '../utils/util'
 
 
@@ -117,10 +118,14 @@ export default {
     /**
      * 只保留图片
      * @param str 
+     * @param count 需要最大图片数量
      */
-    'onlyimg': function (str: string) {
+    'onlyimg': function (str: string, count?: string) {
         let imgAry: any[] = [];
-        (<any>str.replace)(/<img .*?src=["|'](.*?)["|'].*?>/ig, function ($1: any, $2: any, $3: any) {
+        (<any>str.replace)(/<img .*?src=["|'](.*?)["|'].*?>/ig, function ($1: any, $2: any, $3: any): any {
+            if (count && isNumber(count) && imgAry.length >= parseInt(count)) {
+                return imgAry
+            }
             imgAry.push($2)
         })
         return imgAry

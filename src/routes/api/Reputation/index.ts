@@ -1,19 +1,7 @@
 
 
-
-
-
-
-//managelepackproduct
-
-
 import { Context } from 'koa'
-import { test_middleware } from '../../../middleware/test'
-import { Controller, get, middlewares, post } from '../../../common/decorator/httpMethod'
-import commonService from '../../../services/common/component.services'
-import { ComponentModel } from '../../../model/component'
-import { ErrorModel, SuccessModel } from '../../../model/resModel'
-import { GetProductIndustryByIndustryRm, GetProductTypeByProductTypeRm } from '../../../controller/product.controller'
+import { get } from '../../../common/decorator/httpMethod'
 import { GetHighQualityReputationRm, GetReputationByCompanyFilterRm, GetReputationByCompanyRm, GetReputationByProductIdRm } from '../../../controller/Reputation.controller'
 
 export default class Index {
@@ -58,8 +46,8 @@ export default class Index {
    */
   @get('/GetReputationByCompanyFilter')
   async GetReputationByCompanyFilter(ctx: Context) {
-      let { companyId, timeTicks, pageSize, reputationType } = ctx.query
-      let models = await GetReputationByCompanyFilterRm(companyId, timeTicks, pageSize, reputationType)
+      let { companyId, pageIndex, pageSize, reputationType } = ctx.query
+      let models = await GetReputationByCompanyFilterRm(companyId, pageIndex, pageSize, reputationType)
       ctx.body = models
 
   }

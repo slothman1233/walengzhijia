@@ -85,7 +85,7 @@ list2 %}
         <div class="swiper-wrapper">
           {% if (ad.adslideData != null) and (ad.adslideData.length > 0) %}
             {% for item in ad.adslideData %}
-              <a class="swiper-slide" href="{{item.adLink}}" title="{{item.desc}}" target="_blank">
+              <a class="swiper-slide" href="{{item.MobileAdLink}}" title="{{item.desc}}" target="_blank">
                 <p>{{item.desc}}</p>
                 <img _src_="{{item.icon}}"/>
               </a>
@@ -101,7 +101,7 @@ list2 %}
 
         {% if (ad.adtoptowData != null) and (ad.adtoptowData.length > 0) %}
           {% for item in ad.adtoptowData %}
-            <a class="child" href="{{item.adLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
+            <a class="child" href="{{item.MobileAdLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
               <img _src_="{{item.icon}}"/>
               <span>{{item.desc}}</span>
             </a>
@@ -200,6 +200,7 @@ list2 %}
       </div>
 
     </div>
+    
     <div id="tabbar-with-contact" class="mui-control-content">
         3
     </div>

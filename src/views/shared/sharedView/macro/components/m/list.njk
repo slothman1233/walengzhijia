@@ -31,7 +31,7 @@
         </a>
         <section>
           <a>
-            <h2>{{item.title}}</h2>
+            <h2>{{item.productName}}</h2>
           </a>
           <p class="clearfix">
             <span>{{item.productTypeName}}</span>
@@ -43,7 +43,7 @@
               <span>{{item.statisticsModel.score | ternary(item.statisticsModel.score,'0')}}</span>
               {{star(item.statisticsModel.score | ternary(item.statisticsModel.score,'0'))}}
             </div>
-            <a class="consult">立即咨询</a>
+            <a class="consult" href="/m/business/product/{{item.company.companyId}}/{{item.productId}}">立即咨询</a>
           </section>
         </section>
       </div>
@@ -76,12 +76,13 @@
     isgood:true,
     purchasePrice:'300',
     buyTime:'2020/02/23',
-    usetime:'2020/02/23'
+    usetime:'2020/02/23',
+    createTime:""
   }]) %}
 
   <div class="reputationlist">
     {% for item in args %}
-      <div class="child" data-id="{{item.newsId}}">
+      <div class="child" data-id="{{item.newsId}}" data-timetick="{{item.createTime | get_time_timestamp}}">
         <div class="userinfo">
           <img src="{{item.userIcon}}"/>
           <p>{{item.userName}}</p>
@@ -105,11 +106,11 @@
           </p>
           <p>
             <span>购买时间</span>
-            <i>{{item.buyTime}}</i>
+            <i>{{item.buyTime| get_time_timestamp | ge_time_format(2)}}</i>
           </p>
           <p>
             <span>投入使用</span>
-            <i>{{item.useTime}}</i>
+            <i>{{item.useTime| get_time_timestamp | ge_time_format(2)}}</i>
           </p>
         </div>
 
@@ -118,7 +119,7 @@
 
           <div class="atlas clearfix">
 
-            {% for imgurl in (item.summary | onlyimg) %}
+            {% for imgurl in (item.summary | onlyimg(3)) %}
               <img _src_="{{imgurl}}" data-viewer="{{imgurl}}"/>
             {% endfor %}
           </div>
@@ -170,7 +171,7 @@
             <p>行业经验:{{item.experience}}年</p>
           </div>
         </div>
-        <section>向TA咨询</section>
+        <a href="/m/enquiry/20/{{item.id}}">向TA咨询</a>
 
       </div>
     {% endfor %}

@@ -225,9 +225,9 @@
         }
 
         .atlas {
-          @height        : @size_1 * 70;
-          width          : 100%;
-          justify-content: space-between;
+          @height           : @size_1 * 70;
+          width             : 100%;
+          // justify-content: space-between;
           .flex();
 
           img {
@@ -236,7 +236,7 @@
             margin-right: @size_1 *2;
             height      : @height;
             width       : @width;
-            .flexGrow(1);
+            object-fit  : cover;
 
             &:last-child {
               margin: 0;
@@ -270,6 +270,7 @@
           top     : 0;
           width   : @height;
           height  : @height;
+          .border-radius(50%);
 
           img {
             width : 100%;
@@ -315,7 +316,8 @@
         }
       }
 
-      &>section {
+      &>a {
+        display    : block;
         @height    : @size_1 * 40;
         line-height: @height;
         border     : 1px solid @color_theme_c0;

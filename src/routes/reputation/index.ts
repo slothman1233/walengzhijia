@@ -131,7 +131,7 @@ export default class Reputation {
         //获取口碑信息
         let ReputationData:ResReputationFilterModel
         if(parseInt(productId) === 0){
-            ReputationData  = await GetReputationByCompanyFilter(companyId, 0, pageSize, parseInt(reputationType))
+            ReputationData  = await GetReputationByCompanyFilter(companyId, 1, pageSize, parseInt(reputationType))
         }else{
             ReputationData  = await GetReputationByProductId(productId, 0, pageSize, parseInt(reputationType))
         }

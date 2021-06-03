@@ -99,6 +99,10 @@
 
       }
     }
+
+    em {
+      color: #F24646;
+    }
   }
 }
 
@@ -299,6 +303,10 @@
 
 
     }
+
+    em {
+      color: #F24646;
+    }
   }
 }
 
@@ -311,18 +319,18 @@
     width: @width;
 
     .child {
-      background-color: #FFF;
-      @childwidth     : (@width - @space_2*2)/3; //(@width - @space_2)/3 - @space_2 - (@space_2 * 2);
-        // flex-grow     : 1;
-      display         : block;
-      float           : left;
-      text-align      : left;
+      background-color   : #FFF;
+      @childwidth        : (@width - @space_2*2)/3; //(@width - @space_2)/3 - @space_2 - (@space_2 * 2);
+      // flex-grow     : 1;
+      display            : block;
+      float              : left;
+      text-align         : left;
       // flex-direction  : column;
-      width           : @childwidth;
-      height          : 224 - (@space_2*2);
-      margin-right    : @space_2;
-      padding         : @space_2;
-      position        : relative;
+      width              : @childwidth;
+      height             : 224 - (@space_2*2);
+      margin-right       : @space_2;
+      padding            : @space_2;
+      position           : relative;
 
       .hd {
         height  : 64px;

@@ -16,6 +16,12 @@ list2 %}
 {% endblock style %}
 
 {% block script %}
+  <script type="text/javascript">
+    var type = {{type}}
+    var keyword = {{keyword}}
+    var newsTimeTicks = {{newsTimeTicks}}
+    var companyTimeTicks = {{companyTimeTicks}}
+  </script>
   <script type="text/javascript" src="/dist/scripts/search/index.js"></script>
 {% endblock script %}
 
@@ -36,11 +42,11 @@ list2 %}
                 data: [
                   {
                     title: "综合",
-                    link: "javascript:void(0);"
+                    link: "/search/1/"+keyword
                   },
                    {
                     title: "品牌商",
-                    link: "javascript:void(0);"
+                    link: "/search/2/"+keyword
                   }
                 ]
                 
@@ -50,66 +56,8 @@ list2 %}
         <div class="results">
           <span class="red">{{keyword}}</span>的相关搜索结果</div>
         <div class="list_box">
-          {{list2([
-  {
-    logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    link: "#",
-    name: "广东万联",
-    kbscore: "4.00",
-    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
-    kbcount: 56,
-    favorablerate: "100",
-    kbgood: 18,
-    label: [
-      "上市公司", "优质品牌商", "权威品牌"
-    ],
-    brandtype: "优质品牌商"
-
-  }, {
-    logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    link: "#",
-    name: "广东万联",
-    kbscore: "2.00",
-    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
-    kbcount: 56,
-    favorablerate: "100",
-    kbgood: 18,
-    label: [
-      "上市公司", "优质品牌商", "权威品牌"
-    ],
-    brandtype: "优质品牌商"
-
-  }, {
-    logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    link: "#",
-    name: "广东万联",
-    kbscore: "5.00",
-    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
-    kbcount: 56,
-    favorablerate: "100",
-    kbgood: 18,
-    label: [
-      "上市公司", "优质品牌商", "权威品牌"
-    ],
-    brandtype: "优质品牌商"
-
-  }, {
-    logo: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-    link: "#",
-    name: "广东万联",
-    kbscore: "5.00",
-    description: "纸板生产单机纸板生产单机纸板生产单机纸板生产单机",
-    kbcount: 56,
-    favorablerate: "100",
-    kbgood: 18,
-    label: [
-      "上市公司", "优质品牌商", "权威品牌"
-    ],
-    brandtype: "优质品牌商"
-
-  }
-])}}
-          {{list1()}}
+          {{list2(bsuinessAry)}}
+          {{list1(newsAry)}}
 
         </div>
       </div>

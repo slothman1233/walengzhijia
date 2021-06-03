@@ -44,18 +44,18 @@ let mian = document.querySelector('#main');
 (function () {
     //是否加载完成获取是否还有更多
     let isloaded = false
-
+    let pageIndex = 1
     let row2 = document.querySelector('.row2')
     let list_box = row2.querySelector('.list_box')
     navigationbar2('reputationlist', async (dom) => {
         let id = dom.getAttribute('data-id')
         let data: ResReputationFilterModelReturnModel
         if (parseInt(productId) === 0) {
-            data = await GetReputationByCompanyFilter(parseInt(companyId), 0, parseInt(pageSize), parseInt(id))
+            data = await GetReputationByCompanyFilter(parseInt(companyId), 1, parseInt(pageSize), parseInt(id))
         } else {
             data = await GetReputationByProductId(parseInt(productId), 0, parseInt(pageSize), parseInt(id))
         }
-
+        pageIndex = 1
 
         //
         if (data.code === 0 && data.subCode === subCodeEnums.success && data.bodyMessage) {
@@ -82,7 +82,8 @@ let mian = document.querySelector('#main');
             time = time.substr(0, 10)
             let data: ResReputationFilterModelReturnModel
             if (parseInt(productId) === 0) {
-                data = await GetReputationByCompanyFilter(parseInt(companyId), parseInt(time), parseInt(pageSize), parseInt(id))
+                pageIndex = pageIndex + 1
+                data = await GetReputationByCompanyFilter(parseInt(companyId), pageIndex, parseInt(pageSize), parseInt(id))
             } else {
                 data = await GetReputationByProductId(parseInt(productId), parseInt(time), parseInt(pageSize), parseInt(id))
             }

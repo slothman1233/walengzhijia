@@ -12,13 +12,13 @@ export type GetReputationByCompanyModel = {
 
 /**
  * @param {number} companyId 产品id
- * @param {number} timeTicks 10位时间戳
+ * @param {number} pageIndex 页码
  * @param {number} pageSize 分页数量
  * @param {ReputationTypeEnum} reputationType 口碑类型
  */
 export type GetReputationByCompanyFilterModel = {
   companyId: number
-  timeTicks: number,
+  pageIndex: number,
   pageSize: number,
   reputationType: ReputationTypeEnum
 }

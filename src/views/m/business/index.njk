@@ -4,7 +4,8 @@
 {% from "../../shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
 
 {% from "../../shared/sharedView/macro/components/m/list.njk" import productlist,
-reputationlist %}
+reputationlist,
+saleslist %}
 
 {% from "../../shared/sharedView/macro/components/star/star.njk" import star %}
 {% from "../../shared/sharedView/macro/components/list.njk" import list1 %}
@@ -24,7 +25,9 @@ reputationlist %}
 {% endblock style %}
 
 {% block script %}
-
+  <script type="text/javascript">
+    var companyId = {{companyId}}
+  </script>
   <script type="text/javascript" src="/dist/scripts/m/business/index.js"></script>
 {% endblock script %}
 
@@ -71,18 +74,18 @@ reputationlist %}
       </div>
 
       <div class="cat">
-        <p>
-          <i class="iconfont_wlzj">&#xE008;</i>品牌简介</p>
-        <p>
-          <i class="iconfont_wlzj">&#xE008;</i>联系销售</p>
-        <p>
-          <i class="iconfont_wlzj">&#xE008;</i>发布口碑</p>
+        <a href="#introductory">
+          <i class="iconfont_wlzj">&#xE008;</i>品牌简介</a>
+        <a href='#consultingSales'>
+          <i class="iconfont_wlzj">&#xE008;</i>联系销售</a>
+        <a href='/m/reputation/publish/{{companyId}}'>
+          <i class="iconfont_wlzj">&#xE008;</i>发布口碑</a>
       </div>
     </section>
   </div>
 
   <div id="company_list_box">
-    {{navigationbar( {
+    {{navigationbar({
               isMore: false,
               MoreText: "更多>>",
               link: "#",
@@ -106,7 +109,7 @@ reputationlist %}
             })}}
 
     <div class="list_content">
-      <div class="product" style='display:none'>
+      <div class="product">
         <div class="sCategories">
           <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
             <div class="mui-scroll">
@@ -138,14 +141,14 @@ reputationlist %}
         </div>
       </div>
 
-      <div class="news">
+      <div class="news" style='display:none'>
         <div class="sCategories">
           <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
             <div class="mui-scroll">
-            {% for item in newTypes %}
-               <span class="{{ (loop.index == 1) | ternary('select','') }}" data-id='{{item.id}}'>{{item.title}}</span>
-            {% endfor %}
-        
+              {% for item in newTypes %}
+                <span class="{{ (loop.index == 1) | ternary('select','') }}" data-id='{{item.id}}'>{{item.title}}</span>
+              {% endfor %}
+
             </div>
           </div>
         </div>
@@ -156,6 +159,36 @@ reputationlist %}
       </div>
     </div>
 
+  </div>
+
+  <div id="introductory" class="box mui-popover mui-popover-action mui-popover-bottom popoverbtm">
+    <div class="popoverheader">
+      <p>品牌介绍</p>
+      <i class='iconfont_wlzj popoverhide'>&#xE01E;</i>
+    </div>
+    <div class="content mui-scroll-wrapper introductorywrapper">
+      <div class="mui-scroll">
+        <p>企业全称：{{companyinfo.fullName}}</p>
+        <p>电话：{{companyinfo.contactPhone}}</p>
+        <p>官网：{{companyinfo.website}}</p>
+        <p>地址： {{companyinfo.addr}}</p>
+        <div>
+          {{companyinfo.desc}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="consultingSales" class="box mui-popover mui-popover-action mui-popover-bottom popoverbtm">
+    <div class="popoverheader">
+      <p>咨询销售</p>
+      <i class='iconfont_wlzj saleshide'>&#xE01E;</i>
+    </div>
+    <div class="content mui-scroll-wrapper consultingSaleswrapper">
+      <div class="mui-scroll">
+        {{saleslist()}}
+      </div>
+    </div>
   </div>
 
 {% endblock body %}

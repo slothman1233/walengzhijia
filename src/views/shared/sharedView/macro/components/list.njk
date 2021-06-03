@@ -51,7 +51,7 @@
             <img _src_="{{item.img}}"/>
           </h4>
           <section class="right">
-            <h3 class="title">{{item.title}}</h3>
+            <h3 class="title">{{item.title | safe}}</h3>
             <p class="content">{{item.content}}</p>
             <p class="list_foot">
               {% if item.businesslogo %}
@@ -148,7 +148,7 @@
     {% if (args != null) and (args.length > 0) %}
       {% for item in args %}
 
-        <a class="child"  href="{{item.link}}"  target="{{(item.pagetype != undefined and item.pagetype == 'moblie') | ternary('_self','_blank')}}">
+        <a class="child"  href="{{item.link}}" data-timetick="{{item.timetick}}" target="{{(item.pagetype != undefined and item.pagetype == 'moblie') | ternary('_self','_blank')}}">
           <section class="left">
             <asection class="logo">
 
@@ -176,7 +176,7 @@
 
           <section class="center">
             <section class="name" href="{{item.link}}"  target="{{(item.pagetype != undefined and item.pagetype == 'moblie') | ternary('_self','_blank')}}">
-              {{item.name}}
+              {{item.name | safe}}
             </section>
 
             {% if (item.label != null) and (item.label.length > 0) %}

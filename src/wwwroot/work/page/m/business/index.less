@@ -188,8 +188,8 @@
       text-align     : center;
       .flex();
 
-      p {
-
+      a {
+        display  : block;
         color    : #FFF;
         font-size: @font_size_16;
         .flexGrow(1);
@@ -258,4 +258,32 @@
 
   }
 
+}
+
+#introductory {
+
+  .content {
+    .mui-scroll {
+
+      &>p {
+        color        : @color_gray_c1;
+        font-size    : @font_size_14;
+        margin-bottom: @space_2;
+      }
+
+      &>div {
+        color      : @color_gray_c1;
+        font-size  : @font_size_14;
+        line-height: @line_height;
+      }
+    }
+
+  }
+}
+
+
+#consultingSales {
+  .mui-scroll {
+    .saleslist();
+  }
 }

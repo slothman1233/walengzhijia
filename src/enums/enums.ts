@@ -521,3 +521,13 @@ export enum QueryResultType {
   business = 1,
   news = 2
 }
+
+/**
+ * 查询类型 
+ * 1 综合 
+ * 2 品牌商
+ */
+export enum searchqueryType {
+  all = 1,
+  company = 2
+}

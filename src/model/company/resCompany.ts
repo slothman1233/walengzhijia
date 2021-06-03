@@ -84,6 +84,7 @@ export interface ResCompanyInfoModelReturnModel extends bodyModel<ResCompanyInfo
  * @param {string[]} companyLabels 公司标签
  * @param {number} HighReputationCount 优质口碑数
  * @param {HotCompanyDefine} hotType 品牌商的类型标记
+ * @param {string} createTime 创建时间
  */
 export interface ResCompanyHotModel {
   companyId?: number
@@ -95,6 +96,7 @@ export interface ResCompanyHotModel {
   companyLabels: string[]
   HighReputationCount: number
   hotType: HotCompanyDefine
+  createTime:string
 }
 
 

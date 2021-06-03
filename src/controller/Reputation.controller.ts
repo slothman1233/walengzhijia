@@ -48,8 +48,8 @@ export async function GetReputationByCompanyRm(companyId: number): Promise<ResRe
 /**
  * 根据公司获得该公司对应的口碑
  */
-export async function GetReputationByCompanyFilter(companyId: number, timeTicks: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModel | null> {
-    let rm = await GetReputationByCompanyFilterRm(companyId, timeTicks, pageSize, reputationType)
+export async function GetReputationByCompanyFilter(companyId: number, pageIndex: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModel | null> {
+    let rm = await GetReputationByCompanyFilterRm(companyId, pageIndex, pageSize, reputationType)
     let models = JSONParse<ResReputationFilterModel | null>(rm?.code, rm?.bodyMessage)
     return models
 }
@@ -58,11 +58,11 @@ export async function GetReputationByCompanyFilter(companyId: number, timeTicks:
 /**
 * 根据公司获得该公司对应的口碑的bodyModel模型返回
 */
-export async function GetReputationByCompanyFilterRm(companyId: number, timeTicks: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModelReturnModel> {
+export async function GetReputationByCompanyFilterRm(companyId: number, pageIndex: number = 0, pageSize: number = 10, reputationType: ReputationTypeEnum = ReputationTypeEnum.All): Promise<ResReputationFilterModelReturnModel> {
     let params: GetReputationByCompanyFilterModel
     params = {
         companyId,
-        timeTicks,
+        pageIndex,
         pageSize,
         reputationType
     }

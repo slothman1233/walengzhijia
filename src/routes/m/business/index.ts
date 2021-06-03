@@ -4,18 +4,19 @@ import { get } from '../../../common/decorator/httpMethod'
 import { get_unix_time_stamp, ge_time_format } from '../../../common/utils/util'
 import { GetCompanyInfoById, GetSalersByCompanyId } from '../../../controller/company.controller'
 import { GetNewsByCompanyId, GetNewsByProductId } from '../../../controller/news.controller'
-import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType } from '../../../controller/product.controller'
-import { GetReputationByCompany, GetReputationByCompanyFilter, GetReputationByProductId, GetReputationStatisticsByProduct } from '../../../controller/Reputation.controller'
-import { NewsContentTypeArray, NewsType, publishNews, publishNewsTypeEnums, ReputationTypeArray, ReputationTypeEnum, ReputationTypeObject } from '../../../enums/enums'
+import { GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType } from '../../../controller/product.controller'
+import { GetReputationByCompanyFilter, GetReputationByProductId, GetReputationStatisticsByProduct } from '../../../controller/Reputation.controller'
+import { NewsContentTypeArray, NewsType, publishNews, ReputationTypeArray, ReputationTypeEnum } from '../../../enums/enums'
 import { ResNewsModel } from '../../../model/news/resNews'
 import { ResReputationFilterModel } from '../../../model/reputation/resreputation'
+
 
 
 
 export default class Business {
 
     @get('/:companyId?')
-    async index(ctx: Context, next: Next) {
+    async index(ctx: Context) {
         let { companyId } = ctx.params
         //  let productTypeId = 0
 
@@ -32,7 +33,7 @@ export default class Business {
             nlink: 'javascript:void(0);'
         }]
         if (product && product.length > 0) {
-            product.forEach((item, index) => {
+            product.forEach((item) => {
                 // if (index === 0) {
                 //     productTypeId = item.productTypeId
                 // }
@@ -55,11 +56,10 @@ export default class Business {
         let pageSize = 10
         //获取口碑信息
         let ReputationData: ResReputationFilterModel
-        ReputationData = await GetReputationByCompanyFilter(companyId, 0, pageSize, ReputationTypeEnum.All)
+        ReputationData = await GetReputationByCompanyFilter(companyId, 1, pageSize, ReputationTypeEnum.All)
         let reputationtype: any[] = []
         ReputationTypeArray.forEach((value: string, index: number) => {
             let title = ''
-            let cls = 'high'
             switch (index) {
                 case ReputationTypeEnum.All:
                     title = `${value}（${ReputationData?.reputationCount || 0}）`
@@ -120,8 +120,6 @@ export default class Business {
             })
         }
         //------------------------------------------------------------------------------------------------------------------
-
-        console.log(ReputationData.reputations)
         await ctx.render('m/business/index', {
             companyId,
             newTypes,
@@ -140,7 +138,7 @@ export default class Business {
      * @param {number} productId 产品ID
      */
     @get('/product/:companyId?/:productId?')
-    async product(ctx: Context, next: Next) {
+    async product(ctx: Context) {
 
         let { companyId, productId } = ctx.params
 
@@ -174,7 +172,6 @@ export default class Business {
 
         let reputationTypeObject: any[] = []
         ReputationTypeArray.forEach((value: string, index: number) => {
-            let number = ReputationData?.reputationCount || 0
             let title = ''
             let cls = 'high'
             let link = '/m/reputation/' + companyId + '/' + productId
