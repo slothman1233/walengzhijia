@@ -1,0 +1,264 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+
+.mcommon1() {
+  .common1 {
+    .submit {
+      @height      : @size_1 * 120;
+      position     : relative;
+      height       : @height;
+      margin-bottom: @space_2;
+
+      img {
+        display: none;
+      }
+
+      .input {
+        @height : @size_1 * 80;
+        height  : @height;
+
+        input,
+        textarea {
+          width           : 100%;
+          height          : @height;
+          display         : block;
+          padding         : 0 @size_1 * 10;
+          background-color: @color_grey_bg1;
+          font-size       : @font_size_14;
+          margin          : 0;
+          .border-radius(@size_1 * 4);
+          .box-sizing();
+        }
+
+        textarea {
+          padding: @size_1 * 10;
+        }
+      }
+
+      a {
+        position        : absolute;
+        right           : 0;
+        bottom          : 0;
+        height          : @size_1 * 32;
+        line-height     : @size_1 * 32;
+        display         : block;
+        background-color: #F98215;
+        color           : #FFF;
+        font-size       : @font_size_12;
+        padding         : 0 @size_1 * 20;
+        .border-radius(@size_1 * 2);
+      }
+    }
+
+    .allcommon {
+      margin-bottom: @space_2;
+      color        : @color_main_c1;
+      font-weight  : @font_weight;
+      font-size    : @font_size_16;
+    }
+
+    .list_box {
+      .child {
+        @hreadheight : @size_1 * 32;
+        position     : relative;
+        border-bottom: 1px solid @color_grey_line1;
+        margin-bottom: @space_2;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .hread {
+          width       : @hreadheight;
+          margin-right: @space_2;
+          position    : absolute;
+          left        : 0;
+          top         : 0;
+
+          img {
+            width     : @hreadheight;
+            height    : @hreadheight;
+            overflow  : hidden;
+            margin-top: @size_1 * 12;
+            .border-radius(50%);
+
+          }
+        }
+
+        .common_details {
+
+          padding: 0 0 @space_2 0;
+
+          margin-left: @hreadheight + @size_1 * 12;
+
+
+          .h {
+            line-height  : @hreadheight;
+            margin-bottom: @size_1 * 12;
+
+            span {
+              color    : @color_gray_c2;
+              font-size: @font_size_14;
+
+              &.createtime {
+                float    : right;
+                color    : @color_gray_c3;
+                font-size: @font_size_12;
+              }
+            }
+          }
+
+          .content {
+            color        : @color_main_c1;
+            font-size    : @font_size_16;
+            line-height  : @size_1 * 20;
+            margin-bottom: @size_1 * 10;
+
+            p {
+              padding         : @space_1;
+              background-color: @color_grey_bg1;
+              font-size       : @font_size_16;
+              margin-bottom   : @space_1;
+              color           : @color_gray_c2;
+              .border-radius(4px);
+            }
+
+
+          }
+
+          .reply {
+            line-height  : 32px;
+            margin-bottom: @space_1;
+
+            &>a {
+              display     : block;
+              float       : left;
+              color       : @color_gray_c2;
+              margin-right: @size_1 * 12;
+              font-size   : @font_size_12;
+            }
+
+            &>span {
+              display    : block;
+              float      : left;
+              color      : @color_link ;
+              font-size  : @font_size_12;
+              font-weight: @font_weight;
+              cursor     : pointer;
+
+              b {
+                font-weight: normal;
+              }
+
+              i {
+                display: block;
+                float  : right;
+              }
+            }
+
+            .reply_r {
+              float: right;
+
+              a {
+                color       : @color_gray_c3;
+                display     : block;
+                float       : left;
+                margin-right: @space_3;
+              }
+
+              p {
+                float : left;
+                color : @color_gray_c3;
+                cursor: pointer;
+
+                &.rank i {
+                  color: @color_rank;
+                }
+
+                i {
+                  display     : block;
+                  float       : left;
+                  margin-right: 5px;
+
+
+                }
+
+                span {
+                  display: block;
+                  float  : left;
+                }
+              }
+            }
+          }
+
+          .sub {
+            position: relative;
+            @height : @size_1 * 120;
+            height  : @height;
+
+
+
+            .input {
+              @height : @size_1 * 80;
+              height  : @height;
+
+              input,
+              textarea {
+                width           : 100%;
+                height          : @height;
+                display         : block;
+                padding         : 0 @size_1 * 10;
+                background-color: @color_grey_bg1;
+                font-size       : @font_size_14;
+                margin          : 0;
+                .border-radius(@size_1 * 4);
+                .box-sizing();
+              }
+
+              textarea {
+                padding: @size_1 * 10;
+              }
+            }
+
+            a {
+              position        : absolute;
+              right           : 0;
+              bottom          : 0;
+              height          : @size_1 * 32;
+              line-height     : @size_1 * 32;
+              display         : block;
+              background-color: #F98215;
+              color           : #FFF;
+              font-size       : @font_size_12;
+              padding         : 0 @size_1 * 20;
+              .border-radius(@size_1 * 2);
+            }
+
+          }
+
+          .child_box {
+            .more {
+
+              padding-bottom: 0;
+
+            }
+
+          }
+
+
+        }
+
+
+
+
+      }
+    }
+
+    .more {
+      text-align: center;
+      padding   : @space_2 0;
+      color     : @color_gray_c2;
+      cursor    : pointer;
+    }
+
+  }
+}

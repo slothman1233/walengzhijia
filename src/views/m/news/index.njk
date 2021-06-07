@@ -1,0 +1,74 @@
+{% extends "../../shared/layout/mdefaultLayou.njk" %}
+{% from "../../shared/sharedView/macro/components/satemap/satemap1.njk" import satemap1 %}
+{% from "../../shared/sharedView/macro/components/navigationbar.njk" import navigationbar %}
+{% from "../../shared/sharedView/macro/components/comment/comment1.njk" import comment %}
+{% from "../../shared/sharedView/macro/components/star/star.njk" import star %}
+{% from "../../shared/sharedView/macro/wuc/mheader.njk" import mheader,
+smheader %}
+{% block title %}
+54123123213333
+{% endblock title %}
+
+{% block keywords %}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block style %}
+  <link href="/dist/styles/m/news/reputation.css" rel="stylesheet">
+{% endblock style %}
+
+{% block script %}
+  <script type="text/javascript">
+    var reputationId = {{newsDetail.newsDetail.reputationId}}
+    var newsId = {{newsId}}
+  </script>
+  <script type="text/javascript" src="/dist/scripts/m/news/index.js"></script>
+{% endblock script %}
+
+{% block body %}
+  <div class="header">
+    {{mheader({title:'文章详情'})}}
+  </div>
+
+  <div class="news_box">
+    <h1 class="news_title">{{newsDetail.newsDetail.newsTitle}}</h1>
+    <div class="user_box clearfix">
+      <img _src_="{{newsDetail.newsDetail.userIcon}}"/>
+      <section>
+        <p>{{newsDetail.newsDetail.userName}}</p>
+        <span>发布于：{{newsDetail.newsDetail.newsTime | get_time_timestamp | ge_time_format(2)}}</span>
+      </section>
+    </div>
+
+    <div class="content clearfix">
+      {{newsDetail.newsDetail.newsContent | safe}}
+    </div>
+
+  </div>
+
+  <div class="relatedproducts clearfix">
+    <h2>相关产品</h2>
+    <div class="box">
+      <div class="content clearfix">
+        <img _src_="{{newsDetail.product.producerCover}}"/>
+        <div class="info">
+          <p>
+            <img _src_="{{newsDetail.product.companyIcon}}"/>
+            <span>{{newsDetail.product.companyName}}</span>
+          </p>
+          <p>{{newsDetail.product.productName}}</p>
+        </div>
+      </div>
+
+      <div class="btn">
+        <a class="business" href="/m/business/product/{{newsDetail.product.companyId}}/{{newsDetail.product.productId}}" target="_blank">查看详情</a>
+        <a class="enquiry" href="/m/enquiry/{{newsDetail.product.companyId}}/0" target="_blank">立即咨询</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="questions">
+    <h2>发表评论</h2>
+    <div class="questions_box"></div>
+  </div>
+{% endblock body %}

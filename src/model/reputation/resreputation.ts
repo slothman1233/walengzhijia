@@ -102,8 +102,6 @@ export interface ResReputationStatisticsModel {
   reputationCount: number
   highReputationCount: number
   reputationScore: ResReputationScoreStatisticsModel[]
-
-
 }
 
 /**

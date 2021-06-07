@@ -14,22 +14,24 @@ import { AddPraise } from '../../common/service/PraiseBrowse.services'
 import { ResCommentReplyModel } from '../../../../model/comment/resComment'
 import { AddComment, AddCommentReply, GetCommentList, GetCommentReplyList } from '../../common/service/comment.services'
 declare const $: JQueryStatic
-
+declare const mui: any
 /**
  * @param {CommentTargetTypeEnum} type 评论类型
  * @param {string} newsId 新闻id
  * @param {string} reputationId 口碑id  口碑新闻需要
+ * @param {string} pagetype web 是web   mobile 是H5
  */
 type commentParams = {
     type: CommentTargetTypeEnum,
     newsId: string,
-    reputationId?: string
+    reputationId?: string,
+    pagetype: string
 }
 
 let givelikeCache = 'givelikeCache'
 
 export async function comment1fn(parentId: string | HTMLElement, {
-    type, newsId, reputationId
+    type, newsId, reputationId, pagetype = 'web'
 }: commentParams) {
 
     let parentdom: any = parentId
@@ -37,68 +39,82 @@ export async function comment1fn(parentId: string | HTMLElement, {
     if (isString(parentId)) { parentdom = document.getElementById(<string>parentId) }
 
     //评论初始化
-    await commentInit(parentdom, type === CommentTargetTypeEnum.news ? newsId : reputationId, type)
+    await commentInit(parentdom, type === CommentTargetTypeEnum.news ? newsId : reputationId, type, pagetype)
 
 
     let submit: HTMLElement = parentdom.querySelector('.submit')
 
     if (!parentdom) { return }
 
-    let input = submit.querySelector('input')
+    let input: HTMLInputElement = submit.querySelector('.response')
 
     let subtn = submit.querySelector('a')
 
     let list_box = parentdom.querySelector('.list_box')
 
-    subtn.onclick = async function () {
-        if (input.value.length <= 0) {
-            alert('回答不能为空！')
-            return
-        }
+    let tgr = pagetype === 'mobile' ? 'tap' : 'click'
 
-        let userid = (<any>this).dataset['id']
-
-        let usercookie = window.getusercookie()
-        if (!usercookie) {
-            window.loginshow()
-            alert('请先登录后发表评论')
-            return
-        }
-
-        let datas = await setComment(parseInt(userid), input.value, type === CommentTargetTypeEnum.news ? newsId : reputationId, type)
-
-        if (datas.code === 0 && datas.subCode === subCodeEnums.success) {
-            let userJSON = JSON.parse(usercookie)
-            let createtime = await currenttime()
-            let commentModel = {
-                args: [{
-                    commentId: datas.bodyMessage,
-                    commentUserName: userJSON.name,
-                    commentUser: userJSON.userId,
-                    commentUserIcon: userJSON.userIcon,
-                    commentTime: createtime,
-                    commentContent: input.value,
-                    praiseCount: 0
-                }]
+    // mui(subtn)
+    on({
+        agent: submit,
+        events: tgr,
+        ele: 'a',
+        fn: async function (dom: any, ev: any) {
+            ev.preventDefault()
+            ev.stopPropagation()
+            if (input.value.length <= 0) {
+                alert('回答不能为空！')
+                return false
             }
 
-            let data: bodyModel<string> = await getcomponent({ path: 'components/comment/commonchild.njk', name: 'commonchild', data: commentModel })
+            let userid = dom.dataset['id']
 
-            if (data.code === 0) {
-                $(list_box).prepend(data.bodyMessage)
-                window.imgload()
+            let usercookie = window.getusercookie()
+            if (!usercookie) {
+                window.loginshow()
+                alert('请先登录后发表评论')
+                return false
             }
-            input.value = ''
-            alert('提交成功！')
-        } else {
-            alert('发表失败，请重新发表！')
-            return
+
+            let datas = await setComment(parseInt(userid), input.value, type === CommentTargetTypeEnum.news ? newsId : reputationId, type)
+
+            if (datas.code === 0 && datas.subCode === subCodeEnums.success) {
+                let userJSON = JSON.parse(usercookie)
+                let createtime = await currenttime()
+                let commentModel = {
+                    args: [{
+                        type: pagetype,
+                        commentId: datas.bodyMessage,
+                        commentUserName: userJSON.name,
+                        commentUser: userJSON.userId,
+                        commentUserIcon: userJSON.userIcon,
+                        commentTime: createtime,
+                        commentContent: input.value,
+                        praiseCount: 0
+                    }]
+                }
+
+                let data: bodyModel<string> = await getcomponent({ path: 'components/comment/commonchild.njk', name: 'commonchild', data: commentModel })
+
+                if (data.code === 0) {
+                    $(list_box).prepend(data.bodyMessage)
+                    window.imgload()
+                }
+                input.value = ''
+                alert('提交成功！')
+            } else {
+                alert('发表失败，请重新发表！')
+                return false
+            }
+            return false
         }
-    }
+    })
+  
+
     //展开收缩 提交回答按钮
     on({
         agent: list_box,
-        events: 'click',
+        events: tgr,
         ele: '.reply a',
         fn: function (dom: any, ev: any) {
             let parent = $(dom).parent()
@@ -114,36 +130,38 @@ export async function comment1fn(parentId: string | HTMLElement, {
         }
     })
 
-
+    // if (pagetype === 'web') {
     //展开收缩 更多回复
     on({
         agent: list_box,
-        events: 'click',
+        events: tgr,
         ele: '.reply span',
         fn: function (dom: any, ev: any) {
-            let parent = $(dom).parent()
-            let child_box = parent.siblings('.child_box')
-            let i = dom.querySelector('i')
-            if (child_box[0].style.display === 'none') {
-                i.innerHTML = '&#xE013;'
-                child_box.show()
-            } else {
-                i.innerHTML = '&#xE007;'
-                child_box.hide()
-            }
+            try {
+                let parent = $(dom).parent()
+                let child_box = parent.siblings('.child_box')
+                let i = dom.querySelector('i')
+                if (child_box[0].style.display === 'none') {
+                    i.innerHTML = '&#xE013;'
+                    child_box.show()
+                } else {
+                    i.innerHTML = '&#xE007;'
+                    child_box.hide()
+                }
+            } catch (e) { }
         }
     })
-
+    //  }
     //评论回复按钮
     on({
         agent: list_box,
-        events: 'click',
+        events: tgr,
         ele: '.sub a',
         fn: async function (dom: any, ev: any) {
             let btn = $(dom)
             let child_box = btn.parents('.child_box')
             let child_content = btn.parents('.child_content')
-            let input = btn.siblings('.input').find('input')
+            let input = btn.siblings('.input').find('.response')
             let sub = btn.parent()
             let value = input.val()
             let parentContentDom = sub.siblings('.content')
@@ -176,6 +194,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
 
                 let commentModel: any = {
                     args: [{
+                        type: pagetype,
                         replyId: datas.bodyMessage,
                         replyUser: userJSON.userId,
                         commentReplyContent: value,
@@ -226,7 +245,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
     //点赞
     on({
         agent: list_box,
-        events: 'click',
+        events: tgr,
         ele: '.praiseCount',
         fn: async function (dom: any, ev: any) {
 
@@ -287,11 +306,11 @@ export async function comment1fn(parentId: string | HTMLElement, {
 
         }
     })
-
+    //  if (pagetype === 'web') {
     //点回复里面加载更多处理
     on({
         agent: list_box,
-        events: 'click',
+        events: tgr,
         ele: '.child_box .more',
         fn: async function (dom: any, ev: any) {
             let child_content = $(dom).siblings('.child_content')
@@ -310,7 +329,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
                 if (commentdata.length < 10) {
                     dom.style.display = 'none'
                 }
-                DateFormatting(commentdata)
+                DateFormatting(commentdata, pagetype)
                 let data: bodyModel<String> = await getcomponent({ path: 'components/comment/commonchild.njk', name: 'commonchild', data: { args: commentdata } })
                 if (data.code === 0) {
                     child_content.append(data.bodyMessage)
@@ -321,12 +340,11 @@ export async function comment1fn(parentId: string | HTMLElement, {
             }
         }
     })
-
-
+    // }
     //点外层加载更多
     on({
         agent: parentdom,
-        events: 'click',
+        events: tgr,
         ele: '.parentMore',
         fn: async function (dom: any, ev: any) {
             let list_box = $(dom).siblings('.list_box')
@@ -342,13 +360,13 @@ export async function comment1fn(parentId: string | HTMLElement, {
 
             if (comment.code === 0 && comment.subCode === subCodeEnums.success) {
                 let commentdata = comment.bodyMessage
-                if (commentdata.length < 10) {
+                if (!commentdata || commentdata.length < 10) {
                     dom.style.display = 'none'
                 }
                 if (commentdata && commentdata.length > 0) {
                     commentdata.forEach(comment => {
                         if (comment.replys && comment.replys.length > 0) {
-                            DateFormatting(comment.replys)
+                            DateFormatting(comment.replys, pagetype)
                         }
                     })
                 }
@@ -372,7 +390,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
  * @param newsId 
  * @param type 
  */
-async function commentInit(parentdom: HTMLElement, newsId: string, type: CommentTargetTypeEnum) {
+async function commentInit(parentdom: HTMLElement, newsId: string, type: CommentTargetTypeEnum, pagetype: string) {
     //评论
     let comment = await GetCommentList({
         targetId: parseInt(newsId),
@@ -391,6 +409,7 @@ async function commentInit(parentdom: HTMLElement, newsId: string, type: Comment
         commentUserName: getuserjson['name'],
         commentUser: getuserjson['userId'],
         commentUserIcon: getuserjson['userIcon'],
+        type: pagetype,
         commentId: 0,
         data: []
     }
@@ -400,9 +419,11 @@ async function commentInit(parentdom: HTMLElement, newsId: string, type: Comment
         let commentdata = comment.bodyMessage
         if (commentdata && commentdata.length > 0) {
             commentData.commentId = commentdata[0].commentId
+            commentData.type = pagetype
             commentdata.forEach(comment => {
+                comment.type = pagetype
                 if (comment.replys && comment.replys.length > 0) {
-                    DateFormatting(comment.replys)
+                    DateFormatting(comment.replys, pagetype)
                 }
             })
         }
@@ -411,6 +432,7 @@ async function commentInit(parentdom: HTMLElement, newsId: string, type: Comment
         commentData.data = commentdata
         let data: bodyModel<string> = await getcomponent({ path: 'components/comment/comment1.njk', name: 'comment', data: { args: commentData } })
         if (data.code === 0) {
+
             parentdom.innerHTML = data.bodyMessage
             window.imgload()
         }
@@ -512,15 +534,18 @@ function getCacheJson(newsId: string) {
  * 数据整理
  * @param {ResCommentReplyModel[]} data 
  */
-export function DateFormatting(data: ResCommentReplyModel[]) {
+export function DateFormatting(data: ResCommentReplyModel[], pagetype: string) {
+
     data.forEach(reply => {
         reply.commentContent = reply.commentReplyContent
+        reply.type = pagetype
         //如果有回复的回复
         if (reply.replyParentId > 0) {
             for (let i = 0; i < data.length; i++) {
                 let item = data[i]
                 if (item.replyId === reply.replyParentId) {
                     reply.at = item
+
                     //递归渲染模板需要赋值
                     reply.at.commentContent = item.commentReplyContent
                     break

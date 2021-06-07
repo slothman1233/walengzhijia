@@ -24,7 +24,8 @@ let main: HTMLElement = document.querySelector('#main');
     comment1fn(document.querySelector('.questions_box'), {
         type: CommentTargetTypeEnum.praise,
         newsId,
-        reputationId
+        reputationId,
+        pagetype: 'web'
     })
 })()
 
@@ -51,7 +52,7 @@ let praiseObjectDefineProperty = {
         configurable: true,
         set: function (newVal: boolean) {
             if (newVal) {
-               
+
                 $(givelike).removeClass('praise')
 
             } else {

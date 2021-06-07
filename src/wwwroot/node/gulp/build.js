@@ -28,7 +28,10 @@ let paths = {
         //移动端
         getSrc('./m/index/index.ts'),
         getSrc('./m/business/index.ts'),
-        getSrc('./m/business/product.ts')
+        getSrc('./m/business/product.ts'),
+        getSrc('./m/news/index.ts'),
+        getSrc('./m/news/reputation.ts'),
+        getSrc('./m/index/enquiry.ts')
 
     ]
 }

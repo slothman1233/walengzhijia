@@ -1,7 +1,7 @@
 @import (reference) "../../../../public/style/common/mpublicdefind.less";
 @import (reference) "../../../../public/style/common/Animation.less";
 @import (less) "./muirewrite.less";
-
+@import (less) "./popover.less";
 html * {
   outline                    : 0;
   -webkit-text-size-adjust   : none;
@@ -86,10 +86,6 @@ a:active {
 
 a {
   color: @font_defind_color;
-
-  &:hover {
-    color: @link_hover  !important;
-  }
 }
 
 
@@ -109,4 +105,17 @@ a {
   display  : block;
   clear    : both;
   font-size: 0;
+}
+
+#videoViewerBox {
+  width: 100% !important;
+}
+
+#videoViewerClose {
+  top  : -@size_1 * 30 !important;
+  right: 0 !important;
+}
+
+#videoViewerBoxBg {
+  .opacity(0.1);
 }

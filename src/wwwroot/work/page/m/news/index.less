@@ -1,0 +1,198 @@
+@import (less) "../public/style/wuc/mheader.less";
+@import (less) "../../../components/star/index.less";
+@import (less) "../../../components/comment/mcomment1.less";
+@import (reference) "../../../public/style/common/mpublicDefind.less";
+@import (reference) "../../../public/style/common/Animation.less";
+
+body {
+  margin-top      : @size_1 * 48;
+  background-color: @color_grey_bg1;
+}
+
+.header {
+  background-color: #FFF;
+
+  #mhearder {
+    color     : @color_main_c1;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
+    position  : fixed;
+    top       : 0;
+    left      : 0;
+    right     : 0;
+    z-index   : 11;
+  }
+}
+
+.news_box {
+  background-color: #FFF;
+  padding         : @size_1 * 12 @space_2;
+  margin-bottom   : @size_1 * 12;
+
+  .news_title {
+    color        : @color_main_c1;
+    font-weight  : @font_weight;
+    font-size    : @font_size_20;
+    line-height  : @size_1 * 24;
+    margin-bottom: @size_1 * 12;
+  }
+
+  .user_box {
+    @size        : @size_1 * 40;
+    margin-bottom: @space_2;
+
+    img {
+      display     : block;
+      float       : left;
+      width       : @size;
+      height      : @size;
+      margin-right: @space_1;
+      .border-radius(50%);
+    }
+
+    section {
+      float: left;
+
+      p {
+        color        : @color_main_c1;
+        font-size    : @font_size_14;
+        line-height  : @size_1 * 18;
+        margin-bottom: @size_1 * 4;
+        .ellipsis();
+      }
+
+      span {
+        display    : block;
+        color      : @color_gray_c2;
+        font-size  : @font_size_12;
+        line-height: @size_1 * 16;
+        .ellipsis();
+      }
+    }
+  }
+
+
+  .content {
+    margin-bottom: @space_2;
+    color        : @color_main_c1;
+    font-size    : @font_size_18;
+    line-height  : @line_height;
+
+    p {
+      margin-bottom: @space_2;
+      color        : @color_main_c1;
+      font-size    : @font_size_18;
+      line-height  : @line_height;
+    }
+  }
+
+
+}
+
+.relatedproducts {
+  padding         : @space_2;
+  background-color: #FFF;
+  margin-bottom   : @size_1 * 12;
+
+  h2 {
+    color        : @color_main_c1;
+    font-weight  : @font_weight;
+    font-size    : @font_size_16;
+    margin-bottom: @space_2;
+  }
+
+  .box {
+    .content {
+      @height      : @size_1 * 80;
+      @leftwidth   : @size_1 * 120;
+      position     : relative;
+      margin-bottom: @size_1 * 12;
+      height       : @height;
+
+      &>img {
+        height  : @height;
+        width   : @leftwidth;
+        position: absolute;
+        top     : 0;
+        left    : 0;
+      }
+
+      .info {
+        padding-left: @leftwidth + (@size_1 * 12);
+        .ellipsis();
+
+        p {
+          @height    : @size_1 * 30;
+          line-height: @height;
+          color      : @color_main_c1;
+          font-size  : @font_size_16;
+          .ellipsis();
+
+          img {
+            height      : @height;
+            width       : @size_1 * 45;
+            float       : left;
+            margin-right: @size_1 * 12;
+          }
+
+          span {
+
+            line-height: @height;
+          }
+        }
+      }
+    }
+
+    .btn {
+      @height: @size_1 * 40;
+      .flex();
+
+      a {
+        .flexGrow(1);
+        display    : block;
+        float      : left;
+        height     : @height;
+        line-height: @height;
+        font-size  : @font_size_14;
+        border     : 1px solid @color_gray_c3;
+        text-align : center;
+        .box-sizing();
+        .border-radius(@size_1 * 2);
+
+      }
+
+      .business {
+        margin-right: @size_1 * 12;
+      }
+
+      .enquiry {
+        color           : #FFF;
+        background-color: #F98215;
+        border-color    : #F98215;
+      }
+
+    }
+
+
+  }
+
+
+}
+
+
+.questions {
+  padding         : @space_2;
+  background-color: #FFF;
+
+  h2 {
+    color        : @color_main_c1;
+    font-weight  : @font_weight;
+    font-size    : @font_size_16;
+    margin-bottom: @space_2;
+  }
+
+  .questions_box {
+    padding-top: @space_3;
+    .mcommon1();
+  }
+}

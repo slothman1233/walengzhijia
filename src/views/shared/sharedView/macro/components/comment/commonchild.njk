@@ -1,4 +1,3 @@
-
 {% macro commonchild(args = [
   {
     commentUserName: "fff",
@@ -102,7 +101,7 @@
           </span>
           {# {% endif %} #}
           <div class="reply_r clearfix">
-            <a href="javascript:void(0);" data-id="{{item.replyId | ternary(item.replyId,item.commentId)}}">举报</a>
+            {# <a href="javascript:void(0);" data-id="{{item.replyId | ternary(item.replyId,item.commentId)}}">举报</a> #}
             <p class="praiseCount"  data-replyId="{{item.replyId}}" data-id="{{item.replyId | ternary(item.replyId,item.commentId)}}">
               <i class="iconfont_wlzj">&#xE018;</i>
               <span>{{item.praiseCount}}</span>
@@ -111,9 +110,20 @@
 
         </div>
 
+
         <div class="sub clearfix" style="display:none;">
-          <div class="input"><input type="text" value="" placeholder="写下你的回答"></div>
-          <a href="javascript:void(0);" data-commentId="{{item.commentId}}"  data-id="{{item.replyId}}"  data-parentid="{{item.commentUser}}">提交回答</a>
+          {% if item.type == 'mobile' %}
+            <div class="input">
+              <textarea class="response" placeholder="写下你的评论..."></textarea>
+            </div>
+            <a href="javascript:void(0);" data-commentId="{{item.commentId}}"  data-id="{{item.replyId}}"  data-parentid="{{item.commentUser}}">提交回答</a>
+
+          {% else %}
+            <div class="input"><input type="text" class="response" value="" placeholder="写下你的评论..."></div>
+            <a href="javascript:void(0);" data-commentId="{{item.commentId}}"  data-id="{{item.replyId}}"  data-parentid="{{item.commentUser}}">提交回答</a>
+
+          {% endif %}
+
         </div>
         <div class="child_box" style="display:none;">
           <div class="child_content">

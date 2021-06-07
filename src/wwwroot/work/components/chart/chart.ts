@@ -109,7 +109,7 @@ export function ChartstoKV(dom: HTMLElement, data: any, object: any = {}) {
     let indicator: any[] = []
 
     data.name.forEach((name: string, i: number) => {
-        indicator.push({ text: `${name}\n${data.value[i]}` })
+        indicator.push({ text: `${name}\n${data.value[i]}`, max: 5 })
     })
 
 
@@ -131,8 +131,7 @@ export function ChartstoKV(dom: HTMLElement, data: any, object: any = {}) {
                 textStyle: {
                     color: 'rgba(42, 43, 46, 1)',
                     fontSize: 10,
-                    textShadowBlur: 100,
-                    align: 'center'
+                    textShadowBlur: 100
                 }
             },
             nameGap: 9,

@@ -26,6 +26,10 @@ let company_list_box = document.getElementById('company_list_box');
     })
     mui('.introductorywrapper').scroll()  
     mui('.consultingSaleswrapper').scroll()  
+
+    mui(company_list_box).on('tap', 'a', function () {
+        document.location.href = this.href /*本文主要就是这句代码！*/
+    })
 })();
 
 // 产品、口碑、新闻切换

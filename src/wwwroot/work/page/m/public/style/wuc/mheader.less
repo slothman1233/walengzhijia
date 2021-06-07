@@ -55,3 +55,57 @@
 
 
 }
+
+
+#smheader {
+  @height    : @size_1 * 48;
+  padding    : 0 @space_2;
+  height     : @height;
+  line-height: @height;
+  position   : relative;
+  color      : #FFF;
+
+  i {
+    height      : @height;
+    line-height : @height;
+    display     : block;
+    font-size   : @font_size_24;
+    float       : left;
+    margin-right: @space_2;
+    width       : @size_1*24;
+  }
+
+  .left {
+
+    float      : left;
+    line-height: @height;
+
+    i:last-child {
+      margin: 0;
+    }
+  }
+
+  .center {
+    line-height: @height;
+    position   : absolute;
+    left       : @size_1*56;
+    right      : @size_1*56;
+    text-align : center;
+    font-size  : @space_2;
+    font-weight: @font_weight;
+    .ellipsis();
+  }
+
+  .right {
+    float      : right;
+    line-height: @height;
+
+    i {
+      float : right;
+      margin: 0;
+    }
+
+  }
+
+
+}

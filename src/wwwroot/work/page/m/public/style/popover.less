@@ -1,0 +1,77 @@
+@import (reference) "../../../../public/style/common/mpublicdefind.less";
+@import (reference) "../../../../public/style/common/Animation.less";
+
+
+
+.popoverbtm {
+  padding         : @space_3 @space_2;
+  background-color: #FFFFFF !important;
+  .border-radius(@size_1*12 @size_1*12 0 0);
+  height: 70vh;
+
+  .popoverheader {
+    position      : relative;
+    color         : @color_main_c1;
+    border-bottom : 1px solid @color_grey_line1;
+    padding-bottom: @space_2;
+    margin-bottom : @space_2;
+
+    p {
+      font-weight: @font_weight;
+      font-size  : @font_size_18;
+      text-align : center;
+      color      : @color_main_c1;
+      padding    : 0 @size_1 * 20;
+    }
+
+    i {
+      position : absolute;
+      right    : 0;
+      top      : -@size_1 * 3;
+      font-size: @font_size_18;
+    }
+  }
+
+  .mui-scroll-wrapper {
+    position: absolute;
+    left    : 0;
+    right   : 0;
+    bottom  : @space_3;
+    top     : @size_1 * 84;
+    width   : auto;
+    margin  : 0;
+    .border-radius(0);
+
+    .mui-scroll {
+      left : @space_2;
+      right: @space_2;
+      width: auto;
+      .box-sizing();
+    }
+  }
+}
+
+.mui-popover {
+  background-color: #FFF !important;
+  position        : fixed;
+
+  //右往左侧划出
+  &.mui-popover-right {
+    width            : 70%;
+    height           : 100%;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform        : translate3d(100%, 0, 0);
+
+
+    &.mui-active {
+      -webkit-transform: translate3d(30vw, 0, 0);
+      transform        : translate3d(30vw, 0, 0);
+    }
+
+
+  }
+
+  #smheader {
+    color: @color_main_c1;
+  }
+}

@@ -13,9 +13,9 @@ import { isString } from '../../../../common/utils/type_check'
  * 3 小
  */
 export enum popupType {
-  b = 1,
-  c = 2,
-  s = 3
+    b = 1,
+    c = 2,
+    s = 3
 }
 /**
   * 内容显示类型
@@ -24,9 +24,9 @@ export enum popupType {
   * 3 警告
   */
 export enum contentType {
-  success = 1,
-  error = 2,
-  warning = 3
+    success = 1,
+    error = 2,
+    warning = 3
 }
 
 /**
@@ -39,13 +39,13 @@ export enum contentType {
  * @param {number} timeout 多少秒后自动关闭 默认3秒
  */
 type bpopupModel = {
-  title?: string,
-  str?: string,
-  contentType?: contentType,
-  type?: popupType
-  closeCallback?: Function,
-  successCallback?: Function
-  timeout?: number
+    title?: string,
+    str?: string,
+    contentType?: contentType,
+    type?: popupType
+    closeCallback?: Function,
+    successCallback?: Function
+    timeout?: number
 }
 
 (function (window) {
@@ -287,11 +287,13 @@ type bpopupModel = {
             successCallback && successCallback()
             div && div.remove()
         }, timeout || 3000)
-    
-        div.onclick = function () {
-            div && div.remove()
-            clearTimeout(st)
-        }
+
+        setTimeout(() => {
+            div.onclick = function () {
+                div && div.remove()
+                clearTimeout(st)
+            }
+        }, 200)
     }
 
     function spopup({
@@ -359,11 +361,13 @@ type bpopupModel = {
             successCallback && successCallback()
             div && div.remove()
         }, timeout || 3000)
-  
-        div.onclick = function () {
-            div && div.remove()
-            clearTimeout(st)
-        }
+
+        setTimeout(() => {
+            div.onclick = function () {
+                div && div.remove()
+                clearTimeout(st)
+            }
+        }, 200)
 
     }
 

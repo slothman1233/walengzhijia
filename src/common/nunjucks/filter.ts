@@ -63,6 +63,7 @@ export default {
     },
     //口碑购买价格显示的方法
     'getPurchasePrice': function (str: string, type: priceShowStatusEnums) {
+        console.log(type, str)
         switch (type) {
             case priceShowStatusEnums.showAll:
                 return str

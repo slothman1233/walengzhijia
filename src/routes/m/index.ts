@@ -1,16 +1,18 @@
 
 
-import { Context } from 'koa'
+import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
 import { get_unix_time_stamp, ge_time_format } from '../../common/utils/util'
 import { GetAdvertising } from '../../controller/Advertising.controller'
 import { GetNewsList } from '../../controller/news.controller'
-import { GetCompanyBrand, GetHotCompanyIndexPageProduct, GetProductIndustryByIndustry } from '../../controller/product.controller'
+import { GetCompanyHot, GetCompanyInfoById, GetSalersByCompanyId } from '../../controller/company.controller'
+import { GetCompanyBrand, GetCompanyProduct, GetHotCompanyIndexPageProduct, GetProductIndustryByIndustry } from '../../controller/product.controller'
 import { adTypeEnums, HotCompanyDefineItems, NewsContentTypeArray, NewsType, ProductSortType, ProductSortTypeEnums } from '../../enums/enums'
 import { ResAdvertisingModel } from '../../model/Advertising'
 import { ResIndustryTypeModel } from '../../model/industry/resIndustryType'
 import { ResNewsModel } from '../../model/news/resNews'
-
+import { getCookie } from '../../common/utils/cookies'
+import { userlogin } from '../login'
 export default class Index {
     @get('/index')
     async index(ctx: Context) {
@@ -128,6 +130,68 @@ export default class Index {
                 adslideData,
                 adtoptowData
             }
+        })
+
+    }
+
+
+    /**
+    * @param {number} companyId 品牌商ID
+    * @param {number} companyId 销售ID
+    */
+    @get('/enquiry/:companyId?/:salesid?')
+    async enquiry(ctx: Context, next: Next) {
+        let { companyId, salesid } = ctx.params
+        //公司信息
+        let companydata = await GetCompanyInfoById({ companyId })
+        //----------------------------------------------
+        //销售信息
+        let salers = await GetSalersByCompanyId({ companyId })
+        let phoneNumber = ''
+        let userinfostr = await getCookie(ctx, userlogin)
+
+        if (userinfostr !== 'undefined') {
+            phoneNumber = JSON.parse(userinfostr).phoneNumber
+        }
+        //----------------------------------------------
+        // 获取公司的产品集合
+
+        let CompanyProductInfo = await GetCompanyProduct({ companyId })
+        let productInfoObject: any[] = []
+        CompanyProductInfo.forEach(item => {
+            if (!productInfoObject[item.productTypeId]) { productInfoObject[item.productTypeId] = {} }
+            if (!productInfoObject[item.productTypeId]['productName']) { productInfoObject[item.productTypeId]['productName'] = [] }
+            if (!productInfoObject[item.productTypeId].product) { productInfoObject[item.productTypeId].product = [] }
+            productInfoObject[item.productTypeId].product.push({
+                productName: item.productName,
+                productid: item.productId,
+                score: item.statisticsModel?.score || 0
+            })
+
+            productInfoObject[item.productTypeId].productTypeName = item.productTypeName
+            productInfoObject[item.productTypeId].productTypeId = item.productTypeId
+        })
+
+
+        //----------------------------------------------
+
+
+
+        await ctx.render('m/enquiry', {
+            companyId,
+            companydata,
+            salesid,
+            salers,
+            productInfoObject,
+            phoneNumber
+        })
+    }
+
+
+
+    @get('/index1')
+    async index1(ctx: Context) {
+        await ctx.render('m/index copy', {
         })
 
     }

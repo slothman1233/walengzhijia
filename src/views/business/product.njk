@@ -129,19 +129,20 @@ navigationbar2 %}
           </div>
           <div class="content">
             <div class="information">
-              <h1>产品参数</h1>
-              <div class="table">
+              {% if (CompanyProductInfo.productArgs != null) and (CompanyProductInfo.productArgs.length > 0) %}
+                <h1>产品参数</h1>
+                <div class="table">
 
-                {% if (CompanyProductInfo.productArgs != null) and (CompanyProductInfo.productArgs.length > 0) %}
                   {% for item in CompanyProductInfo.productArgs %}
                     <p>
                       <span>{{item.productKey}}</span>
                       <span>{{item.productValue}}</span>
                     </p>
                   {% endfor %}
-                {% endif %}
 
-              </div>
+                </div>
+
+              {% endif %}
 
               <h1>产品概要</h1>
               <div class="html">
@@ -277,11 +278,11 @@ navigationbar2 %}
 
             </div>
           {% else %}
-              <div class="nosalers">
-                    <h2>对此产品感兴趣?</h2>
-                    <p>若您对此产品有兴趣，欢迎联系我们，将由专业的销售人员和您进一步沟通。</p>
-                    <a href="/enquiry/{{companyId}}/0" target="_blank">立即咨询</a>
-              </div>
+            <div class="nosalers">
+              <h2>对此产品感兴趣?</h2>
+              <p>若您对此产品有兴趣，欢迎联系我们，将由专业的销售人员和您进一步沟通。</p>
+              <a href="/enquiry/{{companyId}}/0" target="_blank">立即咨询</a>
+            </div>
           {% endif %}
         </div>
 

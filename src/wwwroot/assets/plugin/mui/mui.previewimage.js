@@ -207,6 +207,7 @@
 			var itemData = this.currentGroup[index];
 			if (!itemData.sWidth) {
 				var imgEl = itemEl.querySelector('img');
+
 				this._initImgData(itemData, imgEl);
 			}
 		}

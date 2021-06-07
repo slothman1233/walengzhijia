@@ -53,7 +53,7 @@ export const GetNewsByCompanyId = async (companyId: number = 0, newsType: number
  * @param {number} newsType 新闻类型，0是热门 当为0的时候默认按照时间排序返回最新的10条新闻记录
  * @param {number} timetick 默认传0，有值的时候会根据当前时间戳往后自动获取10条新闻记录信息
  */
-export const GetNewsByProductId = async (productId: number = 0, newsType: number = 0, timetick: number = 0, isReputation?: boolean): Promise<bodyModel<ResNewsModel[]>> => await http.get<any>(`/api/news/GetNewsByProductId`, { params: { productId, timetick, newsType, isReputation } })
+export const GetNewsByProductId = async (productId: number = 0, newsType: number = 0, timetick: number = 0, isReputation?: boolean): Promise<bodyModel<ResNewsModel[]>> => await http.get<any>(`/api/news/GetCompanyProductById`, { params: { productId, timetick, newsType, isReputation } })
 
 /**
  * 通过新闻ID获取具体新闻信息

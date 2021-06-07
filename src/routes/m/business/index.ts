@@ -4,7 +4,7 @@ import { get } from '../../../common/decorator/httpMethod'
 import { get_unix_time_stamp, ge_time_format } from '../../../common/utils/util'
 import { GetCompanyInfoById, GetSalersByCompanyId } from '../../../controller/company.controller'
 import { GetNewsByCompanyId, GetNewsByProductId } from '../../../controller/news.controller'
-import { GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType } from '../../../controller/product.controller'
+import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType } from '../../../controller/product.controller'
 import { GetReputationByCompanyFilter, GetReputationByProductId, GetReputationStatisticsByProduct } from '../../../controller/Reputation.controller'
 import { NewsContentTypeArray, NewsType, publishNews, ReputationTypeArray, ReputationTypeEnum } from '../../../enums/enums'
 import { ResNewsModel } from '../../../model/news/resNews'
@@ -22,10 +22,14 @@ export default class Business {
 
         //公司信息
         let companyinfo = await GetCompanyInfoById({ companyId })
+        //----------------------------------------------
+        //销售信息
+        let salers = await GetSalersByCompanyId({ companyId })
+        //----------------------------------------------
 
         //根据公司ID获得所有产品分类
         let product = await GetCompanyProductType({ companyId })
-
+        //----------------------------------------------
         let productinfo: any[] = [{
             class: '',
             title: '全部',
@@ -128,7 +132,8 @@ export default class Business {
             productinfo,
             GetCompanyProduct,
             reputationtype,
-            ReputationData
+            ReputationData,
+            salers
         })
 
     }
@@ -147,10 +152,40 @@ export default class Business {
         //----------------------------------------------
 
         //获取产品信息
-        let CompanyProductInfo = await GetCompanyProductById({
-            productId
+        let CompanyProductInfo = await GetCompanyProduct({
+            companyId
         })
+        
+        let productInfoObject: any[] = []
+        CompanyProductInfo.forEach(item => {
+            if (!productInfoObject[item.productTypeId]) { productInfoObject[item.productTypeId] = {} }
+            if (!productInfoObject[item.productTypeId]['productName']) { productInfoObject[item.productTypeId]['productName'] = [] }
+            if (!productInfoObject[item.productTypeId].product) { productInfoObject[item.productTypeId].product = [] }
+            productInfoObject[item.productTypeId].product.push({
+                productName: item.productName,
+                productid: item.productId,
+                score: item.statisticsModel?.score || 0
+            })
+
+            productInfoObject[item.productTypeId].productTypeName = item.productTypeName
+            productInfoObject[item.productTypeId].productTypeId = item.productTypeId
+        })
+
         //----------------------------------------------
+        //
+        let CompanyProduct = await GetCompanyProductById({ productId })
+        let reshighKbChart: any = {
+            'name': [],
+            'value': []
+        }
+        if (CompanyProduct.statisticsModel) {
+            CompanyProduct.statisticsModel.reputationScore.forEach(item => {
+                reshighKbChart['name'].push(item.reputationTypeName)
+                reshighKbChart['value'].push(item.reputationScore)
+            })
+        }
+
+        //--------------------------------
 
         //品牌商资料
         let kbByProduct = await GetReputationStatisticsByProduct(productId)
@@ -168,60 +203,36 @@ export default class Business {
         //----------------------------------------------
         // (productId, 0, pageSize, parseInt(reputationType))
         //获取产品的口碑信息
-        let ReputationData = await GetReputationByProductId(productId, 0, 3, ReputationTypeEnum.All)
+        let ReputationData = await GetReputationByProductId(productId, 0, 10, ReputationTypeEnum.All)
 
-        let reputationTypeObject: any[] = []
+        let reputationtype: any[] = []
         ReputationTypeArray.forEach((value: string, index: number) => {
             let title = ''
-            let cls = 'high'
-            let link = '/m/reputation/' + companyId + '/' + productId
             switch (index) {
                 case ReputationTypeEnum.All:
                     title = `${value}（${ReputationData?.reputationCount || 0}）`
-                    cls = 'high'
-                    link = '/m/reputation/' + companyId + '/' + productId
                     break
                 case ReputationTypeEnum.good:
                     title = `${value}（${ReputationData?.goodReputationCount || 0}）`
-                    cls = 'high'
-                    link = '/m/reputation/' + companyId + '/' + productId + '/1'
                     break
                 case ReputationTypeEnum.middel:
                     title = `${value}（${ReputationData?.middleReputationCount || 0}）`
-                    cls = 'high'
-                    link = '/m/reputation/' + companyId + '/' + productId + '/2'
                     break
                 case ReputationTypeEnum.short:
                     title = `${value}（${ReputationData?.badReputationCount || 0}）`
-                    cls = ''
-                    link = '/m/reputation/' + companyId + '/' + productId + '/3'
                     break
                 default:
                     break
             }
 
-            reputationTypeObject.push({
-                class: cls,
+            reputationtype.push({
                 id: index,
-                title,
-                link
+                title
             })
 
         })
+
         //------------------------------------------------------------------------------------------------------------------
-        //新闻分类
-        let newTypes: any = {
-            isSelect: '1',
-            data: []
-        }
-        // 0 最新资讯 1 行业新闻 2 经验分享 3 优惠活动 4 展会相关 5 其他
-        publishNews.forEach((item) => {
-            newTypes.data.push({
-                id: item.id,
-                title: item.value,
-                class: ''
-            })
-        })
         //------------------------------------------------------------------------------------------------------------------
         //新闻第一个分类的列表
         let firstNews: ResNewsModel[] = await GetNewsByProductId(productId, <any>NewsType[0].id)
@@ -257,8 +268,13 @@ export default class Business {
             salers,
             ReputationData,
             CompanyProductInfo,
+            CompanyProduct,
             firstNewsList,
-            reputationTypeObject
+            reputationtype,
+            productInfoObject,
+            reshighKbChart: JSON.stringify(reshighKbChart),
+            reshighKbScore: CompanyProduct.statisticsModel?.score
+
         })
 
     }

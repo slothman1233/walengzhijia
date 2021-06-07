@@ -33,6 +33,7 @@ export interface ResCommentReplyModelListReturnModel extends bodyModel<ResCommen
  * @param {number} praiseCount 评论回复点赞数
  * @param {ResCommentReplyModel} at at的资料 渲染需要
  * @param {string} commentContent 渲染模板需要
+ * @param {string} type web 是web   mobile 是H5
  */
 export interface ResCommentReplyModel {
   replyId?: number
@@ -47,6 +48,7 @@ export interface ResCommentReplyModel {
   praiseCount?: number
   at?: ResCommentReplyModel
   commentContent?:string
+  type?:string
 }
 
 /**
@@ -78,6 +80,7 @@ export interface ResCommentModelListReturnModel extends bodyModel<ResCommentMode
  * @param {string} commentTime 评论时间
  * @param {ResCommentReplyModel[]} replys 评论回复
  * @param {number} praiseCount 评论点赞数
+ * @param {string} type web 是web   mobile 是H5
  */
 export interface ResCommentModel {
   targetId?: number
@@ -89,6 +92,6 @@ export interface ResCommentModel {
   commentContent: string
   commentTime?: string
   replys: ResCommentReplyModel[]
-  praiseCount?: number
-
+  praiseCount?: number,
+  type?:string
 }

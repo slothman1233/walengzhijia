@@ -1,6 +1,7 @@
 {% from "./commonchild.njk" import commonchild %}
 
 {% macro comment(args = {
+  type:'mobile',
   commentUserName: "fff",
   commentUser: "100007",
   commentUserIcon: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
@@ -85,13 +86,27 @@
 
   <div class="common1">
     <div class="submit clearfix">
-      <img _src_="{{args.commentUserIcon}}" title="{{args.commentUserName}}"/>
-      <a href="javascript:void(0);" data-commentId="{{item.commentId}}" data-id="{{args.commentUser}}">提交回答</a>
+      {% if args.type == 'mobile' %}
+
+      {% else  %}
+        <img _src_="{{args.commentUserIcon}}" title="{{args.commentUserName}}"/>
+      {% endif %}
+
+      <a data-commentId="{{item.commentId}}" data-id="{{args.commentUser}}">提交回答</a>
       <div class="input">
-        <input type="text" value="" placeholder="写下你的回答"/>
+        {% if args.type == 'mobile' %}
+          <textarea class="response"  placeholder="写下你的评论..."></textarea>
+        {% else  %}
+          <input type="text" class="response" value="" placeholder="写下你的评论..."/>
+        {% endif %}
+
       </div>
 
     </div>
+
+    {% if args.type == 'mobile' %}
+      <h2 class="allcommon">全部评论</h2>
+    {% endif %}
 
     <div class="list_box">
       {{commonchild(args.data)}}
@@ -105,4 +120,3 @@
   </div>
 
 {% endmacro %}
-

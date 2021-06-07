@@ -26,6 +26,7 @@ import { bodyModel } from '../resModel'
  * @param {NewsContentTypeEnums} newsContentType 文章内容类型
  * @param {boolean} isTop 是否置顶
  * @param {number} topWeight 置顶权重
+ * @param {ResReputationStatisticsModel} statisticsModel 口碑统计信息
  */
 export interface ResNewsModel {
   newsId?: number
@@ -48,6 +49,7 @@ export interface ResNewsModel {
   newsContentType: NewsContentTypeEnums
   isTop?: boolean
   topWeight?: number
+  statisticsModel:ResReputationStatisticsModel
 
 }
 

@@ -82,24 +82,24 @@
 
   <div class="reputationlist">
     {% for item in args %}
-      <div class="child" data-id="{{item.newsId}}" data-timetick="{{item.createTime | get_time_timestamp}}">
-        <div class="userinfo">
+      <a class="child" href="/m/news/reputation/{{item.newsId}}" data-id="{{item.newsId}}" data-timetick="{{item.createTime | get_time_timestamp}}">
+        <section class="userinfo">
           <img src="{{item.userIcon}}"/>
           <p>{{item.userName}}</p>
-        </div>
+        </section>
 
-        <div class="score clearfix">
+        <section class="score clearfix">
           <span>{{item.statisticsModel.score}}</span>
           {{star(item.statisticsModel.score)}}
-        </div>
+        </section>
 
-        <div class="productname">
+        <section class="productname">
             产品：{{item.productName}}
-        </div>
+        </section>
 
-        <a class="title">{{item.title}}</a>
+        <section class="title">{{item.title}}</section>
 
-        <div class="user">
+        <section class="user">
           <p>
             <span>购买价格</span>
             <i>{{item.purchasePrice}}万</i>
@@ -112,20 +112,20 @@
             <span>投入使用</span>
             <i>{{item.useTime| get_time_timestamp | ge_time_format(2)}}</i>
           </p>
-        </div>
+        </section>
 
-        <div class="content">
+        <section class="content">
           <p>{{item.summary | delHtmlTag}}</p>
 
-          <div class="atlas clearfix">
+          <section class="atlas clearfix">
 
             {% for imgurl in (item.summary | onlyimg(3)) %}
               <img _src_="{{imgurl}}" data-viewer="{{imgurl}}"/>
             {% endfor %}
-          </div>
-        </div>
+          </section>
+        </section>
 
-      </div>
+      </a>
     {% endfor %}
   </div>
 
@@ -133,26 +133,26 @@
 
 {% macro saleslist(args = [
   {
-    id: 1,
-    header: "/assets/images/loading.png",
-    name: '李女士',
-    quarters: '海外销售经理',
-    functions: '负责对外商务洽谈业务',
-    experience: 10
+    salerId: 1,
+    salerIcon: "/assets/images/loading.png",
+    salerName: '李女士',
+    salerPosition: '海外销售经理',
+    salerFunction: '负责对外商务洽谈业务',
+    salerWorkYears: 10
   }, {
-    id: 1,
-    header: "/assets/images/loading.png",
-    name: '李女士',
-    quarters: '海外销售经理',
-    functions: '负责对外商务洽谈业务',
-    experience: 10
+    salerId: 1,
+    salerIcon: "/assets/images/loading.png",
+    salerName: '李女士',
+    salerPosition: '海外销售经理',
+    salerFunction: '负责对外商务洽谈业务',
+    salerWorkYears: 10
   }, {
-    id: 1,
-    header: "/assets/images/loading.png",
-    name: '李女士',
-    quarters: '海外销售经理',
-    functions: '负责对外商务洽谈业务',
-    experience: 10
+    salerId: 1,
+    salerIcon: "/assets/images/loading.png",
+    salerName: '李女士',
+    salerPosition: '海外销售经理',
+    salerFunction: '负责对外商务洽谈业务',
+    salerWorkYears: 10
   }
 ]) %}
   <div class="saleslist">
@@ -160,18 +160,19 @@
       <div class="child">
         <div class="info">
           <div class="header">
-            <img src='{{item.header}}'/>
+            <img src='{{item.salerIcon}}'/>
           </div>
           <div class="r">
             <section class="clearfix">
-              <p>{{item.name}}</p>
-              <span>{{item.quarters}}</span>
+              <p>{{item.salerName}}</p>
+              <span>{{item.salerPosition}}</span>
             </section>
-            <p>{{item.functions}}</p>
-            <p>行业经验:{{item.experience}}年</p>
+            <p>{{item.salerFunction}}</p>
+            <p>行业经验:{{item.salerWorkYears}}年</p>
           </div>
         </div>
-        <a href="/m/enquiry/20/{{item.id}}">向TA咨询</a>
+        {# href="/m/business/product/1/53" #}
+        <a href="/m/enquiry/{{item.companyId}}/{{item.salerId}}" onclick="document.location.href=this.href;" target="_self">向TA咨询</a>
 
       </div>
     {% endfor %}

@@ -15,3 +15,18 @@
   </header>
 
 {% endmacro %}
+
+{% macro smheader(args = {
+  title: "广东万联"
+}) %}
+
+  <header id="smheader">
+    <section class="left">
+      <i class="iconfont_wlzj">&#xE01D;</i>
+    </section>
+    <section class="right"></section>
+    <section class="center">{{args.title}}</section>
+
+  </header>
+
+{% endmacro %}
