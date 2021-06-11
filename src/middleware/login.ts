@@ -18,3 +18,13 @@ export async function user_login_middleware(ctx: Context, next: Next) {
     }
 
 }
+
+export async function m_user_login_middleware(ctx: Context, next: Next) {
+    let userinfo = await getCookie(ctx, userlogin)
+    if (!userinfo || userinfo === 'undefined') {
+        ctx.redirect('/m/login')
+    } else {
+        await next()
+    }
+
+}

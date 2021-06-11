@@ -531,3 +531,15 @@ export enum searchqueryType {
   all = 1,
   company = 2
 }
+
+/**
+ * 通知类型
+ * 0 全部通知
+ * 1 系统通知
+ * 2 互动通知
+ */
+export enum NotificationTypeDefine {
+  default = 0,
+  System = 1,
+  Interactive = 2
+}

@@ -13,11 +13,14 @@ import { ResIndustryTypeModel } from '../../model/industry/resIndustryType'
 import { ResNewsModel } from '../../model/news/resNews'
 import { getCookie } from '../../common/utils/cookies'
 import { userlogin } from '../login'
+import Login from './login'
+import { userLoginModel } from '../../model/common'
+
+let lg = new Login()
 export default class Index {
     @get('/index')
     async index(ctx: Context) {
-
-
+        let cookieuserinfo: userLoginModel = JSON.parse(await getCookie(ctx, userlogin))
         //------------------------------------------------------------------------------------------------------------------
         //广告
         let adtoptowData: ResAdvertisingModel[] = await GetAdvertising({
@@ -119,6 +122,7 @@ export default class Index {
         }
         //----------------------------------------------------------------
         await ctx.render('m/index', {
+            cookieuserinfo,
             hotData: hotData[0]?.companyInfo || [],
             newTypes,
             firstNewsList,
@@ -172,10 +176,16 @@ export default class Index {
             productInfoObject[item.productTypeId].productTypeId = item.productTypeId
         })
 
-
         //----------------------------------------------
 
-
+        let firstproduct = {
+            id: -1,
+            value: ''
+        }
+        try {
+            firstproduct.id = CompanyProductInfo[0].productId
+            firstproduct.value = CompanyProductInfo[0].productName
+        } catch (e) { }
 
         await ctx.render('m/enquiry', {
             companyId,
@@ -183,16 +193,15 @@ export default class Index {
             salesid,
             salers,
             productInfoObject,
+            firstproduct,
             phoneNumber
         })
     }
 
-
-
-    @get('/index1')
-    async index1(ctx: Context) {
-        await ctx.render('m/index copy', {
-        })
+    @get('/login')
+    async login(ctx: Context) {
+        await lg.index(ctx)
 
     }
+
 }

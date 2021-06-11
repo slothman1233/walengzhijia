@@ -1,0 +1,87 @@
+{% extends "../../shared/layout/mdefaultLayou.njk" %}
+{% from "../../shared/sharedView/macro/wuc/mheader.njk" import mheader,
+smheader %}
+
+{% block title %}
+54123123213333
+{% endblock title %}
+
+{% block keywords %}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block style %}
+<link href="/assets/plugin/mui/mui.picker.min.css" rel="stylesheet">
+  <link href="/dist/styles/m/user/information.css" rel="stylesheet">
+{% endblock style %}
+
+{% block script %}
+  <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
+  <script src="/assets/plugin/mui/mui.picker.js"></script>
+  <script type="text/javascript" src="/dist/scripts/m/user/information.js"></script>
+{% endblock script %}
+
+{% block body %}
+  <div class="header">
+    {{mheader({title:"个人信息"})}}
+  </div>
+  <div class="systeminfo">
+    <a class="username" href="#username">
+      <span>用户名</span>
+      <i class="iconfont_wlzj r">&#xE010;</i>
+      <p>{{cookieuserinfo.name}}</p>
+    </a>
+    <a class="headerfile">
+      <input type="file" class="uploadfileinput" multiple="multiple" accept="image/*">
+      <span>头像</span>
+      <i class="iconfont_wlzj r">&#xE010;</i>
+      <p><img _src_="{{cookieuserinfo.userIcon}}"/></p>
+    </a>
+    <a class="sex">
+      <span>性别</span>
+      <i class="iconfont_wlzj r">&#xE010;</i>
+      <p>{{cookieuserinfo.sex | user_sex }}</p>
+    </a>
+    <a class="industry" href='#industry'>
+      <span>所在行业</span>
+      <i class="iconfont_wlzj r">&#xE010;</i>
+      <p>{{cookieuserinfo.industry}}</p>
+    </a>
+    <a class="area">
+      <span>所在地区</span>
+      <i class="iconfont_wlzj r">&#xE010;</i>
+      <p>{{cookieuserinfo.areaCodeValue}}</p>
+    </a>
+  </div>
+
+  <div id="username" class="box mui-popover mui-popover-action mui-popover-right">
+
+    <div class="mui-scroll-wrapper usernamewrapper">
+      <div class="mui-scroll">
+        {{smheader({title:'修改昵称'})}}
+
+        <div class="content">
+          <textarea>{{cookieuserinfo.name}}</textarea>
+          <p>2-20个字符以内</p>
+          <a>保存</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="industry" class="box mui-popover mui-popover-action mui-popover-right">
+
+    <div class="mui-scroll-wrapper industrywrapper">
+      <div class="mui-scroll">
+        {{smheader({title:'修改所在行业'})}}
+
+        <div class="content">
+          <textarea>{{cookieuserinfo.industry}}</textarea>
+          {# <p>2-20个字符以内</p> #}
+          <a>保存</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock body %}

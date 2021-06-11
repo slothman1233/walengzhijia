@@ -52,7 +52,7 @@ saleslist %}
                 {% for product in item.product %}
                   <a class="{{(product.productid == productId) | ternary('select','')}}" href="/m/business/product/{{companyId}}/{{product.productid}}" target="_self">
                     <p>{{product.productName}}</p>
-                    <span>产品口碑分：<i>{{product.score}}</i>
+                    <span>产品口碑分：<i class="{{(product.score == 0) | ternary('noscore','')}}">{{(product.score == 0) | ternary('暂无评分',product.score)}}</i>
                     </span>
                   </a>
                 {% endfor %}

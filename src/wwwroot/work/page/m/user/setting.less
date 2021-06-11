@@ -1,0 +1,101 @@
+@import (less) "../public/style/wuc/mheader.less";
+@import (reference) "../../../public/style/common/mpublicDefind.less";
+@import (reference) "../../../public/style/common/Animation.less";
+
+body {
+  background-color: @color_grey_bg1;
+}
+
+.header {
+  margin-bottom   : @size_1 * 12;
+  background-color: #FFF;
+
+  #mhearder {
+    color: @color_main_c1;
+  }
+}
+
+.settinglist {
+  .settinginfo {
+    background-color: #FFF;
+    padding         : 0 @space_2;
+    @height         : @size_1 * 64;
+    margin-bottom   : @size_1 * 12;
+
+    a {
+      display     : block;
+      height      : @height;
+      padding-left: @space_1;
+      line-height : @height;
+
+      i {
+        display    : block;
+        font-size  : @font_size_20;
+        color      : @color_gray_c3;
+        float      : right;
+        margin-left: @size_1 * 12;
+
+        &.size16 {
+          font-size  : @font_size_16;
+          font-weight: none;
+        }
+
+        &.l {
+          font-size: @font_size_24;
+          color    : @color_main_c1;
+          float    : left;
+          margin   : 0 @size_1 * 12 0 0;
+        }
+      }
+
+
+
+      p {
+        font-size: @font_size_16;
+        color    : @color_main_c1;
+        .ellipsis();
+      }
+    }
+  }
+}
+
+#agreement,
+#privacy {
+  width: 100%;
+
+  &.mui-active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform        : translate3d(0, 0, 0);
+  }
+
+  .mui-scroll-wrapper {
+    margin: 0;
+  }
+
+  .content {
+    margin: @space_2;
+  }
+
+  b,
+  p,
+  h2 {
+    display    : block;
+    font-size  : @font_size_14;
+    line-height: @line_height;
+    text-align : justify;
+    color      : @color_main_c1;
+  }
+
+  b,
+  .marginB {
+    margin-bottom: @space_2;
+    font-weight  : @font_weight;
+  }
+
+  h2 {
+    margin-top : @space_2;
+    font-weight: @font_weight;
+  }
+
+
+}

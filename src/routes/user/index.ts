@@ -6,9 +6,10 @@ import { GetAreaInfosByCode } from '../../controller/AreaInfo.controller'
 import { GetCompanySalerById, GetSalersByCompanyId } from '../../controller/company.controller'
 import { GetNewsPagesByCompanyId } from '../../controller/ManageLepackNews.controller'
 import { GetReuputationPagedByUser } from '../../controller/ManageLepackReputaion.controller'
+import { GetNoticeByUid } from '../../controller/ManageLepackNotice.controller'
 import { GetNewsByCompanyId, GetNewsById } from '../../controller/news.controller'
 import { GetCompanyProduct, GetCompanyProductById, GetCompanyProductByTypeId, GetCompanyProductType, GetProductIndustryByIndustry } from '../../controller/product.controller'
-import { NewsContentTypeArray, productImgTypeEnums, publishNews, publishNewsTypeEnums, publishNewsTypeEnumsAry } from '../../enums/enums'
+import { NewsContentTypeArray, NotificationTypeDefine, productImgTypeEnums, publishNews, publishNewsTypeEnums, publishNewsTypeEnumsAry } from '../../enums/enums'
 import { user_login_middleware } from '../../middleware/login'
 import { userLoginModel } from '../../model/common'
 import { ResNewsDetailModel } from '../../model/news/resNews'
@@ -22,9 +23,55 @@ export default class User {
     @get('/index/:notificationType?/:pageIndex?')
     async index(ctx: Context, next: Next) {
         let { notificationType, pageIndex } = ctx.params
+        let pageSize = 10
+        let cookie = await getCookie(ctx, userlogin)
+        let userId = 0
+        let cookieJson = JSON.parse(cookie)
+        if (cookie !== 'undefined') {
+            userId = cookieJson.userId
+        }
+
+
+        //获取系统通知
+        let systemData = await GetNoticeByUid({
+            userId,
+            pageIndex: 1,
+            pageSize,
+            notification: NotificationTypeDefine.System
+        })
+
+        //----------------------------------------------
+        //获取不动通知
+        let interactiveData = await GetNoticeByUid({
+            userId,
+            pageIndex: 1,
+            pageSize,
+            notification: NotificationTypeDefine.Interactive
+        })
+
+        //----------------------------------------------
+
+
+
+        if (interactiveData && interactiveData?.items && interactiveData?.items.length > 0) {
+
+            interactiveData.items.forEach(item => {
+                let json:any = {}
+                try {
+                    json = JSON.parse(item.extensionJson)
+                } catch (e) { }
+                item.extensionJson = json
+            })
+        }
+
         await ctx.render('user/index', {
             notificationType: notificationType || 1,
-            pageIndex: pageIndex || 1
+            pageIndex: pageIndex || 1,
+            pageSize,
+            systemData: systemData?.items || [],
+            interactiveData: interactiveData?.items || [],
+            systemtotalPages: systemData?.totalPages || 0,
+            interactiveotalPages: interactiveData?.totalPages || 0,
         })
     }
 

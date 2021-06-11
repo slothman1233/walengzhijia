@@ -26,12 +26,23 @@ let paths = {
         getSrc('./login/login.ts'),
 
         //移动端
+        getSrc('./m/public/script/index.ts'),
         getSrc('./m/index/index.ts'),
         getSrc('./m/business/index.ts'),
         getSrc('./m/business/product.ts'),
         getSrc('./m/news/index.ts'),
         getSrc('./m/news/reputation.ts'),
-        getSrc('./m/index/enquiry.ts')
+        getSrc('./m/index/enquiry.ts'),
+        getSrc('./m/login/index.ts'),
+        getSrc('./m/user/information.ts'),
+        getSrc('./m/user/content.ts'),
+        getSrc('./m/user/interactionnotification.ts'),
+        getSrc('./m/user/systemnotification.ts'),
+        getSrc('./m/user/setting.ts'),
+        getSrc('./m/user/updatepwd.ts')
+
+
+
 
     ]
 }

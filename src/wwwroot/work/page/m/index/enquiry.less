@@ -177,6 +177,155 @@ body {
   }
 }
 
+.salesman {
+  margin-top: @space_4;
+
+  .title {
+    height     : 60px;
+    line-height: 60px;
+
+    p {
+      float       : left;
+      color       : @color_main_c1;
+      font-size   : @font_size_16;
+      margin-right: @size_1 * 4;
+    }
+
+    span {
+      display  : block;
+      float    : left;
+      color    : @color_gray_c2;
+      font-size: @font_size_12;
+    }
+  }
+
+
+  .personnelselection {
+    @height   : @size_1 * 94;
+    overflow  : hidden;
+    margin-top: @space_3;
+
+    .itembox {
+      overflow     : hidden;
+      height       : @height;
+      margin-bottom: @space_2;
+      position     : relative;
+      border       : 1px solid @color_grey_line1;
+
+      .radio {
+        height  : 100%;
+        width   : 100%;
+        position: absolute;
+        left    : 0;
+        top     : 0;
+        z-index : 11;
+        .opacity(0);
+
+        &[checked='true']+.checkbox label::after {
+          position  : absolute;
+          content   : "";
+          width     : @size_1 * 10;
+          height    : @size_1 * 10;
+          top       : @size_1 * 1.8;
+          left      : @size_1 * 1.8;
+          background: @color_rank;
+          .border-radius(50%);
+        }
+      }
+
+      .checkbox {
+        float      : right;
+        width      : @size_1 * 50;
+        height     : @height;
+        line-height: @height;
+        text-align : center;
+        position   : relative;
+
+
+
+        label {
+          position: absolute;
+          display : block;
+          width   : @size_1 * 16;
+          height  : @size_1 * 16;
+          border  : 1px solid @color_gray_5;
+          top     : @size_1 * 39;
+          left    : @size_1 * 16;
+          .border-radius(50%);
+        }
+      }
+
+      .child {
+        position        : absolute;
+        left            : 0;
+        top             : 0;
+        right           : @size_1 * 50;
+        height          : @height;
+        overflow        : hidden;
+        padding         : @space_2 @size_1*12;
+        background-color: #FFF;
+        .border-radius(2px);
+        .box-sizing();
+
+        .in {
+          overflow: hidden;
+
+          .hread {
+            float       : left;
+            height      : @size_1 * 56;
+            width       : @size_1 * 56;
+            margin-right: 12px;
+            .border-radius(50%);
+          }
+
+          .r {
+            position: absolute;
+            left    : @size_1 * (56 + 12 + 12);
+            top     : @space_2;
+            overflow: hidden;
+
+            &>div {
+              @height      : @size_1 * 20;
+              margin-bottom: @size_1 * 4;
+              line-height  : @height;
+              .ellipsis();
+
+              p {
+                float       : left;
+                line-height : @height;
+                font-weight : @font_weight;
+                color       : @color_main_c1;
+                font-size   : @font_size_16;
+                margin-right: @space_1;
+              }
+
+              span {
+                display    : block;
+                float      : left;
+                background : linear-gradient(80.99deg, #E9D6B1 6.03%, #D8A84C 82.56%);
+                color      : #865301;
+                font-size  : @font_size_12;
+                line-height: @height;
+                padding    : 0 @size_1 * 4;
+              }
+            }
+
+            &>p {
+              margin-bottom: @size_1 * 4;
+              color        : @color_gray_c1;
+              font-size    : @font_size_12;
+              line-height  : @size_1 * 16;
+              .ellipsis();
+            }
+
+          }
+        }
+
+      }
+    }
+  }
+
+}
 
 #modal {
   .mui-scroll {
@@ -214,6 +363,9 @@ body {
             i {
               color: #F98215;
 
+              &.noscore {
+                color: @color_gray_c3;
+              }
             }
           }
         }

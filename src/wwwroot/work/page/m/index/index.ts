@@ -15,8 +15,6 @@ declare const mui: any
 declare const listpageSize: any
 declare const $: JQueryStatic
 // mui.previewImage()
-
-
 //图片轮播
 new swiper('#index .swiper-container', {
     watchSlidesProgress: true,
@@ -44,6 +42,19 @@ new swiper('#index .swiper-container', {
         }
     }
 });
+
+
+(function () {
+    //用户id
+    let userId = window.getuserid()
+    $('.usercenter').on('tap', function () {
+        if (userId === 0) {
+            window.loginshow()
+            return false
+        }
+    })
+
+})();
 
 //热门新闻
 (function () {

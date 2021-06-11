@@ -2,17 +2,17 @@ import { NodeListToArray } from '@stl/tool-ts/src/common/obj/NodeListToArray'
 import { subCodeEnums, ValidateCodeDefine } from '../../../../../enums/enums'
 import { CompanyProductAdvisoryModel } from '../../../../../model/company/Company'
 import { sendCode, ValidateCode } from '../../../common/service/login.services'
-import { selectOption1 } from '../../../components/select'
 import { on } from '@stl/tool-ts/src/common/event'
 import { AddCompanyProductAdvisory } from '../../../common/service/company.services'
-import config from '../../../common/config/env'
-import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
 import window from '../../../common/win/windows'
+import type { JQueryStatic } from '../../../../assets/plugin/jquery/jquery'
 declare const companyId: any
+declare const mui: any
+declare const $: JQueryStatic
 //手机号码正则
 let phoneReg = /^1\d{10}$/
 let enquiry_verification: any
-let main = document.getElementById('main')
+let main = document.querySelector('.container')
 
 
 
@@ -31,22 +31,49 @@ let PublishData: CompanyProductAdvisoryModel = {
     ContactCompany: '',
     ContactEmail: ''
 };
+
 //产品id
 (function () {
-    let option: HTMLElement = document.querySelector('.typeselect').querySelector('.option')
-    PublishData.productId = parseInt(option.querySelector('p').getAttribute('data-id'))
-    let typeselect: HTMLElement = document.querySelector('.typeselect')
-    selectOption1(typeselect, (id: number, e: Event, option: HTMLElement) => {
-        PublishData.productId = id
+    let prouductoption: HTMLElement = document.querySelector('.prouductoption')
+    PublishData.productId = parseInt(prouductoption.querySelector('.prouduct .prouductselect').getAttribute('data-id'))
+
+    on({
+        agent: '#modal',
+        events: 'tap',
+        ele: 'a',
+        fn: function (dom: HTMLElement) {
+            let id = dom.getAttribute('data-id')
+            let value = dom.querySelector('p').innerHTML
+
+            prouductoption.querySelector('.prouductselect').setAttribute('data-id', id)
+            prouductoption.querySelector('.prouductselect span').innerHTML = value
+
+            $(dom).siblings().removeClass('select')
+            $(dom).addClass('select')
+            mui('#modal').popover('toggle')
+            PublishData.productId = parseInt(id)
+        }
     })
+
+
+    on({
+        agent: '#modal #smheader',
+        events: 'tap',
+        ele: '.left',
+        fn: function (dom: HTMLElement) {
+
+            mui('#modal').popover('toggle')
+        }
+    })
+
+
 })();
 
 //获取验证码
 (function () {
-    let container: HTMLElement = main.querySelector('.container')
-    let from: HTMLElement = container.querySelector('.form')
-    let phone: HTMLInputElement = from.querySelector('.phone').querySelector('input')
-    let verification: HTMLElement = from.querySelector('.verification')
+    let info: HTMLElement = main.querySelector('.info')
+    let phone: HTMLInputElement = info.querySelector('.phone').querySelector('input')
+    let verification: HTMLElement = info.querySelector('.verification')
     let sub: HTMLElement = verification.querySelector('a')
     let countdown: HTMLElement = verification.querySelector('.countdown')
 
@@ -97,7 +124,7 @@ let PublishData: CompanyProductAdvisoryModel = {
 
     on({
         agent: personnelselection,
-        events: 'click',
+        events: 'tap',
         ele: 'input',
         fn: function (dom: HTMLInputElement, e: Event) {
             e.preventDefault()
@@ -132,12 +159,12 @@ let PublishData: CompanyProductAdvisoryModel = {
 
 //提交
 (function () {
-    let form: HTMLElement = document.querySelector('.form')
-    let submit: HTMLElement = form.querySelector('.submit')
-    let popup_succee: HTMLElement = document.querySelector('.popup_succee')
-    popup_succee.querySelector('span').onclick = function () {
-        popup_succee.style.display = 'none'
-    }
+    let info: HTMLElement = document.querySelector('.info')
+    let submit: HTMLElement = info.querySelector('.submit')
+    // let popup_succee: HTMLElement = document.querySelector('.popup_succee')
+    // popup_succee.querySelector('span').onclick = function () {
+    //     popup_succee.style.display = 'none'
+    // }
 
     submit.onclick = function () {
         publish()
@@ -146,14 +173,13 @@ let PublishData: CompanyProductAdvisoryModel = {
 })()
 
 async function publish() {
-    let popup_succee: HTMLElement = document.querySelector('.popup_succee')
-    let container: HTMLElement = main.querySelector('.container')
-    let from: HTMLElement = container.querySelector('.form')
-    let company: HTMLInputElement = from.querySelector('.company').querySelector('input')
-    let email: HTMLInputElement = from.querySelector('.email').querySelector('input')
-    let phone: HTMLInputElement = from.querySelector('.phone').querySelector('input')
-    let verification: HTMLInputElement = from.querySelector('.verification input')
-    let describe: HTMLTextAreaElement = from.querySelector('.describe textarea')
+    // let popup_succee: HTMLElement = document.querySelector('.popup_succee')
+    let info: HTMLElement = main.querySelector('.info')
+    let company: HTMLInputElement = info.querySelector('.company').querySelector('input')
+    let email: HTMLInputElement = info.querySelector('.email').querySelector('input')
+    let phone: HTMLInputElement = info.querySelector('.phone').querySelector('input')
+    let verification: HTMLInputElement = info.querySelector('.verification input')
+    let describe: HTMLTextAreaElement = info.querySelector('.describe textarea')
     let salesman = main.querySelector('.salesman')
     let personnelselection
     if (salesman) {
@@ -218,13 +244,14 @@ async function publish() {
     // console.log(PublishData)
     let dataJson = await AddCompanyProductAdvisory(PublishData)
 
-    if (data.code === 0 && data.subCode === subCodeEnums.success) {
-        popup_succee.style.display = 'block'
+    if (dataJson.code === 0 && dataJson.subCode === subCodeEnums.success) {
+        // popup_succee.style.display = 'block'
+        alert('提交成功')
         setTimeout(() => {
             document.location.href = document.location.href
         }, 4000)
     } else {
-        alert(data.message)
+        alert(dataJson.message)
     }
 
 

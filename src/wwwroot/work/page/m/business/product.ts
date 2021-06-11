@@ -22,7 +22,16 @@ let product_list_box: HTMLElement = document.querySelector('#product_list_box');
     ChartstoKV(document.getElementById(`ecahr0`), reshighKbChart)
 })();
 (function () {
+    on({
+        agent: '#modal #smheader',
+        events: 'tap',
+        ele: '.left',
+        fn: function (dom: HTMLElement) {
 
+            mui('#modal').popover('toggle')
+        }
+    })
+    
     imgPreview({
         parentEle: document.querySelector('.productVideo'),
         key: 'video',

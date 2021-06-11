@@ -1,0 +1,297 @@
+@import (less) "../public/style/wuc/mheader.less";
+@import (reference) "../../../public/style/common/mpublicDefind.less";
+@import (reference) "../../../public/style/common/Animation.less";
+
+
+body{
+  margin:@size_1*12 @size_1*16 @size_1*5 0;
+}
+
+.header {
+  #mhearder {
+    color: @color_main_c1;
+  }
+}
+
+
+#login_container {
+  @width       : 100%;
+  @titleheight : @size_1 * 124;
+
+
+  .login_box {
+    width           : @width;
+    background-color: #FFF;
+
+  }
+
+  .login_content {
+    @content_height: @size_1 * 20;
+    padding        : @space_5 @space_2 0 @space_2;
+
+    &>div {
+      margin-bottom: @space_1;
+      padding      : @size_1 * 10 0 @size_1 * 10 @space_1;
+      position     : relative;
+      border-bottom: 0.5px solid @color_grey_bg1;
+      overflow     : hidden;
+
+      p {
+        font-size: @font_size_16;
+        color    : @color_main_c1;
+        width    : @size_1 * 64;
+        float    : left;
+      }
+    }
+
+    input[type=text],
+    input[type=password] {
+      font-size  : @font_size_16;
+      display    : block;
+      height     : @content_height;
+      line-height: @content_height;
+      position   : absolute;
+      left       : @size_1 * (8+64);
+      right      : 0;
+      top        : @size_1 * 10;
+      border     : none;
+      padding    : 0;
+      margin     : 0;
+      width      : @size_1 * (375 - 32 - 64 - 8);
+      .box-sizing();
+    }
+
+    .phone,
+    .pwd,
+    .username {
+      width: 100%;
+
+      input {
+        // width: 100%;
+      }
+    }
+
+    .verification {
+      input {
+        float: left;
+        width: @size_1 * (375 - 32 - 64 - 8 - 110);
+      }
+
+      a {
+        position   : absolute;
+        top        : @size_1 * 3;
+        right      : 0;
+        width      : @size_1 * 95;
+        text-align : center;
+        font-size  : @font_size_14;
+        display    : block;
+        float      : right;
+        color      : @color_gray_c2;
+        border     : 1px solid @color_gray_c2;
+        height     : @size_1 * 34;
+        line-height: @size_1 * 34;
+        .border-radius(4px);
+        .box-sizing();
+      }
+
+      span {
+        position        : absolute;
+        top             : @size_1 * 3;
+        right           : 0;
+        display         : none;
+        width           : @size_1 * 95;
+        font-size       : @font_size_14;
+        float           : right;
+        color           : @color_gray_c1;
+        border          : 1px solid @color_gray_c2;
+        background-color: @color_gray_c2;
+        height          : @size_1 * 34;
+        line-height     : @size_1 * 34;
+        text-align      : center;
+        .border-radius(4px);
+        .box-sizing();
+      }
+    }
+
+
+
+    .login_login {
+      height     : @size_1 * 48;
+      line-height: @size_1 * 48;
+      text-align : center;
+      padding    : 0;
+
+      a {
+        display         : block;
+        width           : 100%;
+        height          : @size_1 * 48;
+        line-height     : @size_1 * 48;
+        color           : #FFF;
+        font-size       : @font_size_16;
+        background-color: #F98215;
+        .border-radius(4px);
+      }
+    }
+
+    &>.login_footer {
+      @height    : @size_1 * 16;
+      margin     : @space_3 0 @size_1*12 0;
+      padding    : 0;
+      height     : @height;
+      line-height: @height;
+      border     : none;
+      overflow   : hidden;
+
+      section {
+        input[type=checkbox] {
+          position        : relative;
+          width           : @height;
+          height          : @height;
+          float           : left;
+          margin-right    : @size_1 * 4;
+          border-color    : @color_gray_c1;
+          background-color: #FFF;
+        }
+
+        input[type=checkbox]:after {
+          content    : "";
+          width      : @height;
+          height     : @height;
+          line-height: @height;
+          background : #fff;
+          border     : 1px solid #ddd;
+          position   : absolute;
+          left       : 0;
+          top        : 0;
+          .border-radius(@size_1 * 2);
+          .box-sizing();
+        }
+
+        input[type=checkbox]:checked:after {
+          content         : "✓";
+          font-size       : @font_size_10;
+          font-weight     : bold;
+          color           : #fff;
+          background-color: #f98215;
+          border-color    : #f98215;
+          text-align      : center;
+        }
+      }
+
+
+      span {
+        display  : block;
+        float    : left;
+        font-size: @font_size_12;
+        color    : @color_gray_c3;
+      }
+
+      a {
+        color: @color_link;
+      }
+    }
+  }
+
+  .error {
+    margin     : @space_1 0 0 0 !important;
+    padding    : 0 !important;
+    line-height: @size_1 * 34;
+    border     : none !important;
+
+    span {
+      float      : left;
+      line-height: @size_1 * 34;
+      height     : @size_1 * 34;
+      visibility : hidden;
+      font-size  : @font_size_14;
+      color      : @Status-Danger;
+      padding    : 0 @space_1;
+    }
+  }
+
+
+
+  .login_more {
+    border     : none !important;
+    line-height: @line_height;
+    padding    : 0 !important;
+
+    a {
+      font-size  : @font_size_14;
+      color      : @color_gray_c2;
+      font-weight: @font_weight;
+    }
+  }
+
+  .login_title {
+    text-align : left;
+    line-height: @line_height;
+    padding    : @space_6 @space_2 0 @space_2;
+
+    .box-sizing();
+
+    // p {
+    //   color    : @color_main_c1;
+    //   font-size: 30px;
+    // }
+
+    span {
+      color      : @color_main_c1;
+      font-size  : @font_size_24;
+      font-weight: @font_weight;
+    }
+
+    // .close {
+    //   position : absolute;
+    //   right    : 0;
+    //   top      : 0;
+    //   cursor   : pointer;
+    //   padding  : @space_1 @space_2;
+    //   color    : @color_gray_c1;
+    //   font-size: @font_size_16;
+    // }
+  }
+
+
+}
+
+#agreement,
+#privacy {
+  width: 100%;
+
+  &.mui-active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform        : translate3d(0, 0, 0);
+  }
+
+  .mui-scroll-wrapper {
+    margin: 0;
+  }
+
+  .content {
+    margin: @space_2;
+  }
+
+  b,
+  p,
+  h2 {
+    display    : block;
+    font-size  : @font_size_14;
+    line-height: @line_height;
+    text-align : justify;
+    color      : @color_main_c1;
+  }
+
+  b,
+  .marginB {
+    margin-bottom: @space_2;
+    font-weight  : @font_weight;
+  }
+
+  h2 {
+    margin-top : @space_2;
+    font-weight: @font_weight;
+  }
+
+
+}

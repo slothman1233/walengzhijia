@@ -1,0 +1,132 @@
+@import (less) "../public/style/wuc/mheader.less";
+@import (reference) "../../../public/style/common/mpublicDefind.less";
+@import (reference) "../../../public/style/common/Animation.less";
+
+body {
+  background-color: @color_grey_bg1;
+}
+
+.header {
+  margin-bottom   : @size_1 * 12;
+  background-color: #FFF;
+
+  #mhearder {
+    color: @color_main_c1;
+  }
+}
+
+.systeminfo {
+  padding         : 0 @space_2;
+  background-color: #FFF;
+  @height         : @size_1 * 64;
+
+  a {
+    display     : block;
+    height      : @height;
+    padding-left: @space_1;
+    line-height : @height;
+    
+    i {
+      display    : block;
+      font-size  : @font_size_20;
+      color      : @color_gray_c3;
+      float      : right;
+      margin-left: @size_1 * 12;
+    }
+
+    span {
+      display     : block;
+      float       : left;
+      width       : @size_1 * 70;
+      margin-right: @size_1 * 12;
+      color       : @color_main_c1;
+    }
+
+
+    p {
+      font-size : @font_size_16;
+      color     : @color_gray_c2;
+      text-align: right;
+      .ellipsis();
+    }
+  }
+
+  .headerfile {
+    position: relative;
+
+    img {
+      height: @size_1 * 44;
+      width : @size_1 * 44;
+      .border-radius(50%);
+      margin: @size_1* 10 0;
+    }
+
+    input {
+      position: absolute;
+      left    : 0;
+      right   : 0;
+      top     : 0;
+      bottom  : 0;
+      z-index : 1;
+      .opacity(0);
+    }
+  }
+}
+
+
+
+
+#username,#industry {
+  width           : 100%;
+  background-color: @color_grey_bg1  !important;
+
+  &.mui-active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform        : translate3d(0, 0, 0);
+  }
+
+  .mui-scroll-wrapper {
+    margin: 0;
+  }
+
+  #smheader {
+    background-color: #FFF;
+    margin-bottom   : @size_1 * 12;
+  }
+
+  .content {
+
+
+    textarea {
+      background-color: #FFF;
+      padding         : @space_2 @space_3;
+      font-size       : @font_size_16;
+      color           : @color_main_c1;
+      margin-bottom   : @space_1;
+    }
+
+    p {
+      font-size    : @font_size_14;
+      color        : @color_gray_c3;
+      padding      : 0 @space_3;
+      margin-bottom: @space_4;
+    }
+
+    a {
+      display         : block;
+      margin          : 0 @space_2;
+      background-color: #F98215;
+      font-size       : @font_size_16;
+      font-weight     : @font_weight;
+      height          : @size_1 * 48;
+      line-height     : @size_1 * 48;
+      color           : #FFF;
+      font-size       : @font_size_16;
+      text-align      : center;
+      .border-radius(@size_1 * 4);
+    }
+
+  }
+
+
+}

@@ -18,14 +18,15 @@
   <script type="text/javascript">
     var notificationType = {{notificationType}} || 1
     var pageIndex = {{pageIndex}} || 1
+    var pageSize = {{pageSize}}
+    var systemtotalPages = {{systemtotalPages}}
+    var interactiveotalPages = {{interactiveotalPages}}
   </script>
   <script type="text/javascript" src="/dist/scripts/user/index.js"></script>
 {% endblock script %}
 
 {% block body %}
 
-  {# <div id="main">12321321</div>
- <input type="file" id="file"  multiple="multiple"/> #}
 
   <div id="usermain">
     {{ usernavigationbar({
@@ -48,99 +49,57 @@
     <div class="box">
 
       <div class="systematic" style='display:{{(notificationType == 1) | ternary("block","none") }}' >
-        {% set systematicData = [
-          {
-            createTime: "02-26 12:03",
-            title: "系统通知",
-            content: "系统通知内容，最多显示两行。亲爱注册用户，你好，欢迎你成为头条创作者，为了帮助你更好地进行创作，我们诚邀你加入创作者计划。加入后你可以申请广告收益、原创、商品卡等多项作者权益，提升你的变现、涨粉能力。详情可查看链接"
-          }, {
-            createTime: "02-26 12:03",
-            title: "系统通知",
-            content: "系统通知内容，最多显示两行。亲爱注册用户，你好，欢迎你成为头条创作者，为了帮助你更好地进行创作，我们诚邀你加入创作者计划。加入后你可以申请广告收益、原创、商品卡等多项作者权益，提升你的变现、涨粉能力。详情可查看链接"
-          }, {
-            createTime: "02-26 12:03",
-            title: "系统通知",
-            content: "系统通知内容，最多显示两行。亲爱注册用户，你好，欢迎你成为头条创作者，为了帮助你更好地进行创作，我们诚邀你加入创作者计划。加入后你可以申请广告收益、原创、商品卡等多项作者权益，提升你的变现、涨粉能力。详情可查看链接"
-          }
-        ] %}
-
         <div class="systematic_box">
-          {% if systematicData != null and systematicData.length >= 0 %}
-            {% for item in systematicData %}
-              <div class="child">
-                <h3>{{item.title}}
-                  <span>{{item.createTime}}</span></h3>
-                <p>{{item.content}}</p>
-              </div>
+          {% if systemData != null and systemData.length >= 0 %}
+            {% for item in systemData %}
+              <a class="child" href="{{item.notificationLink}}" target="_blank">
+                <h3>{{item.notificationTitle}}
+                  <span>{{item.noticeTime | get_time_timestamp | ge_time_format(2)}}</span></h3>
+                <p>{{item.notificationContent}}</p>
+              </a>
             {% endfor %}
-
           {% else %}
-
+            <div class="nocontent">
+              <img _src_="/assets/images/loading.png"/>
+              <p>暂无相关内容</p>
+            </div>
           {% endif %}
         </div>
-
-         <div id="systematic_kkpage"></div>
+        {% if systemData != null and systemData.length >= 0 %}
+          <div id="systematic_kkpage"></div>
+        {% endif %}
       </div>
 
       <div class="interaction"  style='display:{{(notificationType == 2) | ternary("block","none") }}'>
-        {% set interactionData = [
-          {
-            hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-            name: "用户A",
-            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            createTime: "2020-08-01 12:21"
-          }, {
-            hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-            name: "用户A",
-            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            createTime: "2020-08-01 12:21"
-          }, {
-            hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-            name: "用户A",
-            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            createTime: "2020-08-01 12:21"
-          }, {
-            hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-            name: "用户A",
-            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            createTime: "2020-08-01 12:21"
-          }, {
-            hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-            name: "用户A",
-            answerContent: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            content: "这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这里显示回答内容，最多两行。这...",
-            createTime: "2020-08-01 12:21"
-          }
-        ] %}
-
         <div class="interaction_box">
-          {% if interactionData != null and interactionData.length > 0 %}
-            {% for item in interactionData %}
-              <div class="child">
+          {% if interactiveData != null and interactiveData.length > 0 %}
+            {% for item in interactiveData %}
+              <a class="child" href="{{item.notificationLink}}" target="_blank">
                 <div class="title">
-                  <img _src_="{{item.hread}}"/>
-                  <p>{{item.name}}</p>
+                  <img _src_="{{item.notificationSendUserIcon}}"/>
+                  <p>{{item.notificationSendUserName}}</p>
                   <b>回答了你的提问</b>
-                  <i>{{item.answerContent}}</i>
+                  <i>{{item.extensionJson.CommentTargetContent}}</i>
                 </div>
-                <p>{{item.content}}</p>
+                <p>{{item.extensionJson.CommentContent}}</p>
                 <div class="time">
-                  {{item.createTime}}
+                  {{item.noticeTime | get_time_timestamp | ge_time_format(2)}}
                 </div>
-              </div>
+              </a>
             {% endfor %}
 
           {% else  %}
-
+            <div class="nocontent">
+              <img _src_="/assets/images/loading.png"/>
+              <p>暂无相关内容</p>
+            </div>
           {% endif %}
         </div>
+        {% if interactiveData != null and interactiveData.length > 0 %}
           <div id="interaction_kkpage"></div>
+        {% endif %}
       </div>
 
-    </div> 
- </div> 
-    {% endblock body %}
+    </div>
+  </div>
+{% endblock body %}

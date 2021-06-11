@@ -30,8 +30,8 @@ smheader %}
       <img _src_="{{companydata.logo}}"/>
       <div class="prouduct">
         <h3>{{companydata.fullName}}</h3>
-        <a href='#modal' data-id="{{productInfoObject[0].product[0].productid}}">
-          <span>{{productInfoObject[0].product[0].productName}}</span>
+        <a href='#modal' class="prouductselect" data-id="{{firstproduct.id}}">
+          <span>{{firstproduct.value}}</span>
           <i class="iconfont_wlzj">&#xE00C;</i>
         </a>
       </div>
@@ -70,6 +70,42 @@ smheader %}
         <div class="submit">立即咨询</div>
       </div>
     </div>
+    {% if (salers != null) and (salers.length > 0) %}
+      <div class="salesman">
+        <div class="title">
+          <p>销售人员</p>
+          <span>最多选择2位销售人员</span>
+        </div>
+
+        <div class="personnelselection">
+
+          {% for item in salers %}
+            <div class="itembox">
+              <input type="checkbox"  data-id='{{item.salerId}}' class="radio" {{(item.salerId == salesid) | ternary('checked=true','')}} name="radio" id="radio_{{item.salerId}}"/>
+              <div class="checkbox">
+                <label for="radio_{{item.salerId}}"></label>
+              </div>
+              <div class="child">
+                <div class="in">
+                  <img class="hread" _src_="{{item.salerIcon}}"/>
+                  <div class="r">
+                    <div>
+                      <p>{{item.salerName}}</p>
+                      <span>{{item.salerPosition}}</span>
+                    </div>
+                    <p>{{item.salerFunction}}</p>
+                    <p>行业经验：{{item.salerWorkYears}}年</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    {% endif %}
 
   </div>
 
@@ -85,9 +121,9 @@ smheader %}
               <div>
                 <h2>{{item.productTypeName}}</h2>
                 {% for product in item.product %}
-                  <a class="{{(product.productid == productId) | ternary('select','')}}" href="/m/business/product/{{companyId}}/{{product.productid}}" target="_self">
+                  <a class="{{(product.productid == firstproduct.id) | ternary('select','')}}" data-id="{{product.productid}}">
                     <p>{{product.productName}}</p>
-                    <span>产品口碑分：<i>{{product.score}}</i>
+                    <span>产品口碑分：<i class="{{(product.score == 0) | ternary('noscore','')}}">{{(product.score == 0) | ternary('暂无评分',product.score)}}</i>
                     </span>
                   </a>
                 {% endfor %}

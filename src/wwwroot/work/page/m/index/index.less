@@ -15,7 +15,7 @@
   .hreader {
     @height         : @size_1 * 52;
     margin          : 0 -@space_2 @space_2 -@space_2;
-    font-size       : @font_size_14;
+    font-size       : @font_size_16;
     background-color: @color_theme_c4;
     height          : @height;
     padding         : @space_1 @space_2;
@@ -308,7 +308,7 @@
   .hreader {
     @height         : @size_1 * 52;
     margin          : 0 -@space_2;
-    font-size       : @font_size_14;
+    font-size       : @font_size_16;
     background-color: @color_theme_c4;
     height          : @height;
     padding         : @space_1 @space_2;
@@ -411,4 +411,127 @@
 
   }
 
+}
+
+//我的
+#usercenter {
+  .hreader {
+    @height : @size_1 * 52;
+
+    font-size  : @font_size_16;
+    height     : @height;
+    padding    : @space_1 @space_2;
+    line-height: @height - @space_1 * 2;
+    position   : relative;
+
+    .tohome {
+      font-size  : @font_size_18;
+      font-weight: @font_weight;
+      float      : left;
+    }
+
+    .title {
+      position   : absolute;
+      color      : @color_gray_c1;
+      line-height: @height;
+      font-weight: @font_weight;
+      left       : @size_1 * 95;
+      top        : 0;
+      right      : @size_1 * 95;
+      text-align : center;
+
+      .ellipsis();
+
+    }
+
+    a {
+      float       : right;
+      padding-left: @space_2;
+
+      i {
+        font-size  : @font_size_18;
+        font-weight: @font_weight;
+      }
+    }
+
+
+  }
+
+  .userinfo {
+    background-color: @color_grey_bg1;
+    padding         : @space_2;
+
+    .userinfo_box {
+      display         : block;
+      @size           : @size_1 * (96-24-24);
+      background-color: #FFFFFF;
+      padding         : @space_3 @space_2;
+      .border-radius(@size_1 * 8);
+
+      img {
+        width : @size;
+        height: @size;
+        .border-radius(50%);
+        float       : left;
+        margin-right: @size_1 * 14;
+      }
+
+      i {
+        display    : block;
+        float      : right;
+        width      : @size_1 * 24;
+        color      : @color_gray_c3;
+        line-height: @size;
+        font-size  : @font_size_18;
+        margin-left: @size_1 * 14;
+      }
+
+      p {
+        height     : @size;
+        line-height: @size;
+        font-size  : @font_size_16;
+        color      : @color_main_c1;
+        font-weight: @font_weight;
+        .ellipsis();
+      }
+
+
+
+    }
+  }
+
+  .systeminfo {
+    padding: 0 @space_2;
+    @height: @size_1 * 64;
+
+    a {
+      display     : block;
+      height      : @height;
+      padding-left: @space_1;
+      line-height : @height;
+
+      i {
+        display    : block;
+        font-size  : @font_size_20;
+        color      : @color_gray_c3;
+        float      : right;
+        margin-left: @size_1 * 12;
+
+        &.l {
+          font-size: @font_size_24;
+          color    : @color_main_c1;
+          float    : left;
+          margin   : 0 @size_1 * 12 0 0;
+        }
+      }
+
+
+
+      p {
+        font-size: @font_size_16;
+        color    : @color_main_c1;
+        .ellipsis();
+      }
+    }
+  }
 }

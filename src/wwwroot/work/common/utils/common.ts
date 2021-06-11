@@ -4,7 +4,10 @@ export function delCookie(name: string) {
     let exp = new Date()
     exp.setTime(exp.getTime() - 1)
     let cval = getCookie(name)
-    if (cval !== null) { document.cookie = name + '=' + cval + ';expires=' + (<any>exp).toGMTString() + ';path=/' }
+    if (cval !== null) {
+        document.cookie = name + '=' +  encodeURIComponent(cval) + ';path=/;expires=' + (<any>exp).toGMTString() + ';max-age=0;'
+        // document.cookie = "uuid=;path=/;expires=" + new Date(0) + ";max-age=0;"
+    }
 }
 
 

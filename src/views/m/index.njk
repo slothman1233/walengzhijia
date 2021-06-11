@@ -38,9 +38,9 @@ list2 %}
 
       <span class="mui-tab-label">品牌商</span>
     </a>
-    <a class="mui-tab-item" href="#tabbar-with-contact">
+    <a class="mui-tab-item usercenter" href="#usercenter">
 
-      <span class="mui-tab-label">首页</span>
+      <span class="mui-tab-label">我的</span>
     </a>
 
   </nav>
@@ -163,7 +163,9 @@ list2 %}
     <div id="list" class="mui-control-content">
       <section class="hreader">
         <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-        <a><i class="iconfont_wlzj">&#xE010;</i></a>
+        <a>
+          <i class="iconfont_wlzj">&#xE010;</i>
+        </a>
         <div class="title">
           品牌商
         </div>
@@ -192,7 +194,6 @@ list2 %}
           </div>
         </div>
 
-        
       </section>
 
       <div class="list_box">
@@ -200,9 +201,54 @@ list2 %}
       </div>
 
     </div>
-    
-    <div id="tabbar-with-contact" class="mui-control-content">
-        3
+
+    <div id="usercenter" class="mui-control-content">
+      <section class="hreader">
+        <i class="iconfont_wlzj tohome">&#xE010;</i>
+        <a>
+          <i class="iconfont_wlzj">&#xE010;</i>
+        </a>
+        <div class="title">
+          我的
+        </div>
+
+      </section>
+      <section class="userinfo clearfix">
+        <a href="/m/user/information" class="userinfo_box">
+          <img _src_="{{cookieuserinfo.userIcon}}"/>
+          <i class="iconfont_wlzj">&#xE00C;</i>
+          <p>{{cookieuserinfo.name}}</p>
+
+        </a>
+      </section>
+      <section class="systeminfo">
+        <a href="/m/user/systemnotification">
+          <i class="iconfont_wlzj l">&#xE010;</i>
+          <i class="iconfont_wlzj r">&#xE010;</i>
+          <p>系统通知</p>
+        </a>
+        <a href="/m/user/interactionnotification">
+          <i class="iconfont_wlzj l">&#xE00F;</i>
+          <i class="iconfont_wlzj r">&#xE010;</i>
+          <p>互动通知</p>
+        </a>
+        <a href="/m/user/content">
+          <i class="iconfont_wlzj l">&#xE006;</i>
+          <i class="iconfont_wlzj r">&#xE010;</i>
+          <p>我发布的内容</p>
+        </a>
+        {# <a>
+          <i class="iconfont_wlzj l">&#xE008;</i>
+          <i class="iconfont_wlzj r">&#xE010;</i>
+          <p>意见反馈</p>
+        </a>
+        #}
+        <a href="/m/user/setting">
+          <i class="iconfont_wlzj l">&#xE01A;</i>
+          <i class="iconfont_wlzj r">&#xE010;</i>
+          <p>设置</p>
+        </a>
+      </section>
     </div>
 
   </div>

@@ -64,6 +64,3 @@ export default class News {
 
 
 }
-
-
-export const ss = function () { return 1 }

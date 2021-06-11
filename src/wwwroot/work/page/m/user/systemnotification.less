@@ -1,0 +1,46 @@
+@import (less) "../public/style/wuc/mheader.less";
+@import (reference) "../../../public/style/common/mpublicDefind.less";
+@import (reference) "../../../public/style/common/Animation.less";
+
+.header {
+  margin-bottom   : @size_1 * 12;
+  background-color: #FFF;
+
+  #mhearder {
+    color: @color_main_c1;
+  }
+}
+
+.systembox {
+  padding: 0 @space_2;
+
+  .list_box {
+    a {
+      display       : block;
+      margin-bottom : @space_2;
+      padding-bottom: @space_2;
+      border-bottom : 1px solid @color_grey_line1;
+
+      &:last-child {
+        border: none;
+      }
+
+      p {
+        color        : @color_main_c1;
+        font-size    : @font_size_16;
+        line-height  : @line_height;
+        margin-bottom: @space_2;
+
+        span {
+          color: @color_link;
+        }
+      }
+
+      section {
+        font-size: @font_size_14;
+        color    : @color_gray_c1;
+      }
+    }
+  }
+
+}

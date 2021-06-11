@@ -218,13 +218,13 @@ async function publish() {
     // console.log(PublishData)
     let dataJson = await AddCompanyProductAdvisory(PublishData)
 
-    if (data.code === 0 && data.subCode === subCodeEnums.success) {
+    if (dataJson.code === 0 && dataJson.subCode === subCodeEnums.success) {
         popup_succee.style.display = 'block'
         setTimeout(() => {
             document.location.href = document.location.href
         }, 4000)
     } else {
-        alert(data.message)
+        alert(dataJson.message)
     }
 
 

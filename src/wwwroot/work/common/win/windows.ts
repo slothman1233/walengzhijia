@@ -1,4 +1,17 @@
-﻿import { logintype } from '../../page/login/login'
+﻿// import { logintype } from '../../page/login/login'
+
+
+/**
+ * 显示登录界面默认展示的类型
+ * phonelogin  手机登录
+ * pwdlogin  手机密码登录
+ * register  注册
+ */
+export enum logintype {
+    phonelogin = 1,
+    pwdlogin = 2,
+    register = 3
+}
 
 type w = {
     /**

@@ -382,6 +382,9 @@ body {
             i {
               color: #F98215;
 
+              &.noscore {
+                color: @color_gray_c3;
+              }
             }
           }
         }
@@ -408,8 +411,8 @@ body {
         font-size: @font_size_12;
 
         span {
-          display: block;
-          float  : left;
+          display      : block;
+          float        : left;
           border-bottom: 1px solid @color_grey_line1;
           width        : @width - (@size_1 * 120);
           color        : @color_main_c1;

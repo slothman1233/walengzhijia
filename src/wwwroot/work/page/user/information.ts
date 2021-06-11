@@ -14,8 +14,6 @@ import { selectOption1 } from '../../components/select'
 import { LepackUserItemModel } from '../../../../model/user/User'
 import { UpdateUserByItem } from '../../common/service/ManageLepackUser'
 declare const $: JQueryStatic
-declare const type: any
-declare const userid: any
 
 let usercookie: userLoginModel = JSON.parse(window.getusercookie());
 

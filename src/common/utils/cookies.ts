@@ -65,8 +65,11 @@ export async function getCookie(ctx: Context, name: string) {
         if (cookiestr && cookiestr !== 'undefined') {
             let userinfo = await GetUserById({ userId: JSON.parse(cookiestr).userId })
             return JSON.stringify(userinfo)
+        } else {
+            return '{}'
         }
     }
+
 
 
     return cookiestr

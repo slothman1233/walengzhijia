@@ -1,0 +1,83 @@
+@import (reference) "../../../../public/style/common/mpublicdefind.less";
+@import (reference) "../../../../public/style/common/Animation.less";
+
+
+
+.mui-poppicker {
+  background-color: transparent !important;
+  border          : none !important;
+  box-shadow      : none !important;
+
+  .mui-poppicker-header {
+    @height   : @size_1 * 52;
+    height    : @height;
+    padding   : 0 @space_2;
+    background: #FFF;
+    overflow  : hidden;
+    .border-radius(@size_1*12 @size_1*12 0 0);
+
+    button {
+      background-color: transparent;
+      border          : none;
+      color           : #F98215;
+      font-size       : @size_1 * 14;
+      display         : block;
+      line-height     : @height;
+      padding         : 0;
+
+      &.mui-poppicker-btn-cancel {
+        float: left;
+      }
+
+      &.mui-poppicker-btn-ok {
+        float: right;
+      }
+    }
+
+    span {
+      display    : block;
+      margin     : 0 @size_1 * 50;
+      text-align : center;
+      height     : @height;
+      line-height: @height;
+      color      : @color_main_c1;
+      font-size  : @font_size_16;
+      font-weight: @font_weight;
+    }
+  }
+
+  .mui-poppicker-body {
+    background-color: #FFF;
+    border          : none;
+
+    .mui-picker {
+      background-color: #FFF;
+
+      @size: @size_1 * 36;
+
+      .mui-pciker-rule {
+        height     : @size;
+        line-height: @size;
+        margin     : -@size_1*18 0 0;
+        border     : none;
+      }
+
+      .mui-pciker-list {
+        height     : @size;
+        line-height: @size;
+        margin     : -@size_1*18 0 0;
+        font-size  : @font_size_16;
+        color      : @color_gray_c2;
+
+        li {
+          font-size: @font_size_16;
+
+          &.highlight {
+            color: @color_main_c1;
+          }
+        }
+
+      }
+    }
+  }
+}
