@@ -37,12 +37,15 @@
                         <img _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0"/>
                         <span></span>
                     </a>
+                    <div class="user">
+                        <a href="/user/index" target="_blank">消息</a>
+                    </div>
                 </div>
 
             </div>
 
             <div class="channels">
-                <a href="#">合作通道</a>
+                <a href="/home/advcooperation" target="_blank">合作通道</a>
             </div>
 
             <div class="search">
@@ -68,8 +71,8 @@
             var children = row_list.children
             if (href === '/') {
                 children[0].className = 'select'
-            }else if(href === '/list' || href.indexOf('/list/') >= 0){
-                  children[1].className = 'select'
+            } else if (href === '/list' || href.indexOf('/list/') >= 0) {
+                children[1].className = 'select'
             }
 
         })();

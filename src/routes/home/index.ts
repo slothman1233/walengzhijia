@@ -15,6 +15,19 @@ export default class home {
         await ctx.render('home/agreement', {})
 
     }
+  @get('/privacy')
+  async privacy(ctx: Context, next: Next) {
+
+      await ctx.render('home/privacy', {})
+
+  }
+
+  @get('/advcooperation')
+  async advcooperation(ctx: Context, next: Next) {
+
+      await ctx.render('home/advcooperation', {})
+
+  }
 
 }
 
