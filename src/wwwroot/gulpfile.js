@@ -256,7 +256,6 @@ gulp.task('devStart',
         //  'clean',
         gulp.parallel('build', 'less', 'publicless'),
     ), function(cb){
-        console.log(123123)
         cb&&cb()
     }
 )
