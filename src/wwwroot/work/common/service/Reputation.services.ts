@@ -20,11 +20,11 @@ export const GetReputationByCompany = async (companyId: number): Promise<ResRepu
 /**
  * 根据产品获得该产品下面对应的口碑信息的bodyModel模型返回
  * @param {number} productId 产品id
- * @param {number} timeTicks 10位时间戳
+ * @param {number} pageIndex 页码
  * @param {number} pageSize 分页数量
  * @param {ReputationTypeEnum} reputationType 口碑类型
  */
-export const GetReputationByProductId = async (productId: number, timeTicks: number, pageSize: number, reputationType: ReputationTypeEnum): Promise<ResReputationFilterModelReturnModel> => await http.get<ResReputationFilterModel>(`/api/Reputation/GetReputationByProductId`, { params: { productId, timeTicks, pageSize, reputationType } })
+export const GetReputationByProductId = async (productId: number, pageIndex: number, pageSize: number, reputationType: ReputationTypeEnum): Promise<ResReputationFilterModelReturnModel> => await http.get<ResReputationFilterModel>(`/api/Reputation/GetReputationByProductId`, { params: { productId, pageIndex, pageSize, reputationType } })
 
 
 /**

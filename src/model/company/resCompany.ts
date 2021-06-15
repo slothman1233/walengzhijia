@@ -29,6 +29,7 @@ import { bodyModel } from '../resModel'
  * @param {string} stockInfo 股票信息
  * @param {HotCompanyDefine} hotDefine 品牌商类型
  * @param {string} VideoIntroduce 视频介绍
+ * @param {string[]} companyLabels 公司标签
  * @param {number} Weight 公司权重，在排名的时候优先按照公司权重进行排序处理
  * @param {number} productCount 产品总量
  */
@@ -51,6 +52,7 @@ export interface ResCompanyInfoModel {
   stockInfo: string
   hotDefine: HotCompanyDefine
   VideoIntroduce: string
+  companyLabels:string[]
   Weight: number
   productCount:number
 }

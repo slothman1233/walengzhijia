@@ -40,6 +40,11 @@ function tostaticwwwroot() {
         .pipe(dest('dist/wwwroot/assets'))
 }
 
+function tostaticwwwrooticon() {
+    return src(['src/wwwroot/favicon.ico'])
+        .pipe(dest('dist/wwwroot'))
+}
+
 function tostaticwwwrootstatic() {
     return src([ 'src/wwwroot/dist/**/*'])
         .pipe(dest('dist/wwwroot/dist'))
@@ -80,7 +85,7 @@ function runNodemon(done) {
     })
 }
 
-const build = series(clean, toJs, tostaticfile, tostaticviews, topm2config, tostaticwwwroot, tostaticwwwrootstatic, tostaticcommonasets)
+const build = series(clean, toJs, tostaticfile, tostaticviews, topm2config, tostaticwwwroot, tostaticwwwrootstatic, tostaticcommonasets, tostaticwwwrooticon)
 task('build', build)
 task('default', runNodemon)
 exports.build = build

@@ -22,3 +22,21 @@ export interface NoticeModel {
 export interface NoticeSystemModel extends NoticeModel { }
 
 export interface NoticeActivityModel extends NoticeModel { }
+
+/**
+ * 通知只读设置处理
+ * @param {number} receiverUser 接收用户
+ * @param {NoticeReadDetailModel[]} noticeIds 批量设置已读的通知ID
+ */
+export interface NoticeReadModel {
+  receiverUser: number
+  noticeIds: NoticeReadDetailModel[]
+}
+
+/**
+ * 通知详细内容
+ */
+export interface NoticeReadDetailModel {
+  noticeType: number
+  noticeId: number
+}

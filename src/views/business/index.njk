@@ -74,6 +74,11 @@ kblist1 %}
         <div class="title">
           <p>{{companyinfo.abbrName}}</p>
           {% if companyinfo.hotDefine == 1 %}
+            <span class="quality">
+              <i><img _src_="/assets/images/qualityunion.png"/></i>
+              {{companyinfo.hotDefine | get_companyHotType}}
+            </span>
+          {% elif companyinfo.hotDefine == 2 %}
             <span>
               <i><img _src_="/assets/images/union.png"/></i>
               {{companyinfo.hotDefine | get_companyHotType}}
@@ -82,7 +87,10 @@ kblist1 %}
 
         </div>
         <div class="signboard">
-          <span>{{companyinfo.stockInfo}}</span>
+        {% for value in companyinfo.companyLabels %}
+           <span>{{value}}</span>
+        {% endfor %}
+         
         </div>
 
         <div class="brief">
@@ -103,14 +111,20 @@ kblist1 %}
 
       <div class="right">
         <p>企业产品口碑总分</p>
-        <div class="scort">
-          <span>{{companyinfo.reputationScore}}</span>
-          {{star(companyinfo.reputationScore)}}
-        </div>
-        <p class="kbs">
-          <span>{{companyinfo.totalReputationCount}}条口碑</span>
-          <span>{{companyinfo.highReputationCount}}条优质口碑</span>
-        </p>
+        {% if companyinfo.reputationScore > 0 %}
+          <div class="scort">
+            <span>{{companyinfo.reputationScore}}</span>
+            {{star(companyinfo.reputationScore)}}
+          </div>
+          <p class="kbs">
+            <span>{{companyinfo.totalReputationCount}}条口碑</span>
+            <span>{{companyinfo.highReputationCount}}条优质口碑</span>
+          </p>
+        {% else %}
+          <div class='noscore'>
+               暂无口碑分
+            </div>
+        {% endif %}
 
         <div class="btn clearfix">
           <a class="issue" href="/reputation/publish/{{companyId}}" target="_blank">发布口碑</a>
@@ -160,7 +174,7 @@ kblist1 %}
                       {{star(item.statisticsModel.score | ternary(item.statisticsModel.score,0))}}
                       <span>{{item.statisticsModel.reputationCount | ternary(item.statisticsModel.reputationCount,0)}}条口碑</span>
                     {% else %}
-                      <i>0</i>
+                      <i class="noscore">暂无口碑分</i>
                       {{star(0)}}
                       <span>0条口碑</span>
                     {% endif %}
@@ -185,12 +199,10 @@ kblist1 %}
 
     </div>
 
-    {% if reshighKb.length > 0 %}
-
-      <div class="row3">
-        <div class="row">
-          {{ navigationbar({
-                isMore: true,
+    <div class="row3">
+      <div class="row">
+        {{ navigationbar({
+                isMore:  reshighKb.length > 0,
                 id:"1",
                 link: "/reputation/"+companyId,
                 isSelect: "1",
@@ -203,86 +215,24 @@ kblist1 %}
                 ]
 
               }) }}
-        </div>
+      </div>
 
-        <div class="list_box">
+      <div class="list_box">
+        {% if reshighKb.length > 0 %}
           {{kblist1(reshighKb)}}
-        </div>
-      </div>
-    {% endif %}
-
-    {# <div class="row4">
-      <div class="tab">
-        {{navigationbar({
-  isMore: true,
-  MoreText: "更多>>",
-  link: "/business/answer/0",
-  isSelect: "1",
-  data: [
-    {
-      title: "产品问答",
-      nlink: "javascript:void(0);",
-      id: "1"
-    }
-  ]
-
-})}}
-      </div>
-
-      <div class="list">
-        {% set row3Data = [
-          {
-            title: "各位大哥们，发现低速转向或者启动，有轻微的噔噔噔的声音，高速行驶是没有的，这是怎么回事？有轻微的噔噔噔的声音怎么怎么...",
-            id:"1",
-            hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-            name: "上海于工",
-            time: "2020-08-22",
-            answercount: 3,
-            content: "经典便宜好几万,建议可以考虑，我使用了一年多没了没什么问题。"
-          }, {
-            title: "各位大哥们，发现低速转向或者启动，有轻微的噔噔噔的声音，高速行驶是没有的，这是怎么回事？有轻微的噔噔噔的声音怎么怎么...",
-            id:"1",
-            hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-            name: "上海于工",
-            time: "2020-08-22",
-            answercount: 3,
-            content: "经典便宜好几万,建议可以考虑，我使用了一年多没了没什么问题。"
-          }, {
-            title: "各位大哥们，发现低速转向或者启动，有轻微的噔噔噔的声音，高速行驶是没有的，这是怎么回事？有轻微的噔噔噔的声音怎么怎么...",
-            id:"1",
-            hread: "https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
-            name: "上海于工",
-            time: "2020-08-22",
-            answercount: 3,
-            content: "经典便宜好几万,建议可以考虑，我使用了一年多没了没什么问题。"
-          }
-        ]%}
-
-        {% if (row3Data != null) and (row3Data.length > 0) %}
-          {% for item in row3Data %}
-            <div class="child">
-              <a class="title" href="/business/answer/{{item.id}}" target="_blank">{{item.title}}</a>
-              <div class="author">
-                <img _src_="{{item.hread}}"/>
-                <span>{{item.author}}</span>
-                <span>{{item.time}}</span>
-                <span>提问</span>
-
-                <span class="answercount">{{item.answercount}}条评论</span>
-              </div>
-
-              <p>{{item.content}}</p>
-            </div>
-          {% endfor %}
+        {% else %}
+          <div class="noscore">
+            <img _src_="/assets/images/empty.png"/>
+            <a href="/reputation/publish/{{companyId}}" target="_blank">立即发布口碑</script>
+          </div>
         {% endif %}
-
       </div>
+    </div>
 
-    </div> #}
-
-    <div class="row5">
-      <div class="title">
-        {{navigationbar({
+    {% if firstNewsList != null and firstNewsList.length > 0 %}
+      <div class="row5">
+        <div class="title">
+          {{navigationbar({
            isMore: false,
             id:"1",
             isSelect: "1",
@@ -293,20 +243,22 @@ kblist1 %}
               }
             ]
         })}}
-      </div>
-
-      <div class="list">
-        <div class="tab" id="consult">
-          {{navigationbar2(newTypes)}}
         </div>
 
-        <div class="container">
-          {{list1(firstNewsList)}}
+        <div class="list">
+          <div class="tab" id="consult">
+            {{navigationbar2(newTypes)}}
+          </div>
+
+          <div class="container">
+            {{list1(firstNewsList)}}
+          </div>
+
         </div>
 
       </div>
+    {% endif %}
 
-    </div>
   </div>
 
 {% endblock body %}

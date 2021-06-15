@@ -152,7 +152,9 @@
           <section class="left">
             <asection class="logo">
 
-              {% if item.brandtype.length > 0 %}
+              {% if item.brandtype == '优质品牌商' %}
+                <i class='quality'>{{item.brandtype}}</i>
+              {% elif item.brandtype == '品牌商' %}
                 <i>{{item.brandtype}}</i>
               {% endif %}
               <img _src_="{{item.logo}}"/>
@@ -288,13 +290,18 @@
       <div class="child" data-time="{{item.createTime | get_time_timestamp}}">
         <div class="l">
           <div class="user">
+            {% if item.isHot %}
+              <img _src_="/assets/images/homerecommend.png" class="ishot"/>
+            {% endif %}
+
             <div>
               <img _src_="{{item.userIcon}}"/>
               <i>{{item.userName}}</i>
             </div>
+            <p>产品：{{item.productName}}</p>
             <p>购买价格：{{item.purchasePrice}}</p>
             <p>购买时间：{{item.buyTime | get_time_timestamp | ge_time_format(2)}}</p>
-            <p>投入使用：{{item.useTime | get_time_timestamp | ge_time_format(2)}}</p>
+            <p>使用时间：{{item.useTime | get_time_timestamp | ge_time_format(2)}}</p>
           </div>
 
           <div class="grade">
@@ -322,8 +329,8 @@
         </div>
 
         <div class="r">
-          <p>{{item.summary | safe}}</p>
-          <div class="atlas">
+          <div class="content">{{item.summary | safe}}</div>
+          <div class="atlas clearfix">
 
             {% for imgurl in (item.summary | onlyimg) %}
               <img _src_="{{imgurl}}" data-viewer="{{imgurl}}"/>

@@ -89,13 +89,25 @@ navigationbar2 %}
 
           <div class="right">
             <h1>{{CompanyProductInfo.productName}}</h1>
-            {% if kbByProduct %}
-              <span>产品口碑分</span>
-              <div class="score">
+
+            <span>产品口碑分</span>
+
+            <div class="score {{kbByProduct | ternary('','noscore')}}">
+
+              {% if kbByProduct %}
                 <span>{{kbByProduct.score}}</span>
+
                 {{star(kbByProduct.score)}}
                 <b>{{kbByProduct.reputationCount}}条口碑</b>
-              </div>
+
+              {% else  %}
+                <span>暂无口碑分</span>
+                {{star(0)}}
+                <b>0条口碑</b>
+              {% endif %}
+
+            </div>
+            {% if kbByProduct %}
               <div class="configuration">
                 {% if (kbscoreData != null) and (kbscoreData.length > 0) %}
                   {% for item in kbscoreData %}
@@ -107,9 +119,12 @@ navigationbar2 %}
                 {% endif %}
 
               </div>
-              <a href="/reputation/{{companyId}}/{{productId}}" target="_blank" class="more">产看该产品的全部口碑 ></a>
-
             {% endif %}
+
+            <div class="btm">
+              <a href="/reputation/publish/{{companyId}}" target="_blank" class="pub">发布口碑</script>
+              <a href="/reputation/{{companyId}}/{{productId}}" target="_blank" class="more">产看该产品的全部口碑 ></a>
+            </div>
           </div>
         </div>
 
@@ -162,7 +177,7 @@ navigationbar2 %}
         <div class="row3 clearfix">
           <div class="tab">
             {{navigationbar({
-                isMore: true,
+                isMore:  ReputationData != null and ReputationData.reputations.length > 0,
                 link: "/reputation/" + companyId + '/' + productId,
                 MoreText:"查看更多",
                 isSelect: "1",
@@ -174,53 +189,63 @@ navigationbar2 %}
                 ]
             })}}
           </div>
-          <div class="cr_box">
-            <div class="hd clearfix">
-              <div class="l">
-                <h1>{{ReputationData.reputationScore}}</h1>
-                <div>
-                  {{star(ReputationData.reputationScore)}}
-                  <span>{{ReputationData.reputationCount}}条口碑</span>
+          {% if ReputationData != null and ReputationData.reputations.length > 0 %}
+            <div class="cr_box">
+              <div class="hd clearfix">
+                <div class="l">
+                  <h1>{{ReputationData.reputationScore}}</h1>
+                  <div>
+                    {{star(ReputationData.reputationScore)}}
+                    <span>{{ReputationData.reputationCount}}条口碑</span>
+                  </div>
+                </div>
+                <div class="r">
+                  {% for item in reputationTypeObject %}
+                    <a href="{{item.link}}" target="_blank" class="{{item.class}}">{{item.title}}</a>
+                  {% endfor %}
                 </div>
               </div>
-              <div class="r">
-                {% for item in reputationTypeObject %}
-                  <a href="{{item.link}}" target="_blank" class="{{item.class}}">{{item.title}}</a>
+
+              <div class="list">
+                {% for item in ReputationData.reputations %}
+                  <div class="child">
+                    <div class="clearfix">
+                      <div class="l">
+                        <div>
+                          <img _src_="{{item.userIcon}}"/>
+                          <i>{{item.userName}}</i>
+                        </div>
+                        <p>购买价格：{{item.purchasePrice}}</p>
+                        <p>购买时间：{{item.buyTime | get_time_timestamp | ge_time_format(2)}}</p>
+                        <p>投入使用：{{item.useTime | get_time_timestamp | ge_time_format(2)}}</p>
+                      </div>
+
+                      <div class="r">
+                        {{item.summary |safe}}
+                      </div>
+                    </div>
+                    <div class="more clearfix">
+                      <a href="/news/reputation/{{item.newsId}}" target="_blank">查看详情</a>
+                    </div>
+
+                  </div>
                 {% endfor %}
               </div>
             </div>
-
-            <div class="list">
-              {% for item in ReputationData.reputations %}
-                <div class="child">
-                  <div class="clearfix">
-                    <div class="l">
-                      <div>
-                        <img _src_="{{item.userIcon}}"/>
-                        <i>{{item.userName}}</i>
-                      </div>
-                      <p>购买价格：{{item.purchasePrice}}</p>
-                      <p>购买时间：{{item.buyTime | get_time_timestamp | ge_time_format(2)}}</p>
-                      <p>投入使用：{{item.useTime | get_time_timestamp | ge_time_format(2)}}</p>
-                    </div>
-
-                    <div class="r">
-                      {{item.summary |safe}}
-                    </div>
-                  </div>
-                  <div class="more clearfix">
-                    <a href="/news/reputation/{{item.newsId}}" target="_blank">查看详情</a>
-                  </div>
-
-                </div>
-              {% endfor %}
+          {% else %}
+            <div class="noscore">
+              <img _src_="/assets/images/empty.png"/>
+              <a href="/reputation/publish/{{companyId}}" target="_blank">立即发布口碑</script>
             </div>
-          </div>
+          {% endif %}
+
         </div>
 
-        <div class="row4">
-          <div class="tab">
-            {{navigationbar({
+        {% if firstNewsList != null and firstNewsList.length > 0 %}
+
+          <div class="row4">
+            <div class="tab">
+              {{navigationbar({
                 isMore: false,
                 link: "#",
                 isSelect: "1",
@@ -231,12 +256,14 @@ navigationbar2 %}
                   }
                 ]
             })}}
-          </div>
+            </div>
 
-          <div class="list">
-            {{list1(firstNewsList)}}
+            <div class="list">
+              {{list1(firstNewsList)}}
+            </div>
           </div>
-        </div>
+        {% endif %}
+
       </div>
 
       <div class="right">

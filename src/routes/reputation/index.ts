@@ -116,27 +116,34 @@ export default class Reputation {
         if (CompanyProducts) {
             CompanyProducts.forEach((item, index) => {
                 if (item.productId === parseInt(productId)) {
-                    reputationSelectOption.selectIndex = index + 1
+
+                    reputationSelectOption.selectIndex = reputationSelectOption.data.length
                     CompanyProduct = item
                 }
-                reputationSelectOption.data.push({
-                    id: item.productId,
-                    value: item.productName
-                })
+
+
+
+                if (item.statisticsModel && item.statisticsModel.reputationCount > 0) {
+                    reputationSelectOption.data.push({
+                        id: item.productId,
+                        value: item.productName
+                    })
+                }
+
             })
         }
 
         //-------------------------------
         let pageSize = 10
         //获取口碑信息
-        let ReputationData:ResReputationFilterModel
-        if(parseInt(productId) === 0){
-            ReputationData  = await GetReputationByCompanyFilter(companyId, 1, pageSize, parseInt(reputationType))
-        }else{
-            ReputationData  = await GetReputationByProductId(productId, 0, pageSize, parseInt(reputationType))
+        let ReputationData: ResReputationFilterModel
+        if (parseInt(productId) === 0) {
+            ReputationData = await GetReputationByCompanyFilter(companyId, 1, pageSize, parseInt(reputationType))
+        } else {
+            ReputationData = await GetReputationByProductId(productId, 0, pageSize, parseInt(reputationType))
         }
-      
-        
+
+
 
         let reputationTypeObject: any = {
             isSelect: parseInt(reputationType) + 1,
@@ -145,20 +152,26 @@ export default class Reputation {
         ReputationTypeArray.forEach((value: string, index: number) => {
             let title = ''
             let cls = 'high'
+
+            let count = 0
             switch (index) {
                 case ReputationTypeEnum.All:
+                    count = ReputationData?.reputationCount || 0
                     title = `${value}（${ReputationData?.reputationCount || 0}）`
                     cls = 'high'
                     break
                 case ReputationTypeEnum.good:
+                    count = ReputationData?.goodReputationCount || 0
                     title = `${value}（${ReputationData?.goodReputationCount || 0}）`
                     cls = 'high'
                     break
                 case ReputationTypeEnum.middel:
+                    count = ReputationData?.middleReputationCount || 0
                     title = `${value}（${ReputationData?.middleReputationCount || 0}）`
                     cls = 'high'
                     break
                 case ReputationTypeEnum.short:
+                    count = ReputationData?.badReputationCount || 0
                     title = `${value}（${ReputationData?.badReputationCount || 0}）`
                     cls = ''
                     break
@@ -166,12 +179,17 @@ export default class Reputation {
                     break
             }
 
-            reputationTypeObject.data.push({
-                class: cls,
-                id: index,
-                title,
-                link: 'javascript:void(0);'
-            })
+            if (count > 0) {
+                reputationTypeObject.data.push({
+                    class: cls,
+                    id: index,
+                    title,
+                    link: 'javascript:void(0);'
+                })
+            }
+
+
+
 
         })
 

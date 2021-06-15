@@ -51,6 +51,12 @@ let PublishData: ReputationModel = {
 
 };
 
+//如果没有登录弹出登录窗
+(function () {
+    if (userId === 0) {
+        window.loginshow()
+    }
+})();
 
 // {
 //     "companyId": 0,
@@ -270,31 +276,31 @@ async function submitFn() {
         return
     }
 
-    if (PublishData.buyTime.length <= 0) {
-        alert('购买时间不能为空')
-        return
-    }
+    // if (PublishData.buyTime.length <= 0) {
+    //     alert('购买时间不能为空')
+    //     return
+    // }
 
-    if (PublishData.useTime.length <= 0) {
-        alert('使用时间不能为空')
-        return
-    }
+    // if (PublishData.useTime.length <= 0) {
+    //     alert('使用时间不能为空')
+    //     return
+    // }
 
     let price: HTMLInputElement = main.querySelector('.price input')
 
-    if (price.value.length <= 0 || isNaN(parseFloat(price.value))) {
-        alert('购买价格格式不正对')
-        return
-    }
+    // if (price.value.length <= 0 || isNaN(parseFloat(price.value))) {
+    //     alert('购买价格格式不正对')
+    //     return
+    // }
 
 
-    let checkeDom = main.querySelector('.price input:checked')
-    if (!checkeDom) {
-        alert('请选择价格显示的方式')
-        return
-    }
+    // let checkeDom = main.querySelector('.price input:checked')
+    // if (!checkeDom) {
+    //     alert('请选择价格显示的方式')
+    //     return
+    // }
 
-    if (window.ue.body.innerHTML.length <= 0) {
+    if (window.ue.body.innerHTML.length <= 20) {
         alert('观点描述不能为空！')
         return
     }
@@ -344,7 +350,7 @@ async function submitFn() {
 
     if (data.code === 0 && data.subCode === subCodeEnums.success) {
         alert('发表成功')
-        setTimeout(() => { 
+        setTimeout(() => {
             document.location.href = document.location.href
         }, 3000)
     } else {

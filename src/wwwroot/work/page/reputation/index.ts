@@ -53,7 +53,7 @@ let mian = document.querySelector('#main');
         if (parseInt(productId) === 0) {
             data = await GetReputationByCompanyFilter(parseInt(companyId), 1, parseInt(pageSize), parseInt(id))
         } else {
-            data = await GetReputationByProductId(parseInt(productId), 0, parseInt(pageSize), parseInt(id))
+            data = await GetReputationByProductId(parseInt(productId), 1, parseInt(pageSize), parseInt(id))
         }
         pageIndex = 1
 
@@ -81,11 +81,11 @@ let mian = document.querySelector('#main');
             let time = $(list_box).find('.child')[length - 1].getAttribute('data-time')
             time = time.substr(0, 10)
             let data: ResReputationFilterModelReturnModel
+            pageIndex = pageIndex + 1
             if (parseInt(productId) === 0) {
-                pageIndex = pageIndex + 1
                 data = await GetReputationByCompanyFilter(parseInt(companyId), pageIndex, parseInt(pageSize), parseInt(id))
             } else {
-                data = await GetReputationByProductId(parseInt(productId), parseInt(time), parseInt(pageSize), parseInt(id))
+                data = await GetReputationByProductId(parseInt(productId), pageIndex, parseInt(pageSize), parseInt(id))
             }
 
             if (data.code === 0 && data.subCode === subCodeEnums.success && data.bodyMessage) {

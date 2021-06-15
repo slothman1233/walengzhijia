@@ -145,6 +145,11 @@
             height     : 28px;
             line-height: 28px;
             padding    : 0 @space_1;
+
+            &.quality {
+              color           : #7A4A2A;
+              background-color: #F8D49E;
+            }
           }
 
           img {
@@ -476,6 +481,16 @@
 
         .user {
           margin-bottom: @space_3;
+          position     : relative;
+
+          .ishot {
+            position: absolute;
+            right   : 0;
+            top     : 0;
+            width   : 80px;
+            height  : 80px;
+            z-index : -1;
+          }
 
           &>div {
             margin-bottom: @space_1;
@@ -606,12 +621,17 @@
         width: @rightwidth;
         float: left;
 
+        .content {
+          max-height: 24 * 8px;
+          overflow  : hidden;
+        }
+
         p {
-          margin-bottom: @space_4;
-          color        : @color_main_c1;
-          font-size    : @font_size_16;
-          line-height  : @line_height;
-          text-align   : justify;
+          // margin-bottom: @space_4;
+          color      : @color_main_c1;
+          font-size  : @font_size_16;
+          line-height: @line_height;
+          text-align : justify;
 
           img {
             display: none !important;
@@ -619,6 +639,8 @@
         }
 
         .atlas {
+          margin-top: @space_4;
+
           img {
             display     : block;
             float       : left;

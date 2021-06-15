@@ -132,6 +132,8 @@ async function GetCompanyProduct({ companyId,
                 productArgshtml += ` <p>${item.productKey}：${item.productValue}</p>`
             })
 
+            let score = item.statisticsModel && item.statisticsModel.score || 0
+
             html += `<div class="child">
                 <a class="logo" href="/business/product/${companyId}/${item.productId}" target="_blank">
                   <img _src_="${item.productCover || ''}"/>
@@ -140,7 +142,7 @@ async function GetCompanyProduct({ companyId,
                   <h1>${item.productName}</h1>
                 </a>
                 <div class="kb clearfix">
-                  <i>${item.statisticsModel && item.statisticsModel.score || 0}</i>
+                  <i class="${score === 0 ? 'noscore' : ''}">${score === 0 ? '暂无口碑分' : 'score'}</i>
                   ${star.bodyMessage}
                   <span>${item.statisticsModel && item.statisticsModel.reputationCount || 0}条口碑</span>
                 </div>

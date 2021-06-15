@@ -1,5 +1,6 @@
 import config from '../common/config/env'
 import http from '../common/utils/net'
+import { ReputationByProductIdModel } from '../controller/Reputation.controller'
 import { ReputationTypeEnum } from '../enums/enums'
 
 import { ResReputationModelListReturnModel, ResReputationModel, ResReputationStatisticsModel, ResHotReputationModel, ResHotReputationModelListReturnModel, ResReputationFilterModelReturnModel, ResReputationFilterModel } from '../model/reputation/resreputation'
@@ -49,7 +50,7 @@ class Reputation {
     // 根据产品获得该产品下面对应的口碑信息
     // {productId:0} 
     //@CacheInterceptor('AreaInfo_GetAreaInfoInfoByUser', CacheTime.Min3)
-    async GetReputationByProductId(params: GetReputationByProductIdModel): Promise<ResReputationFilterModelReturnModel> {
+    async GetReputationByProductId(params: ReputationByProductIdModel): Promise<ResReputationFilterModelReturnModel> {
         return await http.get<ResReputationFilterModel>(`${config.apiPath}api/Reputation/GetReputationByProductId`, { params, headers: { 'Content-Type': 'application/json' } })
     }
 

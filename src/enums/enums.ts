@@ -246,7 +246,7 @@ export enum HotCompanyDefine {
   Brand = 2
 }
 
-export const HotCompanyDefineItems = ['品牌商', '优质品牌商', '品牌商']
+export const HotCompanyDefineItems = ['', '优质品牌商', '品牌商']
 
 export const HotCompanyDefineObject = [
     {

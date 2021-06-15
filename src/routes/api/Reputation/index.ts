@@ -35,8 +35,8 @@ export default class Index {
    */
   @get('/GetReputationByProductId')
   async GetReputationByProductId(ctx: Context) {
-      let { productId, timeTicks, pageSize, reputationType } = ctx.query
-      let models = await GetReputationByProductIdRm(productId, timeTicks, pageSize, reputationType)
+      let { productId, pageIndex, pageSize, reputationType } = ctx.query
+      let models = await GetReputationByProductIdRm(productId, pageIndex, pageSize, reputationType)
       ctx.body = models
 
   }

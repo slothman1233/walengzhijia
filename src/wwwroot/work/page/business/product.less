@@ -81,6 +81,7 @@ body {
           padding         : @space_2 @space_3;
           overflow        : hidden;
           background-color: #FFF;
+          position        : relative;
 
           h1 {
             margin-bottom: @space_2;
@@ -110,14 +111,6 @@ body {
               top     : 22px !important;
             }
 
-            span {
-              display     : block;
-              float       : left;
-              font-weight : @font_weight;
-              font-size   : @font_size_38;
-              margin-right: @space_1;
-            }
-
             .star {
               display     : block;
               float       : left;
@@ -139,7 +132,34 @@ body {
               top        : 20px;
             }
 
+            span {
+              display     : block;
+              float       : left;
+              font-weight : @font_weight;
+              font-size   : @font_size_38;
+              margin-right: @space_1;
+
+
+            }
+
             .ellipsis();
+
+
+            &.noscore {
+
+              span {
+                font-size: @font_size_24;
+                color    : @color_gray_c2;
+              }
+
+              .star {
+                top: 8px !important;
+              }
+
+              b {
+                top: 8px !important;
+              }
+            }
           }
 
           .configuration {
@@ -171,12 +191,36 @@ body {
             }
           }
 
-          &>.more {
-            display    : block;
-            line-height: @line_height;
-            color      : @color_link ;
-            font-size  : @font_size_14;
 
+
+          &>.btm {
+            position: absolute;
+            bottom  : @space_2;
+            left    : @space_3;
+
+            .pub {
+              float           : left;
+              display         : block;
+              width           : 152px;
+              height          : 38px;
+              border          : 1px solid @color_theme_c0;
+              font-size       : @font_size_14;
+              line-height     : 38px;
+              text-align      : center;
+              margin-right    : @space_2;
+              color           : @color_main_c1;
+              background-color: @color_theme_c0;
+              .border-radius(2px);
+            }
+
+            .more {
+              float      : left;
+              display    : block;
+              line-height: 40px;
+              color      : @color_link ;
+              font-size  : @font_size_14;
+
+            }
           }
         }
       }
@@ -436,6 +480,43 @@ body {
                 }
               }
             }
+          }
+        }
+
+        .noscore {
+          height          : 224px;
+          text-align      : center;
+          overflow        : hidden;
+          background-color: #FFF;
+
+          img {
+            display: block;
+            margin : 35px auto 0 auto;
+            height : 120px;
+          }
+
+          span {
+            display   : block;
+            margin-top: 4px;
+            text-align: center;
+            color     : @color_gray_c2;
+            font-size : @font_size_14;
+
+          }
+
+          a {
+
+            display         : block;
+            width           : 106px;
+            height          : 30px;
+            border          : 1px solid @color_theme_c0;
+            font-size       : @font_size_14;
+            line-height     : 30px;
+            text-align      : center;
+            margin          : @space_1 auto 0 auto;
+            color           : @color_main_c1;
+            background-color: @color_theme_c0;
+            .border-radius(2px);
           }
         }
       }
