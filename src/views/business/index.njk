@@ -9,12 +9,16 @@ kblist1 %}
 {% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
 
 {% block title %}
-54123123213333
+【{{companyinfo.abbrName}}】{{companyinfo.abbrName}}产品大全|咨询销售|口碑评论 - 乐品包装
 {% endblock title %}
 
-{% block keywords %}{% endblock %}
+{% block keywords %}
+{{companyinfo.abbrName}},{{companyinfo.abbrName}}产品大全,{{companyinfo.abbrName}}咨询销售,{{companyinfo.abbrName}}口碑评论
+{% endblock %}
 
-{% block description %}{% endblock %}
+{% block description %}
+乐品包装{{companyinfo.abbrName}}频道，提供最新{{companyinfo.abbrName}}产品信息，{{companyinfo.abbrName}}最新文章，产品口碑评论等信息。
+{% endblock %}
 
 {% block style %}
   <link href="/dist/styles/business/index.css" rel="stylesheet">

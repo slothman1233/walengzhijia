@@ -4,6 +4,7 @@ import { on } from '@stl/tool-ts/src/common/event'
 import { Login, Register, sendCode } from '../../common/service/login.services'
 import window from '../../common/win/windows'
 import { LoginEnums, subCodeEnums, ValidateCodeDefine } from '../../../../enums/enums'
+import { deepCopy } from '../../../../common/utils/util'
 
 let login_container = document.getElementById('login_container')
 let login_verification: any
@@ -306,11 +307,23 @@ export enum logintype {
 /**
    * 弹出登录界面
    * @param {logintype} type 显示登录界面默认展示的类型
+   * @param {boolean} isshowclose 是否显示关闭按钮
    */
-window.loginshow = function loginshow(type: logintype = logintype.phonelogin) {
+window.loginshow = function loginshow(object) {
+
+    if (!object) {
+        object = {
+        }
+    }
+
+    object = deepCopy(object, {
+        types: logintype.phonelogin,
+        isshowclose: true
+    })
+
     let login_container = document.getElementById('login_container')
     if (login_container !== null) {
-        switch (type) {
+        switch (object.types) {
             case logintype.phonelogin:
                 $(login_container).find('.phone_login').siblings().hide()
                 $(login_container).find('.phone_login').show()
@@ -328,6 +341,17 @@ window.loginshow = function loginshow(type: logintype = logintype.phonelogin) {
                 $(login_container).find('.phone_login').show()
         }
 
+        if (!object.isshowclose) {
+            let closeDom = login_container.querySelectorAll('.close')
+            for (let i = 0; i < closeDom.length; i++) {
+                (<HTMLElement>closeDom[i]).style.display = 'none'
+            }
+        } else {
+            let closeDom = login_container.querySelectorAll('.close')
+            for (let i = 0; i < closeDom.length; i++) {
+                (<HTMLElement>closeDom[i]).style.display = 'block'
+            }
+        }
         login_container.style.display = 'block'
 
     }

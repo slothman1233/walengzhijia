@@ -54,7 +54,7 @@ let PublishData: ReputationModel = {
 //如果没有登录弹出登录窗
 (function () {
     if (userId === 0) {
-        window.loginshow()
+        window.loginshow({ isshowclose: false })
     }
 })();
 
@@ -294,7 +294,7 @@ async function submitFn() {
     // }
 
 
-    // let checkeDom = main.querySelector('.price input:checked')
+    let checkeDom = main.querySelector('.price input:checked')
     // if (!checkeDom) {
     //     alert('请选择价格显示的方式')
     //     return

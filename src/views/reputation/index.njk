@@ -7,10 +7,12 @@ navigationbar2 %}
 {% from "../shared/sharedView/macro/components/selectOption.njk" import selectOption %}
 {% from "../shared/sharedView/macro/components/list.njk" import reputationtemp %}
 {% block title %}
-54123123213333
+【{{(productId==0)| ternary(companyInfo.abbrName,CompanyProduct.company.abbrName)}}】产品口碑 - 乐品包装
 {% endblock title %}
 
-{% block keywords %}{% endblock %}
+{% block keywords %}
+{{(productId==0)| ternary(companyInfo.abbrName,CompanyProduct.company.abbrName)}},{{(productId==0)| ternary(companyInfo.abbrName,CompanyProduct.company.abbrName)}}产品口碑
+{% endblock %}
 
 {% block description %}{% endblock %}
 
@@ -90,7 +92,7 @@ navigationbar2 %}
       <div class="tab">
         {{navigationbar({
                 isMore: true,
-                link: "/reputation/publish/"+companyId,
+                link: "/reputation/publish/"+companyId + "/" + productId,
                 MoreText:"发布口碑",
                 isSelect: "1",
                 data: [

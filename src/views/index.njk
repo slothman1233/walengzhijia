@@ -7,12 +7,16 @@ list1 %}
 {% from "./shared/sharedView/macro/components/star/star.njk" import star %}
 
 {% block title %}
-54123123213333
+乐品包装 - 联结包装智能工业4.0
 {% endblock title %}
 
-{% block keywords %}{% endblock %}
+{% block keywords %}
+包装,乐品包装,包装行业,瓦楞包装,包装印刷,包装新闻,口碑,口碑评分,产品,产品大全,问答,咨询,咨询销售,社区
+{% endblock %}
 
-{% block description %}{% endblock %}
+{% block description %}
+乐品包装致力于成为最有影响力的工业包装产品信息平台。这里将汇聚最新最全的前沿产品信息，通过海量真实的口碑评论聚合、品牌资讯、产品信息、产品口碑、问答等信息，帮您寻找最合适满意的包装设备产品。
+{% endblock %}
 
 {% block style %}
   <link href="/dist/styles/index/index.css" rel="stylesheet">
@@ -65,7 +69,7 @@ list1 %}
       <div class="row">
 
         {{ navigationbar({
-            isMore: true,
+            isMore: false,
             MoreText: "更多>>",
             link: "/list",
             isSelect: "1",

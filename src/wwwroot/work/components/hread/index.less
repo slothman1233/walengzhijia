@@ -115,7 +115,17 @@
       float       : right;
       margin-right: @space_4;
       font-size   : @font_size_14;
-
+      position: relative;
+      .red{
+        position: absolute;
+        right: -8px;
+        top: 13px;
+        display: none;
+        width: 10px;
+        height: 10px;
+        background-color: @Status-Danger;
+        .border-radius(50%);
+      }
       a {
         color: #FFF;
       }

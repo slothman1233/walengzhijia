@@ -12,27 +12,31 @@ declare const sortid: any
 declare const totalPages: any
 declare const tabIndex: any
 (function () {
-    let kkpage = kkpager({
-        pagerid: 'kkpage',
-        total: totalPages,
-        pno: pageIndex,
-        mode: 'link',
-        isShowFirstPageBtn: false,
-        isShowLastPageBtn: false,
-        isShowLastPage: false,
-        lang: {
-            prePageText: '上一页',
-            nextPageText: '下一页',
-        },
-        getLink: (t: any) => {
-            return `/list/${productid}/${sortid}/${tabIndex}/${t}`
-        }
-        // click: (i: number) => {
-        //     console.log(i)
-        //     document.location.href = `/list/${productid}/${sortid}/${i}`
-        //     return false
-        // }
-    })
+    if (document.getElementById('kkpage')) {
+
+
+        let kkpage = kkpager({
+            pagerid: 'kkpage',
+            total: totalPages,
+            pno: pageIndex,
+            mode: 'link',
+            isShowFirstPageBtn: false,
+            isShowLastPageBtn: false,
+            isShowLastPage: false,
+            lang: {
+                prePageText: '上一页',
+                nextPageText: '下一页',
+            },
+            getLink: (t: any) => {
+                return `/list/${productid}/${sortid}/${tabIndex}/${t}`
+            }
+            // click: (i: number) => {
+            //     console.log(i)
+            //     document.location.href = `/list/${productid}/${sortid}/${i}`
+            //     return false
+            // }
+        })
+    }
 })();
 
 

@@ -537,9 +537,15 @@ export enum searchqueryType {
  * 0 全部通知
  * 1 系统通知
  * 2 互动通知
+ * 3 销售咨询通知
+ * 4 评论通知
+ * 5 评论回复通知
  */
 export enum NotificationTypeDefine {
   default = 0,
   System = 1,
-  Interactive = 2
+  Interactive = 2,
+  Advisory = 3,
+  Comment = 4,
+  ReplyComment = 5
 }

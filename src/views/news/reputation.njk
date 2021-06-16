@@ -4,10 +4,12 @@
 {% from "../shared/sharedView/macro/components/comment/comment1.njk" import comment %}
 {% from "../shared/sharedView/macro/components/star/star.njk" import star %}
 {% block title %}
-54123123213333
+{{newsDetail.newsDetail.newsTitle}} - 乐品包装
 {% endblock title %}
 
-{% block keywords %}{% endblock %}
+{% block keywords %}
+{{newsDetail.product.productName}}，{{newsDetail.product.productName}}口碑,包装,包装行业,乐品包装
+{% endblock %}
 
 {% block description %}{% endblock %}
 

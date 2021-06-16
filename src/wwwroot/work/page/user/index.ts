@@ -1,7 +1,7 @@
 import { kkpager } from '@stl/kkpager'
 import { usernavigationbar } from '../../components/navigationbar'
-import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
-import { GetNoticeByUid } from '../../common/service/ManageLepackNotice'
+import type { JQuery, JQueryStatic } from '../../../assets/plugin/jquery/jquery'
+import { GetNoticeByUid, SetNoticeIsRead } from '../../common/service/ManageLepackNotice'
 import { userLoginModel } from '../../../../model/common'
 import window from '../../common/win/windows'
 import { NotificationTypeDefine, subCodeEnums } from '../../../../enums/enums'
@@ -13,13 +13,47 @@ declare const notificationType: any
 declare const systemtotalPages: any
 declare const interactiveotalPages: any
 declare const pageSize: any
-let usercookie: userLoginModel = JSON.parse(window.getusercookie());
+let usercookie: userLoginModel = JSON.parse(window.getusercookie())
+
+let usermain = document.querySelector('#usermain')
+let systematic = usermain.querySelector('.systematic')
+let interaction = usermain.querySelector('.interaction');
+//首次设置已读状态
+(function () {
+    let domAry: JQuery = $(systematic).find('.child[data-isread=false]')
+    setisread(domAry)
+})()
+
+//设置已读的方法
+async function setisread(domAry: JQuery) {
+
+    setTimeout(function () {
+        let object: any = {
+            receiverUser: usercookie.userId,
+            noticeIds: []
+        }
+        for (let i = 0; i < domAry.length; i++) {
+            let dom = $(domAry[i])
+            let id = dom.data('id')
+            let type = dom.data('type')
+            object.noticeIds.push({
+                noticeType: parseInt(type),
+                noticeId: parseInt(id)
+            })
+            dom.addClass('read')
+            dom.data('isread', true)
+        }
+
+        SetNoticeIsRead(object)
+    }, 2000)
+
+}
 
 (function () {
     if (document.getElementById('systematic_kkpage')) {
         kkpager({
             pagerid: 'systematic_kkpage',
-            total: 2, //systemtotalPages
+            total: systemtotalPages,
             pno: pageIndex,
             mode: 'click',
             isShowFirstPageBtn: false,
@@ -46,7 +80,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                             let item = items[i]
                             let time = ge_time_format(get_time_timestamp(item.noticeTime).toString(), '2')
 
-                            html += `<a class="child" href="${item.notificationLink}" target="_blank">
+                            html += `<a class="child ${item.isRead ? 'read' : ''}" href="${item.notificationLink}" data-isread='${item.isRead}' data-id="${item.noticeId}" data-type="${item.notificationType}" target="_blank">
                             <h3>${item.notificationTitle}
                               <span>${time}</span></h3>
                             <p>${item.notificationContent || ''}</p>
@@ -54,6 +88,9 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                         }
 
                         document.querySelector('.systematic .systematic_box').innerHTML = html
+
+
+                        setisread($(systematic).find('.child[data-isread=false]'))
                     }
                 }
 
@@ -95,7 +132,7 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                             let item = items[i]
                             let time = ge_time_format(get_time_timestamp(item.noticeTime).toString(), '2')
 
-                            html += `<a class="child" href="${item.notificationLink}" target="_blank">
+                            html += `<a class="child ${item.isRead ? 'read' : ''}" href="${item.notificationLink}" data-isread='${item.isRead}' data-id="${item.noticeId}" data-type="${item.notificationType}"  target="_blank">
                             <div class="title">
                               <img _src_="${item.notificationSendUserIcon}"/>
                               <p>${item.notificationSendUserName}</p>
@@ -109,6 +146,9 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                           </a>`
                         }
                         document.querySelector('.interaction .interaction_box').innerHTML = html
+
+
+                        setisread($(interaction).find('.child[data-isread=false]'))
                     }
                 }
 
@@ -127,5 +167,8 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
         let thatshowdom = $($('#usermain .box > div')[index])
         thatshowdom.siblings().hide()
         thatshowdom.show()
+
+        setisread(thatshowdom.find('.child[data-isread=false]'))
+
     })
 })()

@@ -48,6 +48,31 @@ declare const document: Document
 
     let list_box = brand.querySelector('.list_box')
 
+    // 导航条点击滚动
+    let ulWidth = 0 // 计算ul总宽度
+    let innerWidth = list.offsetWidth
+
+    //自动滚动居中的效果
+    function activefun(dom:any) {
+        ulWidth = 0
+        // 设置class
+        $(list).find('a').each(function () {
+            ulWidth += this.offsetWidth + 24 // 累加宽度
+        })
+
+        // 判断点击元素是否超过一半
+        let width = innerWidth / 2 //一半屏幕宽度
+        let leftw = (dom.offsetWidth / 2) + dom.offsetLeft // 点击元素中点距离屏幕左侧
+        let rightw = ulWidth - leftw // 点击元素中点距离屏幕右侧
+        if (leftw > width) {
+            // 使用animate设置scrollLeft，
+            $(list).animate({ scrollLeft: leftw - width }) // 滚动到中间
+        } else if (rightw < width) {
+            $(list).animate({ scrollLeft: (window.devicePixelRatio * innerWidth) - ulWidth }) // 滚动到末尾
+        } else {
+            $(list).animate({ scrollLeft: 0 }) //滚动到最前
+        }
+    }
 
     navigationbar(row, function (dom: any) {
         let ins = index(dom)
@@ -64,31 +89,11 @@ declare const document: Document
         hide(list_box.querySelectorAll('.list_item'))
 
         show(list_box.querySelectorAll('.list_item')[ins])
+
+
+        activefun(dom)
     })
-    //热门品牌
-    // on({
-    //     agent: list,
-    //     events: 'mouseover',
-    //     ele: 'a',
-    //     fn: function (dom: any) {
-    //         let ins = index(dom)
-
-    //         for (let i = 0; i < list.querySelectorAll('a').length; i++) {
-    //             let dom = list.querySelectorAll('a')[i]
-    //             if (i === ins) {
-    //                 addClass(dom.querySelector('span'), 'select')
-    //                 continue
-    //             }
-    //             removeClass(dom.querySelector('span'), 'select')
-    //         }
-
-    //         hide(list_box.querySelectorAll('.list_item'))
-
-    //         show(list_box.querySelectorAll('.list_item')[ins])
-    //     }
-    // })
-
-
+  
 })();
 
 
@@ -267,3 +272,55 @@ declare const document: Document
 
 })()
 
+
+
+function scrollTabX() {
+
+
+    let brand = document.querySelector('.brand')
+
+    let row: HTMLElement = brand.querySelector('.row')
+
+    let list: HTMLElement = brand.querySelector('.list')
+
+    let list_box = brand.querySelector('.list_box')
+
+    // 导航条点击滚动
+    let ulWidth = 0 // 计算ul总宽度
+    let innerWidth = 1184
+    function activefun(event:any) {
+        let { target } = event
+        ulWidth = 0
+        // 设置class
+        $(list).find('a').each(function () {
+            ulWidth += (<any>$(this)).offsetWidth // 累加宽度
+        })
+
+        // 判断点击元素是否超过一半
+        let width = innerWidth / 2 //一半屏幕宽度
+        let leftw = (target.offsetWidth / 2) + target.offsetLeft // 点击元素中点距离屏幕左侧
+        let rightw = ulWidth - leftw // 点击元素中点距离屏幕右侧
+        if (leftw > width) {
+            // 使用animate设置scrollLeft，
+            $(list).animate({ scrollLeft: leftw - width }) // 滚动到中间
+        } else if (rightw < width) {
+            $(list).animate({ scrollLeft: (window.devicePixelRatio * innerWidth) - ulWidth }) // 滚动到末尾
+        } else {
+            $(list).animate({ scrollLeft: 0 }) //滚动到最前
+        }
+    }
+}
+
+// <div id="nav">
+// <ul>
+//   <li onclick="activefun(event)"><a href="#" class="active" >首页</a></li>
+//   <li onclick="activefun(event)"><a href="#">二级页面1</a></li>
+//   <li onclick="activefun(event)"><a href="#">二级页面2</a></li>
+//   <li onclick="activefun(event)"><a href="#">二级页面3</a></li>
+//   <li onclick="activefun(event)"><a href="#">二级页面4</a></li>
+//   <li onclick="activefun(event)"><a href="#">二级页面5</a></li>
+// </ul>
+// </div>
+// ————————————————
+// 版权声明：本文为CSDN博主「weixin_43957510」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/weixin_43957510/article/details/117463420

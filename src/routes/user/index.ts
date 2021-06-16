@@ -41,7 +41,7 @@ export default class User {
         })
 
         //----------------------------------------------
-        //获取不动通知
+        //获取互动通知
         let interactiveData = await GetNoticeByUid({
             userId,
             pageIndex: 1,

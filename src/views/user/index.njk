@@ -3,7 +3,7 @@
 {% from "../shared/sharedView/macro/components/navigationbar.njk" import usernavigationbar %}
 
 {% block title %}
-54123123213333
+个人中心 - 乐品包装
 {% endblock title %}
 
 {% block keywords %}{% endblock %}
@@ -52,7 +52,7 @@
         <div class="systematic_box">
           {% if systemData != null and systemData.length >= 0 %}
             {% for item in systemData %}
-              <a class="child" href="{{item.notificationLink}}" target="_blank">
+              <a class="child  {{item.isRead | ternary('read','')}}" href="{{item.notificationLink}}" data-isread='{{item.isRead}}' data-id="{{item.noticeId}}" data-type="{{item.notificationType}}" target="_blank">
                 <h3>{{item.notificationTitle}}
                   <span>{{item.noticeTime | get_time_timestamp | ge_time_format(2)}}</span></h3>
                 <p>{{item.notificationContent}}</p>
@@ -74,7 +74,7 @@
         <div class="interaction_box">
           {% if interactiveData != null and interactiveData.length > 0 %}
             {% for item in interactiveData %}
-              <a class="child" href="{{item.notificationLink}}" target="_blank">
+              <a class="child {{item.isRead | ternary('read','')}}" href="{{item.notificationLink}}" target="_blank" data-isread='{{item.isRead}}' data-id="{{item.noticeId}}" data-type="{{item.notificationType}}">
                 <div class="title">
                   <img _src_="{{item.notificationSendUserIcon}}"/>
                   <p>{{item.notificationSendUserName}}</p>

@@ -79,10 +79,12 @@
             float       : left;
 
             &.slug {
-              height          : @height;
+              height          : 20px;
+              line-height     : 20px;
+              margin-top      : 5px;
               background-color: @color_grey_line1;
               padding         : 0 @space_1;
-              font-size       : @font_size_13;
+              font-size       : @font_size_12;
               .border-radius(2px);
             }
 
@@ -142,9 +144,10 @@
             color           : #596796;
             .border-radius(1px 1px 12px 1px);
             font-size  : @font_size_14;
-            height     : 28px;
-            line-height: 28px;
+            height     : 30px;
+            line-height: 30px;
             padding    : 0 @space_1;
+            font-weight: @font_weight;
 
             &.quality {
               color           : #7A4A2A;
@@ -319,7 +322,6 @@
   .kblist1 {
 
     .flex();
-    justify-content: space-between;
 
     width: @width;
 
@@ -332,10 +334,11 @@
       text-align         : left;
       // flex-direction  : column;
       width              : @childwidth;
-      height             : 224 - (@space_2*2);
+      height             : 224px;
       margin-right       : @space_2;
       padding            : @space_2;
       position           : relative;
+      .box-sizing();
 
       .hd {
         height  : 64px;

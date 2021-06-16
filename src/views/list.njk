@@ -5,12 +5,16 @@
 {% from "./shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
 
 {% block title %}
-54123123213333
+品牌商 - 包装品牌大全 - 乐品包装
 {% endblock title %}
 
-{% block keywords %}{% endblock %}
+{% block keywords %}
+包装,包装品牌大全,包装行业,瓦楞包装,包装印刷,口碑评分,产品,产品大全
+{% endblock %}
 
-{% block description %}{% endblock %}
+{% block description %}
+乐品包装为您提供最全面的包装行业品牌及产品信息大全，包括包装行业品牌资讯、产品信息、产品口碑、问答、等信息。
+{% endblock %}
 
 {% block style %}
   <link href="/dist/styles/index/list.css" rel="stylesheet">
@@ -95,7 +99,13 @@
           {{list2(companylistJson)}}
         </div>
 
-        <div id="kkpage"></div>
+
+    {% if totalPages <=1 %}
+        <section class="nocentent">没有更多内容</section>
+      {% else %}
+         <div id="kkpage"></div>
+    {% endif %}
+       
 
       </div>
 

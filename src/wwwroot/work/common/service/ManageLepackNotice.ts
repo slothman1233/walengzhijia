@@ -23,7 +23,7 @@ export const GetNoticeByUid = async (params: GetNoticeByUidModel): Promise<ResNo
  * 用户是否存在未读通知
  * @param {number} companyId 公司id
  */
-export const HasNotReadNotice = async (params: HasNotReadNoticeModel): Promise<ResNoticeModelPagedModelReturnModel> => await http.get<any>(`/api/ManageLepackNotice/HasNotReadNotice`, { params })
+export const HasNotReadNotice = async (params: HasNotReadNoticeModel): Promise<bodyModel<boolean>> => await http.get<any>(`/api/ManageLepackNotice/HasNotReadNotice`, { params })
 
 /**
  * 通知只读设置处理

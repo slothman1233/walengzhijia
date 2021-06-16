@@ -7,12 +7,16 @@ navigationbar2 %}
 {% from "../shared/sharedView/macro/wuc/rfooter.njk" import rfooter %}
 {% from "../shared/sharedView/macro/components/star/star.njk" import star %}
 {% block title %}
-54123123213333
+【{{CompanyProductInfo.productName}}】{{CompanyProductInfo.productName}}参数信息|销售咨询|口碑评论 - 乐品包装
 {% endblock title %}
-{# CompanyProductInfo #}
-{% block keywords %}{% endblock %}
 
-{% block description %}{% endblock %}
+{% block keywords %}
+{{CompanyProductInfo.productName}},{{CompanyProductInfo.productName}}参数信息, {{CompanyProductInfo.productName}}销售咨询,{{CompanyProductInfo.productName}}口碑评论
+{% endblock %}
+
+{% block description %}
+乐品包装提供最新{{CompanyProductInfo.productName}}参数配置，口碑评论，相关等信息
+{% endblock %}
 
 {% block style %}
   <link href="/dist/styles/business/product.css" rel="stylesheet">
@@ -122,7 +126,7 @@ navigationbar2 %}
             {% endif %}
 
             <div class="btm">
-              <a href="/reputation/publish/{{companyId}}" target="_blank" class="pub">发布口碑</script>
+              <a href="/reputation/publish/{{companyId}}/{{productId}}" target="_blank" class="pub">发布口碑</script>
               <a href="/reputation/{{companyId}}/{{productId}}" target="_blank" class="more">产看该产品的全部口碑 ></a>
             </div>
           </div>
@@ -215,13 +219,14 @@ navigationbar2 %}
                           <img _src_="{{item.userIcon}}"/>
                           <i>{{item.userName}}</i>
                         </div>
-                        <p>购买价格：{{item.purchasePrice}}</p>
+                        <p>产品：{{item.productName}}</p>
+                        <p>购买价格：{{item.purchasePrice}}万</p>
                         <p>购买时间：{{item.buyTime | get_time_timestamp | ge_time_format(2)}}</p>
                         <p>投入使用：{{item.useTime | get_time_timestamp | ge_time_format(2)}}</p>
                       </div>
 
                       <div class="r">
-                        {{item.summary |safe}}
+                        {{item.summary | delHtmlTag}}
                       </div>
                     </div>
                     <div class="more clearfix">

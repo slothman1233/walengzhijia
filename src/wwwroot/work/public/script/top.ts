@@ -3,6 +3,9 @@ import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
 import { delCookie } from '../../common/utils/common'
 import config from '../../common/config/env'
 import window from '../../common/win/windows'
+import { subCodeEnums } from '../../../../enums/enums'
+import type { userLoginModel } from '../../../../model/common'
+import { HasNotReadNotice } from '../../common/service/ManageLepackNotice'
 let header = document.getElementById('header')
 if (header) {
     let notlogin: HTMLElement = header.querySelector('.notlogin')
@@ -40,3 +43,34 @@ if (header) {
 
     }, 0)
 }
+
+
+(function () {
+    setTimeout(() => {
+        let usercookie: userLoginModel = JSON.parse(window.getusercookie())
+        let userId = window.getuserid()
+        if (userId > 0) {
+            getHasNotReadNotice(userId)
+        }
+
+
+        async function getHasNotReadNotice(userid: number) {
+
+            let data = await HasNotReadNotice({ userId: userid })
+            if (data.code === 0 && data.subCode === subCodeEnums.success) {
+                let header = document.getElementById('header')
+                let red: HTMLElement = header.querySelector('.login .user .red')
+                if (data.bodyMessage === true || data.bodyMessage.toString() === 'true') {
+                    red.style.display = 'block'
+                } else {
+                    red.style.display = 'none'
+                }
+            }
+
+            setTimeout(async () => {
+                getHasNotReadNotice(userid)
+            }, 10000)
+        }
+
+    }, 0)
+})()

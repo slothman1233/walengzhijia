@@ -13,6 +13,11 @@ export enum logintype {
     register = 3
 }
 
+export type loginshowobject = {
+    types?: logintype
+    isshowclose?: boolean
+}
+
 type w = {
     /**
      * 图片加载
@@ -52,7 +57,7 @@ type w = {
      * 弹出登录界面
      * @param {logintype} type 显示登录界面默认展示的类型
      */
-    loginshow?: (type?: logintype) => void
+    loginshow?: (object?: loginshowobject) => void
     [propName: string]: any;
 }
 
