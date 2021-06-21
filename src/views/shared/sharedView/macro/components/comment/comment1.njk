@@ -92,7 +92,7 @@
         <img _src_="{{args.commentUserIcon}}" title="{{args.commentUserName}}"/>
       {% endif %}
 
-      <a data-commentId="{{item.commentId}}" data-id="{{args.commentUser}}">提交回答</a>
+      <a data-commentId="{{item.commentId}}" data-id="{{args.commentUser}}">提交评论</a>
       <div class="input">
         {% if args.type == 'mobile' %}
           <textarea class="response"  placeholder="写下你的评论..."></textarea>
@@ -113,9 +113,10 @@
     </div>
     {% if (args.data != null) and (args.data.length >= 10) %}
       <div class="more parentMore">
-      加载更多
+      加载更多    
     </div>
     {% endif %}
+    <div class="nocontent" style="display:{{(args.data != null and args.data.length >= 10) | ternary('none','block')}}">没有更多内容</div>
 
   </div>
 

@@ -150,7 +150,7 @@ async function GetCompanyProduct({ companyId,
                   ${productArgshtml}
                   </div>
     
-                <a class="enquiry" href="/enquiry/${companyId}/0" target="_blank">立即询价</a>
+                <a class="enquiry" href="/enquiry/${companyId}/${item.productId}/0" target="_blank">立即询价</a>
               </div>`
         }
     }

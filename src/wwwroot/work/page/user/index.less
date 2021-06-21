@@ -5,13 +5,36 @@
 
 #usermain {
 
+  .tabbox {
+    position: relative;
 
-  .usernavigationbar {
+    .usernavigationbar {
 
-    .list {
-      padding: 0 @space_2;
+      .list {
+        padding: 0 @space_2;
+      }
+    }
+
+    .reddot {
+
+      .systematicdot,
+      .interactiondot {
+        display         : none;
+        width           : 8px;
+        height          : 8px;
+        position        : absolute;
+        top             : 18px;
+        left            : 80px;
+        background-color: @Status-Danger;
+        .border-radius(50%);
+      }
+
+      .interactiondot {
+        left: 175px;
+      }
     }
   }
+
 
 
   .box {
@@ -25,7 +48,7 @@
           border-bottom: 1px solid @color_grey_line2;
 
           &.read {
-            .opacity(0.5);
+            // .opacity(0.5);
           }
 
           h3 {
@@ -49,6 +72,13 @@
             color      : @color_gray_c1;
             line-height: @line_height;
             text-align : justify;
+
+          }
+
+          &:hover {
+            &>p {
+              color: @link_hover;
+            }
           }
         }
       }
@@ -71,8 +101,14 @@
           padding      : @space_2 0;
           border-bottom: 1px solid @color_grey_line2;
 
+          &:hover {
+            &>p {
+              color: @link_hover;
+            }
+          }
+
           &.read {
-            .opacity(0.5);
+            // .opacity(0.5);
           }
 
           .title {
@@ -116,7 +152,7 @@
             margin-bottom: 12px;
           }
 
-          time {
+          .time {
             font-size: @font_size_12;
             color    : @color_gray_c1;
           }

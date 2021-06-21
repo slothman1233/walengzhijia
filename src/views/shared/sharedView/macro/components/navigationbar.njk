@@ -141,7 +141,7 @@
     <div class="usernavigationbar">
       <div class="list" style="right:{{args.isMore | ternary('60px','0px')}}">
         {% for item in args.data %}
-          <a href="{{item.link}}" title="{{item.title}}" data-id="{{item.id}}" target="_blank">
+          <a href="{{item.link}}" onclick="return false;" title="{{item.title}}" data-id="{{item.id}}" target="_blank">
             <span class="{{(loop.index == args.isSelect) | ternary('select','')}}">
               {{item.title}}
             </span>

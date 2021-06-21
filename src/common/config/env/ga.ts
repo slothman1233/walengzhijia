@@ -21,7 +21,9 @@ export default {
     },
 
     // domain: '.lepkg.com',
-    domain: '114.55.24.27',
-    imgFilePath: 'https://img.fx110.uk/'
+    domain: '.lepkg.com',
+    imgFilePath: 'https://img.fx110.uk/',
+
+    domainAllUrl: 'http://www.lepkg.com'
 
 }

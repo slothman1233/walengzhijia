@@ -21,6 +21,8 @@ export default {
     },
     domain: 'localhost',
     
-    imgFilePath: 'https://img.fx110.uk/'
+    imgFilePath: 'https://img.fx110.uk/',
+
+    domainAllUrl: 'http://114.55.24.27:5001'
 
 }

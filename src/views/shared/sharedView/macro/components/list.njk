@@ -54,12 +54,37 @@
             <h3 class="title">{{item.title | safe}}</h3>
             <p class="content">{{item.content}}</p>
             <p class="list_foot">
-              {% if item.businesslogo %}
-                <span><img _src_="{{item.businesslogo}}"/></span>
+
+              {% if item.newsSourceType or item.newsSourceType == 0 %}
+
+                {% if item.newsSourceType == 1 %}
+                  {# 公司新闻 #}
+                  <span><img _src_="{{item.businesslogo}}"/></span>
+                  <span>{{item.businessname}}</span>
+                  <span>{{item.author}}</span>
+
+                {% elif item.newsSourceType == 2 %}
+                  {# 个人口碑新闻 #}
+                  <span class="radius"><img _src_="{{item.img}}"/></span>
+                  <span>{{item.author}}</span>
+
+                {% elif item.newsSourceType == 3 %}
+                  {# 爬取新闻 #}
+                  <span class="radius"><img _src_="{{item.businesslogo}}"/></span>
+                  <span>{{item.businessname}}</span>
+
+                {% endif %}
+
+              {% else  %}
+                  {# 默认新闻 和 未分类新闻#}
+                {% if item.businesslogo %}
+                  <span><img _src_="{{item.businesslogo}}"/></span>
+                {% endif %}
+                <span>{{item.businessname}}</span>
+                <span>{{item.author}}</span>
+
               {% endif %}
 
-              <span>{{item.businessname}}</span>
-              <span>{{item.author}}</span>
               <span>{{item.time | get_time_timestamp | ge_time_format(2)}}</span>
 
               {% if (item.slug) and (item.slug.length > 0) %}
@@ -201,7 +226,7 @@
               {# <span class="kbcount">{{item.kbcount}}条口碑</span> #}
               <span class="kbgood">{{item.kbgood}}条优质口碑</span>
               <span class="favorable">好评率{{item.favorablerate}}%</span>
-              
+
             </p>
 
           </section>

@@ -127,7 +127,7 @@ navigationbar2 %}
 
             <div class="btm">
               <a href="/reputation/publish/{{companyId}}/{{productId}}" target="_blank" class="pub">发布口碑</script>
-              <a href="/reputation/{{companyId}}/{{productId}}" target="_blank" class="more">产看该产品的全部口碑 ></a>
+              <a class="more">邀请发口碑</a>
             </div>
           </div>
         </div>
@@ -304,7 +304,7 @@ navigationbar2 %}
                     </div>
                   </div>
 
-                  <a class="ia" target="_blank" href="/enquiry/{{companyId}}/{{item.salerId}}">向TA咨询</a>
+                  <a class="ia" target="_blank" href="/enquiry/{{companyId}}/{{productId}}{{item.salerId}}">向TA咨询</a>
                 </div>
               {% endfor %}
 
@@ -313,7 +313,7 @@ navigationbar2 %}
             <div class="nosalers">
               <h2>对此产品感兴趣?</h2>
               <p>若您对此产品有兴趣，欢迎联系我们，将由专业的销售人员和您进一步沟通。</p>
-              <a href="/enquiry/{{companyId}}/0" target="_blank">立即咨询</a>
+              <a href="/enquiry/{{companyId}}/0/0" target="_blank">立即咨询</a>
             </div>
           {% endif %}
         </div>

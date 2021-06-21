@@ -132,7 +132,7 @@ kblist1 %}
 
         <div class="btn clearfix">
           <a class="issue" href="/reputation/publish/{{companyId}}" target="_blank">发布口碑</a>
-          <a class="enquiry" href="/enquiry/{{companyId}}/0" target="_blank">联系销售</a>
+          <a class="enquiry" href="/enquiry/{{companyId}}/0/0" target="_blank">联系销售</a>
         </div>
 
       </div>
@@ -189,7 +189,7 @@ kblist1 %}
                       <p>{{productArgsitem.productKey}}：{{productArgsitem.productValue}}</p>
                     {% endfor %}
                   </div>
-                  <a class="enquiry" href="/enquiry/{{companyId}}/0" target="_blank">立即咨询</a>
+                  <a class="enquiry" href="/enquiry/{{companyId}}/{{item.productId}}/0" target="_blank">立即咨询</a>
                 </div>
               {% endfor %}
             {% endif %}

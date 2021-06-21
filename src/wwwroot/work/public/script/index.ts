@@ -5,7 +5,8 @@ import './popup'
 import window from '../../common/win/windows'
 import { delCookie, setCookie } from '../../common/utils/common'
 import './top'
-
+import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
+declare const $: JQueryStatic
 
 //全部图片加载
 //img的src不用赋值   只用加个 _src_  属性就OK
@@ -31,6 +32,11 @@ window.imgload = function () {
 
 (function () {
     window.imgload()
+
+
+    $('video').bind('contextmenu', function () {
+        return false
+    })
 })()
 
 /**

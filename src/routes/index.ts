@@ -111,7 +111,9 @@ export default class Index {
                     businesslogo: item.companyIcon,
                     businessname: item.companyName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
-                    slug: [NewsContentTypeArray[item.newsContentType]]
+                    slug: [NewsContentTypeArray[item.newsContentType]],
+                    newsSourceType: item.newsContentType
+
                 })
             })
         }
@@ -291,11 +293,12 @@ export default class Index {
     }
     /**
     * @param {number} companyId 品牌商ID
+    * @param {number} productId 产品ID
     * @param {number} companyId 销售ID
     */
-    @get('/enquiry/:companyId?/:salesid?')
+    @get('/enquiry/:companyId?/:productId?/:salesid?')
     async enquiry(ctx: Context, next: Next) {
-        let { companyId, salesid } = ctx.params
+        let { companyId, salesid, productId } = ctx.params
         //公司信息
         let companydata = await GetCompanyInfoById({ companyId })
         //----------------------------------------------
@@ -311,9 +314,17 @@ export default class Index {
         // 获取公司的产品集合
 
         let ProductType = await GetCompanyProduct({ companyId })
+        let productObject:any = {
+            selectIndex: 0,
+            data: []
+
+        }
         let productTypeAry: any[] = []
-        ProductType.forEach(item => {
-            productTypeAry.push({
+        ProductType.forEach((item, index) => {
+            if (parseInt(productId) === item.productId) {
+                productObject.selectIndex = index
+            }
+            productObject.data.push({
                 id: item.productId,
                 value: item.productName
 
@@ -330,7 +341,7 @@ export default class Index {
             companydata,
             salesid,
             salers,
-            productTypeAry,
+            productObject,
             phoneNumber
         })
     }

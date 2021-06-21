@@ -67,8 +67,10 @@ usernavigationbar %}
           <div class="child_box">
             {{productlist(1,companyObject)}}
           </div>
-
-          <div id="publish_kkpage"></div>
+        {% if totalPages > 1 %}
+           <div id="publish_kkpage" style="display:{{totalPages > 1 | ternary('block','none')}}"></div>
+        {% endif %}
+         
 
         {% else %}
           <div class="empty">
@@ -102,7 +104,7 @@ usernavigationbar %}
 
             {# {{productlist(3,companyObject)}} #}
           </div>
-          <div id="drafts_kkpage"></div>
+          {# <div id="drafts_kkpage"></div> #}
         {% else %}
           <div class="empty">
             <p>没有草稿</p>

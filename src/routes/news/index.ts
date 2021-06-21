@@ -3,8 +3,9 @@ import { Context, Next } from 'koa'
 import { get } from '../../common/decorator/httpMethod'
 import { getCookie } from '../../common/utils/cookies'
 import { GetCommentList } from '../../controller/comment.controller'
-import { GetNewsById } from '../../controller/news.controller'
+import { GetHotNews, GetNewsById } from '../../controller/news.controller'
 import { CommentTargetTypeEnum } from '../../enums/enums'
+import { ResNewsModel } from '../../model/news/resNews'
 import { components_CommentReplyModel } from '../../wwwroot/work/components/comment/commentModel'
 import { userlogin } from '../login'
 
@@ -20,9 +21,11 @@ export default class News {
         // newsDetail.newsDetail 在口碑新闻中是ResNewsReputationModel类型
         //-------------------------------
 
+
         await ctx.render('news/reputation', {
             newsId,
-            newsDetail
+            newsDetail,
+
         })
 
     }
@@ -37,10 +40,14 @@ export default class News {
       let newsDetail = await GetNewsById(newsId)
 
       //-------------------------------
-
+      //热门资讯
+      let HotNews: ResNewsModel[] = await GetHotNews()
+      console.log(HotNews)
+      //------------------------------------------------
       await ctx.render('news/index', {
           newsId,
-          newsDetail
+          newsDetail,
+          HotNews
       })
 
   }

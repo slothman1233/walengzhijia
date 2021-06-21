@@ -49,6 +49,8 @@ export function editor_uploadimg(parentId: string | HTMLElement, ue: any, {
 
             let loadurl = loadPath + md5
             img.src = loadurl
+            //insertparagraph 手动换行
+            ue.execCommand('insertparagraph')
             ue.execCommand('insertImage', img)
 
 
@@ -58,6 +60,9 @@ export function editor_uploadimg(parentId: string | HTMLElement, ue: any, {
                     img.attr('src', url)
                     img.attr('data-viewer', url)
                     img.attr('_src', url)
+                    img[0].style.display = 'block'
+                    img[0].style.margin = 'auto'
+                    img[0].style.maxWidth = '100%'
                     success && success(<HTMLImageElement>img[0])
                 },
                 error,
@@ -87,9 +92,12 @@ export function editor_uploadvideo(parentId: string | HTMLElement, ue: any, {
         for (let i = 0; i < files.length; i++) {
             let img = document.createElement('img')
             let md5 = hex_md5(Date.now().toString() + Math.round(Math.random() * 1000000).toString())
-
+            img.style.display = 'block'
+            img.style.margin = 'auto'
             let loadurl = loadPath + md5
             img.src = loadurl
+            //insertparagraph 手动换行
+            ue.execCommand('insertparagraph')
             ue.execCommand('insertImage', img)
 
 
@@ -99,7 +107,10 @@ export function editor_uploadvideo(parentId: string | HTMLElement, ue: any, {
                     let video: HTMLVideoElement = document.createElement('video')
                     video.controls = true
                     video.src = url
-
+                    video.style.display = 'block'
+                    video.style.margin = 'auto'
+                    video.style.width = '100%'
+                    video.setAttribute('controlsList', 'nodownload')
                     img[0].parentNode.replaceChild(video, img[0])
                     success && success(<HTMLVideoElement>video[0])
                 },

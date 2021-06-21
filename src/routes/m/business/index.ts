@@ -24,7 +24,10 @@ export default class Business {
         let companyinfo = await GetCompanyInfoById({ companyId })
         //----------------------------------------------
         //销售信息
-        let salers = await GetSalersByCompanyId({ companyId })
+        let salers = await GetSalersByCompanyId({ companyId }) || []
+        salers.forEach(item => {
+            (<any>item).productId = 0
+        })
         //----------------------------------------------
 
         //根据公司ID获得所有产品分类
@@ -148,29 +151,34 @@ export default class Business {
         let { companyId, productId } = ctx.params
 
         //销售信息
-        let salers = await GetSalersByCompanyId({ companyId })
+        let salers = await GetSalersByCompanyId({ companyId }) || []
+        
+        salers.forEach(item => {
+            (<any>item).productId = productId
+        })
         //----------------------------------------------
 
         //获取产品信息
         let CompanyProductInfo = await GetCompanyProduct({
             companyId
         })
-        
+
         let productInfoObject: any[] = []
-        CompanyProductInfo.forEach(item => {
-            if (!productInfoObject[item.productTypeId]) { productInfoObject[item.productTypeId] = {} }
-            if (!productInfoObject[item.productTypeId]['productName']) { productInfoObject[item.productTypeId]['productName'] = [] }
-            if (!productInfoObject[item.productTypeId].product) { productInfoObject[item.productTypeId].product = [] }
-            productInfoObject[item.productTypeId].product.push({
-                productName: item.productName,
-                productid: item.productId,
-                score: item.statisticsModel?.score || 0
+        if (CompanyProductInfo && CompanyProductInfo.length > 0) {
+            CompanyProductInfo.forEach(item => {
+                if (!productInfoObject[item.productTypeId]) { productInfoObject[item.productTypeId] = {} }
+                if (!productInfoObject[item.productTypeId]['productName']) { productInfoObject[item.productTypeId]['productName'] = [] }
+                if (!productInfoObject[item.productTypeId].product) { productInfoObject[item.productTypeId].product = [] }
+                productInfoObject[item.productTypeId].product.push({
+                    productName: item.productName,
+                    productid: item.productId,
+                    score: item.statisticsModel?.score || 0
+                })
+
+                productInfoObject[item.productTypeId].productTypeName = item.productTypeName
+                productInfoObject[item.productTypeId].productTypeId = item.productTypeId
             })
-
-            productInfoObject[item.productTypeId].productTypeName = item.productTypeName
-            productInfoObject[item.productTypeId].productTypeId = item.productTypeId
-        })
-
+        }
         //----------------------------------------------
         //
         let CompanyProduct = await GetCompanyProductById({ productId })
@@ -178,7 +186,7 @@ export default class Business {
             'name': [],
             'value': []
         }
-        if (CompanyProduct.statisticsModel) {
+        if (CompanyProduct && CompanyProduct.statisticsModel) {
             CompanyProduct.statisticsModel.reputationScore.forEach(item => {
                 reshighKbChart['name'].push(item.reputationTypeName)
                 reshighKbChart['value'].push(item.reputationScore)
@@ -273,7 +281,7 @@ export default class Business {
             reputationtype,
             productInfoObject,
             reshighKbChart: JSON.stringify(reshighKbChart),
-            reshighKbScore: CompanyProduct.statisticsModel?.score
+            reshighKbScore: CompanyProduct?.statisticsModel?.score || 0
 
         })
 

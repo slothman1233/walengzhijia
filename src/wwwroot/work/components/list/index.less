@@ -75,7 +75,7 @@
 
           span {
             display     : block;
-            margin-right: @space_2;
+            margin-right: @space_1;
             float       : left;
 
             &.slug {
@@ -93,6 +93,17 @@
               height : @height - 2;
               border : 1px solid @color_grey_line1;
               float  : left;
+
+
+
+            }
+
+            &.radius {
+              img {
+                width: @height - 2;
+                .border-radius(50%);
+              }
+
             }
           }
         }

@@ -35,9 +35,36 @@ smheader %}
         {% for item in interactiveData %}
           <a href="{{item.notificationLink}}">
             <section class="t">
-          【{{item.notificationSendUserName}}】<span>评论了你的口碑</span></section>
-            <section class="r">{{item.extensionJson.CommentTargetContent}}</section>
-            <p>{{item.extensionJson.CommentContent}}</p>
+          【{{item.notificationSendUserName}}】<span>
+
+                {% if item.notificationType == 3 %}
+                 给你发送了咨询销售
+                {% elif item.notificationType == 4 %}
+                回答了你的提问
+                {% elif item.notificationType == 5 %}
+                  评论了你发布的内容
+                {% else  %}
+                  回答了你的提问
+                {% endif %}
+
+              </span>
+
+            </section>
+
+            {% if item.notificationType == 3 %}
+            {% else  %}
+              <section class="r">
+                {{item.extensionJson.CommentTargetContent}}
+              </section>
+            {% endif %}
+
+            <p>
+              {% if item.notificationType == 3 %}
+                {{item.notificationContent}}
+              {% else  %}
+                {{item.extensionJson.CommentContent}}
+              {% endif %}
+            </p>
             <section class="time">{{item.noticeTime | get_time_timestamp | ge_time_format(2)}}</section>
           </a>
         {% endfor %}

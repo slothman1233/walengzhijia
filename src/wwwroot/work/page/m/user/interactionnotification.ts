@@ -35,11 +35,35 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
                         let item = items[i]
                         let time = ge_time_format(get_time_timestamp(item.noticeTime).toString(), '2')
 
+                        let content = JSON.parse(item.extensionJson).CommentContent || ''
+                        let CommentTargetContent = `<section class="r">${JSON.parse(item.extensionJson).CommentTargetContent || ''}</section>`
+                        let identifiableContent = '回答了你的提问'
+
+                        switch (item.notificationType) {
+                            case NotificationTypeDefine.Advisory:
+                                content = item.notificationContent
+                                identifiableContent = '给你发送了咨询销售'
+                                CommentTargetContent = ''
+                                break
+                            case NotificationTypeDefine.Comment:
+
+                                identifiableContent = '回答了你的提问'
+                                break
+                            case NotificationTypeDefine.ReplyComment:
+
+                                identifiableContent = '评论了你发布的内容'
+                                break
+                            default:
+                                identifiableContent = '回答了你的提问'
+
+                                break
+                        }
+
                         html += ` <a href="${item.notificationLink}">
                         <section class="t">
-                      【${item.notificationSendUserName}】<span>评论了你的口碑</span></section>
-                        <section class="r">${JSON.parse(item.extensionJson).CommentTargetContent || ''}</section>
-                        <p>${JSON.parse(item.extensionJson).CommentContent || ''}</p>
+                      【${item.notificationSendUserName}】<span>${identifiableContent}</span></section>
+                        ${CommentTargetContent}
+                        <p>${content}</p>
                         <section class="time">${time}</section>
                       </a>`
 

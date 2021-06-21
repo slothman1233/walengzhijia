@@ -46,45 +46,6 @@
 
     }) }}
 
-    {% set contentData = [
-      {
-        id: '11',
-        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
-        createTime: "2020-08-01",
-        commentCount: 3333,
-        praiseCount: 55555
-      }, {
-        id: '11',
-        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
-        createTime: "2020-08-01",
-        commentCount: 3333,
-        praiseCount: 55555
-      }, {
-        id: '11',
-        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
-        createTime: "2020-08-01",
-        commentCount: 3333,
-        praiseCount: 55555
-      }, {
-        id: '11',
-        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
-        createTime: "2020-08-01",
-        commentCount: 3333,
-        praiseCount: 55555
-      }, {
-        id: '11',
-        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
-        createTime: "2020-08-01",
-        commentCount: 3333,
-        praiseCount: 55555
-      }, {
-        id: '11',
-        content: "这里显示你的提问，这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的提问这里显示你的...",
-        createTime: "2020-08-01",
-        commentCount: 3333,
-        praiseCount: 55555
-      }
-    ] %}
 
     <div class="box">
       {# <div class="questions" style='display:{{(tabType == 1) | ternary("block","none")}}'>
@@ -126,7 +87,7 @@
 
       </div> #}
       <div class="kb" style='display:{{(tabType == 1) | ternary("block","none")}}'>
-        {% if kbData != null and kbData.length > 0 %}
+        {% if kbData != null and kbData.length < 0 %}
           <div class="container">
             {% for item in kbData %}
 
@@ -160,7 +121,7 @@
 
         {% else %}
           <div class="empty">
-            <p>暂无口碑</p>
+           <img _src_="/assets/images/empty.png"/>
           </div>
         {% endif %}
 

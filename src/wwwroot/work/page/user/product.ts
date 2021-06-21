@@ -76,6 +76,12 @@ let oneWeight = parseInt(document.getElementById('usermain').querySelector('.pub
             pageSize
         })
 
+        if (datajson.bodyMessage.totalPages > 1) {
+            (<any>document.getElementById('usermain').querySelector('#publish_kkpage')).style.display = 'block'
+        } else {
+            (<any>document.getElementById('usermain').querySelector('#publish_kkpage')).style.display = 'none'
+        }
+
 
 
         let html = await getdata(parseInt(productTypeId) === 0 ? 1 : 10, datajson)
@@ -85,7 +91,7 @@ let oneWeight = parseInt(document.getElementById('usermain').querySelector('.pub
 
         window.imgload()
         kkpager({
-            pagerid: 'publish_kkpage',
+            pagerid: 'drafts_kkpage',
             total: datajson.bodyMessage.totalPages,
             pno: 1,
             mode: 'click',

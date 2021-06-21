@@ -21,15 +21,17 @@
     var pageSize = {{pageSize}}
     var systemtotalPages = {{systemtotalPages}}
     var interactiveotalPages = {{interactiveotalPages}}
+    var SystemReadNotice = {{SystemReadNotice}}
+    var InteractiveReadNotice = {{InteractiveReadNotice}}
   </script>
   <script type="text/javascript" src="/dist/scripts/user/index.js"></script>
 {% endblock script %}
 
 {% block body %}
 
-
   <div id="usermain">
-    {{ usernavigationbar({
+    <div class="tabbox">
+      {{ usernavigationbar({
             isMore: false,
             MoreText: "更多>>",
             link: "/list/0",
@@ -46,11 +48,18 @@
 
           }) }}
 
+      <div class="reddot">
+        <span class="systematicdot" style="display: {{SystemReadNotice | ternary('block','none')}}"></span>
+        <span class="interactiondot" style="display: {{InteractiveReadNotice | ternary('block','none')}}"></span>
+      </div>
+    </div>
+
     <div class="box">
 
       <div class="systematic" style='display:{{(notificationType == 1) | ternary("block","none") }}' >
         <div class="systematic_box">
-          {% if systemData != null and systemData.length >= 0 %}
+
+          {% if systemData != null and systemData.length > 0 %}
             {% for item in systemData %}
               <a class="child  {{item.isRead | ternary('read','')}}" href="{{item.notificationLink}}" data-isread='{{item.isRead}}' data-id="{{item.noticeId}}" data-type="{{item.notificationType}}" target="_blank">
                 <h3>{{item.notificationTitle}}
@@ -60,12 +69,12 @@
             {% endfor %}
           {% else %}
             <div class="nocontent">
-              <img _src_="/assets/images/loading.png"/>
-              <p>暂无相关内容</p>
+              <img _src_="/assets/images/empty.png"/>
+              {# <p>暂无相关内容</p> #}
             </div>
           {% endif %}
         </div>
-        {% if systemData != null and systemData.length >= 0 %}
+        {% if systemData != null and systemData.length > 0 and systemtotalPages > 1 %}
           <div id="systematic_kkpage"></div>
         {% endif %}
       </div>
@@ -78,10 +87,28 @@
                 <div class="title">
                   <img _src_="{{item.notificationSendUserIcon}}"/>
                   <p>{{item.notificationSendUserName}}</p>
-                  <b>回答了你的提问</b>
-                  <i>{{item.extensionJson.CommentTargetContent}}</i>
+                  {% if item.notificationType == 3 %}
+                    <b>给你发送了咨询销售</b>
+                  {% elif item.notificationType == 4 %}
+                    <b>回答了你的提问</b>
+                    <i>{{item.extensionJson.CommentTargetContent}}</i>
+                  {% elif item.notificationType == 5 %}
+                    <b>评论了你发布的内容</b>
+                    <i>{{item.extensionJson.CommentTargetContent}}</i>
+                  {% else  %}
+                    <b>回答了你的提问</b>
+                    <i>{{item.extensionJson.CommentTargetContent}}</i>
+                  {% endif %}
+
                 </div>
-                <p>{{item.extensionJson.CommentContent}}</p>
+                <p>
+                  {% if item.notificationType == 3 %}
+                    {{item.notificationContent}}
+                  {% else  %}
+                    {{item.extensionJson.CommentContent}}
+                  {% endif %}
+
+                </p>
                 <div class="time">
                   {{item.noticeTime | get_time_timestamp | ge_time_format(2)}}
                 </div>
@@ -90,12 +117,12 @@
 
           {% else  %}
             <div class="nocontent">
-              <img _src_="/assets/images/loading.png"/>
-              <p>暂无相关内容</p>
+              <img _src_="/assets/images/empty.png"/>
+              {# <p>暂无相关内容</p> #}
             </div>
           {% endif %}
         </div>
-        {% if interactiveData != null and interactiveData.length > 0 %}
+        {% if interactiveData != null and interactiveData.length > 0 and interactiveotalPages > 1 %}
           <div id="interaction_kkpage"></div>
         {% endif %}
       </div>

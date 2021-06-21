@@ -214,12 +214,16 @@ body {
             }
 
             .more {
+              cursor     : pointer;
               float      : left;
               display    : block;
-              line-height: 40px;
-              color      : @color_link ;
+              width      : 152px;
+              line-height: 38px;
+              text-align : center;
+              color      : @color_rank ;
               font-size  : @font_size_14;
-
+              border     : 1px solid @color_rank;
+              .border-radius(2px);
             }
           }
         }
@@ -586,6 +590,7 @@ body {
                 height      : 64px;
                 width       : 64px;
                 margin-right: 12px;
+                .border-radius(50%);
               }
 
               .r {

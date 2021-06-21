@@ -55,9 +55,11 @@ if (header) {
 
 
         async function getHasNotReadNotice(userid: number) {
+            let userId = window.getuserid()
+            if (userId <= 0) { return }
 
             let data = await HasNotReadNotice({ userId: userid })
-            if (data.code === 0 && data.subCode === subCodeEnums.success) {
+            if (data && data.code === 0 && data.subCode === subCodeEnums.success) {
                 let header = document.getElementById('header')
                 let red: HTMLElement = header.querySelector('.login .user .red')
                 if (data.bodyMessage === true || data.bodyMessage.toString() === 'true') {

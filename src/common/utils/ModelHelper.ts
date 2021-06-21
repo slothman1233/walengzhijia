@@ -19,3 +19,11 @@ export function JSONParse<T>(code: number, value: any): T | null {
         return code === 0 && value ? value : null
     }
 }
+
+
+export function JSONParseBool<T>(code: number, value: any): T | null {
+    if (!code && code !== 0) {
+        return null
+    }
+    return value
+}

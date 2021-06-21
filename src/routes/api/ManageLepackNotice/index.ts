@@ -5,9 +5,9 @@
 
 import { Context } from 'koa'
 import { get, post } from '../../../common/decorator/httpMethod'
-import { GetNoticeByUidRm, HasNotReadNoticeRm, SetNoticeIsReadRm } from '../../../controller/ManageLepackNotice.controller'
+import { GetNoticeByUidRm, HasNotReadNoticeRm, SetNoticeIsReadByPlatRm, SetNoticeIsReadRm } from '../../../controller/ManageLepackNotice.controller'
 import { NoticeReadModel } from '../../../model/notice/notice'
-import { GetNoticeByUidModel, HasNotReadNoticeModel } from '../../../services/ManageLepackNotice.services'
+import { GetNoticeByUidModel, HasNotReadNoticeByPlatModel, HasNotReadNoticeModel } from '../../../services/ManageLepackNotice.services'
 export default class ManageLepackNoticeapi {
   /**
   * 根据用户ID查找通知信息结果
@@ -40,6 +40,18 @@ export default class ManageLepackNoticeapi {
   @post('/SetNoticeIsRead')
   async SetNoticeIsRead(ctx: Context) {
       let models = await SetNoticeIsReadRm((<NoticeReadModel>ctx.request.body))
+      ctx.body = models
+  }
+
+
+  /**
+* 根据板块设置用户全部已读操作
+* @param {number} userId 接收用户
+* @param {NotificationQueryTypeDefine} notificationQueryType 查找通知类型
+  */
+  @post('/SetNoticeIsReadByPlat')
+  async SetNoticeIsReadByPlat(ctx: Context) {
+      let models = await SetNoticeIsReadByPlatRm((<HasNotReadNoticeByPlatModel>ctx.request.body))
       ctx.body = models
   }
 

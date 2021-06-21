@@ -26,11 +26,11 @@
   <div class="productlist">
     {% for item in args %}
       <div class="child clearfix">
-        <a class="logo" data-id='{{item.productId}}'>
+        <a class="logo" data-id='{{item.productId}}' href="/m/business/product/{{item.company.companyId}}/{{item.productId}}">
           <img src="{{item.productCover}}" title="{{item.productName}}"/>
         </a>
         <section>
-          <a>
+          <a href="/m/business/product/{{item.productId}}">
             <h2>{{item.productName}}</h2>
           </a>
           <p class="clearfix">
@@ -138,21 +138,24 @@
     salerName: '李女士',
     salerPosition: '海外销售经理',
     salerFunction: '负责对外商务洽谈业务',
-    salerWorkYears: 10
+    salerWorkYears: 10,
+    productId: 0
   }, {
     salerId: 1,
     salerIcon: "/assets/images/loading.png",
     salerName: '李女士',
     salerPosition: '海外销售经理',
     salerFunction: '负责对外商务洽谈业务',
-    salerWorkYears: 10
+    salerWorkYears: 10,
+    productId: 0
   }, {
     salerId: 1,
     salerIcon: "/assets/images/loading.png",
     salerName: '李女士',
     salerPosition: '海外销售经理',
     salerFunction: '负责对外商务洽谈业务',
-    salerWorkYears: 10
+    salerWorkYears: 10,
+    productId: 0
   }
 ]) %}
   <div class="saleslist">
@@ -172,7 +175,7 @@
           </div>
         </div>
         {# href="/m/business/product/1/53" #}
-        <a href="/m/enquiry/{{item.companyId}}/{{item.salerId}}" onclick="document.location.href=this.href;" target="_self">向TA咨询</a>
+        <a href="/m/enquiry/{{item.companyId}}/{{(item.productId) | ternary(item.productId,0)}}/{{item.salerId}}" onclick="document.location.href=this.href;" target="_self">向TA咨询</a>
 
       </div>
     {% endfor %}

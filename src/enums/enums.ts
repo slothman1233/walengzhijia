@@ -357,10 +357,12 @@ export const ProductSortType = [
  * 文章内容类型
  * 1 文章
  * 2 视频
+ * 3 口碑
  */
 export enum NewsContentTypeEnums {
   content = 1,
-  video = 2
+  video = 2,
+  reputation = 3
 }
 /**
  * 文章内容类型
@@ -375,6 +377,10 @@ export const NewsContentTypeObject = [
     {
         id: NewsContentTypeEnums.video,
         value: '视频'
+    },
+    {
+        id: NewsContentTypeEnums.reputation,
+        value: '口碑'
     }
 ]
 /**
@@ -383,7 +389,7 @@ export const NewsContentTypeObject = [
  * 1 文章
  * 2 视频
  */
-export const NewsContentTypeArray = ['文章', '文章', '视频']
+export const NewsContentTypeArray = ['文章', '文章', '视频', '口碑']
 
 
 
@@ -548,4 +554,30 @@ export enum NotificationTypeDefine {
   Advisory = 3,
   Comment = 4,
   ReplyComment = 5
+}
+
+
+/**
+ * 新闻来源类型
+ * 0 未分类新闻
+ * 1 公司新闻
+ * 2 个人新闻，发表的口碑
+ * 3 爬虫新闻
+ */
+export enum NewsSourceTypeDeine {
+  Default = 0,
+  Company = 1,
+  Personal = 2,
+  Web = 3
+}
+
+/**
+ * 查找通知类型
+ * 1 查找系统通知
+ * 2 查找互动通知
+ */
+export enum NotificationQueryTypeDefine {
+  System = 1,
+  Interactive = 2
+
 }

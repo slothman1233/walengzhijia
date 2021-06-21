@@ -1,10 +1,10 @@
 import { kkpager } from '@stl/kkpager'
 import { usernavigationbar } from '../../components/navigationbar'
 import type { JQuery, JQueryStatic } from '../../../assets/plugin/jquery/jquery'
-import { GetNoticeByUid, SetNoticeIsRead } from '../../common/service/ManageLepackNotice'
+import { GetNoticeByUid, SetNoticeIsRead, SetNoticeIsReadByPlat } from '../../common/service/ManageLepackNotice'
 import { userLoginModel } from '../../../../model/common'
 import window from '../../common/win/windows'
-import { NotificationTypeDefine, subCodeEnums } from '../../../../enums/enums'
+import { NotificationQueryTypeDefine, NotificationTypeDefine, subCodeEnums } from '../../../../enums/enums'
 import { get_time_timestamp, ge_time_format } from '../../../../common/utils/util'
 declare const $: JQueryStatic
 
@@ -13,6 +13,8 @@ declare const notificationType: any
 declare const systemtotalPages: any
 declare const interactiveotalPages: any
 declare const pageSize: any
+declare let SystemReadNotice: any
+declare let InteractiveReadNotice: any
 let usercookie: userLoginModel = JSON.parse(window.getusercookie())
 
 let usermain = document.querySelector('#usermain')
@@ -20,8 +22,10 @@ let systematic = usermain.querySelector('.systematic')
 let interaction = usermain.querySelector('.interaction');
 //首次设置已读状态
 (function () {
-    let domAry: JQuery = $(systematic).find('.child[data-isread=false]')
-    setisread(domAry)
+    // let domAry: JQuery = $(systematic).find('.child[data-isread=false]')
+    // setisread(domAry)
+    SetNoticeIsRead(NotificationQueryTypeDefine.System)
+
 })()
 
 //设置已读的方法
@@ -49,6 +53,35 @@ async function setisread(domAry: JQuery) {
 
 }
 
+
+async function SetNoticeIsRead(type: NotificationQueryTypeDefine) {
+
+
+    if (type === NotificationQueryTypeDefine.System && !SystemReadNotice) { return }
+    if (type === NotificationQueryTypeDefine.Interactive && !InteractiveReadNotice) { return }
+
+    let data = await SetNoticeIsReadByPlat({
+        userId: parseInt(usercookie.userId),
+        notificationQueryType: type
+    })
+
+    if (data.code === 0 && data.subCode === subCodeEnums.success) {
+        switch (type) {
+            case NotificationQueryTypeDefine.System:
+                (<any>document.querySelector('.systematicdot')).style.display = 'none'
+                SystemReadNotice = false
+                break
+            case NotificationQueryTypeDefine.Interactive:
+                (<any>document.querySelector('.interactiondot')).style.display = 'none'
+                InteractiveReadNotice = false
+                break
+            default: break
+        }
+
+    }
+
+}
+
 (function () {
     if (document.getElementById('systematic_kkpage')) {
         kkpager({
@@ -64,7 +97,6 @@ async function setisread(domAry: JQuery) {
                 nextPageText: '下一页',
             },
             click: async (index: number) => {
-                console.log(index)
                 let systemData = await GetNoticeByUid({
                     userId: parseInt(usercookie.userId),
                     pageIndex: index,
@@ -90,7 +122,8 @@ async function setisread(domAry: JQuery) {
                         document.querySelector('.systematic .systematic_box').innerHTML = html
 
 
-                        setisread($(systematic).find('.child[data-isread=false]'))
+
+                        // setisread($(systematic).find('.child[data-isread=false]'))
                     }
                 }
 
@@ -130,16 +163,36 @@ async function setisread(domAry: JQuery) {
                         let html = ''
                         for (let i = 0; i < items.length; i++) {
                             let item = items[i]
+                            console.log(item)
                             let time = ge_time_format(get_time_timestamp(item.noticeTime).toString(), '2')
+                            let content = JSON.parse(item.extensionJson).CommentContent
+                            let identifiableContent = '回答了你的提问'
+                            switch (item.notificationType) {
+                                case NotificationTypeDefine.Advisory:
+                                    content = item.notificationContent
+                                    identifiableContent = '给你发送了咨询销售'
+                                    break
+                                case NotificationTypeDefine.Comment:
+                                    content = JSON.parse(item.extensionJson).CommentContent || ''
+                                    identifiableContent = '回答了你的提问'
+                                    break
+                                case NotificationTypeDefine.ReplyComment:
+                                    content = JSON.parse(item.extensionJson).CommentContent || ''
+                                    identifiableContent = '评论了你发布的内容'
+                                    break
+                                default:
+                                    break
+                            }
+
 
                             html += `<a class="child ${item.isRead ? 'read' : ''}" href="${item.notificationLink}" data-isread='${item.isRead}' data-id="${item.noticeId}" data-type="${item.notificationType}"  target="_blank">
                             <div class="title">
                               <img _src_="${item.notificationSendUserIcon}"/>
                               <p>${item.notificationSendUserName}</p>
-                              <b>回答了你的提问</b>
+                              <b>${identifiableContent}</b>
                               <i>${JSON.parse(item.extensionJson).CommentTargetContent || ''}</i>
                             </div>
-                            <p>${JSON.parse(item.extensionJson).CommentContent || ''}</p>
+                            <p>${content}</p>
                             <div class="time">
                              ${time}
                             </div>
@@ -149,6 +202,7 @@ async function setisread(domAry: JQuery) {
 
 
                         setisread($(interaction).find('.child[data-isread=false]'))
+                        window.imgload()
                     }
                 }
 
@@ -168,7 +222,21 @@ async function setisread(domAry: JQuery) {
         thatshowdom.siblings().hide()
         thatshowdom.show()
 
-        setisread(thatshowdom.find('.child[data-isread=false]'))
+        switch (index) {
+            case 0:
+                SetNoticeIsRead(NotificationQueryTypeDefine.System)
+                break
+            case 1:
+                SetNoticeIsRead(NotificationQueryTypeDefine.Interactive)
+                break
+            default:
+                break
+        }
+
+
+
+        // setisread(thatshowdom.find('.child[data-isread=false]'))
 
     })
 })()
+

@@ -66,11 +66,12 @@ usernavigationbar %}
             {{newslist(1,firstnewlist)}}
           </div>
 
-          <div id="publish_kkpage"></div>
+          <div id="publish_kkpage" style="display:{{totalPages > 1 | ternary('block','none')}}"></div>
 
         {% else %}
           <div class="empty">
-            <p>还未发布新闻</p>
+          <img _src_="/assets/images/empty.png"/>
+            {# <p>还未发布新闻</p> #}
             <a href="/user/publishnews">点击发布新闻</a>
           </div>
         {% endif %}

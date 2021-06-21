@@ -66,6 +66,13 @@ let companyId = JSON.parse(window.getusercookie()).company.companyId;
 
         let d = await getdata(id, 1)
 
+        if (d.totalPages > 1) {
+            (<any>document.getElementById('usermain').querySelector('#publish_kkpage')).style.display = 'block'
+        } else {
+            (<any>document.getElementById('usermain').querySelector('#publish_kkpage')).style.display = 'none'
+        }
+
+
         $('#usermain .publish .child_box').html(d.html)
         window.imgload()
         kkpager({
@@ -104,8 +111,10 @@ let companyId = JSON.parse(window.getusercookie()).company.companyId;
     let html = ''
     if (keyAry.length <= 0) {
         html = `<div class="empty">
-                    <p>没有草稿</p>
+                    <img src="/assets/images/empty.png"/>
+                  
                 </div>`
+        // <p>没有草稿</p>
         child_box.innerHTML = html
     } else {
         let contentData: any[] = []
@@ -185,7 +194,7 @@ async function getdata(id: any, pageIndex: number) {
             })
         })
 
-        let datas: bodyModel<string> = await getcomponent({ path: 'components/user/newslist.njk', name: 'newslist', data: { type: id === 0 ? 1 : 2, newdata: newslist } })
+        let datas: bodyModel<string> = await getcomponent({ path: 'components/user/newslist.njk', name: 'newslist', data: { type: 1, newdata: newslist } })
 
         if (datas.code === 0) {
             html = datas.bodyMessage

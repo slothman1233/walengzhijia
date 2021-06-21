@@ -60,6 +60,8 @@ type env = {
 
     domain: string,
 
+    domainAllUrl: string,
+
 
     /**
      * 全局数据缓存 供给nunjucks使用

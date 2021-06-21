@@ -109,7 +109,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
             return false
         }
     })
-  
+
 
     //展开收缩 提交回答按钮
     on({
@@ -362,6 +362,7 @@ export async function comment1fn(parentId: string | HTMLElement, {
                 let commentdata = comment.bodyMessage
                 if (!commentdata || commentdata.length < 10) {
                     dom.style.display = 'none'
+                    $(dom).siblings('.nocontent').show()
                 }
                 if (commentdata && commentdata.length > 0) {
                     commentdata.forEach(comment => {

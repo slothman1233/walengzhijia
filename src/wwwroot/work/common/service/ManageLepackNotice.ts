@@ -2,7 +2,7 @@
 
 import http from './http'
 
-import type { GetNoticeByUidModel, HasNotReadNoticeModel } from '../../../../services/ManageLepackNotice.services'
+import type { GetNoticeByUidModel, HasNotReadNoticeByPlatModel, HasNotReadNoticeModel } from '../../../../services/ManageLepackNotice.services'
 import type { ResNoticeModelPagedModelReturnModel } from '../../../../model/notice/resNotice'
 import type { NoticeReadModel } from '../../../../model/notice/notice'
 import type { bodyModel } from '../../../../model/resModel'
@@ -31,5 +31,13 @@ export const HasNotReadNotice = async (params: HasNotReadNoticeModel): Promise<b
  * @param {NoticeReadDetailModel[]} noticeIds 批量设置已读的通知ID
  */
 export const SetNoticeIsRead = async (options: NoticeReadModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/api/ManageLepackNotice/SetNoticeIsRead`, options)
+
+
+/**
+* 根据板块设置用户全部已读操作
+* @param {number} userId 接收用户
+* @param {NotificationQueryTypeDefine} notificationQueryType 查找通知类型
+*/
+export const SetNoticeIsReadByPlat = async (options: HasNotReadNoticeByPlatModel): Promise<bodyModel<boolean>> => await http.post<boolean>(`/api/ManageLepackNotice/SetNoticeIsReadByPlat`, options)
 
 

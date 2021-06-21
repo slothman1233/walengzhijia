@@ -1,4 +1,4 @@
-import { NewsContentTypeEnums, newsTypeEnums, priceShowStatusEnums } from '../../enums/enums'
+import { NewsContentTypeEnums, NewsSourceTypeDeine, newsTypeEnums, priceShowStatusEnums } from '../../enums/enums'
 import { PageModel } from '../pageModel'
 import { ResReputationModel, ResReputationStatisticsModel } from '../reputation/resreputation'
 import { bodyModel } from '../resModel'
@@ -27,6 +27,7 @@ import { bodyModel } from '../resModel'
  * @param {boolean} isTop 是否置顶
  * @param {number} topWeight 置顶权重
  * @param {ResReputationStatisticsModel} statisticsModel 口碑统计信息
+ * @param {NewsSourceTypeDeine} newsSourceType 新闻来源类型
  */
 export interface ResNewsModel {
   newsId?: number
@@ -49,7 +50,8 @@ export interface ResNewsModel {
   newsContentType: NewsContentTypeEnums
   isTop?: boolean
   topWeight?: number
-  statisticsModel:ResReputationStatisticsModel
+  statisticsModel: ResReputationStatisticsModel
+  newsSourceType: NewsSourceTypeDeine
 
 }
 

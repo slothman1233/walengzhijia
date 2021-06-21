@@ -1,6 +1,6 @@
 import config from '../common/config/env'
 import http from '../common/utils/net'
-import { NotificationTypeDefine, publishNewsTypeEnums } from '../enums/enums'
+import { NotificationQueryTypeDefine, NotificationTypeDefine, publishNewsTypeEnums } from '../enums/enums'
 import { NoticeReadModel } from '../model/notice/notice'
 import { ResNoticeModelPagedModelReturnModel } from '../model/notice/resNotice'
 /**
@@ -19,6 +19,11 @@ export type GetNoticeByUidModel = {
 
 export type HasNotReadNoticeModel = {
     userId: number
+}
+
+export type HasNotReadNoticeByPlatModel = {
+    userId: number
+    notificationQueryType: NotificationQueryTypeDefine
 }
 
 class ManageLepackNotice {
@@ -46,6 +51,23 @@ class ManageLepackNotice {
     async HasNotReadNotice(params: HasNotReadNoticeModel) {
         return await http.get<boolean>(`${config.apiPath}api/ManageLepackNotice/HasNotReadNotice`, { params, headers: { 'Content-Type': 'application/json' } })
     }
+
+    /**
+     * 根据板块查找用户未读状态信息
+     * HasNotReadNoticeByPlatModel
+     */
+    async HasNotReadNoticeByPlat(params: HasNotReadNoticeByPlatModel) {
+        return await http.get<boolean>(`${config.apiPath}api/ManageLepackNotice/HasNotReadNoticeByPlat`, { params, headers: { 'Content-Type': 'application/json' } })
+    }
+
+    // 根据板块设置用户全部已读操作
+    // NoticeReadModel
+    async SetNoticeIsReadByPlat(params: HasNotReadNoticeByPlatModel) {
+        return await http.post<boolean>(`${config.apiPath}api/ManageLepackNotice/SetNoticeIsReadByPlat`, params, { params, headers: { 'Content-Type': 'application/json' } })
+    }
+
+
+
 }
 
 

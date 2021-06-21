@@ -47,7 +47,7 @@ let PublishData: ReputationModel = {
     reputationIcon: '',
     createUser: userId,
     reputationScores: [],
-    newsContentType: NewsContentTypeEnums.content
+    newsContentType: NewsContentTypeEnums.reputation
 
 };
 
@@ -300,8 +300,8 @@ async function submitFn() {
     //     return
     // }
 
-    if (window.ue.body.innerHTML.length <= 20) {
-        alert('观点描述不能为空！')
+    if (window.ue.body.innerText.length <= 20) {
+        alert('观点描述不能少于20个字符以上')
         return
     }
 
@@ -337,9 +337,9 @@ async function submitFn() {
 
     //判断文章是否有音频
     //有音频则为音频类型
-    if (window.ue.body.querySelector('video')) {
-        PublishData.newsContentType = NewsContentTypeEnums.video
-    }
+    // if (window.ue.body.querySelector('video')) {
+    //     PublishData.newsContentType = NewsContentTypeEnums.video
+    // }
 
     PublishData.purchasePrice = parseFloat(price.value)
     PublishData.priceShowStatus = parseInt(checkeDom.getAttribute('data-id'))

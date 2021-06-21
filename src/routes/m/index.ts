@@ -141,11 +141,12 @@ export default class Index {
 
     /**
     * @param {number} companyId 品牌商ID
+    * @param {number} productId 产品ID
     * @param {number} companyId 销售ID
     */
-    @get('/enquiry/:companyId?/:salesid?')
+    @get('/enquiry/:companyId?/:productId?/:salesid?')
     async enquiry(ctx: Context, next: Next) {
-        let { companyId, salesid } = ctx.params
+        let { companyId, productId, salesid } = ctx.params
         //公司信息
         let companydata = await GetCompanyInfoById({ companyId })
         //----------------------------------------------
@@ -159,6 +160,10 @@ export default class Index {
         }
         //----------------------------------------------
         // 获取公司的产品集合
+        let firstproduct = {
+            id: -1,
+            value: ''
+        }
 
         let CompanyProductInfo = await GetCompanyProduct({ companyId })
         let productInfoObject: any[] = []
@@ -172,20 +177,27 @@ export default class Index {
                 score: item.statisticsModel?.score || 0
             })
 
+            if (parseInt(productId) === item.productId) {
+                firstproduct.id = item.productId
+                firstproduct.value = item.productName
+            }
+
             productInfoObject[item.productTypeId].productTypeName = item.productTypeName
             productInfoObject[item.productTypeId].productTypeId = item.productTypeId
         })
+        
+        if (firstproduct.id === -1) {
+            try {
+
+                firstproduct.id = CompanyProductInfo[0].productId
+                firstproduct.value = CompanyProductInfo[0].productName
+            } catch (e) { }
+        }
+
 
         //----------------------------------------------
 
-        let firstproduct = {
-            id: -1,
-            value: ''
-        }
-        try {
-            firstproduct.id = CompanyProductInfo[0].productId
-            firstproduct.value = CompanyProductInfo[0].productName
-        } catch (e) { }
+
 
         await ctx.render('m/enquiry', {
             companyId,

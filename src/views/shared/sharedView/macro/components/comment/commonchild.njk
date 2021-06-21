@@ -81,15 +81,16 @@
       <div class="common_details">
         <div class="h clearfix">
           <span>{{item.commentUserName}}</span>
-          {% if item.at %}
-            <span>回复</span>
-            <span>{{item.at.commentUserName}}</span>
-          {% endif %}
+          {# {% if item.at %}{% endif %} #}
           <span class="createtime">{{item.commentTime  | ternary(item.commentTime,item.replyTime) |  get_time_timestamp | ge_time_format(2)}}</span>
         </div>
         <div class="content">
           {% if item.at %}
-            <p>{{item.at.commentContent}}</p>
+            <p>
+              <span>回复</span>
+              <span class="linkcolor">@{{item.at.commentUserName}}：</span>
+              {{item.at.commentContent}}
+            </p>
           {% endif %}
           <span>{{item.commentContent}}</span>
         </div>
@@ -110,17 +111,16 @@
 
         </div>
 
-
         <div class="sub clearfix" style="display:none;">
           {% if item.type == 'mobile' %}
             <div class="input">
               <textarea class="response" placeholder="写下你的评论..."></textarea>
             </div>
-            <a href="javascript:void(0);" data-commentId="{{item.commentId}}"  data-id="{{item.replyId}}"  data-parentid="{{item.commentUser}}">提交回答</a>
+            <a href="javascript:void(0);" data-commentId="{{item.commentId}}"  data-id="{{item.replyId}}"  data-parentid="{{item.commentUser}}">提交回复</a>
 
           {% else %}
             <div class="input"><input type="text" class="response" value="" placeholder="写下你的评论..."></div>
-            <a href="javascript:void(0);" data-commentId="{{item.commentId}}"  data-id="{{item.replyId}}"  data-parentid="{{item.commentUser}}">提交回答</a>
+            <a href="javascript:void(0);" data-commentId="{{item.commentId}}"  data-id="{{item.replyId}}"  data-parentid="{{item.commentUser}}">提交回复</a>
 
           {% endif %}
 
@@ -134,7 +134,7 @@
           {% if (item.replys) and (item.replys.length >= 10) %}
             <div class="more">加载更多</div>
           {% endif %}
-
+         
         </div>
 
       </div>
