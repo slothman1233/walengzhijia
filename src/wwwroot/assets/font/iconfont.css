@@ -48,12 +48,20 @@
 	content: "\E006";
 }
 
+.icon-draw:before {
+	content: "\E020";
+}
+
 .icon-dropdown:before {
 	content: "\E007";
 }
 
 .icon-edit:before {
 	content: "\E008";
+}
+
+.icon-exclamation:before {
+	content: "\E021";
 }
 
 .icon-heart:before {

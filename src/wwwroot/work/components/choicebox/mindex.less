@@ -1,0 +1,83 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+
+
+.choicebox() {
+  .radio {
+    @itemheight: @size_1 * 40;
+
+    .radio_box {
+      float       : left;
+      margin-right: @space_3;
+      position    : relative;
+      line-height : @itemheight;
+
+      &:hover {
+        label {
+          border-color: @color_rank;
+        }
+      }
+
+      &>input {
+
+        float   : left;
+        height  : 100%;
+        width   : 100%;
+        position: absolute;
+        left    : 0;
+        top     : 0;
+        .opacity(0);
+
+        &:checked+label::after {
+          position  : absolute;
+          content   : "";
+          width     : @size_1 * 10;
+          height    : @size_1 * 10;
+          top       : @size_1 * 2.1;
+          left      : @size_1 * 2;
+          background: @color_rank;
+        }
+
+
+      }
+
+      label {
+        @size   : @size_1 * 16;
+        float   : left;
+        position: relative;
+        width   : @size;
+        height  : @size;
+        border  : 1px solid @color_gray_5;
+        margin  : (@itemheight - @size)/2 @space_1 (@itemheight - @size)/2 0;
+
+      }
+
+      span {
+        display: block;
+        float  : left;
+      }
+
+    }
+
+    &.square {
+      label {
+        .border-radius(2px);
+      }
+    }
+
+    &.circle {
+      .radio_box {
+        &>input:checked+label::after {
+          .border-radius(50%);
+        }
+      }
+
+
+
+      label {
+        .border-radius(50%);
+      }
+    }
+
+  }
+
+}

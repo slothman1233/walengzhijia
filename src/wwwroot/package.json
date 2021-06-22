@@ -17,6 +17,7 @@
         "@stl/image-preview": "^1.1.1",
         "@stl/image-slider": "^1.0.8",
         "@stl/kkpager": "0.0.7",
+        "@stl/qrcode": "^1.0.7",
         "@stl/request": "^2.0.0",
         "@stl/share": "^1.1.4",
         "@stl/tool-ts": "^1.0.3",

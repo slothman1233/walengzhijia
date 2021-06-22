@@ -250,14 +250,6 @@ export default class Index {
             pageSize,
             queryType: tabIndex
         })
-        // console.log({
-        //     productType: productid,
-        //     classifyType: sortid,
-        //     pageIndex,
-        //     pageSize,
-        //     queryType: tabIndex
-        // })
-
         let companylistJson: any[] = []
         if (GetCompanyJson?.items) {
             GetCompanyJson.items.forEach(item => {

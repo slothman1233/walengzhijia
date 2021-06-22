@@ -87,7 +87,7 @@
 
       </div> #}
       <div class="kb" style='display:{{(tabType == 1) | ternary("block","none")}}'>
-        {% if kbData != null and kbData.length < 0 %}
+        {% if kbData != null and kbData.length > 0 %}
           <div class="container">
             {% for item in kbData %}
 

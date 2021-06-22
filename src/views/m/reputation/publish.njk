@@ -1,6 +1,9 @@
 {% extends "../../shared/layout/mdefaultLayou.njk" %}
 {% from "../../shared/sharedView/macro/wuc/mheader.njk" import mheader,
 smheader %}
+{% from "../../shared/sharedView/macro/components/choicebox/index.njk" import choicebox %}
+{% from "../../shared/sharedView/macro/components/star/star.njk" import star %}
+{% from "../../shared/sharedView/macro/components/uploadfile/uploadfile.njk" import uploadfileImg %}
 {% block title %}
 发布口碑 - 产品口碑 - 乐品包装
 {% endblock title %}
@@ -10,6 +13,7 @@ smheader %}
 {% block description %}{% endblock %}
 
 {% block style %}
+<link href="/assets/plugin/mui/mui.picker.min.css" rel="stylesheet">
   <link href="/dist/styles/m/reputation/publish.css" rel="stylesheet">
 
 {% endblock style %}
@@ -19,7 +23,8 @@ smheader %}
     var companyId = {{companyId}}
     var productId = {{productId}}
   </script>
-
+  <script src="/assets/plugin/mui/mui.picker.js"></script>
+  <script src="/assets/plugin/ali-oss-6.9.0/dist/aliyun-oss-sdk.js"></script>
   <script type="text/javascript" src="/dist/scripts/m/reputation/publish.js"></script>
 
 {% endblock script %}
@@ -30,30 +35,148 @@ smheader %}
     <div class="submit">发布</div>
   </div>
 
-  <div class="selectpooduct clearfix">
-    <img _src_="/assets/images/empty.png"/>
+  <a class="selectpooduct clearfix" href="#modal">
+    <img _src_="{{companyInfo.logo}}"/>
     <i class="iconfont_wlzj">&#xE00C;</i>
-    <div class="c">
-      <h3>阿斯蒂芬</h3>
-      <span>爱迪生发大</span>
-    </div>
-  </div>
+    <section class="c">
+      <h3>{{companyInfo.abbrName}}</h3>
+      <span>{{thatProductName}}</span>
+    </section>
+  </a>
 
-  <div class="info">
-    <div class="company clearfix">
+  <div class="info clearfix">
+    <div class="buytime clearfix">
       <span>购买时间</span>
       <i class="iconfont_wlzj">&#xE00C;</i>
-      <input type="text" placeholder="请输入购买时间" readonly="readonly" class="more">
+      <input type="text" placeholder="请输入购买时间" readonly="readonly" class="more itp">
     </div>
-    <div class="company clearfix">
+    <div class="usetime clearfix">
       <span>使用时间</span>
       <i class="iconfont_wlzj">&#xE00C;</i>
-      <input type="text" placeholder="请输入使用时间" readonly="readonly" class="more">
+      <input type="text" placeholder="请输入使用时间" readonly="readonly" class="more itp">
     </div>
-    <div class="company clearfix">
+    <div class="price clearfix">
       <span>购买价格</span>
-      <input type="text" placeholder="请输入购买价格">
+      <input type="text" placeholder="请输入购买价格" class="itp">
+    </div>
+
+    {{choicebox({
+            figuratetype: '2',
+            type: 'radio',
+            defaultselect: '1',
+            name: 'radio',
+            data: [
+              {
+                id: 1,
+                value: '显示价格'
+              }, {
+                id: 2,
+                value: '显示首位数字(如:8**.*万元)'
+              }, {
+                id: 3,
+                value: '不显示价格'
+              }
+            ]
+          })}}
+  </div>
+  <div class="marginline"></div>
+  <div class="scoreitems clearfix">
+    <h2>
+      整体评分项<i>*</i>
+      <span>0.00</span>
+    </h2>
+
+    <div class="star_box clearfix">
+      {% for item in scoreItems %}
+        <div data-id="{{item.reputationTypeId}}">
+          <span class='name'>{{item.reputationName}}</span>
+          {{star(0)}}
+          <span>0</span>
+          <i></i>
+        </div>
+      {% endfor %}
     </div>
   </div>
+  <div class="marginline"></div>
+  <div class="description_box clearfix">
+    <h2>观点描述</h2>
+    <input type="text" placeholder="请输入标题(5-30字)" class="title"/>
+    <div class="descriptioncontent clearfix">
+    <textarea class="content_box" placeholder="对产品进行描述和评价，如果您的分项评分有4.5以上或3分以下，建议对该分项进行重点描述。"></textarea>
+      {# <div contenteditable="true" class="content_box" placeholder="对产品进行描述和评价，如果您的分项评分有4.5以上或3分以下，建议对该分项进行重点描述。">
+       对产品进行描述和评价，如果您的分项评分有4.5以上或3分以下，建议对该分项进行重点描述。
+      </div> #}
+      <div class="wordcount">
+        <span>0</span>/2000
+      </div>
 
+    </div>
+
+  </div>
+
+  <div class="uploadimg clearfix">
+    <div class="Imagecollection clearfix">
+      <div class="upfile">
+        <div class="uploadfile">
+          <div class="previewbg">
+            <p>添加图片</p>
+          </div>
+          <input class="uploadfileinput" accept="image/jpeg,image/jpg,image/png" multiple="multiple" type="file"></div>
+      </div>
+    </div>
+
+    <div class="imgcount">
+     添加图片<span>0</span>/9
+    </div>
+
+  </div>
+
+  <div class="cover">
+
+    <div class="l">
+      {{uploadfileImg({
+                description : "点此添加封面",
+                previewIsShow:false,
+                previewImg:"https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933565493_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4&r=0",
+                previewTitle:"替换"
+              })}}
+    </div>
+    <div class="r">
+      <h2>添加封面</h2>
+      <p>好的封面会吸引更多的阅读(封面比例为 3:2)</p>
+    </div>
+
+  </div>
+
+
+
+
+ <div id="modal" class="box mui-popover mui-popover-action mui-popover-right">
+
+    <div class="mui-scroll-wrapper modalwrapper">
+      <div class="mui-scroll">
+        {{smheader({title:'选择产品'})}}
+
+        <div class="content">
+          {% for item in productInfoObject %}
+            {% if item.productTypeName != null %}
+              <div>
+                <h2>{{item.productTypeName}}</h2>
+                {% for product in item.product %}
+                  <a class="{{(product.productid == productId) | ternary('select','')}}" data-productid="{{product.productid}}" data-productTypeId="{{product.productTypeId}}">
+                    <p>{{product.productName}}</p>
+                    <span>产品口碑分：<i class="{{(product.score == 0) | ternary('noscore','')}}">{{(product.score == 0) | ternary('暂无评分',product.score)}}</i>
+                    </span>
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+  </div>
 {% endblock body %}

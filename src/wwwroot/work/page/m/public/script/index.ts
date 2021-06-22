@@ -2,6 +2,7 @@ import config from '../../../../common/config/env'
 import { getCookie } from '@stl/tool-ts/src/common/compatible/getCookie'
 
 import './popup'
+import './mheader'
 import window from '../../../../common/win/windows'
 import { delCookie, setCookie } from '../../../../common/utils/common'
 // import { logintype } from '../../../login/login'
@@ -114,3 +115,16 @@ window.getuserid = function () {
 window.loginshow = function loginshow(type: logintype = logintype.phonelogin) {
     document.location.href = '/m/login'
 }
+
+
+// (function () {
+//     let isPageHide = false
+//     window.addEventListener('pageshow', function () {
+//         if (isPageHide) {
+//             window.location.reload()
+//         }
+//     })
+//     window.addEventListener('pagehide', function () {
+//         isPageHide = true
+//     })
+// })()

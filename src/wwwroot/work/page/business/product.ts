@@ -2,7 +2,6 @@ import { get_unix_time_stamp, ge_time_format } from '../../../../common/utils/ut
 import { NewsContentTypeArray, subCodeEnums } from '../../../../enums/enums'
 import { GetNewsByCompanyId, GetNewsByProductId } from '../../common/service/news.services'
 import { navigationbar2 } from '../../components/navigationbar'
-
 import type { JQueryStatic } from '../../../assets/plugin/jquery/jquery'
 import { bodyModel } from '../../../../model/resModel'
 import { getcomponent } from '../../common/service/ComponentService/ComponentService'
@@ -11,6 +10,7 @@ import window from '../../common/win/windows'
 declare const companyId: any
 declare const productId: any
 declare const $: JQueryStatic
+declare const qrcode: any
 //相关资讯
 (function () {
 
@@ -79,4 +79,35 @@ declare const $: JQueryStatic
             return true
         }
     })
+})();
+
+//邀请发送口碑
+(function () {
+    let more: HTMLElement = document.querySelector('.btm .more')
+    let invitepopup: HTMLElement = document.querySelector('.invitepopup')
+    let close: HTMLElement = invitepopup.querySelector('.iconfont_wlzj')
+    let copylink: HTMLElement = invitepopup.querySelector('.copylink')
+    let copylinka: HTMLElement = copylink.querySelector('a')
+    let copylinkinput: HTMLInputElement = copylink.querySelector('input')
+    copylinkinput.value = document.location.href
+    more.onclick = function () {
+        invitepopup.style.display = 'block'
+    }
+
+    close.onclick = function () {
+        invitepopup.style.display = 'none'
+    }
+
+    //二维码生成
+    let dom = document.getElementById('qrcode')
+
+    $(dom).qrcode({ text: document.location.href.replace('/business/', '/m/business/'), render: 'canvas', width: 154, height: 154, })
+
+    copylinka.onclick = function (e: any) {
+        copylinkinput.select()		
+        document.execCommand('Copy')
+        alert('链接复制成功！')
+    }
+
+
 })()

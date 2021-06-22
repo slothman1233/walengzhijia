@@ -341,19 +341,19 @@ async function submitFn() {
     //     PublishData.newsContentType = NewsContentTypeEnums.video
     // }
 
-    PublishData.purchasePrice = parseFloat(price.value)
+    PublishData.purchasePrice = parseFloat(price.value)|| 0
     PublishData.priceShowStatus = parseInt(checkeDom.getAttribute('data-id'))
     PublishData.summary = window.ue.body.innerHTML
     PublishData.reputationScores = scores
 
     let data: bodyModel<boolean> = await AddReputaion(PublishData)
 
-    if (data.code === 0 && data.subCode === subCodeEnums.success) {
+    if (data && data.code === 0 && data.subCode === subCodeEnums.success) {
         alert('发表成功')
         setTimeout(() => {
             document.location.href = document.location.href
         }, 3000)
     } else {
-        alert(data.message)
+        alert(data && data.message || '发表错误，请重新发表')
     }
 }

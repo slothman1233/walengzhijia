@@ -290,35 +290,47 @@ async function GetCompanyProduct({ companyId,
         let container: HTMLElement = document.querySelector('.row5 .container')
         if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
 
-            newsList.bodyMessage.forEach((item) => {
-                let link = '/news/' + item.newsId
-                if (item.reputationId !== 0) {
-                    link = '/news/reputation/' + item.newsId
-                }
-                NewsList.push({
-                    link,
-                    img: item.newsIcon,
-                    title: item.newsTitle,
-                    content: item.newsContent.replace(/<[^>]*>|/g, ''),
-                    author: item.userName,
-                    time: ge_time_format(item.newsTime, '2'),
-                    businesslogo: item.companyIcon,
-                    businessname: item.companyName,
-                    timetick: get_unix_time_stamp(item.newsTime, 2),
-                    slug: [NewsContentTypeArray[item.newsContentType]]
+            if (newsList.bodyMessage.length <= 0) {
+                container.innerHTML = ` <div class="nocontent">
+                <img src="/assets/images/empty.png"/>
+              </div>`
+            } else {
+
+                newsList.bodyMessage.forEach((item) => {
+                    let link = '/news/' + item.newsId
+                    if (item.reputationId !== 0) {
+                        link = '/news/reputation/' + item.newsId
+                    }
+                    NewsList.push({
+                        link,
+                        img: item.newsIcon,
+                        title: item.newsTitle,
+                        content: item.newsContent.replace(/<[^>]*>|/g, ''),
+                        author: item.userName,
+                        time: ge_time_format(item.newsTime, '2'),
+                        businesslogo: item.companyIcon,
+                        businessname: item.companyName,
+                        timetick: get_unix_time_stamp(item.newsTime, 2),
+                        slug: [NewsContentTypeArray[item.newsContentType]]
+                    })
                 })
-            })
-            let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })
 
-            if (datas.code === 0) {
+                let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })
 
-                container.innerHTML = datas.bodyMessage
-                window.imgload()
-                isloaded = false
+                if (datas.code === 0) {
+
+                    container.innerHTML = datas.bodyMessage
+                    window.imgload()
+                    isloaded = false
+                }
+
             }
+
             isloaded = false
         } else {
-            container.innerHTML = ''
+            container.innerHTML = ` <div class="nocontent">
+            <img src="/assets/images/empty.png"/>
+          </div>`
         }
         isloaded = false
     })

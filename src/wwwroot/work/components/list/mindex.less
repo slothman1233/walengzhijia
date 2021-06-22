@@ -116,7 +116,7 @@
       display       : block;
       width         : 100%;
       @allheight    : @size_1 * 66;
-      height        : @allheight + @space_2;
+      height        : @size_1 * (66 + 16);
       margin-top    : @space_2;
       padding-bottom: @space_2;
       border-bottom : 0.5px solid @color_grey_line1;
@@ -203,8 +203,18 @@
               line-height : @line-height;
               position    : relative;
 
+              &.kbgood {
+                color: #F98215;
+              }
+
+              &.favorable {
+                margin-right: 0;
+              }
+
               &.kbcount {
                 padding-right: @size_1 * 5;
+
+
 
                 &::after {
                   content         : "";
@@ -217,9 +227,9 @@
                 }
               }
 
-              &.favorable {
-                display: none;
-              }
+              // &.favorable {
+              //   display: none;
+              // }
             }
           }
         }

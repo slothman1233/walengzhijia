@@ -24,7 +24,26 @@ declare let companyTimeTicks: any
 
     }
 
+    let isfocus = false
+    input.onfocus = function () {
+        isfocus = true
+    }
+    input.onblur = function () {
+        isfocus = false
+    }
+
+    document.onkeypress = function (e) {
+        let keycode = document.all ? e.keyCode : e.which
+        if (keycode === 13 && isfocus) {
+            document.location.href = `/search/1/${encodeURI(input.value)}`
+            return false
+        }
+    }
+
 })()
+
+
+
 
 
 //txtvalue 检索的内容替换 

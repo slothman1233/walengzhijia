@@ -74,13 +74,13 @@ type bpopupModel = {
         let icon: string
         switch (type) {
             case contentType.success:
-                icon = '&#xE01E;'
+                icon = '&#xE020;'
                 break
             case contentType.error:
                 icon = '&#xE01E;'
                 break
             case contentType.warning:
-                icon = '&#xE01E;'
+                icon = '&#xE021;'
                 break
             default:
                 icon = '&#xE01E;'
@@ -254,7 +254,7 @@ type bpopupModel = {
                 color:${color};
                 text-align: center;
                 line-height: 22px;
-                font-size:14px;
+                font-size:12px;
               ">${getIcon(contentType)}</i>
               <div style="padding-left:38px;">
                   <h4 style="
@@ -335,7 +335,7 @@ type bpopupModel = {
               color:${color};
               text-align: center;
               line-height: 22px;
-              font-size:14px;
+              font-size:12px;
             ">${getIcon(contentType)}</i>
             <div style="padding-left:38px;">
                 <h4 style="

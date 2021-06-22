@@ -587,15 +587,15 @@ body {
 
               .hread {
                 float       : left;
-                height      : 64px;
-                width       : 64px;
+                height      : 56px;
+                width       : 56px;
                 margin-right: 12px;
                 .border-radius(50%);
               }
 
               .r {
                 float   : left;
-                width   : @width -64 -12;
+                width   : @width - 56 - 12;
                 overflow: hidden;
 
                 &>div {
@@ -609,7 +609,9 @@ body {
                     font-weight : @font_weight;
                     color       : @color_main_c1;
                     font-size   : @font_size_16;
-                    margin-right: @space_1;
+                    margin-right: @space_1/2;
+                    max-width   : 80px;
+                    .ellipsis();
                   }
 
                   span {
@@ -620,6 +622,8 @@ body {
                     font-size  : @font_size_12;
                     line-height: 24px;
                     padding    : 0 6px;
+                    max-width  : 84px;
+                    .ellipsis();
                   }
                 }
 
@@ -871,4 +875,103 @@ body {
 
   }
 
+}
+
+
+.invitepopup {
+  position        : fixed;
+  z-index         : 21;
+  left            : 0;
+  top             : 0;
+  bottom          : 0;
+  right           : 0;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  .invite_box {
+    @width          : 540px;
+    width           : 540px;
+    position        : absolute;
+    left            : 50%;
+    top             : 150px;
+    margin          : 0 0 0 -270px;
+    padding         : @space_4;
+    background-color: #FFF;
+    .border-radius(8px);
+    .box-sizing();
+
+    &>i {
+      position: absolute;
+      right   : 25px;
+      top     : 25px;
+      color   : @color_gray_c2;
+      cursor  : pointer;
+    }
+
+    &>h2 {
+      font-size    : @font_size_20;
+      color        : @color_main_c1;
+      margin-bottom: @space_4;
+    }
+
+    p {
+      color        : @color_main_c1;
+      font-size    : @font_size_16;
+      margin-bottom: @space_2;
+    }
+
+    .copylink {
+      @height       : 40px;
+      height        : @height;
+      padding-bottom: 40px;
+      margin-bottom : 40px;
+      border-bottom : 1px solid @color_grey_line1;
+
+      input {
+        float           : left;
+        padding         : @space_1 10px;
+        color           : @color_gray_c2;
+        width           : @width - 108 - 1 - (@space_4 * 2);
+        border          : 1px solid @color_grey_bg1;
+        border-right    : none;
+        height          : @height;
+        background-color: @color_grey_bg1;
+        .border-radius(2px 0 0 2px);
+        .box-sizing();
+      }
+
+      a {
+        display         : block;
+        float           : left;
+        cursor          : pointer;
+        width           : 108px;
+        height          : @height;
+        line-height     : @height;
+        text-align      : center;
+        background-color: @color_subject;
+        font-size       : @font_size_16;
+        color           : @color_main_c1;
+        .border-radius(0 2px 2px 0);
+      }
+    }
+
+    .qrcodes {
+      @size: 174px;
+
+      #qrcode {
+        width           : @size;
+        height          : @size;
+        padding         : 10px;
+        background-color: @color_grey_line2;
+        margin-right    : @space_3;
+        float           : left;
+        .box-sizing();
+      }
+
+      p {
+        float     : left;
+        width     : @width - (@space_4 * 2) - @size - @space_3;
+        margin-top: 50px;
+      }
+    }
+  }
 }

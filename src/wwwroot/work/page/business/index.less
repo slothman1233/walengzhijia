@@ -108,7 +108,7 @@
 
           &.quality {
             background: linear-gradient(0deg, #FFD493, #FFD493), linear-gradient(191.51deg, #FAFBFF -19.99%, #D7DDEC 86.63%);
-            color: #773B13;
+            color     : #773B13;
           }
 
           img {
@@ -404,6 +404,8 @@
   }
 
   .row3 {
+    margin-bottom: @space_2;
+
     .row {
 
       .select {
@@ -463,7 +465,7 @@
       }
 
       .kblist1(@DefindWidth);
-      
+
       .star {
         width          : 90px;
         height         : 16.875px;
@@ -560,7 +562,18 @@
     }
 
     .container {
-      .list1()
+      .list1();
+
+      .nocontent {
+        @width    : 128px;
+        text-align: center;
+        margin: @space_12 0;
+
+        img {
+          width : @width;
+          margin: auto;
+        }
+      }
     }
   }
 

@@ -11,7 +11,7 @@ navigationbar2 %}
 {% endblock title %}
 
 {% block keywords %}
-{{CompanyProductInfo.productName}},{{CompanyProductInfo.productName}}参数信息, {{CompanyProductInfo.productName}}销售咨询,{{CompanyProductInfo.productName}}口碑评论
+  {{CompanyProductInfo.productName}},{{CompanyProductInfo.productName}}参数信息, {{CompanyProductInfo.productName}}销售咨询,{{CompanyProductInfo.productName}}口碑评论
 {% endblock %}
 
 {% block description %}
@@ -27,6 +27,7 @@ navigationbar2 %}
     var productId = {{productId}}
     var companyId = {{companyId}}
   </script>
+   <script type="text/javascript" src="/assets/plugin/QRCode/generate.min.js"></script>
   <script type="text/javascript" src="/dist/scripts/business/product.js"></script>
 {% endblock script %}
 
@@ -417,6 +418,26 @@ navigationbar2 %}
 
     </div>
 
+  </div>
+
+  <div class="invitepopup" style="display:none">
+    <div class="invite_box">
+      <i class="iconfont_wlzj">&#xE01E;</i>
+      <h2>分享链接 邀请发口碑</h2>
+      <p>复制下方链接，分享给你的好友，让ta来发表下该产品的口碑。</p>
+      <div class="copylink clearfix">
+        <input value="" readonly/>
+        <a>复制链接</a>
+      </div>
+
+      <div class="qrcodes clearfix">
+
+        <div id="qrcode"></div>
+
+        <p>您也可以通过微信扫描左侧二维码，分享给您的好友，让ta来发表口碑。</p>
+      </div>
+
+    </div>
   </div>
 
 {% endblock body %}

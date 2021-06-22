@@ -19,6 +19,17 @@ let product_list_box: HTMLElement = document.querySelector('#product_list_box');
 
 //图表
 (function () {
+
+    on({
+        events: 'tap',
+        ele: '.suspension',
+        fn: function (dom: any, event: Event) {
+            let doms: any = event.target
+            document.location.href = (<any>document.querySelector('.suspension')).href /*本文主要就是这句代码！*/
+        }
+    })
+
+
     ChartstoKV(document.getElementById(`ecahr0`), reshighKbChart)
 })();
 (function () {
@@ -31,7 +42,7 @@ let product_list_box: HTMLElement = document.querySelector('#product_list_box');
             mui('#modal').popover('toggle')
         }
     })
-    
+
     imgPreview({
         parentEle: document.querySelector('.productVideo'),
         key: 'video',

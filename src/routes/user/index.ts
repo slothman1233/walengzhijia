@@ -239,6 +239,11 @@ export default class User {
             newsType: publishNewsTypeEnums.new,
             pageIndex: 1
         })
+        console.log({
+            companyId: cookieuserinfo.company.companyId,
+            newsType: publishNewsTypeEnums.new,
+            pageIndex: 1
+        })
         let firstnewlist: any = []
         if (newdata && newdata.items && newdata.items.length > 0) {
             newdata.items.forEach(item => {

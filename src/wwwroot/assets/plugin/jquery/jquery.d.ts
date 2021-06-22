@@ -167,7 +167,7 @@ interface JQueryTransport {
     Static members of jQuery (those on $ and jQuery themselves)
 */
 export interface JQueryStatic {
-
+    
     // AJAX
     ajax(settings: JQueryAjaxSettings): JQueryXHR;
     ajax(url: string, settings: JQueryAjaxSettings): JQueryXHR;
@@ -295,6 +295,7 @@ export interface JQueryStatic {
     The jQuery instance members
 */
 interface JQuery {
+    qrcode(obj: any): any
     // AJAX
     ajaxComplete(handler: any): JQuery;
     ajaxError(handler: (evt: any, xhr: any, opts: any) => any): JQuery;
@@ -348,7 +349,7 @@ interface JQuery {
     css(propertyName: any, value?: any): JQuery;
 
     height(): number;
-    height(value: number): JQuery; 
+    height(value: number): JQuery;
     height(func: (index: any, height: any) => any): JQuery;
 
     innerHeight(): number;

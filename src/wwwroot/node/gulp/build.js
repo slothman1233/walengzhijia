@@ -40,7 +40,8 @@ let paths = {
         getSrc('./m/user/systemnotification.ts'),
         getSrc('./m/user/setting.ts'),
         getSrc('./m/user/updatepwd.ts'),
-        getSrc('./m/reputation/publish.ts')
+        getSrc('./m/reputation/publish.ts'),
+        getSrc('./m/search/index.ts')
 
 
 

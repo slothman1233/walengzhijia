@@ -41,7 +41,7 @@ export type setCookieModel = {
  */
 export function setCookie(ctx: Context, name: string, value: string, option: setCookieModel) {
     return ctx.cookies.set(name, encodeURI(value), {
-        domain: option.domain || config.domain, // 写cookie所在的域名
+        domain: option.domain, // 写cookie所在的域名
         path: option.path || '/',       // 写cookie所在的路径
         maxAge: option.maxAge || 1000 * 60 * 60 * 24,   // cookie有效时长
         expires: option.expires, // cookie失效时间

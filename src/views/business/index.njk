@@ -13,7 +13,7 @@ kblist1 %}
 {% endblock title %}
 
 {% block keywords %}
-{{companyinfo.abbrName}},{{companyinfo.abbrName}}产品大全,{{companyinfo.abbrName}}咨询销售,{{companyinfo.abbrName}}口碑评论
+  {{companyinfo.abbrName}},{{companyinfo.abbrName}}产品大全,{{companyinfo.abbrName}}咨询销售,{{companyinfo.abbrName}}口碑评论
 {% endblock %}
 
 {% block description %}
@@ -91,10 +91,10 @@ kblist1 %}
 
         </div>
         <div class="signboard">
-        {% for value in companyinfo.companyLabels %}
-           <span>{{value}}</span>
-        {% endfor %}
-         
+          {% for value in companyinfo.companyLabels %}
+            <span>{{value}}</span>
+          {% endfor %}
+
         </div>
 
         <div class="brief">
@@ -255,7 +255,14 @@ kblist1 %}
           </div>
 
           <div class="container">
-            {{list1(firstNewsList)}}
+            {% if firstNewsList != null and firstNewsList.length > 0 %}
+              {{list1(firstNewsList)}}
+            {% else %}
+              <div class="nocontent">
+                <img _src_="/assets/images/empty.png"/>
+              </div>
+            {% endif %}
+
           </div>
 
         </div>

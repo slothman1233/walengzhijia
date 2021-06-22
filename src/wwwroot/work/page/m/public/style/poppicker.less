@@ -3,12 +3,14 @@
 
 
 
-.mui-poppicker {
+.mui-poppicker,
+.mui-dtpicker {
   background-color: transparent !important;
   border          : none !important;
   box-shadow      : none !important;
 
-  .mui-poppicker-header {
+  .mui-poppicker-header,
+  .mui-dtpicker-header {
     @height   : @size_1 * 52;
     height    : @height;
     padding   : 0 @space_2;
@@ -25,11 +27,13 @@
       line-height     : @height;
       padding         : 0;
 
-      &.mui-poppicker-btn-cancel {
+      &.mui-poppicker-btn-cancel,
+      &.mui-btn {
         float: left;
       }
 
-      &.mui-poppicker-btn-ok {
+      &.mui-poppicker-btn-ok,
+      &.mui-btn-blue {
         float: right;
       }
     }
@@ -46,7 +50,20 @@
     }
   }
 
-  .mui-poppicker-body {
+  .mui-dtpicker-title,
+  .mui-poppicker-title {
+    height : @size_1 * 32;
+    display: none;
+
+    h5 {
+      font-size  : @size_1 * 12;
+      line-height: @size_1 * 32;
+      padding    : 0;
+    }
+  }
+
+  .mui-poppicker-body,
+  .mui-dtpicker-body {
     background-color: #FFF;
     border          : none;
 
@@ -80,4 +97,5 @@
       }
     }
   }
+
 }

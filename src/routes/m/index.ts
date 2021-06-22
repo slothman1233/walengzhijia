@@ -120,6 +120,7 @@ export default class Index {
 
             })
         }
+        console.log(cookieuserinfo)
         //----------------------------------------------------------------
         await ctx.render('m/index', {
             cookieuserinfo,

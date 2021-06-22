@@ -193,7 +193,7 @@ let pwdReg = new RegExp(/^(?![^a-zA-Z]+$)(?!\D+$)/);
             window.setlocalStorageuser(JSON.stringify(data.bodyMessage.company))
 
             setTimeout(() => {
-                window.history.back()
+                // window.history.back()
                 window.location.replace(document.referrer)
             }, 2000)
             return
@@ -246,7 +246,7 @@ let pwdReg = new RegExp(/^(?![^a-zA-Z]+$)(?!\D+$)/);
             window.setlocalStorageuser(JSON.stringify(data.bodyMessage.company))
 
             setTimeout(() => {
-                window.history.back()
+                // window.history.back()
                 window.location.replace(document.referrer)
             }, 2000)
             return

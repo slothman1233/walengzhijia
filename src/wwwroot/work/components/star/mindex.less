@@ -1,0 +1,48 @@
+@import (reference) "../../public/style/common/PublicDefind.less";
+
+
+.star1(@width: 128px) {
+  @height: 24/128 * @width;
+
+  .star {
+    display        : block;
+    float          : left;
+    color          : @color_rank;
+    font-size      : @font_size_16;
+    margin-right   : @size_1 * 4;
+    position       : relative;
+    width          : @width;
+    height         : @height;
+    background     : url('@{ImgUrl}/star/empty.png') no-repeat center;
+    background-size: @width @height;
+
+    span {
+      display        : block;
+      width          : @width;
+      height         : @height;
+      background     : url('@{ImgUrl}/star/full.png') no-repeat left top;
+      background-size: @width @height;
+    }
+  }
+}
+
+.star {
+  display        : block;
+  float          : left;
+  color          : @color_rank;
+  font-size      : @font_size_16;
+  margin-right   : @size_1 * 4;
+  position       : relative;
+  width          : @size_1 * 128;
+  height         : @size_1 * 24;
+  background     : url('@{ImgUrl}/star/empty.png') no-repeat center;
+  background-size: @size_1 * 128 @size_1 * 24;
+
+  span {
+    display        : block;
+    width          : @size_1 * 128;
+    height         : @size_1 * 24;
+    background     : url('@{ImgUrl}/star/full.png') no-repeat left top;
+    background-size: @size_1 * 128 @size_1 * 24;
+  }
+}

@@ -56,6 +56,28 @@ new swiper('#index .swiper-container', {
 
 })();
 
+(function () {
+    let index = document.getElementById('index')
+    on({
+        agent: index,
+        events: 'tap',
+        ele: '.hreadlogo',
+        fn: function () { 
+            tapTab(2)
+        }
+    })
+
+    on({
+        agent: index,
+        events: 'tap',
+        ele: '.input',
+        fn: function () { 
+            window.location.href = '/m/search/1'
+        }
+    })
+
+})();
+
 //热门新闻
 (function () {
     let isloaded = false

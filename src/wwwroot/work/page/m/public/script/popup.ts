@@ -62,7 +62,7 @@ type bpopupModel = {
         <div class="popup_box" style="
         width: 60%;
         background-color:transparent;
-        position:absolute;
+        position:fixed;
         left:50%;
         top:30vh;
         margin: 0 0 0 -30%;
