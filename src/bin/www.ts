@@ -7,6 +7,7 @@
 import app from '../app'
 import dg from 'debug'
 import http from 'http'
+import { isGa } from '../common/utils/env'
 const debug = dg('demo:server')
 
 // var app = require('../src/app');
@@ -20,7 +21,9 @@ const debug = dg('demo:server')
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '5001')
+ 
+
+const port = normalizePort(process.env.PORT || isGa ? '5003' :'5001')
 // app.set('port', port);
 
 /**

@@ -8,8 +8,28 @@ const ENV = process.env.NODE_ENV || 'ga'
 
 
 
+
+
 function clean(cb) {
     return del(['dist'], cb)
+}
+
+let ev = ''
+//  改修前端的环境变量 用于前端生成对应的环境
+function clientEnv() {
+    return src(['src/wwwroot/work/common/config/env.ts'])
+        .pipe(replace(/export[\s?*]default[\s?*]baseUrl.(dev|test|pre|ga)/, function ($1, $2) {
+            ev = $1
+            return `export default baseUrl.${ENV}`
+        }))
+        .pipe(dest('src/wwwroot/work/common/config'))
+}
+
+// 生成完成后 还原环境变量
+function clientEnvOver() {
+    return src(['src/wwwroot/work/common/config/env.ts'])
+        .pipe(replace(/export[\s?*]default[\s?*]baseUrl.(dev|test|pre|ga)/, ev))
+        .pipe(dest('src/wwwroot/work/common/config'))
 }
 
 // 输出 js 到 dist目录
@@ -30,6 +50,7 @@ function tostaticfile() {
 
 function topm2config() {
     return src(['pm2.conf.json'])
+        .pipe(replace('koa_ts', `wlzj_${ENV}`))
         .pipe(replace('src/bin/www.ts', `bin/www.js`))
         .pipe(replace(`"interpreter": "../node_modules/.bin/ts-node",`, ``))
         .pipe(dest('dist'))
@@ -46,7 +67,7 @@ function tostaticwwwrooticon() {
 }
 
 function tostaticwwwrootstatic() {
-    return src([ 'src/wwwroot/dist/**/*'])
+    return src(['src/wwwroot/dist/**/*'])
         .pipe(dest('dist/wwwroot/dist'))
 }
 
@@ -85,7 +106,7 @@ function runNodemon(done) {
     })
 }
 
-const build = series(clean, toJs, tostaticfile, tostaticviews, topm2config, tostaticwwwroot, tostaticwwwrootstatic, tostaticcommonasets, tostaticwwwrooticon)
+const build = series(clientEnv, clean, toJs, tostaticfile, tostaticviews, topm2config, tostaticwwwroot, tostaticwwwrootstatic, tostaticcommonasets, tostaticwwwrooticon, clientEnvOver)
 task('build', build)
 task('default', runNodemon)
 exports.build = build
