@@ -52,7 +52,7 @@ function setimgNumber(num: number) {
 function getHtml() {
     let html = `<div id="filecollectionImg">
                   <div class="filecollectionImg_box">
-                    <div class="filecollection_closeicon iconfont_wlzj">&#xE01E;</div>
+                    <div class="filecollection_closeicon iconfont_wlzj">&#xE039;</div>
                     <div class="filecollectionImg_container">
                       <div class="title">${data.title}</div>
                       <p class="description">
@@ -99,7 +99,7 @@ function getImgcollection(imgArray: string[]) {
     for (let i = 0; i < imgArray.length; i++) {
         html += `<div class="child">
            <img _src_="${imgArray[i]}"/>
-           <span><i class="iconfont_wlzj">&#xE01E;</i></span>
+           <span><i class="iconfont_wlzj">&#xE039;</i></span>
          </div>`
     }
     return html
@@ -195,7 +195,7 @@ function uploadimg() {
 
                 let idom = document.createElement('i')
                 idom.className = 'iconfont_wlzj'
-                idom.innerHTML = '&#xE01E;'
+                idom.innerHTML = '&#xE039;'
                 span.appendChild(idom)
 
                 div.appendChild(img)

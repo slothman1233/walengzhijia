@@ -41,7 +41,7 @@ body {
     @size        : @size_1 * 40;
     margin-bottom: @space_2;
 
-    img {
+    &>img {
       display     : block;
       float       : left;
       width       : @size;
@@ -50,7 +50,7 @@ body {
       .border-radius(50%);
     }
 
-    section {
+    .userinfo {
       float: left;
 
       p {
@@ -69,6 +69,46 @@ body {
         .ellipsis();
       }
     }
+
+    .givelike {
+      float     : right;
+      text-align: center;
+
+      // img {
+      //   @size : @size_1 * 24;
+      //   height: @size;
+      //   width : @size;
+      //   margin: 0;
+      // }
+
+      i {
+        @size  : @size_1 * 24;
+        height : @size;
+        width  : @size;
+        margin : 0;
+        display: inline-block;
+
+        background     :url("@{ImgUrl}/h5/h5_zan.png") center center no-repeat;
+        background-size: 100%;
+
+      }
+
+      &.praise {
+        i {
+          background     :url("@{ImgUrl}/h5/h5_zan_hover.png") center center no-repeat;
+          background-size: 100%;
+        }
+      }
+
+      span {
+        display   : block;
+        font-size : @font_size_12;
+        color     : @color_gray_c2;
+        margin-top: -@size_1 * 5;
+      }
+    }
+
+
   }
 
 
@@ -194,5 +234,94 @@ body {
   .questions_box {
     padding-top: @space_3;
     .mcommon1();
+  }
+}
+
+
+.twistlockfixed {
+  @height      : @size_1 * 48;
+  @child_height: @size_1 * 36;
+  @padding     : (48 - 36)/2;
+  padding      : @size_1 * @padding @space_2;
+  height       : @height;
+  background   : #F7F8FC;
+  position     : fixed;
+  bottom       : 0;
+  left         : 0;
+  right        : 0;
+  z-index      : 6;
+  .box-sizing();
+
+  .input {
+    background : #EBEEFA;
+    height     : @child_height;
+    padding    : 0 @size_1 * 7;
+    width      : @size_1 * 200;
+    line-height: @child_height;
+    .box-sizing();
+
+    i {
+      color    : @color_main_c1;
+      font-size: @font_size_16;
+      position : relative;
+      top      : @size_1 * 2;
+    }
+
+    span {
+      color    : @color_gray_c1;
+      font-size: @font_size_14;
+    }
+  }
+
+  .list {
+    position: absolute;
+    left    : @size_1 * 226;
+    right   : @space_2;
+    top     : @size_1 * @padding;
+    bottom  : @size_1 * @padding;
+    .flex();
+    .justifyContent();
+
+    p {
+      text-align: center;
+      .flexGrow(1);
+
+      i {
+        display  : block;
+        width    : @size_1 * 20;
+        height   : @size_1 * 20;
+        color    : @color_main_c1;
+        font-size: @font_size_16;
+        margin   : auto;
+      }
+
+      span {
+        font-size: @font_size_10;
+        color    : @color_gray_c1;
+        display  : block;
+      }
+
+
+      &.givelike {
+        i {
+          background     :url("@{ImgUrl}/h5/h5_zan.png") center center no-repeat;
+          background-size: 100%;
+        }
+      }
+
+      &.praise {
+        i {
+          background     :url("@{ImgUrl}/h5/h5_zan_hover.png") center center no-repeat;
+          background-size: 100%;
+        }
+      }
+
+      &.weixin {
+        i {
+          background     :url("@{ImgUrl}/h5/weixin.png") center center no-repeat;
+          background-size: 100%;
+        }
+      }
+    }
   }
 }

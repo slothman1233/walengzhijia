@@ -100,7 +100,7 @@ let publishData: CompanyProductInfoModel = {
                 if (publishData.productType.productClassifyType.indexOf(item.productTypeDetailId) >= 0) {
                     detailsHTML += `<span data-id='${item.productTypeDetailId}'>
                     <b>${item.productTypeDetail}</b>
-                    <i data-id='${item.productTypeDetailId}' class="iconfont_wlzj">&#xE01E;</i>
+                    <i data-id='${item.productTypeDetailId}' class="iconfont_wlzj">&#xE039;</i>
                 </span>`
                 }
 
@@ -336,7 +336,7 @@ let publishData: CompanyProductInfoModel = {
                 $(Detailslabel).append(
                     `<span data-id='${id}'>
                         <b>${value}</b>
-                        <i data-id='${id}' class="iconfont_wlzj">&#xE01E;</i>
+                        <i data-id='${id}' class="iconfont_wlzj">&#xE039;</i>
                     </span>`
                 )
                 if (productClassifyTypeAry.indexOf(id) < 0) {

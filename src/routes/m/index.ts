@@ -25,7 +25,7 @@ export default class Index {
         //广告
         let adtoptowData: ResAdvertisingModel[] = await GetAdvertising({
             adType: adTypeEnums.toptwo,
-            size: 9
+            size: 10
         })
         let adslideData: ResAdvertisingModel[] = await GetAdvertising({
             adType: adTypeEnums.slide,
@@ -69,7 +69,8 @@ export default class Index {
                     businesslogo: item.companyIcon,
                     businessname: item.companyName,
                     timetick: get_unix_time_stamp(item.newsTime, 2),
-                    slug: [NewsContentTypeArray[item.newsContentType]]
+                    slug: [NewsContentTypeArray[item.newsContentType]],
+                    newsSourceType: item.newsContentType
                 })
             })
         }

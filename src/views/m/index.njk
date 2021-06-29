@@ -35,15 +35,16 @@ list2 %}
 
   {# 底部tab #}
   <nav class="mui-bar mui-bar-tab footer">
-    <a class="mui-tab-item mui-active" href="#index">
+    <a class="mui-tab-item mui-active home" href="#index">
+      <i></i>
       <span class="mui-tab-label">首页</span>
     </a>
-    <a class="mui-tab-item" href="#list">
-
+    <a class="mui-tab-item pinpai" href="#list">
+      <i></i>
       <span class="mui-tab-label">品牌商</span>
     </a>
-    <a class="mui-tab-item usercenter" href="#usercenter">
-
+    <a class="mui-tab-item usercenter wode" href="#usercenter">
+      <i></i>
       <span class="mui-tab-label">我的</span>
     </a>
 
@@ -52,10 +53,10 @@ list2 %}
   <div class="mui-content">
     <div id="index" class="mui-control-content mui-active">
       <section class="hreader">
-        <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
+        <img alt="" _src_="/assets/images/h5/logo.png">
 
         {% if cookieuserinfo.userIcon %}
-         <img _src_="{{cookieuserinfo.userIcon}}" class="hreadlogo"/>
+          <img _src_="{{cookieuserinfo.userIcon}}" class="hreadlogo"/>
         {% else %}
           <a href="/m/login">登录</a>
         {% endif %}
@@ -73,21 +74,21 @@ list2 %}
 
       <section class="group clearfix">
         <div class="child synthesize">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
+          <img alt="" _src_="/assets/images/h5/home_all.png">
           <span>品牌大全</span>
         </div>
         <div class="child reputation">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
+          <img alt="" _src_="/assets/images/h5/home_one.png">
           <span>口碑排行</span>
         </div>
         <div class="child hot">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
+          <img alt="" _src_="/assets/images/h5/home_hot.png">
           <span>热门排行</span>
         </div>
-        <div class="child">
-          <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-          <span>销售询价</span>
-        </div>
+        <a class="child" href="/m/home/advcooperation">
+          <img alt="" _src_="/assets/images/h5/home_ad.png">
+          <span>合作通道</span>
+        </a>
 
       </section>
 
@@ -116,10 +117,10 @@ list2 %}
               <span>{{item.desc}}</span>
             </a>
           {% endfor %}
-          <a class="child tab_list_2" title="更多品牌" data-id="0">
+          {# <a class="child tab_list_2" title="更多品牌" data-id="0">
             <img _src_=""/>
             <span>更多品牌</span>
-          </a>
+          </a> #}
         {% endif %}
 
       </section>
@@ -141,7 +142,7 @@ list2 %}
                   <p class="clearfix">
 
                     {# <span>{{item.reputation.highReputationCount | ternary(item.reputation.highReputationCount,0)}}条优质口碑</span> #}
-                    <i>{{item.reputation.reputationCount | ternary(item.reputation.reputationCount,0)}}条口碑</i>
+                    <i>共{{item.reputation.reputationCount | ternary(item.reputation.reputationCount,0)}}条口碑</i>
                   </p>
                 </a>
               {% endfor %}
@@ -172,10 +173,10 @@ list2 %}
     </div>
     <div id="list" class="mui-control-content">
       <section class="hreader">
-        <img alt="" _src_="https://cn.bing.com/th?id=OHR.CarrizoPlain_ZH-CN5933535493_UHD.jpg&amp;pid=hp&amp;w=3840&amp;h=2160&amp;rs=1&amp;c=4&amp;r=0">
-        <a>
+        <img alt="" _src_="/assets/images/h5/logo.png">
+        {# <a>
           <i class="iconfont_wlzj">&#xE010;</i>
-        </a>
+        </a> #}
         <div class="title">
           品牌商
         </div>
@@ -214,8 +215,8 @@ list2 %}
 
     <div id="usercenter" class="mui-control-content">
       <section class="hreader">
-        <i class="iconfont_wlzj tohome">&#xE010;</i>
-        <a>
+        <i class="iconfont_wlzj tohome">&#xE03F;</i>
+        <a href="/m/search/1">
           <i class="iconfont_wlzj">&#xE010;</i>
         </a>
         <div class="title">
@@ -226,36 +227,36 @@ list2 %}
       <section class="userinfo clearfix">
         <a href="/m/user/information" class="userinfo_box">
           <img _src_="{{cookieuserinfo.userIcon}}"/>
-          <i class="iconfont_wlzj">&#xE00C;</i>
+          <i class="iconfont_wlzj">&#xE044;</i>
           <p>{{cookieuserinfo.name}}</p>
 
         </a>
       </section>
       <section class="systeminfo">
         <a href="/m/user/systemnotification">
-          <i class="iconfont_wlzj l">&#xE010;</i>
-          <i class="iconfont_wlzj r">&#xE010;</i>
+          <i class="iconfont_wlzj l">&#xE03E;</i>
+          <i class="iconfont_wlzj r">&#xE044;</i>
           <p>系统通知</p>
         </a>
         <a href="/m/user/interactionnotification">
-          <i class="iconfont_wlzj l">&#xE00F;</i>
-          <i class="iconfont_wlzj r">&#xE010;</i>
+          <i class="iconfont_wlzj l">&#xE040;</i>
+          <i class="iconfont_wlzj r">&#xE044;</i>
           <p>互动通知</p>
         </a>
         <a href="/m/user/content">
-          <i class="iconfont_wlzj l">&#xE006;</i>
-          <i class="iconfont_wlzj r">&#xE010;</i>
+          <i class="iconfont_wlzj l">&#xE03A;</i>
+          <i class="iconfont_wlzj r">&#xE044;</i>
           <p>我发布的内容</p>
         </a>
         {# <a>
-          <i class="iconfont_wlzj l">&#xE008;</i>
-          <i class="iconfont_wlzj r">&#xE010;</i>
+          <i class="iconfont_wlzj l">&#xE03B;</i>
+          <i class="iconfont_wlzj r">&#xE044;</i>
           <p>意见反馈</p>
         </a>
         #}
         <a href="/m/user/setting">
           <i class="iconfont_wlzj l">&#xE01A;</i>
-          <i class="iconfont_wlzj r">&#xE010;</i>
+          <i class="iconfont_wlzj r">&#xE044;</i>
           <p>设置</p>
         </a>
       </section>

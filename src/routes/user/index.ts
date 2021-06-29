@@ -486,5 +486,3 @@ export default class User {
 
 
 }
-
-

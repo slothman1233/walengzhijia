@@ -68,6 +68,7 @@ function tostaticwwwrooticon() {
 
 function tostaticwwwrootstatic() {
     return src(['src/wwwroot/dist/**/*'])
+        .pipe(replace(/baseUrl\.(ga|dev|pre|test);/, `baseUrl.${ENV}`))
         .pipe(dest('dist/wwwroot/dist'))
 }
 

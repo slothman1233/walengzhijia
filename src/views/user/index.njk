@@ -79,11 +79,13 @@
         {% endif %}
       </div>
 
+
+
       <div class="interaction"  style='display:{{(notificationType == 2) | ternary("block","none") }}'>
         <div class="interaction_box">
           {% if interactiveData != null and interactiveData.length > 0 %}
             {% for item in interactiveData %}
-              <a class="child {{item.isRead | ternary('read','')}}" href="{{item.notificationLink}}" target="_blank" data-isread='{{item.isRead}}' data-id="{{item.noticeId}}" data-type="{{item.notificationType}}">
+              <a class="child {{item.isRead | ternary('read','')}}" href="{{(item.extensionJson.commentTargetType == 1 )| ternary('/news','/news/reputation')}}/{{item.extensionJson.CommentTargetId}}#comments" target="_blank" data-isread='{{item.isRead}}' data-id="{{item.noticeId}}" data-type="{{item.notificationType}}">
                 <div class="title">
                   <img _src_="{{item.notificationSendUserIcon}}"/>
                   <p>{{item.notificationSendUserName}}</p>

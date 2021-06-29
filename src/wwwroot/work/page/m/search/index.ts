@@ -213,7 +213,7 @@ let isloaded = [false, false];
     let html = ``
     cacheAry.forEach((value: string) => {
         html += `<div>
-                    <i class="iconfont_wlzj">&#xE01E;</i>
+                    <i class="iconfont_wlzj">&#xE039;</i>
                     <span>${value}</span>
                 </div>`
     })
@@ -318,7 +318,7 @@ window.search = async function () {
     if (cacheAry.indexOf(search.value) <= -1) {
 
         let searchhtml = `<div>
-                    <i class="iconfont_wlzj">&#xE01E;</i>
+                    <i class="iconfont_wlzj">&#xE039;</i>
                     <span>${search.value}</span>
                 </div>`
         $(searchfilter.querySelector('.container')).append(searchhtml)

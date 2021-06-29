@@ -20,8 +20,12 @@
 }
 
 
+.icon-addpinlun:before {
+	content: "\E051";
+}
+
 .icon-Arrow:before {
-	content: "\E01D";
+	content: "\E038";
 }
 
 .icon-center:before {
@@ -64,6 +68,90 @@
 	content: "\E021";
 }
 
+.icon-h5_addcontent:before {
+	content: "\E03A";
+}
+
+.icon-h5_addkb:before {
+	content: "\E03B";
+}
+
+.icon-h5_canshu:before {
+	content: "\E03C";
+}
+
+.icon-h5_cb:before {
+	content: "\E03D";
+}
+
+.icon-h5_dongzhi:before {
+	content: "\E03E";
+}
+
+.icon-h5_hom2:before {
+	content: "\E03F";
+}
+
+.icon-h5_hudongtongzhi:before {
+	content: "\E040";
+}
+
+.icon-h5_img:before {
+	content: "\E041";
+}
+
+.icon-h5_jieshao:before {
+	content: "\E042";
+}
+
+.icon-h5_kb:before {
+	content: "\E043";
+}
+
+.icon-h5_more:before {
+	content: "\E044";
+}
+
+.icon-h5_news:before {
+	content: "\E050";
+}
+
+.icon-h5_pl:before {
+	content: "\E046";
+}
+
+.icon-h5_pp:before {
+	content: "\E047";
+}
+
+.icon-h5_search:before {
+	content: "\E048";
+}
+
+.icon-h5_setting:before {
+	content: "\E049";
+}
+
+.icon-h5_share:before {
+	content: "\E04A";
+}
+
+.icon-h5_shipin:before {
+	content: "\E04B";
+}
+
+.icon-h5_xs:before {
+	content: "\E04C";
+}
+
+.icon-h5_zan:before {
+	content: "\E04D";
+}
+
+.icon-h5_zan_hover:before {
+	content: "\E04E";
+}
+
 .icon-heart:before {
 	content: "\E009";
 }
@@ -100,6 +188,10 @@
 	content: "\E019";
 }
 
+.icon-qiehuan:before {
+	content: "\E04F";
+}
+
 .icon-search:before {
 	content: "\E010";
 }
@@ -133,5 +225,5 @@
 }
 
 .icon-取消_错误:before {
-	content: "\E01E";
+	content: "\E039";
 }

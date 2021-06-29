@@ -1,5 +1,5 @@
 @import (less) "../public/style/wuc/mheader.less";
-@import (less) "../../../components/star/index.less";
+@import (less) "../../../components/star/mindex.less";
 @import (less) "../../../components/navigationbar/mindex.less";
 @import (less) "../../../components/m/list/index.less";
 @import (less) "../../../components/list/mindex.less";
@@ -43,13 +43,30 @@
           .border-radius(@size_1*4 0);
         }
 
-        img {
+        &>img {
           width : @width;
           height: @height;
           border: 1px solid #FFCB93;
           .box-sizing();
           .border-radius(@size_1*4);
         }
+
+        .productVideo {
+          position  : absolute;
+          left      : 0;
+          top       : 0;
+          right     : 0;
+          bottom    : 0;
+          z-index   : 2;
+          text-align: center;
+
+          img {
+            margin-top: @size_1 * ((76 - 56) / 2);
+            height    : @size_1 * 56;
+            width     : @size_1 * 56;
+          }
+        }
+
       }
 
       .info {
@@ -146,10 +163,18 @@
               display    : block;
             }
 
-            .star1(@size_1*85);
+            .star1(@size_1*85, "@{ImgUrl}/h5/theme_star_5.png");
 
             .star1 {}
           }
+
+          .noscore {
+            color      : @color_gray_c2;
+            font-size  : @font_size_20;
+            font-weight: @font_weight;
+            line-height: @height;
+          }
+
         }
       }
 
@@ -189,15 +214,16 @@
       .flex();
 
       a {
-        display  : block;
-        color    : #FFF;
-        font-size: @font_size_16;
+        display    : block;
+        color      : rgba(255, 255, 255, 0.8);
+        font-weight: @font_weight;
+        font-size  : @font_size_14;
         .flexGrow(1);
 
         i {
           margin-right: @size_1 * 4;
           position    : relative;
-          top         : @size_1 * 2;
+          top         : @size_1 * 3;
         }
       }
     }
@@ -246,7 +272,16 @@
 
   .reputation {
     .list_box {
+      margin    : 0 -@space_2;
+      padding   : 0 @space_2 @space_2 @space_2;
+      background: linear-gradient(#FFFFFF 0%, #F0F2F9 @size_1*80, #F0F2F9 100%);
       .reputationlist();
+
+      & > div:last-child {
+        & >a:last-child {
+          margin-bottom: 0;
+        }
+      }
     }
 
   }

@@ -24,7 +24,8 @@ let main: HTMLElement = document.querySelector('#main');
 (async function () {
     comment1fn(document.querySelector('.questions_box'), {
         type: CommentTargetTypeEnum.news,
-        newsId
+        newsId,
+        pagetype: 'web'
     })
 
 })();

@@ -57,7 +57,7 @@ type w = {
      * 弹出登录界面
      * @param {logintype} type 显示登录界面默认展示的类型
      */
-    loginshow?: (object?: loginshowobject) => void
+    loginshow?: (object?: loginshowobject | logintype) => void
     [propName: string]: any;
 }
 

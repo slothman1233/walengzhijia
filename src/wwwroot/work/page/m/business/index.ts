@@ -9,12 +9,26 @@ import { NewsContentTypeArray, subCodeEnums } from '../../../../../enums/enums'
 import { GetReputationByCompanyFilter } from '../../../common/service/Reputation.services'
 import { GetNewsByCompanyId } from '../../../common/service/news.services'
 import { get_unix_time_stamp, ge_time_format } from '../../../../../common/utils/util'
+import imgPreview from '../../../common/utils/imgPreview/imgPreview'
 declare const $: JQueryStatic
 declare const companyId: any
 declare const mui: any
 
 let company_list_box = document.getElementById('company_list_box');
 
+
+(function () {
+    imgPreview({
+        parentEle: document.querySelector('.productVideo'),
+        key: 'video',
+        videoWdith: 200,
+        clickCallback: function (dom, ev) {
+            // console.log(dom, ev)
+            return true
+        }
+    })
+
+})();
 
 //关闭弹窗
 (function () {
@@ -24,8 +38,8 @@ let company_list_box = document.getElementById('company_list_box');
     mui('#consultingSales').on('tap', '.saleshide', function () {
         mui('#consultingSales').popover('toggle')//这是可以用来关闭底部弹窗的事件
     })
-    mui('.introductorywrapper').scroll()  
-    mui('.consultingSaleswrapper').scroll()  
+    mui('.introductorywrapper').scroll()
+    mui('.consultingSaleswrapper').scroll()
 
     mui(company_list_box).on('tap', 'a', function () {
         document.location.href = this.href /*本文主要就是这句代码！*/

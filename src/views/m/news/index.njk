@@ -6,17 +6,17 @@
 {% from "../../shared/sharedView/macro/wuc/mheader.njk" import mheader,
 smheader %}
 {% block title %}
-{{newsDetail.newsDetail.newsTitle}} - 乐品包装
+  {{newsDetail.newsDetail.newsTitle}} - 乐品包装
 {% endblock title %}
 
 {% block keywords %}
-{{newsDetail.product.productName}}，{{newsDetail.product.productName}}口碑,包装,包装行业,乐品包装
+  {{newsDetail.product.productName}}，{{newsDetail.product.productName}}口碑,包装,包装行业,乐品包装
 {% endblock %}
 
 {% block description %}{% endblock %}
 
 {% block style %}
-  <link href="/dist/styles/m/news/reputation.css" rel="stylesheet">
+  <link href="/dist/styles/m/news/index.css" rel="stylesheet">
 {% endblock style %}
 
 {% block script %}
@@ -36,9 +36,13 @@ smheader %}
     <h1 class="news_title">{{newsDetail.newsDetail.newsTitle}}</h1>
     <div class="user_box clearfix">
       <img _src_="{{newsDetail.newsDetail.userIcon}}"/>
-      <section>
+      <section class="userinfo">
         <p>{{newsDetail.newsDetail.userName}}</p>
         <span>发布于：{{newsDetail.newsDetail.newsTime | get_time_timestamp | ge_time_format(2)}}</span>
+      </section>
+      <section class="givelike">
+        <i></i>
+        <span>{{newsDetail.newsDetail.praiseCount}}</span>
       </section>
     </div>
 
@@ -73,4 +77,26 @@ smheader %}
     <h2>发表评论</h2>
     <div class="questions_box"></div>
   </div>
+
+  <div class="twistlockfixed">
+    <section class="input">
+      <i class="iconfont_wlzj">&#xE051;</i>
+      <span>写评论...</span>
+    </section>
+    <section class="list">
+      <p class="pl">
+        <i class="iconfont_wlzj">&#xE046;</i>
+        <span>33</span>
+      </p>
+      <p class="givelike">
+        <i class="zan"></i>
+        <span>33</span>
+      </p>
+      <p class="weixin">
+        <i></i>
+        <span>分享</span>
+      </p>
+    </section>
+  </div>
+
 {% endblock body %}

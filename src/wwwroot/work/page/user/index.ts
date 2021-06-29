@@ -1,7 +1,7 @@
 import { kkpager } from '@stl/kkpager'
 import { usernavigationbar } from '../../components/navigationbar'
 import type { JQuery, JQueryStatic } from '../../../assets/plugin/jquery/jquery'
-import { GetNoticeByUid, SetNoticeIsRead, SetNoticeIsReadByPlat } from '../../common/service/ManageLepackNotice'
+import { GetNoticeByUid, SetNoticeIsReadByPlat } from '../../common/service/ManageLepackNotice'
 import { userLoginModel } from '../../../../model/common'
 import window from '../../common/win/windows'
 import { NotificationQueryTypeDefine, NotificationTypeDefine, subCodeEnums } from '../../../../enums/enums'
@@ -183,9 +183,10 @@ async function SetNoticeIsRead(type: NotificationQueryTypeDefine) {
                                 default:
                                     break
                             }
+                            let typeurl = parseInt(JSON.parse(item.extensionJson).commentTargetType) === 1 ? '/news' : '/news/reputation'
+                            let url = `${typeurl}/${JSON.parse(item.extensionJson).CommentTargetId}#comments`
 
-
-                            html += `<a class="child ${item.isRead ? 'read' : ''}" href="${item.notificationLink}" data-isread='${item.isRead}' data-id="${item.noticeId}" data-type="${item.notificationType}"  target="_blank">
+                            html += `<a class="child ${item.isRead ? 'read' : ''}" href="${url}" data-isread='${item.isRead}' data-id="${item.noticeId}" data-type="${item.notificationType}"  target="_blank">
                             <div class="title">
                               <img _src_="${item.notificationSendUserIcon}"/>
                               <p>${item.notificationSendUserName}</p>

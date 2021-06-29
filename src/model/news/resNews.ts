@@ -25,6 +25,7 @@ import { bodyModel } from '../resModel'
  * @param {number} praiseCount 点赞数
  * @param {NewsContentTypeEnums} newsContentType 文章内容类型
  * @param {boolean} isTop 是否置顶
+ * @param {boolean} isHot 是否是精品口碑
  * @param {number} topWeight 置顶权重
  * @param {ResReputationStatisticsModel} statisticsModel 口碑统计信息
  * @param {NewsSourceTypeDeine} newsSourceType 新闻来源类型
@@ -49,6 +50,7 @@ export interface ResNewsModel {
   praiseCount: number
   newsContentType: NewsContentTypeEnums
   isTop?: boolean
+  isHot?: boolean
   topWeight?: number
   statisticsModel: ResReputationStatisticsModel
   newsSourceType: NewsSourceTypeDeine

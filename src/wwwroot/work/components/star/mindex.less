@@ -1,7 +1,7 @@
 @import (reference) "../../public/style/common/PublicDefind.less";
 
 
-.star1(@width: 128px) {
+.star1(@width: 128px, @imgurl:'@{ImgUrl}/star/full.png') {
   @height: 24/128 * @width;
 
   .star {
@@ -13,14 +13,14 @@
     position       : relative;
     width          : @width;
     height         : @height;
-    background     : url('@{ImgUrl}/star/empty.png') no-repeat center;
+    background     : url("@{ImgUrl}/star/empty.png") no-repeat center;
     background-size: @width @height;
 
     span {
       display        : block;
       width          : @width;
       height         : @height;
-      background     : url('@{ImgUrl}/star/full.png') no-repeat left top;
+      background     : url(@imgurl) no-repeat left top;
       background-size: @width @height;
     }
   }

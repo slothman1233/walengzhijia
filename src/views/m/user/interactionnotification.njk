@@ -33,7 +33,7 @@ smheader %}
 
       {% if interactiveData != null and interactiveData.length > 0 %}
         {% for item in interactiveData %}
-          <a href="{{item.notificationLink}}">
+          <a href="{{(item.extensionJson.commentTargetType == 1 )| ternary('/m/news','/m/news/reputation')}}/{{item.extensionJson.CommentTargetId}}">
             <section class="t">
           【{{item.notificationSendUserName}}】<span>
 

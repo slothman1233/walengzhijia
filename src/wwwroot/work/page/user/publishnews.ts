@@ -149,7 +149,7 @@ let usermain = document.getElementById('usermain');
                 $(Detailslabel).append(
                     `<span data-id='${id}'>
                       <b>${value}</b>
-                      <i data-id='${id}' class="iconfont_wlzj">&#xE01E;</i>
+                      <i data-id='${id}' class="iconfont_wlzj">&#xE039;</i>
                   </span>`
                 )
                 if (newsTypeAry.indexOf(id) < 0) {

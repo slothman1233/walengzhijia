@@ -6,6 +6,7 @@ import type { JQueryStatic } from '../../../../assets/plugin/jquery/jquery'
 import { AddPraise, DeletePraise, GetIsPraise } from '../../../common/service/PraiseBrowse.services'
 import { CommentTargetTypeEnum, PraiseBrowsePraiseTypeEnum, subCodeEnums } from '../../../../../enums/enums'
 import { ChartstoKV } from '../../../components/chart/chart'
+import { on } from '@stl/tool-ts/src/common/event/on'
 
 
 declare const $: JQueryStatic
@@ -51,92 +52,130 @@ let praiseObject = {
 let praiseObjectDefineProperty = {
     ispraise: true,
     _ispraise: true
-}
+};
 
-// //点赞初始化
-// (async function () {
-//     // let share = main.querySelector('.share')
-//     let givelike = main.querySelectorAll('.givelike')
-//     praiseObject.praiseUser = window.getuserid()
-//     Object.defineProperty(praiseObjectDefineProperty, 'ispraise', {
-//         configurable: true,
-//         set: function (newVal: boolean) {
-//             if (newVal) {
+//点赞初始化
+(async function () {
+    // let share = main.querySelector('.share')
+    let givelike = document.querySelectorAll('.givelike')
+    praiseObject.praiseUser = window.getuserid()
+    Object.defineProperty(praiseObjectDefineProperty, 'ispraise', {
+        configurable: true,
+        set: function (newVal: boolean) {
+            if (newVal) {
 
-//                 $(givelike).removeClass('praise')
+                $(givelike).removeClass('praise')
 
-//             } else {
+            } else {
 
-//                 $(givelike).addClass('praise')
+                $(givelike).addClass('praise')
 
-//             }
-//             this._ispraise = newVal
-//         },
-//         get: function () {
-//             return this._ispraise
-//         }
-//     })
-// })();
+            }
+            this._ispraise = newVal
+        },
+        get: function () {
+            return this._ispraise
+        }
+    })
+})();
 
-// //新闻点赞
-// (async function () {
+//新闻点赞
+(async function () {
 
-//     //初始化点赞状态
-//     if (praiseObject.praiseUser !== 0) {
-//         let dataispraise = await GetIsPraise(praiseObject)
-//         if (dataispraise.code === 0 && dataispraise.subCode === subCodeEnums.success) {
-//             praiseObjectDefineProperty.ispraise = dataispraise.bodyMessage
-//         }
-//     }
+    //初始化点赞状态
+    if (praiseObject.praiseUser !== 0) {
+        let dataispraise = await GetIsPraise(praiseObject)
+        if (dataispraise.code === 0 && dataispraise.subCode === subCodeEnums.success) {
+            praiseObjectDefineProperty.ispraise = dataispraise.bodyMessage
+        }
+    }
 
-//     let share = main.querySelector('.share')
-//     let givelike = main.querySelectorAll('.givelike')
-//     let news_content: HTMLElement = main.querySelector('.news_content')
-//     let praise: HTMLElement = news_content.querySelector('.title .praise span')
+    // let share = main.querySelector('.share')
+    let givelike = document.querySelectorAll('.givelike')
+    // let news_content: HTMLElement = document.querySelector('.news_content')
+    // let praise: HTMLElement = news_content.querySelector('.title .praise span')
 
-//     givelike.forEach((item: HTMLElement) => {
+    givelike.forEach((item: HTMLElement) => {
 
-//         item.onclick = async function () {
-//             if (praiseObject.praiseUser === 0) {
-//                 window.loginshow()
-//                 alert('登录后才能点赞')
-//                 return
-//             }
-//             if (praiseObjectDefineProperty.ispraise) {
-//                 let data = await AddPraise(praiseObject)
-//                 if (data.code === 0 && data.subCode === subCodeEnums.success) {
-//                     //点赞数量变化
-//                     let count = parseInt(item.querySelector('span').innerText)
+        item.onclick = async function () {
+            if (praiseObject.praiseUser === 0) {
+                window.loginshow()
+                alert('登录后才能点赞')
+                return
+            }
+            if (praiseObjectDefineProperty.ispraise) {
+                let data = await AddPraise(praiseObject)
+                if (data.code === 0 && data.subCode === subCodeEnums.success) {
+                    //点赞数量变化
+                    let count = parseInt(item.querySelector('span').innerText)
 
-//                     givelike.forEach(items => {
-//                         items.querySelector('span').innerText = (count + 1).toString()
-//                     })
+                    givelike.forEach((items:any) => {
+                        items.querySelector('span').innerText = (count + 1).toString()
+                    })
 
-//                     alert('点赞成功')
-//                     praiseObjectDefineProperty.ispraise = false
-//                 } else {
-//                     alert('点赞失败')
-//                 }
-//             } else {
-//                 let data = await DeletePraise(praiseObject)
-//                 if (data.code === 0 && data.subCode === subCodeEnums.success) {
-//                     //点赞数量变化
-//                     let count = parseInt(item.querySelector('span').innerText)
+                    alert('点赞成功')
+                    praiseObjectDefineProperty.ispraise = false
+                } else {
+                    alert('点赞失败')
+                }
+            } else {
+                let data = await DeletePraise(praiseObject)
+                if (data.code === 0 && data.subCode === subCodeEnums.success) {
+                    //点赞数量变化
+                    let count = parseInt(item.querySelector('span').innerText)
 
-//                     givelike.forEach(items => {
-//                         items.querySelector('span').innerText = (count - 1).toString()
-//                     })
-
-
-//                     alert('取消点赞成功')
-//                     praiseObjectDefineProperty.ispraise = true
-//                 } else {
-//                     alert('取消点赞失败')
-//                 }
-//             }
-//         }
-//     })
+                    givelike.forEach((items:any) => {
+                        items.querySelector('span').innerText = (count - 1).toString()
+                    })
 
 
-// })()
+                    alert('取消点赞成功')
+                    praiseObjectDefineProperty.ispraise = true
+                } else {
+                    alert('取消点赞失败')
+                }
+            }
+        }
+    })
 
+
+})();
+
+
+//底部浮动
+(function () {
+    let twistlockfixed = document.querySelector('.twistlockfixed')
+    let input: HTMLElement = twistlockfixed.querySelector('.input')
+
+    on({
+        agent: twistlockfixed,
+        events: 'tap',
+        ele: '.input',
+        fn: function () {
+            let questions: HTMLElement = document.querySelector('.questions')
+            let top = questions.offsetTop
+            window.scrollTo(0, top)
+        }
+    })
+
+    on({
+        agent: twistlockfixed,
+        events: 'tap',
+        ele: '.pl',
+        fn: function () {
+            let questions: HTMLElement = document.querySelector('.allcommon')
+            let top = questions.offsetTop
+            window.scrollTo(0, top)
+        }
+    })
+
+    on({
+        agent: twistlockfixed,
+        events: 'tap',
+        ele: '.weixin',
+        fn: function () {
+            alert('请使用浏览器的分享功能')
+        }
+    })
+
+})()

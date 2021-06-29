@@ -98,7 +98,7 @@ let PublishData: ReputationModel = {
 
                 let idom = document.createElement('i')
                 idom.className = 'iconfont_wlzj'
-                idom.innerHTML = '&#xE01E;'
+                idom.innerHTML = '&#xE039;'
                 span.appendChild(idom)
 
                 div.appendChild(img)

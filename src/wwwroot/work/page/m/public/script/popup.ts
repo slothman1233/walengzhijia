@@ -47,7 +47,8 @@ type bpopupModel = {
     successCallback?: Function
     timeout?: number
 }
-
+let st: any
+let div: any;
 (function (window) {
 
     function spopup({
@@ -80,12 +81,12 @@ type bpopupModel = {
         </div>
  `
 
-        let div = document.createElement('div')
+        div = document.createElement('div')
         div.innerHTML = html
 
         document.body.appendChild(div)
 
-        let st = setTimeout(() => {
+        st = setTimeout(() => {
             successCallback && successCallback()
             div && div.remove()
         }, timeout || 3000)
@@ -110,6 +111,9 @@ type bpopupModel = {
 * @param {number} timeout 多少秒后自动关闭 默认3秒
 */
     window.alert = function (object: string | bpopupModel) {
+
+        div && div.remove()
+        st && clearTimeout(st)
 
         if (isString(object)) {
             spopup({

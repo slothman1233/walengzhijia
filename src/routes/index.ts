@@ -205,7 +205,7 @@ export default class Index {
             firstNewsList,
             newTypes,
             getlinks,
-            hotReputation: hotReputation.items,
+            hotReputation: hotReputation?.items || [],
             ad: {
                 adtoponeData,
                 adtoptowData,
@@ -225,11 +225,11 @@ export default class Index {
         let { productid = 0, sortid = 0, tabIndex = 1, pageIndex = 1 } = ctx.params
         let pageSize = 10
         //行业信息
-        let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1)
+        let productTypeData: ResIndustryTypeModel[] = await GetProductIndustryByIndustry(1) || []
         //------------------------------------------------------------------------------------
 
         //获取热门品牌商
-        let GetCompanyHotData = await GetIndexPageProduct()
+        let GetCompanyHotData = await GetIndexPageProduct() || []
         //------------------------------------------------------------------------------------
         //品牌商分类
         let productTabList: any[] = []
@@ -276,8 +276,8 @@ export default class Index {
             sortid,
             pageIndex,
             tabIndex,
-            productTypeData: productTypeData[0].productType,
-            GetCompanyHotData: GetCompanyHotData[0].companyInfo,
+            productTypeData: productTypeData[0]?.productType,
+            GetCompanyHotData: GetCompanyHotData[0]?.companyInfo,
             productTabList,
             totalPages: GetCompanyJson?.totalPages || 0,
             companylistJson
@@ -392,5 +392,3 @@ export default class Index {
 
 }
 
-
-export const ss = function () { return 1 }

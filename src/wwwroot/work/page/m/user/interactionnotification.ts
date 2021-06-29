@@ -58,8 +58,10 @@ let usercookie: userLoginModel = JSON.parse(window.getusercookie());
 
                                 break
                         }
+                        let typeurl = parseInt(JSON.parse(item.extensionJson).commentTargetType) === 1 ? '/news' : '/news/reputation'
+                        let url = `${typeurl}/${JSON.parse(item.extensionJson).CommentTargetId}`
 
-                        html += ` <a href="${item.notificationLink}">
+                        html += ` <a href="${url}">
                         <section class="t">
                       【${item.notificationSendUserName}】<span>${identifiableContent}</span></section>
                         ${CommentTargetContent}

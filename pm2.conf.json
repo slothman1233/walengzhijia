@@ -11,9 +11,6 @@
             "dist",
             "coverage"
         ],
-        "env": {
-            "NODE_ENV": "ga"
-        },
         "instances": 1,
         "interpreter": "../node_modules/.bin/ts-node",
         "error_file": "./logs/pm2/err.log",

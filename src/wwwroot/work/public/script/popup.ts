@@ -77,13 +77,13 @@ type bpopupModel = {
                 icon = '&#xE020;'
                 break
             case contentType.error:
-                icon = '&#xE01E;'
+                icon = '&#xE039;'
                 break
             case contentType.warning:
                 icon = '&#xE021;'
                 break
             default:
-                icon = '&#xE01E;'
+                icon = '&#xE039;'
                 break
         }
         return icon

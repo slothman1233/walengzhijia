@@ -52,6 +52,7 @@ new swiper('#index .swiper-container', {
             window.loginshow()
             return false
         }
+        return
     })
 
 })();
@@ -62,7 +63,7 @@ new swiper('#index .swiper-container', {
         agent: index,
         events: 'tap',
         ele: '.hreadlogo',
-        fn: function () { 
+        fn: function () {
             tapTab(2)
         }
     })
@@ -71,7 +72,7 @@ new swiper('#index .swiper-container', {
         agent: index,
         events: 'tap',
         ele: '.input',
-        fn: function () { 
+        fn: function () {
             window.location.href = '/m/search/1'
         }
     })
@@ -97,7 +98,7 @@ new swiper('#index .swiper-container', {
             let timetick = $(child[child.length - 1]).data('timetick')
             let newsList = await GetNewsList(parseInt(id), parseInt(timetick))
             let NewsList: any[] = []
-            if (newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
+            if (newsList && newsList.code === 0 && newsList.subCode === subCodeEnums.success && newsList.bodyMessage) {
                 newsList.bodyMessage.forEach((item) => {
                     let link = '/m/news/' + item.newsId
                     if (item.reputationId !== 0) {
@@ -114,7 +115,8 @@ new swiper('#index .swiper-container', {
                         businesslogo: item.companyIcon,
                         businessname: item.companyName,
                         timetick: get_unix_time_stamp(item.newsTime, 2),
-                        slug: [NewsContentTypeArray[item.newsContentType]]
+                        slug: [NewsContentTypeArray[item.newsContentType]],
+                        newsSourceType: item.newsContentType
                     })
                 })
                 let datas: bodyModel<string> = await getcomponent({ path: 'components/list.njk', name: 'list1', data: { args: NewsList } })
@@ -198,10 +200,30 @@ new swiper('#index .swiper-container', {
                 tab = 1
             } else if ($(item).hasClass('hot')) {
                 tab = 2
+            } else {
+                return
             }
             mui.trigger(category.find('a')[tab], 'tap')
             tapTab(1)
         })
+    })
+
+
+})();
+
+//个人中心头部
+(function () {
+
+    let usercenter = document.querySelector('#usercenter')
+
+    on({
+        agent: usercenter,
+        events: 'tap',
+        ele: '.tohome',
+        fn: function () {
+            mui.trigger(category.find('a')[0], 'tap')
+            tapTab(1)
+        }
     })
 
 })()

@@ -100,6 +100,14 @@
               border : 1px solid @color_grey_line1;
               float  : left;
             }
+
+            &.radius {
+              img {
+                width: @height;
+                .border-radius(50%);
+              }
+
+            }
           }
         }
 
@@ -121,11 +129,11 @@
       padding-bottom: @space_2;
       border-bottom : 0.5px solid @color_grey_line1;
 
-      &:hover {
-        .name {
-          color: @link_hover  !important;
-        }
-      }
+      // &:hover {
+      //   .name {
+      //     color: @link_hover  !important;
+      //   }
+      // }
 
       .left {
         @width: @size_1 * 100;
@@ -137,6 +145,7 @@
           height  : @allheight;
           display : block;
           position: relative;
+          .border-radius(@size_1 * 4);
 
           i {
             position        : absolute;
@@ -144,12 +153,18 @@
             top             : 0;
             right           : auto;
             background-color: #CED9FA;
-            color           : #596796;
-            .border-radius(1px 1px 12px 1px);
-            font-size  : @font_size_8;
-            height     : @size_1 * 20;
-            line-height: @size_1 * 20;
-            padding    : 0 @size_1 * 6;
+            color           : #405087;
+            font-weight     : @font_weight;
+            font-size       : @font_size_8;
+            height          : @size_1 * 20;
+            line-height     : @size_1 * 20;
+            padding         : 0 @size_1 * 6;
+            .border-radius(@size_1 * 4 0);
+
+            &.quality{
+              background: #FFD493;
+              color: #773B13;
+            }
           }
 
           img {
@@ -267,7 +282,7 @@
         height          : @size_1 * 44;
         background-color: @color_grey_bg1;
         .box-sizing();
-        border: 1px solid @color_rank;
+        border: 1px solid #F98215;
         .border-radius(4px);
 
         &.few {
@@ -291,13 +306,13 @@
           height     : @size_1 * 20;
           line-height: @size_1 * 20;
           font-size  : @font_size_10;
-          color      : @color_rank;
+          color      : rgba(249, 130, 21, 0.7);
         }
 
         p {
           font-size       : @font_size_16;
           color           : #FFF;
-          background-color: @color_rank;
+          background-color: #F98215;
           height          : @size_1 * 24;
           line-height     : @size_1 * 24;
           font-weight     : @font_weight;

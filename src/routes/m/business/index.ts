@@ -69,16 +69,16 @@ export default class Business {
             let title = ''
             switch (index) {
                 case ReputationTypeEnum.All:
-                    title = `${value}（${ReputationData?.reputationCount || 0}）`
+                    title = `${value} ${ReputationData?.reputationCount || 0}`
                     break
                 case ReputationTypeEnum.good:
-                    title = `${value}（${ReputationData?.goodReputationCount || 0}）`
+                    title = `${value} ${ReputationData?.goodReputationCount || 0}`
                     break
                 case ReputationTypeEnum.middel:
-                    title = `${value}（${ReputationData?.middleReputationCount || 0}）`
+                    title = `${value} ${ReputationData?.middleReputationCount || 0}`
                     break
                 case ReputationTypeEnum.short:
-                    title = `${value}（${ReputationData?.badReputationCount || 0}）`
+                    title = `${value} ${ReputationData?.badReputationCount || 0}`
                     break
                 default:
                     break

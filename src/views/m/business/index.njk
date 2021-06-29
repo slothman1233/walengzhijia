@@ -15,7 +15,7 @@ saleslist %}
 {% endblock title %}
 
 {% block keywords %}
-{{companyinfo.abbrName}},{{companyinfo.abbrName}}产品大全,{{companyinfo.abbrName}}咨询销售,{{companyinfo.abbrName}}口碑评论
+  {{companyinfo.abbrName}},{{companyinfo.abbrName}}产品大全,{{companyinfo.abbrName}}咨询销售,{{companyinfo.abbrName}}口碑评论
 {% endblock %}
 
 {% block description %}
@@ -43,6 +43,12 @@ saleslist %}
         <div class="logo">
           <span>{{companyinfo.hotDefine | get_companyHotType}}</span>
           <img src="{{companyinfo.logo}}"/>
+          {% if companyinfo.VideoIntroduce != null and companyinfo.VideoIntroduce.length > 0 %}
+            {# https://lepack.oss-cn-hangzhou.aliyuncs.com/dev/2021-06-28/7fdf23803a953286c923021373ae8bf2.mp4 #}
+            <p class="productVideo" data-viewer="{{companyinfo.VideoIntroduce}}">
+              <img _src_="/assets/images/h5/videoplay.png"/>
+            </p>
+          {% endif %}
         </div>
 
         <div class="info">
@@ -62,11 +68,18 @@ saleslist %}
         <div class="kbl">
           <p>品牌口碑分</p>
           <section>
-            <h2>{{companyinfo.reputationScore}}</h2>
-            <div>
-              <span> &nbsp;</span>
-              {{star(companyinfo.reputationScore)}}
-            </div>
+            {% if companyinfo.totalReputationCount > 0 %}
+              <h2>{{companyinfo.reputationScore}}</h2>
+              <div>
+                <span> &nbsp;</span>
+                {{star(companyinfo.reputationScore)}}
+              </div>
+            {% else %}
+              <section class="noscore">
+              暂无口碑评分
+              </section>
+            {% endif %}
+
           </section>
         </div>
 
@@ -79,11 +92,11 @@ saleslist %}
 
       <div class="cat">
         <a href="#introductory">
-          <i class="iconfont_wlzj">&#xE008;</i>品牌简介</a>
+          <i class="iconfont_wlzj">&#xE047;</i>品牌简介</a>
         <a href='#consultingSales'>
-          <i class="iconfont_wlzj">&#xE008;</i>联系销售</a>
+          <i class="iconfont_wlzj">&#xE04C;</i>联系销售</a>
         <a href='/m/reputation/publish/{{companyId}}'>
-          <i class="iconfont_wlzj">&#xE008;</i>发布口碑</a>
+          <i class="iconfont_wlzj">&#xE03B;</i>发布口碑</a>
       </div>
     </section>
   </div>
@@ -168,7 +181,7 @@ saleslist %}
   <div id="introductory" class="box mui-popover mui-popover-action mui-popover-bottom popoverbtm">
     <div class="popoverheader">
       <p>品牌介绍</p>
-      <i class='iconfont_wlzj popoverhide'>&#xE01E;</i>
+      <i class='iconfont_wlzj popoverhide'>&#xE039;</i>
     </div>
     <div class="content mui-scroll-wrapper introductorywrapper">
       <div class="mui-scroll">
@@ -186,7 +199,7 @@ saleslist %}
   <div id="consultingSales" class="box mui-popover mui-popover-action mui-popover-bottom popoverbtm">
     <div class="popoverheader">
       <p>咨询销售</p>
-      <i class='iconfont_wlzj saleshide'>&#xE01E;</i>
+      <i class='iconfont_wlzj saleshide'>&#xE039;</i>
     </div>
     <div class="content mui-scroll-wrapper consultingSaleswrapper">
       <div class="mui-scroll">

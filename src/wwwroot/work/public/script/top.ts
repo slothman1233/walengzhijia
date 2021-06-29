@@ -34,7 +34,7 @@ if (header) {
                 let cookiejson = JSON.parse(cookie);
                 // $(inlogin.querySelector('.userinfo img')).attr('src', cookiejson.userIcon)
                 // $(inlogin.querySelector('.userinfo span')).html(cookiejson.name)
-                (<HTMLImageElement>inlogin.querySelector('.userinfo img')).setAttribute('_src_', cookiejson.userIcon || '')
+                (<HTMLImageElement>inlogin.querySelector('.userinfo img')).setAttribute('src', cookiejson.userIcon || '')
                 inlogin.querySelector('.userinfo span').innerHTML = cookiejson.name
                 inlogin.style.display = 'block'
 
