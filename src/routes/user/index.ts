@@ -239,11 +239,11 @@ export default class User {
             newsType: publishNewsTypeEnums.new,
             pageIndex: 1
         })
-        console.log({
-            companyId: cookieuserinfo.company.companyId,
-            newsType: publishNewsTypeEnums.new,
-            pageIndex: 1
-        })
+        // console.log({
+        //     companyId: cookieuserinfo.company.companyId,
+        //     newsType: publishNewsTypeEnums.new,
+        //     pageIndex: 1
+        // })
         let firstnewlist: any = []
         if (newdata && newdata.items && newdata.items.length > 0) {
             newdata.items.forEach(item => {
@@ -389,7 +389,7 @@ export default class User {
         ProductIndustry[0].productType.forEach((product, index) => {
             if (puroductInfo && puroductInfo.productTypeId) {
                 if (product.productTypeId === parseInt(puroductInfo.productTypeId)) {
-                    industryObject.selectIndex = index
+                    industryObject.selectIndex = industryObject.data.length
                     product.productTypeLabels.forEach((label) => {
                         productTypeLabels.push({
                             id: label.productTypeDetailId,

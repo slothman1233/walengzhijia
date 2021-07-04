@@ -30,20 +30,20 @@
           <img src="{{item.productCover}}" title="{{item.productName}}"/>
         </a>
         <section>
-          <a href="/m/business/product/{{item.productId}}">
+          <a href="/m/business/product/{{item.company.companyId}}/{{item.productId}}">
             <h2>{{item.productName}}</h2>
           </a>
-          <p class="clearfix">
+          <a class="p clearfix" href="/m/business/product/{{item.company.companyId}}/{{item.productId}}">
             <span>{{item.productTypeName}}</span>
 
-          </p>
+          </a>
 
           <section class="score clearfix">
-            <div class="l">
+            <a class="l" href="/m/business/product/{{item.company.companyId}}/{{item.productId}}">
               <span>{{item.statisticsModel.score | ternary(item.statisticsModel.score,'0')}}</span>
               {{star(item.statisticsModel.score | ternary(item.statisticsModel.score,'0'))}}
-            </div>
-            <a class="consult" href="/m/business/product/{{item.company.companyId}}/{{item.productId}}">立即咨询</a>
+            </a>
+            <a class="consult" href="/m/enquiry/{{item.company.companyId}}/{{item.productId}}">立即咨询</a>
           </section>
         </section>
       </div>

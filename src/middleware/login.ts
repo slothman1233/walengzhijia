@@ -11,7 +11,7 @@ import { userlogin } from '../routes/login'
  */
 export async function user_login_middleware(ctx: Context, next: Next) {
     let userinfo = await getCookie(ctx, userlogin)
-    if (!userinfo || userinfo === 'undefined') {
+    if (!userinfo || userinfo === 'undefined' || userinfo === 'null') {
         ctx.redirect('/')
     } else {
         await next()

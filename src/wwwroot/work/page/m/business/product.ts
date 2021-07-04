@@ -29,8 +29,19 @@ let product_list_box: HTMLElement = document.querySelector('#product_list_box');
         }
     })
 
+    on({
+        events: 'tap',
+        ele: '.addkb',
+        fn: function (dom: any, event: Event) {
+            let doms: any = event.target
+            document.location.href = (<any>document.querySelector('.suspension')).href /*本文主要就是这句代码！*/
+        }
+    })
 
-    ChartstoKV(document.getElementById(`ecahr0`), reshighKbChart)
+    if (reshighKbChart.name.length > 0 && reshighKbChart.value.length > 0) {
+        ChartstoKV(document.getElementById(`ecahr0`), reshighKbChart)
+    }
+
 })();
 (function () {
     on({
@@ -52,6 +63,8 @@ let product_list_box: HTMLElement = document.querySelector('#product_list_box');
             return true
         }
     })
+
+
 
     mui.previewImage()
     mui('.modalwrapper').scroll()
@@ -148,7 +161,7 @@ let product_list_box: HTMLElement = document.querySelector('#product_list_box');
             if (isloaded) { return }
             isloaded = true
             let reputationType = $(reputation).find('.select').data('id')
-            let child = list_box.querySelectorAll('.child')
+            // let child = list_box.querySelectorAll('.child')
             // let timeTicks = child[child.length - 1].getAttribute('data-timetick')
             let option = {
                 productId,
@@ -228,6 +241,7 @@ let product_list_box: HTMLElement = document.querySelector('#product_list_box');
             isloaded = true
             let newsType = $(news).find('.select').data('id')
             let child = list_box.querySelectorAll('.child')
+            if (child.length <= 0) { return }
             let timetick = child[child.length - 1].getAttribute('data-timetick')
             let option = {
                 productId,

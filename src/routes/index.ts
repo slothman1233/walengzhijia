@@ -128,7 +128,8 @@ export default class Index {
         let reshighKb: any[] = []
         let reshighKbChart: any[] = []
         if (highKb !== null) {
-            for (let i = 0; i < 3; i++) {
+            let length = Math.min(highKb.length, 3)
+            for (let i = 0; i < length; i++) {
                 let item = highKb[i]
                 reshighKb.push({
                     hread: item.userIcon,
@@ -306,7 +307,7 @@ export default class Index {
         // 获取公司的产品集合
 
         let ProductType = await GetCompanyProduct({ companyId })
-        let productObject:any = {
+        let productObject: any = {
             selectIndex: 0,
             data: []
 

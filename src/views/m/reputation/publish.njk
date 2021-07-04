@@ -13,7 +13,7 @@ smheader %}
 {% block description %}{% endblock %}
 
 {% block style %}
-<link href="/assets/plugin/mui/mui.picker.min.css" rel="stylesheet">
+  <link href="/assets/plugin/mui/mui.picker.min.css" rel="stylesheet">
   <link href="/dist/styles/m/reputation/publish.css" rel="stylesheet">
 
 {% endblock style %}
@@ -36,11 +36,18 @@ smheader %}
   </div>
 
   <a class="selectpooduct clearfix" href="#modal">
-    <img _src_="{{companyInfo.logo}}"/>
-    <i class="iconfont_wlzj">&#xE044;</i>
-    <section class="c">
-      <h3>{{companyInfo.abbrName}}</h3>
-      <span>{{thatProductName}}</span>
+    <section class="nocontent">
+      <i class="iconfont_wlzj">&#xE039;</i>
+      <p>添加产品</p>
+    </section>
+
+    <section class="content" style="display:none">
+      <img _src_="{{companyInfo.logo}}"/>
+      <i class="iconfont_wlzj">&#xE044;</i>
+      <section class="c">
+        <h3>{{companyInfo.abbrName}}</h3>
+        <span>{{thatProductName}}</span>
+      </section>
     </section>
   </a>
 
@@ -102,7 +109,7 @@ smheader %}
     <h2>观点描述</h2>
     <input type="text" placeholder="请输入标题(5-30字)" class="title"/>
     <div class="descriptioncontent clearfix">
-    <textarea class="content_box" placeholder="对产品进行描述和评价，如果您的分项评分有4.5以上或3分以下，建议对该分项进行重点描述。"></textarea>
+      <textarea class="content_box" placeholder="对产品进行描述和评价，如果您的分项评分有4.5以上或3分以下，建议对该分项进行重点描述。"></textarea>
       {# <div contenteditable="true" class="content_box" placeholder="对产品进行描述和评价，如果您的分项评分有4.5以上或3分以下，建议对该分项进行重点描述。">
        对产品进行描述和评价，如果您的分项评分有4.5以上或3分以下，建议对该分项进行重点描述。
       </div> #}
@@ -148,10 +155,7 @@ smheader %}
 
   </div>
 
-
-
-
- <div id="modal" class="box mui-popover mui-popover-action mui-popover-right">
+  <div id="modal" class="box mui-popover mui-popover-action mui-popover-right">
 
     <div class="mui-scroll-wrapper modalwrapper">
       <div class="mui-scroll">

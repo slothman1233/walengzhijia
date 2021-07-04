@@ -125,13 +125,13 @@ export default class Index {
         //----------------------------------------------------------------
         await ctx.render('m/index', {
             cookieuserinfo,
-            hotData: hotData[0]?.companyInfo || [],
+            hotData: hotData && hotData[0]?.companyInfo || [],
             newTypes,
             firstNewsList,
             productTabList,
             listpageSize,
             companylistJson,
-            productTypeData: productTypeData[0].productType,
+            productTypeData: productTypeData && productTypeData[0].productType || [],
             ad: {
                 adslideData,
                 adtoptowData

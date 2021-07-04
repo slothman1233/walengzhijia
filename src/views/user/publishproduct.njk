@@ -49,7 +49,7 @@ uploadfileVideo %}
     <div class="titlect">
       {{usertitle({
           link: '/user/product',
-          icon: "&#xE01D;",
+          icon: "&#xE038;",
           title: "发布产品"
         })}}
     </div>
@@ -100,8 +100,10 @@ uploadfileVideo %}
           <div class="row clearfix">
             <p>上市时间</p>
             <div class="input">
-              {% if puroductInfo %}
+              {% if puroductInfo and puroductInfo.listingDateYear >0 and puroductInfo.listingDateMonth > 0%}
+
                 <input type="text" placeholder="选择日期" id="purchastime" value="{{puroductInfo.listingDateYear}}-{{puroductInfo.listingDateMonth}}" lay-key="1">
+
               {% else %}
                 <input type="text" placeholder="选择日期" id="purchastime" value="" lay-key="1">
               {% endif %}
@@ -277,7 +279,7 @@ uploadfileVideo %}
 
       <div class="submit">
         <a href="javascript:void(0);" class='sub'>立即发布</a>
-         
+
         {% if productId == null %}
           <a href="javascript:void(0);" class="drafts">保存草稿</a>
         {% endif %}

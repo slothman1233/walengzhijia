@@ -240,7 +240,14 @@ let company_list_box = document.getElementById('company_list_box');
             }
 
             let { html, length } = await getHtml(option)
-            list_box.innerHTML = html
+            if (length > 0) {
+                list_box.innerHTML = html
+            } else {
+                list_box.innerHTML = ` <section class="nocontent">
+                <img _src_="/assets/images/empty.png"/>
+              </section>`
+            }
+
             isloaded = length < pageSize ? true : false
             window.imgload()
         }

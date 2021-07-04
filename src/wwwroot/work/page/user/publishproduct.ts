@@ -12,6 +12,7 @@ import filecollection from '../../components/uploadfile/filecollection'
 import { productImgTypeEnums, subCodeEnums } from '../../../../enums/enums'
 import { AddCompanyProduct, UpdateCompanyProduct } from '../../common/service/company.services'
 import { GetProductType } from '../../common/service/product.services'
+import { ge_time_format } from '../../../../common/utils/util'
 
 declare const $: JQueryStatic
 declare const document: any
@@ -47,12 +48,14 @@ let draftsStorage = 'draftsStorage'
 //产品细节图集
 // let detaileddrawAry: string[] = []
 
+let thatTime = ge_time_format((new Date().getTime()).toString(), '3').split('-')
+
 let publishData: CompanyProductInfoModel = {
     companyId: companyId || 2,
     createUser: userId,
     productName: null,
-    listingDateYear: 0,
-    listingDateMonth: 0,
+    listingDateYear: parseInt(thatTime[0]),
+    listingDateMonth: parseInt(thatTime[1]),
     productVideo: null,
     productCover: null,
     summary: null,
@@ -360,6 +363,7 @@ let publishData: CompanyProductInfoModel = {
     laydate.render({
         elem: '#purchastime', //指定元素
         type: 'month',
+        value: new Date(),
         change: function (value: any, date: any) { //监听日期被切换
             // console.log(value, date)
             // lay('#testView').html(value);

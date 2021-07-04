@@ -98,25 +98,26 @@
       </div>
 
       <div class="r">
+        {% if newsDetail != null and newsDetail.product != null %}
 
-        <div class="list1 relatedproducts">
-          <p>相关产品</p>
-          <div class="box">
-            <img _src_="{{newsDetail.product.producerCover}}"/>
-            <div class="content">
-              <div class="left">
-                <p>
-                  <img _src_="{{newsDetail.product.companyIcon}}"/>
-                  <span>{{newsDetail.product.companyName}}</span>
-                </p>
-                <p>{{newsDetail.product.productName}}</p>
+          <div class="list1 relatedproducts">
+            <p>相关产品</p>
+            <div class="box">
+              <img _src_="{{newsDetail.product.producerCover}}"/>
+              <div class="content">
+                <div class="left">
+                  <p>
+                    <img _src_="{{newsDetail.product.companyIcon}}"/>
+                    <span>{{newsDetail.product.companyName}}</span>
+                  </p>
+                  <p>{{newsDetail.product.productName}}</p>
+                </div>
+                <a class="btn" href="/business/product/{{newsDetail.product.companyId}}/{{newsDetail.product.productId}}" target="_blank">查看详情</a>
               </div>
-              <a class="btn" href="/business/product/{{newsDetail.product.companyId}}/{{newsDetail.product.productId}}" target="_blank">查看详情</a>
             </div>
+
           </div>
-
-        </div>
-
+        {% endif %}
         {% if (HotNews != null) and (HotNews.length > 0) %}
           <div class="list1 hotnews">
             <p>热门新闻</p>

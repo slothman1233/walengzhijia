@@ -6,24 +6,32 @@
 @import (reference) "../../../public/style/common/Animation.less";
 
 .footer {
+  // &.mui-bar-tab .mui-tab-item.mui-active span{
+  //   color: #E18E09;
+  // }
+  .safeareainsetbottom();
+
   &>a {
+
     // img {
     //   height : @size_1 * 20;
     //   display: block;
     //   margin : auto;
     // }
 
+
     i {
-      height         : @size_1 * 20;
-      width          : @size_1 * 20;
+      height         : @size_1 * 24;
+      width          : @size_1 * 24;
       background-size: 100% !important;
       display        : block;
       margin         : auto;
     }
 
     span {
-      display  : block;
-      font-size: @font_size_10;
+      display    : block;
+      font-size  : @font_size_10;
+      font-weight: @font_weight;
     }
 
     &.home {
@@ -86,14 +94,14 @@
 
     .input {
       background: rgba(255, 221, 136, 0.1);
-      border    : 0.5px solid @color_theme_c2_30;
+      border    : 1px solid @color_theme_c2_30;
       position  : relative;
       .box-sizing();
       .border-radius(@size_1 * 4);
       .ellipsis();
 
       i {
-        color   : @color_subject ;
+        color   : rgba(255, 221, 136, 0.6);
         position: absolute;
         left    : @size_1 * 10;
       }
@@ -103,7 +111,7 @@
         left            : @space_2;
         height          : @height - @space_1 * 2;
         float           : left;
-        color           : @color_subject ;
+        color           : rgba(255, 221, 136, 0.6);
         border          : none;
         margin          : 0;
         background-color: transparent;
@@ -474,7 +482,8 @@
 
         &.select {
           background-color: rgba(249, 130, 21, 0.15);
-          color           : @color_theme_c0 ;
+          color           : @color_theme_c0;
+          font-weight: @font_weight;
         }
       }
     }
@@ -500,7 +509,7 @@
     position   : relative;
 
     .tohome {
-      font-size  : @font_size_18;
+      font-size  : @font_size_24;
       font-weight: @font_weight;
       float      : left;
     }
@@ -608,5 +617,13 @@
         .ellipsis();
       }
     }
+    // .setting{
+    //   .l{
+    //     font-size: @font_size_24;
+    //   }
+    // }
+
+
+
   }
 }

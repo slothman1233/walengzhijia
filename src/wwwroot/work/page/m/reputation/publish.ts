@@ -46,7 +46,7 @@ let userId = window.getuserid();
 let PublishData: ReputationModel = {
     title: '',
     companyId,
-    productId,
+    productId: null,
     buyTime: '',
     useTime: '',
     purchasePrice: 0,
@@ -274,8 +274,9 @@ function allScore() {
             mui('#modal').popover('toggle')
             GetReputationType(parseInt(producttypeid))
             PublishData.productId = parseInt(id)
-            document.querySelector('.selectpooduct .c span').innerHTML = name
-
+            document.querySelector('.selectpooduct .c span').innerHTML = name;
+            (<HTMLElement>document.querySelector('.selectpooduct .nocontent')).style.display = 'none';
+            (<HTMLElement>document.querySelector('.selectpooduct .content')).style.display = 'block'
         }
     })
 })()

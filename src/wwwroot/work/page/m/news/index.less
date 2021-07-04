@@ -124,6 +124,10 @@ body {
       font-size    : @font_size_18;
       line-height  : @line_height;
     }
+
+    img{
+      max-width: 100%;
+    }
   }
 
 
@@ -237,7 +241,6 @@ body {
   }
 }
 
-
 .twistlockfixed {
   @height      : @size_1 * 48;
   @child_height: @size_1 * 36;
@@ -251,6 +254,7 @@ body {
   right        : 0;
   z-index      : 6;
   .box-sizing();
+  .safeareainsetbottom();
 
   .input {
     background : #EBEEFA;
@@ -261,13 +265,14 @@ body {
     .box-sizing();
 
     i {
+      float    : left;
       color    : @color_main_c1;
       font-size: @font_size_16;
-      position : relative;
-      top      : @size_1 * 2;
+      margin-right: @size_1 * 4;
     }
 
     span {
+      float    : left;
       color    : @color_gray_c1;
       font-size: @font_size_14;
     }
@@ -288,10 +293,10 @@ body {
 
       i {
         display  : block;
-        width    : @size_1 * 20;
-        height   : @size_1 * 20;
+        width    : @size_1 * 24;
+        height   : @size_1 * 24;
         color    : @color_main_c1;
-        font-size: @font_size_16;
+        font-size: @font_size_20;
         margin   : auto;
       }
 

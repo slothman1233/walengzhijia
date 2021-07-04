@@ -14,55 +14,39 @@ declare let keyword: string
 declare let newsTimeTicks: any
 declare let companyTimeTicks: any
 let localStorageSearch = 'localStorageSearch';
-// (function () {
-//     let search = document.querySelector('#main .search')
-//     let btn = search.querySelector('a')
-//     let input = search.querySelector('input')
-//     btn.onclick = function () {
-//         if (input.value.length <= 0) {
-//             alert('清输入搜索内容')
-//         }
-
-//         document.location.href = `/search/1/${encodeURI(input.value)}`
-
-//     }
-
-// })()
 
 
 
 (function () {
-    let searchheader: HTMLElement = document.querySelector('.searchheader')
+    let search: HTMLElement = document.querySelector('.search')
     let searchfilter: HTMLElement = document.querySelector('.searchfilter')
     let searchresult: HTMLElement = document.querySelector('.searchresult')
-    let search: HTMLInputElement = searchfilter.querySelector('.searchheader input')
-
-
+    let searchinput: HTMLInputElement = search.querySelector('.searchheader input')
 
     if (keyword.length <= 0) {
-        setTimeout(() => {
-            search.focus()
-        }, 100)
         searchfilter.style.display = 'block'
     } else {
         searchresult.style.display = 'block'
     }
 
+
+    // searchinput.onblur = function () {
+    //     searchfilter.style.display = 'none'
+    //     searchresult.style.display = 'block'
+
+    // }
+    searchinput.onfocus = function () {
+
+        searchfilter.style.display = 'block'
+        searchresult.style.display = 'none'
+    }
+
+
+
     $('body').on('touchend', function (el: any) {
         let dom = el.target
         if (el.target.tagName !== 'INPUT' || !$(dom).hasClass('sr')) {
-            search.blur()
-        }
-    })
-
-    on({
-        agent: searchheader,
-        events: 'tap',
-        ele: 'input',
-        fn: function () {
-            searchfilter.style.display = 'block'
-            searchresult.style.display = 'none'
-
+            searchinput.blur()
         }
     })
 
@@ -243,14 +227,13 @@ let isloaded = [false, false];
         fn: function (dom: HTMLElement) {
             setHtml(dom.innerText)
             setTimeout(() => {
+                let search: HTMLElement = document.querySelector('.search')
                 let searchfilter: HTMLElement = document.querySelector('.searchfilter')
                 let searchresult: HTMLElement = document.querySelector('.searchresult')
-                let resultinput: HTMLInputElement = searchresult.querySelector('.searchheader input')
-                let search: HTMLInputElement = searchfilter.querySelector('.searchheader input')
+                let searchinput: HTMLInputElement = search.querySelector('.searchheader input')
                 searchfilter.style.display = 'none'
                 searchresult.style.display = 'block'
-                search.value = dom.innerText
-                resultinput.value = dom.innerText
+                searchinput.value = dom.innerText
             }, 50)
 
         }
@@ -261,8 +244,8 @@ let isloaded = [false, false];
 
 //删除搜索内容
 (function () {
-    let searchfilter = document.querySelector('.searchfilter')
-    let searchheader = searchfilter.querySelector('.searchheader')
+    let search = document.querySelector('.search')
+    let searchheader = search.querySelector('.searchheader')
     let input: HTMLInputElement = searchheader.querySelector('input')
     on({
         agent: searchheader,
@@ -277,16 +260,14 @@ let isloaded = [false, false];
 
 //点击取消
 (function () {
-    let searchfilter: HTMLElement = document.querySelector('.searchfilter')
-    let searchresult: HTMLElement = document.querySelector('.searchresult')
-    let cancel = searchfilter.querySelector('.cancel')
+    let search: HTMLElement = document.querySelector('.search')
+    let cancel = search.querySelector('.cancel')
     on({
-        agent: searchfilter,
+        agent: search,
         events: 'tap',
         ele: '.cancel',
         fn: function () {
-            searchfilter.style.display = 'none'
-            searchresult.style.display = 'block'
+            window.history.back()
         }
     })
 })()
@@ -294,37 +275,36 @@ let isloaded = [false, false];
 
 
 window.search = async function () {
+    let search: HTMLElement = document.querySelector('.search')
     let searchfilter: HTMLElement = document.querySelector('.searchfilter')
     let searchresult: HTMLElement = document.querySelector('.searchresult')
-    let search: HTMLInputElement = searchfilter.querySelector('.searchheader input')
+    let searchinput: HTMLInputElement = search.querySelector('.searchheader input')
 
-    if (search.value.length <= 0) {
+    if (searchinput.value.length <= 0) {
         return
     }
 
     let cacheAry = getCache()
 
-    setHtml(search.value)
-
-    search.blur();
-
-    (<HTMLInputElement>searchresult.querySelector('.searchheader input')).value = search.value
+    setHtml(searchinput.value)
 
     searchfilter.style.display = 'none'
     searchresult.style.display = 'block'
 
+    searchinput.blur()
 
-
-    if (cacheAry.indexOf(search.value) <= -1) {
+    if (cacheAry.indexOf(searchinput.value) <= -1) {
 
         let searchhtml = `<div>
                     <i class="iconfont_wlzj">&#xE039;</i>
-                    <span>${search.value}</span>
+                    <span>${searchinput.value}</span>
                 </div>`
         $(searchfilter.querySelector('.container')).append(searchhtml)
 
-        setCache(search.value)
+        setCache(searchinput.value)
     }
+
+
 
 }
 

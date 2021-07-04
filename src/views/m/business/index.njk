@@ -54,7 +54,10 @@ saleslist %}
         <div class="info">
           <h1>{{companyinfo.abbrName}}</h1>
           <div class="signboard clearfix">
-            <span>{{companyinfo.stockInfo}}</span>
+            {# <span>{{companyinfo.stockInfo}}</span> #}
+            {% for value in companyinfo.companyLabels %}
+              <span>{{value}}</span>
+            {% endfor %}
           </div>
           <p class="clearfix">
             <i>{{companyinfo.productCount}}件产品</i>
@@ -143,36 +146,51 @@ saleslist %}
       </div>
 
       <div class="reputation" style='display:none'>
-        <div class="sCategories">
-          <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-            <div class="mui-scroll">
-              {% for item in reputationtype %}
-                <span class="{{ (loop.index == 1) | ternary('select','') }}" data-id='{{item.id}}'>{{item.title}}</span>
-              {% endfor %}
+        {% if ReputationData.reputations != null and ReputationData.reputations.length > 0 %}
+          <div class="sCategories">
+            <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+              <div class="mui-scroll">
+                {% for item in reputationtype %}
+                  <span class="{{ (loop.index == 1) | ternary('select','') }}" data-id='{{item.id}}'>{{item.title}}</span>
+                {% endfor %}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="list_box">
-          {{reputationlist(ReputationData.reputations)}}
-        </div>
+          <div class="list_box">
+            {{reputationlist(ReputationData.reputations)}}
+          </div>
+        {% else %}
+          <section class="nocontent">
+            <img _src_="/assets/images/empty.png"/>
+            <a href="/m/reputation/publish/{{companyId}}">立即发布口碑</a>
+          </section>
+        {% endif %}
+
       </div>
 
       <div class="news" style='display:none'>
-        <div class="sCategories">
-          <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-            <div class="mui-scroll">
-              {% for item in newTypes %}
-                <span class="{{ (loop.index == 1) | ternary('select','') }}" data-id='{{item.id}}'>{{item.title}}</span>
-              {% endfor %}
 
+        {% if firstNewsList != null and firstNewsList.length > 0 %}
+          <div class="sCategories">
+            <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+              <div class="mui-scroll">
+                {% for item in newTypes %}
+                  <span class="{{ (loop.index == 1) | ternary('select','') }}" data-id='{{item.id}}'>{{item.title}}</span>
+                {% endfor %}
+
+              </div>
             </div>
           </div>
-        </div>
+          <div class="list_box">
+            {{list1(firstNewsList)}}
+          </div>
+        {% else  %}
+          <section class="nocontent">
+            <img _src_="/assets/images/empty.png"/>
+          </section>
+        {% endif %}
 
-        <div class="list_box">
-          {{list1(firstNewsList)}}
-        </div>
       </div>
     </div>
 
@@ -203,7 +221,12 @@ saleslist %}
     </div>
     <div class="content mui-scroll-wrapper consultingSaleswrapper">
       <div class="mui-scroll">
-        {{saleslist(salers)}}
+        {% if salers != null and salers.length > 0%}
+          {{saleslist(salers)}}
+        {% else %}
+          <img _src_="/assets/images/empty.png" class="nocontent"/>
+        {% endif %}
+
       </div>
     </div>
   </div>

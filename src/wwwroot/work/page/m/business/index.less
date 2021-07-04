@@ -235,10 +235,11 @@
   margin: @size_1*12 @space_2 0 @space_2;
 
   .sCategories {
-    position  : relative;
-    @height   : @size_1*30;
-    height    : @height;
-    margin-top: @space_1;
+    position     : relative;
+    @height      : @size_1*30;
+    height       : @height;
+    margin-top   : @space_1;
+    margin-bottom: @size_1 * 12;
 
     .mui-scroll,
     .mui-scroll-wrapper {
@@ -259,6 +260,7 @@
       &.select {
         background-color: rgba(249, 130, 21, 0.15);
         color           : @color_theme_c0 ;
+        font-weight     : @font_weight;
       }
     }
   }
@@ -277,10 +279,35 @@
       background: linear-gradient(#FFFFFF 0%, #F0F2F9 @size_1*80, #F0F2F9 100%);
       .reputationlist();
 
-      & > div:last-child {
-        & >a:last-child {
+      &>div:last-child {
+        &>a:last-child {
           margin-bottom: 0;
         }
+      }
+    }
+
+    .nocontent {
+      @width    : @size_1 * 144;
+      text-align: center;
+      margin-top: @size_1 * 60;
+
+      img {
+        width  : @width;
+        margin : auto;
+        display: block;
+      }
+
+      a {
+        display         : block;
+        margin          : @space_2 auto 0 auto;
+        width           : @width;
+        text-align      : center;
+        font-size       : @font_size_16;
+        height          : @size_1 * 36;
+        line-height     : @size_1 * 36;
+        color           : @color_main_c1;
+        background-color: @color_subject;
+        .border-radius(@size_1 * 2);
       }
     }
 
@@ -291,6 +318,18 @@
       .list1();
     }
 
+    .nocontent {
+      @width    : @size_1 * 144;
+      text-align: center;
+      margin-top: @size_1 * 60;
+
+      img {
+        width  : @width;
+        margin : auto;
+        display: block;
+      }
+
+    }
   }
 
 }
@@ -320,5 +359,11 @@
 #consultingSales {
   .mui-scroll {
     .saleslist();
+
+    .nocontent {
+      width  : @size_1 * 128;
+      margin : @size_1 * 70 auto;
+      display: inherit;
+    }
   }
 }

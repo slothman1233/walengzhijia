@@ -16,7 +16,7 @@ saleslist %}
 {% endblock title %}
 
 {% block keywords %}
-{{CompanyProduct.productName}},{{CompanyProduct.productName}}参数信息, {{CompanyProduct.productName}}销售咨询,{{CompanyProduct.productName}}口碑评论
+  {{CompanyProduct.productName}},{{CompanyProduct.productName}}参数信息, {{CompanyProduct.productName}}销售咨询,{{CompanyProduct.productName}}口碑评论
 {% endblock %}
 
 {% block description %}
@@ -94,7 +94,7 @@ saleslist %}
           <p>
             <i class="iconfont_wlzj">&#xE00A;</i>
 
-            <span>更多图片</span>
+            <span>图片</span>
             <img _src_="{{CompanyProduct.companyProductImages[0].imageUrl}}" data-preview-src="" data-preview-group="1"/>
 
           </p>
@@ -128,11 +128,18 @@ saleslist %}
         <div class="kbscore">
           <p>产品口碑分</p>
           <section>
-            <h2>{{CompanyProduct.statisticsModel.score}}</h2>
-            <div>
-              <span> &nbsp;</span>
-              {{star(CompanyProduct.statisticsModel.score)}}
-            </div>
+            {% if CompanyProduct.statisticsModel.score and CompanyProduct.statisticsModel.score > 0 %}
+              <h2>{{CompanyProduct.statisticsModel.score}}</h2>
+              <div>
+                <span> &nbsp;</span>
+                {{star(CompanyProduct.statisticsModel.score)}}
+              </div>
+            {% else %}
+              <section class="nocontent">
+              暂无口碑评分
+              </section>
+            {% endif %}
+
           </section>
         </div>
 
@@ -168,11 +175,18 @@ saleslist %}
       <div class="r">
         <h2>各项评分</h2>
         <div class="ecahr">
-          <p>{{reshighKbScore}}</p>
-          <div id="ecahr0"></div>
+          {% if reshighKbScore != null and reshighKbScore > 0 %}
+            <p>{{reshighKbScore}}</p>
+            <div id="ecahr0"></div>
+          {% else %}
+            <section class="nocontent">
+              暂无相关评分
+            </section>
+          {% endif %}
+
         </div>
 
-        <p>共{{CompanyProduct.statisticsModel.reputationCount}}条口碑</p>
+        <p>共{{CompanyProduct.statisticsModel.reputationCount | ternary(CompanyProduct.statisticsModel.reputationCount,'0')}}条口碑</p>
       </div>
     </div>
 
@@ -205,34 +219,60 @@ saleslist %}
     <div class="list_content">
 
       <div class="reputation">
-        <div class="sCategories">
-          <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-            <div class="mui-scroll">
-              {% for item in reputationtype %}
-                <span class="{{ (loop.index == 1) | ternary('select','') }}" data-id='{{item.id}}'>{{item.title}}</span>
-              {% endfor %}
+        {% if ReputationData.reputations != null and ReputationData.reputations.length > 0 %}
+          <div class="sCategories">
+            <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+              <div class="mui-scroll">
+                {% for item in reputationtype %}
+                  <span class="{{ (loop.index == 1) | ternary('select','') }}" data-id='{{item.id}}'>{{item.title}}</span>
+                {% endfor %}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="list_box">
-          {{reputationlist(ReputationData.reputations)}}
-        </div>
+          <div class="list_box">
+            {{reputationlist(ReputationData.reputations)}}
+          </div>
+        {% else %}
+          <section class="nocontent">
+            <img _src_="/assets/images/empty.png"/>
+            <a href="/m/reputation/publish/{{companyId}}">立即发布口碑</a>
+          </section>
+        {% endif %}
+
       </div>
 
       <div class="news" style='display:none'>
         <div class="list_box">
-          {{list1(firstNewsList)}}
+          {% if firstNewsList != null and firstNewsList.length > 0%}
+            {{list1(firstNewsList)}}
+          {% else %}
+            <section class="nocontent">
+              <img _src_="/assets/images/empty.png"/>
+            </section>
+          {% endif %}
+
         </div>
       </div>
 
       <div class="sales" style='display:none'>
-        {{saleslist(salers)}}
+        {% if salers != null and salers.length > 0%}
+          {{saleslist(salers)}}
+        {% else %}
+          <section class="nocontent">
+            <img _src_="/assets/images/empty.png"/>
+          </section>
+        {% endif %}
       </div>
 
     </div>
 
   </div>
+
+  <a class="addkb" href="/m/reputation/publish{{companyId}}">
+  <i class="iconfont_wlzj">&#xE03B;</i>
+    <span>发口碑</span>
+  </a>
 
   <a class="suspension" href="/m/enquiry/{{companyId}}/{{productId}}">
     <section>立即咨询销售</section>

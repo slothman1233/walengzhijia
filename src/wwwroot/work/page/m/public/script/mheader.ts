@@ -13,7 +13,10 @@ declare const mui: any
             window.history.back()
             //  window.location.replace(document.referrer)
         })
-    }
 
+        mui('#mhearder').on('tap', '.right', () => {
+            alert('请使用浏览器的分享功能')
+        })
+    }
 
 })()

@@ -32,16 +32,24 @@ list2 %}
     {{mheader({title:"搜索"})}}
   </div>
 
-  <div class="searchresult" style="display:none">
-    <div class="searchheader clearfix">
-      <i class="iconfont_wlzj magnifying">&#xE010;</i>
-      <div>
-        <input type='text' placeholder="搜索" readOnly value="{{keyword}}"/>
-      </div>
+  <div class="search">
+    <div class="hd">
+      <form action="javascript:search();" class="searchheader clearfix">
+        <i class="iconfont_wlzj magnifying">&#xE010;</i>
+        <i class="iconfont_wlzj close">&#xE039;</i>
+        <div>
+          <input type="search" class='sr' placeholder="搜索" value="{{keyword}}"/>
+        </div>
+      </form>
+      <div class="cancel">
+       取消
+    </div>
     </div>
 
-    <div class="container">
-      {{navigationbar({
+    <div class="searchresult" style="display:none">
+
+      <div class="container">
+        {{navigationbar({
               isMore: false,
               MoreText: "更多>>",
               link: "#",
@@ -59,48 +67,37 @@ list2 %}
                   }]
             })}}
 
-      <div class="container_box">
-        <div class="synthesize">
+        <div class="container_box">
+          <div class="synthesize">
 
-          {% if bsuinessAry.length <= 0 and newsAry.length <= 0 %}
-            <div class="nocontent">
-              <img _src_="/assets/images/empty.png"/>
-            </div>
+            {% if bsuinessAry.length <= 0 and newsAry.length <= 0 %}
+              <div class="nocontent">
+                <img _src_="/assets/images/empty.png"/>
+              </div>
 
-          {% else %}
-            {{list2(bsuinessAry)}}
-            {{list1(newsAry)}}
-          {% endif %}
+            {% else %}
+              {{list2(bsuinessAry)}}
+              {{list1(newsAry)}}
+            {% endif %}
 
+          </div>
+          <div class="business" style="display:none">
+            {% if bsuinessAry.length <= 0%}
+              <div class="nocontent">
+                <img _src_="/assets/images/empty.png"/>
+              </div>
+            {% else %}
+              {{list2(bsuinessAry)}}
+            {% endif %}
+
+          </div>
         </div>
-        <div class="business" style="display:none">
-          {% if bsuinessAry.length <= 0%}
-            <div class="nocontent">
-              <img _src_="/assets/images/empty.png"/>
-            </div>
-          {% else %}
-            {{list2(bsuinessAry)}}
-          {% endif %}
 
-        </div>
       </div>
 
     </div>
 
-  </div>
-
-  <div class="searchfilter"  style="display:none">
-    <div class="hd">
-      <form action="javascript:search();" class="searchheader clearfix">
-        <i class="iconfont_wlzj magnifying">&#xE010;</i>
-        <i class="iconfont_wlzj close">&#xE039;</i>
-        <div>
-          <input type="search" class='sr' placeholder="搜索" value="{{keyword}}"/>
-        </div>
-      </form>
-      <div class="cancel">
-       取消
-    </div>
+    <div class="searchfilter"  style="display:none">
 
       <div class="container">
         <h2>搜索历史</h2>

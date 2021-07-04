@@ -49,7 +49,7 @@ smheader %}
         {% for item in kbData %}
           <a href="/m/news/reputation/{{item.newsId}}">
             <section class="t">{{item.title}}</section>
-            <p>{{item.summary | safe}}</p>
+            <p>{{item.summary | delHtmlTag}}</p>
             <section class="time">{{item.createTime | get_time_timestamp | ge_time_format(2)}}</section>
           </a>
         {% endfor %}

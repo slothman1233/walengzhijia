@@ -68,6 +68,7 @@ let div: any;
         top:30vh;
         margin: 0 0 0 -30%;
         text-align: center;
+        z-index:88888;
         ">   
         <div class="content" style="background-color: rgba(0,0,0,0.8);display: inline-block;padding: .32rem .42rem;border-radius: .13rem;">
              <div style="">

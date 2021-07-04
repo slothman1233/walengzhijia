@@ -32,7 +32,7 @@ export interface ResAdvertisingModel {
   targetId: number
   extensionArgs: string
   adLink:string
-  MobileAdLink:string
+  mobileAdLink:string
 }
 
 

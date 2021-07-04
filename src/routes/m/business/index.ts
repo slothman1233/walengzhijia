@@ -67,27 +67,50 @@ export default class Business {
         let reputationtype: any[] = []
         ReputationTypeArray.forEach((value: string, index: number) => {
             let title = ''
+            let count
             switch (index) {
                 case ReputationTypeEnum.All:
-                    title = `${value} ${ReputationData?.reputationCount || 0}`
+                    count = ReputationData?.reputationCount || 0
+                    if (count > 0) {
+                        reputationtype.push({
+                            id: index,
+                            title: `${value} ${count}`
+                        })
+                    }
                     break
                 case ReputationTypeEnum.good:
-                    title = `${value} ${ReputationData?.goodReputationCount || 0}`
+                    count = ReputationData?.goodReputationCount || 0
+                    if (count > 0) {
+                        reputationtype.push({
+                            id: index,
+                            title: `${value} ${count}`
+                        })
+                    }
                     break
                 case ReputationTypeEnum.middel:
-                    title = `${value} ${ReputationData?.middleReputationCount || 0}`
+                    count = ReputationData?.middleReputationCount || 0
+                    if (count > 0) {
+                        reputationtype.push({
+                            id: index,
+                            title: `${value} ${count}`
+                        })
+                    }
                     break
                 case ReputationTypeEnum.short:
-                    title = `${value} ${ReputationData?.badReputationCount || 0}`
+                    count = ReputationData?.badReputationCount || 0
+                    if (count > 0) {
+                        reputationtype.push({
+                            id: index,
+                            title: `${value} ${count}`
+                        })
+                    }
                     break
+
                 default:
                     break
             }
 
-            reputationtype.push({
-                id: index,
-                title
-            })
+
 
         })
 
@@ -152,7 +175,7 @@ export default class Business {
 
         //销售信息
         let salers = await GetSalersByCompanyId({ companyId }) || []
-        
+
         salers.forEach(item => {
             (<any>item).productId = productId
         })
@@ -216,27 +239,49 @@ export default class Business {
         let reputationtype: any[] = []
         ReputationTypeArray.forEach((value: string, index: number) => {
             let title = ''
+            let count
             switch (index) {
                 case ReputationTypeEnum.All:
-                    title = `${value}（${ReputationData?.reputationCount || 0}）`
+                    count = ReputationData?.reputationCount || 0
+                    if (count > 0) {
+                        reputationtype.push({
+                            id: index,
+                            title: `${value} ${count}`
+                        })
+                    }
                     break
                 case ReputationTypeEnum.good:
-                    title = `${value}（${ReputationData?.goodReputationCount || 0}）`
+                    count = ReputationData?.goodReputationCount || 0
+                    if (count > 0) {
+                        reputationtype.push({
+                            id: index,
+                            title: `${value} ${count}`
+                        })
+                    }
                     break
                 case ReputationTypeEnum.middel:
-                    title = `${value}（${ReputationData?.middleReputationCount || 0}）`
+                    count = ReputationData?.middleReputationCount || 0
+                    if (count > 0) {
+                        reputationtype.push({
+                            id: index,
+                            title: `${value} ${count}`
+                        })
+                    }
                     break
                 case ReputationTypeEnum.short:
-                    title = `${value}（${ReputationData?.badReputationCount || 0}）`
+                    count = ReputationData?.badReputationCount || 0
+                    if (count > 0) {
+                        reputationtype.push({
+                            id: index,
+                            title: `${value} ${count}`
+                        })
+                    }
                     break
                 default:
                     break
             }
 
-            reputationtype.push({
-                id: index,
-                title
-            })
+
 
         })
 

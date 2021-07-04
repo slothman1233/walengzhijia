@@ -1,5 +1,5 @@
 @import (less) "../public/style/wuc/mheader.less";
-@import (less) "../../../components/star/index.less";
+@import (less) "../../../components/star/mindex.less";
 @import (less) "../../../components/comment/mcomment1.less";
 @import (reference) "../../../public/style/common/mpublicDefind.less";
 @import (reference) "../../../public/style/common/Animation.less";
@@ -194,7 +194,7 @@ body {
               margin-bottom: @size_1 * 4;
             }
 
-            .star1(@size_1*85);
+            .star1(@size_1*85, "@{ImgUrl}/h5/orange_star_5.png");
           }
         }
 
@@ -240,6 +240,10 @@ body {
       color        : @color_main_c1;
       font-size    : @font_size_18;
       line-height  : @line_height;
+    }
+
+    img {
+      max-width: 100%;
     }
   }
 
@@ -367,6 +371,7 @@ body {
   right        : 0;
   z-index      : 6;
   .box-sizing();
+  .safeareainsetbottom();
 
   .input {
     background : #EBEEFA;
@@ -377,13 +382,14 @@ body {
     .box-sizing();
 
     i {
-      color    : @color_main_c1;
-      font-size: @font_size_16;
-      position : relative;
-      top      : @size_1 * 2;
+      float       : left;
+      color       : @color_main_c1;
+      font-size   : @font_size_16;
+      margin-right: @size_1 * 4;
     }
 
     span {
+      float    : left;
       color    : @color_gray_c1;
       font-size: @font_size_14;
     }
@@ -404,10 +410,10 @@ body {
 
       i {
         display  : block;
-        width    : @size_1 * 20;
-        height   : @size_1 * 20;
+        width    : @size_1 * 24;
+        height   : @size_1 * 24;
         color    : @color_main_c1;
-        font-size: @font_size_16;
+        font-size: @font_size_20;
         margin   : auto;
       }
 

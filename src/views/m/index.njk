@@ -63,7 +63,7 @@ list2 %}
 
         <div class="input">
           <i class="iconfont_wlzj">&#xE010;</i>
-          <input type='text' readonly="readOnly" placeholder="搜索"/>
+          <input type='text' readonly="readOnly" value="搜索" placeholder="搜索"/>
         </div>
       </section>
 
@@ -96,7 +96,7 @@ list2 %}
         <div class="swiper-wrapper">
           {% if (ad.adslideData != null) and (ad.adslideData.length > 0) %}
             {% for item in ad.adslideData %}
-              <a class="swiper-slide" href="{{item.MobileAdLink}}" title="{{item.desc}}" target="_blank">
+              <a class="swiper-slide" href="{{item.mobileAdLink}}" title="{{item.desc}}">
                 <p>{{item.desc}}</p>
                 <img _src_="{{item.icon}}"/>
               </a>
@@ -112,7 +112,7 @@ list2 %}
 
         {% if (ad.adtoptowData != null) and (ad.adtoptowData.length > 0) %}
           {% for item in ad.adtoptowData %}
-            <a class="child" href="{{item.MobileAdLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
+            <a class="child" href="{{item.mobileAdLink}}" title="{{item.desc}}" data-id="{{item.adId}}">
               <img _src_="{{item.icon}}"/>
               <span>{{item.desc}}</span>
             </a>
@@ -255,7 +255,7 @@ list2 %}
         </a>
         #}
         <a href="/m/user/setting">
-          <i class="iconfont_wlzj l">&#xE01A;</i>
+          <i class="iconfont_wlzj l">&#xE049;</i>
           <i class="iconfont_wlzj r">&#xE044;</i>
           <p>设置</p>
         </a>

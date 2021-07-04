@@ -38,7 +38,7 @@ export default class News {
 
       //新闻详情
       let newsDetail = await GetNewsById(newsId)
-
+      console.log(newsDetail)
       //-------------------------------
       //热门资讯
       let HotNews: ResNewsModel[] = await GetHotNews()
